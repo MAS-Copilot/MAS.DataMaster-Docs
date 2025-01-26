@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>MAS.Controls 通用控件 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="MAS.Controls 通用控件 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="mascontrols-通用控件">MAS.Controls 通用控件</h1>
+
+<ul>
+<li><a href="#mascontrols-%E9%80%9A%E7%94%A8%E6%8E%A7%E4%BB%B6">MAS.Controls 通用控件</a>
+<ul>
+<li><a href="#itipsnotificationservice">ITipsNotificationService</a>
+<ul>
+<li><a href="#tipsnotificationservice">TipsNotificationService</a></li>
+</ul>
+</li>
+<li><a href="#inotificationservice">INotificationService</a>
+<ul>
+<li><a href="#notificationservice">NotificationService</a></li>
+</ul>
+</li>
+<li><a href="#numberanimation">NumberAnimation</a>
+<ul>
+<li><a href="#chartsnumberanimationcontrol">ChartsNumberAnimationControl</a></li>
+</ul>
+</li>
+<li><a href="#iloadingservice">ILoadingService</a>
+<ul>
+<li><a href="#loadingcircleservice">LoadingCircleService</a></li>
+</ul>
+</li>
+<li><a href="#projectcardcontrol">ProjectCardControl</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="itipsnotificationservice">ITipsNotificationService</h2>
+<p>Tips 通知</p>
+<h3 id="tipsnotificationservice">TipsNotificationService</h3>
+<p><strong>行为：</strong></p>
+<ul>
+<li>Step 1: 每个需要显示<code>Tips</code>通知的窗口必须在其<code>XAML</code>中包含一个名为<code>TipsNotificationHost</code>的容器</li>
+</ul>
+<pre><code class="lang-xml"> &lt;!-- Tips 通知宿主容器 --&gt;
+&lt;Grid x:Name=&quot;TipsNotificationHost&quot;&gt;
+    &lt;!-- Tips 通知控件将动态添加到这里 --&gt;
+&lt;/Grid&gt;
+</code></pre>
+<ul>
+<li>Step 2: 服务初始化和方法实现</li>
+</ul>
+<p>在显示通知时自动识别当前活动窗口并找到其<code>TipsNotificationHost</code>容器，如果窗口当前活动窗口尺寸小于<code>800*600</code>，则使用主窗口的<code>TipsNotificationHost</code>容器</p>
+<pre><code class="lang-csharp">private readonly ITipsNotificationService _tipsNotificationService;
+</code></pre>
+<h2 id="inotificationservice">INotificationService</h2>
+<p>普通通知</p>
+<h3 id="notificationservice">NotificationService</h3>
+<p><strong>行为：</strong></p>
+<ul>
+<li>Step 1: 定义 Host Control: 通知内容控件作为面包通知的指定容器</li>
+</ul>
+<pre><code class="lang-xml">&lt;ContentControl x:Name=&quot;NotificationHost&quot;/&gt;
+</code></pre>
+<ul>
+<li>Step 2: 服务初始化和方法实现</li>
+</ul>
+<pre><code class="lang-csharp">private readonly INotificationService _notificationService;
+
+private void ShowNotification(string message) {
+    _notificationService.Show(message, NotificationHost);
+}
+</code></pre>
+<p><strong>信息：</strong></p>
+<p>Nothing</p>
+<hr>
+<h2 id="numberanimation">NumberAnimation</h2>
+<p>数字动画</p>
+<h3 id="chartsnumberanimationcontrol">ChartsNumberAnimationControl</h3>
+<p><strong>行为：</strong></p>
+<ul>
+<li>Step 1: 引入命名空间</li>
+</ul>
+<pre><code class="lang-xml">xmlns:naControl =&quot;clr-namespace:MAS.Controls.NumberAnimation&quot;
+</code></pre>
+<ul>
+<li>Step 2: 实例化<code>ChartsNumberAnimationControl</code>并绑定至<strong>ViewModel</strong>属性</li>
+</ul>
+<pre><code class="lang-xml">&lt;naControl:ChartsNumberAnimationControl Number=&quot;{Binding CurrentNumber}&quot;/&gt;
+</code></pre>
+<ul>
+<li>Step 3: 实现<strong>ViewMode</strong></li>
+</ul>
+<pre><code class="lang-csharp">private int _currentNumber;
+public int CurrentNumber {
+    get =&gt; _currentNumber;
+    set =&gt; SetField(ref _currentNumber, value, nameof(CurrentNumber));
+}
+</code></pre>
+<p><strong>信息：</strong></p>
+<p>Nothing</p>
+<h2 id="iloadingservice">ILoadingService</h2>
+<p>加载动画</p>
+<h3 id="loadingcircleservice">LoadingCircleService</h3>
+<p><strong>行为：</strong></p>
+<ul>
+<li>Step 1: 定义 Host Control: 添加控件作为加载动画的指定容器</li>
+</ul>
+<pre><code class="lang-xml"> &lt;ContentControl x:Name=&quot;Loading&quot;/&gt;
+</code></pre>
+<ul>
+<li>Step 2: 服务初始化和方法实现</li>
+</ul>
+<pre><code class="lang-csharp">// View
+private readonly ILoadingService _loadingService;
+
+// 显示
+_loadingService.ShowLoadingAnimation(Loading);
+
+// 销毁
+_loadingService.DestroyLoadingAnimation();
+</code></pre>
+<p><strong>信息：</strong></p>
+<p>Nothing</p>
+<h2 id="projectcardcontrol">ProjectCardControl</h2>
+<p>工程实例卡片，用于展示和操作工程项目实例的详细信息</p>
+<p><strong>示例代码：</strong></p>
+<pre><code class="lang-xml">&lt;Grid&gt;
+    &lt;ScrollViewer VerticalScrollBarVisibility=&quot;Auto&quot; Margin=&quot;10&quot;&gt;
+        &lt;hc:TransitioningContentControl TransitionMode=&quot;Top2BottomWithFade&quot;&gt;
+            &lt;ItemsControl ItemsSource=&quot;{Binding Projects}&quot;&gt;
+                &lt;ItemsControl.ItemTemplate&gt;
+                    &lt;DataTemplate&gt;
+                        &lt;mas:ProjectCardControl 
+                            ProjectName=&quot;{Binding ProjectName}&quot;
+                            ProjectPath=&quot;{Binding ProjectPath}&quot;
+                            DiskSpace=&quot;{Binding DiskSpace}&quot;
+                            CreationTime=&quot;{Binding CreationTime}&quot;
+                            ModificationTime=&quot;{Binding ModificationTime}&quot;
+                            BuildTime=&quot;{Binding BuildTime}&quot;
+                            RunStatus=&quot;{Binding RunStatus}&quot;
+                            OpenCommand=&quot;{Binding OpenCommand}&quot;
+                            RunCommand=&quot;{Binding RunCommand}&quot;
+                            DeleteCommand=&quot;{Binding DeleteCommand}&quot;/&gt;
+                    &lt;/DataTemplate&gt;
+                &lt;/ItemsControl.ItemTemplate&gt;
+            &lt;/ItemsControl&gt;
+        &lt;/hc:TransitioningContentControl&gt;
+    &lt;/ScrollViewer&gt;
+&lt;/Grid&gt;
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

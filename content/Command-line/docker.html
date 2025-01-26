@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Docker 使用指南 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Docker 使用指南 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="docker-使用指南">Docker 使用指南</h1>
+
+<h2 id="前言">前言</h2>
+<p>Docker 是一款轻量级的容器化平台，提供了高效的应用程序打包、部署和管理解决方案</p>
+<h2 id="系统信息查看">系统信息查看</h2>
+<pre><code class="lang-bash"># 查看 Docker 版本信息
+docker --version
+
+docker version
+
+# 查看 Docker 环境配置
+docker info
+</code></pre>
+<h2 id="镖容器相关操作">镖容器相关操作</h2>
+<h3 id="列出镖容器">列出镖容器</h3>
+<pre><code class="lang-bash"># 列出正在运行的镖容器
+docker ps
+
+# 列出所有镖容器包括已停止的
+docker ps -a
+</code></pre>
+<h3 id="启动和停止镖容器">启动和停止镖容器</h3>
+<pre><code class="lang-bash"># 启动镖容器
+docker start &lt;container_id|name&gt;
+
+# 停止运行中的镖容器
+docker stop &lt;container_id|name&gt;
+
+# 重命名已存在的容器
+docker rename &lt;old_name&gt; &lt;new_name&gt;
+</code></pre>
+<h3 id="限制-cpu-和内存使用">限制 CPU 和内存使用</h3>
+<pre><code class="lang-bash"># 限制容器的 CPU 核数
+docker run -d --cpus=&quot;1.5&quot; &lt;image_name&gt;
+
+# 限制容器的内存大小
+docker run -d --memory=&quot;512m&quot; &lt;image_name&gt;
+
+# 限制容器的 CPU 和内存
+docker run -d --cpus=&quot;2&quot; --memory=&quot;1g&quot; &lt;image_name&gt;
+</code></pre>
+<h3 id="删除镖容器">删除镖容器</h3>
+<pre><code class="lang-bash"># 删除某个镖容器
+docker rm &lt;container_id|name&gt;
+
+# 删除所有停止的镖容器
+docker container prune
+</code></pre>
+<h2 id="镖容器工作操作">镖容器工作操作</h2>
+<h3 id="进入镖容器内部">进入镖容器内部</h3>
+<pre><code class="lang-bash"># 使用 bash 进入镖容器
+docker exec -it &lt;container_id|name&gt; /bin/bash
+
+# 进入 sh 模式
+docker exec -it &lt;container_id|name&gt; sh
+</code></pre>
+<h3 id="查看镖容器日志">查看镖容器日志</h3>
+<pre><code class="lang-bash"># 查看镖容器日志
+docker logs &lt;container_id|name&gt;
+
+# 展示最新的 N 条日志
+docker logs --tail N &lt;container_id|name&gt;
+</code></pre>
+<h2 id="镖容镜像相关">镖容镜像相关</h2>
+<h3 id="列出镜像">列出镜像</h3>
+<pre><code class="lang-bash"># 列出本地存在的镖容镜像
+docker images
+</code></pre>
+<h3 id="下载镜像">下载镜像</h3>
+<pre><code class="lang-bash"># 从 Docker Hub 下载镜像
+docker pull &lt;image_name:tag&gt;
+</code></pre>
+<h3 id="删除镜像">删除镜像</h3>
+<pre><code class="lang-bash"># 删除某个镜像
+docker rmi &lt;image_id&gt;
+
+# 删除所有不再使用的镜像
+docker image prune
+</code></pre>
+<h3 id="构建镜像">构建镜像</h3>
+<pre><code class="lang-bash"># 通过 Dockerfile 构建镜像
+docker build -t &lt;image_name:tag&gt; .
+</code></pre>
+<h2 id="仓库相关">仓库相关</h2>
+<h3 id="查看空间占用">查看空间占用</h3>
+<pre><code class="lang-bash"># 查看 Docker 空间占用情况
+docker system df
+</code></pre>
+<h3 id="清理-docker-无用数据">清理 Docker 无用数据</h3>
+<pre><code class="lang-bash"># 清理无用的镜像，镖容器，缓存等
+docker system prune
+</code></pre>
+<h2 id="镖容器网络管理">镖容器网络管理</h2>
+<h3 id="列出网络">列出网络</h3>
+<pre><code class="lang-bash"># 查看 Docker 网络列表
+docker network ls
+</code></pre>
+<h3 id="创建自定义网络">创建自定义网络</h3>
+<pre><code class="lang-bash"># 创建桥接网络
+docker network create &lt;network_name&gt;
+</code></pre>
+<h3 id="连接和断开网络">连接和断开网络</h3>
+<pre><code class="lang-bash"># 将容器连接到指定网络
+docker network connect &lt;network_name&gt; &lt;container_id|name&gt;
+
+# 从网络中断开容器
+docker network disconnect &lt;network_name&gt; &lt;container_id|name&gt;
+</code></pre>
+<h2 id="镜像管理进阶">镜像管理进阶</h2>
+<h3 id="导出与导入镜像">导出与导入镜像</h3>
+<pre><code class="lang-bash"># 将镜像导出到 tar 文件
+docker save -o &lt;filename.tar&gt; &lt;image_name:tag&gt;
+
+# 导入镜像文件到本地
+docker load -i &lt;filename.tar&gt;
+</code></pre>
+<h2 id="镖容器数据管理">镖容器数据管理</h2>
+<h3 id="数据卷volumes操作">数据卷（Volumes）操作</h3>
+<pre><code class="lang-bash"># 创建数据卷
+docker volume create &lt;volume_name&gt;
+
+# 查看所有数据卷
+docker volume ls
+
+# 查看指定数据卷详情
+docker volume inspect &lt;volume_name&gt;
+
+# 删除数据卷
+docker volume rm &lt;volume_name&gt;
+
+# 清理无用数据卷
+docker volume prune
+</code></pre>
+<h3 id="将数据卷挂载到容器">将数据卷挂载到容器</h3>
+<pre><code class="lang-bash"># 挂载数据卷到容器的目录
+docker run -d -v &lt;volume_name&gt;:/path/in/container &lt;image_name&gt;
+</code></pre>
+<h2 id="镖容器与宿主机文件共享">镖容器与宿主机文件共享</h2>
+<h3 id="绑定宿主机目录">绑定宿主机目录</h3>
+<pre><code class="lang-bash"># 将宿主机目录绑定到容器中
+docker run -d -v /host/path:/container/path &lt;image_name&gt;
+</code></pre>
+<h2 id="镖容器状态检查">镖容器状态检查</h2>
+<h3 id="容器的进程和资源监控">容器的进程和资源监控</h3>
+<pre><code class="lang-bash"># 查看容器内运行的进程
+docker top &lt;container_id|name&gt;
+
+# 实时监控容器资源使用情况
+docker stats
+</code></pre>
+<h2 id="镖容器健康检查">镖容器健康检查</h2>
+<h3 id="健康状态配置">健康状态配置</h3>
+<pre><code class="lang-bash"># 使用健康检查命令启动容器
+docker run -d --health-cmd=&quot;curl --fail http://localhost || exit 1&quot; --health-interval=10s &lt;image_name&gt;
+</code></pre>
+<h3 id="查看健康状态">查看健康状态</h3>
+<pre><code class="lang-bash"># 检查容器健康状态
+docker inspect --format='{{.State.Health.Status}}' &lt;container_id|name&gt;
+</code></pre>
+<h2 id="镖容器高级调试">镖容器高级调试</h2>
+<h3 id="查看容器文件系统">查看容器文件系统</h3>
+<pre><code class="lang-bash"># 导出容器文件系统
+docker export -o &lt;container.tar&gt; &lt;container_id|name&gt;
+
+# 查看容器的变化文件
+docker diff &lt;container_id|name&gt;
+</code></pre>
+<h2 id="镖容器恢复和检查点">镖容器恢复和检查点</h2>
+<h3 id="容器暂停与恢复">容器暂停与恢复</h3>
+<pre><code class="lang-bash"># 暂停容器中的进程
+docker pause &lt;container_id|name&gt;
+
+# 恢复被暂停的容器
+docker unpause &lt;container_id|name&gt;
+</code></pre>
+<h2 id="镖容器命令快捷总结">镖容器命令快捷总结</h2>
+<pre><code class="lang-bash"># 快速启动一个容器
+docker run -d --name &lt;container_name&gt; &lt;image_name&gt;
+
+# 重启容器
+docker restart &lt;container_id|name&gt;
+
+# 停止并移除容器
+docker stop &lt;container_id|name&gt; &amp;&amp; docker rm &lt;container_id|name&gt;
+
+# 强制删除所有停止的容器
+docker rm $(docker ps -a -q)
+
+# 强制删除所有未使用的镜像
+docker rmi $(docker images -q)
+
+# 查看所有运行的容器资源占用
+docker stats
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

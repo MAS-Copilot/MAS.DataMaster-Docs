@@ -1,0 +1,604 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>App Feature | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="App Feature | DataMaster ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="app-feature">App Feature</h1>
+
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>标题</th>
+<th>描述</th>
+<th>详细说明</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日志记录</td>
+<td>系统</td>
+<td>记录系统的运行状态和关键事件</td>
+<td>包括系统启动、停止、故障、恢复等重要事件的详细日志，帮助系统维护和故障排除</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>通讯</td>
+<td>记录设备与外部系统的通信数据</td>
+<td>记录设备与外部系统之间的通信数据，包括发送和接收的数据、时间戳、通信结果等，用于调试和故障排除</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>网络</td>
+<td>记录网络连接信息</td>
+<td>记录网络状态，异常信息和错误信息</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>AI API</td>
+<td>记录AI API调用信息</td>
+<td>记录AI API调用信息的回复信息，包括调用时间、调用参数、调用结果、回复方的信息</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>操作</td>
+<td>记录用户的每次操作及其结果</td>
+<td>自动记录所有用户界面操作，包括时间、操作人、具体操作内容及操作结果，用于审计和复查</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>性能</td>
+<td>监控并记录系统性能相关数据</td>
+<td>定期记录系统的CPU使用率、内存使用、网络状态等性能数据，用于性能分析和优化</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>数据记录</td>
+<td>生产过程</td>
+<td>记录整个生产过程中的关键数据</td>
+<td>跟踪并记录生产线上各阶段的操作数据，如生产量、作业时间、材料消耗等</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>参数调整</td>
+<td>记录设备参数的调整历史</td>
+<td>每当设备参数被调整时，详细记录调整前后的值、调整时间以及操作员信息</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>质量控制</td>
+<td>记录生产过程中的质量检查结果</td>
+<td>记对每批产品进行质量检查，并记录检查结果数据，用于追踪产品质量和合格率</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>配置更改</td>
+<td>记录设备配置的更改历史</td>
+<td>记录系统设置或配置文件的任何更改，包括更改前后的详细对比、更改时间和操作员信息，用于系统配置管理</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>设备管理信息</td>
+<td>记录设备的相关信息</td>
+<td>设备信息、设备产品、设备生产信息、设备状态信息、设备报警信息、设备停机信息等相关数据</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>设备节拍</td>
+<td>记录设备节拍数据</td>
+<td>记录设备节拍数据，包括节拍时间、节拍频率、产量效率数据，包括产量时间、产量数量</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>用户管理</td>
+<td>用户身份验证</td>
+<td>管理用户登录与权限</td>
+<td>实现用户登录功能，根据用户角色分配权限，包括对操作、配置、监控等功能的访问控制</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>用户操作审计</td>
+<td>跟踪用户操作和事件</td>
+<td>记录用户操作和事件，包括登录、访问、修改等，以便进行审计和监控</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>用户权限管理</td>
+<td>定义和管理不同用户的访问权限和操作权限</td>
+<td>精细管理用户权限，确保不同角色和职责的用户访问合适的功能区域，增加系统的安全性</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>数据管理</td>
+<td>备份和恢复</td>
+<td>管理数据的存储与自动备份</td>
+<td>定期存储并备份关键数据，确保数据安全和可恢复性</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>数据表单</td>
+<td>创建和修改数据表单</td>
+<td>创建和修改数据表单，以定义数据字段和选项</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>数据查询</td>
+<td>浏览和查询更改存储的数据</td>
+<td>提供一个界面让用户可以查询历史数据和实时数据，支持多条件搜索和数据筛选</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>报表生成</td>
+<td>根据数据生成各类报表</td>
+<td>生成定制化报表或数据库统计报表，可导出数据库表单格式数据</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>数据同步</td>
+<td>不同系统设备同步数据适应不同的数据共享</td>
+<td>在多个系统和设备之间同步数据，确保信息的一致性和实时更新</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>数据清理</td>
+<td>以优化存储空间利用率和提高系统性能</td>
+<td>定期清理无用或过时的数据，保持系统性能和响应速度</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>数据加密</td>
+<td>对敏感数据进行加密处理</td>
+<td>使用高级加密标准保护存储和传输中的敏感数据，防止数据泄露</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>数据完整性检查</td>
+<td>检查数据在存储和传输中的完整性</td>
+<td>实现机制确保数据未被非法修改，如通过哈希校验、数字签名等方法保护数据完整性</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>监控与控制</td>
+<td>运行</td>
+<td>启动系统执行自动化任务过程</td>
+<td>启动或停止设备的数据采集， 对数据处理，保存、导出表格等</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>环境监控</td>
+<td>实时显示设备状态和传感器数据</td>
+<td>实时监控各种传感器和设备状态数据，如温度、压力、流速等，保证系统在最佳状态下运行</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>统计</td>
+<td>数据可视化图形统计</td>
+<td>通过图表和曲线显示统计数据，帮助理解数据趋势和进行决策</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>Takt Time</td>
+<td>设备生产节拍统计</td>
+<td>统计设备生产节拍，包括节拍时间、节拍频率、产量效率数据，包括产量时间、产量数量</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>设备诊断</td>
+<td>对连接的设备进行状态检查和故障诊断</td>
+<td>检查并诊断连接的设备状态，包括预防性维护提示和故障分析</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>过程可视化</td>
+<td>展示生产过程和设备布局</td>
+<td>以图形和动画形式展示整个生产过程和设备布局，帮助操作员和维护人员了解流程</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>趋势分析</td>
+<td>分析关键参数的历史数据展示其变化趋势</td>
+<td>收集和分析历史运行数据，通过趋势图和预测模型帮助预测未来性能，优化操作决策</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>分析与维护</td>
+<td>预测维护</td>
+<td>分析预测设备故障和维护需求</td>
+<td>利用历史数据和机器学习模型来预测设备的潜在故障点和维护需求，以提前安排维护活动以避免意外停机</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>维护计划</td>
+<td>规划和记录设备的维护活动</td>
+<td>管理和规划定期维护任务，记录维护历史和计划，确保设备长期运行的可靠性和效率</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>设备健康评估</td>
+<td>利用指标和阈值来识别潜在问题</td>
+<td>通过监控设备的关键性能指标和对比阈值，评估设备的运行健康状态，及时识别可能的问题点</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>资产管理</td>
+<td>管理和跟踪所有设备资产的详细信息</td>
+<td>详细记录所有资产的配置、状态和维护记录，提供资产的全面视图以优化资产利用率</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>故障树分析</td>
+<td>帮助确定不同故障模式对系统性能的影响</td>
+<td>使用故障树分析方法识别和分析潜在的故障来源，以及它们如何影响系统的整体性能</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>备件管理与优化</td>
+<td>管理维护过程中所需的备件库存</td>
+<td>优化备件库存管理，确保必要的备件可用性，减少因缺少备件而导致的维护延迟</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>配置与自定义</td>
+<td>参数配置</td>
+<td>配置设备参数或软件设置</td>
+<td>提供用户友好的界面来配置和保存设备或软件的操作参数，支持快速修改和加载配置</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>配方管理</td>
+<td>管理生产配方和参数设置</td>
+<td>允许用户创建、编辑和管理生产线的配方设置，支持不同产品的快速切换和参数调整</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>多语言</td>
+<td>满足不同地区用户的需求</td>
+<td>支持多种语言选项，确保软件可以在不同国家和地区使用，提升用户体验</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>系统主题与外观</td>
+<td>支持自定义主题颜色</td>
+<td>允许用户根据个人偏好自定义软件的视觉主题和界面外观</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>视觉系统</td>
+<td>图像捕获</td>
+<td>多相机配置选择不同的捕获模式</td>
+<td>配置并管理多个摄像头系统，以适应不同的监控需求和角度，捕获高质量图像用于进一步分析</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>图像处理</td>
+<td>改善图像质量，为后续的图像分析准备</td>
+<td>应用图像处理技术改善捕获图像的质量，包括滤镜、对比度调整等，以优化分析效果</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>特征检测</td>
+<td>从捕获的图像中检测和提取关键特征</td>
+<td>使用先进的图像分析技术从图像中自动检测和标识关键特征，用于质量控制和自动化检测</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>缺陷检测</td>
+<td>识别图像中的裂纹、划痕、异物等缺陷</td>
+<td>利用图像分析技术识别并报告产品或原料中的缺陷，如裂纹、划痕或其他不规则性，提高生产质量</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>图像补正与校准</td>
+<td>图像的自动补正与校准功能</td>
+<td>自动校准摄像头捕获的图像，调整图像歪斜、色彩偏差等问题，确保图像分析的准确性</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>图像算法应用</td>
+<td>包括但不限于形态学特征提取和模式识别</td>
+<td>集成和应用多种图像处理算法，从图像中提取更多信息，支持复杂的模式识别和分析</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>高级图像分析</td>
+<td>实现高级图像识别和处理功能</td>
+<td>引入机器学习模型对图像进行深入分析，如使用深度学习对产品缺陷进行更精确的识别</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>机器人监控</td>
+<td>机器人状态监控</td>
+<td>实时显示机器人的状态</td>
+<td>监控机器人的状态，包括位置、速度、姿态、负载等，实时显示在机器人上的状态，确保操作的透明度和安全性</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>坐标补正值</td>
+<td>与预期目标之间的偏差</td>
+<td>显示机器人执行任务过程中与预设目标坐标的偏差值，用于精确控制和调整</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>安全区域监控</td>
+<td>定义和监控机器人操作的安全区域</td>
+<td>实时监控并确保机器人在预定义的安全区域内操作，防止越界导致的安全事故</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>通讯</td>
+<td>Modbus协议</td>
+<td>用于PLC与上位机之间的通信</td>
+<td>支持Modbus RTU和Modbus TCP两种模式，适用于实时数据和控制指令的传输，广泛应用于工业自动化领域</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>S7协议</td>
+<td>用于与西门子PLC进行通信</td>
+<td>支持与西门子系列PLC（如S7-300/400/1200/1500）进行数据交换，适用于复杂的自动化和控制需求</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>MC协议</td>
+<td>用于与三菱PLC进行通信</td>
+<td>用于三菱PLC系列如Q, L, FX等的数据读取和写入，支持高效率的通讯和控制，广泛应用于三菱自动化设备</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>Profibus协议</td>
+<td>工业现场总线之间的通信协议</td>
+<td>适用于实现自动化设备的分布式控制，特别是在制造和过程控制系统中的应用，支持高速数据交换</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>Ethernet/IP协议</td>
+<td>以太网基础的工业协议</td>
+<td>使用TCP/IP和以太网技术，支持设备信息的交互和控制，适合需要高速通信的应用场景</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>OPC UA协议</td>
+<td>开放平台通信统一架构</td>
+<td>为不同制造设备和控制系统之间提供一种标准化的通信方式，支持跨平台和企业级的信息交换</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>CANopen协议</td>
+<td>控制器局域网通信协议</td>
+<td>用于低速序列通信的设备，如传感器和执行器之间的通信，适用于汽车和其他运输工具的控制系统</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>EtherCAT协议</td>
+<td>以太网为基础的实时通讯协议</td>
+<td>提供快速的系统响应时间和低通信延迟，适合在高性能的机器控制和运动控制应用中使用</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>CAN协议</td>
+<td>适用于汽车、工业、航空航天、机器人等</td>
+<td>CAN协议是通用的，适用于各种应用场景，具有低延时、高可靠性、高通信效率等特点</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>CC-Link协议</td>
+<td>控制与通信链路</td>
+<td>用于机器人和其他自动化设备的快速通信，支持大量设备的数据同步与控制</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>云服务接口</td>
+<td>提供云平台数据同步和服务接口</td>
+<td>开发云服务接口，使系统能够与云平台进行数据同步和服务集成，支持数据备份、分析和跨平台服务</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>系统维护</td>
+<td>系统升级</td>
+<td>提供系统软件的在线更新和升级功能</td>
+<td>开发一个系统升级机制，支持在线下载和安装更新包，确保系统功能和安全性的持续改进</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>系统自检</td>
+<td>在系统启动或运行时进行自检</td>
+<td>实现系统自检功能，检查硬件和软件的状态是否正常，确保系统在问题发生前进行预警和修复</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>AI模型、聊天</td>
+<td>模型训练</td>
+<td>模型训练</td>
+<td>支持多种机器学习算法的训练，包括深度学习、神经网络等，用于实现自动化控制</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>智能问答</td>
+<td>智能问答</td>
+<td>网络API调用模型，自然语言处理技术，上下文保持，实现对用户问题进行理解、分析、回答和反馈，项目的疑难解答</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td>历史信息</td>
+<td>历史信息查询</td>
+<td>对历史对话进行查询和查看，保持历史详细的对话记录</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>语音识别和合成</td>
+<td>语音识别和合成</td>
+<td>语音识别（ASR）将语音转化为文本，语音合成（TTS）将文本转化为语音</td>
+<td>❌</td>
+</tr>
+<tr>
+<td></td>
+<td>多模态交互</td>
+<td>多模态信息融合</td>
+<td>支持多种交互方式，包括文本、语音、图像等，使用户可以通过不同的方式与系统进行交互。</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

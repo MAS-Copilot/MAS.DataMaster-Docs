@@ -1,0 +1,518 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>RBAC（基于角色的访问控制）模型 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="RBAC（基于角色的访问控制）模型 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="rbac基于角色的访问控制模型">RBAC（基于角色的访问控制）模型</h1>
+
+<h2 id="摘要">摘要</h2>
+<p>基于角色的访问控制（Role-Based Access Control, RBAC）是一种访问控制机制，通过用户角色和权限的映射关系，来限制和管理对系统资源的访问。将权限分配给角色，再将角色分配给用户，实现灵活的权限控制。本模型包含用户、角色、权限、角色权限关联表、用户角色关联表以及操作日志表</p>
+<h2 id="概念">概念</h2>
+<ul>
+<li><strong>用户（User）：</strong> 系统中的操作主体，每个用户拥有一个唯一标识符</li>
+<li><strong>角色（Role）：</strong> 角色是权限的集合，通过分配的角色获得对应的权限</li>
+<li><strong>权限（Permission）：</strong> 权限是对系统资源操作的具体定义，例如查看、修改或删除资源</li>
+<li><strong>关联表：</strong> 通过关联表（如角色权限表、用户角色表）实现用户、角色和权限之间的映射关系</li>
+<li><strong>操作日志（OperationLog）：</strong> 用于记录用户对系统的操作行为，提供审计和追踪功能</li>
+</ul>
+<h2 id="接口">接口</h2>
+<pre><code class="lang-Csharp">// 认证服务接口
+public interface IAuthenticationService() { }
+
+// 基于角色的访问控制服务接口
+public interface IRbacService() { }
+</code></pre>
+<h2 id="规划">规划</h2>
+<h3 id="角色">角色</h3>
+<ul>
+<li>MAS（开发者）</li>
+<li>Admin（管理员）</li>
+<li>Engineer（工程师）</li>
+<li>Operator（操作员）</li>
+<li>Visitor（未登录）</li>
+</ul>
+<h3 id="权限">权限</h3>
+<h3 id="角色权限关联表">角色权限关联表</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAS</td>
+<td><code>UserCreate</code>, <code>UserEdit</code>, <code>UserDelete</code>, <code>UserResetPassword</code>, <code>UserAssignRole</code>, <code>RoleCreate</code>, <code>RoleEdit</code>, <code>RoleDelete</code>, <code>RoleAssignPermission</code></td>
+</tr>
+<tr>
+<td>Admin</td>
+<td></td>
+</tr>
+<tr>
+<td>Engineer</td>
+<td></td>
+</tr>
+<tr>
+<td>Operator</td>
+<td></td>
+</tr>
+<tr>
+<td>Visitor</td>
+<td><code>SystemView</code>, <code>BuildView</code>, <code>BusinessDataView</code>, <code>ReportsView</code>, <code>LogView</code>, <code>NotificationView</code>, <code>FileDownload</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="系统管理类权限">系统管理类权限</h4>
+<h5 id="用户管理">用户管理</h5>
+<ul>
+<li><strong>UserCreate</strong>: 创建用户</li>
+<li><strong>UserEdit</strong>: 编辑用户</li>
+<li><strong>UserDelete</strong>: 删除用户</li>
+<li><strong>UserResetPassword</strong>: 重置用户密码</li>
+<li><strong>UserAssignRole</strong>: 分配角色给用户</li>
+</ul>
+<h5 id="角色管理">角色管理</h5>
+<ul>
+<li><strong>RoleCreate</strong>: 创建角色</li>
+<li><strong>RoleEdit</strong>: 编辑角色</li>
+<li><strong>RoleDelete</strong>: 删除角色</li>
+<li><strong>RoleAssignPermission</strong>: 分配权限给角色</li>
+</ul>
+<h5 id="权限管理">权限管理</h5>
+<ul>
+<li><strong>PermissionCreate</strong>: 创建权限</li>
+<li><strong>PermissionEdit</strong>: 编辑权限</li>
+<li><strong>PermissionDelete</strong>: 删除权限</li>
+</ul>
+<h5 id="系统配置">系统配置</h5>
+<ul>
+<li><strong>SystemView</strong>: 查看系统配置</li>
+<li><strong>SystemEdit</strong>: 修改系统配置</li>
+</ul>
+<h4 id="构建系统类权限">构建系统类权限</h4>
+<h5 id="构建运行">构建运行</h5>
+<ul>
+<li><strong>BuildView</strong>: 查看构建</li>
+<li><strong>BuildEdit</strong>: 编辑构建</li>
+<li><strong>BuildDelete</strong>: 删除构建</li>
+<li><strong>BuildStatus</strong>: 构建状态</li>
+</ul>
+<h4 id="业务管理类权限">业务管理类权限</h4>
+<h5 id="业务数据管理">业务数据管理</h5>
+<ul>
+<li><strong>BusinessDataView</strong>: 查看业务数据</li>
+<li><strong>BusinessDataCreate</strong>: 创建业务数据</li>
+<li><strong>BusinessDataEdit</strong>: 编辑业务数据</li>
+<li><strong>BusinessDataDelete</strong>: 删除业务数据</li>
+</ul>
+<h5 id="报表管理">报表管理</h5>
+<ul>
+<li><strong>ReportsView</strong>: 查看报表</li>
+<li><strong>ReportsExport</strong>: 导出报表</li>
+<li><strong>ReportsAnalyze</strong>: 统计分析</li>
+</ul>
+<h4 id="日志与审计类权限">日志与审计类权限</h4>
+<h5 id="日志管理">日志管理</h5>
+<ul>
+<li><strong>LogView</strong>: 查看日志</li>
+</ul>
+<h5 id="审计管理">审计管理</h5>
+<ul>
+<li><strong>AuditView</strong>: 查看审计信息</li>
+</ul>
+<h4 id="其他辅助类权限">其他辅助类权限</h4>
+<h5 id="通知管理">通知管理</h5>
+<ul>
+<li><strong>NotificationView</strong>: 查看通知</li>
+<li><strong>NotificationPublish</strong>: 发布通知</li>
+<li><strong>NotificationDelete</strong>: 删除通知</li>
+</ul>
+<h5 id="文件管理">文件管理</h5>
+<ul>
+<li><strong>FileUpload</strong>: 上传文件</li>
+<li><strong>FileDownload</strong>: 下载文件</li>
+<li><strong>FileDelete</strong>: 删除文件</li>
+<li><strong>FileShare</strong>: 共享文件</li>
+</ul>
+<h5 id="api-访问">API 访问</h5>
+<ul>
+<li><strong>APIAccess</strong>: 访问API</li>
+<li><strong>APIDebugAccess</strong>: 调用内部调试接口</li>
+</ul>
+<h5 id="调试权限">调试权限</h5>
+<ul>
+<li><strong>CodeDebug</strong>: 代码级调试权限</li>
+</ul>
+<h4 id="扩展权限">扩展权限</h4>
+<h5 id="生产控制">生产控制</h5>
+<ul>
+<li><strong>ProductionControlView</strong>: 查看生产控制</li>
+<li><strong>ProductionControlEdit</strong>: 修改生产控制</li>
+</ul>
+<h2 id="数据表">数据表</h2>
+<h3 id="用户user">用户（User）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>INT</td>
+<td>用户的唯一标识符，主键，自增</td>
+</tr>
+<tr>
+<td>UserName</td>
+<td>VARCHAR(20)</td>
+<td>用户名，唯一且不可为空</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>VARCHAR(50)</td>
+<td>邮箱，可为空</td>
+</tr>
+<tr>
+<td>PasswordHash</td>
+<td>VARBINARY(64)</td>
+<td>用户密码的哈希值，不可为空</td>
+</tr>
+<tr>
+<td>PasswordSalt</td>
+<td>VARBINARY(64)</td>
+<td>密码盐，用于加密用户密码，不可为空</td>
+</tr>
+<tr>
+<td>LoginCount</td>
+<td>INT</td>
+<td>用户登录次数</td>
+</tr>
+<tr>
+<td>LastLoginTime</td>
+<td>DATETIME</td>
+<td>最后一次登录时间</td>
+</tr>
+<tr>
+<td>CreatedAt</td>
+<td>DATETIME</td>
+<td>创建时间，不可为空</td>
+</tr>
+<tr>
+<td>UpdatedAt</td>
+<td>DATETIME</td>
+<td>最后更新时间，不可为空</td>
+</tr>
+</tbody>
+</table>
+<h3 id="角色role">角色（Role）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>INT</td>
+<td>角色唯一标识，主键，自增</td>
+</tr>
+<tr>
+<td>RoleName</td>
+<td>VARCHAR(50)</td>
+<td>角色名称，唯一且不可为空</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>VARCHAR(255)</td>
+<td>角色描述</td>
+</tr>
+<tr>
+<td>CreatedAt</td>
+<td>DATETIME</td>
+<td>创建时间，不可为空</td>
+</tr>
+<tr>
+<td>UpdatedAt</td>
+<td>DATETIME</td>
+<td>最后更新时间，不可为空</td>
+</tr>
+</tbody>
+</table>
+<h3 id="权限permission">权限（Permission）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>INT</td>
+<td>权限唯一标识符，主键，自增</td>
+</tr>
+<tr>
+<td>PermissionName</td>
+<td>VARCHAR(50)</td>
+<td>权限名称，唯一且不可为空</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>VARCHAR(255)</td>
+<td>权限描述</td>
+</tr>
+<tr>
+<td>CreatedAt</td>
+<td>DATETIME</td>
+<td>创建时间，不可为空</td>
+</tr>
+<tr>
+<td>UpdatedAt</td>
+<td>DATETIME</td>
+<td>最后更新时间，不可为空</td>
+</tr>
+</tbody>
+</table>
+<h3 id="角色权限关联表rolepermission">角色权限关联表（RolePermission）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>INT</td>
+<td>角色权限关联表唯一标识符，主键，自增</td>
+</tr>
+<tr>
+<td>RoleID</td>
+<td>INT</td>
+<td>角色ID，外键，唯一，关联到Roles表</td>
+</tr>
+<tr>
+<td>PermissionID</td>
+<td>INT</td>
+<td>权限ID，外键，唯一，关联到Permissions表</td>
+</tr>
+<tr>
+<td>CreatedAt</td>
+<td>DATETIME</td>
+<td>创建时间，不可为空</td>
+</tr>
+<tr>
+<td>UpdatedAt</td>
+<td>DATETIME</td>
+<td>最后更新时间，可为空</td>
+</tr>
+</tbody>
+</table>
+<h3 id="用户角色关联表userrole">用户角色关联表（UserRole）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>INT</td>
+<td>用户角色关联表唯一标识符，主键，自增</td>
+</tr>
+<tr>
+<td>UserID</td>
+<td>INT</td>
+<td>用户ID，外键，唯一，关联到Users表</td>
+</tr>
+<tr>
+<td>RoleID</td>
+<td>INT</td>
+<td>角色ID，外键，唯一，关联到Roles表</td>
+</tr>
+<tr>
+<td>CreatedAt</td>
+<td>DATETIME</td>
+<td>创建时间，不可为空</td>
+</tr>
+<tr>
+<td>UpdatedAt</td>
+<td>DATETIME</td>
+<td>最后更新时间，不可为空</td>
+</tr>
+</tbody>
+</table>
+<h3 id="操作日志表operationlog">操作日志表（OperationLog）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>INT</td>
+<td>操作日志的唯一标识符，主键，自增</td>
+</tr>
+<tr>
+<td>UserID</td>
+<td>INT</td>
+<td>操作者的用户ID，外键，唯一，关联到Users表</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>VARCHAR(100)</td>
+<td>操作名称，不可为空</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>VARCHAR(255)</td>
+<td>操作描述或详细信息，可为空</td>
+</tr>
+<tr>
+<td>ResourceID</td>
+<td>VARCHAR(100)</td>
+<td>操作资源的Id，可为空</td>
+</tr>
+<tr>
+<td>IPAddress</td>
+<td>VARCHAR(50)</td>
+<td>操作地址，可为空</td>
+</tr>
+<tr>
+<td>UserAgent</td>
+<td>VARCHAR(255)</td>
+<td>操作时的代理信息，可为空</td>
+</tr>
+<tr>
+<td>CreatedAt</td>
+<td>DATETIME</td>
+<td>创建时间，不可为空</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

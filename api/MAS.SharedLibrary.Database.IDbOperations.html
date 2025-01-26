@@ -1,0 +1,951 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IDbOperations | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IDbOperations | DataMaster ">
+      
+      <meta name="description" content="通用的数据库操作接口">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.SharedLibrary.Database.IDbOperations">
+
+
+
+  <h1 id="MAS_SharedLibrary_Database_IDbOperations" data-uid="MAS.SharedLibrary.Database.IDbOperations" class="text-break">
+Interface IDbOperations  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.SharedLibrary.html">SharedLibrary</a>.<a class="xref" href="MAS.SharedLibrary.Database.html">Database</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>通用的数据库操作接口</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IDbOperations</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_DbConfig_" data-uid="MAS.SharedLibrary.Database.IDbOperations.DbConfig*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_DbConfig" data-uid="MAS.SharedLibrary.Database.IDbOperations.DbConfig">
+  DbConfig
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取数据库配置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDbConfig DbConfig { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Database.IDbConfig.html">IDbConfig</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_BeginTransactionAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.BeginTransactionAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_BeginTransactionAsync" data-uid="MAS.SharedLibrary.Database.IDbOperations.BeginTransactionAsync">
+  BeginTransactionAsync()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步开始一个数据库事务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IDbTransaction&gt; BeginTransactionAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbtransaction">IDbTransaction</a>&gt;</dt>
+    <dd><p>表示异步操作的任务，包含事务对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_CommitTransaction_" data-uid="MAS.SharedLibrary.Database.IDbOperations.CommitTransaction*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_CommitTransaction_System_Data_IDbTransaction_" data-uid="MAS.SharedLibrary.Database.IDbOperations.CommitTransaction(System.Data.IDbTransaction)">
+  CommitTransaction(IDbTransaction)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>提交当前事务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CommitTransaction(IDbTransaction transaction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbtransaction">IDbTransaction</a></dt>
+    <dd><p>要提交的事务对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_System_Collections_Generic_IEnumerable_System_ValueTuple_System_String_System_Action_System_Data_IDbCommand____System_Data_IDbTransaction_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Action{System.Data.IDbCommand}}},System.Data.IDbTransaction)">
+  ExecuteCommandAsync(IEnumerable&lt;(string sql, Action&lt;IDbCommand&gt; parameterSetter)&gt;, IDbTransaction)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用事务执行多个命令操作</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ExecuteCommandAsync(IEnumerable&lt;(string sql, Action&lt;IDbCommand&gt; parameterSetter)&gt; commands, IDbTransaction transaction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>commands</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.action-system.data.idbcommand--.sql">sql</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.action-system.data.idbcommand--.parametersetter">parameterSetter</a>)&gt;</dt>
+    <dd><p>SQL 命令列表及其参数设置函数</p>
+</dd>
+    <dt><code>transaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbtransaction">IDbTransaction</a></dt>
+    <dd><p>用于执行命令的事务对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_System_String_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync(System.String)">
+  ExecuteCommandAsync(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行不带参数的命令操作</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ExecuteCommandAsync(string sql)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 命令语句</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_System_String_System_Action_System_Data_IDbCommand__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync(System.String,System.Action{System.Data.IDbCommand})">
+  ExecuteCommandAsync(string, Action&lt;IDbCommand&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行命令操作，并使用指定的参数设置函数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ExecuteCommandAsync(string sql, Action&lt;IDbCommand&gt; parameterSetter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 命令语句</p>
+</dd>
+    <dt><code>parameterSetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt;</dt>
+    <dd><p>用于设置命令参数的函数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_System_String_System_Action_System_Data_IDbCommand__System_Data_IDbTransaction_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync(System.String,System.Action{System.Data.IDbCommand},System.Data.IDbTransaction)">
+  ExecuteCommandAsync(string, Action&lt;IDbCommand&gt;, IDbTransaction)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行命令操作，并在指定的事务中使用指定的参数设置函数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ExecuteCommandAsync(string sql, Action&lt;IDbCommand&gt; parameterSetter, IDbTransaction transaction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 命令语句</p>
+</dd>
+    <dt><code>parameterSetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt;</dt>
+    <dd><p>用于设置命令参数的函数</p>
+</dd>
+    <dt><code>transaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbtransaction">IDbTransaction</a></dt>
+    <dd><p>用于执行命令的事务对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_System_String_System_Data_IDbTransaction_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync(System.String,System.Data.IDbTransaction)">
+  ExecuteCommandAsync(string, IDbTransaction)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行不带参数的 SQL 命令，并在指定的事务中执行</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ExecuteCommandAsync(string sql, IDbTransaction transaction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 命令语句</p>
+</dd>
+    <dt><code>transaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbtransaction">IDbTransaction</a></dt>
+    <dd><p>用于执行命令的事务对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteInTransactionAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteInTransactionAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteInTransactionAsync_System_Func_System_Data_IDbTransaction_System_Threading_Tasks_Task__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteInTransactionAsync(System.Func{System.Data.IDbTransaction,System.Threading.Tasks.Task})">
+  ExecuteInTransactionAsync(Func&lt;IDbTransaction, Task&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行事务操作</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ExecuteInTransactionAsync(Func&lt;IDbTransaction, Task&gt; transactionWork)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transactionWork</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbtransaction">IDbTransaction</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>包含数据库操作的函数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteInsertAndReturnIdAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteInsertAndReturnIdAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteInsertAndReturnIdAsync_System_String_System_Action_System_Data_IDbCommand__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteInsertAndReturnIdAsync(System.String,System.Action{System.Data.IDbCommand})">
+  ExecuteInsertAndReturnIdAsync(string, Action&lt;IDbCommand&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行插入操作，并返回新插入记录的自增 ID</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;long&gt; ExecuteInsertAndReturnIdAsync(string sql, Action&lt;IDbCommand&gt; parameterSetter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 插入语句</p>
+</dd>
+    <dt><code>parameterSetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt;</dt>
+    <dd><p>用于设置命令参数的函数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd><p>表示异步操作的任务，包含新插入记录的自增 ID</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_System_String_System_Func_System_Data_IDataReader_System_Threading_Tasks_Task__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync(System.String,System.Func{System.Data.IDataReader,System.Threading.Tasks.Task})">
+  ExecuteQueryAsync(string, Func&lt;IDataReader, Task&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行查询操作，并使用指定的处理函数处理结果集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ExecuteQueryAsync(string sql, Func&lt;IDataReader, Task&gt; resultProcessor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 查询语句</p>
+</dd>
+    <dt><code>resultProcessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>用于处理数据读取器的函数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync__1_System_String_System_Action_System_Data_IDbCommand__System_Func_System_Data_IDataReader___0__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync``1(System.String,System.Action{System.Data.IDbCommand},System.Func{System.Data.IDataReader,``0})">
+  ExecuteQueryAsync&lt;T&gt;(string, Action&lt;IDbCommand&gt;, Func&lt;IDataReader, T&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行查询操作，并将结果集映射为指定类型的列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;List&lt;T&gt;&gt; ExecuteQueryAsync&lt;T&gt;(string sql, Action&lt;IDbCommand&gt; parameterSetter, Func&lt;IDataReader, T&gt; selector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 查询语句</p>
+</dd>
+    <dt><code>parameterSetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt;</dt>
+    <dd><p>用于设置命令参数的函数</p>
+</dd>
+    <dt><code>selector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>, T&gt;</dt>
+    <dd><p>用于从数据读取器中提取数据的函数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;&gt;</dt>
+    <dd><p>表示异步操作的任务，包含结果元素的列表</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>结果元素的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync__1_System_String_System_Func_System_Data_IDataReader___0__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync``1(System.String,System.Func{System.Data.IDataReader,``0})">
+  ExecuteQueryAsync&lt;T&gt;(string, Func&lt;IDataReader, T&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行查询操作，并将结果集映射为指定类型的列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;List&lt;T&gt;&gt; ExecuteQueryAsync&lt;T&gt;(string sql, Func&lt;IDataReader, T&gt; selector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 查询语句</p>
+</dd>
+    <dt><code>selector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>, T&gt;</dt>
+    <dd><p>用于从数据读取器中提取数据的函数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;&gt;</dt>
+    <dd><p>表示异步操作的任务，包含结果元素的列表</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>结果元素的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQuerySingleAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQuerySingleAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQuerySingleAsync__1_System_String_System_Action_System_Data_IDbCommand__System_Func_System_Data_IDataReader___0__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQuerySingleAsync``1(System.String,System.Action{System.Data.IDbCommand},System.Func{System.Data.IDataReader,``0})">
+  ExecuteQuerySingleAsync&lt;T&gt;(string, Action&lt;IDbCommand&gt;, Func&lt;IDataReader, T&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行 SQL 查询并返回单个实体</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T?&gt; ExecuteQuerySingleAsync&lt;T&gt;(string sql, Action&lt;IDbCommand&gt; parameterSetter, Func&lt;IDataReader, T&gt; map)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>SQL 查询语句</p>
+</dd>
+    <dt><code>parameterSetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt;</dt>
+    <dd><p>设置命令参数的委托</p>
+</dd>
+    <dt><code>map</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>, T&gt;</dt>
+    <dd><p>将 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a> 映射到实体的委托</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd><p>查询结果的单个实体，如果没有结果则返回默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>实体的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteScalarAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteScalarAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteScalarAsync__1_System_String_System_Action_System_Data_IDbCommand__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteScalarAsync``1(System.String,System.Action{System.Data.IDbCommand})">
+  ExecuteScalarAsync&lt;T&gt;(string, Action&lt;IDbCommand&gt;?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行标量 SQL 查询并返回结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; ExecuteScalarAsync&lt;T&gt;(string sql, Action&lt;IDbCommand&gt;? parameterSetter = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 查询语句</p>
+</dd>
+    <dt><code>parameterSetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt;</dt>
+    <dd><p>设置命令参数的委托</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd><p>标量查询的结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>返回结果的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteSingleRowAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteSingleRowAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteSingleRowAsync__1_System_String_System_Func_System_Data_IDataReader___0__System_Action_System_Data_IDbCommand__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteSingleRowAsync``1(System.String,System.Func{System.Data.IDataReader,``0},System.Action{System.Data.IDbCommand})">
+  ExecuteSingleRowAsync&lt;T&gt;(string, Func&lt;IDataReader, T&gt;, Action&lt;IDbCommand&gt;?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行查询操作，并将结果映射为指定类型的单行数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T?&gt; ExecuteSingleRowAsync&lt;T&gt;(string sql, Func&lt;IDataReader, T&gt; selector, Action&lt;IDbCommand&gt;? parameterSetter = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 查询语句</p>
+</dd>
+    <dt><code>selector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>, T&gt;</dt>
+    <dd><p>用于从数据读取器中提取数据的函数</p>
+</dd>
+    <dt><code>parameterSetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt;</dt>
+    <dd><p>用于设置命令参数的函数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd><p>表示异步操作的任务，包含单行数据；如果没有结果，则返回默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>结果类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_RollbackTransaction_" data-uid="MAS.SharedLibrary.Database.IDbOperations.RollbackTransaction*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_RollbackTransaction_System_Data_IDbTransaction_" data-uid="MAS.SharedLibrary.Database.IDbOperations.RollbackTransaction(System.Data.IDbTransaction)">
+  RollbackTransaction(IDbTransaction)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>回滚当前事务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RollbackTransaction(IDbTransaction transaction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transaction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbtransaction">IDbTransaction</a></dt>
+    <dd><p>要回滚的事务对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_TestDatabaseConnectionAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.TestDatabaseConnectionAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_TestDatabaseConnectionAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.TestDatabaseConnectionAsync(System.Threading.CancellationToken)">
+  TestDatabaseConnectionAsync(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步测试数据库连接是否成功</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; TestDatabaseConnectionAsync(CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>异步操作任务结果，连接成功返回true，否则false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd><p>取消时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_VerifyDatabaseConnectionAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.VerifyDatabaseConnectionAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_VerifyDatabaseConnectionAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.VerifyDatabaseConnectionAsync(System.Threading.CancellationToken)">
+  VerifyDatabaseConnectionAsync(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>验证数据库连接性，并执行简单的查询语句</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task VerifyDatabaseConnectionAsync(CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>当连接失败或查询执行失败时抛出</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

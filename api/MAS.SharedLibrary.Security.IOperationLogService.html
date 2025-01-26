@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IOperationLogService | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IOperationLogService | DataMaster ">
+      
+      <meta name="description" content="操作日志服务接口">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.SharedLibrary.Security.IOperationLogService">
+
+
+
+  <h1 id="MAS_SharedLibrary_Security_IOperationLogService" data-uid="MAS.SharedLibrary.Security.IOperationLogService" class="text-break">
+Interface IOperationLogService  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.SharedLibrary.html">SharedLibrary</a>.<a class="xref" href="MAS.SharedLibrary.Security.html">Security</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>操作日志服务接口</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IOperationLogService : IAsyncDisposable</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable.disposeasync">IAsyncDisposable.DisposeAsync()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="MAS_SharedLibrary_Security_IOperationLogService_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>保存和查看用户操作记录接口</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Security_IOperationLogService_EnqueueLog_" data-uid="MAS.SharedLibrary.Security.IOperationLogService.EnqueueLog*"></a>
+
+  <h3 id="MAS_SharedLibrary_Security_IOperationLogService_EnqueueLog_MAS_SharedLibrary_Security_OperationLog_" data-uid="MAS.SharedLibrary.Security.IOperationLogService.EnqueueLog(MAS.SharedLibrary.Security.OperationLog)">
+  EnqueueLog(OperationLog)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>将操作日志添加到队列</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void EnqueueLog(OperationLog log)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>log</code> <a class="xref" href="MAS.SharedLibrary.Security.OperationLog.html">OperationLog</a></dt>
+    <dd><p>要添加到队列的日志数据</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Security_IOperationLogService_GetLogsAsync_" data-uid="MAS.SharedLibrary.Security.IOperationLogService.GetLogsAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Security_IOperationLogService_GetLogsAsync_System_Int32_" data-uid="MAS.SharedLibrary.Security.IOperationLogService.GetLogsAsync(System.Int32)">
+  GetLogsAsync(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步获取指定操作者的操作日志列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IEnumerable&lt;OperationLog&gt;&gt; GetLogsAsync(int userId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>操作者的用户ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.SharedLibrary.Security.OperationLog.html">OperationLog</a>&gt;&gt;</dt>
+    <dd><p>异步操作任务结果，操作日志数据列表&gt;</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Security_IOperationLogService_GetLogsAsync_" data-uid="MAS.SharedLibrary.Security.IOperationLogService.GetLogsAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Security_IOperationLogService_GetLogsAsync_System_String_" data-uid="MAS.SharedLibrary.Security.IOperationLogService.GetLogsAsync(System.String)">
+  GetLogsAsync(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步获取指定操作者的操作日志列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IEnumerable&lt;OperationLog&gt;&gt; GetLogsAsync(string userName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>操作者的用户名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.SharedLibrary.Security.OperationLog.html">OperationLog</a>&gt;&gt;</dt>
+    <dd><p>异步操作任务结果，操作日志数据列表&gt;</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Security_IOperationLogService_SaveAsync_" data-uid="MAS.SharedLibrary.Security.IOperationLogService.SaveAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Security_IOperationLogService_SaveAsync_MAS_SharedLibrary_Security_OperationLog_" data-uid="MAS.SharedLibrary.Security.IOperationLogService.SaveAsync(MAS.SharedLibrary.Security.OperationLog)">
+  SaveAsync(OperationLog)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步保存操作日志</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; SaveAsync(OperationLog log)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>log</code> <a class="xref" href="MAS.SharedLibrary.Security.OperationLog.html">OperationLog</a></dt>
+    <dd><p>要保存的日志数据</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>异步操作任务结果，成功返回true，否则false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Security_IOperationLogService_SaveAsync_" data-uid="MAS.SharedLibrary.Security.IOperationLogService.SaveAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Security_IOperationLogService_SaveAsync_System_Collections_Generic_IEnumerable_MAS_SharedLibrary_Security_OperationLog__" data-uid="MAS.SharedLibrary.Security.IOperationLogService.SaveAsync(System.Collections.Generic.IEnumerable{MAS.SharedLibrary.Security.OperationLog})">
+  SaveAsync(IEnumerable&lt;OperationLog&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步保存操作日志列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; SaveAsync(IEnumerable&lt;OperationLog&gt; logs)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>logs</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.SharedLibrary.Security.OperationLog.html">OperationLog</a>&gt;</dt>
+    <dd><p>要保存的日志数据列表</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>异步操作任务结果，成功返回true，否则false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

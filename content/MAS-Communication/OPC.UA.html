@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>OPC.UA | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="OPC.UA | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="opcua">OPC.UA</h1>
+
+<p><strong>相关资料：</strong></p>
+<ul>
+<li><code>OPC UA</code> 规范文档，包括概述、概念和服务等各个方面的详细解释。这些资源是理解 <code>OPC UA</code> 标准的官方和权威来源：<a href="https://reference.opcfoundation.org/">官方文档和规范</a> | <a href="https://opcfoundation.github.io/UA-.NETStandard/help/index.htm#client_development.htm">统一架构技术示例</a></li>
+<li><code>Unified Automation</code> 提供了一系列关于其 <code>OPC UA</code>软件开发工具包的API参考文档，从服务器到客户端的广泛功能：<a href="https://www.unified-automation.com/">开发工具包和API文档</a></li>
+<li>基金会官网： <a href="https://opcfoundation.org/">OPC 基金会官网</a> | <a href="https://www.opcfoundation.cn/">OPC基金会中国官网</a></li>
+<li>开源的 <code>OPC UA</code> (Open Platform Communications Unified Architecture) 协议的C语言实现：<a href="https://github.com/open62541/open62541">open62541</a></li>
+<li><code>OPC UA</code>协议的 <code>.NET Standard</code> 库实现，由OPC基金会官方提供：<a href="https://github.com/OPCFoundation/UA-.NETStandard">UA-.NETStandard</a></li>
+<li><code>Simulation Server</code> 模拟 OPC UA 服务器工具：<a href="https://downloads.prosysopc.com/opc-ua-simulation-server-downloads.php">Simulation Server</a></li>
+<li><code>Browser</code> 浏览和交互真实或模拟的 OPC UA 服务器工具：<a href="https://downloads.prosysopc.com/opc-ua-browser-downloads.php">Browser</a></li>
+</ul>
+<h2 id="发布订阅">发布订阅</h2>
+<p>在软件架构中，发布/订阅是一种消息传递模式，其中发送者不直接与特定接收者通信。相反，发送者（称为发布者）将消息分类为类别，而不知道有哪些接收者（如果有）。同样，接收者（称为订阅者）对一个或多个类别表示兴趣，并且只接收感兴趣的消息，而不知道有哪些发送者（如果有）</p>
+<p><strong>OPC UA 通信中的订阅&amp;发布：</strong></p>
+<ul>
+<li>目的：<code>OPC UA</code>订阅与发布机制主要用于实时监控和控制服务器端的数据变化。客户端通过订阅服务器上的特定节点，不仅可以接收到这些节点值的更新通知，还可以发布控制指令或数据更新到服务器</li>
+<li>实现：该机制是通过<code>OPC UA</code>协议直接实现的。服务器负责追踪订阅节点的状态变化，并在变化发生时，通过网络向客户端推送更新。同时，客户端也可以发布数据到服务器，服务器根据收到的数据更新或执行相应的操作</li>
+<li>用途：这种机制广泛应用于工业自动化和监控系统，允许客户端不仅实时响应服务器端传感器或设备状态的变化，还可以对这些设备或过程进行控制和调整</li>
+</ul>
+<p><strong>EventAggregator 订阅&amp;发布：</strong></p>
+<ul>
+<li>目的：事件聚合器用于在应用程序内部管理和传递事件。它允许不同组件之间的松耦合通信，组件可以发布事件或订阅事件，而不需要直接引用彼此</li>
+<li>实现：事件聚合器通常是一个在应用程序架构内部实现的模式，不依赖于外部的网络或协议</li>
+<li>用途：事件聚合器适用于任何需要组件之间进行通信的场景，特别是在复杂的应用程序中，它帮助减少组件之间的依赖性，提高了代码的可维护性和扩展性</li>
+</ul>
+<h2 id="证书">证书</h2>
+<p>应用程序证书存储的位置默认在<code>C:\ProgramData</code>下，证书会在应用程序首次启动时创建</p>
+<p><strong>证书创建：</strong></p>
+<ul>
+<li>1.加载 DataMasterOpcUaClient.Config.xml 配置文件</li>
+</ul>
+<pre><code class="lang-csharp">_configuration = await application.LoadApplicationConfiguration(false);
+</code></pre>
+<ul>
+<li>2.检查证书或创建一个新的证书</li>
+</ul>
+<pre><code class="lang-csharp">bool haveAppCertificate = await application.CheckApplicationInstanceCertificate(true, 0);
+</code></pre>
+<h2 id="连接到-plc-opc-ua-服务器">连接到 PLC OPC UA 服务器</h2>
+<h3 id="tia-portal-v14-及-s7-1500-v20-以上">TIA Portal V14 及 S7-1500 V2.0 以上</h3>
+<p><strong>步骤：</strong></p>
+<ul>
+<li><p>Step 1: 开启OPC UA服务器功能</p>
+</li>
+<li><p>Step 2: 如果此端口未被占用将不会输出任何信息，可以将其作为客户端连接端口</p>
+</li>
+</ul>
+<pre><code class="lang-bash">netstat -an | Select-String &quot;&lt;端口号&gt;&quot;
+</code></pre>
+<ul>
+<li>Step 3: 确保客户端和服务器之间的网络连接正常</li>
+</ul>
+<pre><code class="lang-bash">ping &lt;PLC地址&gt;
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

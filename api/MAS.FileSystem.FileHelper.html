@@ -1,0 +1,2301 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class FileHelper | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class FileHelper | DataMaster ">
+      
+      <meta name="description" content="文件操作工具帮助类">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.FileSystem.FileHelper">
+
+
+
+  <h1 id="MAS_FileSystem_FileHelper" data-uid="MAS.FileSystem.FileHelper" class="text-break">
+Class FileHelper  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.FileSystem.html">FileSystem</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.FileSystem.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>文件操作工具帮助类</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class FileHelper</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">FileHelper</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_FileSystem_FileHelper_CalculateDirectorySize_" data-uid="MAS.FileSystem.FileHelper.CalculateDirectorySize*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_CalculateDirectorySize_System_String_System_Boolean_" data-uid="MAS.FileSystem.FileHelper.CalculateDirectorySize(System.String,System.Boolean)">
+  CalculateDirectorySize(string, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>计算指定目录的总大小，可以选择是否包括子目录</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long CalculateDirectorySize(string directoryPath, bool isIncludeSubDirs = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directoryPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要计算大小的目录路径</p>
+</dd>
+    <dt><code>isIncludeSubDirs</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否包括子目录中的文件，默认为 true</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>目录及其子目录（如果包括）中所有文件的总字节数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_CopyFile_" data-uid="MAS.FileSystem.FileHelper.CopyFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_CopyFile_System_String_System_String_System_Boolean_" data-uid="MAS.FileSystem.FileHelper.CopyFile(System.String,System.String,System.Boolean)">
+  CopyFile(string, string, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>复制文件从源路径到目标路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CopyFile(string sourceFilePath, string destinationFilePath, bool isOverwrite = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>源文件路径，指定要复制的文件的位置</p>
+</dd>
+    <dt><code>destinationFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>目标文件路径，指定复制文件的新位置</p>
+</dd>
+    <dt><code>isOverwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>指定是否覆盖目标位置的同名文件。如果设为 true，则覆盖同名文件；如果设为 false，则在目标位置已有同名文件时抛出异常</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_CreateFileIfNotExists_" data-uid="MAS.FileSystem.FileHelper.CreateFileIfNotExists*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_CreateFileIfNotExists_System_String_" data-uid="MAS.FileSystem.FileHelper.CreateFileIfNotExists(System.String)">
+  CreateFileIfNotExists(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建文件，如果文件已存在则不创建</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CreateFileIfNotExists(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要创建的文件路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_DeleteFile_" data-uid="MAS.FileSystem.FileHelper.DeleteFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_DeleteFile_System_String_" data-uid="MAS.FileSystem.FileHelper.DeleteFile(System.String)">
+  DeleteFile(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除指定路径的文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DeleteFile(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要删除的文件路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_DeleteFolder_" data-uid="MAS.FileSystem.FileHelper.DeleteFolder*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_DeleteFolder_System_String_" data-uid="MAS.FileSystem.FileHelper.DeleteFolder(System.String)">
+  DeleteFolder(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除指定的文件夹及其所有内容</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DeleteFolder(string folderPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>folderPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要删除文件夹的路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_DeserializeObjectFromFileAsync_" data-uid="MAS.FileSystem.FileHelper.DeserializeObjectFromFileAsync*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_DeserializeObjectFromFileAsync__1_System_String_" data-uid="MAS.FileSystem.FileHelper.DeserializeObjectFromFileAsync``1(System.String)">
+  DeserializeObjectFromFileAsync&lt;T&gt;(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步从指定的文件路径反序列化 JSON 字符串为对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;T&gt; DeserializeObjectFromFileAsync&lt;T&gt;(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>包含JSON字符串的文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd><p>反序列化的对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>反序列化对象的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>如果 filePath 为空字符或不存在则抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_FileSystem_FileHelper_DeserializeObjectFromFileAsync_" data-uid="MAS.FileSystem.FileHelper.DeserializeObjectFromFileAsync*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_DeserializeObjectFromFileAsync__1_System_String_Newtonsoft_Json_JsonSerializerSettings_" data-uid="MAS.FileSystem.FileHelper.DeserializeObjectFromFileAsync``1(System.String,Newtonsoft.Json.JsonSerializerSettings)">
+  DeserializeObjectFromFileAsync&lt;T&gt;(string, JsonSerializerSettings)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步从指定的文件路径反序列化 JSON 字符串为对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;T&gt; DeserializeObjectFromFileAsync&lt;T&gt;(string filePath, JsonSerializerSettings jsonSerializer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>包含JSON字符串的文件路径</p>
+</dd>
+    <dt><code>jsonSerializer</code> <span class="xref">JsonSerializerSettings</span></dt>
+    <dd><p>自定义参数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd><p>异步操作任务结果，反序列化的对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>反序列化对象的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>如果 filePath 为空字符或不存在则抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_FileSystem_FileHelper_DeserializeObjectFromFile_" data-uid="MAS.FileSystem.FileHelper.DeserializeObjectFromFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_DeserializeObjectFromFile__1_System_String_" data-uid="MAS.FileSystem.FileHelper.DeserializeObjectFromFile``1(System.String)">
+  DeserializeObjectFromFile&lt;T&gt;(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>从指定的文件路径反序列化 JSON 字符串为对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T DeserializeObjectFromFile&lt;T&gt;(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>包含JSON字符串的文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>反序列化的对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>反序列化对象的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>如果 filePath 为空字符或不存在则抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_FileSystem_FileHelper_EnsureDirectoryExists_" data-uid="MAS.FileSystem.FileHelper.EnsureDirectoryExists*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_EnsureDirectoryExists_System_String_" data-uid="MAS.FileSystem.FileHelper.EnsureDirectoryExists(System.String)">
+  EnsureDirectoryExists(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>确保文件的目录存在，如果不存在则创建</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void EnsureDirectoryExists(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_FileExists_" data-uid="MAS.FileSystem.FileHelper.FileExists*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_FileExists_System_String_" data-uid="MAS.FileSystem.FileHelper.FileExists(System.String)">
+  FileExists(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查文件是否存在</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool FileExists(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果存在返回true，否则false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_FindFilesByExtension_" data-uid="MAS.FileSystem.FileHelper.FindFilesByExtension*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_FindFilesByExtension_System_String_System_String_" data-uid="MAS.FileSystem.FileHelper.FindFilesByExtension(System.String,System.String)">
+  FindFilesByExtension(string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>在指定目录及其所有子目录中查找具有特定扩展名的文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string[] FindFilesByExtension(string directoryPath, string extension)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directoryPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要搜索的目录路径。这是一个完整的文件系统路径</p>
+</dd>
+    <dt><code>extension</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要查找的文件扩展名。例如，&quot;.txt&quot; （不区分大小写）表示查找所有文本文件</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd><p>一个包含找到的所有具有指定扩展名的文件的完整路径的字符串数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_FormatSize_" data-uid="MAS.FileSystem.FileHelper.FormatSize*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_FormatSize_System_Int64_" data-uid="MAS.FileSystem.FileHelper.FormatSize(System.Int64)">
+  FormatSize(long)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>将文件大小从字节转换为更易读的单位</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string FormatSize(long bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>文件大小，以字节为单位</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>转换后的文件大小，以 B, KB, MB, GB 或 TB 为单位，取决于大小</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetAllDirectories_" data-uid="MAS.FileSystem.FileHelper.GetAllDirectories*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetAllDirectories_System_String_" data-uid="MAS.FileSystem.FileHelper.GetAllDirectories(System.String)">
+  GetAllDirectories(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定目录下的所有文件夹</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;DirectoryInfo&gt; GetAllDirectories(string directoryPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directoryPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要搜索的目录路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.directoryinfo">DirectoryInfo</a>&gt;</dt>
+    <dd><p>包含目录信息的<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.directoryinfo">DirectoryInfo</a>列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetAllFiles_" data-uid="MAS.FileSystem.FileHelper.GetAllFiles*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetAllFiles_System_String_" data-uid="MAS.FileSystem.FileHelper.GetAllFiles(System.String)">
+  GetAllFiles(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定目录下的所有文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;FileInfo&gt; GetAllFiles(string directoryPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directoryPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要搜索的目录路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a>&gt;</dt>
+    <dd><p>包含文件信息的<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a>列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetDirectoryName_" data-uid="MAS.FileSystem.FileHelper.GetDirectoryName*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetDirectoryName_System_String_" data-uid="MAS.FileSystem.FileHelper.GetDirectoryName(System.String)">
+  GetDirectoryName(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定路径的目录名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetDirectoryName(string path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件或目录的路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>路径的目录部分。如果路径不包含目录信息，则返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当路径为空、仅包含空白或格式不正确时抛出</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetDirectorySize_" data-uid="MAS.FileSystem.FileHelper.GetDirectorySize*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetDirectorySize_System_String_" data-uid="MAS.FileSystem.FileHelper.GetDirectorySize(System.String)">
+  GetDirectorySize(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>计算指定目录中文件的总大小</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long GetDirectorySize(string folderPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>folderPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要测量的目录路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>如果目录存在，返回目录中所有文件的总大小（以字节为单位）；如果目录不存在，则返回0</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetFileAttributes_" data-uid="MAS.FileSystem.FileHelper.GetFileAttributes*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetFileAttributes_System_String_" data-uid="MAS.FileSystem.FileHelper.GetFileAttributes(System.String)">
+  GetFileAttributes(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定文件的属性，如只读、隐藏、系统文件等</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FileAttributes GetFileAttributes(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要获取属性的文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.fileattributes">FileAttributes</a></dt>
+    <dd><p>表示文件属性的 FileAttributes 枚举</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetFileExtension_" data-uid="MAS.FileSystem.FileHelper.GetFileExtension*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetFileExtension_System_String_" data-uid="MAS.FileSystem.FileHelper.GetFileExtension(System.String)">
+  GetFileExtension(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取文件扩展名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetFileExtension(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要获取的文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件的扩展名称</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetFileInfo_" data-uid="MAS.FileSystem.FileHelper.GetFileInfo*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetFileInfo_System_String_" data-uid="MAS.FileSystem.FileHelper.GetFileInfo(System.String)">
+  GetFileInfo(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定文件的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a> 对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FileInfo GetFileInfo(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件的完整路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></dt>
+    <dd><p>返回指定文件的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a> 实例</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetFileName_" data-uid="MAS.FileSystem.FileHelper.GetFileName*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetFileName_System_String_" data-uid="MAS.FileSystem.FileHelper.GetFileName(System.String)">
+  GetFileName(string?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定路径字符串的文件名和扩展名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? GetFileName(string? filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>path中最后一个分隔符后面的字符, 如果路径为空，则为Null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetFileNameWithoutExtension_" data-uid="MAS.FileSystem.FileHelper.GetFileNameWithoutExtension*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetFileNameWithoutExtension_System_String_" data-uid="MAS.FileSystem.FileHelper.GetFileNameWithoutExtension(System.String)">
+  GetFileNameWithoutExtension(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取不带扩展名的文件名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetFileNameWithoutExtension(string fileName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fileName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>包含扩展名的文件名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>不带扩展名的文件名</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetFileSize_" data-uid="MAS.FileSystem.FileHelper.GetFileSize*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetFileSize_System_String_" data-uid="MAS.FileSystem.FileHelper.GetFileSize(System.String)">
+  GetFileSize(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>计算指定文件的大小</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long GetFileSize(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件的完整路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>如果文件存在，返回文件的大小（以字节为单位）；如果文件不存在，返回0</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetLastWriteTime_" data-uid="MAS.FileSystem.FileHelper.GetLastWriteTime*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetLastWriteTime_System_String_" data-uid="MAS.FileSystem.FileHelper.GetLastWriteTime(System.String)">
+  GetLastWriteTime(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取文件的修改时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateTime GetLastWriteTime(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要获取的文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>文件的最后修改<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>类型时间</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_GetLatestUpdateTime_" data-uid="MAS.FileSystem.FileHelper.GetLatestUpdateTime*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_GetLatestUpdateTime" data-uid="MAS.FileSystem.FileHelper.GetLatestUpdateTime">
+  GetLatestUpdateTime()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前项目或应用程序目录下所有文件中最后修改时间最新的时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetLatestUpdateTime()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字符串形式的最后更新日期</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_IsDllExists_" data-uid="MAS.FileSystem.FileHelper.IsDllExists*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_IsDllExists_System_String_" data-uid="MAS.FileSystem.FileHelper.IsDllExists(System.String)">
+  IsDllExists(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查指定的 DLL 是否存在</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsDllExists(string dllName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dllName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>DLL 文件名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>存在返回 true，否则返回 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_ListDirectoryContents_" data-uid="MAS.FileSystem.FileHelper.ListDirectoryContents*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_ListDirectoryContents_System_String_" data-uid="MAS.FileSystem.FileHelper.ListDirectoryContents(System.String)">
+  ListDirectoryContents(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>列出指定目录下的所有文件和文件夹</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string[] ListDirectoryContents(string directoryPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directoryPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要列出内容的目录路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd><p>一个字符串数组，包含目录下所有文件和文件夹的名称（包括路径）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_MoveFile_" data-uid="MAS.FileSystem.FileHelper.MoveFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_MoveFile_System_String_System_String_" data-uid="MAS.FileSystem.FileHelper.MoveFile(System.String,System.String)">
+  MoveFile(string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>将文件从源路径移动到目标路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void MoveFile(string sourceFilePath, string destinationFilePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>源文件路径，指定要移动的文件的当前位置</p>
+</dd>
+    <dt><code>destinationFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>目标文件路径，指定移动文件的新位置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_OpenFolder_" data-uid="MAS.FileSystem.FileHelper.OpenFolder*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_OpenFolder_System_String_" data-uid="MAS.FileSystem.FileHelper.OpenFolder(System.String)">
+  OpenFolder(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用默认程序打开指定的文件或文件夹</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void OpenFolder(string path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要打开的文件或文件夹路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_ReadFileToStream_" data-uid="MAS.FileSystem.FileHelper.ReadFileToStream*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_ReadFileToStream_System_String_" data-uid="MAS.FileSystem.FileHelper.ReadFileToStream(System.String)">
+  ReadFileToStream(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取文件到内存流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MemoryStream ReadFileToStream(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要读取的文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.memorystream">MemoryStream</a></dt>
+    <dd><p>包含文件内容的内存流</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_ReadTextFile_" data-uid="MAS.FileSystem.FileHelper.ReadTextFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_ReadTextFile_System_String_System_Text_Encoding_" data-uid="MAS.FileSystem.FileHelper.ReadTextFile(System.String,System.Text.Encoding)">
+  ReadTextFile(string, Encoding?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取指定路径的文件内容</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ReadTextFile(string filePath, Encoding? encoding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件的完整路径</p>
+</dd>
+    <dt><code>encoding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.encoding">Encoding</a></dt>
+    <dd><p>文件的编码方式, 默认为UTF-8</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件的文本内容</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_RenameFile_" data-uid="MAS.FileSystem.FileHelper.RenameFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_RenameFile_System_String_System_String_" data-uid="MAS.FileSystem.FileHelper.RenameFile(System.String,System.String)">
+  RenameFile(string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>重命名文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RenameFile(string oldFilePath, string newFilePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>旧的文件路径</p>
+</dd>
+    <dt><code>newFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要重命名的新文件路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filenotfoundexception">FileNotFoundException</a></dt>
+    <dd><p>当文件不存在时抛出</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SaveConfigurationToFile_" data-uid="MAS.FileSystem.FileHelper.SaveConfigurationToFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SaveConfigurationToFile_System_Object_System_String_" data-uid="MAS.FileSystem.FileHelper.SaveConfigurationToFile(System.Object,System.String)">
+  SaveConfigurationToFile(object, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>将给定的配置对象保存到 JSON 文件中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SaveConfigurationToFile(object configuration, string configPath = &quot;appsettings.json&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>configuration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>要保存的配置对象</p>
+</dd>
+    <dt><code>configPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>配置文件的路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>如果 configPath 为空字符则抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SaveConfigurationToFileAsync_" data-uid="MAS.FileSystem.FileHelper.SaveConfigurationToFileAsync*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SaveConfigurationToFileAsync_System_Object_System_String_" data-uid="MAS.FileSystem.FileHelper.SaveConfigurationToFileAsync(System.Object,System.String)">
+  SaveConfigurationToFileAsync(object, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步将给定的配置对象保存到 JSON 文件中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task SaveConfigurationToFileAsync(object configuration, string configPath = &quot;appsettings.json&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>configuration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>要保存的配置对象</p>
+</dd>
+    <dt><code>configPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>配置文件的路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>如果 configPath 为空字符则抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SaveContentToFile_" data-uid="MAS.FileSystem.FileHelper.SaveContentToFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SaveContentToFile_System_String_System_String_System_Boolean_" data-uid="MAS.FileSystem.FileHelper.SaveContentToFile(System.String,System.String,System.Boolean)">
+  SaveContentToFile(string, string, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存内容到指定的文件路径，支持追加模式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SaveContentToFile(string filePath, string content, bool isAppend = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件路径</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要保存的内容</p>
+</dd>
+    <dt><code>isAppend</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否追加内容</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SaveExcelFileDialog_" data-uid="MAS.FileSystem.FileHelper.SaveExcelFileDialog*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SaveExcelFileDialog_System_String_" data-uid="MAS.FileSystem.FileHelper.SaveExcelFileDialog(System.String)">
+  SaveExcelFileDialog(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建并配置一个保存 Excel 文件对话框</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SaveFileDialog SaveExcelFileDialog(string filename)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filename</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>保存的文件名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.win32.savefiledialog">SaveFileDialog</a></dt>
+    <dd><p>保存文件对话框</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SaveImageStreamToFile_" data-uid="MAS.FileSystem.FileHelper.SaveImageStreamToFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SaveImageStreamToFile_System_IO_MemoryStream_System_String_" data-uid="MAS.FileSystem.FileHelper.SaveImageStreamToFile(System.IO.MemoryStream,System.String)">
+  SaveImageStreamToFile(MemoryStream, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存图片数据从内存流到文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SaveImageStreamToFile(MemoryStream imageStream, string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>imageStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.memorystream">MemoryStream</a></dt>
+    <dd><p>包含图像数据的内存流</p>
+</dd>
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>图像文件保存路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SaveJsonExcelFileDialog_" data-uid="MAS.FileSystem.FileHelper.SaveJsonExcelFileDialog*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SaveJsonExcelFileDialog_System_String_" data-uid="MAS.FileSystem.FileHelper.SaveJsonExcelFileDialog(System.String)">
+  SaveJsonExcelFileDialog(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建并配置一个保存 JSON 及 Excel 文件对话框</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SaveFileDialog SaveJsonExcelFileDialog(string filename)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filename</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>保存的文件名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.win32.savefiledialog">SaveFileDialog</a></dt>
+    <dd><p>配置好的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.win32.savefiledialog">SaveFileDialog</a> 保存文件对话框</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectExportFile_" data-uid="MAS.FileSystem.FileHelper.SelectExportFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectExportFile_System_String_" data-uid="MAS.FileSystem.FileHelper.SelectExportFile(System.String)">
+  SelectExportFile(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择文件导出路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectExportFile(string fileTypes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fileTypes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>支持的文件类型，格式如：&quot;JSON files (<em>.json)|</em>.json|Excel files (<em>.xlsx)|</em>.xlsx&quot;</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>保存的文件路径，如果未保存则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectNewFilePath_" data-uid="MAS.FileSystem.FileHelper.SelectNewFilePath*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectNewFilePath" data-uid="MAS.FileSystem.FileHelper.SelectNewFilePath">
+  SelectNewFilePath()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择新建文件路径对话框，并创建一个空文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectNewFilePath()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的文件路径，如果用户取消则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectOpenDrawFile_" data-uid="MAS.FileSystem.FileHelper.SelectOpenDrawFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectOpenDrawFile" data-uid="MAS.FileSystem.FileHelper.SelectOpenDrawFile">
+  SelectOpenDrawFile()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择打开 draw 文件文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectOpenDrawFile()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的 draw 文件完整路径，未选中返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectOpenFile_" data-uid="MAS.FileSystem.FileHelper.SelectOpenFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectOpenFile" data-uid="MAS.FileSystem.FileHelper.SelectOpenFile">
+  SelectOpenFile()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择打开任意文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectOpenFile()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的文件路径，如果未选择文件则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectOpenFolder_" data-uid="MAS.FileSystem.FileHelper.SelectOpenFolder*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectOpenFolder" data-uid="MAS.FileSystem.FileHelper.SelectOpenFolder">
+  SelectOpenFolder()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择打开文件夹路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectOpenFolder()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的文件夹路径，如果未选择文件夹则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectOpenImageFile_" data-uid="MAS.FileSystem.FileHelper.SelectOpenImageFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectOpenImageFile" data-uid="MAS.FileSystem.FileHelper.SelectOpenImageFile">
+  SelectOpenImageFile()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择打开图像文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectOpenImageFile()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中文件的完整路径，如果未选择文件则返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectOpenJsonFile_" data-uid="MAS.FileSystem.FileHelper.SelectOpenJsonFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectOpenJsonFile" data-uid="MAS.FileSystem.FileHelper.SelectOpenJsonFile">
+  SelectOpenJsonFile()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择打开的 JSON 文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectOpenJsonFile()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的文件路径，如果未选择文件则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectOpenMasProjFile_" data-uid="MAS.FileSystem.FileHelper.SelectOpenMasProjFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectOpenMasProjFile" data-uid="MAS.FileSystem.FileHelper.SelectOpenMasProjFile">
+  SelectOpenMasProjFile()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择打开 masproj 文件文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectOpenMasProjFile()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的 draw 文件完整路径，未选中返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectOpenModelFile_" data-uid="MAS.FileSystem.FileHelper.SelectOpenModelFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectOpenModelFile" data-uid="MAS.FileSystem.FileHelper.SelectOpenModelFile">
+  SelectOpenModelFile()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择打开模型文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectOpenModelFile()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的模型文件完整路径，未选中返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectSaveDrawPath_" data-uid="MAS.FileSystem.FileHelper.SelectSaveDrawPath*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectSaveDrawPath" data-uid="MAS.FileSystem.FileHelper.SelectSaveDrawPath">
+  SelectSaveDrawPath()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择 draw 文件 保存路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectSaveDrawPath()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的文件路径，如果用户取消则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectSaveFilePath_" data-uid="MAS.FileSystem.FileHelper.SelectSaveFilePath*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectSaveFilePath_System_String_" data-uid="MAS.FileSystem.FileHelper.SelectSaveFilePath(System.String)">
+  SelectSaveFilePath(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择保存文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectSaveFilePath(string defaultFileName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>defaultFileName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>默认文件名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的文件路径，如果未选择则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectSaveFolderPath_" data-uid="MAS.FileSystem.FileHelper.SelectSaveFolderPath*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectSaveFolderPath" data-uid="MAS.FileSystem.FileHelper.SelectSaveFolderPath">
+  SelectSaveFolderPath()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择保存文件夹路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectSaveFolderPath()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的文件夹路径，如果未选择则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectSaveImagePath_" data-uid="MAS.FileSystem.FileHelper.SelectSaveImagePath*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectSaveImagePath" data-uid="MAS.FileSystem.FileHelper.SelectSaveImagePath">
+  SelectSaveImagePath()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择保存图像文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectSaveImagePath()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的文件路径，如果未选择则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SelectSaveMasProjPath_" data-uid="MAS.FileSystem.FileHelper.SelectSaveMasProjPath*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SelectSaveMasProjPath" data-uid="MAS.FileSystem.FileHelper.SelectSaveMasProjPath">
+  SelectSaveMasProjPath()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>选择 masproj 文件 保存路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? SelectSaveMasProjPath()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>选中的文件路径，如果用户取消则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SerializeObjectSaveToFile_" data-uid="MAS.FileSystem.FileHelper.SerializeObjectSaveToFile*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SerializeObjectSaveToFile_System_Object_System_String_Newtonsoft_Json_JsonSerializerSettings_" data-uid="MAS.FileSystem.FileHelper.SerializeObjectSaveToFile(System.Object,System.String,Newtonsoft.Json.JsonSerializerSettings)">
+  SerializeObjectSaveToFile(object, string, JsonSerializerSettings)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>将对象序列化为JSON字符串并保存到指定的文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SerializeObjectSaveToFile(object objectToSerialize, string filePath, JsonSerializerSettings settings)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>objectToSerialize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>要序列化的对象</p>
+</dd>
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>保存JSON字符串的文件路径</p>
+</dd>
+    <dt><code>settings</code> <span class="xref">JsonSerializerSettings</span></dt>
+    <dd><p>序列化时使用的 <span class="xref">Newtonsoft.Json.JsonSerializerSettings</span> 设置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>如果 configPath 为空字符则抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SerializeObjectSaveToFileAsync_" data-uid="MAS.FileSystem.FileHelper.SerializeObjectSaveToFileAsync*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SerializeObjectSaveToFileAsync_System_Object_System_String_" data-uid="MAS.FileSystem.FileHelper.SerializeObjectSaveToFileAsync(System.Object,System.String)">
+  SerializeObjectSaveToFileAsync(object, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步将对象序列化为JSON字符串并保存到指定的文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task SerializeObjectSaveToFileAsync(object objectToSerialize, string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>objectToSerialize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>要序列化的对象</p>
+</dd>
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>保存JSON字符串的文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>如果 filePath 为空字符则抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SerializeObjectSaveToFileAsync_" data-uid="MAS.FileSystem.FileHelper.SerializeObjectSaveToFileAsync*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SerializeObjectSaveToFileAsync_System_Object_System_String_Newtonsoft_Json_JsonSerializerSettings_" data-uid="MAS.FileSystem.FileHelper.SerializeObjectSaveToFileAsync(System.Object,System.String,Newtonsoft.Json.JsonSerializerSettings)">
+  SerializeObjectSaveToFileAsync(object, string, JsonSerializerSettings)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步将对象序列化为JSON字符串并保存到指定的文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task SerializeObjectSaveToFileAsync(object objectToSerialize, string filePath, JsonSerializerSettings settings)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>objectToSerialize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>要序列化的对象</p>
+</dd>
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>保存JSON字符串的文件路径</p>
+</dd>
+    <dt><code>settings</code> <span class="xref">JsonSerializerSettings</span></dt>
+    <dd><p>自定义参数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>如果 filePath 为空字符则抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_FileSystem_FileHelper_SetFileAttributes_" data-uid="MAS.FileSystem.FileHelper.SetFileAttributes*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_SetFileAttributes_System_String_System_IO_FileAttributes_" data-uid="MAS.FileSystem.FileHelper.SetFileAttributes(System.String,System.IO.FileAttributes)">
+  SetFileAttributes(string, FileAttributes)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置指定文件的属性，如将文件标记为只读或隐藏</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetFileAttributes(string filePath, FileAttributes attributes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要设置属性的文件路径</p>
+</dd>
+    <dt><code>attributes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.fileattributes">FileAttributes</a></dt>
+    <dd><p>要设置的文件属性，如 FileAttributes.ReadOnly</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

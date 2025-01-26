@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IEventAggregatorService | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IEventAggregatorService | DataMaster ">
+      
+      <meta name="description" content="提供多线程安全的事件聚合器服务">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.EventAggregator.IEventAggregatorService">
+
+
+
+  <h1 id="MAS_EventAggregator_IEventAggregatorService" data-uid="MAS.EventAggregator.IEventAggregatorService" class="text-break">
+Interface IEventAggregatorService  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.EventAggregator.html">EventAggregator</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.EventAggregator.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>提供多线程安全的事件聚合器服务</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IEventAggregatorService</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_EventAggregator_IEventAggregatorService_PublishAsync_" data-uid="MAS.EventAggregator.IEventAggregatorService.PublishAsync*"></a>
+
+  <h3 id="MAS_EventAggregator_IEventAggregatorService_PublishAsync__1___0_" data-uid="MAS.EventAggregator.IEventAggregatorService.PublishAsync``1(``0)">
+  PublishAsync&lt;TEvent&gt;(TEvent)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步发布一个事件，通知所有订阅了该事件的异步订阅者</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task PublishAsync&lt;TEvent&gt;(TEvent eventToPublish)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventToPublish</code> <span class="xref">TEvent</span></dt>
+    <dd><p>要发布的事件的实例</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>返回一个已完成的异步任务结果，表示事件发布操作已经启动</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>要发布的事件的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="MAS_EventAggregator_IEventAggregatorService_PublishAsync__1___0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Fire-and-Forget 模式。在单独的后台线程中启动所有订阅者的异步处理任务后立即返回，不等待这些任务完成</p>
+</div>
+
+
+
+
+  <a id="MAS_EventAggregator_IEventAggregatorService_Publish_" data-uid="MAS.EventAggregator.IEventAggregatorService.Publish*"></a>
+
+  <h3 id="MAS_EventAggregator_IEventAggregatorService_Publish__1___0_" data-uid="MAS.EventAggregator.IEventAggregatorService.Publish``1(``0)">
+  Publish&lt;TEvent&gt;(TEvent)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>发布一个事件，通知所有订阅了该事件的订阅者</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Publish&lt;TEvent&gt;(TEvent eventToPublish)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventToPublish</code> <span class="xref">TEvent</span></dt>
+    <dd><p>要发布的事件的实例</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>要发布的事件的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_EventAggregator_IEventAggregatorService_SubscribeAsync_" data-uid="MAS.EventAggregator.IEventAggregatorService.SubscribeAsync*"></a>
+
+  <h3 id="MAS_EventAggregator_IEventAggregatorService_SubscribeAsync__1_System_Func___0_System_Threading_Tasks_Task__" data-uid="MAS.EventAggregator.IEventAggregatorService.SubscribeAsync``1(System.Func{``0,System.Threading.Tasks.Task})">
+  SubscribeAsync&lt;TEvent&gt;(Func&lt;TEvent, Task&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步订阅事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SubscribeAsync&lt;TEvent&gt;(Func&lt;TEvent, Task&gt; action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>当事件发生时要异步执行的操作。这是一个接受事件类型作为参数的异步委托（方法）</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>要订阅的事件的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_EventAggregator_IEventAggregatorService_Subscribe_" data-uid="MAS.EventAggregator.IEventAggregatorService.Subscribe*"></a>
+
+  <h3 id="MAS_EventAggregator_IEventAggregatorService_Subscribe__1_System_Action___0__" data-uid="MAS.EventAggregator.IEventAggregatorService.Subscribe``1(System.Action{``0})">
+  Subscribe&lt;TEvent&gt;(Action&lt;TEvent&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>订阅事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Subscribe&lt;TEvent&gt;(Action&lt;TEvent&gt; action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;TEvent&gt;</dt>
+    <dd><p>当事件发生时要执行的操作。这是一个接受事件类型作为参数的委托（方法）</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>要订阅的事件的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_EventAggregator_IEventAggregatorService_UnsubscribeAsync_" data-uid="MAS.EventAggregator.IEventAggregatorService.UnsubscribeAsync*"></a>
+
+  <h3 id="MAS_EventAggregator_IEventAggregatorService_UnsubscribeAsync__1_System_Func___0_System_Threading_Tasks_Task__" data-uid="MAS.EventAggregator.IEventAggregatorService.UnsubscribeAsync``1(System.Func{``0,System.Threading.Tasks.Task})">
+  UnsubscribeAsync&lt;TEvent&gt;(Func&lt;TEvent, Task&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>取消异步事件订阅</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UnsubscribeAsync&lt;TEvent&gt;(Func&lt;TEvent, Task&gt; action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>当事件发生时应该异步执行的操作。这是一个异步方法委托，
+它接受一个 <code class="typeparamref">TEvent</code> 类型的参数，这个参数是之前订阅时指定的。
+传入的委托应与订阅时使用的委托完全相同，包括其引用</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>要取消订阅的事件的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_EventAggregator_IEventAggregatorService_Unsubscribe_" data-uid="MAS.EventAggregator.IEventAggregatorService.Unsubscribe*"></a>
+
+  <h3 id="MAS_EventAggregator_IEventAggregatorService_Unsubscribe__1_System_Action___0__" data-uid="MAS.EventAggregator.IEventAggregatorService.Unsubscribe``1(System.Action{``0})">
+  Unsubscribe&lt;TEvent&gt;(Action&lt;TEvent&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>取消事件订阅</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Unsubscribe&lt;TEvent&gt;(Action&lt;TEvent&gt; action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;TEvent&gt;</dt>
+    <dd><p>当事件发生时应该执行的操作。这是一个方法委托，
+它接受一个 TEvent 类型的参数，这个参数是之前订阅时指定的。
+传入的委托应与订阅时使用的委托完全相同，包括其引用</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>要取消订阅的事件的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,707 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IPlcCommunicationService | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IPlcCommunicationService | DataMaster ">
+      
+      <meta name="description" content="PLC 通讯服务接口">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService">
+
+
+
+  <h1 id="MAS_SharedLibrary_Communication_IPlcCommunicationService" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService" class="text-break">
+Interface IPlcCommunicationService  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.SharedLibrary.html">SharedLibrary</a>.<a class="xref" href="MAS.SharedLibrary.Communication.html">Communication</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>PLC 通讯服务接口</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IPlcCommunicationService : IAsyncDisposable</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable.disposeasync">IAsyncDisposable.DisposeAsync()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommunicationService_Id_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.Id*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_Id" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.Id">
+  Id
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置唯一标识符</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Guid Id { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommunicationService_Key_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.Key*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_Key" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.Key">
+  Key
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置协议实例的唯一键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string Key { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Communication_IPlcCommunicationService_Key_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+S7协议：
+$"{s7Config.Type}-{s7Config.Ip}-{s7Config.Rack}-{s7Config.Slot}"</p>
+<p>
+MC协议：
+$"{mcConfig.Ip}-{mcConfig.ProtocolFrame}-{mcConfig.Port}"</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommunicationService_PlcCommConfig_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.PlcCommConfig*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_PlcCommConfig" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.PlcCommConfig">
+  PlcCommConfig
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 PLC 通讯配置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ICommunicationConfig PlcCommConfig { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Communication.ICommunicationConfig.html">ICommunicationConfig</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommunicationService_ConnectToPlcAsync_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.ConnectToPlcAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_ConnectToPlcAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.ConnectToPlcAsync(System.Threading.CancellationToken)">
+  ConnectToPlcAsync(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步建立与PLC的连接</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; ConnectToPlcAsync(CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>异步操作任务结果，连接成功返回true，否则 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd><p>取消此操作时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommunicationService_DisconnectPlcAsync_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.DisconnectPlcAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_DisconnectPlcAsync" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.DisconnectPlcAsync">
+  DisconnectPlcAsync()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步断开与PLC的连接，并清理必要的连接资源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task DisconnectPlcAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommunicationService_GetCommTaskHandlers_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.GetCommTaskHandlers*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_GetCommTaskHandlers" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.GetCommTaskHandlers">
+  GetCommTaskHandlers()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取所有通讯任务处理程序的列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;IPlcTaskHandler&gt; GetCommTaskHandlers()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.SharedLibrary.Communication.IPlcTaskHandler.html">IPlcTaskHandler</a>&gt;</dt>
+    <dd><p>包含所有任务处理程序的枚举</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommunicationService_GetInstanceStatus_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.GetInstanceStatus*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_GetInstanceStatus" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.GetInstanceStatus">
+  GetInstanceStatus()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前实例状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ProtocolModelBase GetInstanceStatus()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Communication.ProtocolModelBase.html">ProtocolModelBase</a></dt>
+    <dd><p><a class="xref" href="MAS.SharedLibrary.Communication.ProtocolModelBase.html">ProtocolModelBase</a> 对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommunicationService_StartPlcTaskAsync_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.StartPlcTaskAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_StartPlcTaskAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.StartPlcTaskAsync(System.Threading.CancellationToken)">
+  StartPlcTaskAsync(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步启动通信任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; StartPlcTaskAsync(CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>异步操作任务结果，启动成功返回true， 失败false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd><p>取消此操作时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommunicationService_StopPlcTaskAsync_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.StopPlcTaskAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_StopPlcTaskAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.StopPlcTaskAsync(System.Threading.CancellationToken)">
+  StopPlcTaskAsync(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步停止与PLC的通信任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task StopPlcTaskAsync(CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd><p>取消此操作时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommunicationService_TestPlcConnectionAsync_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.TestPlcConnectionAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_TestPlcConnectionAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.TestPlcConnectionAsync(System.Threading.CancellationToken)">
+  TestPlcConnectionAsync(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步测试PLC连接，成功后自动关闭</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; TestPlcConnectionAsync(CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>异步操作任务结果，测试成功返回true，否则返回 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Communication_IPlcCommunicationService_TestPlcConnectionAsync_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>如果手动取消，自行处理 OperationCanceledException 异常</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd><p>取消此操作时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_OnInstanceExpired" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.OnInstanceExpired">
+  OnInstanceExpired
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>服务过期事件，表示闲置已达到设定时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler OnInstanceExpired</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_OnInstantMessageReceived" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.OnInstantMessageReceived">
+  OnInstantMessageReceived
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>即时信息事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;InstantMessageModel&gt; OnInstantMessageReceived</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.InstantMessage.InstantMessageModel.html">InstantMessageModel</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_OnNetworkDelay" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.OnNetworkDelay">
+  OnNetworkDelay
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新通讯延时事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;long&gt; OnNetworkDelay</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Communication_IPlcCommunicationService_OnNetworkDelay_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>写入等待的时间，单位毫秒</p>
+</div>
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_OnPlcConnectionChanged" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.OnPlcConnectionChanged">
+  OnPlcConnectionChanged
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>PLC 连接状态改变事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PlcConnectionEventArgs&gt; OnPlcConnectionChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.Communication.PlcConnectionEventArgs.html">PlcConnectionEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommunicationService_OnTaskAbnormalStop" data-uid="MAS.SharedLibrary.Communication.IPlcCommunicationService.OnTaskAbnormalStop">
+  OnTaskAbnormalStop
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>任务异常停止事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler OnTaskAbnormalStop</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

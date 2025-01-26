@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>多网卡与静态路由 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="多网卡与静态路由 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="多网卡与静态路由">多网卡与静态路由</h1>
+
+<h2 id="1-静态路由的作用与命令">1. <strong>静态路由的作用与命令</strong></h2>
+<p>静态路由用于解决多网卡或多网段环境下，数据包走错路径的问题，确保数据流向正确的网关或网络</p>
+<p><strong>基本语法</strong>:</p>
+<pre><code class="lang-cmd">route add 目标网段 mask 子网掩码 网关IP -p
+</code></pre>
+<p><strong>参数解释</strong>：</p>
+<ul>
+<li><code>目标网段</code>：目标网络地址，例如 <code>192.168.2.0</code></li>
+<li><code>mask 子网掩码</code>：例如 <code>255.255.255.0</code></li>
+<li><code>网关IP</code>：指定流量通过的网关 IP，例如 <code>192.168.5.1</code></li>
+<li><code>-p</code>：表示永久生效，重启后仍有效</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<p>目标 PLC 网段 <code>192.168.2.0/24</code>，有线网卡的网关 IP 为 <code>192.168.5.1</code>：</p>
+<pre><code class="lang-cmd">route add 192.168.2.0 mask 255.255.255.0 192.168.5.1 -p
+</code></pre>
+<p><strong>验证当前路由表</strong>：</p>
+<pre><code class="lang-cmd">route print
+</code></pre>
+<p><strong>删除静态路由</strong>：</p>
+<pre><code class="lang-cmd">route delete 192.168.2.0
+</code></pre>
+<h2 id="2-多网卡优先级设置">2. <strong>多网卡优先级设置</strong></h2>
+<p>当系统有多个网卡时，默认会走优先级高的网卡（通常是 Wi-Fi）
+调整网卡优先级确保有线网卡优先于 Wi-Fi：</p>
+<p><strong>手动调整网卡优先级</strong>：</p>
+<ol>
+<li>打开 <strong>网络和共享中心</strong> &gt; <strong>更改适配器设置</strong></li>
+<li>按下 <strong>Alt</strong> 键，进入 <strong>高级</strong> &gt; <strong>高级设置</strong></li>
+<li>在连接列表中，将 <strong>有线网卡</strong> 移到 <strong>Wi-Fi</strong> 之上</li>
+</ol>
+<hr>
+<h2 id="3-常见问题与解决方案总结">3. <strong>常见问题与解决方案总结</strong></h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>原因</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>连接 Wi-Fi 后无法访问 PLC</strong></td>
+<td>系统路由导致流量走 Wi-Fi 网卡</td>
+<td>添加静态路由，确保走有线网卡</td>
+</tr>
+<tr>
+<td><strong>多网卡优先级导致路径不一致</strong></td>
+<td>系统默认网关切换</td>
+<td>手动调整网卡优先级</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="4-最终静态路由添加步骤">4. <strong>最终静态路由添加步骤</strong></h2>
+<ol>
+<li><p>添加静态路由：</p>
+<pre><code class="lang-cmd">route add 192.168.2.0 mask 255.255.255.0 192.168.5.1 -p
+</code></pre>
+</li>
+<li><p>验证路由是否生效：</p>
+<pre><code class="lang-cmd">route print
+</code></pre>
+</li>
+<li><p>如果需要删除路由：</p>
+<pre><code class="lang-cmd">route delete 192.168.2.0
+</code></pre>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
