@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol" class="text-break">
-Interface IMcProtocol  
+Interface IMcProtocol  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/McProtocols/IMcProtocol.cs#lines-17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -121,6 +121,36 @@ Interface IMcProtocol
       <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_ProtocolType">IProtocol.ProtocolType</a>
     </div>
     <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_Configuration">IProtocol.Configuration</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_ConnectToPlcAsync_System_Threading_CancellationToken_">IProtocol.ConnectToPlcAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_TestPlcConnectionAsync_System_Threading_CancellationToken_">IProtocol.TestPlcConnectionAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_ReadStructAsync_System_Type_System_Int32_System_Threading_CancellationToken_">IProtocol.ReadStructAsync(Type, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_ReadStructAsync__1_System_Int32_System_Threading_CancellationToken_">IProtocol.ReadStructAsync&lt;T&gt;(int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_WriteStructAsync_System_Object_System_Int32_System_Threading_CancellationToken_">IProtocol.WriteStructAsync(object, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_CheckPlcConnection">IProtocol.CheckPlcConnection()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_TryReconnectToPlcAsync_System_Threading_CancellationToken_">IProtocol.TryReconnectToPlcAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_TryReconnectToPlcAsync_System_Int32_System_Int16_System_Threading_CancellationToken_">IProtocol.TryReconnectToPlcAsync(int, short, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_DisconnectFromPlc">IProtocol.DisconnectFromPlc()</a>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
     </div>
   </dd></dl>
@@ -134,83 +164,11 @@ Interface IMcProtocol
 </h2>
 
 
-  <a id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_ConnectToPlcAsync_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.ConnectToPlcAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_ConnectToPlcAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.ConnectToPlcAsync(System.Threading.CancellationToken)">
-  ConnectToPlcAsync(CancellationToken)
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步连接到PLC设备</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task ConnectToPlcAsync(CancellationToken token = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd><p>取消令牌</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作任务结果，由调用方处理可能发生的异常</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
-    <dd><p>取消此操作时抛出此异常</p>
-</dd>
-  </dl>
-
-
-
-  <a id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_DisconnectFromPlc_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.DisconnectFromPlc*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_DisconnectFromPlc" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.DisconnectFromPlc">
-  DisconnectFromPlc()
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>关闭PLC连接</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void DisconnectFromPlc()</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
   <a id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_ReadBitsAsync_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.ReadBitsAsync*"></a>
 
   <h3 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_ReadBitsAsync_System_String_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.ReadBitsAsync(System.String,System.Int32,System.Int32,System.Threading.CancellationToken)">
   ReadBitsAsync(string, int, int, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/McProtocols/IMcProtocol.cs#lines-65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步从PLC读取位数据</p>
@@ -218,7 +176,7 @@ Interface IMcProtocol
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool[]&gt; ReadBitsAsync(string deviceType, int startAddress, int length, CancellationToken token = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;bool[]&gt; ReadBitsAsync(string deviceType, int startAddress, int length, CancellationToken cts = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -232,7 +190,7 @@ Interface IMcProtocol
     <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>要读取的位的数量</p>
 </dd>
-    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd><p>取消令牌</p>
 </dd>
   </dl>
@@ -240,7 +198,7 @@ Interface IMcProtocol
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>[]&gt;</dt>
-    <dd><p>异步操作任务结果，包含读取位状态的布尔值数组。由调用方处理可能发生的异常</p>
+    <dd><p>异步操作任务结果，包含读取位状态的布尔值数组</p>
 </dd>
   </dl>
 
@@ -254,8 +212,9 @@ Interface IMcProtocol
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
-    <dd><p>取消此操作时抛出此异常</p>
-</dd>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.PlcReadErrorException.html">PlcReadErrorException</a></dt>
+    <dd></dd>
   </dl>
 
 
@@ -264,7 +223,7 @@ Interface IMcProtocol
 
   <h3 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_ReadWordsAsync_System_String_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.ReadWordsAsync(System.String,System.Int32,System.Int32,System.Threading.CancellationToken)">
   ReadWordsAsync(string, int, int, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/McProtocols/IMcProtocol.cs#lines-28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步从PLC读取字数据</p>
@@ -272,7 +231,7 @@ Interface IMcProtocol
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;short[]&gt; ReadWordsAsync(string deviceType, int startAddress, int length, CancellationToken token = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;short[]&gt; ReadWordsAsync(string deviceType, int startAddress, int length, CancellationToken cts = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -286,7 +245,7 @@ Interface IMcProtocol
     <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>要读取的数据长度</p>
 </dd>
-    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd><p>取消令牌</p>
 </dd>
   </dl>
@@ -294,7 +253,7 @@ Interface IMcProtocol
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a>[]&gt;</dt>
-    <dd><p>异步操作任务结果，包含读取值的整数数组。由调用方处理可能发生的异常</p>
+    <dd><p>异步操作任务结果，包含读取值的整数数组</p>
 </dd>
   </dl>
 
@@ -308,110 +267,9 @@ Interface IMcProtocol
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
-    <dd><p>取消此操作时抛出此异常</p>
-</dd>
-  </dl>
-
-
-
-  <a id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_TestPlcConnectionAsync_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.TestPlcConnectionAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_TestPlcConnectionAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.TestPlcConnectionAsync(System.Threading.CancellationToken)">
-  TestPlcConnectionAsync(CancellationToken)
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步测试PLC连接，成功后自动关闭</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task TestPlcConnectionAsync(CancellationToken token = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd><p>取消令牌</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作任务结果，由调用方处理可能发生的异常</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_TestPlcConnectionAsync_System_Threading_CancellationToken__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>如果手动取消，自行处理 OperationCanceledException 异常</p>
-</div>
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
-    <dd><p>取消此操作时抛出此异常</p>
-</dd>
-  </dl>
-
-
-
-  <a id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_TryReconnectToPlcAsync_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.TryReconnectToPlcAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_TryReconnectToPlcAsync_System_Int32_System_Int16_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.TryReconnectToPlcAsync(System.Int32,System.Int16,System.Threading.CancellationToken)">
-  TryReconnectToPlcAsync(int, short, CancellationToken)
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步尝试重连到PLC</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; TryReconnectToPlcAsync(int maxAttempts, short awaitTime = 1000, CancellationToken token = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>maxAttempts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>最多尝试次数</p>
-</dd>
-    <dt><code>awaitTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
-    <dd><p>等待时间（毫秒）</p>
-</dd>
-    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd><p>取消令牌</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>成功连接则返回 true，否则返回 false</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_TryReconnectToPlcAsync_System_Int32_System_Int16_System_Threading_CancellationToken__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>在中途断线时调用此方法将尝试重连接</p>
-</div>
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
-    <dd><p>取消此操作时抛出此异常</p>
-</dd>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.PlcReadErrorException.html">PlcReadErrorException</a></dt>
+    <dd></dd>
   </dl>
 
 
@@ -420,7 +278,7 @@ Interface IMcProtocol
 
   <h3 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_WriteBitsAsync_System_String_System_Int32_System_Boolean___System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.WriteBitsAsync(System.String,System.Int32,System.Boolean[],System.Threading.CancellationToken)">
   WriteBitsAsync(string, int, bool[], CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/McProtocols/IMcProtocol.cs#lines-77"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步写入位数据到PLC</p>
@@ -428,7 +286,7 @@ Interface IMcProtocol
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task WriteBitsAsync(string deviceType, int startAddress, bool[] values, CancellationToken token = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task WriteBitsAsync(string deviceType, int startAddress, bool[] values, CancellationToken cts = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -442,7 +300,7 @@ Interface IMcProtocol
     <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>[]</dt>
     <dd><p>要写入的布尔值数组，表示位状态</p>
 </dd>
-    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd><p>取消令牌</p>
 </dd>
   </dl>
@@ -450,7 +308,7 @@ Interface IMcProtocol
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作任务结果，由调用方处理可能发生的异常</p>
+    <dd><p>异步操作任务结果</p>
 </dd>
   </dl>
 
@@ -464,17 +322,18 @@ Interface IMcProtocol
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
-    <dd><p>取消此操作时抛出此异常</p>
-</dd>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.PlcWriteErrorException.html">PlcWriteErrorException</a></dt>
+    <dd></dd>
   </dl>
 
 
 
   <a id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_WriteWordsAsync_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.WriteWordsAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_WriteWordsAsync_System_String_System_Int32_System_Int32___System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.WriteWordsAsync(System.String,System.Int32,System.Int32[],System.Threading.CancellationToken)">
-  WriteWordsAsync(string, int, int[], CancellationToken)
-  
+  <h3 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_WriteWordsAsync_System_String_System_Int32_System_Int16___System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.WriteWordsAsync(System.String,System.Int32,System.Int16[],System.Threading.CancellationToken)">
+  WriteWordsAsync(string, int, short[], CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/McProtocols/IMcProtocol.cs#lines-40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步写入字数据到PLC</p>
@@ -482,7 +341,7 @@ Interface IMcProtocol
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task WriteWordsAsync(string deviceType, int startAddress, int[] values, CancellationToken token = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task WriteWordsAsync(string deviceType, int startAddress, short[] values, CancellationToken cts = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -493,10 +352,10 @@ Interface IMcProtocol
     <dt><code>startAddress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>起始地址</p>
 </dd>
-    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</dt>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a>[]</dt>
     <dd><p>要写入的整数数组</p>
 </dd>
-    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd><p>取消令牌</p>
 </dd>
   </dl>
@@ -504,7 +363,7 @@ Interface IMcProtocol
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作任务结果，由调用方处理可能发生的异常</p>
+    <dd><p>异步操作任务结果</p>
 </dd>
   </dl>
 
@@ -518,8 +377,70 @@ Interface IMcProtocol
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
-    <dd><p>取消此操作时抛出此异常</p>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.PlcWriteErrorException.html">PlcWriteErrorException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_WriteWordsAsync_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.WriteWordsAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_McProtocols_IMcProtocol_WriteWordsAsync__1_System_String_System_Int32___0___System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.McProtocols.IMcProtocol.WriteWordsAsync``1(System.String,System.Int32,``0[],System.Threading.CancellationToken)">
+  WriteWordsAsync&lt;T&gt;(string, int, T[], CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/McProtocols/IMcProtocol.cs#lines-53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步写入字数据到PLC</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task WriteWordsAsync&lt;T&gt;(string deviceType, int startAddress, T[] values, CancellationToken cts = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deviceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>指定设备类型</p>
 </dd>
+    <dt><code>startAddress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>起始地址</p>
+</dd>
+    <dt><code>values</code> T[]</dt>
+    <dd><p>要写入的数据数组</p>
+</dd>
+    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>数据类型，可以是 <code>short</code>、<code>int</code>、<code>float</code> 等</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.PlcWriteErrorException.html">PlcWriteErrorException</a></dt>
+    <dd></dd>
   </dl>
 
 
@@ -528,6 +449,7 @@ Interface IMcProtocol
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/McProtocols/IMcProtocol.cs#lines-17" class="edit-link">Edit this page</a>
         </div>
 
 

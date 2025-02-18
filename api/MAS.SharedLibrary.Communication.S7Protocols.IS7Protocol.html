@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol" class="text-break">
-Interface IS7Protocol  
+Interface IS7Protocol  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -121,45 +121,39 @@ Interface IS7Protocol
       <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_ProtocolType">IProtocol.ProtocolType</a>
     </div>
     <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_Configuration">IProtocol.Configuration</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_ConnectToPlcAsync_System_Threading_CancellationToken_">IProtocol.ConnectToPlcAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_TestPlcConnectionAsync_System_Threading_CancellationToken_">IProtocol.TestPlcConnectionAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_ReadStructAsync_System_Type_System_Int32_System_Threading_CancellationToken_">IProtocol.ReadStructAsync(Type, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_ReadStructAsync__1_System_Int32_System_Threading_CancellationToken_">IProtocol.ReadStructAsync&lt;T&gt;(int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_WriteStructAsync_System_Object_System_Int32_System_Threading_CancellationToken_">IProtocol.WriteStructAsync(object, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_CheckPlcConnection">IProtocol.CheckPlcConnection()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_TryReconnectToPlcAsync_System_Threading_CancellationToken_">IProtocol.TryReconnectToPlcAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_TryReconnectToPlcAsync_System_Int32_System_Int16_System_Threading_CancellationToken_">IProtocol.TryReconnectToPlcAsync(int, short, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html#MAS_SharedLibrary_Communication_IProtocol_DisconnectFromPlc">IProtocol.DisconnectFromPlc()</a>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
     </div>
   </dd></dl>
-
-
-
-
-
-
-  <h2 class="section" id="properties">Properties
-</h2>
-
-
-  <a id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_Configuration_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.Configuration*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_Configuration" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.Configuration">
-  Configuration
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取 S7 协议配置</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IS7CommunicationConfig Configuration { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="MAS.SharedLibrary.Communication.S7Protocols.IS7CommunicationConfig.html">IS7CommunicationConfig</a></dt>
-    <dd></dd>
-  </dl>
-
-
 
 
 
@@ -170,123 +164,11 @@ Interface IS7Protocol
 </h2>
 
 
-  <a id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_CheckPlcConnection_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.CheckPlcConnection*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_CheckPlcConnection" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.CheckPlcConnection">
-  CheckPlcConnection()
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>检查PLC连接状态</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool CheckPlcConnection()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>连接活跃返回true，否则返回false</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_CheckPlcConnection_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>lsConnected属性获取客户端套接字在最后一次I/O操作时的连接状态。它返回false时，客户端套接字要么从未连接，要么不再连接。
-由于PlC的IsConnected属性仅反映截至最近操作的连接状态，因此应该尝试发送或接收消息以确定当前状态。</p>
-</div>
-
-
-
-
-  <a id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_ConnectToPlcAsync_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.ConnectToPlcAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_ConnectToPlcAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.ConnectToPlcAsync(System.Threading.CancellationToken)">
-  ConnectToPlcAsync(CancellationToken)
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步连接到PLC设备</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task ConnectToPlcAsync(CancellationToken cts = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd><p>取消令牌</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作任务结果，由调用方处理可能发生的异常</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
-    <dd><p>取消此操作时抛出此异常</p>
-</dd>
-    <dt><span class="xref">PlcException</span></dt>
-    <dd><p>PLC 通讯异常</p>
-</dd>
-  </dl>
-
-
-
-  <a id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_DisconnectFromPlc_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.DisconnectFromPlc*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_DisconnectFromPlc" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.DisconnectFromPlc">
-  DisconnectFromPlc()
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>关闭PLC连接</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void DisconnectFromPlc()</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
   <a id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_ReadAsync_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.ReadAsync*"></a>
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_ReadAsync_S7_Net_DataType_System_Int32_System_Int32_S7_Net_VarType_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.ReadAsync(S7.Net.DataType,System.Int32,System.Int32,S7.Net.VarType,System.Int32,System.Threading.CancellationToken)">
   ReadAsync(DataType, int, int, VarType, int, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步读取解码</p>
@@ -352,7 +234,7 @@ Interface IS7Protocol
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_ReadBytesAsync_S7_Net_DataType_System_Int32_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.ReadBytesAsync(S7.Net.DataType,System.Int32,System.Int32,System.Int32,System.Threading.CancellationToken)">
   ReadBytesAsync(DataType, int, int, int, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步从PLC读取字数据</p>
@@ -415,7 +297,7 @@ Interface IS7Protocol
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_ReadClassAsync_System_Object_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.ReadClassAsync(System.Object,System.Int32,System.Int32,System.Threading.CancellationToken)">
   ReadClassAsync(object, int, int, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-158"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步从PLC读取数据到C#类的实例</p>
@@ -475,7 +357,7 @@ Interface IS7Protocol
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_ReadMultipleVarsAsync_System_Collections_Generic_List_S7_Net_Types_DataItem__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.ReadMultipleVarsAsync(System.Collections.Generic.List{S7.Net.Types.DataItem},System.Threading.CancellationToken)">
   ReadMultipleVarsAsync(List&lt;DataItem&gt;, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-186"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步从PLC读取多个变量</p>
@@ -529,7 +411,7 @@ Interface IS7Protocol
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_ReadStructAsync_System_Type_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.ReadStructAsync(System.Type,System.Int32,System.Int32,System.Threading.CancellationToken)">
   ReadStructAsync(Type, int, int, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步读取PLC中的结构体数据</p>
@@ -589,7 +471,7 @@ Interface IS7Protocol
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_ReadStructAsync__1_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.ReadStructAsync``1(System.Int32,System.Int32,System.Threading.CancellationToken)">
   ReadStructAsync&lt;T&gt;(int, int, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步读取PLC中的结构体数据</p>
@@ -648,158 +530,11 @@ Interface IS7Protocol
 
 
 
-  <a id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_TestPlcConnectionAsync_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.TestPlcConnectionAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_TestPlcConnectionAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.TestPlcConnectionAsync(System.Threading.CancellationToken)">
-  TestPlcConnectionAsync(CancellationToken)
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步测试PLC连接，成功后自动关闭</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task TestPlcConnectionAsync(CancellationToken cts = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd><p>取消令牌</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作任务结果，由调用方处理可能发生的异常</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_TestPlcConnectionAsync_System_Threading_CancellationToken__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>如果手动取消，自行处理 OperationCanceledException 异常</p>
-</div>
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
-    <dd><p>取消此操作时抛出此异常</p>
-</dd>
-    <dt><span class="xref">PlcException</span></dt>
-    <dd><p>PLC 通讯异常</p>
-</dd>
-  </dl>
-
-
-
-  <a id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_TryReconnectToPlcAsync_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.TryReconnectToPlcAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_TryReconnectToPlcAsync_System_Int32_System_Int16_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.TryReconnectToPlcAsync(System.Int32,System.Int16,System.Threading.CancellationToken)">
-  TryReconnectToPlcAsync(int, short, CancellationToken)
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步尝试重连到PLC</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; TryReconnectToPlcAsync(int maxAttempts, short awaitTime = 1000, CancellationToken cts = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>maxAttempts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>最多尝试次数</p>
-</dd>
-    <dt><code>awaitTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
-    <dd><p>等待时间（毫秒）</p>
-</dd>
-    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd><p>取消令牌</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>成功连接则返回 true，否则返回 false</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_TryReconnectToPlcAsync_System_Int32_System_Int16_System_Threading_CancellationToken__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>在中途断线时调用此方法将尝试重连接</p>
-</div>
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
-    <dd><p>取消此操作时抛出此异常</p>
-</dd>
-  </dl>
-
-
-
-  <a id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_TryReconnectToPlcAsync_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.TryReconnectToPlcAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_TryReconnectToPlcAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.TryReconnectToPlcAsync(System.Threading.CancellationToken)">
-  TryReconnectToPlcAsync(CancellationToken)
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步尝试重连到PLC</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; TryReconnectToPlcAsync(CancellationToken cts = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd><p>取消令牌</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>成功连接则返回 true，否则返回 false</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_TryReconnectToPlcAsync_System_Threading_CancellationToken__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>在中途断线时调用此方法将尝试重连接</p>
-</div>
-
-
-
-
   <a id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_WriteAsync_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.WriteAsync*"></a>
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_WriteAsync_S7_Net_DataType_System_Int32_System_Int32_System_Object_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.WriteAsync(S7.Net.DataType,System.Int32,System.Int32,System.Object,System.Threading.CancellationToken)">
   WriteAsync(DataType, int, int, object, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-82"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步写入解码</p>
@@ -862,7 +597,7 @@ Interface IS7Protocol
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_WriteBytesAsync_S7_Net_DataType_System_Int32_System_Int32_System_Byte___System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.WriteBytesAsync(S7.Net.DataType,System.Int32,System.Int32,System.Byte[],System.Threading.CancellationToken)">
   WriteBytesAsync(DataType, int, int, byte[], CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步写入字数据到PLC</p>
@@ -925,7 +660,7 @@ Interface IS7Protocol
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_WriteClassAsync_System_Object_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.WriteClassAsync(System.Object,System.Int32,System.Int32,System.Threading.CancellationToken)">
   WriteClassAsync(object, int, int, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-173"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步将C#类的实例数据写入PLC</p>
@@ -985,7 +720,7 @@ Interface IS7Protocol
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_WriteMultipleVarsAsync_System_Collections_Generic_List_S7_Net_Types_DataItem__" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.WriteMultipleVarsAsync(System.Collections.Generic.List{S7.Net.Types.DataItem})">
   WriteMultipleVarsAsync(List&lt;DataItem&gt;)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-197"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步向PLC写入多个变量</p>
@@ -1033,7 +768,7 @@ Interface IS7Protocol
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_WriteStructAsync_System_Object_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.WriteStructAsync(System.Object,System.Int32,System.Int32,System.Threading.CancellationToken)">
   WriteStructAsync(object, int, int, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-143"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步向PLC写入结构体数据</p>
@@ -1093,7 +828,7 @@ Interface IS7Protocol
 
   <h3 id="MAS_SharedLibrary_Communication_S7Protocols_IS7Protocol_WriteStructAsync__1___0_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.S7Protocols.IS7Protocol.WriteStructAsync``1(``0,System.Int32,System.Int32,System.Threading.CancellationToken)">
   WriteStructAsync&lt;T&gt;(T, int, int, CancellationToken)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-128"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步向PLC写入结构体数据</p>
@@ -1159,6 +894,7 @@ Interface IS7Protocol
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/S7Protocols/IS7Protocol.cs#lines-18" class="edit-link">Edit this page</a>
         </div>
 
 

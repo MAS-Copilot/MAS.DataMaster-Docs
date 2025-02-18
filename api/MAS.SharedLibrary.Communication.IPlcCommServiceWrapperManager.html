@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IPlcCommServiceWrapperManager | DataMaster ">
       
-      <meta name="description" content="管理 PlcCommunicationServiceWrapper 实例的管理器接口，负责跟踪所有通信服务包装类">
+      <meta name="description" content="管理 PlcCommServiceWrapper 实例的管理器接口，负责跟踪所有通信服务包装类">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager" class="text-break">
-Interface IPlcCommServiceWrapperManager  
+Interface IPlcCommServiceWrapperManager  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommServiceWrapperManager.cs#lines-15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Interface IPlcCommServiceWrapperManager
   <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>管理 PlcCommunicationServiceWrapper 实例的管理器接口，负责跟踪所有通信服务包装类</p>
+  <div class="markdown summary"><p>管理 PlcCommServiceWrapper 实例的管理器接口，负责跟踪所有通信服务包装类</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -123,9 +123,9 @@ Interface IPlcCommServiceWrapperManager
 
   <a id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager_AddWrapper_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.AddWrapper*"></a>
 
-  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager_AddWrapper_MAS_SharedLibrary_Communication_PlcCommunicationServiceWrapper_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.AddWrapper(MAS.SharedLibrary.Communication.PlcCommunicationServiceWrapper)">
-  AddWrapper(PlcCommunicationServiceWrapper)
-  
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager_AddWrapper_MAS_SharedLibrary_Communication_PlcCommServiceWrapper_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.AddWrapper(MAS.SharedLibrary.Communication.PlcCommServiceWrapper)">
+  AddWrapper(PlcCommServiceWrapper)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommServiceWrapperManager.cs#lines-45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>添加一个 PLC 通信服务包装类</p>
@@ -133,12 +133,12 @@ Interface IPlcCommServiceWrapperManager
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void AddWrapper(PlcCommunicationServiceWrapper wrapper)</code></pre>
+    <pre><code class="lang-csharp hljs">void AddWrapper(PlcCommServiceWrapper wrapper)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>wrapper</code> <a class="xref" href="MAS.SharedLibrary.Communication.PlcCommunicationServiceWrapper.html">PlcCommunicationServiceWrapper</a></dt>
+    <dt><code>wrapper</code> <a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></dt>
     <dd><p>要添加的包装类</p>
 </dd>
   </dl>
@@ -158,7 +158,7 @@ Interface IPlcCommServiceWrapperManager
 
   <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager_GetAllWrappers" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.GetAllWrappers">
   GetAllWrappers()
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommServiceWrapperManager.cs#lines-25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取所有当前的 PLC 通信服务包装集合</p>
@@ -166,13 +166,13 @@ Interface IPlcCommServiceWrapperManager
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerable&lt;PlcCommunicationServiceWrapper&gt; GetAllWrappers()</code></pre>
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;PlcCommServiceWrapper&gt; GetAllWrappers()</code></pre>
   </div>
 
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.SharedLibrary.Communication.PlcCommunicationServiceWrapper.html">PlcCommunicationServiceWrapper</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a>&gt;</dt>
     <dd><p>通讯服务包装类枚举</p>
 </dd>
   </dl>
@@ -191,7 +191,7 @@ Interface IPlcCommServiceWrapperManager
 
   <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager_GetProtocol_System_String_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.GetProtocol(System.String)">
   GetProtocol(string)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommServiceWrapperManager.cs#lines-39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据键获取协议实例</p>
@@ -230,7 +230,7 @@ Interface IPlcCommServiceWrapperManager
 
   <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager_GetWrapper_System_String_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.GetWrapper(System.String)">
   GetWrapper(string)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommServiceWrapperManager.cs#lines-32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据键获取包装类实例</p>
@@ -238,7 +238,7 @@ Interface IPlcCommServiceWrapperManager
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">PlcCommunicationServiceWrapper? GetWrapper(string key)</code></pre>
+    <pre><code class="lang-csharp hljs">PlcCommServiceWrapper? GetWrapper(string key)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -250,7 +250,7 @@ Interface IPlcCommServiceWrapperManager
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.SharedLibrary.Communication.PlcCommunicationServiceWrapper.html">PlcCommunicationServiceWrapper</a></dt>
+    <dt><a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></dt>
     <dd><p>对应的包装类实例，如果不存在则返回 null</p>
 </dd>
   </dl>
@@ -267,9 +267,9 @@ Interface IPlcCommServiceWrapperManager
 
   <a id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager_RemoveWrapper_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.RemoveWrapper*"></a>
 
-  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager_RemoveWrapper_MAS_SharedLibrary_Communication_PlcCommunicationServiceWrapper_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.RemoveWrapper(MAS.SharedLibrary.Communication.PlcCommunicationServiceWrapper)">
-  RemoveWrapper(PlcCommunicationServiceWrapper)
-  
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager_RemoveWrapper_MAS_SharedLibrary_Communication_PlcCommServiceWrapper_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.RemoveWrapper(MAS.SharedLibrary.Communication.PlcCommServiceWrapper)">
+  RemoveWrapper(PlcCommServiceWrapper)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommServiceWrapperManager.cs#lines-51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>移除一个 PLC 通信服务包装类</p>
@@ -277,12 +277,12 @@ Interface IPlcCommServiceWrapperManager
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void RemoveWrapper(PlcCommunicationServiceWrapper wrapper)</code></pre>
+    <pre><code class="lang-csharp hljs">void RemoveWrapper(PlcCommServiceWrapper wrapper)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>wrapper</code> <a class="xref" href="MAS.SharedLibrary.Communication.PlcCommunicationServiceWrapper.html">PlcCommunicationServiceWrapper</a></dt>
+    <dt><code>wrapper</code> <a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></dt>
     <dd><p>要移除的包装类</p>
 </dd>
   </dl>
@@ -305,7 +305,7 @@ Interface IPlcCommServiceWrapperManager
 
   <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceWrapperManager_WrappersUpdated" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.WrappersUpdated">
   WrappersUpdated
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommServiceWrapperManager.cs#lines-19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>事件，通知包装类的添加或移除</p>
@@ -337,6 +337,7 @@ Interface IPlcCommServiceWrapperManager
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommServiceWrapperManager.cs#lines-15" class="edit-link">Edit this page</a>
         </div>
 
 

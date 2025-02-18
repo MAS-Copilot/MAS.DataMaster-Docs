@@ -1,0 +1,613 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IPlcCommServiceFactory | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IPlcCommServiceFactory | DataMaster ">
+      
+      <meta name="description" content="创建不同的 PLC 通讯协议服务工厂接口">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory">
+
+
+
+  <h1 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory" class="text-break">
+Interface IPlcCommServiceFactory  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-15"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.SharedLibrary.html">SharedLibrary</a>.<a class="xref" href="MAS.SharedLibrary.Communication.html">Communication</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>创建不同的 PLC 通讯协议服务工厂接口</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IPlcCommServiceFactory : IDisposable</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Create_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.Create*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Create_MAS_SharedLibrary_Communication_CommProtocol_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.Create(MAS.SharedLibrary.Communication.CommProtocol)">
+  Create(CommProtocol)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据传入的协议枚举创建相应的通讯服务实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PlcCommServiceWrapper Create(CommProtocol protocol)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>protocol</code> <a class="xref" href="MAS.SharedLibrary.Communication.CommProtocol.html">CommProtocol</a></dt>
+    <dd><p>协议标识枚举</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></dt>
+    <dd><p>包含实现了 <a class="xref" href="MAS.SharedLibrary.Communication.IPlcCommunicationService.html">IPlcCommunicationService</a> 接口的通讯服务及其依赖项的包装类
+<a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Create_MAS_SharedLibrary_Communication_CommProtocol__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>根据协议标识枚举 <code class="paramref">protocol</code> 创建一个新的通讯服务实例</p>
+<p>
+如果存在相同配置的实例，则返回已存在的实例
+</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Create_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.Create*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Create_MAS_SharedLibrary_Communication_ICommunicationConfig_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.Create(MAS.SharedLibrary.Communication.ICommunicationConfig)">
+  Create(ICommunicationConfig)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据指定的通讯配置创建或获取相应的通讯服务实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PlcCommServiceWrapper Create(ICommunicationConfig config)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>config</code> <a class="xref" href="MAS.SharedLibrary.Communication.ICommunicationConfig.html">ICommunicationConfig</a></dt>
+    <dd><p>通讯服务的配置参数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></dt>
+    <dd><p>包含实现了 <a class="xref" href="MAS.SharedLibrary.Communication.IPlcCommunicationService.html">IPlcCommunicationService</a> 接口的通讯服务及其依赖项的包装类
+<a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Create_MAS_SharedLibrary_Communication_ICommunicationConfig__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>根据传入的通讯配置 <code class="paramref">config</code> 创建一个新的通讯服务实例</p>
+<p>
+如果存在相同配置的实例，则返回已存在的实例
+</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Create_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.Create*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Create_System_String_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.Create(System.String)">
+  Create(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据传入的协议字符串创建或获取相应的通讯服务实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PlcCommServiceWrapper Create(string protocol)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>protocol</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>协议标识字符串</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></dt>
+    <dd><p>包含实现了 <a class="xref" href="MAS.SharedLibrary.Communication.IPlcCommunicationService.html">IPlcCommunicationService</a> 接口的通讯服务及其依赖项的包装类
+<a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Create_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>根据协议标识字符串 <code class="paramref">protocol</code> 创建一个新的通讯服务实例</p>
+<p>
+如果已存在相同协议配置的实例，则返回已存在的实例
+</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Exists_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.Exists*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Exists_MAS_SharedLibrary_Communication_ICommunicationConfig_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.Exists(MAS.SharedLibrary.Communication.ICommunicationConfig)">
+  Exists(ICommunicationConfig)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查指定的配置是否存在实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Exists(ICommunicationConfig config)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>config</code> <a class="xref" href="MAS.SharedLibrary.Communication.ICommunicationConfig.html">ICommunicationConfig</a></dt>
+    <dd><p>协议参数配置</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果存在返回 true，否则 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Exists_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.Exists*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_Exists_System_String_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.Exists(System.String)">
+  Exists(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-84"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查指定的键是否存在实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Exists(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>用于查找 <a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a> 实例的唯一键</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果存在返回 true，否则 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_GetAllInstancesWithKeys_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.GetAllInstancesWithKeys*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_GetAllInstancesWithKeys" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.GetAllInstancesWithKeys">
+  GetAllInstancesWithKeys()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取所有已存在的 <a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a> 实例及其对应的键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;KeyValuePair&lt;string, PlcCommServiceWrapper&gt;&gt;? GetAllInstancesWithKeys()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a>&gt;&gt;</dt>
+    <dd><p>返回包含所有已存在的 <a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a> 实例及其对应键的只读集合，如果没有则返回null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_GetAllProtocolsStatus_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.GetAllProtocolsStatus*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_GetAllProtocolsStatus" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.GetAllProtocolsStatus">
+  GetAllProtocolsStatus()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取所有协议实例的状态信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;ProtocolModelBase&gt; GetAllProtocolsStatus()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.SharedLibrary.Communication.ProtocolModelBase.html">ProtocolModelBase</a>&gt;</dt>
+    <dd><p>协议状态信息集合</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_GetInstance_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.GetInstance*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_GetInstance_System_String_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.GetInstance(System.String)">
+  GetInstance(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据唯一标识符获取已存在的 <a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PlcCommServiceWrapper? GetInstance(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>用于查找 <a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a> 实例的唯一键</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></dt>
+    <dd><p>如果找到对应的实例则返回该实例，否则返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_RemoveProtocolAsync_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.RemoveProtocolAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_RemoveProtocolAsync_System_String_" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.RemoveProtocolAsync(System.String)">
+  RemoveProtocolAsync(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-117"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步移除指定 Key 的协议实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; RemoveProtocolAsync(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要移除的协议实例唯一 Key</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>异步操作任务结果，如果移除成功返回 true，否则返回 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_OnInstanceCreate" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.OnInstanceCreate">
+  OnInstanceCreate
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>实例创建事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;InstanceCreateEventArgs&gt; OnInstanceCreate</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.Communication.InstanceCreateEventArgs.html">InstanceCreateEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_OnInstanceExpiredRemove" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.OnInstanceExpiredRemove">
+  OnInstanceExpiredRemove
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>实例过期移除事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;InstanceExpiredRemovedEventArgs&gt; OnInstanceExpiredRemove</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.Communication.InstanceExpiredRemovedEventArgs.html">InstanceExpiredRemovedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Communication_IPlcCommServiceFactory_OnInstanceRemove" data-uid="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.OnInstanceRemove">
+  OnInstanceRemove
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>实例移除事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;InstanceRemovedEventArgs&gt; OnInstanceRemove</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.Communication.InstanceRemovedEventArgs.html">InstanceRemovedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Interfaces/Communication/IPlcCommunicationServiceFactory.cs#lines-15" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -110,13 +110,13 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapperEventArgs.html">PlcCommServiceWrapperEventArgs</a></dt>
-      <dd><p>PLC 通信服务包装类更新事件参数</p>
+      <dt><a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapper.html">PlcCommServiceWrapper</a></dt>
+      <dd><p>用于存储通信服务及其依赖项的包装类</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.Communication.PlcCommunicationServiceWrapper.html">PlcCommunicationServiceWrapper</a></dt>
-      <dd><p>用于存储通信服务及其依赖项的包装类</p>
+      <dt><a class="xref" href="MAS.SharedLibrary.Communication.PlcCommServiceWrapperEventArgs.html">PlcCommServiceWrapperEventArgs</a></dt>
+      <dd><p>PLC 通信服务包装类更新事件参数</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -129,6 +129,11 @@ Classes
       <dd><p>协议数据模型基础抽象类</p>
 </dd>
     </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Communication.TaskFieldAttribute.html">TaskFieldAttribute</a></dt>
+      <dd><p>用于标记任务字段属性的类</p>
+</dd>
+    </dl>
     <h3 id="interfaces">
 Interfaces
 </h3>
@@ -138,23 +143,28 @@ Interfaces
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Communication.ICommConfigConverter.html">ICommConfigConverter</a></dt>
+      <dd><p>通讯配置转换器接口，用于将 JSON 对象转换为实现 ICommunicationConfig 接口的配置实例</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.SharedLibrary.Communication.ICommunicationConfig.html">ICommunicationConfig</a></dt>
       <dd><p>通讯协议的基本参数配置接口</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Communication.IPlcCommServiceFactory.html">IPlcCommServiceFactory</a></dt>
+      <dd><p>创建不同的 PLC 通讯协议服务工厂接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager.html">IPlcCommServiceWrapperManager</a></dt>
-      <dd><p>管理 PlcCommunicationServiceWrapper 实例的管理器接口，负责跟踪所有通信服务包装类</p>
+      <dd><p>管理 PlcCommServiceWrapper 实例的管理器接口，负责跟踪所有通信服务包装类</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.SharedLibrary.Communication.IPlcCommunicationService.html">IPlcCommunicationService</a></dt>
       <dd><p>PLC 通讯服务接口</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.Communication.IPlcCommunicationServiceFactory.html">IPlcCommunicationServiceFactory</a></dt>
-      <dd><p>创建不同的 PLC 通讯协议服务工厂接口</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -164,7 +174,7 @@ Interfaces
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html">IProtocol</a></dt>
-      <dd><p>所有协议的统一接口</p>
+      <dd><p>所有通信协议的统一接口</p>
 </dd>
     </dl>
     <h3 id="enums">

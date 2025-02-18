@@ -1,0 +1,757 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CompilationHelper | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CompilationHelper | DataMaster ">
+      
+      <meta name="description" content="提供C#代码编译辅助功能">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Compilation.CompilationHelper">
+
+
+
+  <h1 id="MAS_Compilation_CompilationHelper" data-uid="MAS.Compilation.CompilationHelper" class="text-break">
+Class CompilationHelper  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-25"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.Compilation.html">Compilation</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.Compilation.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>提供C#代码编译辅助功能</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class CompilationHelper</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">CompilationHelper</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Compilation_CompilationHelper_CompileAndSaveToDll_" data-uid="MAS.Compilation.CompilationHelper.CompileAndSaveToDll*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_CompileAndSaveToDll_System_Collections_Generic_List_Microsoft_CodeAnalysis_SyntaxTree__System_Collections_Generic_List_Microsoft_CodeAnalysis_MetadataReference__System_String_System_String_" data-uid="MAS.Compilation.CompilationHelper.CompileAndSaveToDll(System.Collections.Generic.List{Microsoft.CodeAnalysis.SyntaxTree},System.Collections.Generic.List{Microsoft.CodeAnalysis.MetadataReference},System.String,System.String)">
+  CompileAndSaveToDll(List&lt;SyntaxTree&gt;, List&lt;MetadataReference&gt;, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从提供的语法树和元数据引用创建一个编译对象，并将编译结果保存为 DLL 文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EmitResult CompileAndSaveToDll(List&lt;SyntaxTree&gt; syntaxTrees, List&lt;MetadataReference&gt; references, string assemblyName, string outputDllPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>syntaxTrees</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.syntaxtree">SyntaxTree</a>&gt;</dt>
+    <dd><p>语法树的列表</p>
+</dd>
+    <dt><code>references</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.metadatareference">MetadataReference</a>&gt;</dt>
+    <dd><p>元数据引用的列表</p>
+</dd>
+    <dt><code>assemblyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>程序集名称</p>
+</dd>
+    <dt><code>outputDllPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>输出的 DLL 文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.emit.emitresult">EmitResult</a></dt>
+    <dd><p>编译结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_CreateCompilation_" data-uid="MAS.Compilation.CompilationHelper.CreateCompilation*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_CreateCompilation_System_Collections_Generic_List_Microsoft_CodeAnalysis_SyntaxTree__System_Collections_Generic_List_Microsoft_CodeAnalysis_MetadataReference__System_String_" data-uid="MAS.Compilation.CompilationHelper.CreateCompilation(System.Collections.Generic.List{Microsoft.CodeAnalysis.SyntaxTree},System.Collections.Generic.List{Microsoft.CodeAnalysis.MetadataReference},System.String)">
+  CreateCompilation(List&lt;SyntaxTree&gt;, List&lt;MetadataReference&gt;, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建 CSharpCompilation 对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CSharpCompilation CreateCompilation(List&lt;SyntaxTree&gt; syntaxTrees, List&lt;MetadataReference&gt; references, string assemblyName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>syntaxTrees</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.syntaxtree">SyntaxTree</a>&gt;</dt>
+    <dd><p>语法树的列表</p>
+</dd>
+    <dt><code>references</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.metadatareference">MetadataReference</a>&gt;</dt>
+    <dd><p>元数据引用的列表</p>
+</dd>
+    <dt><code>assemblyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>程序集名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.csharp.csharpcompilation">CSharpCompilation</a></dt>
+    <dd><p>创建的编译对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_EmitCompilation_" data-uid="MAS.Compilation.CompilationHelper.EmitCompilation*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_EmitCompilation_Microsoft_CodeAnalysis_CSharp_CSharpCompilation_System_IO_MemoryStream__" data-uid="MAS.Compilation.CompilationHelper.EmitCompilation(Microsoft.CodeAnalysis.CSharp.CSharpCompilation,System.IO.MemoryStream@)">
+  EmitCompilation(CSharpCompilation, out MemoryStream)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>编译代码并将结果输出到内存流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EmitResult EmitCompilation(CSharpCompilation compilation, out MemoryStream ms)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>compilation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.csharp.csharpcompilation">CSharpCompilation</a></dt>
+    <dd><p>编译对象</p>
+</dd>
+    <dt><code>ms</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.memorystream">MemoryStream</a></dt>
+    <dd><p>输出的内存流</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.emit.emitresult">EmitResult</a></dt>
+    <dd><p>编译结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_EmitCompilation_" data-uid="MAS.Compilation.CompilationHelper.EmitCompilation*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_EmitCompilation_Microsoft_CodeAnalysis_CSharp_CSharpCompilation_System_String_" data-uid="MAS.Compilation.CompilationHelper.EmitCompilation(Microsoft.CodeAnalysis.CSharp.CSharpCompilation,System.String)">
+  EmitCompilation(CSharpCompilation, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>编译代码并将结果保存到指定的 dll 文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EmitResult EmitCompilation(CSharpCompilation compilation, string outputDllPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>compilation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.csharp.csharpcompilation">CSharpCompilation</a></dt>
+    <dd><p>编译对象</p>
+</dd>
+    <dt><code>outputDllPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>保存的dll文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.emit.emitresult">EmitResult</a></dt>
+    <dd><p>编译结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_EmitCompilationToDisk_" data-uid="MAS.Compilation.CompilationHelper.EmitCompilationToDisk*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_EmitCompilationToDisk_Microsoft_CodeAnalysis_CSharp_CSharpCompilation_System_String_" data-uid="MAS.Compilation.CompilationHelper.EmitCompilationToDisk(Microsoft.CodeAnalysis.CSharp.CSharpCompilation,System.String)">
+  EmitCompilationToDisk(CSharpCompilation, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将给定的编译对象编译成程序集，并将结果保存到指定的磁盘路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EmitResult EmitCompilationToDisk(CSharpCompilation compilation, string outputPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>compilation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.csharp.csharpcompilation">CSharpCompilation</a></dt>
+    <dd><p>已准备好的编译对象，包含了所有需要编译的源代码和引用</p>
+</dd>
+    <dt><code>outputPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要保存编译后的程序集文件的磁盘路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.emit.emitresult">EmitResult</a></dt>
+    <dd><p>编译结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_ExtractTypeSummaryDocumentation_" data-uid="MAS.Compilation.CompilationHelper.ExtractTypeSummaryDocumentation*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_ExtractTypeSummaryDocumentation_Microsoft_CodeAnalysis_CSharp_CSharpCompilation_Microsoft_CodeAnalysis_SyntaxTree_System_Reflection_Assembly_System_Collections_Generic_Dictionary_System_Type_System_String__" data-uid="MAS.Compilation.CompilationHelper.ExtractTypeSummaryDocumentation(Microsoft.CodeAnalysis.CSharp.CSharpCompilation,Microsoft.CodeAnalysis.SyntaxTree,System.Reflection.Assembly,System.Collections.Generic.Dictionary{System.Type,System.String})">
+  ExtractTypeSummaryDocumentation(CSharpCompilation, SyntaxTree, Assembly, Dictionary&lt;Type, string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从语法树中提取类型的文档摘要</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ExtractTypeSummaryDocumentation(CSharpCompilation compilation, SyntaxTree syntaxTree, Assembly compiledAssembly, Dictionary&lt;Type, string&gt; typeDocumentationMap)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>compilation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.csharp.csharpcompilation">CSharpCompilation</a></dt>
+    <dd><p>编译后的 C# 编译对象</p>
+</dd>
+    <dt><code>syntaxTree</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.syntaxtree">SyntaxTree</a></dt>
+    <dd><p>要处理的语法树</p>
+</dd>
+    <dt><code>compiledAssembly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></dt>
+    <dd><p>编译后的程序集</p>
+</dd>
+    <dt><code>typeDocumentationMap</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>类型到文档摘要的映射字典</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_GetMetadataReferences_" data-uid="MAS.Compilation.CompilationHelper.GetMetadataReferences*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_GetMetadataReferences_System_Collections_Generic_IEnumerable_Microsoft_CodeAnalysis_MetadataReference__" data-uid="MAS.Compilation.CompilationHelper.GetMetadataReferences(System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.MetadataReference})">
+  GetMetadataReferences(IEnumerable&lt;MetadataReference&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前应用域中所有必要的元数据引用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;MetadataReference&gt; GetMetadataReferences(IEnumerable&lt;MetadataReference&gt;? additionalReferences = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>additionalReferences</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.metadatareference">MetadataReference</a>&gt;</dt>
+    <dd><p>额外的元数据引用</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.metadatareference">MetadataReference</a>&gt;</dt>
+    <dd><p>元数据引用的列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_IsValidCSharpIdentifier_" data-uid="MAS.Compilation.CompilationHelper.IsValidCSharpIdentifier*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_IsValidCSharpIdentifier_System_String_" data-uid="MAS.Compilation.CompilationHelper.IsValidCSharpIdentifier(System.String)">
+  IsValidCSharpIdentifier(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-195"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查给定的字符串是否是有效的 C# 标识符</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsValidCSharpIdentifier(string identifier)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>identifier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的字符串</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果是有效的C#标识符，则为 true；否则为 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_LoadFromDll_" data-uid="MAS.Compilation.CompilationHelper.LoadFromDll*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_LoadFromDll_System_String_" data-uid="MAS.Compilation.CompilationHelper.LoadFromDll(System.String)">
+  LoadFromDll(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-159"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从指定的 DLL 文件路径加载程序集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Assembly LoadFromDll(string dllPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dllPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>DLL 文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></dt>
+    <dd><p>加载后的程序集</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_LoadFromMemory_" data-uid="MAS.Compilation.CompilationHelper.LoadFromMemory*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_LoadFromMemory_System_Byte___" data-uid="MAS.Compilation.CompilationHelper.LoadFromMemory(System.Byte[])">
+  LoadFromMemory(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-168"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从内存中的字节数组加载程序集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Assembly LoadFromMemory(byte[] assemblyBytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assemblyBytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>程序集的字节数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></dt>
+    <dd><p>加载后的程序集</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_LogDiagnostics_" data-uid="MAS.Compilation.CompilationHelper.LogDiagnostics*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_LogDiagnostics_System_Collections_Generic_IEnumerable_Microsoft_CodeAnalysis_Diagnostic__" data-uid="MAS.Compilation.CompilationHelper.LogDiagnostics(System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.Diagnostic})">
+  LogDiagnostics(IEnumerable&lt;Diagnostic&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>记录并返回编译时的诊断信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string LogDiagnostics(IEnumerable&lt;Diagnostic&gt; diagnostics)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>diagnostics</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.diagnostic">Diagnostic</a>&gt;</dt>
+    <dd><p>诊断信息的集合</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>包含所有诊断信息的字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_MapTypeToFilePath_" data-uid="MAS.Compilation.CompilationHelper.MapTypeToFilePath*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_MapTypeToFilePath_Microsoft_CodeAnalysis_CSharp_CSharpCompilation_System_String_Microsoft_CodeAnalysis_SyntaxTree_System_Reflection_Assembly_System_Collections_Generic_Dictionary_System_Type_System_String__" data-uid="MAS.Compilation.CompilationHelper.MapTypeToFilePath(Microsoft.CodeAnalysis.CSharp.CSharpCompilation,System.String,Microsoft.CodeAnalysis.SyntaxTree,System.Reflection.Assembly,System.Collections.Generic.Dictionary{System.Type,System.String})">
+  MapTypeToFilePath(CSharpCompilation, string, SyntaxTree, Assembly, Dictionary&lt;Type, string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-236"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>映射类型到文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void MapTypeToFilePath(CSharpCompilation compilation, string filePath, SyntaxTree syntaxTree, Assembly compiledAssembly, Dictionary&lt;Type, string&gt; typeFilePathMap)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>compilation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.csharp.csharpcompilation">CSharpCompilation</a></dt>
+    <dd><p>编译后的 C# 编译对象</p>
+</dd>
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>语法树对应的文件路径</p>
+</dd>
+    <dt><code>syntaxTree</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.syntaxtree">SyntaxTree</a></dt>
+    <dd><p>要处理的语法树</p>
+</dd>
+    <dt><code>compiledAssembly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></dt>
+    <dd><p>编译后的程序集</p>
+</dd>
+    <dt><code>typeFilePathMap</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>类型到文件路径的映射字典</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_ReadAndParseSyntaxTreesAsync_" data-uid="MAS.Compilation.CompilationHelper.ReadAndParseSyntaxTreesAsync*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_ReadAndParseSyntaxTreesAsync_System_Collections_Generic_IEnumerable_System_String__" data-uid="MAS.Compilation.CompilationHelper.ReadAndParseSyntaxTreesAsync(System.Collections.Generic.IEnumerable{System.String})">
+  ReadAndParseSyntaxTreesAsync(IEnumerable&lt;string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步读取并解析所有 .cs 文件的语法树</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;Dictionary&lt;string, SyntaxTree&gt;&gt; ReadAndParseSyntaxTreesAsync(IEnumerable&lt;string&gt; files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>.cs 文件路径的集合</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.codeanalysis.syntaxtree">SyntaxTree</a>&gt;&gt;</dt>
+    <dd><p>返回文件路径与语法树的映射</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Compilation_CompilationHelper_SaveAssembly_" data-uid="MAS.Compilation.CompilationHelper.SaveAssembly*"></a>
+
+  <h3 id="MAS_Compilation_CompilationHelper_SaveAssembly_System_String_System_Byte___" data-uid="MAS.Compilation.CompilationHelper.SaveAssembly(System.String,System.Byte[])">
+  SaveAssembly(string, byte[])
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节数组形式的程序集保存为 DLL 文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SaveAssembly(string outputPath, byte[] assemblyBytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>outputPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>输出的文件路径</p>
+</dd>
+    <dt><code>assemblyBytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>程序集的字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.Compilation/Helpers/CompilationHelper.cs#lines-25" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
