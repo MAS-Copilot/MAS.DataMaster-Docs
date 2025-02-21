@@ -156,21 +156,22 @@ public struct SampleStruct {
     public string ProductId;    // 占用 10 个字节，映射到 D1008 ~ D1012
 }
 </code></pre>
-<p><strong>附加说明：</strong></p>
-<ul>
-<li><code>MitsubishiString</code>特性可以指定字符串的长度和对应的<code>D</code>寄存器映射</li>
-<li>字符串长度与<code>D</code>寄存器数量的映射关系：每个<code>D</code>寄存器保存<code>2个字节</code>（即两个字符）</li>
-</ul>
 <h2 id="字节处理规则">字节处理规则</h2>
 <ul>
 <li>使用小端字节序：低位字节存储在低地址，高位字节存储在高地址</li>
 <li>位字段处理：
 <ul>
-<li>每个连续 bool 打包到连续字节</li>
+<li>多个 bool 打包到连续字节</li>
 <li>一个 bool 类型需要占 0.125 字节</li>
+<li>bool 考虑字节对齐的问题，即不足 2 字节将补齐</li>
 </ul>
 </li>
 <li>ASCII 编码中，每个字符占用 1 个字节，一个 D 寄存器可以存 2 个字节</li>
+</ul>
+<p><strong>附加说明：</strong></p>
+<ul>
+<li><code>MitsubishiString</code>特性可以指定字符串的长度和对应的<code>D</code>寄存器映射</li>
+<li>字符串长度与<code>D</code>寄存器数量的映射关系：每个<code>D</code>寄存器保存<code>2个字节</code>（即两个字符）</li>
 </ul>
 <h2 id="构建示例">构建示例</h2>
 <h3 id="任务执行请求结构体">任务执行请求结构体</h3>
@@ -270,14 +271,14 @@ public struct MixedDataStruct {
     public bool IsDelete;           // 是否删除(CRUD) -&gt; D3233.3
     public bool IsAddOrUpdate;      // 是否添加或更新(CRUD) -&gt; D3233.4
     public bool IsNewFile;          // 是否新建文件 -&gt; D3233.5
-    public bool IsActive;           // 1 位 -&gt; D3233.6
-    public bool IsAlarm;            // 1 位 -&gt; D3233.7
-    public bool IsOperational;      // 1 位 -&gt; D3233.8
-    public bool IsError;            // 1 位 -&gt; D3233.9
     public short Id;                // 2 字节 -&gt; D3234, D3235
     public float Temperature;       // 4 字节 -&gt; D3236 ~ D3239
     public double Pressure;         // 8 字节 -&gt; D3240 ~ D3247
     public int Volume;              // 4 字节 -&gt; D3248 ~ D3251
+    public bool IsActive;           // 1 位 -&gt; D3233.6，注：根据字节处理规则
+    public bool IsAlarm;            // 1 位 -&gt; D3233.7，注：根据字节处理规则
+    public bool IsOperational;      // 1 位 -&gt; D3233.8，注：根据字节处理规则
+    public bool IsError;            // 1 位 -&gt; D3233.9，注：根据字节处理规则
     [MitsubishiString(20)]
     public string DeviceName;       // 20 字节 -&gt; D3252 ~ D3271
     [MitsubishiString(50)]
@@ -296,6 +297,98 @@ public struct MixedDataStruct {
 </li>
 </ul>
 <p>因此，在修改或扩展任务字段时，应特别注意保持已有字段的顺序，以免造成地址映射混乱</p>
+<h2 id="写入布尔数据">写入布尔数据</h2>
+<ul>
+<li>数据块对齐：每个数据块必须是 16 位对齐的。这意味着即使传输的数据位数（例如 9 位、17 位等）没有完全填满 16 位，也必须为其分配 2 字节</li>
+<li>16 位数据块为 2 字节：协议要求每 16 位数据为 1 个数据块，且该数据块必须占用 2 字节。因此，如果数据总长度是 16 位或 32 位，应该根据具体的位数，动态计算字节数和块数</li>
+<li>字节存储：PLC 中的数据存储是按字节进行的，每个字节可以存储 8 位数据。写入时将布尔值按位填充到字节中，并传递给 PLC</li>
+<li>块的大小：根据数据位数的大小（如 16 位、32 位等），计算数据块的长度。例如：
+<ul>
+<li>16 位布尔值需要 1 个数据块（2 字节）</li>
+<li>32 位布尔值需要 2 个数据块（4 字节）</li>
+<li>若数据位数不足 16 位但仍需要传输，要求为其分配 2 字节</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-csharp">public async Task WriteBitsAsync(string deviceType, int startAddress, bool[] values, CancellationToken cts = default) {
+    try {            
+        int numBits = values.Length;
+
+        // 计算所需字节数：
+        // 每 16 位数据块需要 2 字节，因此需要根据位数计算字节长度
+        // 例如：16 位 -&gt; 2 字节，32 位 -&gt; 4 字节，且不足 16 位时仍需要分配 2 字节
+        int byteLength = (numBits / 16 + ((numBits % 16 &gt; 0) ? 1 : 0)) * 2;
+        byte[] bytes = new byte[byteLength];
+
+         // 遍历布尔值数组，将布尔值按位填充到字节数组中
+        for (int i = 0; i &lt; numBits; i++) {
+            int wordIndex = i / 16;                             // 每 16 位为一个块
+            int bitInWord = i % 16;                             // 在当前 16 位块中的位置
+            int byteIndex = wordIndex * 2 + (bitInWord / 8);    // 字节的索引
+            int bitInByte = bitInWord % 8;                      // 字节内的具体位
+
+            if (values[i]) {
+                bytes[byteIndex] |= (byte)(1 &lt;&lt; bitInByte);
+            } else {
+                bytes[byteIndex] &amp;= (byte)~(1 &lt;&lt; bitInByte);
+            }
+        }
+
+        cts.ThrowIfCancellationRequested();
+        _ = await _plc.WriteDeviceBlock(
+            MitsubishiHelper.ParsePlcDeviceType(deviceType),
+            startAddress,
+            byteLength / 2,     // 16 位为 1 块，32 位为 2 块...
+            bytes
+        ).ConfigureAwait(false);
+    } catch (OperationCanceledException) {
+        throw;
+    } catch (Exception ex) {
+        throw new PlcWriteErrorException(
+            $&quot;Error writing bits to PLC. Device: {deviceType}, StartAddress: {startAddress}, Length: {values.Length}.&quot;, ex);
+    }
+}
+</code></pre>
+<h2 id="写入字数据">写入字数据</h2>
+<ul>
+<li>数据块对齐：每个数据块必须是 16 位对齐的。这意味着，即使传输的数据位数（例如 9 位、17 位等）没有完全填满 16 位，也必须为其分配 2 字节</li>
+<li>字数据块：16 位数据为 1 个字数据块（2 字节），即每个 short 类型的值占用 2 字节，如果传输的数据位数不足 16 位，但仍需要传输，要求为其分配 2 字节</li>
+<li>字节存储：PLC 中的数据存储是按字节进行的，每个字（16 位）将占用 2 字节</li>
+<li>块的大小：根据数据位数的大小（如 16 位、32 位等），计算数据块的长度
+<ul>
+<li>16 位 short 类型需要 1 个数据块（2 字节）</li>
+<li>32 位 short[] 数组总共占用 2 个数据块（4 字节）</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-csharp">public async Task WriteWordsAsync(string deviceType, int startAddress, short[] values, CancellationToken cts = default) {
+    try {
+        int byteLength = values.Length * 2; // 每个 short 占 2 字节
+        byte[] bytes = new byte[byteLength];
+
+        // 将 short 数组中的每个值转换为字节，并复制到目标字节数组
+        for (int i = 0; i &lt; values.Length; i++) {
+            byte[] shortBytes = BitConverter.GetBytes(values[i]);        
+            Array.Copy(shortBytes, 0, bytes, i * 2, 2); // 将字节复制到目标字节数组
+        }
+
+        cts.ThrowIfCancellationRequested();    
+        _ = await _plc.WriteDeviceBlock(
+            MitsubishiHelper.ParsePlcDeviceType(deviceType),
+            startAddress,
+            byteLength / 2,  // 这里传递的块数是按 16 位对齐计算的，所以 byteLength / 2
+            bytes
+        ).ConfigureAwait(false);
+    } catch (OperationCanceledException) {
+        throw;
+    } catch (Exception ex) {
+        throw new PlcWriteErrorException(
+            $&quot;Error writing words to PLC. Device: {deviceType}, StartAddress: {startAddress}, Length: {values.Length}.&quot;, ex);
+    }
+}
+</code></pre>
+<h2 id="测试">测试</h2>
+<p><img src="../../images/test/MitsubishiCommunicationsTest.png" alt="alt text"></p>
 
 </article>
 
