@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Abstracts_ConfigurationsBase" data-uid="MAS.SharedLibrary.Abstracts.ConfigurationsBase" class="text-break">
-Class ConfigurationsBase  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ConfigurationsBase.cs#lines-17"><i class="bi bi-code-slash"></i></a>
+Class ConfigurationsBase  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ConfigurationsBase.cs#lines-17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -153,11 +153,11 @@ Class ConfigurationsBase  <a class="header-action link-secondary" title="View so
 </h2>
 
 
-  <a id="MAS_SharedLibrary_Abstracts_ConfigurationsBase_OnConfigurationChanged_" data-uid="MAS.SharedLibrary.Abstracts.ConfigurationsBase.OnConfigurationChanged*"></a>
+  <a id="MAS_SharedLibrary_Abstracts_ConfigurationsBase_OnPropertyChanged_" data-uid="MAS.SharedLibrary.Abstracts.ConfigurationsBase.OnPropertyChanged*"></a>
 
-  <h3 id="MAS_SharedLibrary_Abstracts_ConfigurationsBase_OnConfigurationChanged_System_String_System_Object_System_Object_System_String_" data-uid="MAS.SharedLibrary.Abstracts.ConfigurationsBase.OnConfigurationChanged(System.String,System.Object,System.Object,System.String)">
-  OnConfigurationChanged(string, object?, object?, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ConfigurationsBase.cs#lines-26"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Abstracts_ConfigurationsBase_OnPropertyChanged_System_String_System_Object_System_Object_System_String_" data-uid="MAS.SharedLibrary.Abstracts.ConfigurationsBase.OnPropertyChanged(System.String,System.Object,System.Object,System.String)">
+  OnPropertyChanged(string, object?, object?, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ConfigurationsBase.cs#lines-26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>触发配置更改事件的辅助方法</p>
@@ -165,7 +165,7 @@ Class ConfigurationsBase  <a class="header-action link-secondary" title="View so
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnConfigurationChanged(string propertyName, object? oldValue, object? newValue, string modifiedBy)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void OnPropertyChanged(string propertyName, object? oldValue, object? newValue, string modifiedBy)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -195,7 +195,7 @@ Class ConfigurationsBase  <a class="header-action link-secondary" title="View so
 
   <h3 id="MAS_SharedLibrary_Abstracts_ConfigurationsBase_SetField__1___0____0_System_String_System_String_" data-uid="MAS.SharedLibrary.Abstracts.ConfigurationsBase.SetField``1(``0@,``0,System.String,System.String)">
   SetField&lt;T&gt;(ref T, T, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ConfigurationsBase.cs#lines-39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ConfigurationsBase.cs#lines-39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>辅助方法，用于设置属性值并在值更改时触发配置更改事件</p>
@@ -250,17 +250,17 @@ Class ConfigurationsBase  <a class="header-action link-secondary" title="View so
 
 
 
-  <h3 id="MAS_SharedLibrary_Abstracts_ConfigurationsBase_ConfigurationChanged" data-uid="MAS.SharedLibrary.Abstracts.ConfigurationsBase.ConfigurationChanged">
-  ConfigurationChanged
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ConfigurationsBase.cs#lines-21"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Abstracts_ConfigurationsBase_PropertyChanged" data-uid="MAS.SharedLibrary.Abstracts.ConfigurationsBase.PropertyChanged">
+  PropertyChanged
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ConfigurationsBase.cs#lines-21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>参数配置改变事件</p>
+  <div class="markdown level1 summary"><p>属性改变事件</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ConfigChangedEventArgs&gt;? ConfigurationChanged</code></pre>
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;PropertyChangedExtendedEventArgs&gt;? PropertyChanged</code></pre>
   </div>
 
 
@@ -270,7 +270,7 @@ Class ConfigurationsBase  <a class="header-action link-secondary" title="View so
 
   <h4 class="section">Event Type</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.ConfigChangedEventArgs.html">ConfigChangedEventArgs</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.PropertyChangedExtendedEventArgs.html">PropertyChangedExtendedEventArgs</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -284,7 +284,7 @@ Class ConfigurationsBase  <a class="header-action link-secondary" title="View so
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ConfigurationsBase.cs#lines-17" class="edit-link">Edit this page</a>
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ConfigurationsBase.cs#lines-17" class="edit-link">Edit this page</a>
         </div>
 
 

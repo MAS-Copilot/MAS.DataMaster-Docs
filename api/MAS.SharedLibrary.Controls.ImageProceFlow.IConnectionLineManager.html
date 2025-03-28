@@ -1,0 +1,593 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IConnectionLineManager | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IConnectionLineManager | DataMaster ">
+      
+      <meta name="description" content="统一管理所有模块的连接线接口，包括不限于创建、更新、移除">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager">
+
+
+
+  <h1 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager" class="text-break">
+Interface IConnectionLineManager  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-23"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.SharedLibrary.html">SharedLibrary</a>.<a class="xref" href="MAS.SharedLibrary.Controls.html">Controls</a>.<a class="xref" href="MAS.SharedLibrary.Controls.ImageProceFlow.html">ImageProceFlow</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>统一管理所有模块的连接线接口，包括不限于创建、更新、移除</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IConnectionLineManager</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>每个模块只需创建连接到自己的连接线，可以是一对一、一对多、多对多；
+例：模块A输出 -&gt; 模块B输入，由模块B确认可以接受模块A的输出后创建此连接线</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_CreateBezierCurve_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.CreateBezierCurve*"></a>
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_CreateBezierCurve_MAS_SharedLibrary_Controls_ImageProceFlow_ConnectionLine_System_Windows_Controls_Canvas_System_Windows_Shapes_Path_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.CreateBezierCurve(MAS.SharedLibrary.Controls.ImageProceFlow.ConnectionLine,System.Windows.Controls.Canvas,System.Windows.Shapes.Path)">
+  CreateBezierCurve(ConnectionLine, Canvas, Path)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建一条连接线对象，从指定源模块的特定输出端点到目标模块的特定输入端点的贝塞尔曲线</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CreateBezierCurve(ConnectionLine connection, Canvas parentCanvas, Path path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connection</code> <a class="xref" href="MAS.SharedLibrary.Controls.ImageProceFlow.ConnectionLine.html">ConnectionLine</a></dt>
+    <dd><p>从工程文件读取的 <a class="xref" href="MAS.SharedLibrary.Controls.ImageProceFlow.ConnectionLine.html">ConnectionLine</a> 对象</p>
+</dd>
+    <dt><code>parentCanvas</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.canvas">Canvas</a></dt>
+    <dd><p>连接线应该被添加到的画布，此画布承载了视觉元素</p>
+</dd>
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.shapes.path">Path</a></dt>
+    <dd><p>用于绘制连接线的路径对象。路径对象定义了连接线的视觉表现和样式</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_CreateBezierCurve_MAS_SharedLibrary_Controls_ImageProceFlow_ConnectionLine_System_Windows_Controls_Canvas_System_Windows_Shapes_Path__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>用于从文件反序列化的连接线数据对象，保持数据引用</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_CreateBezierCurve_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.CreateBezierCurve*"></a>
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_CreateBezierCurve_System_Guid_System_Int16_System_Guid_System_Int16_System_Windows_Controls_Canvas_System_Windows_Shapes_Path_System_Nullable_System_Guid__" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.CreateBezierCurve(System.Guid,System.Int16,System.Guid,System.Int16,System.Windows.Controls.Canvas,System.Windows.Shapes.Path,System.Nullable{System.Guid})">
+  CreateBezierCurve(Guid, short, Guid, short, Canvas, Path, Guid?)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建一条从指定源模块的特定输出端点到目标模块的特定输入端点的贝塞尔曲线</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CreateBezierCurve(Guid sourceModuleId, short sourceOutputIndex, Guid targetModuleId, short targetInputIndex, Canvas parentCanvas, Path path, Guid? connectionId = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceModuleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>源模块的唯一标识符，表示连接的起始点所在的模块</p>
+</dd>
+    <dt><code>sourceOutputIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd><p>源模块中的输出端点索引，指定从哪个输出端点开始连接</p>
+</dd>
+    <dt><code>targetModuleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>目标模块的唯一标识符，表示连接的终点所在的模块</p>
+</dd>
+    <dt><code>targetInputIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd><p>目标模块中的输入端点索引，指定连接的目标输入端点</p>
+</dd>
+    <dt><code>parentCanvas</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.canvas">Canvas</a></dt>
+    <dd><p>连接线应该被添加到的画布，此画布承载了视觉元素</p>
+</dd>
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.shapes.path">Path</a></dt>
+    <dd><p>用于绘制连接线的路径对象。路径对象定义了连接线的视觉表现和样式</p>
+</dd>
+    <dt><code>connectionId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>?</dt>
+    <dd><p>连接线唯一标识符（如已有）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_GetConnectionLine_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.GetConnectionLine*"></a>
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_GetConnectionLine" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.GetConnectionLine">
+  GetConnectionLine()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前最新的所有连接线数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Dictionary&lt;Guid, ConnectionLine&gt; GetConnectionLine()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, <a class="xref" href="MAS.SharedLibrary.Controls.ImageProceFlow.ConnectionLine.html">ConnectionLine</a>&gt;</dt>
+    <dd><p>一个字典，键为连接线的唯一标识符（Guid），
+值为对应的连接线数据模型 <a class="xref" href="MAS.SharedLibrary.Controls.ImageProceFlow.ConnectionLine.html">ConnectionLine</a> 对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_GetConnectionLinesList_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.GetConnectionLinesList*"></a>
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_GetConnectionLinesList" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.GetConnectionLinesList">
+  GetConnectionLinesList()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前最新的所有连接线数据模型的列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">List&lt;ConnectionLine&gt; GetConnectionLinesList()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.SharedLibrary.Controls.ImageProceFlow.ConnectionLine.html">ConnectionLine</a>&gt;</dt>
+    <dd><p>包含所有连接线数据模型 <a class="xref" href="MAS.SharedLibrary.Controls.ImageProceFlow.ConnectionLine.html">ConnectionLine</a> 的列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_RemoveAllLines_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.RemoveAllLines*"></a>
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_RemoveAllLines" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.RemoveAllLines">
+  RemoveAllLines()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>移除所有已创建的连接线</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RemoveAllLines()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_RemoveConnectionLine_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.RemoveConnectionLine*"></a>
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_RemoveConnectionLine_System_Guid_System_Windows_Controls_Canvas_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.RemoveConnectionLine(System.Guid,System.Windows.Controls.Canvas)">
+  RemoveConnectionLine(Guid, Canvas)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>移除模块的连接线</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RemoveConnectionLine(Guid moduleId, Canvas parentCanvas)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>moduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>要移除的模块连接线的唯一标识符</p>
+</dd>
+    <dt><code>parentCanvas</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.canvas">Canvas</a></dt>
+    <dd><p>连接线所在的父画布</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_RemoveConnectionLine_System_Guid_System_Windows_Controls_Canvas__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>将移除此模块已创建的所有连接线</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_UpdateAllBezierCurvePoint_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.UpdateAllBezierCurvePoint*"></a>
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_UpdateAllBezierCurvePoint_System_Guid_System_Windows_Media_TranslateTransform_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.UpdateAllBezierCurvePoint(System.Guid,System.Windows.Media.TranslateTransform)">
+  UpdateAllBezierCurvePoint(Guid, TranslateTransform)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新指定模块的所有的贝塞尔曲线位置，用于模块的拖动时</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UpdateAllBezierCurvePoint(Guid moduleId, TranslateTransform moduleTransform)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>moduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>模块的唯一标识符</p>
+</dd>
+    <dt><code>moduleTransform</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.translatetransform">TranslateTransform</a></dt>
+    <dd><p>模块的平移变换</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_UpdateAllBezierCurvePoint_System_Guid_System_Windows_Media_TranslateTransform__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>将更新此模块已创建的所有输出、输入点的贝塞尔曲线</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_UpdateBezierCurveEndPoint_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.UpdateBezierCurveEndPoint*"></a>
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_UpdateBezierCurveEndPoint_System_Guid_System_Windows_Media_TranslateTransform_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.UpdateBezierCurveEndPoint(System.Guid,System.Windows.Media.TranslateTransform)">
+  UpdateBezierCurveEndPoint(Guid, TranslateTransform)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新贝塞尔曲线的终点位置，用于模块的拖动时</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UpdateBezierCurveEndPoint(Guid moduleId, TranslateTransform moduleTransform)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>moduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>模块的唯一标识符</p>
+</dd>
+    <dt><code>moduleTransform</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.translatetransform">TranslateTransform</a></dt>
+    <dd><p>模块拖动的变换信息</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_UpdateBezierCurveEndPoint_System_Guid_System_Windows_Media_TranslateTransform__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>将更新此模块输入点已创建的所有贝塞尔曲线的终点</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_UpdateBezierCurveStartPoint_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.UpdateBezierCurveStartPoint*"></a>
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_UpdateBezierCurveStartPoint_System_Guid_System_Windows_Media_TranslateTransform_" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.UpdateBezierCurveStartPoint(System.Guid,System.Windows.Media.TranslateTransform)">
+  UpdateBezierCurveStartPoint(Guid, TranslateTransform)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新贝塞尔曲线的起点位置，用于模块的拖动时</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UpdateBezierCurveStartPoint(Guid moduleId, TranslateTransform moduleTransform)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>moduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>模块的唯一标识符</p>
+</dd>
+    <dt><code>moduleTransform</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.translatetransform">TranslateTransform</a></dt>
+    <dd><p>模块拖动的变换信息</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_UpdateBezierCurveStartPoint_System_Guid_System_Windows_Media_TranslateTransform__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>将更新此模块输出点已创建的所有贝塞尔曲线的起点</p>
+</div>
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_ConnectionAdded" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.ConnectionAdded">
+  ConnectionAdded
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>连接线添加事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;ConnectionLineEventArgs&gt;? ConnectionAdded</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.Controls.ImageProceFlow.ConnectionLineEventArgs.html">ConnectionLineEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_ConnectionCleared" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.ConnectionCleared">
+  ConnectionCleared
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>连接线清除事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler? ConnectionCleared</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Controls_ImageProceFlow_IConnectionLineManager_ConnectionRemoved" data-uid="MAS.SharedLibrary.Controls.ImageProceFlow.IConnectionLineManager.ConnectionRemoved">
+  ConnectionRemoved
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>连接线移除事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;ConnectionLineEventArgs&gt;? ConnectionRemoved</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.Controls.ImageProceFlow.ConnectionLineEventArgs.html">ConnectionLineEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/ImageProceFlow/IConnectionLineManager.cs#lines-23" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

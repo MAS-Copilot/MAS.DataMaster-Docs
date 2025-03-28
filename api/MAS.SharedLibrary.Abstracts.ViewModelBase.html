@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Abstracts_ViewModelBase" data-uid="MAS.SharedLibrary.Abstracts.ViewModelBase" class="text-break">
-Class ViewModelBase  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-20"><i class="bi bi-code-slash"></i></a>
+Class ViewModelBase  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-21"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -128,8 +128,11 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
   <dl class="typelist derived">
     <dt>Derived</dt>
     <dd>
+      <div><a class="xref" href="MAS.SharedLibrary.Controls.ImageProceFlow.PipelineInfo.html">PipelineInfo</a></div>
       <div><a class="xref" href="MAS.SharedLibrary.DataExport.DataExportTypeDetails.html">DataExportTypeDetails</a></div>
       <div><a class="xref" href="MAS.SharedLibrary.Database.DataAccessTypeDetails.html">DataAccessTypeDetails</a></div>
+      <div><a class="xref" href="MAS.SharedLibrary.Vision.TreeViewCategory.html">TreeViewCategory</a></div>
+      <div><a class="xref" href="MAS.SharedLibrary.Vision.TreeViewControlItem.html">TreeViewControlItem</a></div>
     </dd>
   </dl>
 
@@ -219,7 +222,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Abstracts_ViewModelBase_BusyCursor" data-uid="MAS.SharedLibrary.Abstracts.ViewModelBase.BusyCursor">
   BusyCursor
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>忙碌状态光标</p>
@@ -250,7 +253,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Abstracts_ViewModelBase_WorkingCursor" data-uid="MAS.SharedLibrary.Abstracts.ViewModelBase.WorkingCursor">
   WorkingCursor
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>正在工作/任务中光标</p>
@@ -286,7 +289,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Abstracts_ViewModelBase_IsBusy" data-uid="MAS.SharedLibrary.Abstracts.ViewModelBase.IsBusy">
   IsBusy
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置是否忙碌</p>
@@ -294,7 +297,8 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool IsBusy { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public virtual bool IsBusy { get; set; }</code></pre>
   </div>
 
 
@@ -322,7 +326,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Abstracts_ViewModelBase_ResetCursor" data-uid="MAS.SharedLibrary.Abstracts.ViewModelBase.ResetCursor">
   ResetCursor()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>恢复默认光标状态</p>
@@ -330,7 +334,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static void ResetCursor()</code></pre>
+    <pre><code class="lang-csharp hljs">public void ResetCursor()</code></pre>
   </div>
 
 
@@ -349,7 +353,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Abstracts_ViewModelBase_SetBusyCursor" data-uid="MAS.SharedLibrary.Abstracts.ViewModelBase.SetBusyCursor">
   SetBusyCursor()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置为忙碌状态光标</p>
@@ -357,7 +361,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void SetBusyCursor()</code></pre>
+    <pre><code class="lang-csharp hljs">public void SetBusyCursor()</code></pre>
   </div>
 
 
@@ -376,7 +380,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Abstracts_ViewModelBase_SetField__1___0____0_System_String_" data-uid="MAS.SharedLibrary.Abstracts.ViewModelBase.SetField``1(``0@,``0,System.String)">
   SetField&lt;T&gt;(ref T, T, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>辅助方法，用于设置属性值并触发属性更改通知</p>
@@ -427,7 +431,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Abstracts_ViewModelBase_SetWorkingCursor" data-uid="MAS.SharedLibrary.Abstracts.ViewModelBase.SetWorkingCursor">
   SetWorkingCursor()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置为正在工作/任务中的光标</p>
@@ -435,7 +439,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void SetWorkingCursor()</code></pre>
+    <pre><code class="lang-csharp hljs">public void SetWorkingCursor()</code></pre>
   </div>
 
 
@@ -454,7 +458,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/McProtocolBuild/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-20" class="edit-link">Edit this page</a>
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstracts/ViewModelBase.cs#lines-21" class="edit-link">Edit this page</a>
         </div>
 
 

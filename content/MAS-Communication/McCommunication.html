@@ -297,6 +297,49 @@ public struct MixedDataStruct {
 </li>
 </ul>
 <p>因此，在修改或扩展任务字段时，应特别注意保持已有字段的顺序，以免造成地址映射混乱</p>
+<h3 id="构建生成的索引">构建生成的索引</h3>
+<p><strong>设 ReadDataAdr 是 3000：</strong></p>
+<table>
+<thead>
+<tr>
+<th>结构体名称</th>
+<th>大小(bytes)</th>
+<th>计算后的索引（偏移）</th>
+<th>计算方式</th>
+<th>最终地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EquipmentDataStruct</td>
+<td>272</td>
+<td>0</td>
+<td>第一个结构体，偏移 = 0</td>
+<td>D3000 ~ D3135</td>
+</tr>
+<tr>
+<td>ProductInfoStruct</td>
+<td>154</td>
+<td>146</td>
+<td>(272(上一个结构体大小) / 2) + 10(固定预留)</td>
+<td>D3146 ~ D3222</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-bash">TaskIndex: 0, Size: 272 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.EquipmentDataStruct, Offset: 0, Size: 136, Range: D3000 ~ D3135
+TaskIndex: 1, Size: 154 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.ProductInfoStruct, Offset: 146, Size: 77, Range: D3146 ~ D3222
+TaskIndex: 2, Size: 732 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.ProductRouteStruct, Offset: 233, Size: 366, Range: D3233 ~ D3598
+TaskIndex: 3, Size: 152 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.ProductXRFMesureStruct, Offset: 609, Size: 76, Range: D3609 ~ D3684
+TaskIndex: 4, Size: 86 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.PowerAnalyzerStruct, Offset: 695, Size: 43, Range: D3695 ~ D3737
+TaskIndex: 5, Size: 88 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.HipotStruct, Offset: 748, Size: 44, Range: D3748 ~ D3791
+TaskIndex: 6, Size: 92 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.IVTestDataStruct, Offset: 802, Size: 46, Range: D3802 ~ D3847
+TaskIndex: 7, Size: 184 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.ProductGlueMeasureStruct, Offset: 858, Size: 92, Range: D3858 ~ D3949
+TaskIndex: 8, Size: 78 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.StationHourlyProductRecordStruct, Offset: 960, Size: 39, Range: D3960 ~ D3998
+TaskIndex: 9, Size: 84 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.StationHourlyStatusRecordStruct, Offset: 1009, Size: 42, Range: D4009 ~ D4050
+TaskIndex: 10, Size: 94 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.PackingHourlyProductRecordStruct, Offset: 1061, Size: 47, Range: D4061 ~ D4107
+TaskIndex: 11, Size: 114 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.ProductionRecordStruct, Offset: 1118, Size: 57, Range: D4118 ~ D4174
+TaskIndex: 12, Size: 258 bytes, Type: Mitsubishi.CommTaskHandle.DataRead.Structs.ThickFilmInspectionStruct, Offset: 1185, Size: 129, Range: D4185 ~ D4313
+</code></pre>
 <h2 id="写入布尔数据">写入布尔数据</h2>
 <ul>
 <li>数据块对齐：每个数据块必须是 16 位对齐的。这意味着即使传输的数据位数（例如 9 位、17 位等）没有完全填满 16 位，也必须为其分配 2 字节</li>

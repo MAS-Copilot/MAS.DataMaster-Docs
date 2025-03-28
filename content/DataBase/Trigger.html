@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>触发器 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="触发器 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/DataBase/Trigger.md#lines-1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="触发器">触发器</h1>
+
+<h2 id="前言">前言</h2>
+<p>触发器（Trigger）是数据库中的一种特殊类型的存储过程，它与特定的表相关联，并在某些预定义的事件（如插入、更新或删除数据）发生时自动执行。触发器通常用于实现复杂的业务逻辑、确保数据完整性或记录操作历史</p>
+<h2 id="触发器的类型">触发器的类型</h2>
+<p><strong>触发器可以根据触发时机和事件类型进行分类：</strong></p>
+<h3 id="按触发时机分类">按触发时机分类</h3>
+<ul>
+<li>BEFORE 触发器：在数据操作（INSERT、UPDATE、DELETE）执行之前触发，常用于数据验证或修改</li>
+<li>AFTER 触发器：在数据操作执行之后触发，常用于记录日志或更新相关数据</li>
+</ul>
+<h3 id="按触发事件分类">按触发事件分类</h3>
+<ul>
+<li>INSERT：在向表中插入新记录时触发</li>
+<li>UPDATE：在表中记录更新时触发</li>
+<li>DELETE：在表中记录删除时触发</li>
+</ul>
+<h2 id="触发器的应用场景">触发器的应用场景</h2>
+<ul>
+<li>数据验证：在插入或更新数据前，检查是否满足特定条件</li>
+<li>数据一致性：自动更新相关表的数据，保持数据库的一致性</li>
+<li>日志记录：记录数据的变更历史，用于审计或追踪</li>
+<li>业务逻辑：在数据操作时执行特定任务，例如发送通知或更新统计信息</li>
+</ul>
+<h2 id="创建触发器的语法">创建触发器的语法</h2>
+<pre><code class="lang-sql">CREATE TRIGGER trigger_name
+{BEFORE | AFTER} {INSERT | UPDATE | DELETE}
+ON table_name
+FOR EACH ROW
+BEGIN
+    -- 触发器执行的 SQL 语句
+END;
+</code></pre>
+<p><strong>语法说明：</strong></p>
+<ul>
+<li>trigger_name：触发器的名称，需唯一</li>
+<li>BEFORE | AFTER：触发时机，决定是在操作前还是操作后执行</li>
+<li>INSERT | UPDATE | DELETE：触发的事件类型</li>
+<li>table_name：触发器关联的表名</li>
+<li>FOR EACH ROW：表示触发器为行级触发器，每操作一行触发一次</li>
+<li>BEGIN ... END：触发器的逻辑代码块</li>
+</ul>
+<h2 id="示例更新计数触发器">示例：更新计数触发器</h2>
+<p>以下是一个在<code>productinfo</code>表中创建触发器，用于在更新<code>UpdatedDate</code>字段时自动增加<code>UpdateCount</code>字段的值：</p>
+<pre><code class="lang-sql">ALTER TABLE productinfo ADD COLUMN IF NOT EXISTS UpdateCount INT DEFAULT 0 COMMENT '更新次数';
+
+DELIMITER //
+CREATE TRIGGER update_count_trigger_productinfo
+BEFORE UPDATE ON productinfo
+FOR EACH ROW
+BEGIN
+    IF NEW.UpdatedDate != OLD.UpdatedDate THEN
+        SET NEW.UpdateCount = OLD.UpdateCount + 1;
+    END IF;
+END;
+//
+DELIMITER ;
+</code></pre>
+<h3 id="示例解释">示例解释</h3>
+<ul>
+<li>创建字段：如果 <code>UpdateCount</code> 字段不存在，则创建该字段</li>
+<li>触发时机：BEFORE UPDATE，在更新操作前执行</li>
+<li>逻辑：如果 UpdatedDate 发生变化，则将 UpdateCount 加 1</li>
+<li>NEW 和 OLD：NEW 表示更新后的数据，OLD 表示更新前的数据</li>
+</ul>
+<h2 id="触发器的优缺点">触发器的优缺点</h2>
+<h3 id="优点">优点</h3>
+<ul>
+<li>自动化：无需应用程序干预，自动执行逻辑</li>
+<li>一致性：帮助维护数据的完整性和一致性</li>
+<li>透明性：对应用程序透明，无需修改现有代码</li>
+</ul>
+<h3 id="缺点">缺点</h3>
+<ul>
+<li>性能影响：每次操作都会执行触发器，可能降低性能</li>
+<li>复杂性：触发器逻辑难以调试和维护</li>
+<li>隐蔽性：触发器的行为可能不明显，易引发意外问题</li>
+</ul>
+<h2 id="管理触发器">管理触发器</h2>
+<h3 id="查看触发器">查看触发器</h3>
+<pre><code class="lang-sql">SHOW TRIGGERS;
+</code></pre>
+<h3 id="删除触发器">删除触发器</h3>
+<pre><code class="lang-sql">DROP TRIGGER trigger_name;
+</code></pre>
+<h2 id="最佳实践">最佳实践</h2>
+<ul>
+<li>明确目的：使用触发器时要有明确的目标，避免滥用</li>
+<li>性能优化：评估触发器对性能的影响，尤其在高并发场景下</li>
+<li>文档记录：在数据库文档中注明触发器的功能和作用</li>
+<li>充分测试：部署前测试触发器逻辑，确保其正常运行</li>
+</ul>
+<h2 id="结语">结语</h2>
+<p>触发器是数据库中一项强大的功能，可以在特定事件发生时自动执行预定义的逻辑。它在数据验证、一致性维护和日志记录等方面表现出色。然而，由于其可能带来的性能开销和维护复杂性，使用时需谨慎设计并遵循最佳实践</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/DataBase/Trigger.md#lines-1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

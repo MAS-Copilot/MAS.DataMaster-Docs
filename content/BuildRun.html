@@ -98,6 +98,13 @@
 <li><strong>导出层</strong>：处理数据的导出逻辑，将数据导出为Excel文件</li>
 <li><strong>日志与错误处理</strong>：记录系统运行日志，处理异常情况</li>
 </ol>
+<h2 id="接口">接口</h2>
+<p>未来的所有通讯协议都将遵循这个接口，实现统一的结构体读写功能，通过构建功能的统一契约来支持多态</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// 所有通信协议的统一接口
+/// &lt;/summary&gt;
+public interface IProtocol : IDisposable
+</code></pre>
 <h2 id="数据交换">数据交换</h2>
 <h3 id="西门子工程结构目录推荐">西门子工程结构目录推荐</h3>
 <pre><code class="lang-bash">├─DataMaster
