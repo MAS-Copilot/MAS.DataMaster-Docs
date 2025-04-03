@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IWebViewService | DataMaster ">
       
-      <meta name="description" content="与 WebView2 控件相关的服务接口">
+      <meta name="description" content="与 WebView2 交互的基本服务接口">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,7 @@ Interface IWebViewService  <a class="header-action link-secondary" title="View s
   <dl><dt>Assembly</dt><dd>MAS.WebView.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>与 WebView2 控件相关的服务接口</p>
+  <div class="markdown summary"><p>与 WebView2 交互的基本服务接口</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -124,32 +124,137 @@ Interface IWebViewService  <a class="header-action link-secondary" title="View s
 
 
 
-  <h2 class="section" id="methods">Methods
+  <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="MAS_WebView_IWebViewService_InitializeAsync_" data-uid="MAS.WebView.IWebViewService.InitializeAsync*"></a>
+  <a id="MAS_WebView_IWebViewService_IsInitialized_" data-uid="MAS.WebView.IWebViewService.IsInitialized*"></a>
 
-  <h3 id="MAS_WebView_IWebViewService_InitializeAsync_Microsoft_Web_WebView2_Wpf_WebView2_System_String_" data-uid="MAS.WebView.IWebViewService.InitializeAsync(Microsoft.Web.WebView2.Wpf.WebView2,System.String)">
-  InitializeAsync(WebView2, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.WebView/Interfaces/IWebViewService.cs#lines-29"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_WebView_IWebViewService_IsInitialized" data-uid="MAS.WebView.IWebViewService.IsInitialized">
+  IsInitialized
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.WebView/Interfaces/IWebViewService.cs#lines-21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>初始化 WebView2 控件并导航到指定 URL</p>
+  <div class="markdown level1 summary"><p>获取是否已初始化</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task InitializeAsync(WebView2 webView, string url)</code></pre>
+    <pre><code class="lang-csharp hljs">bool IsInitialized { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_WebView_IWebViewService_ExecuteScriptAsync_" data-uid="MAS.WebView.IWebViewService.ExecuteScriptAsync*"></a>
+
+  <h3 id="MAS_WebView_IWebViewService_ExecuteScriptAsync_System_String_" data-uid="MAS.WebView.IWebViewService.ExecuteScriptAsync(System.String)">
+  ExecuteScriptAsync(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.WebView/Interfaces/IWebViewService.cs#lines-39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步在 WebView2 上下文中执行 JavaScript 代码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; ExecuteScriptAsync(string script)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>webView</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.web.webview2.wpf.webview2">WebView2</a></dt>
-    <dd><p>要初始化的 WebView2 控件</p>
+    <dt><code>script</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>JavaScript 代码</p>
 </dd>
-    <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>要加载的 HTML 文件的 URL 地址</p>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>脚本执行结果的字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_WebView_IWebViewService_Initialize_" data-uid="MAS.WebView.IWebViewService.Initialize*"></a>
+
+  <h3 id="MAS_WebView_IWebViewService_Initialize_Microsoft_Web_WebView2_Core_CoreWebView2_" data-uid="MAS.WebView.IWebViewService.Initialize(Microsoft.Web.WebView2.Core.CoreWebView2)">
+  Initialize(CoreWebView2)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.WebView/Interfaces/IWebViewService.cs#lines-32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>初始化 WebView2 控件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Initialize(CoreWebView2 webView)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>webView</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.web.webview2.core.corewebview2">CoreWebView2</a></dt>
+    <dd><p>WebView2 实例</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_WebView_IWebViewService_PostMessageAsync_" data-uid="MAS.WebView.IWebViewService.PostMessageAsync*"></a>
+
+  <h3 id="MAS_WebView_IWebViewService_PostMessageAsync_System_Object_" data-uid="MAS.WebView.IWebViewService.PostMessageAsync(System.Object)">
+  PostMessageAsync(object)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.WebView/Interfaces/IWebViewService.cs#lines-45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步向 WebView 发送 JSON 消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task PostMessageAsync(object message)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>要发送的 JSON 数据</p>
 </dd>
   </dl>
 
@@ -169,122 +274,34 @@ Interface IWebViewService  <a class="header-action link-secondary" title="View s
 
 
 
-  <a id="MAS_WebView_IWebViewService_InitializeLocalAsync_" data-uid="MAS.WebView.IWebViewService.InitializeLocalAsync*"></a>
+  <h2 class="section" id="events">Events
+</h2>
 
-  <h3 id="MAS_WebView_IWebViewService_InitializeLocalAsync_Microsoft_Web_WebView2_Wpf_WebView2_System_String_System_String_" data-uid="MAS.WebView.IWebViewService.InitializeLocalAsync(Microsoft.Web.WebView2.Wpf.WebView2,System.String,System.String)">
-  InitializeLocalAsync(WebView2, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.WebView/Interfaces/IWebViewService.cs#lines-38"><i class="bi bi-code-slash"></i></a>
+
+
+  <h3 id="MAS_WebView_IWebViewService_MessageReceived" data-uid="MAS.WebView.IWebViewService.MessageReceived">
+  MessageReceived
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.WebView/Interfaces/IWebViewService.cs#lines-26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>初始化 WebView2 控件并导航到本地 HTML 文件</p>
+  <div class="markdown level1 summary"><p>当收到来自 WebView2 的消息时触发</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; InitializeLocalAsync(WebView2 webView, string directory, string file)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>webView</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.web.webview2.wpf.webview2">WebView2</a></dt>
-    <dd><p>要初始化的 WebView2 控件</p>
-</dd>
-    <dt><code>directory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>HTML 文件所在的目录</p>
-</dd>
-    <dt><code>file</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>HTML 文件名</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>初始化是否成功</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_WebView_IWebViewService_InitializeServerAsync_" data-uid="MAS.WebView.IWebViewService.InitializeServerAsync*"></a>
-
-  <h3 id="MAS_WebView_IWebViewService_InitializeServerAsync_Microsoft_Web_WebView2_Wpf_WebView2_System_String_System_String_" data-uid="MAS.WebView.IWebViewService.InitializeServerAsync(Microsoft.Web.WebView2.Wpf.WebView2,System.String,System.String)">
-  InitializeServerAsync(WebView2, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.WebView/Interfaces/IWebViewService.cs#lines-47"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>初始化 WebView2 控件并通过本地服务器加载 HTML 文件</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; InitializeServerAsync(WebView2 webView, string directory, string file)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>webView</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.web.webview2.wpf.webview2">WebView2</a></dt>
-    <dd><p>要初始化的 WebView2 控件</p>
-</dd>
-    <dt><code>directory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>HTML 文件所在的目录</p>
-</dd>
-    <dt><code>file</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>HTML 文件名</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>初始化是否成功</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_WebView_IWebViewService_IsRuntimeInstalledAsync_" data-uid="MAS.WebView.IWebViewService.IsRuntimeInstalledAsync*"></a>
-
-  <h3 id="MAS_WebView_IWebViewService_IsRuntimeInstalledAsync" data-uid="MAS.WebView.IWebViewService.IsRuntimeInstalledAsync">
-  IsRuntimeInstalledAsync()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.WebView/Interfaces/IWebViewService.cs#lines-22"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>检查 WebView2 运行时是否已安装</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; IsRuntimeInstalledAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;string&gt; MessageReceived</code></pre>
   </div>
 
 
-  <h4 class="section">Returns</h4>
+
+
+
+
+  <h4 class="section">Event Type</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>已安装返回 true，否则返回 false</p>
-</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
   </dl>
-
-
-
-
 
 
 

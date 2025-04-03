@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Namespace MAS.SharedLibrary.PrismaTalk | DataMaster </title>
+      <title>当前前后端交互的所有方法 | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Namespace MAS.SharedLibrary.PrismaTalk | DataMaster ">
+      <meta name="title" content="当前前后端交互的所有方法 | DataMaster ">
       
       
       <link rel="icon" href="../images/favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/PrismaTalk.md#lines-1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -39,7 +39,7 @@
 
   </head>
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
@@ -84,54 +84,78 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.SharedLibrary.PrismaTalk">
+        <article data-uid="">
+<h1 id="当前前后端交互的所有方法">当前前后端交互的所有方法</h1>
 
-  <h1 id="MAS_SharedLibrary_PrismaTalk" data-uid="MAS.SharedLibrary.PrismaTalk" class="text-break">Namespace MAS.SharedLibrary.PrismaTalk</h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-
-    <h3 id="classes">
-Classes
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.PrismaTalk.ChatMessage.html">ChatMessage</a></dt>
-      <dd><p>聊天消息数据模型</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.PrismaTalk.StreamingChunk.html">StreamingChunk</a></dt>
-      <dd><p>流式响应中的一个数据模型</p>
-</dd>
-    </dl>
-    <h3 id="interfaces">
-Interfaces
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.html">IPrismaTalkConfig</a></dt>
-      <dd><p>用于设置 PrismaTalk 客户端的配置接口</p>
-</dd>
-    </dl>
-    <h3 id="enums">
-Enums
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.PrismaTalk.ChatRole.html">ChatRole</a></dt>
-      <dd><p>角色枚举</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.PrismaTalk.FinishReason.html">FinishReason</a></dt>
-      <dd><p>表示聊天或文本生成任务完成的原因</p>
-</dd>
-    </dl>
-
+<h2 id="11-后端c调用前端javascript的函数">1.1 后端（C#）调用前端（JavaScript）的函数</h2>
+<p>后端通过 <code>PrismaTalkClient</code> 类与前端进行交互，主要通过执行 JavaScript 脚本的方式实现。以下是后端调用前端的方法列表：</p>
+<table>
+<thead>
+<tr>
+<th>前端函数名</th>
+<th>描述</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>startAssistantStream</td>
+<td>当后端开始生成流式响应时</td>
+<td>streamId: string</td>
+</tr>
+<tr>
+<td>updateAssistantStream</td>
+<td>当后端收到助手的流式数据片段时（每收到一个chunk调用一次）</td>
+<td>streamId: string, chunk: string</td>
+</tr>
+<tr>
+<td>endAssistantStream</td>
+<td>当流式响应完全结束时</td>
+<td>streamId: string</td>
+</tr>
+<tr>
+<td>addUserMessage</td>
+<td>添加用户消息</td>
+<td>content: string</td>
+</tr>
+<tr>
+<td>clearAllMessages</td>
+<td>清除所有消息（用于新对话）</td>
+<td>无</td>
+</tr>
+<tr>
+<td>showToastMessage</td>
+<td>显示提示消息</td>
+<td>content: string, level: string</td>
+</tr>
+<tr>
+<td>captureLongScreenshot</td>
+<td>捕获长截图</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-前端javascript发送消息到后端c的方法">1.2 前端（JavaScript）发送消息到后端（C#）的方法</h2>
+<p>前端通过 <code>window.chrome.webview.postMessage</code> 方法向后端发送消息。以下是前端发送到后端的方法列表：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>描述</th>
+<th>调用时机</th>
+<th>消息类型</th>
+<th>数据模型</th>
+</tr>
+</thead>
+</table>
 
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/PrismaTalk.md#lines-1" class="edit-link">Edit this page</a>
         </div>
 
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
 
       </div>
 

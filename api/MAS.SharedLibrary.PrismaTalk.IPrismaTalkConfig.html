@@ -121,38 +121,6 @@ Interface IPrismaTalkConfig  <a class="header-action link-secondary" title="View
 </h2>
 
 
-  <a id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_ApiKey_" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.ApiKey*"></a>
-
-  <h3 id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_ApiKey" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.ApiKey">
-  ApiKey
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-29"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取 API 密钥或认证令牌</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string ApiKey { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_DefaultModel_" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.DefaultModel*"></a>
 
   <h3 id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_DefaultModel" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.DefaultModel">
@@ -185,11 +153,43 @@ Interface IPrismaTalkConfig  <a class="header-action link-secondary" title="View
 
 
 
+  <a id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_EnableProxy_" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.EnableProxy*"></a>
+
+  <h3 id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_EnableProxy" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.EnableProxy">
+  EnableProxy
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否启用 HTTP/HTTPS 代理（默认 false）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool EnableProxy { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_MaxTokens_" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.MaxTokens*"></a>
 
   <h3 id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_MaxTokens" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.MaxTokens">
   MaxTokens
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置生成文本的最大令牌数</p>
@@ -207,6 +207,73 @@ Interface IPrismaTalkConfig  <a class="header-action link-secondary" title="View
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_ProxyUrl_" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.ProxyUrl*"></a>
+
+  <h3 id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_ProxyUrl" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.ProxyUrl">
+  ProxyUrl
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置代理服务器地址</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? ProxyUrl { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_ProxyUrl_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>示例：&quot;http://proxy.example.com:8080&quot;</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_ProxyUsername_" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.ProxyUsername*"></a>
+
+  <h3 id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_ProxyUsername" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.ProxyUsername">
+  ProxyUsername
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置代理用户名（可选）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? ProxyUsername { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
@@ -253,7 +320,7 @@ Interface IPrismaTalkConfig  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_Temperature" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.Temperature">
   Temperature
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置生成文本的温度，控制随机性</p>
@@ -285,7 +352,7 @@ Interface IPrismaTalkConfig  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_Timeout" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.Timeout">
   Timeout
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置请求超时时间</p>
@@ -305,6 +372,76 @@ Interface IPrismaTalkConfig  <a class="header-action link-secondary" title="View
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
     <dd></dd>
   </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_GetApiKey_" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.GetApiKey*"></a>
+
+  <h3 id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_GetApiKey" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.GetApiKey">
+  GetApiKey()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 API 密钥或认证令牌</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetApiKey()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>API 密钥或认证令牌</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_GetProxyPassword_" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.GetProxyPassword*"></a>
+
+  <h3 id="MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_GetProxyPassword" data-uid="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.GetProxyPassword">
+  GetProxyPassword()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/PrismaTalk/IPrismaTalkConfig.cs#lines-69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取代理密码（可选）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetProxyPassword()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>代理密码</p>
+</dd>
+  </dl>
+
+
+
 
 
 
