@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>模板匹配 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="模板匹配 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/MAS-Vision/TemplateMatcher.md#lines-1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="模板匹配">模板匹配</h1>
+
+<h2 id="概述">概述</h2>
+<p>使用 OpenCV 的模板匹配功能在源图像中查找模板图像的位置。在待检测图像上，从左到右，从上向下计算模板图像与重叠子图像的匹配度，匹配程度越大，两者相同的可能性越大</p>
+<h2 id="类结构">类结构</h2>
+<pre><code class="lang-csharp">namespace MAS.Vision.OpenCV;
+
+internal class TemplateMatcher(IImageConverter imageConverter) : ITemplateMatcher
+</code></pre>
+<h2 id="图像要求">图像要求</h2>
+<p>模板匹配要求输入图像和模板图像必须是灰度图（CV_8UC1，即 8 位无符号单通道图像）：</p>
+<ul>
+<li>计算效率:
+<ul>
+<li>单通道图像的计算量远小于多通道图像（如 RGB 的 3 通道）</li>
+<li>对于大小为 ( W x H ) 的图像和模板，单通道匹配的复杂度为 ( O(W x H) )，如果是多通道图像（如 RGB 有 3 个通道），计算量会乘以通道数 C，复杂度变为 O(C x W x H)，显著增加计算负担</li>
+</ul>
+</li>
+<li>算法本质:
+<ul>
+<li>模板匹配基于像素强度的统计计算（如差值平方或相关性）</li>
+<li>颜色信息（RGB 三通道）会引入额外变量，干扰形状和纹理的匹配精度</li>
+</ul>
+</li>
+<li>OpenCV 实现限制:
+<ul>
+<li>Cv2.MatchTemplate 函数要求输入图像和模板的通道数一致</li>
+<li>如果输入多通道图像，OpenCV 会将每个通道独立处理并合并结果，导致匹配结果不可控且难以解释</li>
+</ul>
+</li>
+</ul>
+<p><em><strong>注意：模板应从源图像中截取，确保其代表目标区域的特征。直接使用外部模板可能因背景、光照差异导致匹配失败</strong></em></p>
+<h2 id="核心实现">核心实现</h2>
+<pre><code class="lang-csharp">Cv2.MatchTemplate(srcMat, templateMat, result, matchMode);
+Cv2.MinMaxLoc(result, out double minVal, out double maxVal, out Point minLoc, out Point maxLoc);
+</code></pre>
+<h2 id="匹配模式">匹配模式</h2>
+<p><strong>在所有匹配方法中，公式均涉及以下核心符号</strong>：</p>
+<ul>
+<li><p><strong><code>I(x + x', y + y')</code></strong></p>
+<ul>
+<li>源图像中与模板对比的子窗口在位置 <code>(x + x', y + y')</code> 的像素值</li>
+<li><strong>物理意义</strong>: 以当前检测点 <code>(x, y)</code> 为左上角，截取与模板大小相同的区域</li>
+<li><strong>示例</strong>: 若模板大小 <code>w × h = 3 × 3</code>，则遍历 <code>x' ∈ [0, 2], y' ∈ [0, 2]</code></li>
+</ul>
+</li>
+<li><p><strong><code>T(x', y')</code></strong></p>
+<ul>
+<li>模板图像在局部坐标 <code>(x', y')</code> 的像素值</li>
+<li><strong>注意</strong>: <code>(x', y')</code> 是模板自身的坐标，范围为 <code>[0, w-1]</code> 和 <code>[0, h-1]</code></li>
+</ul>
+</li>
+<li><p><strong><code>R(x, y)</code></strong></p>
+<ul>
+<li>结果矩阵（响应图）在位置 <code>(x, y)</code> 的匹配得分</li>
+<li><strong>关键特性</strong>:
+<ul>
+<li><strong>SqDiff</strong> 和 <strong>SqDiffNormed</strong>: 值越小匹配度越高</li>
+<li><strong>CCorr</strong> 和 <strong>CCoeff</strong> 系列: 值越大匹配度越高</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="平方差-sqdiff">平方差 (SqDiff)</h3>
+<div class="math">
+\[
+R(x, y) = \sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} \left[ T(x', y') - I(x + x', y + y') \right]^2
+\]</div>
+<ul>
+<li><p><strong>原理</strong>:</p>
+<ul>
+<li>计算模板与源图像子区域像素值差异的平方和</li>
+<li>值越小表示差异越小，匹配度越高。最佳匹配位置对应结果矩阵的最小值（<code>minVal</code>）</li>
+</ul>
+</li>
+<li><p><strong>特点</strong>:</p>
+<ul>
+<li>计算简单，逐像素差值平方后累加</li>
+<li>未归一化，对亮度和对比度变化敏感，结果范围 [0, ∞)，取决于像素强度</li>
+<li>适合噪声低、模板与目标亮度一致的场景，如精确图案匹配</li>
+</ul>
+</li>
+<li><p><strong>计算步骤</strong>:</p>
+<ol>
+<li>遍历模板所有像素 <code>(x', y')</code>。</li>
+<li>计算模板值 <code>T(x', y')</code> 与对应源图像值 <code>I(x + x', y + y')</code> 的差。</li>
+<li>对差值平方并累加，得到 <code>R(x, y)</code>。</li>
+</ol>
+</li>
+</ul>
+<h3 id="归一化平方差-sqdiffnormed">归一化平方差 (SqDiffNormed)</h3>
+<div class="math">
+\[
+R(x, y) = \frac{\sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} \left[ T(x', y') - I(x + x', y + y') \right]^2}{\sqrt{\sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} T(x', y')^2 \cdot \sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} I(x + x', y + y')^2}}
+\]</div>
+<ul>
+<li><p><strong>原理</strong>:</p>
+<ul>
+<li>在 <code>SqDiff</code> 基础上归一化，除以模板和源图像子区域的能量（像素平方和的平方根）。</li>
+<li>值范围 [0, 1]，0 表示完美匹配，最佳匹配对应最小值（<code>minVal</code>）。</li>
+</ul>
+</li>
+<li><p><strong>特点</strong>:</p>
+<ul>
+<li>消除了亮度和对比度影响，鲁棒性强。</li>
+<li>计算复杂度略高，需额外计算能量项。</li>
+<li>适合光照变化或对比度不一致的场景，如自然光下目标检测。</li>
+</ul>
+</li>
+<li><p><strong>计算步骤</strong>:</p>
+<ol>
+<li>计算 <code>SqDiff</code> 的平方和。</li>
+<li>计算模板和源图像子区域的能量（分别平方后求和）。</li>
+<li>用平方和除以能量平方根，得到归一化结果。</li>
+</ol>
+</li>
+</ul>
+<h3 id="相关-ccorr">相关 (CCorr)</h3>
+<div class="math">
+\[
+R(x, y) = \sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} T(x', y') \cdot I(x + x', y + y')
+\]</div>
+<ul>
+<li><p><strong>原理</strong>:</p>
+<ul>
+<li>计算模板与源图像子区域像素值的点积（乘积和）</li>
+<li>值越大表示相似度越高，最佳匹配对应最大值（<code>maxVal</code>）</li>
+</ul>
+</li>
+<li><p><strong>特点</strong>:</p>
+<ul>
+<li>计算简单，未归一化，结果范围 (-∞, ∞)，受亮度和模板大小影响</li>
+<li>对噪声和亮度变化敏感，值可能因像素强度放大</li>
+<li>适合亮度一致的简单场景，如图标匹配</li>
+</ul>
+</li>
+<li><p><strong>计算步骤</strong>:</p>
+<ol>
+<li>遍历模板所有像素 <code>(x', y')</code></li>
+<li>将模板值 <code>T(x', y')</code> 与对应源图像值 <code>I(x + x', y + y')</code> 相乘</li>
+<li>累加所有乘积，得到 <code>R(x, y)</code></li>
+</ol>
+</li>
+</ul>
+<h3 id="归一化相关-ccorrnormed">归一化相关 (CCorrNormed)</h3>
+<div class="math">
+\[
+R(x, y) = \frac{\sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} T(x', y') \cdot I(x + x', y + y')}{\sqrt{\sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} T(x', y')^2 \cdot \sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} I(x + x', y + y')^2}}
+\]</div>
+<ul>
+<li><p><strong>原理</strong>:</p>
+<ul>
+<li>在 <code>CCorr</code> 基础上归一化，除以模板和源图像子区域的能量</li>
+<li>值范围 [-1, 1]，1 表示完美匹配，最佳匹配对应最大值（<code>maxVal</code>）</li>
+</ul>
+</li>
+<li><p><strong>特点</strong>:</p>
+<ul>
+<li>对亮度和对比度不敏感，结果稳定</li>
+<li>计算复杂度高于 <code>CCorr</code>，需计算能量项</li>
+<li>适合亮度或对比度变化的场景，如室外图像匹配</li>
+</ul>
+</li>
+<li><p><strong>计算步骤</strong>:</p>
+<ol>
+<li>计算 <code>CCorr</code> 的点积和</li>
+<li>计算模板和源图像子区域的能量</li>
+<li>用点积除以能量平方根，得到归一化结果</li>
+</ol>
+</li>
+</ul>
+<h3 id="相关系数-ccoeff">相关系数 (CCoeff)</h3>
+<div class="math">
+\[
+R(x, y) = \sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} \left[ T'(x', y') \cdot I'(x + x', y + y') \right]
+\]</div>
+<div class="math">
+\[
+\begin{array}{l}
+T'(x', y') = T(x', y') - \frac{1}{w \cdot h} \sum_{x''=0}^{w-1} \sum_{y''=0}^{h-1} T(x'', y'') \\
+I'(x + x', y + y') = I(x + x', y + y') - \frac{1}{w \cdot h} \sum_{x''=0}^{w-1} \sum_{y''=0}^{h-1} I(x + x'', y + y'')
+\end{array}
+\]</div>
+<ul>
+<li><p><strong>原理</strong>:</p>
+<ul>
+<li>计算零均值后的点积，去除平均亮度影响</li>
+<li>值越大表示相似度越高，最佳匹配对应最大值（<code>maxVal</code>）</li>
+</ul>
+</li>
+<li><p><strong>特点</strong>:</p>
+<ul>
+<li>对平均亮度不敏感，但未归一化，结果范围 (-∞, ∞)</li>
+<li>计算复杂度较高，需计算均值和零均值点积</li>
+<li>适合目标与模板平均亮度不同的场景，如阴影区域匹配</li>
+</ul>
+</li>
+<li><p><strong>计算步骤</strong>:</p>
+<ol>
+<li>计算模板和源图像子区域的平均值</li>
+<li>分别减去均值，得到 <code>T'</code> 和 <code>I'</code></li>
+<li>计算零均值后的点积，得到 <code>R(x, y)</code></li>
+</ol>
+</li>
+</ul>
+<h3 id="归一化相关系数-ccoeffnormed">归一化相关系数 (CCoeffNormed)</h3>
+<div class="math">
+\[
+R(x, y) = \frac{\sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} \left[ T'(x', y') \cdot I'(x + x', y + y') \right]}{\sqrt{\sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} T'(x', y')^2 \cdot \sum_{x'=0}^{w-1} \sum_{y'=0}^{h-1} I'(x + x', y + y')^2}}
+\]</div>
+<div class="math">
+\[
+\begin{array}{l}
+T'(x', y') = T(x', y') - \frac{1}{w \cdot h} \sum_{x''=0}^{w-1} \sum_{y''=0}^{h-1} T(x'', y'') \\
+I'(x + x', y + y') = I(x + x', y + y') - \frac{1}{w \cdot h} \sum_{x''=0}^{w-1} \sum_{y''=0}^{h-1} I(x + x'', y + y'')
+\end{array}
+\]</div>
+<ul>
+<li><p><strong>原理</strong>:</p>
+<ul>
+<li>在 <code>CCoeff</code> 基础上归一化，除以零均值后的能量</li>
+<li>值范围 [-1, 1]，1 表示完美匹配，最佳匹配对应最大值（<code>maxVal</code>）</li>
+</ul>
+</li>
+<li><p><strong>特点</strong>:</p>
+<ul>
+<li>对亮度、对比度和噪声均不敏感，最鲁棒</li>
+<li>计算复杂度最高，涉及均值和能量计算</li>
+<li>适合复杂场景，如光照变化大或有噪声的图像匹配</li>
+</ul>
+</li>
+<li><p><strong>计算步骤</strong>:</p>
+<ol>
+<li>计算模板和源图像子区域的平均值，得到 <code>T'</code> 和 <code>I'</code></li>
+<li>计算零均值后的点积</li>
+<li>计算零均值后的能量，用点积除以能量平方根</li>
+</ol>
+</li>
+</ul>
+<h2 id="模式比较">模式比较</h2>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>值范围</th>
+<th>最佳匹配</th>
+<th>对亮度敏感</th>
+<th>对对比度敏感</th>
+<th>计算复杂度</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SqDiff</td>
+<td>(0, ∞)</td>
+<td>最小值</td>
+<td>是</td>
+<td>是</td>
+<td>低</td>
+<td>精确匹配</td>
+</tr>
+<tr>
+<td>SqDiffNormed</td>
+<td>[0, 1]</td>
+<td>最小值</td>
+<td>否</td>
+<td>否</td>
+<td>中</td>
+<td>光照变化</td>
+</tr>
+<tr>
+<td>CCorr</td>
+<td>(-∞, ∞)</td>
+<td>最大值</td>
+<td>是</td>
+<td>是</td>
+<td>低</td>
+<td>简单亮度一致场景</td>
+</tr>
+<tr>
+<td>CCorrNormed</td>
+<td>[-1, 1]</td>
+<td>最大值</td>
+<td>否</td>
+<td>否</td>
+<td>中</td>
+<td>亮度对比度变化</td>
+</tr>
+<tr>
+<td>CCoeff</td>
+<td>(-∞, ∞)</td>
+<td>最大值</td>
+<td>否</td>
+<td>是</td>
+<td>中</td>
+<td>平均亮度不同</td>
+</tr>
+<tr>
+<td>CCoeffNormed</td>
+<td>[-1, 1]</td>
+<td>最大值</td>
+<td>否</td>
+<td>否</td>
+<td>高</td>
+<td>复杂多变场景</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/MAS-Vision/TemplateMatcher.md#lines-1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

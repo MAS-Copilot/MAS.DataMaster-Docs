@@ -337,7 +337,7 @@ Class FileHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_FileSystem_FileHelper_DeserializeObjectFromFileAsync__1_System_String_Newtonsoft_Json_JsonSerializerSettings_" data-uid="MAS.FileSystem.FileHelper.DeserializeObjectFromFileAsync``1(System.String,Newtonsoft.Json.JsonSerializerSettings)">
   DeserializeObjectFromFileAsync&lt;T&gt;(string, JsonSerializerSettings?)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-703"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-750"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步从指定的文件路径反序列化 JSON 字符串为对象</p>
@@ -393,7 +393,7 @@ Class FileHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_FileSystem_FileHelper_DeserializeObjectFromFile__1_System_String_Newtonsoft_Json_JsonSerializerSettings_" data-uid="MAS.FileSystem.FileHelper.DeserializeObjectFromFile``1(System.String,Newtonsoft.Json.JsonSerializerSettings)">
   DeserializeObjectFromFile&lt;T&gt;(string, JsonSerializerSettings?)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-730"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-777"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从指定的文件路径反序列化 JSON 字符串为对象</p>
@@ -1035,7 +1035,7 @@ Class FileHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_FileSystem_FileHelper_GetLatestUpdateTime" data-uid="MAS.FileSystem.FileHelper.GetLatestUpdateTime">
   GetLatestUpdateTime()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-592"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-639"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前项目或应用程序目录下所有文件中最后修改时间最新的时间</p>
@@ -1068,7 +1068,7 @@ Class FileHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_FileSystem_FileHelper_IsDllExists_System_String_" data-uid="MAS.FileSystem.FileHelper.IsDllExists(System.String)">
   IsDllExists(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-756"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-803"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查指定的 DLL 是否存在</p>
@@ -1178,11 +1178,78 @@ Class FileHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <a id="MAS_FileSystem_FileHelper_OpenContainingFolder_" data-uid="MAS.FileSystem.FileHelper.OpenContainingFolder*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_OpenContainingFolder_System_String_" data-uid="MAS.FileSystem.FileHelper.OpenContainingFolder(System.String)">
+  OpenContainingFolder(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-595"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>打开文件所在的目录并选中该文件（如果路径是文件）
+如果路径是目录，则直接打开该目录</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void OpenContainingFolder(string path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要打开目录的文件或文件夹路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_FileSystem_FileHelper_OpenFileDirectory_" data-uid="MAS.FileSystem.FileHelper.OpenFileDirectory*"></a>
+
+  <h3 id="MAS_FileSystem_FileHelper_OpenFileDirectory_System_String_" data-uid="MAS.FileSystem.FileHelper.OpenFileDirectory(System.String)">
+  OpenFileDirectory(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-617"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>打开指定文件所在的目录</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void OpenFileDirectory(string path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要打开的文件路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_FileSystem_FileHelper_OpenFolder_" data-uid="MAS.FileSystem.FileHelper.OpenFolder*"></a>
 
   <h3 id="MAS_FileSystem_FileHelper_OpenFolder_System_String_" data-uid="MAS.FileSystem.FileHelper.OpenFolder(System.String)">
   OpenFolder(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-577"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-579"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>使用默认程序打开指定的文件或文件夹</p>
@@ -1338,7 +1405,7 @@ Class FileHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_FileSystem_FileHelper_SaveConfigurationToFile_System_Object_System_String_" data-uid="MAS.FileSystem.FileHelper.SaveConfigurationToFile(System.Object,System.String)">
   SaveConfigurationToFile(object, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-610"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-657"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将给定的配置对象保存到 JSON 文件中</p>
@@ -1380,7 +1447,7 @@ Class FileHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_FileSystem_FileHelper_SaveConfigurationToFileAsync_System_Object_System_String_" data-uid="MAS.FileSystem.FileHelper.SaveConfigurationToFileAsync(System.Object,System.String)">
   SaveConfigurationToFileAsync(object, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-630"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-677"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步将给定的配置对象保存到 JSON 文件中</p>
@@ -2054,7 +2121,7 @@ Class FileHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_FileSystem_FileHelper_SerializeObjectSaveToFile_System_Object_System_String_Newtonsoft_Json_JsonSerializerSettings_" data-uid="MAS.FileSystem.FileHelper.SerializeObjectSaveToFile(System.Object,System.String,Newtonsoft.Json.JsonSerializerSettings)">
   SerializeObjectSaveToFile(object, string, JsonSerializerSettings?)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-651"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-698"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将对象序列化为JSON字符串并保存到指定的文件路径</p>
@@ -2099,7 +2166,7 @@ Class FileHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_FileSystem_FileHelper_SerializeObjectSaveToFileAsync_System_Object_System_String_Newtonsoft_Json_JsonSerializerSettings_" data-uid="MAS.FileSystem.FileHelper.SerializeObjectSaveToFileAsync(System.Object,System.String,Newtonsoft.Json.JsonSerializerSettings)">
   SerializeObjectSaveToFileAsync(object, string, JsonSerializerSettings?)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-676"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.FileSystem/Helpers/FileHelper.cs#lines-723"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步将对象序列化为JSON字符串并保存到指定的文件路径</p>

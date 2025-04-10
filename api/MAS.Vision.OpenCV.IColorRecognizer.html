@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Vision_OpenCV_IColorRecognizer" data-uid="MAS.Vision.OpenCV.IColorRecognizer" class="text-break">
-Interface IColorRecognizer  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/OpenCV/Interfaces/IColorRecognizer.cs#lines-18"><i class="bi bi-code-slash"></i></a>
+Interface IColorRecognizer  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/OpenCV/Interfaces/IColorRecognizer.cs#lines-19"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -123,9 +123,80 @@ Interface IColorRecognizer  <a class="header-action link-secondary" title="View 
 
   <a id="MAS_Vision_OpenCV_IColorRecognizer_ProcessImage_" data-uid="MAS.Vision.OpenCV.IColorRecognizer.ProcessImage*"></a>
 
+  <h3 id="MAS_Vision_OpenCV_IColorRecognizer_ProcessImage_System_Object_System_Type_OpenCvSharp_Scalar_OpenCvSharp_Scalar_System_Nullable_System_Int32__System_Nullable_System_Double__MAS_Vision_Models_TextRenderConfig_" data-uid="MAS.Vision.OpenCV.IColorRecognizer.ProcessImage(System.Object,System.Type,OpenCvSharp.Scalar,OpenCvSharp.Scalar,System.Nullable{System.Int32},System.Nullable{System.Double},MAS.Vision.Models.TextRenderConfig)">
+  ProcessImage(object, Type, Scalar, Scalar, int?, double?, TextRenderConfig?)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/OpenCV/Interfaces/IColorRecognizer.cs#lines-170"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>对输入图像进行颜色范围检测，并根据像素数量或百分比阈值判断结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">(object Image, bool IsDetected) ProcessImage(object image, Type outputType, Scalar lowerBound, Scalar upperBound, int? pixels = null, double? percentage = null, TextRenderConfig? textRender = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>image</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>输入图像</p>
+</dd>
+    <dt><code>outputType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>指定输出图像类型</p>
+</dd>
+    <dt><code>lowerBound</code> <span class="xref">Scalar</span></dt>
+    <dd><p>颜色范围的下界（HSV空间）</p>
+</dd>
+    <dt><code>upperBound</code> <span class="xref">Scalar</span></dt>
+    <dd><p>颜色范围的上界（HSV空间）</p>
+</dd>
+    <dt><code>pixels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>设定的像素数量阈值，若提供则按像素数判断</p>
+</dd>
+    <dt><code>percentage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd><p>设定的像素百分比阈值，若提供则按百分比判断</p>
+</dd>
+    <dt><code>textRender</code> <a class="xref" href="MAS.Vision.Models.TextRenderConfig.html">TextRenderConfig</a></dt>
+    <dd><p>文本渲染配置项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.object,system.boolean-.image">Image</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.object,system.boolean-.isdetected">IsDetected</a>)</dt>
+    <dd><p>元组：</p>
+<p>
+- Image: 处理后的图像，类型为 <code class="paramref">outputType</code> 指定的类型
+</p><p>
+- IsDetected: 若图中符合颜色范围的像素数量或百分比超过指定阈值，则返回 true；否则返回 false
+</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Vision_OpenCV_IColorRecognizer_ProcessImage_System_Object_System_Type_OpenCvSharp_Scalar_OpenCvSharp_Scalar_System_Nullable_System_Int32__System_Nullable_System_Double__MAS_Vision_Models_TextRenderConfig__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Input and Output:（<span class="xref">OpenCvSharp.Mat</span>、<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imaging.writeablebitmap">WriteableBitmap</a>、<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imaging.bitmapimage">BitmapImage</a>）</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当输入图像类型不支持或输出类型不支持时抛出</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_Vision_OpenCV_IColorRecognizer_ProcessImage_" data-uid="MAS.Vision.OpenCV.IColorRecognizer.ProcessImage*"></a>
+
   <h3 id="MAS_Vision_OpenCV_IColorRecognizer_ProcessImage_System_Object_System_Type_OpenCvSharp_Scalar_OpenCvSharp_Scalar_System_Nullable_System_Int32__System_Nullable_System_Double__System_Nullable_OpenCvSharp_Scalar__System_Double_System_Double_System_Double_OpenCvSharp_HersheyFonts_System_Double_System_Int32_System_Boolean_" data-uid="MAS.Vision.OpenCV.IColorRecognizer.ProcessImage(System.Object,System.Type,OpenCvSharp.Scalar,OpenCvSharp.Scalar,System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{OpenCvSharp.Scalar},System.Double,System.Double,System.Double,OpenCvSharp.HersheyFonts,System.Double,System.Int32,System.Boolean)">
   ProcessImage(object, Type, Scalar, Scalar, int?, double?, Scalar?, double, double, double, HersheyFonts, double, int, bool)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/OpenCV/Interfaces/IColorRecognizer.cs#lines-96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/OpenCV/Interfaces/IColorRecognizer.cs#lines-97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>对输入图像进行颜色范围检测，并根据像素数量或百分比阈值判断结果</p>
@@ -215,9 +286,83 @@ Interface IColorRecognizer  <a class="header-action link-secondary" title="View 
 
   <a id="MAS_Vision_OpenCV_IColorRecognizer_ProcessImage_" data-uid="MAS.Vision.OpenCV.IColorRecognizer.ProcessImage*"></a>
 
+  <h3 id="MAS_Vision_OpenCV_IColorRecognizer_ProcessImage__1_System_Object_OpenCvSharp_Scalar_OpenCvSharp_Scalar_System_Nullable_System_Int32__System_Nullable_System_Double__MAS_Vision_Models_TextRenderConfig_" data-uid="MAS.Vision.OpenCV.IColorRecognizer.ProcessImage``1(System.Object,OpenCvSharp.Scalar,OpenCvSharp.Scalar,System.Nullable{System.Int32},System.Nullable{System.Double},MAS.Vision.Models.TextRenderConfig)">
+  ProcessImage&lt;TOutput&gt;(object, Scalar, Scalar, int?, double?, TextRenderConfig?)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/OpenCV/Interfaces/IColorRecognizer.cs#lines-138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>对输入图像进行颜色范围检测，并根据像素数量或百分比阈值判断结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">(TOutput Image, bool IsDetected) ProcessImage&lt;TOutput&gt;(object image, Scalar lowerBound, Scalar upperBound, int? pixels = null, double? percentage = null, TextRenderConfig? textRender = null) where TOutput : class</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>image</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>输入图像</p>
+</dd>
+    <dt><code>lowerBound</code> <span class="xref">Scalar</span></dt>
+    <dd><p>颜色范围的下界（HSV空间）</p>
+</dd>
+    <dt><code>upperBound</code> <span class="xref">Scalar</span></dt>
+    <dd><p>颜色范围的上界（HSV空间）</p>
+</dd>
+    <dt><code>pixels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>设定的像素数量阈值，若提供则按像素数判断</p>
+</dd>
+    <dt><code>percentage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd><p>设定的像素百分比阈值，若提供则按百分比判断</p>
+</dd>
+    <dt><code>textRender</code> <a class="xref" href="MAS.Vision.Models.TextRenderConfig.html">TextRenderConfig</a></dt>
+    <dd><p>文本渲染配置项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>(TOutput <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple---0,system.boolean-.image">Image</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple---0,system.boolean-.isdetected">IsDetected</a>)</dt>
+    <dd><p>元组：</p>
+<p>
+- Image: 处理后的图像，类型为 <code class="typeparamref">TOutput</code></p><p>
+- IsDetected: 若图中符合颜色范围的像素数量或百分比超过指定阈值，则返回 true；否则返回 false
+</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TOutput</code></dt>
+    <dd><p>输出图像类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Vision_OpenCV_IColorRecognizer_ProcessImage__1_System_Object_OpenCvSharp_Scalar_OpenCvSharp_Scalar_System_Nullable_System_Int32__System_Nullable_System_Double__MAS_Vision_Models_TextRenderConfig__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Input and Output:（<span class="xref">OpenCvSharp.Mat</span>、<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imaging.writeablebitmap">WriteableBitmap</a>、<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imaging.bitmapimage">BitmapImage</a>）</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_Vision_OpenCV_IColorRecognizer_ProcessImage_" data-uid="MAS.Vision.OpenCV.IColorRecognizer.ProcessImage*"></a>
+
   <h3 id="MAS_Vision_OpenCV_IColorRecognizer_ProcessImage__1_System_Object_OpenCvSharp_Scalar_OpenCvSharp_Scalar_System_Nullable_System_Int32__System_Nullable_System_Double__System_Nullable_OpenCvSharp_Scalar__System_Double_System_Double_System_Double_OpenCvSharp_HersheyFonts_System_Double_System_Int32_System_Boolean_" data-uid="MAS.Vision.OpenCV.IColorRecognizer.ProcessImage``1(System.Object,OpenCvSharp.Scalar,OpenCvSharp.Scalar,System.Nullable{System.Int32},System.Nullable{System.Double},System.Nullable{OpenCvSharp.Scalar},System.Double,System.Double,System.Double,OpenCvSharp.HersheyFonts,System.Double,System.Int32,System.Boolean)">
   ProcessImage&lt;TOutput&gt;(object, Scalar, Scalar, int?, double?, Scalar?, double, double, double, HersheyFonts, double, int, bool)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/OpenCV/Interfaces/IColorRecognizer.cs#lines-50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/OpenCV/Interfaces/IColorRecognizer.cs#lines-51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>对输入图像进行颜色范围检测，并根据像素数量或百分比阈值判断结果</p>
@@ -312,7 +457,7 @@ Interface IColorRecognizer  <a class="header-action link-secondary" title="View 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/OpenCV/Interfaces/IColorRecognizer.cs#lines-18" class="edit-link">Edit this page</a>
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/OpenCV/Interfaces/IColorRecognizer.cs#lines-19" class="edit-link">Edit this page</a>
         </div>
 
 
