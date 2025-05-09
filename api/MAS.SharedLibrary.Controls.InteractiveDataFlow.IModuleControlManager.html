@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -54,7 +54,7 @@
             <div id="navbar">
               <form class="search" role="search" id="search">
                 <i class="bi bi-search"></i>
-                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
               </form>
             </div>
           </div>
@@ -116,7 +116,7 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 
 
   <h2 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>在主画布中统一管理模块的添加、删除；用于序列化和反序列化</p>
+  <div class="markdown level0 remarks"><p>在主画布中统一管理模块的添加、删除、状态管理</p>
 </div>
 
 
@@ -124,59 +124,26 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 </h2>
 
 
-  <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_ClearAllModules_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.ClearAllModules*"></a>
+  <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_AreAllInstancesRunning_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.AreAllInstancesRunning*"></a>
 
-  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_ClearAllModules" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.ClearAllModules">
-  ClearAllModules()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-101"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_AreAllInstancesRunning" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.AreAllInstancesRunning">
+  AreAllInstancesRunning()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-93"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>清空所有已管理的模块控件模型</p>
+  <div class="markdown level1 summary"><p>检查是否所有实例都已启动</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void ClearAllModules()</code></pre>
+    <pre><code class="lang-csharp hljs">bool AreAllInstancesRunning()</code></pre>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_ControlExists_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.ControlExists*"></a>
-
-  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_ControlExists_MAS_SharedLibrary_Controls_InteractiveDataFlow_InstancesItem_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.ControlExists(MAS.SharedLibrary.Controls.InteractiveDataFlow.InstancesItem)">
-  ControlExists(InstancesItem)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-62"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>检查是否存在具有指定实例数据模型的模块控件</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool ControlExists(InstancesItem instancesItem)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>instancesItem</code> <a class="xref" href="MAS.SharedLibrary.Controls.InteractiveDataFlow.InstancesItem.html">InstancesItem</a></dt>
-    <dd><p>模块实例数据模型</p>
-</dd>
-  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果存在返回true，否则false</p>
+    <dd><p>如果全部启动返回true，否则false</p>
 </dd>
   </dl>
 
@@ -190,32 +157,26 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 
 
 
-  <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_ControlExists_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.ControlExists*"></a>
+  <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_AreAllInstancesStopped_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.AreAllInstancesStopped*"></a>
 
-  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_ControlExists_System_String_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.ControlExists(System.String)">
-  ControlExists(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-55"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_AreAllInstancesStopped" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.AreAllInstancesStopped">
+  AreAllInstancesStopped()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-99"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>检查是否存在具有指定实例键的模块控件</p>
+  <div class="markdown level1 summary"><p>检查是否所有实例都已停止</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool ControlExists(string key)</code></pre>
+    <pre><code class="lang-csharp hljs">bool AreAllInstancesStopped()</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>模块实例的唯一键</p>
-</dd>
-  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果存在返回true，否则false</p>
+    <dd><p>如果全部停止返回true，否则false</p>
 </dd>
   </dl>
 
@@ -233,7 +194,7 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 
   <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_Create_MAS_SharedLibrary_Controls_InteractiveDataFlow_InstancesItem_System_Windows_Point_System_Windows_Controls_Canvas_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.Create(MAS.SharedLibrary.Controls.InteractiveDataFlow.InstancesItem,System.Windows.Point,System.Windows.Controls.Canvas)">
   Create(InstancesItem, Point, Canvas)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>创建并添加一个新的模块控件到指定的画布，并将其数据模型添加到内部管理列表中</p>
@@ -268,32 +229,26 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 
 
 
-  <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_DeserializeControlModelsAsync_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.DeserializeControlModelsAsync*"></a>
+  <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_GetControlModels_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.GetControlModels*"></a>
 
-  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_DeserializeControlModelsAsync_System_String_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.DeserializeControlModelsAsync(System.String)">
-  DeserializeControlModelsAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-89"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_GetControlModels" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.GetControlModels">
+  GetControlModels()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步从指定文件路径反序列化控件模型列表</p>
+  <div class="markdown level1 summary"><p>获取控件模型列表</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;List&lt;ControlModel&gt;&gt; DeserializeControlModelsAsync(string filePath)</code></pre>
+    <pre><code class="lang-csharp hljs">List&lt;ControlModel&gt; GetControlModels()</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>包含控件模型数据的文件路径</p>
-</dd>
-  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.SharedLibrary.Controls.InteractiveDataFlow.ControlModel.html">ControlModel</a>&gt;&gt;</dt>
-    <dd><p>异步操作任务结果，反序列化后的 <a class="xref" href="MAS.SharedLibrary.Controls.InteractiveDataFlow.ControlModel.html">ControlModel</a> 对象列表</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.SharedLibrary.Controls.InteractiveDataFlow.ControlModel.html">ControlModel</a>&gt;</dt>
+    <dd><p><a class="xref" href="MAS.SharedLibrary.Controls.InteractiveDataFlow.ControlModel.html">ControlModel</a> 对象列表</p>
 </dd>
   </dl>
 
@@ -311,7 +266,7 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 
   <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_GetHandler_MAS_SharedLibrary_Controls_InteractiveDataFlow_ToolboxItemType_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.GetHandler(MAS.SharedLibrary.Controls.InteractiveDataFlow.ToolboxItemType)">
   GetHandler(ToolboxItemType)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取模块处理实例</p>
@@ -351,28 +306,61 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 
 
 
-  <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_RemoveModuleControl_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.RemoveModuleControl*"></a>
+  <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_GetRunningInstanceCount_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.GetRunningInstanceCount*"></a>
 
-  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_RemoveModuleControl_MAS_SharedLibrary_Controls_InteractiveDataFlow_InstancesItem_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.RemoveModuleControl(MAS.SharedLibrary.Controls.InteractiveDataFlow.InstancesItem)">
-  RemoveModuleControl(InstancesItem)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-82"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_GetRunningInstanceCount" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.GetRunningInstanceCount">
+  GetRunningInstanceCount()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>根据指定的模块实例数据模型移除对应的模块控件</p>
+  <div class="markdown level1 summary"><p>获取正在运行的实例数量</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void RemoveModuleControl(InstancesItem instancesItem)</code></pre>
+    <pre><code class="lang-csharp hljs">int GetRunningInstanceCount()</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
+
+  <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><code>instancesItem</code> <a class="xref" href="MAS.SharedLibrary.Controls.InteractiveDataFlow.InstancesItem.html">InstancesItem</a></dt>
-    <dd><p>要移除控件的实例数据模型</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>实例的运行数量</p>
 </dd>
   </dl>
 
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_GetTotalInstanceCount_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.GetTotalInstanceCount*"></a>
+
+  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_GetTotalInstanceCount" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.GetTotalInstanceCount">
+  GetTotalInstanceCount()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取存在的实例总数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int GetTotalInstanceCount()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>所有存在的实例的数量</p>
+</dd>
+  </dl>
 
 
 
@@ -388,10 +376,10 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 
   <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_RemoveModuleControl_System_String_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.RemoveModuleControl(System.String)">
   RemoveModuleControl(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>根据指定的模块实例键移除对应的模块控件</p>
+  <div class="markdown level1 summary"><p>根据指定的模块实例键移除对应的模块控件数据</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -413,6 +401,9 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 
 
 
+  <h4 class="section" id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_RemoveModuleControl_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>从数据持久化中移除</p>
+</div>
 
 
 
@@ -421,7 +412,7 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 
   <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_RestoreControlToCanvas_MAS_SharedLibrary_Controls_InteractiveDataFlow_ControlModel_System_Windows_Controls_Canvas_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.RestoreControlToCanvas(MAS.SharedLibrary.Controls.InteractiveDataFlow.ControlModel,System.Windows.Controls.Canvas)">
   RestoreControlToCanvas(ControlModel, Canvas)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据指定的控件模型数据重建控件并添加到指定的画布</p>
@@ -455,26 +446,23 @@ Interface IModuleControlManager  <a class="header-action link-secondary" title="
 
   <a id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_SerializeUpdateControlModelAsync_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.SerializeUpdateControlModelAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_SerializeUpdateControlModelAsync_System_Windows_Controls_Canvas_System_String_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.SerializeUpdateControlModelAsync(System.Windows.Controls.Canvas,System.String)">
-  SerializeUpdateControlModelAsync(Canvas, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-48"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Controls_InteractiveDataFlow_IModuleControlManager_SerializeUpdateControlModelAsync_System_Windows_Controls_Canvas_" data-uid="MAS.SharedLibrary.Controls.InteractiveDataFlow.IModuleControlManager.SerializeUpdateControlModelAsync(System.Windows.Controls.Canvas)">
+  SerializeUpdateControlModelAsync(Canvas)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Controls/InteractiveDataFlow/IModuleControlManager.cs#lines-53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步更新控件数据模型并将其序列化保存到指定文件路径</p>
+  <div class="markdown level1 summary"><p>异步更新控件数据模型并将其序列化保存</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task SerializeUpdateControlModelAsync(Canvas parentCanvas, string filePath)</code></pre>
+    <pre><code class="lang-csharp hljs">Task SerializeUpdateControlModelAsync(Canvas parentCanvas)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>parentCanvas</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.canvas">Canvas</a></dt>
     <dd><p>需要更新控件数据模型的父画布</p>
-</dd>
-    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>保存的完整文件路径</p>
 </dd>
   </dl>
 

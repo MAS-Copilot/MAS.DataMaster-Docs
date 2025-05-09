@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -54,7 +54,7 @@
             <div id="navbar">
               <form class="search" role="search" id="search">
                 <i class="bi bi-search"></i>
-                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
               </form>
             </div>
           </div>
@@ -118,15 +118,21 @@ Enum FinishReason  <a class="header-action link-secondary" title="View source" h
 </h2>
   <dl class="parameters">
     <dt id="MAS_SharedLibrary_PrismaTalk_FinishReason_ContentFilter"><code>ContentFilter = 2</code></dt>
-    <dd><p>由于内容过滤器触发而停止
+  <dd><p>由于内容过滤器触发而停止
 通常表示模型检测到可能违反内容政策的内容</p>
+<p>如果用户输入包含敏感词汇，模型可能会触发内容过滤器并停止生成</p>
 </dd>
+  
     <dt id="MAS_SharedLibrary_PrismaTalk_FinishReason_Length"><code>Length = 1</code></dt>
-    <dd><p>由于达到最大生成长度限制而停止</p>
+  <dd><p>由于达到最大生成长度限制而停止</p>
+<p>通常由 <a class="xref" href="MAS.SharedLibrary.PrismaTalk.IPrismaTalkConfig.html#MAS_SharedLibrary_PrismaTalk_IPrismaTalkConfig_MaxTokens">MaxTokens</a> 参数控制</p>
 </dd>
+  
     <dt id="MAS_SharedLibrary_PrismaTalk_FinishReason_Stop"><code>Stop = 0</code></dt>
-    <dd><p>模型自然停止生成文本</p>
+  <dd><p>模型自然停止生成文本</p>
+<p>通常表示模型认为已经输出了完整的回答</p>
 </dd>
+  
   </dl>
 
 

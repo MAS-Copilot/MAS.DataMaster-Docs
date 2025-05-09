@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PersistenceServiceBase | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PersistenceServiceBase | DataMaster ">
+      
+      <meta name="description" content="数据持久化服务基类">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase">
+
+
+
+  <h1 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase" class="text-break">
+Class PersistenceServiceBase  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-24"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.SharedLibrary.html">SharedLibrary</a>.<a class="xref" href="MAS.SharedLibrary.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>数据持久化服务基类</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class PersistenceServiceBase : IPersistenceService, IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">PersistenceServiceBase</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="MAS.SharedLibrary.IPersistenceService.html">IPersistenceService</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase__ctor_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.#ctor*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase__ctor_MAS_SharedLibrary_Security_IEncryptionService_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.#ctor(MAS.SharedLibrary.Security.IEncryptionService)">
+  PersistenceServiceBase(IEncryptionService)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>数据持久化服务基类</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected PersistenceServiceBase(IEncryptionService encryptionService)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>encryptionService</code> <a class="xref" href="MAS.SharedLibrary.Security.IEncryptionService.html">IEncryptionService</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_VERSIONING" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.VERSIONING">
+  VERSIONING
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>版本文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const string VERSIONING = &quot;versioning.json&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ModuleName_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.ModuleName*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ModuleName" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.ModuleName">
+  ModuleName
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取模块的名称，用于标识项目类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract string ModuleName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ModuleVersion_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.ModuleVersion*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ModuleVersion" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.ModuleVersion">
+  ModuleVersion
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取用于创建该项目时的版本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract string ModuleVersion { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_CreateAdditionalProperties_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.CreateAdditionalProperties*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_CreateAdditionalProperties" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.CreateAdditionalProperties">
+  CreateAdditionalProperties()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-363"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建默认的额外元数据属性</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Dictionary&lt;string, object&gt; CreateAdditionalProperties()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>默认的额外元数据属性</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_CreateControlModels_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.CreateControlModels*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_CreateControlModels" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.CreateControlModels">
+  CreateControlModels()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-355"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建默认的控件数据列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual List&lt;object&gt; CreateControlModels()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>默认的控件数据列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_CreateServiceData_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.CreateServiceData*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_CreateServiceData" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.CreateServiceData">
+  CreateServiceData()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-371"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建默认的服务数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Dictionary&lt;string, object&gt; CreateServiceData()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>默认的服务数据</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_CreationProject_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.CreationProject*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_CreationProject_System_String_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.CreationProject(System.String)">
+  CreationProject(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建项目并重置工程数据模型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreationProject(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>新的文件路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.ProjectCreationException.html">ProjectCreationException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_DeserializeObjectFromFileAsync_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.DeserializeObjectFromFileAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_DeserializeObjectFromFileAsync__1_System_IO_FileStream_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.DeserializeObjectFromFileAsync``1(System.IO.FileStream)">
+  DeserializeObjectFromFileAsync&lt;T&gt;(FileStream)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步从指定的文件流反序列化 JSON 字符串为对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract Task&lt;T&gt; DeserializeObjectFromFileAsync&lt;T&gt;(FileStream fileStream)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fileStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream">FileStream</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_Dispose_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.Dispose*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_Dispose" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-258"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_Dispose_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.Dispose*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_Dispose_System_Boolean_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.Dispose(System.Boolean)">
+  Dispose(bool)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-289"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>处理资源释放</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>disposing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果为 true，则释放托管和非托管资源；如果为 false，则只释放非托管资源</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_Dispose_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>重写此方法时，必须在方法的最后调用 base.Dispose(disposing)，
+以确保基类中的资源也得到适当的处理</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_GetCurrentFileStream_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.GetCurrentFileStream*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_GetCurrentFileStream" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.GetCurrentFileStream">
+  GetCurrentFileStream()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-244"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前工程文件流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FileStream? GetCurrentFileStream()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream">FileStream</a></dt>
+    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream">FileStream</a> 对象或 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_GetCurrentProject_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.GetCurrentProject*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_GetCurrentProject" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.GetCurrentProject">
+  GetCurrentProject()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-235"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前工程数据模型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProjectModel GetCurrentProject()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Models.ProjectModel.html">ProjectModel</a></dt>
+    <dd><p><a class="xref" href="MAS.SharedLibrary.Models.ProjectModel.html">ProjectModel</a> 对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_IsVersionSupported_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.IsVersionSupported*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_IsVersionSupported_System_String_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.IsVersionSupported(System.String)">
+  IsVersionSupported(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-306"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前版本是否受支持</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool IsVersionSupported(string version)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>支持返回true，否则false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_IsVersionSupported_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>版本信息</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_LoadProjectAsync_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.LoadProjectAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_LoadProjectAsync_System_String_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.LoadProjectAsync(System.String)">
+  LoadProjectAsync(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步加载工程</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task LoadProjectAsync(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要加载的文件</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_LoadProjectAsync_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>加载完成后 CurrentProject 可用</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.ProjectLoadException.html">ProjectLoadException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ReloadCurrentProjectAsync_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.ReloadCurrentProjectAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ReloadCurrentProjectAsync" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.ReloadCurrentProjectAsync">
+  ReloadCurrentProjectAsync()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-224"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步重新加载当前项目</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ReloadCurrentProjectAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ReloadCurrentProjectAsync_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>在修改工程源文件后调用加载更新</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.ProjectLoadException.html">ProjectLoadException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_SaveProjectAsync_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.SaveProjectAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_SaveProjectAsync" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.SaveProjectAsync">
+  SaveProjectAsync()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-169"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步保存工程</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SaveProjectAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.ProjectSaveException.html">ProjectSaveException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_SaveProjectAsync_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.SaveProjectAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_SaveProjectAsync_System_String_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.SaveProjectAsync(System.String)">
+  SaveProjectAsync(string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-192"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步保存工程</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SaveProjectAsync(string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_SaveProjectAsync_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>编辑的内容</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.ProjectSaveException.html">ProjectSaveException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_SerializeObjectSaveToFileAsync_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.SerializeObjectSaveToFileAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_SerializeObjectSaveToFileAsync_MAS_SharedLibrary_Models_ProjectModel_System_IO_FileStream_" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.SerializeObjectSaveToFileAsync(MAS.SharedLibrary.Models.ProjectModel,System.IO.FileStream)">
+  SerializeObjectSaveToFileAsync(ProjectModel, FileStream)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-270"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步序列化 <a class="xref" href="MAS.SharedLibrary.Models.ProjectModel.html">ProjectModel</a> 对象保存到文件流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract Task SerializeObjectSaveToFileAsync(ProjectModel currentProject, FileStream fileStream)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>currentProject</code> <a class="xref" href="MAS.SharedLibrary.Models.ProjectModel.html">ProjectModel</a></dt>
+    <dd></dd>
+    <dt><code>fileStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream">FileStream</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ProjectCreated" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.ProjectCreated">
+  ProjectCreated
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当新项目创建完成时触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ProjectEventArgs&gt;? ProjectCreated</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.ProjectEventArgs.html">ProjectEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ProjectLoaded" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.ProjectLoaded">
+  ProjectLoaded
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当项目加载完成时触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ProjectEventArgs&gt;? ProjectLoaded</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.ProjectEventArgs.html">ProjectEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ProjectSaved" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.ProjectSaved">
+  ProjectSaved
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当项目保存完成时触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ProjectEventArgs&gt;? ProjectSaved</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.ProjectEventArgs.html">ProjectEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_SharedLibrary_Abstractions_PersistenceServiceBase_ProjectSaving" data-uid="MAS.SharedLibrary.Abstractions.PersistenceServiceBase.ProjectSaving">
+  ProjectSaving
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当项目即将保存时触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ProjectEventArgs&gt;? ProjectSaving</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.SharedLibrary.ProjectEventArgs.html">ProjectEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/PersistenceServiceBase.cs#lines-24" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

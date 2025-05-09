@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>.NET 定时器详解与使用 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content=".NET 定时器详解与使用 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/DevelopDoc/Timers.md#lines-1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="net-定时器详解与使用">.NET 定时器详解与使用</h1>
+
+<p>本文档详细介绍 .NET 框架中提供的定时器（Timer），包括其用途、特点、使用场景、注意事项以及示例代码。开发者可根据需求选择合适的定时器</p>
+<h2 id="概述">概述</h2>
+<p><strong>.NET 提供了以下包括但不限于三种定时器，每种针对特定场景设计：</strong></p>
+<ul>
+<li>System.Timers.Timer：基于事件的定时器，适合多线程后台任务</li>
+<li>System.Threading.Timer：基于线程池的轻量级定时器，适合高性能任务</li>
+<li>System.Windows.Threading.DispatcherTimer：专为 WPF 应用程序设计的 UI 线程定时器</li>
+</ul>
+<h2 id="systemtimerstimer">System.Timers.Timer</h2>
+<h3 id="用途">用途</h3>
+<p><code>System.Timers.Timer</code>是一个基于服务器的、通用的事件驱动定时器，设计用于多线程环境。它适合在后台执行周期性任务，常用于服务端应用程序、Windows 服务、控制台程序或任何需要独立于 UI 线程执行定时逻辑的场景</p>
+<h3 id="特点">特点</h3>
+<ul>
+<li>线程安全：设计为多线程安全，适合并发场景</li>
+<li>事件驱动：通过 Elapsed 事件触发定时任务</li>
+<li>自动重置：支持 AutoReset 属性，控制定时器是单次触发还是循环触发</li>
+<li>灵活性：支持设置间隔（Interval）、启用/禁用（Enabled）等</li>
+</ul>
+<h3 id="使用场景">使用场景</h3>
+<ul>
+<li>定期检查系统状态（如监控服务）</li>
+<li>定时执行后台任务（如日志清理、数据同步）</li>
+<li>需要线程安全的高可靠性任务</li>
+</ul>
+<h3 id="注意事项">注意事项</h3>
+<ul>
+<li>Elapsed 事件可能在不同线程上触发，需注意线程同步（如更新 UI 时需使用 Invoke）</li>
+<li>如果 AutoReset 为 false，定时器在触发一次后停止</li>
+<li>确保在程序退出时调用<code>Dispose</code>释放资源</li>
+</ul>
+<h3 id="示例代码">示例代码</h3>
+<pre><code class="lang-csharp">using System;
+using System.Timers;
+
+public class Program {
+    public static void Main() {
+        // 间隔 2000 毫秒
+        using Timer timer = new(2000) {
+            AutoReset = true,            // 循环触发
+            SynchronizingObject = null  // 线程池线程
+        };
+        timer.Elapsed += (s, e) =&gt; Console.WriteLine($&quot;触发：{e.SignalTime}&quot;);
+        timer.Start();
+        Console.WriteLine(&quot;按任意键退出...&quot;);
+        Console.ReadKey();
+    }
+}
+</code></pre>
+<h2 id="systemthreadingtimer">System.Threading.Timer</h2>
+<h3 id="用途-1">用途</h3>
+<p><code>System.Threading.Timer</code>是一个轻量级的、基于线程池的定时器，设计用于高性能场景。它通过回调函数执行定时任务，适合需要高效、低开销的后台任务，不依赖于事件模型</p>
+<h3 id="特点-1">特点</h3>
+<ul>
+<li>轻量级：基于线程池，无需额外线程管理</li>
+<li>回调驱动：通过用户提供的回调函数执行任务</li>
+<li>灵活调度：支持初始延迟和周期性间隔</li>
+<li>非事件模型：相比<code>System.Timers.Timer</code>，没有事件订阅机制</li>
+</ul>
+<h3 id="使用场景-1">使用场景</h3>
+<ul>
+<li>高性能的后台任务（如定时清理缓存）</li>
+<li>不需要复杂事件处理的简单定时任务</li>
+<li>嵌入式或资源受限环境中需要高效定时器</li>
+</ul>
+<h3 id="注意事项-1">注意事项</h3>
+<ul>
+<li>回调在线程池线程上执行，需确保线程安全</li>
+<li>不支持像<code>System.Timers.Timer</code>那样的自动重置属性，需通过回调逻辑控制</li>
+<li>必须手动调用<code>Dispose</code>或<code>Change</code>方法停止定时器</li>
+<li>不适合 UI 相关的任务，因为回调不在 UI 线程上</li>
+</ul>
+<h3 id="示例代码-1">示例代码</h3>
+<pre><code class="lang-csharp">using System;
+using System.Threading;
+
+public class Program {
+    public static void Main() {
+        // 首次延迟1秒，之后每2秒执行一次
+        using Timer timer = new Timer(state =&gt; {
+            Console.WriteLine($&quot;触发：{DateTime.Now}&quot;);
+        }, null, 1000, 2000);
+
+        Console.WriteLine(&quot;按任意键退出...&quot;);
+        Console.ReadKey();
+    }
+}
+</code></pre>
+<h2 id="systemwindowsthreadingdispatchertimer">System.Windows.Threading.DispatcherTimer</h2>
+<h3 id="用途-2">用途</h3>
+<p><code>System.Windows.Threading.DispatcherTimer</code>是为 WPF 应用程序设计的定时器，用于在 UI 线程上执行定时任务。它通过 WPF 的调度器（Dispatcher）运行，适合需要更新 WPF UI 元素的场景</p>
+<h3 id="特点-2">特点</h3>
+<ul>
+<li>UI 线程执行：所有回调在 WPF 的 Dispatcher 线程上运行</li>
+<li>调度器集成：与 WPF 的 Dispatcher 体系紧密集成</li>
+<li>优先级支持：可设置 Dispatcher 优先级，控制任务执行顺序</li>
+<li>简单易用：通过 Tick 事件处理定时逻辑</li>
+</ul>
+<h3 id="使用场景-2">使用场景</h3>
+<ul>
+<li>定时更新 WPF 界面元素（如实时数据显示）</li>
+<li>实现 WPF 动画或动态效果</li>
+<li>需要与 WPF 控件交互的定时任务</li>
+</ul>
+<h3 id="主要事项">主要事项</h3>
+<ul>
+<li>仅适用于 WPF 应用程序，不适合其他场景</li>
+<li>如果 Dispatcher 线程繁忙，可能导致定时器延迟</li>
+<li>确保在窗口关闭时停止定时器以避免资源泄漏</li>
+<li>定时器精度受限于 Dispatcher 的调度机制</li>
+<li>最小间隔约10-15ms（取决于系统）</li>
+</ul>
+<h3 id="示例代码-2">示例代码</h3>
+<pre><code class="lang-csharp">using System;
+using System.Windows;
+using System.Windows.Threading;
+
+public partial class MainWindow : Window {
+    private DispatcherTimer timer;
+
+    public MainWindow() {
+        InitializeComponent();
+        timer = new DispatcherTimer {
+            Interval = TimeSpan.FromSeconds(1) // 间隔 1 秒
+        };
+        timer.Tick += (s, e) =&gt; Console.WriteLine($&quot;触发：{DateTime.Now}&quot;);
+        timer.Start();
+    }
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/DevelopDoc/Timers.md#lines-1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
