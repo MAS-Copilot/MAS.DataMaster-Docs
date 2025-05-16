@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>数据访问层 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="数据访问层 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/BuildRun/DataAccess.md#lines-1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="数据访问层">数据访问层</h1>
+
+<p>数据访问层，负责与数据库进行交互，实现数据的持久化、基本的增删改查（CRUD）操作</p>
+<h2 id="构建">构建</h2>
+<h3 id="代码生成">代码生成</h3>
+<p>在构建中的数据库模块实例，一般仅需修改实体以及映射器，生成的默认代码如下：</p>
+<p><strong>实体：</strong></p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// ProductInfoEntity 数据实体模型
+/// &lt;/summary&gt;
+[Table(&quot;ProductInfoEntity&quot;)]
+[DbHandler(false)]
+public class ProductInfoEntity {
+    [Column(&quot;Id&quot;, &quot;INT&quot;, IsPrimaryKey = true, IsAutoIncrement = true, IsNullable = false, Comment = &quot;主键标识符，自增&quot;)]
+    public int Id { get; set; }
+
+    [Column(&quot;CreatedAt&quot;, &quot;DATETIME&quot;, IsNullable = false, IsUpdatable = false, Comment = &quot;创建时间&quot;)]
+    public DateTime CreatedAt { get; set; }
+
+    [Column(&quot;UpdatedAt&quot;, &quot;DATETIME&quot;, IsNullable = false, Comment = &quot;更新时间&quot;)]
+    public DateTime UpdatedAt { get; set; }
+}
+</code></pre>
+<p><strong>映射器：</strong></p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// 映射器实现
+/// &lt;/summary&gt;
+internal class ProductInfoMapper : IDataMapper&lt;Mitsubishi.CommTaskHandle.DataRead.Structs.ProductInfoStruct, Mitsubishi.MySql.DataAccess.Entities.ProductInfoEntity&gt; {
+    /// &lt;summary&gt;
+    /// 将源类型的数据映射到目标类型
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;source&quot;&gt;源数据对象&lt;/param&gt;
+    /// &lt;returns&gt;映射后的目标类型对象&lt;/returns&gt;
+    public Mitsubishi.MySql.DataAccess.Entities.ProductInfoEntity Map(Mitsubishi.CommTaskHandle.DataRead.Structs.ProductInfoStruct source) {
+        return new Mitsubishi.MySql.DataAccess.Entities.ProductInfoEntity {
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now,
+            // TODO: 添加其它属性的映射逻辑
+        };
+    }
+
+    /// &lt;summary&gt;
+    /// 将目标类型的数据映射回源类型
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;destination&quot;&gt;目标数据对象&lt;/param&gt;
+    /// &lt;returns&gt;映射后的源类型对象&lt;/returns&gt;
+    public Mitsubishi.CommTaskHandle.DataRead.Structs.ProductInfoStruct MapBack(Mitsubishi.MySql.DataAccess.Entities.ProductInfoEntity? destination) {
+        if(destination == null){
+            return new Mitsubishi.CommTaskHandle.DataRead.Structs.ProductInfoStruct();
+        }
+
+        return new Mitsubishi.CommTaskHandle.DataRead.Structs.ProductInfoStruct {
+            // TODO: 按需添加属性的反向映射逻辑
+        };
+    }
+}
+</code></pre>
+<p><strong>仓储：</strong></p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// 处理 Mitsubishi.MySql.DataAccess.Entities.ProductInfoEntity 实体对象仓储基本 CRUD 操作
+/// &lt;/summary&gt;
+internal class ProductInfoRepo(
+    IDbOperations dbOperations)
+    : RepositoryBase&lt;Mitsubishi.MySql.DataAccess.Entities.ProductInfoEntity&gt;(dbOperations) {
+    // TODO: 按需重写父类部分方法以实现该实体的特定业务逻辑
+}
+</code></pre>
+<h2 id="使用与扩展">使用与扩展</h2>
+<h3 id="仓储实例化与依赖注入">仓储实例化与依赖注入</h3>
+<p>仓储类通过<code>ActivatorUtilities.CreateInstance</code>创建，允许通过依赖注入（Dependency Injection, DI）获取其它接口实例。仓储类继承自<code>RepositoryBase&lt;TEntity&gt;</code>，默认已实现基本的<code>CRUD</code>操作（如 <code>AddAsync</code>、<code>UpdateAsync</code>、<code>DeleteAsync</code>和<code>GetAsync</code>等）。通过 DI 容器，开发者可以注入<code>IDbOperations</code>接口或其他依赖项，如<code>MAS.SharedLibrary.Communication.IPlcCommServiceWrapperManager</code>接口获取通讯实例，以实现更复杂的业务逻辑</p>
+<h3 id="自定义钩子方法">自定义钩子方法</h3>
+<p><code>RepositoryBase&lt;TEntity&gt;</code>提供了两个虚拟钩子方法，在操作成功或失败时添加自定义逻辑：</p>
+<ul>
+<li>OnErrorAsync: 处理操作失败时的逻辑，例如记录异常日志或发送通知</li>
+<li>OnSuccessAsync: 处理操作成功时的逻辑，例如记录操作日志或触发后续事件</li>
+</ul>
+<p>可以在默认生成的仓储类中重写这些钩子方法，以实现特定业务需求。钩子默认的实现：</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// 操作错误处理钩子
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;operation&quot;&gt;操作名称&lt;/param&gt;
+/// &lt;param name=&quot;exception&quot;&gt;发生的异常&lt;/param&gt;
+/// &lt;param name=&quot;entity&quot;&gt;相关的实体&lt;/param&gt;
+/// &lt;returns&gt;表示异步操作任务&lt;/returns&gt;
+protected virtual async Task OnErrorAsync(string operation, Exception exception, TEntity? entity) {
+    var entityJson = JsonConvert.SerializeObject(entity, Formatting.Indented);
+    LoggerHelper.Database.Error(exception.Message, $&quot;Operation: {operation}, Entity: {entityJson}&quot;);
+    await Task.CompletedTask.ConfigureAwait(false);
+}
+
+/// &lt;summary&gt;
+/// 操作成功处理钩子
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;operation&quot;&gt;操作名称&lt;/param&gt;   
+/// &lt;returns&gt;表示异步操作任务&lt;/returns&gt;
+protected virtual async Task OnSuccessAsync(string operation) {
+    await Task.CompletedTask.ConfigureAwait(false);
+}
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/BuildRun/DataAccess.md#lines-1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
