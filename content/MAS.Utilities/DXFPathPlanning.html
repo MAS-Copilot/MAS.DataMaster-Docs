@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>运动路径的算法解析与动态规划 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="运动路径的算法解析与动态规划 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/MAS.Utilities/DXFPathPlanning.md#lines-1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="运动路径的算法解析与动态规划">运动路径的算法解析与动态规划</h1>
+
+<p>以 DXF 解析为核心切入点，延伸至整个运动编程体系的多元化技术覆盖</p>
+<h2 id="前言">前言</h2>
+<p>在工业自动化与智能制造领域，高效、精准的运动路径规划是实现复杂任务的关键。以 DXF（Drawing Exchange Format）文件解析为核心切入点，构建覆盖整个运动编程体系的多元化技术，成为打通设计端与执行端数据链路的重要突破口。DXF 文件作为 CAD 设计的通用数据格式，虽能提供静态几何数据，如坐标点、线条轮廓等，但这些数据仅构成运动路径的基础框架，若要实现完整的运动编程，仍需解决诸多关键问题</p>
+<h2 id="dxf-解析技术链的起点">DXF 解析技术链的起点</h2>
+<h3 id="动态参数填充">动态参数填充</h3>
+<p>运动过程中的速度、加速度、加加速度等运动学参数，直接影响设备运行的效率与稳定性。对于龙门结构的 PLC 控制系统，在数控机床加工场景中，不同的加工材料与工艺要求，需要适配不同的速度与加速度曲线。PLC 可内置多种加减速算法模型，如梯形加减速、S 型加减速。以梯形加减速为例，PLC 接收点位坐标后，根据设定的最大速度、最大加速度以及两点位间距离，自主计算加加速、匀速、减加速阶段的位移和时间，生成每个控制周期的速度值，避免过冲或振动，确保加工精度。但受 PLC 运算能力限制，当需要处理复杂多变的加减速曲线，或者大量点位的速度规划时，计算效率和准确性可能难以保证</p>
+<h3 id="控制逻辑适配">控制逻辑适配</h3>
+<p>龙门结构通常由 X、Y、Z 轴组成，在笛卡尔空间的直线运动，需通过运动学计算转换为各轴的运动指令。PLC 需内置运动学算法，根据接收到的目标坐标，计算各轴所需的脉冲数或模拟量值。为保证龙门结构的同步性，PLC 采用主从控制逻辑，选择一个轴作为主轴，其他轴作为从轴。从轴通过实时监测主轴的运动状态，动态调整自身运动，防止因各轴运动不同步导致的运动偏差。同时，针对龙门结构在高速运动或重载情况下的刚性问题，PLC 通过负载均衡算法，对各轴的负载进行实时分配。然而，对于复杂的多轴联动控制逻辑，以及需要频繁调整的负载均衡策略，PLC 的处理能力可能会捉襟见肘</p>
+<h3 id="实时性处理">实时性处理</h3>
+<p>在运动执行过程中，PLC 需与传感器、执行器进行动态交互。龙门结构一般配备限位传感器、原点传感器等。当限位传感器触发时，PLC 立即执行急停逻辑，切断相关轴的动力输出，避免设备碰撞损坏；设备启动时，PLC 通过原点传感器进行回零操作，确定各轴的初始位置。若安装力传感器，当检测到切削力异常，PLC 实时调整运动速度或停止运动，防止刀具损坏或工件报废。此外，急停按钮信号接入 PLC 后，PLC 优先响应，保障设备与人员安全</p>
+<h2 id="解析的核心技术原理">解析的核心技术原理</h2>
+<p>DXF 文件解析是运动编程体系的入口，其核心任务是从 DXF 文件中提取几何实体并转化为可被 PLC 或上位机处理的结构化数据。DXF 文件分为多个数据段，其中 HEADER、TABLES、BLOCKS 和 ENTITIES 是与运动路径规划最相关的部分。ENTITIES 段包含具体的几何实体（如 LINE、ARC、POLYLINE 等），这些实体构成了运动路径的基础</p>
+<h3 id="dxf-解析流程">DXF 解析流程</h3>
+<ul>
+<li>文件读取与结构解析：读取 DXF 文件（通常为 ASCII 格式），按行解析其分组码（Group Code）与值。分组码定义了数据的类型与含义，例如，代码 0 表示实体类型（如 LINE、ARC），代码 10、20、30 分别表示起点坐标的 X、Y、Z 值</li>
+<li>几何实体提取：从 ENTITIES 段提取运动路径相关的几何实体。常见的实体类型包括：
+<ul>
+<li>LINE：定义直线段，包含起点和终点坐标</li>
+<li>ARC：定义圆弧，包含圆心坐标、半径、起始角度和终止角度</li>
+<li>POLYLINE：定义多段线，可能包含直线段或圆弧段</li>
+</ul>
+</li>
+<li>数据清洗与优化：剔除冗余点（如重复点或过于接近的点），对复杂曲线进行分段处理（如将样条曲线近似为直线段或圆弧段）</li>
+<li>坐标系转换：将 DXF 文件的坐标系（通常为世界坐标系）转换为设备坐标系，考虑设备安装位置、方向偏移等参数</li>
+<li>数据格式化：将解析后的几何数据（如点坐标、圆弧参数）转换为 PLC 可识别的格式（如点位坐标列表或插补参数）</li>
+</ul>
+<h3 id="解析后数据说明">解析后数据说明</h3>
+<p>解析后的 DXF 数据通常以结构化形式输出，供上位机或 PLC 进一步处理。以下是常见几何实体解析后数据的表格说明：</p>
+<table>
+<thead>
+<tr>
+<th>实体类型</th>
+<th>输出数据字段</th>
+<th>字段描述</th>
+<th>示例数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LINE</td>
+<td>起点坐标</td>
+<td>（X1,Y1,Z1）</td>
+<td>(10.1,20.2,30.3)</td>
+</tr>
+<tr>
+<td></td>
+<td>终点坐标</td>
+<td>（X2,Y2,Z2）</td>
+<td>(10.1,20.2,30.3)</td>
+</tr>
+<tr>
+<td>ARC</td>
+<td>圆心坐标</td>
+<td>（X,Y,Z）</td>
+<td>(10.1,20.2,30.3)</td>
+</tr>
+<tr>
+<td></td>
+<td>半径</td>
+<td>R</td>
+<td>10.1</td>
+</tr>
+<tr>
+<td></td>
+<td>起始角度</td>
+<td>A1</td>
+<td>10.1</td>
+</tr>
+<tr>
+<td></td>
+<td>结束角度</td>
+<td>A2</td>
+<td>10.1</td>
+</tr>
+<tr>
+<td>POLYLINE</td>
+<td>点序列</td>
+<td>[(X1, Y1, Z1), (X2, Y2, Z2), ...]</td>
+<td>[(10.0, 20.0, 0.0), (20.0, 30.0, 0.0), ...]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dxf-数据到-plc-运动指令的转化流程">DXF 数据到 PLC 运动指令的转化流程</h2>
+<p>在龙门结构 PLC 系统中，将 DXF 文件解析后的几何数据，经上位机转化为点位坐标发送给 PLC 后，PLC 需完成从点位坐标到可执行运动指令的自主转化：</p>
+<ul>
+<li>数据预处理：PLC 接收到点位坐标后，对数据进行冗余点剔除和曲线简化。对于复杂曲线，PLC 运用直线插补或圆弧插补算法，将其转化为自身易于处理的直线段或圆弧段序列。例如，在处理圆弧路径时，PLC 根据相邻点位坐标，计算圆心坐标、半径、旋转方向等参数，生成圆弧插补所需数据。但对于复杂的曲线拟合和高精度插补计算，PLC 的处理能力有限</li>
+<li>坐标系转换：由于 DXF 文件坐标系、上位机坐标系与龙门实际运动坐标系可能存在差异，PLC 内置坐标转换算法，将接收到的点位坐标转换为龙门结构运动坐标系下的坐标值。同时，结合龙门结构的安装位置和方向参数，确保运动路径的准确性</li>
+<li>运动指令生成：PLC 根据预处理和转换后的坐标数据，结合内部预设的动态参数（速度、加速度等）和控制逻辑，生成可执行的运动指令。对于直线运动，生成包含目标坐标、运动速度、加减速参数的直线插补指令；对于圆弧运动，生成包含圆心坐标、半径、旋转方向、运动速度等参数的圆弧插补指令。这些指令通过 PLC 的编程语言（如梯形图、结构化文本等）编程实现，并驱动伺服电机等执行机构运动</li>
+</ul>
+<h2 id="drawingvisualhost-容器说明">DrawingVisualHost 容器说明</h2>
+<h3 id="概述">概述</h3>
+<p><code>DrawingVisualHost</code>是一个基于 WPF 的高性能矢量图形宿主控件，继承自<code>FrameworkElement</code>，专为高效渲染 DXF 文件中的几何实体而设计。通过利用<code>DrawingVisual</code>提供的轻量级绘图功能，该控件能够高效处理复杂几何图形的显示，支持图层管理、缩放、平移、以及高 DPI 场景下的像素缩放优化，特别适合工业自动化领域中 DXF 文件的可视化需求</p>
+<h3 id="核心功能">核心功能</h3>
+<h4 id="高性能渲染">高性能渲染</h4>
+<ul>
+<li>双模式渲染：根据缩放级别自动选择最优渲染策略
+<ul>
+<li>位图缓存渲染：当缩放比例低于阈值（SCALE_THRESHOLD = 3.0）时，使用<code>RenderTargetBitmap</code>缓存几何图形为位图，减少实时绘制的开销，适合低缩放场景</li>
+<li>直接矢量渲染：当缩放比例较高时，直接通过<code>DrawingContext</code>渲染矢量几何图形，确保高精度显示，适合放大查看细节的场景</li>
+</ul>
+</li>
+<li>自动根据缩放比例切换渲染模式，平衡性能与显示质量</li>
+</ul>
+<h4 id="图层管理">图层管理</h4>
+<ul>
+<li>支持多图层几何数据的存储与管理，通过<code>Dictionary&lt;string, List&lt;(Geometry, Pen)&gt;&gt;</code>维护图层名称与几何数据的映射</li>
+<li>提供<code>AddLayer</code>方法添加新图层，支持线宽保护选项，确保在高缩放下线条宽度不至于过细</li>
+<li>支持动态设置图层可见性，以及显示/隐藏所有图层</li>
+<li>几何数据访问：提供对原始几何数据的只读属性访问</li>
+</ul>
+<h4 id="交互功能">交互功能</h4>
+<ul>
+<li>缩放：通过鼠标滚轮进行缩放操作，支持设置最小（MinScale）和最大（MaxScale）缩放比例，以及缩放步长（ScaleStep）</li>
+<li>平移：通过右键拖拽实现内容的平移操作，平移范围受边界扩展因子限制，确保内容不完全移出视野</li>
+<li>坐标变换：通过<code>MatrixTransform</code>实现内容的缩放和平移，支持动态更新变换矩阵</li>
+</ul>
+<h4 id="单位支持">单位支持</h4>
+<ul>
+<li>支持毫米（Millimeter）和英寸（Inch）两种单位，通过<code>SetUnit</code>方法切换</li>
+<li>自动处理单位转换（默认毫米，1单位 = 1mm）</li>
+</ul>
+<h4 id="内容居中与适应">内容居中与适应</h4>
+<ul>
+<li>提供<code>CenterAndFitContent</code>方法，自动计算缩放比例和平移量，使 DXF 内容居中并适应控件大小</li>
+<li>支持设置 DXF 内容的原始边界（SetDxfContentBounds），用于初始化显示</li>
+</ul>
+<h3 id="属性与方法">属性与方法</h3>
+<h4 id="属性">属性</h4>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DisableBitmapCaching</td>
+<td>bool</td>
+<td>是否禁用位图缓存，适用于几何元素较少的情况</td>
+<td>false</td>
+</tr>
+<tr>
+<td>IgnorePixelScaling</td>
+<td>bool</td>
+<td>是否忽略像素缩放，适应高 DPI 显示设备</td>
+<td>false</td>
+</tr>
+<tr>
+<td>BoundaryExtensionFactor</td>
+<td>double</td>
+<td>拖动边界的扩展比例（例如 0.2 表示 20%）</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>double</td>
+<td>内容缩放比例</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>TranslateX</td>
+<td>double</td>
+<td>内容水平平移量（像素）</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>TranslateY</td>
+<td>double</td>
+<td>内容垂直平移量（像素）</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>ScaleStep</td>
+<td>double</td>
+<td>缩放步长（例如 0.1 表示 10%）</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>MaxScale</td>
+<td>double</td>
+<td>最大缩放比例</td>
+<td>10.0</td>
+</tr>
+<tr>
+<td>MinScale</td>
+<td>double</td>
+<td>最小缩放比例</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>CurrentContentBounds</td>
+<td>Rect</td>
+<td>当前内容边界</td>
+<td>Rect.Empty</td>
+</tr>
+</tbody>
+</table>
+<h4 id="主要方法">主要方法</h4>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AddOrUpdateLayer</td>
+<td><code>string layerName, List&lt;GeometryItem&gt; geometryItems, bool isLineWidthProtection = false, bool isVisible = true</code></td>
+<td>添加或更新图层</td>
+</tr>
+<tr>
+<td>AddOrUpdateLayer</td>
+<td><code>string layerName, List&lt;DxfGeometryItem&gt; dxfGeometryItems, bool isLineWidthProtection = false, bool isVisible = true</code></td>
+<td>添加或更新图层</td>
+</tr>
+<tr>
+<td>AddOrUpdateLayer</td>
+<td><code>DxfLayerGeometry dxfLayerGeometry, bool isUpdateBounds = false</code></td>
+<td>添加或更新图层</td>
+</tr>
+<tr>
+<td>RemoveLayer</td>
+<td><code>string layerName</code></td>
+<td>移除指定图层</td>
+</tr>
+<tr>
+<td>ShowAllLayers</td>
+<td>无</td>
+<td>显示所有图层</td>
+</tr>
+<tr>
+<td>HideAllLayers</td>
+<td>无</td>
+<td>隐藏所有图层</td>
+</tr>
+<tr>
+<td>CenterAndFitContent</td>
+<td>double fitRatio = 0.9</td>
+<td>居中并适应内容到控件大小</td>
+</tr>
+<tr>
+<td>ClearLayers</td>
+<td>无</td>
+<td>清空所有图层并重置变换</td>
+</tr>
+<tr>
+<td>LocateAndDrawCrosshair</td>
+<td><code>Point point</code></td>
+<td>定位到指定二维坐标并绘制十字准心，移除旧准心并自适应视角（基于当前缩放比例）</td>
+</tr>
+<tr>
+<td>GetSnapshotBitmap</td>
+<td>无</td>
+<td>获取当前内容的快照，若无法渲染则返回 <code>null</code>。用于捕获控件的可视化内容，例如保存为图片</td>
+</tr>
+<tr>
+<td>SetDisableBitmapCaching</td>
+<td><code>bool isCachingEnabled</code></td>
+<td>设置是否禁用位图缓存，并立即更新渲染</td>
+</tr>
+<tr>
+<td>SetLayerVisibility</td>
+<td><code>string layerName, bool isVisible</code></td>
+<td>设置指定图层的可见性状态</td>
+</tr>
+<tr>
+<td>SetAllLayersVisibility</td>
+<td><code>bool visible</code></td>
+<td>设置所有图层的显示状态</td>
+</tr>
+<tr>
+<td>SetDxfContentBounds</td>
+<td><code>Rect bounds</code></td>
+<td>设置 DXF 内容的原始边界，用于计算初始缩放和居中</td>
+</tr>
+<tr>
+<td>SetLayerContent</td>
+<td><code>IReadOnlyDictionary&lt;string, List&lt;GeometryItem&gt;&gt; layerGeometries</code></td>
+<td>清空现有图层并设置新的图层内容</td>
+</tr>
+<tr>
+<td>SetUnit</td>
+<td><code>UnitType unit</code></td>
+<td>设置单位（毫米或英寸）</td>
+</tr>
+<tr>
+<td>SetLineWidthProtection</td>
+<td><code>bool isEnabled, double minPixelWidth = 1.0</code></td>
+<td>启用或禁用最小线宽保护功能</td>
+</tr>
+<tr>
+<td>GetLayerGeometries</td>
+<td>string layerName</td>
+<td>获取指定图层的几何数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="示例代码">示例代码</h3>
+<h4 id="使用流程">使用流程</h4>
+<pre><code class="lang-csharp">// 创建 DrawingVisualHost 实例
+var host = new DrawingVisualHost();
+
+// 设置单位为毫米
+host.SetUnit(UnitType.Millimeter);
+
+// 添加图层
+var geometries = new List&lt;(Geometry, Pen)&gt; {
+    (new LineGeometry(new Point(0, 0), new Point(100, 100)), new Pen(Brushes.Black, 1.0))
+};
+host.AddLayer(&quot;Layer1&quot;, geometries, isLineWidthProtection: true);
+
+// 设置 DXF 内容边界
+host.SetDxfContentBounds(new Rect(0, 0, 100, 100));
+
+// 居中并适应内容
+host.CenterAndFitContent();
+
+// 设置图层可见性
+host.SetLayerVisibility(&quot;Layer1&quot;, true);
+</code></pre>
+<h4 id="交互控制">交互控制</h4>
+<pre><code class="lang-csharp">// 缩放控制
+host.Scale = 2.0; // 放大2倍
+host.ScaleStep = 0.2; // 设置缩放步长为20%
+
+// 平移控制
+host.TranslateX = 100; // 向右平移100像素
+host.TranslateY = 50;  // 向下平移50像素
+
+// 图层管理
+host.SetLayerVisibility(&quot;轮廓层&quot;, false); // 隐藏轮廓层
+host.ShowAllLayers(); // 显示所有图层
+</code></pre>
+<h2 id="完整实现流程与系统架构">完整实现流程与系统架构</h2>
+<h3 id="分析与设计">分析与设计</h3>
+<p>为生成高效、平滑的加工或运动轨迹，需要对从 DXF 文件中提取出的不同几何图形进行智能排序。核心目标是最小化空载行程（即工具在安全高度的移动距离），从而缩短总耗时</p>
+<ul>
+<li>排序算法选择
+<ul>
+<li>针对直线段的轨迹点排序：
+<ul>
+<li>使用最近邻算法，因为简单高效，适合解决类似旅行商（TSP）的路径优化的问题</li>
+<li>以一个指定的起点出发，每次选择下一个最近的线段端点（通过欧几里得距离计算），直到走完所有线段，减少移动距离</li>
+<li>对每个线段可以正向、反向走，自动判断更优路径</li>
+<li>在非连续线段间插入抬升（安全高度）点</li>
+<li>时间复杂度为<code>O(n²)，其中 n 为线段数量</code></li>
+<li>偏航角通过直线起点、终点，用极坐标计算得到</li>
+<li>缺点：时间复杂度高，且可能找到局部最优解而不是全局最优解</li>
+</ul>
+</li>
+<li>针对多段线的轨迹点排序：
+<ul>
+<li>与直线段的处理逻辑完全统一</li>
+<li>多段线作为整体处理，保持线段内部点的顺序不变，仅优化多段线之间的连接顺序</li>
+<li>在多段线间切换时，同样遵循安全高度 (SafeZ) 切换机制</li>
+<li>时间复杂度为<code>O(n²)，其中 n 为多段线数量</code></li>
+<li>偏航角计算方式与直线段一致，基于多段线首段的起点和终点</li>
+</ul>
+</li>
+<li>针对圆弧的轨迹点排序：
+<ul>
+<li>算法：与直线段一致，使简单高效，适合优化圆弧段的连接顺序</li>
+<li>从指定起点或原点出发，使用专用方法<code>FindNearestArcSegmentEnd</code>选择距离当前点最近的未访问圆弧段端点（起点或终点），通过欧几里得距离计算</li>
+<li>每条圆弧固定三点：起点 → 中点 → 终点。支持圆弧段的正向（0 -&gt; 2）或反向（2 -&gt; 0）遍历，自动选择更优路径</li>
+<li>在非连续圆弧段间（距离大于容差值）插入安全高度点，包括上升、空移和下降操作</li>
+<li>时间复杂度为<code>O(n²)，其中 n 是圆弧段数量</code></li>
+<li>保留在几何提取器中生成的轨迹点序列描述</li>
+</ul>
+</li>
+<li>针对圆的轨迹点排序：
+<ul>
+<li>待办</li>
+</ul>
+</li>
+<li>针对样条曲线的轨迹点排序：
+<ul>
+<li>算法: 样条曲线的处理是所有图形中最复杂的，但其排序思路与其他类型保持一致</li>
+<li>待办</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>坐标参考系统设计：
+<ul>
+<li>所有轨迹点坐标以<code>Origin</code>为参考原点</li>
+<li>支持自定义起点 (StartPoint)，优先于最近邻策略</li>
+<li>坐标转换公式：相对X = 绝对X - Origin.X，相对Y = 绝对Y - Origin.Y</li>
+<li>Z 轴坐标直接使用绝对高度，安全高度 (SafeZ) 可配置</li>
+</ul>
+</li>
+<li>安全高度切换机制：
+<ul>
+<li>当两段之间的水平距离大于<code>Epsilon</code>时触发高度切换</li>
+<li>切换流程：抬升至安全高度→空移→下降至工作高度</li>
+<li>安全高度可通过<code>SafeZ</code>参数配置，默认 50mm</li>
+<li>高度切换点自动插入，不影响原始轨迹点的加工逻辑</li>
+</ul>
+</li>
+<li>过滤运动范围矩形边框
+<ul>
+<li>通过设定<code>BoundarySize</code>中的高、宽进行过滤，默认为 null 不进行过滤</li>
+<li>范围边框仅过滤类型为多段线的几何，如 CAD 中的矩形选项，而不是通过直线组成的边框，否则无法过滤</li>
+</ul>
+</li>
+</ul>
+<h3 id="系统整体架构">系统整体架构</h3>
+<ul>
+<li>DXF 解析：负责读取 DXF 文件并提取几何实体</li>
+<li>几何点提取器: 从几何实体中提取轨迹点序列</li>
+<li>路径规划：应用搜索算法、动态规划等生成最优路径</li>
+<li>轨迹可视化: 将轨迹点序列可视化为图层（点标记、序号标签、方向箭头等）的几何数据</li>
+<li>数据持久化： 持久化保存到硬盘，包括参数配置、生成的轨迹点序列、原始 DXF 二进制内容等</li>
+<li>视觉绘制容器： 基于<code>DrawingVisual</code>的高性能矢量图形宿主控件</li>
+</ul>
+<h3 id="算法列表">算法列表</h3>
+<h4 id="最近邻算法">最近邻算法</h4>
+<p><strong>最邻近算法是一种贪心算法，广泛用于解决类似旅行商（TSP）的路径优化问题，其核心思想是：</strong></p>
+<ol>
+<li>从一个起点（指定点或原点）开始</li>
+<li>在每次迭代中，选择距离当前点最近的未访问的端点作为下一个目标</li>
+<li>对每个段支持正向或者反向遍历，选择更优路径（即距离更短的端点）</li>
+<li>重复步骤 2 直到所有线段被访问</li>
+<li>可选地，返回原点</li>
+</ol>
+<ul>
+<li>时间复杂度：<code>O(n²)</code>，其中<code>n</code>是段的数量。每次选择最近段需要遍历所有未访问段（<code>O(n)</code>），共需选择<code>n</code>次</li>
+<li>局限性：可能得到局部最优解，而非全局最优解</li>
+</ul>
+<h4 id="欧几里得距离">欧几里得距离</h4>
+<p><strong>欧几里得距离用于计算两点之间的直线距离，是选择最近段端点的依据：</strong></p>
+<ul>
+<li>计算从当前点 <span class="math">\((x_1, y_1)\)</span> 到候选端点 <span class="math">\((x_2, y_2)\)</span> 的向量</li>
+<li>计算该向量在坐标系下的模长，得到两点间的直线距离，单位：与坐标相同的单位</li>
+<li>若当前点与候选端点重合（零向量），则距离 <span class="math">\(d = 0\)</span></li>
+</ul>
+<div class="math">
+\[
+d = \sqrt{(x_{2}-x_{1})^{2} + (y_{2}-y_{1})^{2}}
+\]</div>
+<h4 id="偏航角">偏航角</h4>
+<p>偏航角（Rz）表示轨迹方向，用于控制加工设备的朝向，基于两点间的极坐标计算</p>
+<p><strong>对直线段：偏航角 Rz 即为该段起点到终点的方向角：</strong></p>
+<ul>
+<li>计算从起点 <span class="math">\((x_1, y_1)\)</span> 到终点 <span class="math">\((x_2, y_2)\)</span> 的向量</li>
+<li>计算该向量在坐标系下的极角（方向角），单位：弧度</li>
+<li>将方向角从弧度转换为角度，并归一化到 <span class="math">\([0, 360]\)</span></li>
+<li>归一化：若 <span class="math">\(\text{Rz} &lt; 0\)</span>，则 <span class="math">\(\text{Rz} = \text{Rz} + 360\)</span></li>
+</ul>
+<div class="math">
+\[
+\text{Rz} = \arctan2(y_2 - y_1, x_2 - x_1) \cdot \frac{180}{\pi}
+\]</div>
+<p><strong>对圆弧段：切线方向垂直于该点到圆心的半径向量：</strong></p>
+<ul>
+<li>计算从圆心 <span class="math">\((x_1, y_1)\)</span> 到当前点 <span class="math">\((x_2, y_2)\)</span> 的半径向量</li>
+<li>计算当前点在圆心坐标系下的极角（径向角），单位：弧度</li>
+<li>根据圆弧旋转方向（逆时针或顺时针）计算切线角</li>
+<li>将切线角从弧度转换为角度，并归一化到 <span class="math">\([0, 360]\)</span></li>
+<li>公式 <span class="math">\(\pm\)</span> 符号选择：逆时针（CCW）取正，顺时针（CW）取负</li>
+<li>归一化：若 <span class="math">\(\text{Rz} &lt; 0\)</span>，则 <span class="math">\(\text{Rz} = \text{Rz} + 360\)</span>；若 <span class="math">\(\text{Rz} \geq 360\)</span>，则 <span class="math">\(\text{Rz} = \text{Rz} - 360\)</span></li>
+</ul>
+<div class="math">
+\[
+\text{Rz} = \left( \arctan2(y_2 - y_1, x_2 - x_1) \pm \frac{\pi}{2} \right) \cdot \frac{180}{\pi}
+\]</div>
+<h4 id="圆心">圆心</h4>
+<p><strong>圆心表示圆弧段的几何中心，用于计算圆弧轨迹点的切线方向（偏航角 Rz）。通过圆弧的起点、中点和终点三点坐标确定圆心位置和旋转方向：</strong></p>
+<ul>
+<li>设圆弧的起点为 <span class="math">\((x_s, y_s)\)</span>、中点为 <span class="math">\((x_m, y_m)\)</span>、终点为 <span class="math">\((x_e, y_e)\)</span></li>
+<li>圆心 <span class="math">\((x_c, y_c)\)</span> 是起点到中点和中点到终点两段弦的垂直平分线的交点</li>
+<li>计算分母：</li>
+</ul>
+<div class="math">
+\[
+d = 2 \cdot (x_s (y_m - y_e) + x_m (y_e - y_s) + x_e (y_s - y_m))
+\]</div>
+<ul>
+<li>若 <span class="math">\(|d| &lt; 10^{-9}\)</span>，则三点近乎共线，无法确定唯一圆心，需抛出异常</li>
+<li>圆心坐标计算公式：</li>
+</ul>
+<div class="math">
+\[
+x_c = \frac{(x_s^2 + y_s^2)(y_m - y_e) + (x_m^2 + y_m^2)(y_e - y_s) + (x_e^2 + y_e^2)(y_s - y_m)}{d}
+\]</div>
+<div class="math">
+\[
+y_c = \frac{(x_s^2 + y_s^2)(x_e - x_m) + (x_m^2 + y_m^2)(x_s - x_e) + (x_e^2 + y_e^2)(x_m - x_s)}{d}
+\]</div>
+<ul>
+<li>旋转方向判断：
+<ul>
+<li>通过起点、中点、终点的相对位置确定圆弧是逆时针（CCW）还是顺时针（CW）</li>
+<li>计算从起点到中点的向量 <span class="math">\(\vec{A} = (x_m - x_s, y_m - y_s)\)</span> 和从中点到终点的向量 <span class="math">\(\vec{B} = (x_e - x_m, y_e - y_m)\)</span></li>
+<li>计算<a href="https://zh.wikipedia.org/wiki/%E5%8F%89%E7%A7%AF">叉积</a>的 <span class="math">\(z\)</span> 分量：</li>
+</ul>
+</li>
+</ul>
+<div class="math">
+\[
+\text{cross} = (x_m - x_s)(y_e - y_s) - (y_m - y_s)(x_e - x_s)
+\]</div>
+<ul>
+<li>判断规则：
+<ul>
+<li>若 <span class="math">\(\text{cross} &gt; 0\)</span>，圆弧为逆时针（CCW）</li>
+<li>若 <span class="math">\(\text{cross} &lt; 0\)</span>，圆弧为顺时针（CW）</li>
+<li>若 <span class="math">\(\text{cross} \approx 0\)</span>，三点近乎共线，与圆心计算的异常条件一致</li>
+</ul>
+</li>
+</ul>
+<h2 id="坐标系">坐标系</h2>
+<table>
+<thead>
+<tr>
+<th>应用</th>
+<th>X 轴</th>
+<th>Y 轴</th>
+<th>单位</th>
+<th>场景</th>
+<th>坐标变换方式</th>
+<th>渲染</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WPF</td>
+<td>向右为正</td>
+<td>向下为正</td>
+<td>与设备无关的像素（DIP）</td>
+<td>用户界面、显示图形元素、处理用户交互等</td>
+<td>矩阵变换（Transform 类）</td>
+<td><a href="https://zh.wikipedia.org/zh-cn/DirectX">DirectX</a></td>
+</tr>
+<tr>
+<td>CAD</td>
+<td>向右为正</td>
+<td>向上为正</td>
+<td>用户自定义（如毫米、英寸）</td>
+<td>工程制图、机械设计、建筑模型等</td>
+<td>用户坐标系（UCS）、世界坐标系（WCS）</td>
+<td>未知</td>
+</tr>
+</tbody>
+</table>
+<p><strong>图形处理中极其常见、却又极易被忽略的核心问题：</strong></p>
+<ul>
+<li>DXF文件内部的数学世界：遵循标准的笛卡尔坐标系，Y轴向上为正 (Y-Up)。在这个世界里，角度是**逆时针 (Counter-Clockwise, CCW)**增长的</li>
+<li>WPF/Windows的屏幕渲染世界：遵循图形渲染的惯例，Y轴向下为正 (Y-Down)</li>
+</ul>
+<h2 id="工程文件结构">工程文件结构</h2>
+<h3 id="additionalproperties">AdditionalProperties</h3>
+<p><strong>额外的元数据属性：</strong></p>
+<table>
+<thead>
+<tr>
+<th>键</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DxfContentHash</td>
+<td><code>string</code></td>
+<td>DXF 文件的哈希值</td>
+</tr>
+<tr>
+<td>DxfContent</td>
+<td><code>byte[]</code></td>
+<td>存储 DXF 文件的二进制内容</td>
+</tr>
+<tr>
+<td>DxfFilePath</td>
+<td><code>string</code></td>
+<td>标识 DXF 文件的路径</td>
+</tr>
+<tr>
+<td><del>LayerGeometries</del></td>
+<td><code>Dictionary&lt;string, List&lt;(Geometry Geometry, Pen Pen)&gt;&gt;</code></td>
+<td>图层名称到几何图形列表的映射</td>
+</tr>
+<tr>
+<td><del>TotalBounds</del></td>
+<td><code>Rect</code></td>
+<td>DXF 的总边界</td>
+</tr>
+<tr>
+<td>DxfVersion</td>
+<td><code>string</code></td>
+<td>DXF 文件的版本号</td>
+</tr>
+<tr>
+<td>LastSavedBy</td>
+<td><code>string</code></td>
+<td>DXF 文件最后保存者</td>
+</tr>
+</tbody>
+</table>
+<h3 id="servicedata">ServiceData</h3>
+<p><strong>服务数据：</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TrajectoryPath</td>
+<td><code>Dictionary&lt;string, TrajectoryPath&gt;</code></td>
+<td>键是图层名称，值是该图层的轨迹路径数据</td>
+</tr>
+<tr>
+<td>Parameters</td>
+<td><code>Dictionary&lt;string, TrajectoryParameters&gt;</code></td>
+<td>键是图层名称，值是该图层的轨迹生成参数</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/MAS.Utilities/DXFPathPlanning.md#lines-1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

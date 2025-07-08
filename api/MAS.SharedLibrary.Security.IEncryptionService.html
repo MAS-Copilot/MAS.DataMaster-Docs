@@ -465,11 +465,53 @@ Interface IEncryptionService  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_SharedLibrary_Security_IEncryptionService_SaveEncryptedJsonAsync_" data-uid="MAS.SharedLibrary.Security.IEncryptionService.SaveEncryptedJsonAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Security_IEncryptionService_SaveEncryptedJsonAsync_System_String_System_IO_FileStream_" data-uid="MAS.SharedLibrary.Security.IEncryptionService.SaveEncryptedJsonAsync(System.String,System.IO.FileStream)">
+  SaveEncryptedJsonAsync(string, FileStream)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Security/IEncryptionService.cs#lines-93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步将 JSON 字符串加密并保存到文件流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task SaveEncryptedJsonAsync(string jsonContent, FileStream fileStream)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>jsonContent</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要序列化和加密字符串内容</p>
+</dd>
+    <dt><code>fileStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream">FileStream</a></dt>
+    <dd><p>目标文件流，方法执行后不会自动关闭该流</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_SharedLibrary_Security_IEncryptionService_SignData_" data-uid="MAS.SharedLibrary.Security.IEncryptionService.SignData*"></a>
 
   <h3 id="MAS_SharedLibrary_Security_IEncryptionService_SignData_System_String_" data-uid="MAS.SharedLibrary.Security.IEncryptionService.SignData(System.String)">
   SignData(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Security/IEncryptionService.cs#lines-92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Security/IEncryptionService.cs#lines-100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>使用私钥对数据进行签名</p>
@@ -547,7 +589,7 @@ Interface IEncryptionService  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_SharedLibrary_Security_IEncryptionService_VerifySignature_System_String_System_String_" data-uid="MAS.SharedLibrary.Security.IEncryptionService.VerifySignature(System.String,System.String)">
   VerifySignature(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Security/IEncryptionService.cs#lines-100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Security/IEncryptionService.cs#lines-108"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>使用公钥验证数据的签名</p>
