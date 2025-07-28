@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Abstractions_AnimatedWindow" data-uid="MAS.SharedLibrary.Abstractions.AnimatedWindow" class="text-break">
-Class AnimatedWindow  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-21"><i class="bi bi-code-slash"></i></a>
+Class AnimatedWindow  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-21"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -2186,7 +2186,7 @@ Class AnimatedWindow  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_SharedLibrary_Abstractions_AnimatedWindow__ctor" data-uid="MAS.SharedLibrary.Abstractions.AnimatedWindow.#ctor">
   AnimatedWindow()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.SharedLibrary.Abstractions.AnimatedWindow.html">AnimatedWindow</a> 新实例</p>
@@ -2217,7 +2217,7 @@ Class AnimatedWindow  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_SharedLibrary_Abstractions_AnimatedWindow_GetDialogResult" data-uid="MAS.SharedLibrary.Abstractions.AnimatedWindow.GetDialogResult">
   GetDialogResult()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取窗口的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.window.dialogresult">DialogResult</a></p>
@@ -2250,7 +2250,7 @@ Class AnimatedWindow  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_SharedLibrary_Abstractions_AnimatedWindow_OnClosing_System_ComponentModel_CancelEventArgs_" data-uid="MAS.SharedLibrary.Abstractions.AnimatedWindow.OnClosing(System.ComponentModel.CancelEventArgs)">
   OnClosing(CancelEventArgs)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Raises the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.window.closing">Closing</a> event.</p>
@@ -2279,11 +2279,77 @@ Class AnimatedWindow  <a class="header-action link-secondary" title="View source
 
 
 
+  <a id="MAS_SharedLibrary_Abstractions_AnimatedWindow_OnShowAnimationCompleted_" data-uid="MAS.SharedLibrary.Abstractions.AnimatedWindow.OnShowAnimationCompleted*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_AnimatedWindow_OnShowAnimationCompleted" data-uid="MAS.SharedLibrary.Abstractions.AnimatedWindow.OnShowAnimationCompleted">
+  OnShowAnimationCompleted()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当入场动画完成时触发的事件钩子</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnShowAnimationCompleted()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_AnimatedWindow_SetWindowSizeByRatio_" data-uid="MAS.SharedLibrary.Abstractions.AnimatedWindow.SetWindowSizeByRatio*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_AnimatedWindow_SetWindowSizeByRatio_System_Double_System_Double_" data-uid="MAS.SharedLibrary.Abstractions.AnimatedWindow.SetWindowSizeByRatio(System.Double,System.Double)">
+  SetWindowSizeByRatio(double, double)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据主窗口尺寸按比例设置当前窗口的大小</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void SetWindowSizeByRatio(double widthRatio = 0.85, double heightRatio = 0.85)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>widthRatio</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>相对于主窗口宽度的比例，默认为 0.85</p>
+</dd>
+    <dt><code>heightRatio</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>相对于主窗口高度的比例，默认为 0.85</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Abstractions_AnimatedWindow_SetWindowSizeByRatio_System_Double_System_Double__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>调用时机：在子类构造函数中执行， 在 InitializeComponent() 之后</p>
+</div>
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-21" class="edit-link">Edit this page</a>
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Abstractions/AnimatedWindow.cs#lines-21" class="edit-link">Edit this page</a>
         </div>
 
 

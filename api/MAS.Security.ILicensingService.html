@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -54,7 +54,7 @@
             <div id="navbar">
               <form class="search" role="search" id="search">
                 <i class="bi bi-search"></i>
-                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
               </form>
             </div>
           </div>
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Security_ILicensingService" data-uid="MAS.Security.ILicensingService" class="text-break">
-Interface ILicensingService  
+Interface ILicensingService  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ILicensingService.cs#lines-15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -125,7 +125,7 @@ Interface ILicensingService
 
   <h3 id="MAS_Security_ILicensingService_SavingLicenseKeyAsync_System_String_" data-uid="MAS.Security.ILicensingService.SavingLicenseKeyAsync(System.String)">
   SavingLicenseKeyAsync(string)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ILicensingService.cs#lines-34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步保存许可密钥</p>
@@ -133,7 +133,7 @@ Interface ILicensingService
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; SavingLicenseKeyAsync(string licenseKey)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;Response&gt; SavingLicenseKeyAsync(string licenseKey)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -145,8 +145,8 @@ Interface ILicensingService
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>异步操作任务结果，是否保存成功</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.Security.Response.html">Response</a>&gt;</dt>
+    <dd><p>异步操作任务，响应结果<a class="xref" href="MAS.Security.Response.html">Response</a></p>
 </dd>
   </dl>
 
@@ -164,7 +164,7 @@ Interface ILicensingService
 
   <h3 id="MAS_Security_ILicensingService_ValidateLicenseKey" data-uid="MAS.Security.ILicensingService.ValidateLicenseKey">
   ValidateLicenseKey()
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ILicensingService.cs#lines-27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>验证许可证密钥</p>
@@ -172,14 +172,14 @@ Interface ILicensingService
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ValidationResult ValidateLicenseKey()</code></pre>
+    <pre><code class="lang-csharp hljs">Response ValidateLicenseKey()</code></pre>
   </div>
 
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.Security.ValidationResult.html">ValidationResult</a></dt>
-    <dd><p>验证结果</p>
+    <dt><a class="xref" href="MAS.Security.Response.html">Response</a></dt>
+    <dd><p>响应结果</p>
 </dd>
   </dl>
 
@@ -197,7 +197,7 @@ Interface ILicensingService
 
   <h3 id="MAS_Security_ILicensingService_ValidateLicenseKey_System_String_" data-uid="MAS.Security.ILicensingService.ValidateLicenseKey(System.String)">
   ValidateLicenseKey(string?)
-  
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ILicensingService.cs#lines-21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>验证许可证密钥</p>
@@ -205,7 +205,7 @@ Interface ILicensingService
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ValidationResult ValidateLicenseKey(string? licenseKey)</code></pre>
+    <pre><code class="lang-csharp hljs">Response ValidateLicenseKey(string? licenseKey)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -217,8 +217,8 @@ Interface ILicensingService
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.Security.ValidationResult.html">ValidationResult</a></dt>
-    <dd><p>验证结果</p>
+    <dt><a class="xref" href="MAS.Security.Response.html">Response</a></dt>
+    <dd><p>响应结果</p>
 </dd>
   </dl>
 
@@ -236,6 +236,7 @@ Interface ILicensingService
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ILicensingService.cs#lines-15" class="edit-link">Edit this page</a>
         </div>
 
 

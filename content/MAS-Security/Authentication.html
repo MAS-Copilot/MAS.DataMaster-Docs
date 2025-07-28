@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>认证服务 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="认证服务 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/MAS-Security/Authentication.md#lines-1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="认证服务">认证服务</h1>
+
+<h2 id="数据库">数据库</h2>
+<h3 id="用户user">用户（User）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>INT</td>
+<td>用户的标识符</td>
+<td>主键，自增，唯一，不为Null</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>VARCHAR(20)</td>
+<td>用户名</td>
+<td>唯一，不为Null</td>
+</tr>
+<tr>
+<td>Role</td>
+<td>INT</td>
+<td>用户角色，参考<code>UserRoles</code>枚举</td>
+<td>不为Null，默认0</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>VARCHAR(50)</td>
+<td>邮箱</td>
+<td>唯一</td>
+</tr>
+<tr>
+<td>PasswordHash</td>
+<td>VARBINARY(64)</td>
+<td>用户密码的哈希值</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>PasswordSalt</td>
+<td>VARBINARY(64)</td>
+<td>密码盐，用于加密用户密码</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>LoginCount</td>
+<td>INT</td>
+<td>用户登录次数</td>
+<td>不为Null，默认0</td>
+</tr>
+<tr>
+<td>LastLoginTime</td>
+<td>DATETIME</td>
+<td>最后一次登录时间</td>
+<td>无</td>
+</tr>
+<tr>
+<td>AvatarBackground</td>
+<td>VARCHAR(10)</td>
+<td>头像背景颜色 （十六进制格式）</td>
+<td>无</td>
+</tr>
+<tr>
+<td>Notes</td>
+<td>TEXT</td>
+<td>备注信息</td>
+<td>无</td>
+</tr>
+<tr>
+<td>CreatedAt</td>
+<td>DATETIME</td>
+<td>创建时间</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>UpdatedAt</td>
+<td>DATETIME</td>
+<td>最后更新时间</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h3 id="操作日志operationlog">操作日志（OperationLog）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>INT</td>
+<td>操作日志标识符</td>
+<td>主键，自增，唯一，不为Null</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>VARCHAR(20)</td>
+<td>操作者的用户名称</td>
+<td>外键，关联到 Users 表</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>VARCHAR(100)</td>
+<td>操作名称</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>VARCHAR(255)</td>
+<td>操作描述或详细信息</td>
+<td>无</td>
+</tr>
+<tr>
+<td>ResourceId</td>
+<td>VARCHAR(100)</td>
+<td>操作资源的Id</td>
+<td>无</td>
+</tr>
+<tr>
+<td>IPAddress</td>
+<td>VARCHAR(50)</td>
+<td>操作地址</td>
+<td>无</td>
+</tr>
+<tr>
+<td>UserAgent</td>
+<td>VARCHAR(255)</td>
+<td>操作时的代理信息</td>
+<td>无</td>
+</tr>
+<tr>
+<td>CreatedAt</td>
+<td>DATETIME</td>
+<td>创建时间</td>
+<td>不为Null</td>
+</tr>
+</tbody>
+</table>
+<h3 id="登录日志loginlogs">登录日志（LoginLogs）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>INT</td>
+<td>登录记录标识符</td>
+<td>主键，自增，唯一，不为Null</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>VARCHAR(20)</td>
+<td>登录用户名</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>VARCHAR(100)</td>
+<td>操作名称</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>LoginTime</td>
+<td>DATETIME</td>
+<td>登录时间</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>IsSuccess</td>
+<td>BIT</td>
+<td>是否登录成功</td>
+<td>默认 1</td>
+</tr>
+<tr>
+<td>Notes</td>
+<td>VARCHAR(20)</td>
+<td>备注信息</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h2 id="本地文件">本地文件</h2>
+<h3 id="用户历史登录凭证userhistoryitem">用户历史登录凭证（UserHistoryItem）</h3>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Username</td>
+<td>string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>IsRememberMe</td>
+<td>bool</td>
+<td>是否记住密码</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>string?</td>
+<td>密码的哈希值（Base64编码）</td>
+</tr>
+<tr>
+<td>Salt</td>
+<td>string?</td>
+<td>密码的盐值（Base64编码）</td>
+</tr>
+<tr>
+<td>LastLoginTime</td>
+<td>DateTime</td>
+<td>最后一次登录时间</td>
+</tr>
+</tbody>
+</table>
+<h2 id="索引优化">索引优化</h2>
+<h3 id="用户索引user">用户索引（User）</h3>
+<p><strong>SQL 语句：</strong></p>
+<pre><code class="lang-sql">-- 角色字段：常用于查询权限、筛选角色
+CREATE INDEX `IX_User_Role` ON `User` (`Role`);
+
+-- 创建时间：注册用户时间排序筛选
+CREATE INDEX `IX_User_CreatedAt` ON `User` (`CreatedAt`);
+
+-- 最后登录时间：用于排序或查最近活跃用户
+CREATE INDEX `IX_User_LastLoginTime` ON `User` (`LastLoginTime`);
+
+-- 登录次数：排行榜、统计分析
+CREATE INDEX `IX_User_LoginCount` ON `User` (`LoginCount`);
+</code></pre>
+<p><strong>特性标记：</strong></p>
+<pre><code class="lang-csharp">[Index(&quot;IX_User_Role&quot;, &quot;Role&quot;)]
+[Index(&quot;IX_User_CreatedAt&quot;, &quot;CreatedAt&quot;)]
+[Index(&quot;IX_User_LastLoginTime&quot;, &quot;LastLoginTime&quot;)]
+[Index(&quot;IX_User_LoginCount&quot;, &quot;LoginCount&quot;)]
+</code></pre>
+<h3 id="操作日志索引operationlog">操作日志索引（OperationLog）</h3>
+<p><strong>SQL 语句：</strong></p>
+<pre><code class="lang-sql">-- 操作者 ID（外键，频繁用于筛选）
+CREATE INDEX `IX_OperationLog_Username` ON `OperationLog` (`Username`);
+
+-- 创建时间：用于时间段过滤，时间倒序分页等
+CREATE INDEX `IX_OperationLog_CreatedAt` ON `OperationLog` (`CreatedAt`);
+
+-- 操作名称：某类操作日志筛选
+CREATE INDEX `IX_OperationLog_Action` ON `OperationLog` (`Action`);
+
+-- 联合索引：用户在某时间段内的某类操作
+CREATE INDEX `IX_OperationLog_Username_CreatedAt` ON `OperationLog` (`Username`, `CreatedAt`);
+
+-- 如果资源操作类型分析比较频繁
+CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`, `Action`);
+</code></pre>
+<p><strong>特性标记：</strong></p>
+<pre><code class="lang-csharp">[Index(&quot;IX_OperationLog_Username&quot;, &quot;Username&quot;)]
+[Index(&quot;IX_OperationLog_CreatedAt&quot;, &quot;CreatedAt&quot;)]
+[Index(&quot;IX_OperationLog_Action&quot;, &quot;Action&quot;)]
+[Index(&quot;IX_OperationLog_UserId_CreatedAt&quot;, &quot;Username&quot;, &quot;CreatedAt&quot;)]
+[Index(&quot;IX_OperationLog_ResourceId_Action&quot;, &quot;ResourceId&quot;, &quot;Action&quot;)]
+</code></pre>
+<h2 id="命令权限">命令权限</h2>
+<h3 id="说明">说明</h3>
+<p><strong>权限的枚举值从低到高递增：</strong></p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>描述</th>
+<th>等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>无权限，未登录</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Visitor</td>
+<td>游客，注册时默认</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Operator</td>
+<td>操作员，需分配</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Engineer</td>
+<td>工程师，需分配</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>管理员</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Developer</td>
+<td>开发者</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterabstractions">MAS.DataMaster.Abstractions</h3>
+<h4 id="canvasviewmodelbase">CanvasViewModelBase</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CreateNewCommand</td>
+<td>新建</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>FromExistingTemplateCommand</td>
+<td>从模板新建</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenProjectCommand</td>
+<td>打开项目</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>LockObjectCommand</td>
+<td>锁定对象（解锁或锁定画布中所有模块的交互状态）</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>ZoomInCommand</td>
+<td>放大</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>ZoomOutCommand</td>
+<td>缩小</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>RestoreViewCommand</td>
+<td>还原视图</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>FitViewCommand</td>
+<td>适应视图</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>ProjectSavedCommand</td>
+<td>项目保存</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenSetPopCommand</td>
+<td>打开设置面板</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>ProjectSourceFilesCommand</td>
+<td>打开项目源文件</td>
+<td>Developer</td>
+</tr>
+</tbody>
+</table>
+<h4 id="commprotocolsetviewmodelbase">CommProtocolSetViewModelBase</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CancelConnectCommand</td>
+<td>取消连接</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RemoveInstanceCommand</td>
+<td>移除实例</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>CreatePlcInstanceCommand</td>
+<td>创建PLC实例</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>TestPlcInstanceConnectCommand</td>
+<td>测试PLC实例连接</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>CopyKeyCommand</td>
+<td>复制键</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h4 id="setviewmodelbase">SetViewModelBase</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ConfirmCommand</td>
+<td>确认</td>
+<td>Engineer</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dialogviewmodelbase">DialogViewModelBase</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ConfirmCommand</td>
+<td>确认操作</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>CloseWindowCommand</td>
+<td>关闭窗口</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamastercontrolsapplicationinitial">MAS.DataMaster.Controls.ApplicationInitial</h3>
+<h4 id="globalstoragepathstepviewmodel">GlobalStoragePathStepViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BrowseCommand</td>
+<td>浏览文件夹</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dbsetinitialstepviewmodel">DbSetInitialStepViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ConnectionCommand</td>
+<td>测试连接</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamastercontrolsimageproceflow">MAS.DataMaster.Controls.ImageProceFlow</h3>
+<h4 id="modulesviewmodelbase">ModulesViewModelBase</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DeleteControlCommand</td>
+<td>删除控件</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenInputImagePopupCommand</td>
+<td>图形类型输入</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenOutputImagePopupCommand</td>
+<td>图形类型输出</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamastercontrolsimageproceflowviewmodelsprepare">MAS.DataMaster.Controls.ImageProceFlow.ViewModels.Prepare</h3>
+<h4 id="cameraviewmodel">CameraViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ToggleCameraCommand</td>
+<td>打开或关闭相机</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamastercontrolsinteractivedataflow">MAS.DataMaster.Controls.InteractiveDataFlow</h3>
+<h4 id="modulesviewmodelbase-1">ModulesViewModelBase</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StateSwitchCommand</td>
+<td>切换模块状态</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>DeleteControlsCommand</td>
+<td>删除控件</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>StartTaskCommand</td>
+<td>启动任务</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>StopTaskCommand</td>
+<td>停止任务</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenPopupCommand</td>
+<td>打开弹出窗口</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>ClearContentCommand</td>
+<td>清除输出内容</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenDataExchangeCommand</td>
+<td>打开数据交换</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelspages">MAS.DataMaster.ViewModels.Pages</h3>
+<h4 id="allconfigurationviewmodel">AllConfigurationViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenSettingWindowCommand</td>
+<td>打开设置窗口</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h4 id="buildrunworkbenchviewmodel">BuildRunWorkbenchViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UnloadAssemblyCommand</td>
+<td>卸载程序集</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>RefreshLoadedAssemblyInfoCommand</td>
+<td>刷新加载的程序集信息</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>GenerateAssemblyCommand</td>
+<td>生成程序集</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>UnloadAllAssembliesCommand</td>
+<td>卸载所有程序集</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenBuildSettingCommand</td>
+<td>打开构建设置</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>StartAllInstancesCommand</td>
+<td>启动所有实例</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>StopAllInstancesCommand</td>
+<td>停止所有实例</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>HotReloadCommand</td>
+<td>热重载</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RefreshDataSourceCommand</td>
+<td>刷新数据源</td>
+<td>Engineer</td>
+</tr>
+</tbody>
+</table>
+<h4 id="homeviewmodel">HomeViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LogInCommand</td>
+<td>登录</td>
+<td>None</td>
+</tr>
+<tr>
+<td>PrismaTalkCommand</td>
+<td>AI 对话</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>CleanResourcesCommand</td>
+<td>资源清理</td>
+<td>Engineer</td>
+</tr>
+</tbody>
+</table>
+<h4 id="settingsviewmodel">SettingsViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenLogFolderCommand</td>
+<td>打开日志文件</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SwitchModeCommand</td>
+<td>切换模式</td>
+<td>Developer</td>
+</tr>
+<tr>
+<td>RefreshComponentCommand</td>
+<td>刷新组件</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h4 id="historynotificationsviewmodel">HistoryNotificationsViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ExportCommand</td>
+<td>导出历史通知</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelspagesecharts">MAS.DataMaster.ViewModels.Pages.ECharts</h3>
+<h4 id="playgroundviewmodel">PlaygroundViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CreationCommand</td>
+<td>创建</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelspagesutilities">MAS.DataMaster.ViewModels.Pages.Utilities</h3>
+<h4 id="dxfpathplanningviewmodel">DXFPathPlanningViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SelectDXFAssociationCommand</td>
+<td>选择DXF关联</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>SwitchLayersCommand</td>
+<td>切换图层</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>TrajectoryParametersCommand</td>
+<td>轨迹参数</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>ExportAsDXFCommand</td>
+<td>导出为DXF</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>CurrentPositionCommand</td>
+<td>打开文件当前位置</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RefreshParsingCommand</td>
+<td>刷新解析</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelspagesvision">MAS.DataMaster.ViewModels.Pages.Vision</h3>
+<h4 id="workbenchviewmodel">WorkbenchViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StateSwitchCommand</td>
+<td>切换指定管道运行状态</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>TopologyCommand</td>
+<td>执行拓扑排序</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>TriggerPipelineCommand</td>
+<td>手动触发指定管道</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenPipelineInfoPopupCommand</td>
+<td>打开管道信息弹出窗口</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>DeletePipelineCommand</td>
+<td>删除指定管道</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>LocationModuleCommand</td>
+<td>定位模块</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>InitializationCommand</td>
+<td>初始化管道</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenEditCodePopupCommand</td>
+<td>打开指定管道代码编辑弹窗</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>InitializePipelineCommand</td>
+<td>初始化管道</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindows">MAS.DataMaster.ViewModels.Windows</h3>
+<h4 id="codeeditorviewmodel">CodeEditorViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CreateNewCommand</td>
+<td>创建新文件</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenFileCommand</td>
+<td>打开文件</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>FileSaveCommand</td>
+<td>保存文件</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>FileSaveAsCommand</td>
+<td>文件另存为</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>ExitCommand</td>
+<td>退出</td>
+<td>Engineer</td>
+</tr>
+</tbody>
+</table>
+<h4 id="concisecodeeditorviewmodel">ConciseCodeEditorViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CloseWindowCommand</td>
+<td>关闭窗口</td>
+<td>None</td>
+</tr>
+<tr>
+<td>CheckAndSaveCommand</td>
+<td>检查保存</td>
+<td>Engineer</td>
+</tr>
+</tbody>
+</table>
+<h4 id="initializationviewmodel">InitializationViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CloseWindowCommand</td>
+<td>关闭窗口</td>
+<td>None</td>
+</tr>
+<tr>
+<td>NextCommand</td>
+<td>下一步</td>
+<td>None</td>
+</tr>
+<tr>
+<td>BackCommand</td>
+<td>上一步</td>
+<td>None</td>
+</tr>
+<tr>
+<td>CompleteCommand</td>
+<td>完成</td>
+<td>None</td>
+</tr>
+<tr>
+<td>ExecuteStepCommand</td>
+<td>执行步骤逻辑</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindowscommunication">MAS.DataMaster.ViewModels.Windows.Communication</h3>
+<h4 id="dataexchangeviewmodel">DataExchangeViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EditDataReadTaskCommand</td>
+<td>编辑数据读取任务代码</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>DeleteDataReadTaskCommand</td>
+<td>删除数据读取任务代码</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>RefreshDataReadCommand</td>
+<td>加载和编译数据读取结构体</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>AddDataReadsCommand</td>
+<td>添加数据读取结构体</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenDataReadLocationCommand</td>
+<td>打开数据读取代码存放路径</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>DeleteBuildDirectoryCommand</td>
+<td>删除构建目录并重新初始化</td>
+<td>Admin</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inputdialogviewmodel">InputDialogViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ConfirmCommand</td>
+<td>确认</td>
+<td>Engineer</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindowsdatabase">MAS.DataMaster.ViewModels.Windows.Database</h3>
+<h4 id="databasesetviewmodel">DatabaseSetViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CancelConnectCommand</td>
+<td>取消测试连接</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>TestDbInstanceConnectCommand</td>
+<td>测试数据库连接</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>CreateDbInstanceCommand</td>
+<td>创建数据库实例</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>RemoveInstanceCommand</td>
+<td>移除数据库实例</td>
+<td>Engineer</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dataexchangeviewmodel-1">DataExchangeViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EditEntityCommand</td>
+<td>编辑实体</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>EditRepositoryCommand</td>
+<td>编辑仓储</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>EditMapperCommand</td>
+<td>编辑映射器</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenDataAccessDirCommand</td>
+<td>打开数据访问目录</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RefreshCommand</td>
+<td>刷新</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>DeleteDataAccessDirCommand</td>
+<td>删除数据访问目录并重新初始化</td>
+<td>Admin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindowsdataexport">MAS.DataMaster.ViewModels.Windows.DataExport</h3>
+<h4 id="dataexchangeviewmodel-2">DataExchangeViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RefreshCommand</td>
+<td>刷新</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>EditScriptCommand</td>
+<td>编辑脚本</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenDirectoryCommand</td>
+<td>打开数据访问目录</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>DeleteDirectoryCommand</td>
+<td>删除数据访问目录并重新初始化</td>
+<td>Admin</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dataexportsetviewmodel">DataExportSetViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SelectExportPathCommand</td>
+<td>选择数据导出路径</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenExportFolderCommand</td>
+<td>打开保存数据导出文件</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SelectBackupPathCommand</td>
+<td>选择数据备份路径文件</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenBackupFolderCommand</td>
+<td>打开数据备份文件</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>CreateDataExportInstanceCommand</td>
+<td>创建数据导出实例</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>RemoveInstanceCommand</td>
+<td>移除实例</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenInstancesExprotFolderCommand</td>
+<td>打开实例导出文件夹</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenInstancesBackupFolderCommand</td>
+<td>打开实例备份文件夹</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindowsimageproceflowfinish">MAS.DataMaster.ViewModels.Windows.ImageProceFlow.Finish</h3>
+<h4 id="imageviewersetviewmodel">ImageViewerSetViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SelectedSavePathCommand</td>
+<td>选择保存路径</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenSavePathCommand</td>
+<td>打开保存路径</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindowsimageproceflowprepare">MAS.DataMaster.ViewModels.Windows.ImageProceFlow.Prepare</h3>
+<h4 id="camerasetviewmodel">CameraSetViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SearchDeviceListCommand</td>
+<td>查找可用的相机设备列表</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h4 id="imagesourcesetviewmodel">ImageSourceSetViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SelectedImageFileCommand</td>
+<td>选择图像文件</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SetImageSourceCommand</td>
+<td>设置图像源</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenFilePathCommand</td>
+<td>打开文件路径</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>LoadImageCommand</td>
+<td>加载图片</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindowsprismatalk">MAS.DataMaster.ViewModels.Windows.PrismaTalk</h3>
+<h4 id="prismatalkviewmodel">PrismaTalkViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SendMessageCommand</td>
+<td>发送消息</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>CloseWindowCommand</td>
+<td>关闭窗口</td>
+<td>None</td>
+</tr>
+<tr>
+<td>CancelSendMessageCommand</td>
+<td>取消发送消息</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>NewConversationCommand</td>
+<td>新对话</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>ShareCommand</td>
+<td>捕获长截图</td>
+<td>Visitor</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindowsprivilege">MAS.DataMaster.ViewModels.Windows.Privilege</h3>
+<h4 id="dashboardviewmodel">DashboardViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChangePasswordCommand</td>
+<td>修改密码</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>LogOutCommand</td>
+<td>退出登录</td>
+<td>Visitor</td>
+</tr>
+</tbody>
+</table>
+<h4 id="loginviewmodel">LoginViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RandomUsernameCommand</td>
+<td>随机用户名</td>
+<td>None</td>
+</tr>
+<tr>
+<td>LoginCommand</td>
+<td>登录</td>
+<td>None</td>
+</tr>
+<tr>
+<td>SignUpCommand</td>
+<td>注册</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h4 id="changepasswordviewmodel">ChangePasswordViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChangePasswordCommand</td>
+<td>修改密码</td>
+<td>Visitor</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindowsutilities">MAS.DataMaster.ViewModels.Windows.Utilities</h3>
+<h4 id="trajectoryparameterssetviewmodel">TrajectoryParametersSetViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RestoreDefaultCommand</td>
+<td>恢复默认参数</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>SyncRectToBoundaryCommand</td>
+<td>同步边界到矩形尺寸</td>
+<td>Engineer</td>
+</tr>
+</tbody>
+</table>
+<h4 id="trajectoryviewmodel">TrajectoryViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CloseWindowCommand</td>
+<td>关闭窗口</td>
+<td>None</td>
+</tr>
+<tr>
+<td>LocateCommand</td>
+<td>点定位</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SaveAsImageCommand</td>
+<td>另存为图片</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>TrajectoryAnimationCommand</td>
+<td>查看轨迹动画</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>InsertPointCommand</td>
+<td>插入点位</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>ParametersSetCommand</td>
+<td>打开参数设置</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>ResetDataCommand</td>
+<td>数据重置</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>SaveAsTableCommand</td>
+<td>另存为表格</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>PointEditorCommand</td>
+<td>点位编辑</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>DeletePointCommand</td>
+<td>删除点位</td>
+<td>Engineer</td>
+</tr>
+</tbody>
+</table>
+<h4 id="trajectoryanimationviewmodel">TrajectoryAnimationViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RunSimulationCommand</td>
+<td>运行仿真</td>
+<td>Visitor</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/docs/content/MAS-Security/Authentication.md#lines-1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

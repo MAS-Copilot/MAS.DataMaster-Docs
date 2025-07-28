@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase" class="text-break">
-Interface IRepositoryBase  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-15"><i class="bi bi-code-slash"></i></a>
+Interface IRepositoryBase  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -125,7 +125,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_AddAsync_System_Object_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.AddAsync(System.Object)">
   AddAsync(object)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步添加一个新的实体对象</p>
@@ -133,7 +133,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task AddAsync(object entity)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; AddAsync(object entity)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -145,8 +145,8 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作的任务。</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>异步操作任务结果，受影响的行数</p>
 </dd>
   </dl>
 
@@ -164,7 +164,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_AddOrUpdateAsync_System_Object_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.AddOrUpdateAsync(System.Object)">
   AddOrUpdateAsync(object)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步添加或更新一个实体对象
@@ -173,7 +173,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task AddOrUpdateAsync(object entity)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; AddOrUpdateAsync(object entity)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -185,8 +185,8 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作的任务</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>异步操作任务结果，受影响的行数</p>
 </dd>
   </dl>
 
@@ -196,6 +196,9 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
 
 
+  <h4 class="section" id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_AddOrUpdateAsync_System_Object__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>通过标注的 <a class="xref" href="MAS.SharedLibrary.Database.ColumnAttribute.html#MAS_SharedLibrary_Database_ColumnAttribute_IsUnique">IsUnique</a>，如果存在多个，则使用第一个元素</p>
+</div>
 
 
 
@@ -204,7 +207,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_DeleteAsync_System_Object_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.DeleteAsync(System.Object)">
   DeleteAsync(object)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步删除一个实体对象</p>
@@ -212,7 +215,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task DeleteAsync(object entity)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; DeleteAsync(object entity)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -224,8 +227,8 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作的任务</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>异步操作任务结果，受影响的行数</p>
 </dd>
   </dl>
 
@@ -235,6 +238,9 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
 
 
+  <h4 class="section" id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_DeleteAsync_System_Object__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>通过标注的 <a class="xref" href="MAS.SharedLibrary.Database.ColumnAttribute.html#MAS_SharedLibrary_Database_ColumnAttribute_IsPrimaryKey">IsPrimaryKey</a> 进行删除</p>
+</div>
 
 
 
@@ -243,7 +249,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_GetAllObjectAsync" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.GetAllObjectAsync">
   GetAllObjectAsync()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步获取所有实体对象</p>
@@ -272,14 +278,56 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
 
 
+  <a id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_GetByFieldObjectAsync_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.GetByFieldObjectAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_GetByFieldObjectAsync_System_String_System_Object_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.GetByFieldObjectAsync(System.String,System.Object)">
+  GetByFieldObjectAsync(string, object)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步根据指定字段和值获取一个实体对象（返回第一个匹配或 null）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;object?&gt; GetByFieldObjectAsync(string fieldName, object value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>查询字段名，与数据库列对应，区分大小写</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>查询字段的值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>异步操作的任务对象，实体或 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_GetByIdObjectAsync_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.GetByIdObjectAsync*"></a>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_GetByIdObjectAsync_System_Int32_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.GetByIdObjectAsync(System.Int32)">
   GetByIdObjectAsync(int)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步根据ID获取一个实体对象</p>
+  <div class="markdown level1 summary"><p>异步根据自增 Id 获取一个实体对象</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -297,46 +345,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
-    <dd><p>异步操作的任务对象，如果没有找到则返回 null</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_GetByPropertyAsync_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.GetByPropertyAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_GetByPropertyAsync_System_Object_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.GetByPropertyAsync(System.Object)">
-  GetByPropertyAsync(object)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-56"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>根据实体对象的属性动态生成查询条件，获取匹配的实体对象</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;object?&gt; GetByPropertyAsync(object entity)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>entity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
-    <dd><p>包含查询条件的实体对象</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
-    <dd><p>异步操作任务，匹配的实体对象，如果没有结果则返回 null</p>
+    <dd><p>异步操作的任务对象，对象或 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
 </dd>
   </dl>
 
@@ -354,7 +363,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_GetTotalRecordsAsync" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.GetTotalRecordsAsync">
   GetTotalRecordsAsync()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-82"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-86"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步获取表的总记录数</p>
@@ -387,7 +396,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_GetTotalRecordsAsync_MAS_SharedLibrary_Database_TableQueryParameters_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.GetTotalRecordsAsync(MAS.SharedLibrary.Database.TableQueryParameters)">
   GetTotalRecordsAsync(TableQueryParameters)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步根据表名和查询参数获取总记录数</p>
@@ -425,7 +434,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_LoadTableDataObjectAsync_MAS_SharedLibrary_Database_TableQueryParameters_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.LoadTableDataObjectAsync(MAS.SharedLibrary.Database.TableQueryParameters)">
   LoadTableDataObjectAsync(TableQueryParameters)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步加载表数据</p>
@@ -464,7 +473,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_UpdateObjectAsync_System_Object_" data-uid="MAS.SharedLibrary.Database.DataAccess.IRepositoryBase.UpdateObjectAsync(System.Object)">
   UpdateObjectAsync(object)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步更新一个已存在的实体对象</p>
@@ -472,7 +481,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task UpdateObjectAsync(object entity)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; UpdateObjectAsync(object entity)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -484,8 +493,8 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作的任务</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>异步操作任务结果，受影响的行数</p>
 </dd>
   </dl>
 
@@ -495,6 +504,9 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 
 
 
+  <h4 class="section" id="MAS_SharedLibrary_Database_DataAccess_IRepositoryBase_UpdateObjectAsync_System_Object__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>通过标注的 <a class="xref" href="MAS.SharedLibrary.Database.ColumnAttribute.html#MAS_SharedLibrary_Database_ColumnAttribute_IsPrimaryKey">IsPrimaryKey</a> 进行更新</p>
+</div>
 
 
 
@@ -503,7 +515,7 @@ Interface IRepositoryBase  <a class="header-action link-secondary" title="View s
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-15" class="edit-link">Edit this page</a>
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Interfaces/Database/DataAccess/IRepositoryBase.cs#lines-15" class="edit-link">Edit this page</a>
         </div>
 
 

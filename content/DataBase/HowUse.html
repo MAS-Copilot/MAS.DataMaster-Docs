@@ -106,11 +106,12 @@
 <li>在<code>MySQL</code>中创建所需的数据库和表，可选择下载可视化应用程序<a href="https://dev.mysql.com/downloads/workbench/">MySQL Workbench</a>或直接使用命令行，参见<a href="https://dev.mysql.com/doc/">MySQL</a></li>
 </ul>
 <p>4.更新应用配置</p>
+<p>（在 DataMaster-v3.8.0 及以后版本中，此步骤可省略）</p>
 <ul>
 <li>确保应用程序配置中的数据库连接字符串以及通讯配置正确</li>
-<li>确保创建名为<code>EquipmentManagement</code>的默认数据库</li>
+<li>确保创建名为<code>DataMaster</code>的默认数据库</li>
 </ul>
-<pre><code class="lang-bash">CREATE DATABASE EquipmentManagement;
+<pre><code class="lang-bash">CREATE DATABASE DataMaster;
 </code></pre>
 <p>5.构建和运行项目</p>
 <ul>
@@ -119,6 +120,7 @@
 <li><code>F5</code>或<code>Ctrl + F5</code>运行，如果不出意外的话</li>
 </ul>
 <h2 id="数据库的环境变量密码">数据库的环境变量密码</h2>
+<p>（在 DataMaster-v3.8.0 及以后版本中，此步骤可省略）</p>
 <p><strong>使用环境变量：</strong></p>
 <ul>
 <li>安全性：避免在源代码中硬编码敏感信息，降低数据泄露的风险</li>
@@ -174,6 +176,38 @@
 <ul>
 <li>隐式提交：执行 DDL 语句时，当前事务会自动提交，即使您在事务内执行这些语句，事务也无法回滚这些操作</li>
 <li>事务无效：由于 DDL 语句会自动提交，包裹这些语句的事务无法确保原子性（即要么全部成功，要么全部失败）</li>
+</ul>
+<p>DDL 语句用于修改数据库的结构，例如创建表、修改表结构、删除表等，这些操作一旦执行，通常会立即生效并提交，无法像DML（数据操纵语言）语句一样通过回滚来撤销</p>
+<p><strong>DDL 和DML 的区别：</strong></p>
+<ul>
+<li>DDL (Data Definition Language):
+<ul>
+<li>用于定义数据库结构，例如创建、修改、删除数据库对象（如表、索引、视图等）。DDL 语句通常会立即提交，不可回滚</li>
+</ul>
+</li>
+<li>DML (Data Manipulation Language):
+<ul>
+<li>用于操作数据库中的数据，例如插入、更新、删除数据。DML 语句在默认情况下也立即提交，不可回滚，但在手动开启事务后，可以通过回滚来撤销操作</li>
+</ul>
+</li>
+</ul>
+<p><strong>为什么DDL 不支持回滚：</strong></p>
+<ul>
+<li>结构变更的不可逆性:
+<ul>
+<li>DDL 语句改变的是数据库的结构，这些变更通常是不可逆的。例如，删除一个表，如果表中有数据，并且其他对象（如视图、存储过程）依赖于这个表，那么删除表的操作可能会导致数据丢失和依赖关系紊乱，因此回滚删除操作是不安全的</li>
+</ul>
+</li>
+<li>立即提交:
+<ul>
+<li>为了保证数据库的一致性和完整性，DDL 语句通常会立即提交，这意味着更改会立即生效，无法通过回滚来撤销</li>
+</ul>
+</li>
+<li>事务支持:
+<ul>
+<li>虽然DML 语句在事务中可以回滚，但DDL 语句通常不包含在事务中，或者即使包含在事务中，数据库系统也可能不会为DDL 语句提供回滚支持，因为DDL 语句的变更通常是需要持久化的，并且回滚可能会导致数据库结构的不一致</li>
+</ul>
+</li>
 </ul>
 
 </article>

@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity" class="text-break">
-Class UsersEntity  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-15"><i class="bi bi-code-slash"></i></a>
+Class UsersEntity  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -104,6 +104,11 @@ Class UsersEntity  <a class="header-action link-secondary" title="View source" h
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Table(&quot;Users&quot;)]
 [DbHandler(true, null)]
+[Index(&quot;IX_User_Role&quot;, new string[] { &quot;Role&quot; })]
+[Index(&quot;IX_User_CreatedAt&quot;, new string[] { &quot;CreatedAt&quot; })]
+[Index(&quot;IX_User_LastLoginTime&quot;, new string[] { &quot;LastLoginTime&quot; })]
+[Index(&quot;IX_User_LoginCount&quot;, new string[] { &quot;LoginCount&quot; })]
+[CreationPriority(PriorityLevel.LevelA)]
 public class UsersEntity</code></pre>
   </div>
 
@@ -155,11 +160,44 @@ public class UsersEntity</code></pre>
 </h2>
 
 
+  <a id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_AvatarBackground_" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.AvatarBackground*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_AvatarBackground" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.AvatarBackground">
+  AvatarBackground
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-80"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置头像背景颜色 （十六进制格式）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Column(&quot;AvatarBackground&quot;, &quot;VARCHAR(10)&quot;, Comment = &quot;头像背景颜色 （十六进制格式）&quot;)]
+public string AvatarBackground { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_CreatedAt_" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.CreatedAt*"></a>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_CreatedAt" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.CreatedAt">
   CreatedAt
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置创建时间</p>
@@ -192,7 +230,7 @@ public DateTime CreatedAt { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_Email" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.Email">
   Email
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置邮箱</p>
@@ -200,7 +238,7 @@ public DateTime CreatedAt { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Column(&quot;Email&quot;, &quot;VARCHAR(50)&quot;, Comment = &quot;用户名&quot;)]
+    <pre><code class="lang-csharp hljs">[Column(&quot;Email&quot;, &quot;VARCHAR(50)&quot;, IsUnique = true, Comment = &quot;邮箱，唯一&quot;)]
 public string? Email { get; set; }</code></pre>
   </div>
 
@@ -225,7 +263,7 @@ public string? Email { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_Id" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.Id">
   Id
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置主键标识符，自增</p>
@@ -258,7 +296,7 @@ public int Id { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_LastLoginTime" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.LastLoginTime">
   LastLoginTime
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置最后一次登录时间</p>
@@ -291,7 +329,7 @@ public DateTime? LastLoginTime { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_LoginCount" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.LoginCount">
   LoginCount
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-57"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置用户登录次数</p>
@@ -320,11 +358,44 @@ public int LoginCount { get; set; }</code></pre>
 
 
 
+  <a id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_Notes_" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.Notes*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_Notes" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.Notes">
+  Notes
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置备注信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Column(&quot;Notes&quot;, &quot;TEXT&quot;, IsNullable = true, Comment = &quot;备注信息&quot;)]
+public string? Notes { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_PasswordHash_" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.PasswordHash*"></a>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_PasswordHash" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.PasswordHash">
   PasswordHash
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置密码哈希值</p>
@@ -357,7 +428,7 @@ public byte[] PasswordHash { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_PasswordSalt" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.PasswordSalt">
   PasswordSalt
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-62"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置密码盐</p>
@@ -386,14 +457,47 @@ public byte[] PasswordSalt { get; set; }</code></pre>
 
 
 
+  <a id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_Role_" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.Role*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_Role" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.Role">
+  Role
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置用户角色枚举索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Column(&quot;Role&quot;, &quot;INT&quot;, IsNullable = false, Comment = &quot;用户角色，使用枚举 UserRoles 存储&quot;, Default = &quot;0&quot;)]
+public int Role { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_UpdatedAt_" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.UpdatedAt*"></a>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_UpdatedAt" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.UpdatedAt">
   UpdatedAt
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置最后更新时间</p>
+  <div class="markdown level1 summary"><p>获取或设置更新时间</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -419,11 +523,11 @@ public DateTime UpdatedAt { get; set; }</code></pre>
 
 
 
-  <a id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_UserName_" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.UserName*"></a>
+  <a id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_Username_" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.Username*"></a>
 
-  <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_UserName" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.UserName">
-  UserName
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-33"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Database_DataAccess_UsersEntity_Username" data-uid="MAS.SharedLibrary.Database.DataAccess.UsersEntity.Username">
+  Username
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置用户名</p>
@@ -431,8 +535,8 @@ public DateTime UpdatedAt { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Column(&quot;UserName&quot;, &quot;VARCHAR(20)&quot;, IsNullable = false, IsUnique = true, Comment = &quot;用户名&quot;)]
-public string UserName { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Column(&quot;Username&quot;, &quot;VARCHAR(20)&quot;, IsNullable = false, IsUnique = true, Comment = &quot;用户名，唯一&quot;)]
+public string Username { get; set; }</code></pre>
   </div>
 
 
@@ -456,7 +560,7 @@ public string UserName { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-15" class="edit-link">Edit this page</a>
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/UsersEntity.cs#lines-15" class="edit-link">Edit this page</a>
         </div>
 
 
