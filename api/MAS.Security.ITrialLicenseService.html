@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Security_ITrialLicenseService" data-uid="MAS.Security.ITrialLicenseService" class="text-break">
-Interface ITrialLicenseService  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-18"><i class="bi bi-code-slash"></i></a>
+Interface ITrialLicenseService  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -135,7 +135,7 @@ Interface ITrialLicenseService  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_Security_ITrialLicenseService_CheckLicenseStatusAsync_System_String_" data-uid="MAS.Security.ITrialLicenseService.CheckLicenseStatusAsync(System.String)">
   CheckLicenseStatusAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查试用授权状态</p>
@@ -177,10 +177,10 @@ Interface ITrialLicenseService  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_Security_ITrialLicenseService_GetServiceInitializedStatusAsync_System_String_" data-uid="MAS.Security.ITrialLicenseService.GetServiceInitializedStatusAsync(System.String)">
   GetServiceInitializedStatusAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步获取该服务的初始化状态，用于与交叉验证</p>
+  <div class="markdown level1 summary"><p>异步获取该服务的初始化状态</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -198,7 +198,7 @@ Interface ITrialLicenseService  <a class="header-action link-secondary" title="V
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>异步操作任务，返回是否已初始化</p>
+    <dd><p>异步操作任务，返回是否已初始化（校验文件存已存在并且解析成功则为 true）</p>
 </dd>
   </dl>
 
@@ -208,9 +208,6 @@ Interface ITrialLicenseService  <a class="header-action link-secondary" title="V
 
 
 
-  <h4 class="section" id="MAS_Security_ITrialLicenseService_GetServiceInitializedStatusAsync_System_String__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>与配置文件交叉校验</p>
-</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
@@ -225,7 +222,7 @@ Interface ITrialLicenseService  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_Security_ITrialLicenseService_InitializeIfNotExistsAsync_System_String_System_IProgress_MAS_SharedLibrary_Models_StepInfo__System_Int32_System_Threading_CancellationToken_" data-uid="MAS.Security.ITrialLicenseService.InitializeIfNotExistsAsync(System.String,System.IProgress{MAS.SharedLibrary.Models.StepInfo},System.Int32,System.Threading.CancellationToken)">
   InitializeIfNotExistsAsync(string, IProgress&lt;StepInfo&gt;?, int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>在应用程序初首次启动或始化时，初始化试用许可数据</p>
@@ -275,7 +272,7 @@ Interface ITrialLicenseService  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_Security_ITrialLicenseService_UpdateToFullLicenseAsync_System_String_System_String_" data-uid="MAS.Security.ITrialLicenseService.UpdateToFullLicenseAsync(System.String,System.String)">
   UpdateToFullLicenseAsync(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步更新到完整的试用许可证</p>
@@ -323,7 +320,7 @@ Interface ITrialLicenseService  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_Security_ITrialLicenseService_LicenseExpired" data-uid="MAS.Security.ITrialLicenseService.LicenseExpired">
   LicenseExpired
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>试用许可过期事件</p>
@@ -355,7 +352,7 @@ Interface ITrialLicenseService  <a class="header-action link-secondary" title="V
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/feature/security/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-18" class="edit-link">Edit this page</a>
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Security/Interfaces/ITrialLicenseService.cs#lines-18" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -169,6 +169,48 @@
 </tr>
 </tbody>
 </table>
+<h3 id="分类">分类</h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>标记</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Line</td>
+<td>#FFD700</td>
+<td>直线。金色</td>
+</tr>
+<tr>
+<td>Polyline2D</td>
+<td>#FF8C00</td>
+<td>2D 多段线。橙色</td>
+</tr>
+<tr>
+<td>Point</td>
+<td>#1E90FF</td>
+<td>点。亮蓝色</td>
+</tr>
+<tr>
+<td>Circle</td>
+<td>#00CED1</td>
+<td>圆。青色</td>
+</tr>
+<tr>
+<td>Arc</td>
+<td>#C71585</td>
+<td>圆弧。洋红</td>
+</tr>
+<tr>
+<td>Spline</td>
+<td>#2d1bc9ff</td>
+<td>样条曲线。紫色</td>
+</tr>
+</tbody>
+</table>
 <h2 id="dxf-数据到-plc-运动指令的转化流程">DXF 数据到 PLC 运动指令的转化流程</h2>
 <p>在龙门结构 PLC 系统中，将 DXF 文件解析后的几何数据，经上位机转化为点位坐标发送给 PLC 后，PLC 需完成从点位坐标到可执行运动指令的自主转化：</p>
 <ul>
@@ -212,6 +254,7 @@
 <ul>
 <li>提供<code>CenterAndFitContent</code>方法，自动计算缩放比例和平移量，使 DXF 内容居中并适应控件大小</li>
 <li>支持设置 DXF 内容的原始边界（SetDxfContentBounds），用于初始化显示</li>
+<li><code>CenterAndFitLayer</code>定位并适应指定图层到视图中心</li>
 </ul>
 <h3 id="属性与方法">属性与方法</h3>
 <h4 id="属性">属性</h4>
@@ -285,6 +328,12 @@
 <td>当前内容边界</td>
 <td>Rect.Empty</td>
 </tr>
+<tr>
+<td>IsRenderingCacheEnabled</td>
+<td>bool</td>
+<td>是否启用位图缓存</td>
+<td>true</td>
+</tr>
 </tbody>
 </table>
 <h4 id="主要方法">主要方法</h4>
@@ -299,17 +348,17 @@
 <tbody>
 <tr>
 <td>AddOrUpdateLayer</td>
-<td><code>string layerName, List&lt;GeometryItem&gt; geometryItems, bool isLineWidthProtection = false, bool isVisible = true</code></td>
+<td><code>string layerName, List&lt;GeometryItem&gt; geometryItems, bool isLineWidthProtection = false, bool isVisible = true, int? zOrder = null</code></td>
 <td>添加或更新图层</td>
 </tr>
 <tr>
 <td>AddOrUpdateLayer</td>
-<td><code>string layerName, List&lt;DxfGeometryItem&gt; dxfGeometryItems, bool isLineWidthProtection = false, bool isVisible = true</code></td>
+<td><code>string layerName, List&lt;DxfGeometryItem&gt; dxfGeometryItems, bool isLineWidthProtection = false, bool isVisible = true, int? zOrder = null</code></td>
 <td>添加或更新图层</td>
 </tr>
 <tr>
 <td>AddOrUpdateLayer</td>
-<td><code>DxfLayerGeometry dxfLayerGeometry, bool isUpdateBounds = false</code></td>
+<td><code>DxfLayerGeometry dxfLayerGeometry, bool isUpdateBounds = false, int? zOrder = null</code></td>
 <td>添加或更新图层</td>
 </tr>
 <tr>
@@ -329,8 +378,23 @@
 </tr>
 <tr>
 <td>CenterAndFitContent</td>
-<td>double fitRatio = 0.9</td>
+<td><code>double fitRatio = 0.9</code></td>
 <td>居中并适应内容到控件大小</td>
+</tr>
+<tr>
+<td>CenterAndFitLayer</td>
+<td><code>string layerName, Rect? layerBounds = null, double fitRatio = 0.9</code></td>
+<td>定位并适应指定图层到视图中心</td>
+</tr>
+<tr>
+<td>AnimateToPoint</td>
+<td><code>Point point, double? scale = null, Action? onCompleted = null</code></td>
+<td>以动画形式定位到指定坐标位置</td>
+</tr>
+<tr>
+<td>ResetView</td>
+<td>无</td>
+<td>还原视图到 100%</td>
 </tr>
 <tr>
 <td>ClearLayers</td>
@@ -339,8 +403,8 @@
 </tr>
 <tr>
 <td>LocateAndDrawCrosshair</td>
-<td><code>Point point</code></td>
-<td>定位到指定二维坐标并绘制十字准心，移除旧准心并自适应视角（基于当前缩放比例）</td>
+<td><code>Point point, double? scale = null, Action? onCompleted = null</code></td>
+<td>定位到指定二维坐标并绘制十字准心，移除旧准心</td>
 </tr>
 <tr>
 <td>GetSnapshotBitmap</td>
@@ -348,9 +412,9 @@
 <td>获取当前内容的快照，若无法渲染则返回 <code>null</code>。用于捕获控件的可视化内容，例如保存为图片</td>
 </tr>
 <tr>
-<td>SetDisableBitmapCaching</td>
-<td><code>bool isCachingEnabled</code></td>
-<td>设置是否禁用位图缓存，并立即更新渲染</td>
+<td>SetLayerContent</td>
+<td><code>string layerName, int zOrder</code></td>
+<td>设置图层渲染顺序</td>
 </tr>
 <tr>
 <td>SetLayerVisibility</td>
@@ -470,6 +534,17 @@ host.ShowAllLayers(); // 显示所有图层
 <ul>
 <li>算法: 样条曲线的处理是所有图形中最复杂的，但其排序思路与其他类型保持一致</li>
 <li>待办</li>
+</ul>
+</li>
+<li>针对点的轨迹点排序：
+<ul>
+<li>算法：使用最近邻算法，简单高效，适合优化单个点的连接顺序</li>
+<li>从指定起点或原点出发，选择距离当前点最近的未访问点，通过欧几里得距离计算</li>
+<li>每个点为单个位置，无需正向/反向遍历</li>
+<li>每次移动到下一个点都执行抬高、空移、下降</li>
+<li>时间复杂度为 O(n²)，其中 n 是点数量</li>
+<li>偏航角默认为 0（点无方向性）</li>
+<li>缺点：时间复杂度高，且可能找到局部最优解而不是全局最优解</li>
 </ul>
 </li>
 </ul>
@@ -641,6 +716,154 @@ y_c = \frac{(x_s^2 + y_s^2)(x_e - x_m) + (x_m^2 + y_m^2)(x_s - x_e) + (x_e^2 + y
 <li>DXF文件内部的数学世界：遵循标准的笛卡尔坐标系，Y轴向上为正 (Y-Up)。在这个世界里，角度是**逆时针 (Counter-Clockwise, CCW)**增长的</li>
 <li>WPF/Windows的屏幕渲染世界：遵循图形渲染的惯例，Y轴向下为正 (Y-Down)</li>
 </ul>
+<h2 id="轨迹动画">轨迹动画</h2>
+<h3 id="直线插补">直线插补</h3>
+<p><strong>直线插补用于在轨迹动画中计算两点之间的中间点，以实现平滑的线性运动：</strong></p>
+<p><strong>方法：</strong></p>
+<pre><code class="lang-csharp">public static TrajectoryPoint CalculateLinearInterpolation(
+  TrajectoryPoint currentPoint,
+  TrajectoryPoint nextPoint,
+  double t)
+</code></pre>
+<p><strong>输入参数</strong>：</p>
+<ul>
+<li><code>currentPoint</code>：当前轨迹点，包含坐标 <span class="math">\((x_1, y_1, z_1)\)</span>、旋转角度 <span class="math">\(rz_1\)</span>、几何类型 <code>Type</code> 和速度 <code>Velocity</code></li>
+<li><code>nextPoint</code>：目标轨迹点，包含坐标 <span class="math">\((x_2, y_2, z_2)\)</span>、旋转角度 <span class="math">\(rz_2\)</span>、几何类型 <code>Type</code> 和速度 <code>Velocity</code></li>
+<li><code>t</code>：插补参数，范围 <span class="math">\(t \in [0, 1]\)</span>，表示从当前点到目标点的插补进度（<span class="math">\(t = 0\)</span> 表示当前点，<span class="math">\(t = 1\)</span> 表示目标点）</li>
+</ul>
+<p><strong>算法公式</strong>：</p>
+<ul>
+<li>新点的坐标 <span class="math">\((x, y, z)\)</span> 通过线性插补计算：
+<div class="math">
+\[
+x = x_1 + t \cdot (x_2 - x_1)
+\]</div>
+<div class="math">
+\[
+y = y_1 + t \cdot (y_2 - y_1)
+\]</div>
+<div class="math">
+\[
+z = z_1 + t \cdot (z_2 - z_1)
+\]</div>
+</li>
+<li>新点的旋转角度 <span class="math">\(rz\)</span>：
+<div class="math">
+\[
+rz = rz_1
+\]</div>
+</li>
+<li>其它属性：几何类型 <code>Type</code> 和速度 <code>Velocity</code> 继承自 <code>currentPoint</code></li>
+</ul>
+<p><strong>返回值</strong>：</p>
+<ul>
+<li>一个新的 <code>TrajectoryPoint</code> 对象，直线插补计算后的坐标</li>
+</ul>
+<h3 id="圆弧插补">圆弧插补</h3>
+<p><strong>圆弧插补用于在轨迹动画中基于起点、中点和终点计算圆弧路径上的中间点，以实现平滑的弧线运动：</strong></p>
+<p><strong>方法：</strong></p>
+<pre><code class="lang-csharp">public static TrajectoryPoint CalculateArcInterpolation(
+  TrajectoryPoint startPoint,
+  TrajectoryPoint midPoint,
+  TrajectoryPoint endPoint,
+  double t)
+</code></pre>
+<p><strong>输入参数：</strong></p>
+<ul>
+<li><code>startPoint</code>：圆弧起点，包含坐标 <span class="math">\((x_s, y_s, z_s)\)</span>、旋转角度 <span class="math">\(rz_s\)</span>、几何类型 Type 和速度 Velocity</li>
+<li><code>midPoint</code>：圆弧路径上的中间点，包含坐标 <span class="math">\((x_m, y_m, z_m)\)</span>、旋转角度 <span class="math">\(rz_m\)</span>、几何类型 Type 和速度 Velocity</li>
+<li><code>endPoint</code>：圆弧终点，包含坐标 <span class="math">\((x_e, y_e, z_e)\)</span>、旋转角度 <span class="math">\(rz_e\)</span>、几何类型 Type 和速度 Velocity</li>
+<li><code>t</code>：插补参数，范围 <span class="math">\(t \in [0, 1]\)</span>，表示从起点到终点的插补进度（<span class="math">\(t = 0\)</span> 表示起点，<span class="math">\(t = 1\)</span> 表示终点）</li>
+</ul>
+<p><strong>算法公式：</strong></p>
+<ul>
+<li>首先计算圆心 <span class="math">\((c_x, c_y)\)</span> 和半径 <span class="math">\(r\)</span>（使用三点定圆方法，与耗时计算类似，忽略Z轴）：
+<ul>
+<li>先计算两段线段的斜率：
+<div class="math">
+\[
+m_a = \frac{y_m - y_s}{x_m - x_s}, \quad m_b = \frac{y_e - y_m}{x_e - x_m}
+\]</div>
+</li>
+<li>再通过垂直平分线交点计算圆心：
+<div class="math">
+\[
+c_x = \frac{m_a * m_b * (y_s - y_e) + m_b * (x_s + x_m) - m_a * (x_m + x_e)}{2 * (m_b - m_a)}
+\]</div>
+<div class="math">
+\[
+c_y = -(1 / m_a) * (c_x - (x_s + x_m) / 2) + (y_s + y_m) / 2
+\]</div>
+</li>
+<li>半径为圆心到起点的距离：
+<div class="math">
+\[
+r = \sqrt{(c_x - x_s)^2 + (c_y - y_s)^2}
+\]</div>
+</li>
+</ul>
+</li>
+<li>计算角度并规范化到 <span class="math">\([0, 2\pi)\)</span>：
+<div class="math">
+\[
+\theta_s = \arctan2(y_s - c_y, x_s - c_x), \quad \theta_m = \arctan2(y_m - c_y, x_m - c_x), \quad \theta_e = \arctan2(y_e - c_y, x_e - c_x)
+\]</div>
+<div class="math">
+\[
+\text{Norm}(\theta) = (\theta \mod 2\pi + 2\pi) \mod 2\pi
+\]</div>
+</li>
+<li>确定弧方向（顺时针或逆时针）：
+<ul>
+<li>计算逆时针角度差：
+<div class="math">
+\[
+\delta_{\text{mid}} = (\theta_m - \theta_s + 2\pi) \mod 2\pi, \quad \delta_{\text{end}} = (\theta_e - \theta_s + 2\pi) \mod 2\pi
+\]</div>
+</li>
+<li>若 <span class="math">\(\delta_{\text{mid}} \leq \delta_{\text{end}}\)</span> 且 <span class="math">\(\delta_{\text{mid}} &gt; 0\)</span>，选择逆时针（ccw）方向，插值角度：
+<div class="math">
+\[
+\theta = \theta_s + t \cdot \delta_{\text{end}}
+\]</div>
+</li>
+<li>否则，选择顺时针（cw）方向，计算顺时针角度差：
+<div class="math">
+\[
+\delta_{\text{cw}} = 2\pi - \delta_{\text{end}}
+\]</div>
+插值角度：
+<div class="math">
+\[
+\theta = \theta_s - t \cdot \delta_{\text{cw}}
+\]</div>
+</li>
+</ul>
+</li>
+<li>新点坐标 <span class="math">\((x, y)\)</span>：
+<div class="math">
+\[
+x = c_x + r \cdot \cos(\theta), \quad y = c_y + r \cdot \sin(\theta)
+\]</div>
+</li>
+<li>Z 坐标保持不变：
+<div class="math">
+\[
+z = z_s
+\]</div>
+</li>
+<li>旋转角度 <span class="math">\(rz\)</span>：
+<div class="math">
+\[
+rz = rz_s + t \cdot (rz_e - rz_s)
+\]</div>
+</li>
+<li>其它属性：几何类型 <code>Type</code> 和速度 <code>Velocity</code> 继承自 <code>startPoint</code></li>
+</ul>
+<p><strong>返回值：</strong></p>
+<ul>
+<li>一个新的<code>TrajectoryPoint</code>对象，圆弧插补计算后的坐标</li>
+</ul>
 <h2 id="工程文件结构">工程文件结构</h2>
 <h3 id="additionalproperties">AdditionalProperties</h3>
 <p><strong>额外的元数据属性：</strong></p>
@@ -710,6 +933,11 @@ y_c = \frac{(x_s^2 + y_s^2)(x_e - x_m) + (x_m^2 + y_m^2)(x_s - x_e) + (x_e^2 + y
 <td>Parameters</td>
 <td><code>Dictionary&lt;string, TrajectoryParameters&gt;</code></td>
 <td>键是图层名称，值是该图层的轨迹生成参数</td>
+</tr>
+<tr>
+<td>ScriptCode</td>
+<td><code>string</code></td>
+<td>脚本代码</td>
 </tr>
 </tbody>
 </table>

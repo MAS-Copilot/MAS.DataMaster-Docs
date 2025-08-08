@@ -756,6 +756,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>刷新数据源</td>
 <td>Engineer</td>
 </tr>
+<tr>
+<td>OpenDebugInfoCommand</td>
+<td>开调试信息</td>
+<td>Visitor</td>
+</tr>
 </tbody>
 </table>
 <h4 id="homeviewmodel">HomeViewModel</h4>
@@ -888,6 +893,46 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>刷新解析</td>
 <td>Operator</td>
 </tr>
+<tr>
+<td>OpenScriptCodeCommand</td>
+<td>打开脚本代码</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>NewRecipeCommand</td>
+<td>新增配方</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>LocationLayerCommand</td>
+<td>图层定位</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SwitchBitmapCachingCommand</td>
+<td>切换缓存渲染</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>TriggerCommand</td>
+<td>触发</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>StateSwitchCommand</td>
+<td>切换运行状态</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>HotReloadCommand</td>
+<td>热重载</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenDebugInfoCommand</td>
+<td>打开调试信息窗口</td>
+<td>Visitor</td>
+</tr>
 </tbody>
 </table>
 <h3 id="masdatamasterviewmodelspagesvision">MAS.DataMaster.ViewModels.Pages.Vision</h3>
@@ -945,6 +990,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>InitializePipelineCommand</td>
 <td>初始化管道</td>
 <td>Operator</td>
+</tr>
+<tr>
+<td>OpenDebugInfoCommand</td>
+<td>打开调试信息窗口</td>
+<td>Visitor</td>
 </tr>
 </tbody>
 </table>
@@ -1042,6 +1092,23 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>ExecuteStepCommand</td>
 <td>执行步骤逻辑</td>
 <td>None</td>
+</tr>
+</tbody>
+</table>
+<h4 id="debugoutputviewmodel">DebugOutputViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ClearMessageCommand</td>
+<td>清空消息</td>
+<td>Visitor</td>
 </tr>
 </tbody>
 </table>
@@ -1397,6 +1464,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>退出登录</td>
 <td>Visitor</td>
 </tr>
+<tr>
+<td>AssignRoleCommand</td>
+<td>分配角色</td>
+<td>Admin</td>
+</tr>
 </tbody>
 </table>
 <h4 id="loginviewmodel">LoginViewModel</h4>
@@ -1443,6 +1515,23 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </tr>
 </tbody>
 </table>
+<h4 id="roleassignmentviewmodel">RoleAssignmentViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AssignRoleCommand</td>
+<td>角色分配</td>
+<td>Admin</td>
+</tr>
+</tbody>
+</table>
 <h3 id="masdatamasterviewmodelswindowsutilities">MAS.DataMaster.ViewModels.Windows.Utilities</h3>
 <h4 id="trajectoryparameterssetviewmodel">TrajectoryParametersSetViewModel</h4>
 <table>
@@ -1462,6 +1551,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <tr>
 <td>SyncRectToBoundaryCommand</td>
 <td>同步边界到矩形尺寸</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>SyncMatchOriginCommand</td>
+<td>同步匹配原点到轨迹原点</td>
 <td>Engineer</td>
 </tr>
 </tbody>
@@ -1540,7 +1634,7 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <tbody>
 <tr>
 <td>RunSimulationCommand</td>
-<td>运行仿真</td>
+<td>模拟动画</td>
 <td>Visitor</td>
 </tr>
 </tbody>
