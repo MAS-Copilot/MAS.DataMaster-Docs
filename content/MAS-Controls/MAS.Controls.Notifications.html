@@ -2,21 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Enum ShapeType | DataMaster </title>
+      <title>通知 | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Enum ShapeType | DataMaster ">
-      
-      <meta name="description" content="ROI 的形状类型">
-      <link rel="icon" href="../images/favicon.ico">
-      <link rel="stylesheet" href="../public/docfx.min.css">
-      <link rel="stylesheet" href="../public/main.css">
-      <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
-      
-      <meta name="docfx:rel" content="../">
+      <meta name="title" content="通知 | DataMaster ">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Vision_Models_ShapeType.md&amp;value=---%0Auid%3A%20MAS.Vision.Models.ShapeType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS-Controls/MAS.Controls.Notifications.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -30,7 +30,7 @@
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
 
-      <script type="module" src="./../public/docfx.min.js"></script>
+      <script type="module" src="./../../public/docfx.min.js"></script>
 
       <script>
         const theme = localStorage.getItem('theme') || 'auto'
@@ -39,12 +39,12 @@
 
   </head>
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
-          <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
             DataMaster
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,61 +84,79 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.Vision.Models.ShapeType">
+        <article data-uid="">
+<h1 id="通知">通知</h1>
 
-
-
-
-  <h1 id="MAS_Vision_Models_ShapeType" data-uid="MAS.Vision.Models.ShapeType" class="text-break">
-Enum ShapeType  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/Models/ShapeType.cs#lines-15"><i class="bi bi-code-slash"></i></a>
-  </h1>
-
-  <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.Vision.html">Vision</a>.<a class="xref" href="MAS.Vision.Models.html">Models</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>MAS.Vision.dll</dd></dl>
-  </div>
-
-  <div class="markdown summary"><p>ROI 的形状类型</p>
-</div>
-  <div class="markdown conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum ShapeType</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-  <h2 id="fields">Fields
-</h2>
-  <dl class="parameters">
-    <dt id="MAS_Vision_Models_ShapeType_Circle"><code>Circle = 1</code></dt>
-  
-  <dd><p>圆形</p>
-</dd>
-    <dt id="MAS_Vision_Models_ShapeType_Rectangle"><code>Rectangle = 0</code></dt>
-  
-  <dd><p>矩形</p>
-</dd>
-    <dt id="MAS_Vision_Models_ShapeType_RotatedRectangle"><code>RotatedRectangle = 2</code></dt>
-  
-  <dd><p>旋转矩形</p>
-</dd>
-  </dl>
-
-
+<h2 id="数据库">数据库</h2>
+<h3 id="通知记录notificationrecord">通知记录（NotificationRecord）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>说明</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>INT</td>
+<td>通知记录的标识符</td>
+<td>主键，自增，唯一，不为Null</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>VARCHAR(100)</td>
+<td>通知标题</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>TEXT</td>
+<td>通知内容</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>VARCHAR(20)</td>
+<td>通知类型</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>IsRead</td>
+<td>BIT</td>
+<td>通知是否已读（0-未读，1-已读）</td>
+<td>不为Null，默认0</td>
+</tr>
+<tr>
+<td>ResourceId</td>
+<td>VARCHAR(100)</td>
+<td>通知关联的资源ID</td>
+<td>无</td>
+</tr>
+<tr>
+<td>CreatedAt</td>
+<td>DATETIME</td>
+<td>创建时间</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>UpdatedAt</td>
+<td>DATETIME</td>
+<td>最后更新时间</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Vision/Models/ShapeType.cs#lines-15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS-Controls/MAS.Controls.Notifications.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
 
       </div>
 
