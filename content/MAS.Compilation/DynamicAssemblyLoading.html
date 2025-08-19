@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>深入理解与实践解决 .NET 程序集动态加载难题 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="深入理解与实践解决 .NET 程序集动态加载难题 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.Compilation/DynamicAssemblyLoading.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="深入理解与实践解决-net-程序集动态加载难题">深入理解与实践解决 .NET 程序集动态加载难题</h1>
+
+<ul>
+<li><a href="#%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E8%B7%B5%E8%A7%A3%E5%86%B3-net-%E7%A8%8B%E5%BA%8F%E9%9B%86%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E9%9A%BE%E9%A2%98">深入理解与实践解决 .NET 程序集动态加载难题</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF">问题背景</a></li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E8%BA%AB%E4%BB%BD%E4%B8%8E%E9%9A%94%E7%A6%BB%E6%80%A7">类型身份与隔离性</a>
+<ul>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E8%BA%AB%E4%BB%BD%E7%9A%84%E6%9C%AC%E8%B4%A8">类型身份的本质</a></li>
+<li><a href="#%E9%9A%94%E7%A6%BB%E6%80%A7%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9">隔离性的优缺点</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%9F%E4%B8%80%E4%B8%8A%E4%B8%8B%E6%96%87default-context">统一上下文（Default Context）</a>
+<ul>
+<li><a href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81">示例代码</a></li>
+<li><a href="#%E4%BC%98%E7%BC%BA%E7%82%B9">优缺点</a></li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%B8%8B%E6%96%87">自定义上下文</a>
+<ul>
+<li><a href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-1">示例代码</a></li>
+<li><a href="#%E5%85%B3%E9%94%AE%E7%89%B9%E6%80%A7">关键特性</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%B3%9B%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%B1%BB%E5%9E%8B%E4%B8%8D%E5%8C%B9%E9%85%8D">解决泛型接口类型不匹配</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%A1%88-1%E5%8A%A0%E8%BD%BD%E5%88%B0%E5%90%8C%E4%B8%80%E4%B8%8A%E4%B8%8B%E6%96%87">方案 1：加载到同一上下文</a></li>
+<li><a href="#%E6%96%B9%E6%A1%88-2%E6%8E%A5%E5%8F%A3%E4%BB%A3%E7%90%86">方案 2：接口代理</a></li>
+<li><a href="#%E6%96%B9%E6%A1%88-3%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96">方案 3：序列化与反序列化</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">最佳实践</a></li>
+<li><a href="#%E6%BD%9C%E5%9C%A8%E9%A3%8E%E9%99%A9%E4%B8%8E%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">潜在风险与注意事项</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0">示例：插件系统实现</a></li>
+<li><a href="#%E7%BB%93%E8%AE%BA">结论</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="概述">概述</h2>
+<p><code>AssemblyLoadContext</code> 是 .NET Core 及 .NET 中的核心机制，用于实现程序集的动态加载与隔离。它允许开发者在运行时加载特定程序集，并通过隔离机制避免命名冲突或依赖问题。<code>AssemblyLoadContext</code> 提供独立的运行环境，支持程序集独立运行或共享资源，适用于以下场景：</p>
+<ul>
+<li><strong>插件系统</strong>：动态加载外部功能模块（如 DLL 插件）</li>
+<li><strong>版本管理</strong>：在同一应用中加载不同版本的程序集</li>
+<li><strong>资源优化</strong>：按需加载程序集并释放不再使用的资源</li>
+</ul>
+<p>然而，在复杂场景中（如泛型接口跨上下文加载），常因类型隔离导致类型不匹配或运行时异常。本文档深入探讨 <code>AssemblyLoadContext</code> 的工作原理，分析统一上下文与自定义上下文的优缺点，提供解决方案，并通过示例代码展示如何处理类型隔离问题</p>
+<h2 id="问题背景">问题背景</h2>
+<p>主程序集动态编译了程序集 A 和 B，并定义了以下泛型接口：</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// 从源类型映射到目标类型的通用映射器接口
+/// &lt;/summary&gt;
+/// &lt;typeparam name=&quot;TSource&quot;&gt;源数据类型&lt;/typeparam&gt;
+/// &lt;typeparam name=&quot;TDestination&quot;&gt;目标数据类型&lt;/typeparam&gt;
+public interface IDataMapper&lt;in TSource, out TDestination&gt; {
+    /// &lt;summary&gt;
+    /// 将源类型的数据映射到目标类型
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;source&quot;&gt;源数据对象&lt;/param&gt;
+    /// &lt;returns&gt;映射后的目标类型对象&lt;/returns&gt;
+    TDestination Map(TSource source);
+}
+</code></pre>
+<p>程序集 A 实现了 <code>IDataMapper&lt;,&gt;</code> 接口，其中 <code>TSource</code> 来自 A，<code>TDestination</code> 来自 B。由于类型隔离，跨上下文加载的泛型实例会导致 <code>System.ArgumentException</code> 异常。本文档将提供解决方案以应对此类问题</p>
+<hr>
+<h2 id="类型身份与隔离性">类型身份与隔离性</h2>
+<p>AssemblyLoadContext 是 .NET Runtime 中的一个关键组件，它定义了程序集加载的“作用域”或“上下文”。每个上下文都可以独立加载程序集，从而实现隔离。这意味着在不同上下文中加载的相同程序集（即使是相同的 DLL 文件）会被视为不同的实例，其中的类型（如类、接口、枚举）也具有独立的身份</p>
+<h3 id="类型身份的本质">类型身份的本质</h3>
+<p>在 .NET 中，类型的相等性不仅仅基于名称，还依赖于其加载上下文。官方 Microsoft 文档指出，类型身份由程序集的完全限定名称（包括版本、公钥令牌等）和加载上下文共同决定。这导致了一个常见问题：跨上下文的类型不兼容。例如，如果你在上下文 A 中加载了一个程序集定义的类型 T，而在上下文 B 中加载了相同的程序集，两个 T 类型将被视为不等价。这在处理泛型类型时尤为棘手，因为泛型实例（如<code>IDataMapper&lt;MySource, MyDest&gt;</code>）的类型签名会嵌入上下文信息，导致类型匹配失败</p>
+<p>如果在实际应用中，主程序集定义了泛型接口<code>IDataMapper&lt;in TSource, out TDestination&gt;</code>，而 A 程序集实现了它，TSource 来自 A，<code>TDestination</code> 来自 B。如果 A 和 B 被加载到不同的上下文中，泛型实例化时会抛出<code>System.ArgumentException</code>或类似异常，抱怨类型不匹配。这是因为泛型类型的“闭合”形式（如<code>IDataMapper&lt;MySource, MyDest&gt;</code>）会继承上下文的隔离性，导致运行时无法将它们视为兼容</p>
+<h3 id="隔离性的优缺点">隔离性的优缺点</h3>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><strong>避免冲突</strong>：支持加载同一程序集的不同版本，互不干扰</li>
+<li><strong>资源管理</strong>：可收集上下文支持卸载，释放内存</li>
+<li><strong>安全性</strong>：限制插件访问主应用程序的敏感资源</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>类型不兼容</strong>：跨上下文类型无法直接匹配</li>
+<li><strong>反射复杂性</strong>：跨上下文使用 <code>typeof</code> 或 <code>Type.GetType</code> 可能失败</li>
+<li><strong>性能开销</strong>：独立上下文的依赖解析增加加载时间</li>
+</ul>
+<hr>
+<h2 id="统一上下文default-context">统一上下文（Default Context）</h2>
+<p>将程序集加载到 <code>AssemblyLoadContext.Default</code> 可共享类型，简化类型匹配问题。默认上下文由 .NET 运行时自动创建，适用于主程序及其静态依赖</p>
+<h3 id="示例代码">示例代码</h3>
+<pre><code class="lang-csharp">using System.IO;
+using System.Reflection;
+using System.Runtime.Loader;
+
+MemoryStream ms = new MemoryStream(/* 程序集字节 */);
+Assembly assembly = AssemblyLoadContext.Default.LoadFromStream(ms);
+</code></pre>
+<h3 id="优缺点">优缺点</h3>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><strong>类型共享</strong>：类型全局可见，适合泛型接口实例化</li>
+<li><strong>简单性</strong>：无需自定义加载逻辑</li>
+<li><strong>性能</strong>：初始化开销低，运行时单例实例</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>冲突风险</strong>：同名程序集加载可能抛出 <code>System.IO.FileLoadException</code></li>
+<li><strong>内存占用</strong>：默认上下文程序集无法卸载，生命周期与应用绑定</li>
+<li><strong>版本限制</strong>：不支持加载同名程序集的不同版本</li>
+</ul>
+<hr>
+<h2 id="自定义上下文">自定义上下文</h2>
+<p>自定义 <code>AssemblyLoadContext</code> 提供灵活性和隔离性，支持卸载程序集及自定义依赖解析，适合需要动态加载或版本隔离的场景</p>
+<h3 id="示例代码-1">示例代码</h3>
+<pre><code class="lang-csharp">using System.IO;
+using System.Reflection;
+using System.Runtime.Loader;
+
+public class CustomLoadContext : AssemblyLoadContext {
+    private readonly AssemblyDependencyResolver _resolver;
+
+    public CustomLoadContext(string assemblyPath) : base(isCollectible: true) {
+        _resolver = new AssemblyDependencyResolver(assemblyPath);
+    }
+
+    protected override Assembly Load(AssemblyName assemblyName) {
+        try {
+            string assemblyPath = _resolver.ResolveAssemblyToPath(assemblyName);
+            if (!string.IsNullOrEmpty(assemblyPath) &amp;&amp; File.Exists(assemblyPath)) {
+                return LoadFromAssemblyPath(assemblyPath);
+            }
+            return AssemblyLoadContext.Default.LoadFromAssemblyName(assemblyName);
+        } catch (Exception ex) {
+            Console.WriteLine($&quot;Failed to load assembly {assemblyName}: {ex.Message}&quot;);
+            return null;
+        }
+    }
+
+    protected override IntPtr LoadUnmanagedDll(string unmanagedDllName) {
+        string dllPath = _resolver.ResolveUnmanagedDllToPath(unmanagedDllName);
+        return !string.IsNullOrEmpty(dllPath) ? LoadUnmanagedDllFromPath(dllPath) : IntPtr.Zero;
+    }
+}
+
+// 使用示例
+string assemblyPath = &quot;path/to/assembly.dll&quot;;
+var context = new CustomLoadContext(assemblyPath);
+Assembly assembly = context.LoadFromAssemblyPath(assemblyPath);
+context.Unload();
+</code></pre>
+<h3 id="关键特性">关键特性</h3>
+<ol>
+<li><strong>依赖解析</strong>：通过 <code>AssemblyDependencyResolver</code> 解析依赖</li>
+<li><strong>可收集上下文</strong>：支持卸载，释放内存</li>
+<li><strong>非托管支持</strong>：处理非托管 DLL（如 C++ 库）</li>
+</ol>
+<hr>
+<h2 id="解决泛型接口类型不匹配">解决泛型接口类型不匹配</h2>
+<p>以下针对 A 和 B 程序集加载导致的类型不匹配问题提供三种解决方案：</p>
+<h3 id="方案-1加载到同一上下文">方案 1：加载到同一上下文</h3>
+<p>将 A 和 B 加载到同一上下文，确保类型身份一致</p>
+<pre><code class="lang-csharp">var context = new CustomLoadContext(&quot;path/to/assemblies&quot;);
+Assembly assemblyA = context.LoadFromAssemblyPath(&quot;path/to/A.dll&quot;);
+Assembly assemblyB = context.LoadFromAssemblyPath(&quot;path/to/B.dll&quot;);
+
+Type mapperType = assemblyA.GetTypes()
+    .FirstOrDefault(t =&gt; typeof(IDataMapper&lt;,&gt;).IsAssignableFrom(t.GetGenericTypeDefinition()));
+if (mapperType != null) {
+    object mapperInstance = Activator.CreateInstance(mapperType);
+}
+</code></pre>
+<p><strong>优点</strong>：简单，类型兼容性强
+<strong>缺点</strong>：限制隔离性</p>
+<h3 id="方案-2接口代理">方案 2：接口代理</h3>
+<p>通过代理类桥接跨上下文的类型不匹配问题</p>
+<pre><code class="lang-csharp">public class MapperProxy&lt;TSource, TDestination&gt; : IDataMapper&lt;TSource, TDestination&gt; {
+    private readonly object _innerMapper;
+
+    public MapperProxy(object innerMapper) {
+        _innerMapper = innerMapper;
+    }
+
+    public TDestination Map(TSource source) {
+        var method = _innerMapper.GetType().GetMethod(&quot;Map&quot;);
+        return (TDestination)method.Invoke(_innerMapper, new object[] { source });
+    }
+}
+
+// 使用示例
+var contextA = new CustomLoadContext(&quot;path/to/A&quot;);
+var contextB = new CustomLoadContext(&quot;path/to/B&quot;);
+Assembly assemblyA = contextA.LoadFromAssemblyPath(&quot;path/to/A.dll&quot;);
+Assembly assemblyB = contextB.LoadFromAssemblyPath(&quot;path/to/B.dll&quot;);
+
+Type mapperType = assemblyA.GetTypes()
+    .FirstOrDefault(t =&gt; typeof(IDataMapper&lt;,&gt;).IsAssignableFrom(t.GetGenericTypeDefinition()));
+if (mapperType != null) {
+    object innerMapper = Activator.CreateInstance(mapperType);
+    var proxy = new MapperProxy&lt;MySource, MyDest&gt;(innerMapper);
+    MyDest result = proxy.Map(new MySource());
+}
+</code></pre>
+<p><strong>优点</strong>：支持跨上下文操作，保持隔离性
+<strong>缺点</strong>：反射调用增加性能开销</p>
+<h3 id="方案-3序列化与反序列化">方案 3：序列化与反序列化</h3>
+<p>通过序列化在上下文间传递对象，解决类型隔离问题</p>
+<pre><code class="lang-csharp">using System.Text.Json;
+
+var source = new MySource { /* 属性 */ };
+string json = JsonSerializer.Serialize(source);
+var contextB = new CustomLoadContext(&quot;path/to/B&quot;);
+Assembly assemblyB = contextB.LoadFromAssemblyPath(&quot;path/to/B.dll&quot;);
+
+Type sourceTypeB = assemblyB.GetType(&quot;Namespace.MySource&quot;);
+object sourceB = JsonSerializer.Deserialize(json, sourceTypeB);
+
+Type mapperType = assemblyA.GetTypes()
+    .FirstOrDefault(t =&gt; typeof(IDataMapper&lt;,&gt;).IsAssignableFrom(t.GetGenericTypeDefinition()));
+object mapperInstance = Activator.CreateInstance(mapperType);
+var method = mapperType.GetMethod(&quot;Map&quot;);
+object result = method.Invoke(mapperInstance, new object[] { sourceB });
+</code></pre>
+<p><strong>优点</strong>：完全隔离，适合动态场景
+<strong>缺点</strong>：序列化/反序列化性能开销大，需确保类型支持序列化</p>
+<h2 id="最佳实践">最佳实践</h2>
+<ol>
+<li><strong>优先统一上下文</strong>：如无卸载或隔离需求，使用默认上下文或单一自定义上下文</li>
+<li><strong>谨慎卸载</strong>：确保无外部引用（如静态字段）以避免内存泄漏</li>
+<li><strong>依赖解析</strong>：使用 <code>AssemblyDependencyResolver</code> 确保依赖正确加载</li>
+<li><strong>错误处理</strong>：记录加载和调用中的异常，便于调试</li>
+<li><strong>性能优化</strong>：缓存 <code>Type</code> 和 <code>MethodInfo</code> 对象，减少反射开销</li>
+<li><strong>测试验证</strong>：编写单元测试，验证跨上下文类型兼容性和卸载行为</li>
+</ol>
+<h2 id="潜在风险与注意事项">潜在风险与注意事项</h2>
+<ul>
+<li><strong>内存泄漏</strong>：外部引用可能阻止上下文卸载，建议使用 <code>WeakReference</code></li>
+<li><strong>反射性能</strong>：缓存反射对象以降低性能开销</li>
+<li><strong>依赖冲突</strong>：动态加载可能导致第三方库版本冲突，需自定义解析逻辑</li>
+<li><strong>线程安全</strong>：加载操作非线程安全，多线程场景需加锁</li>
+</ul>
+<h2 id="示例插件系统实现">示例：插件系统实现</h2>
+<p>以下展示一个完整的插件系统，动态加载和卸载插件，并处理泛型接口</p>
+<pre><code class="lang-csharp">using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Loader;
+
+public class PluginManager {
+    private readonly CustomLoadContext _context;
+    private readonly Assembly _pluginAssembly;
+
+    public PluginManager(string pluginPath) {
+        _context = new CustomLoadContext(pluginPath);
+        _pluginAssembly = _context.LoadFromAssemblyPath(pluginPath);
+    }
+
+    public IDataMapper&lt;TSource, TDestination&gt; GetMapper&lt;TSource, TDestination&gt;() {
+        Type mapperType = _pluginAssembly.GetTypes()
+            .FirstOrDefault(t =&gt; typeof(IDataMapper&lt;TSource, TDestination&gt;).IsAssignableFrom(t));
+        if (mapperType == null) {
+            throw new InvalidOperationException(&quot;No suitable mapper found in plugin assembly.&quot;);
+        }
+
+        return (IDataMapper&lt;TSource, TDestination&gt;)Activator.CreateInstance(mapperType);
+    }
+
+    public void Unload() {
+        _context.Unload();
+    }
+}
+
+public class Program {
+    public static void Main() {
+        var manager = new PluginManager(&quot;path/to/plugin.dll&quot;);
+        var mapper = manager.GetMapper&lt;MySource, MyDest&gt;();
+        MyDest result = mapper.Map(new MySource());
+        Console.WriteLine($&quot;Mapped result: {result}&quot;);
+        manager.Unload();
+    }
+}
+</code></pre>
+<hr>
+<h2 id="结论">结论</h2>
+<p><code>AssemblyLoadContext</code> 是 .NET 中处理动态程序集加载的强大工具。理解类型身份与隔离性后，可根据需求选择默认上下文或自定义上下文。对于泛型接口问题，推荐优先使用统一上下文加载；如需隔离，可采用代理模式或序列化方案。遵循最佳实践并注意潜在风险，可构建健壮的插件系统，满足复杂场景需求</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.Compilation/DynamicAssemblyLoading.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

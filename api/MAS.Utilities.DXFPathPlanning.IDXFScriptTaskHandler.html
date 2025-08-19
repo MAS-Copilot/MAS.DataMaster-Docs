@@ -102,7 +102,7 @@ Interface IDXFScriptTaskHandler  <a class="header-action link-secondary" title="
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IDXFScriptTaskHandler : ITaskHandler</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IDXFScriptTaskHandler : ITaskHandler, IAsyncDisposable</code></pre>
   </div>
 
 
@@ -126,6 +126,9 @@ Interface IDXFScriptTaskHandler  <a class="header-action link-secondary" title="
     <div>
       <a class="xref" href="MAS.SharedLibrary.ITaskHandler.html#MAS_SharedLibrary_ITaskHandler_CompleteAsync_System_Threading_CancellationToken_">ITaskHandler.CompleteAsync(CancellationToken)</a>
     </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable.disposeasync">IAsyncDisposable.DisposeAsync()</a>
+    </div>
   </dd></dl>
 
 
@@ -137,19 +140,19 @@ Interface IDXFScriptTaskHandler  <a class="header-action link-secondary" title="
 </h2>
 
 
-  <a id="MAS_Utilities_DXFPathPlanning_IDXFScriptTaskHandler_PollingIntervalMs_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFScriptTaskHandler.PollingIntervalMs*"></a>
+  <a id="MAS_Utilities_DXFPathPlanning_IDXFScriptTaskHandler_FixedIntervalMs_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFScriptTaskHandler.FixedIntervalMs*"></a>
 
-  <h3 id="MAS_Utilities_DXFPathPlanning_IDXFScriptTaskHandler_PollingIntervalMs" data-uid="MAS.Utilities.DXFPathPlanning.IDXFScriptTaskHandler.PollingIntervalMs">
-  PollingIntervalMs
+  <h3 id="MAS_Utilities_DXFPathPlanning_IDXFScriptTaskHandler_FixedIntervalMs" data-uid="MAS.Utilities.DXFPathPlanning.IDXFScriptTaskHandler.FixedIntervalMs">
+  FixedIntervalMs
   <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFScriptTaskHandler.cs#lines-21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置任务轮询的间隔时间（以毫秒为单位）</p>
+  <div class="markdown level1 summary"><p>获取或设置固定周期的间隔时间（以毫秒为单位）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int PollingIntervalMs { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">int FixedIntervalMs { get; set; }</code></pre>
   </div>
 
 
