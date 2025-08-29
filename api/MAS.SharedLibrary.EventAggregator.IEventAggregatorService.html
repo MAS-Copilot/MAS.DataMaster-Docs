@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService" class="text-break">
-Interface IEventAggregatorService  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-15"><i class="bi bi-code-slash"></i></a>
+Interface IEventAggregatorService  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-16"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -122,6 +122,9 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
 
 
+  <h2 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>同时支持泛型（TEvent）和字符串主题（topic）的事件发布/订阅</p>
+</div>
 
 
   <h2 class="section" id="methods">Methods
@@ -130,9 +133,54 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
   <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_GetMessage_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.GetMessage*"></a>
 
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_GetMessage_System_String_System_String_System_String_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.GetMessage(System.String,System.String,System.String)">
+  GetMessage(string, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-196"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取特定持久化消息（字符串主题）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object? GetMessage(string topic, string messageId, string publisherId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>topic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>事件主题字符串</p>
+</dd>
+    <dt><code>messageId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>消息ID</p>
+</dd>
+    <dt><code>publisherId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>发布者ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>payload（object），或null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_GetMessage_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.GetMessage*"></a>
+
   <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_GetMessage__1_System_String_System_String_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.GetMessage``1(System.String,System.String)">
   GetMessage&lt;TEvent&gt;(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-126"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取特定持久化消息，需要正确的消息ID和发布者ID</p>
@@ -176,11 +224,110 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
 
 
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Publish_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Publish*"></a>
+
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Publish_System_String_System_Object_System_String_System_String_System_Nullable_System_TimeSpan__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Publish(System.String,System.Object,System.String,System.String,System.Nullable{System.TimeSpan})">
+  Publish(string, object, string, string, TimeSpan?)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发布持久化字符串主题的事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Publish(string topic, object payload, string publisherId, string messageId, TimeSpan? expiration = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>topic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>事件主题字符串</p>
+</dd>
+    <dt><code>payload</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>事件数据</p>
+</dd>
+    <dt><code>publisherId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>发布者ID</p>
+</dd>
+    <dt><code>messageId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>消息ID</p>
+</dd>
+    <dt><code>expiration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a>?</dt>
+    <dd><p>过期时间（默认30分钟）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.PublishAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync_System_String_System_Object_System_String_System_String_System_Nullable_System_TimeSpan__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.PublishAsync(System.String,System.Object,System.String,System.String,System.Nullable{System.TimeSpan})">
+  PublishAsync(string, object, string, string, TimeSpan?)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步发布持久化字符串主题的事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task PublishAsync(string topic, object payload, string publisherId, string messageId, TimeSpan? expiration = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>topic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>事件主题字符串</p>
+</dd>
+    <dt><code>payload</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>事件数据</p>
+</dd>
+    <dt><code>publisherId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>发布者ID</p>
+</dd>
+    <dt><code>messageId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>消息ID</p>
+</dd>
+    <dt><code>expiration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a>?</dt>
+    <dd><p>过期时间</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>返回一个已完成的异步任务结果，表示事件发布操作已经启动</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync_System_String_System_Object_System_String_System_String_System_Nullable_System_TimeSpan___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Fire-and-Forget 模式。在单独的后台线程中启动所有订阅者的异步处理任务后立即返回，不等待这些任务完成</p>
+</div>
+
+
+
+
   <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.PublishAsync*"></a>
 
   <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync__1___0_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.PublishAsync``1(``0)">
   PublishAsync&lt;TEvent&gt;(TEvent)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步发布一个事件，通知所有订阅了该事件的异步订阅者</p>
@@ -224,11 +371,11 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
 
 
-  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishPersistentAsync_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.PublishPersistentAsync*"></a>
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.PublishAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishPersistentAsync__1___0_System_String_System_String_System_Nullable_System_TimeSpan__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.PublishPersistentAsync``1(``0,System.String,System.String,System.Nullable{System.TimeSpan})">
-  PublishPersistentAsync&lt;TEvent&gt;(TEvent, string, string, TimeSpan?)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-95"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync__1___0_System_String_System_String_System_Nullable_System_TimeSpan__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.PublishAsync``1(``0,System.String,System.String,System.Nullable{System.TimeSpan})">
+  PublishAsync&lt;TEvent&gt;(TEvent, string, string, TimeSpan?)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-96"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步发布一个持久化事件，存入队列并通知匹配订阅者。消费者通过约定知晓ID</p>
@@ -236,7 +383,7 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task PublishPersistentAsync&lt;TEvent&gt;(TEvent eventToPublish, string publisherId, string messageId, TimeSpan? expiration = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task PublishAsync&lt;TEvent&gt;(TEvent eventToPublish, string publisherId, string messageId, TimeSpan? expiration = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -274,18 +421,57 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
 
 
-  <h4 class="section" id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishPersistentAsync__1___0_System_String_System_String_System_Nullable_System_TimeSpan___remarks">Remarks</h4>
+  <h4 class="section" id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync__1___0_System_String_System_String_System_Nullable_System_TimeSpan___remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Fire-and-Forget 模式。在单独的后台线程中启动所有订阅者的异步处理任务后立即返回，不等待这些任务完成</p>
 </div>
 
 
 
 
-  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishPersistent_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.PublishPersistent*"></a>
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Publish_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Publish*"></a>
 
-  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishPersistent__1___0_System_String_System_String_System_Nullable_System_TimeSpan__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.PublishPersistent``1(``0,System.String,System.String,System.Nullable{System.TimeSpan})">
-  PublishPersistent&lt;TEvent&gt;(TEvent, string, string, TimeSpan?)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-77"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Publish__1___0_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Publish``1(``0)">
+  Publish&lt;TEvent&gt;(TEvent)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发布一个事件，通知所有订阅了该事件的订阅者</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Publish&lt;TEvent&gt;(TEvent eventToPublish)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventToPublish</code> <span class="xref">TEvent</span></dt>
+    <dd><p>要发布的事件的实例</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>要发布的事件的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Publish_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Publish*"></a>
+
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Publish__1___0_System_String_System_String_System_Nullable_System_TimeSpan__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Publish``1(``0,System.String,System.String,System.Nullable{System.TimeSpan})">
+  Publish&lt;TEvent&gt;(TEvent, string, string, TimeSpan?)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发布一个持久化事件，存入队列并通知匹配订阅者。消费者通过约定知晓ID</p>
@@ -293,7 +479,7 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void PublishPersistent&lt;TEvent&gt;(TEvent eventToPublish, string publisherId, string messageId, TimeSpan? expiration = null)</code></pre>
+    <pre><code class="lang-csharp hljs">void Publish&lt;TEvent&gt;(TEvent eventToPublish, string publisherId, string messageId, TimeSpan? expiration = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -329,147 +515,27 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
 
 
-  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Publish_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Publish*"></a>
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe*"></a>
 
-  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Publish__1___0_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Publish``1(``0)">
-  Publish&lt;TEvent&gt;(TEvent)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-56"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe_System_String_System_Action_System_Object__System_String_System_String_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe(System.String,System.Action{System.Object},System.String,System.String)">
+  Subscribe(string, Action&lt;object&gt;, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-160"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>发布一个事件，通知所有订阅了该事件的订阅者</p>
+  <div class="markdown level1 summary"><p>订阅特定字符串主题、发布者ID和消息ID的事件</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void Publish&lt;TEvent&gt;(TEvent eventToPublish)</code></pre>
+    <pre><code class="lang-csharp hljs">void Subscribe(string topic, Action&lt;object&gt; action, string publisherId, string messageId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>eventToPublish</code> <span class="xref">TEvent</span></dt>
-    <dd><p>要发布的事件的实例</p>
+    <dt><code>topic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>事件主题字符串</p>
 </dd>
-  </dl>
-
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>TEvent</code></dt>
-    <dd><p>要发布的事件的类型</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_SubscribeAsyncSpecific_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.SubscribeAsyncSpecific*"></a>
-
-  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_SubscribeAsyncSpecific__1_System_Func___0_System_Threading_Tasks_Task__System_String_System_String_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.SubscribeAsyncSpecific``1(System.Func{``0,System.Threading.Tasks.Task},System.String,System.String)">
-  SubscribeAsyncSpecific&lt;TEvent&gt;(Func&lt;TEvent, Task&gt;, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-117"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步订阅特定发布者ID和消息ID的事件</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SubscribeAsyncSpecific&lt;TEvent&gt;(Func&lt;TEvent, Task&gt; action, string publisherId, string messageId)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
-    <dd><p>当事件发生时要执行的异步操作</p>
-</dd>
-    <dt><code>publisherId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>发布者ID</p>
-</dd>
-    <dt><code>messageId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>消息ID</p>
-</dd>
-  </dl>
-
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>TEvent</code></dt>
-    <dd><p>事件类型</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_SubscribeAsync_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.SubscribeAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_SubscribeAsync__1_System_Func___0_System_Threading_Tasks_Task__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.SubscribeAsync``1(System.Func{``0,System.Threading.Tasks.Task})">
-  SubscribeAsync&lt;TEvent&gt;(Func&lt;TEvent, Task&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-28"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步订阅事件</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SubscribeAsync&lt;TEvent&gt;(Func&lt;TEvent, Task&gt; action)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
-    <dd><p>当事件发生时要异步执行的操作。这是一个接受事件类型作为参数的异步委托（方法）</p>
-</dd>
-  </dl>
-
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>TEvent</code></dt>
-    <dd><p>要订阅的事件的类型</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_SubscribeSpecific_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.SubscribeSpecific*"></a>
-
-  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_SubscribeSpecific__1_System_Action___0__System_String_System_String_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.SubscribeSpecific``1(System.Action{``0},System.String,System.String)">
-  SubscribeSpecific&lt;TEvent&gt;(Action&lt;TEvent&gt;, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-108"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>订阅特定发布者ID和消息ID的事件</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SubscribeSpecific&lt;TEvent&gt;(Action&lt;TEvent&gt; action, string publisherId, string messageId)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;TEvent&gt;</dt>
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
     <dd><p>处理动作</p>
 </dd>
     <dt><code>publisherId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
@@ -481,12 +547,48 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
   </dl>
 
 
-  <h4 class="section">Type Parameters</h4>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe*"></a>
+
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe_System_String_System_Func_System_Object_System_Threading_Tasks_Task__System_String_System_String_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe(System.String,System.Func{System.Object,System.Threading.Tasks.Task},System.String,System.String)">
+  Subscribe(string, Func&lt;object, Task&gt;, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-169"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步订阅特定字符串主题、发布者ID和消息ID的事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Subscribe(string topic, Func&lt;object, Task&gt; action, string publisherId, string messageId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>TEvent</code></dt>
-    <dd><p>事件类型</p>
+    <dt><code>topic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>事件主题字符串</p>
+</dd>
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>当事件发生时要执行的异步操作</p>
+</dd>
+    <dt><code>publisherId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>发布者ID</p>
+</dd>
+    <dt><code>messageId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>消息ID</p>
 </dd>
   </dl>
+
+
 
 
 
@@ -501,7 +603,7 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
   <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe__1_System_Action___0__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe``1(System.Action{``0})">
   Subscribe&lt;TEvent&gt;(Action&lt;TEvent&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>订阅事件</p>
@@ -536,27 +638,31 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
 
 
-  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_UnsubscribeAsync_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.UnsubscribeAsync*"></a>
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe*"></a>
 
-  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_UnsubscribeAsync__1_System_Func___0_System_Threading_Tasks_Task__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.UnsubscribeAsync``1(System.Func{``0,System.Threading.Tasks.Task})">
-  UnsubscribeAsync&lt;TEvent&gt;(Func&lt;TEvent, Task&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-49"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe__1_System_Action___0__System_String_System_String_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe``1(System.Action{``0},System.String,System.String)">
+  Subscribe&lt;TEvent&gt;(Action&lt;TEvent&gt;, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>取消异步事件订阅</p>
+  <div class="markdown level1 summary"><p>订阅特定发布者ID和消息ID的事件</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void UnsubscribeAsync&lt;TEvent&gt;(Func&lt;TEvent, Task&gt; action)</code></pre>
+    <pre><code class="lang-csharp hljs">void Subscribe&lt;TEvent&gt;(Action&lt;TEvent&gt; action, string publisherId, string messageId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
-    <dd><p>当事件发生时应该异步执行的操作。这是一个异步方法委托，
-它接受一个 <code class="typeparamref">TEvent</code> 类型的参数，这个参数是之前订阅时指定的。
-传入的委托应与订阅时使用的委托完全相同，包括其引用</p>
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;TEvent&gt;</dt>
+    <dd><p>处理动作</p>
+</dd>
+    <dt><code>publisherId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>发布者ID</p>
+</dd>
+    <dt><code>messageId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>消息ID</p>
 </dd>
   </dl>
 
@@ -564,7 +670,91 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>TEvent</code></dt>
-    <dd><p>要取消订阅的事件的类型</p>
+    <dd><p>事件类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe*"></a>
+
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe__1_System_Func___0_System_Threading_Tasks_Task__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe``1(System.Func{``0,System.Threading.Tasks.Task})">
+  Subscribe&lt;TEvent&gt;(Func&lt;TEvent, Task&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>订阅事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Subscribe&lt;TEvent&gt;(Func&lt;TEvent, Task&gt; action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>当事件发生时要异步执行的操作。这是一个接受事件类型作为参数的异步委托（方法）</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>要订阅的事件的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe*"></a>
+
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Subscribe__1_System_Func___0_System_Threading_Tasks_Task__System_String_System_String_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Subscribe``1(System.Func{``0,System.Threading.Tasks.Task},System.String,System.String)">
+  Subscribe&lt;TEvent&gt;(Func&lt;TEvent, Task&gt;, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>订阅特定发布者ID和消息ID的事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Subscribe&lt;TEvent&gt;(Func&lt;TEvent, Task&gt; action, string publisherId, string messageId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>当事件发生时要执行的异步操作</p>
+</dd>
+    <dt><code>publisherId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>发布者ID</p>
+</dd>
+    <dt><code>messageId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>消息ID</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>事件类型</p>
 </dd>
   </dl>
 
@@ -579,9 +769,93 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
   <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Unsubscribe_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Unsubscribe*"></a>
 
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Unsubscribe_System_String_System_Action_System_Object__System_String_System_String_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Unsubscribe(System.String,System.Action{System.Object},System.String,System.String)">
+  Unsubscribe(string, Action&lt;object&gt;, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-178"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取消订阅特定字符串主题、发布者 ID 和消息 ID 的同步事件处理器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Unsubscribe(string topic, Action&lt;object&gt; action, string publisherId, string messageId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>topic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>事件主题字符串</p>
+</dd>
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>要取消的同步处理动作</p>
+</dd>
+    <dt><code>publisherId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>发布者 ID</p>
+</dd>
+    <dt><code>messageId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>消息 ID</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Unsubscribe_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Unsubscribe*"></a>
+
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Unsubscribe_System_String_System_Func_System_Object_System_Threading_Tasks_Task__System_String_System_String_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Unsubscribe(System.String,System.Func{System.Object,System.Threading.Tasks.Task},System.String,System.String)">
+  Unsubscribe(string, Func&lt;object, Task&gt;, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取消订阅特定字符串主题、发布者 ID 和消息 ID 的事件处理器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Unsubscribe(string topic, Func&lt;object, Task&gt; action, string publisherId, string messageId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>topic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>事件主题字符串</p>
+</dd>
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>要取消的异步处理动作</p>
+</dd>
+    <dt><code>publisherId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>发布者ID</p>
+</dd>
+    <dt><code>messageId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>消息ID</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Unsubscribe_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Unsubscribe*"></a>
+
   <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Unsubscribe__1_System_Action___0__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Unsubscribe``1(System.Action{``0})">
   Unsubscribe&lt;TEvent&gt;(Action&lt;TEvent&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>取消事件订阅</p>
@@ -618,11 +892,52 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
 
 
+  <a id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Unsubscribe_" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Unsubscribe*"></a>
+
+  <h3 id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_Unsubscribe__1_System_Func___0_System_Threading_Tasks_Task__" data-uid="MAS.SharedLibrary.EventAggregator.IEventAggregatorService.Unsubscribe``1(System.Func{``0,System.Threading.Tasks.Task})">
+  Unsubscribe&lt;TEvent&gt;(Func&lt;TEvent, Task&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取消异步事件订阅</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Unsubscribe&lt;TEvent&gt;(Func&lt;TEvent, Task&gt; action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>当事件发生时应该异步执行的操作。这是一个异步方法委托，
+它接受一个 <code class="typeparamref">TEvent</code> 类型的参数，这个参数是之前订阅时指定的。
+传入的委托应与订阅时使用的委托完全相同，包括其引用</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>要取消订阅的事件的类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-15" class="edit-link">Edit this page</a>
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/EventAggregator/IEventAggregator.cs#lines-16" class="edit-link">Edit this page</a>
         </div>
 
 

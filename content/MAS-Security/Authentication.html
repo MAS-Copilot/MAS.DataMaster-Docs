@@ -261,28 +261,15 @@
 <td>Action</td>
 <td>VARCHAR(100)</td>
 <td>操作名称</td>
-<td>不为Null</td>
-</tr>
-<tr>
-<td>LoginTime</td>
-<td>DATETIME</td>
-<td>登录时间</td>
-<td>不为Null</td>
-</tr>
-<tr>
-<td>IsSuccess</td>
-<td>BIT</td>
-<td>是否登录成功</td>
-<td>默认 1</td>
-</tr>
-<tr>
-<td>Notes</td>
-<td>VARCHAR(20)</td>
-<td>备注信息</td>
-<td>无</td>
+<td></td>
 </tr>
 </tbody>
 </table>
+<pre><code>        | 不为Null |
+</code></pre>
+<p>| LoginTime          | DATETIME         | 登录时间                           | 不为Null |
+| IsSuccess          | BIT              | 是否登录成功                       | 默认 1 |
+| Notes              | VARCHAR(20)      | 备注信息                           | 无 |</p>
 <h2 id="本地文件">本地文件</h2>
 <h3 id="用户历史登录凭证userhistoryitem">用户历史登录凭证（UserHistoryItem）</h3>
 <table>
@@ -422,21 +409,6 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </thead>
 <tbody>
 <tr>
-<td>CreateNewCommand</td>
-<td>新建</td>
-<td>Engineer</td>
-</tr>
-<tr>
-<td>FromExistingTemplateCommand</td>
-<td>从模板新建</td>
-<td>Engineer</td>
-</tr>
-<tr>
-<td>OpenProjectCommand</td>
-<td>打开项目</td>
-<td>Operator</td>
-</tr>
-<tr>
 <td>LockObjectCommand</td>
 <td>锁定对象（解锁或锁定画布中所有模块的交互状态）</td>
 <td>Engineer</td>
@@ -462,19 +434,9 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>Visitor</td>
 </tr>
 <tr>
-<td>ProjectSavedCommand</td>
-<td>项目保存</td>
-<td>Engineer</td>
-</tr>
-<tr>
 <td>OpenSetPopCommand</td>
 <td>打开设置面板</td>
 <td>Operator</td>
-</tr>
-<tr>
-<td>ProjectSourceFilesCommand</td>
-<td>打开项目源文件</td>
-<td>Developer</td>
 </tr>
 </tbody>
 </table>
@@ -551,6 +513,38 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>CloseWindowCommand</td>
 <td>关闭窗口</td>
 <td>None</td>
+</tr>
+</tbody>
+</table>
+<h4 id="projectviewmodelbase">ProjectViewModelBase</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CreateNewCommand</td>
+<td>新建</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>FromExistingTemplateCommand</td>
+<td>从模板新建</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenProjectCommand</td>
+<td>打开项目</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>ProjectSavedCommand</td>
+<td>项目保存</td>
+<td>Engineer</td>
 </tr>
 </tbody>
 </table>
@@ -935,6 +929,29 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </tr>
 </tbody>
 </table>
+<h4 id="asciiconversionviewmodel">AsciiConversionViewModel</h4>
+<p>| AddToHistoryCommand | 添加到历史 | None |
+| CopyContentCommand | 复制 | None |</p>
+<h4 id="wordprinterviewmodel">WordPrinterViewModel</h4>
+<p>| RefreshPrintersCommand | 刷新打印机列表 | None |
+| SelectPrinterCommand | 选择打印机 | None |
+| SelectWordFilesCommand | 选择文件 | None |
+| OpenFileCommand | 打开文件 | None |
+| RemoveLinkCommand | 移除关联 | Operator |
+| PrintCommand | 打印 | Operator |
+| ReplacementCommand | 替换 | Operator |
+| DocumentPrintCommand | 存档打印 | Operator |
+| TriggerCommand | 触发 | Engineer |
+| StateSwitchCommand | 切换运行状态 | Operator  |
+| HotReloadCommand | 热重载 | Operator |
+| OpenDebugInfoCommand | 打开调试信息窗口 | Visitor |
+| OpenScriptCodeCommand | 打开脚本 | Admin |
+| BrowseCommand | 浏览路径 | Operator |
+| OpenCommand | 打开路径 | Operator |
+| RefreshPrintHistoryCommand | 刷新打印历史 | Visitor |
+| OpenHistoryCommand | 打开历史 | Visitor |
+| PrintHistoryCommand | 打印历史 | Visitor |
+| DeleteHistoryCommand | 删除历史 | Visitor |</p>
 <h3 id="masdatamasterviewmodelspagesvision">MAS.DataMaster.ViewModels.Pages.Vision</h3>
 <h4 id="workbenchviewmodel">WorkbenchViewModel</h4>
 <table>
@@ -1109,6 +1126,28 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>ClearMessageCommand</td>
 <td>清空消息</td>
 <td>Visitor</td>
+</tr>
+</tbody>
+</table>
+<h4 id="globalstoragepathsetviewmodel">GlobalStoragePathSetViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BrowseCommand</td>
+<td>浏览</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenCommand</td>
+<td>打开</td>
+<td>operator</td>
 </tr>
 </tbody>
 </table>

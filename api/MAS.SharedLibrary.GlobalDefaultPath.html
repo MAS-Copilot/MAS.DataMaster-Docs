@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_GlobalDefaultPath" data-uid="MAS.SharedLibrary.GlobalDefaultPath" class="text-break">
-Class GlobalDefaultPath  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-17"><i class="bi bi-code-slash"></i></a>
+Class GlobalDefaultPath  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-19"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -157,7 +157,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_BackupPath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.BackupPath">
   BackupPath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取默认备份路径</p>
@@ -165,7 +165,8 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string BackupPath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string BackupPath { get; }</code></pre>
   </div>
 
 
@@ -189,7 +190,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_BasePath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.BasePath">
   BasePath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置基础路径</p>
@@ -197,7 +198,8 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string BasePath { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(&quot;MAS.DataMaster&quot;)]
+public static string BasePath { get; set; }</code></pre>
   </div>
 
 
@@ -221,7 +223,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_ConversionCachePath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.ConversionCachePath">
   ConversionCachePath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-69"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取转换的缓存图像存储的默认路径</p>
@@ -229,7 +231,8 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string ConversionCachePath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string ConversionCachePath { get; }</code></pre>
   </div>
 
 
@@ -253,7 +256,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_DataExportPath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.DataExportPath">
   DataExportPath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取数据导出的默认存储路径</p>
@@ -261,7 +264,41 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string DataExportPath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string DataExportPath { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_GlobalDefaultPath_DefalutData_" data-uid="MAS.SharedLibrary.GlobalDefaultPath.DefalutData*"></a>
+
+  <h3 id="MAS_SharedLibrary_GlobalDefaultPath_DefalutData" data-uid="MAS.SharedLibrary.GlobalDefaultPath.DefalutData">
+  DefalutData
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取默认的数据存放路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string DefalutData { get; }</code></pre>
   </div>
 
 
@@ -285,7 +322,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_DetectedImagePath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.DetectedImagePath">
   DetectedImagePath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取检测到目标时图像存储的默认路径</p>
@@ -293,7 +330,8 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string DetectedImagePath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string DetectedImagePath { get; }</code></pre>
   </div>
 
 
@@ -317,7 +355,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_DynamicAssemblyPath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.DynamicAssemblyPath">
   DynamicAssemblyPath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取默生成的程序集路径</p>
@@ -325,7 +363,8 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string DynamicAssemblyPath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string DynamicAssemblyPath { get; }</code></pre>
   </div>
 
 
@@ -349,7 +388,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_ImagePath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.ImagePath">
   ImagePath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取图像存储的默认路径</p>
@@ -357,7 +396,8 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string ImagePath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string ImagePath { get; }</code></pre>
   </div>
 
 
@@ -381,7 +421,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_NonDetectedImagePath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.NonDetectedImagePath">
   NonDetectedImagePath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取未检测到目标时图像存储的默认路径</p>
@@ -389,7 +429,8 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string NonDetectedImagePath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string NonDetectedImagePath { get; }</code></pre>
   </div>
 
 
@@ -413,7 +454,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_ProjectPath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.ProjectPath">
   ProjectPath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取工程文件的默认存储路径</p>
@@ -421,7 +462,8 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string ProjectPath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string ProjectPath { get; }</code></pre>
   </div>
 
 
@@ -445,7 +487,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_TemplatePath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.TemplatePath">
   TemplatePath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取模板图像的默认存储路径</p>
@@ -453,7 +495,8 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string TemplatePath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string TemplatePath { get; }</code></pre>
   </div>
 
 
@@ -477,7 +520,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_UserDataPath" data-uid="MAS.SharedLibrary.GlobalDefaultPath.UserDataPath">
   UserDataPath
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取用户数据的默认存储路径</p>
@@ -485,7 +528,8 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string UserDataPath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[FolderStructure(null)]
+public static string UserDataPath { get; }</code></pre>
   </div>
 
 
@@ -513,7 +557,7 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_GlobalDefaultPath_EnsureDefaultDirectoriesExist" data-uid="MAS.SharedLibrary.GlobalDefaultPath.EnsureDefaultDirectoriesExist">
   EnsureDefaultDirectoriesExist()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-99"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>确保所有默认目录存在，如果不存在则创建</p>
@@ -536,11 +580,44 @@ Class GlobalDefaultPath  <a class="header-action link-secondary" title="View sou
 
 
 
+  <a id="MAS_SharedLibrary_GlobalDefaultPath_GetFolderStructure_" data-uid="MAS.SharedLibrary.GlobalDefaultPath.GetFolderStructure*"></a>
+
+  <h3 id="MAS_SharedLibrary_GlobalDefaultPath_GetFolderStructure" data-uid="MAS.SharedLibrary.GlobalDefaultPath.GetFolderStructure">
+  GetFolderStructure()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据标记为<a class="xref" href="MAS.SharedLibrary.Models.FolderItem.html">FolderItem</a>对象的属性生成文件夹结构树</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FolderItem GetFolderStructure()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Models.FolderItem.html">FolderItem</a></dt>
+    <dd><p>一个<a class="xref" href="MAS.SharedLibrary.Models.FolderItem.html">FolderItem</a>表示文件夹结构的根</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-17" class="edit-link">Edit this page</a>
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Common/GlobalDefaultPath.cs#lines-19" class="edit-link">Edit this page</a>
         </div>
 
 

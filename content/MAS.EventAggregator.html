@@ -90,126 +90,137 @@
 <ul>
 <li><a href="#maseventaggregator-%E4%BA%8B%E4%BB%B6%E8%81%9A%E5%90%88%E5%99%A8">MAS.EventAggregator 事件聚合器</a>
 <ul>
-<li><a href="#ieventaggregator">IEventAggregator</a>
-<ul>
-<li><a href="#%E8%A1%8C%E4%B8%BA">行为</a></li>
-<li><a href="#%E4%BF%A1%E6%81%AF">信息</a></li>
-</ul>
-</li>
-<li><a href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97">消息队列</a>
-<ul>
+<li><a href="#%E6%94%B9%E5%8F%98">改变</a></li>
 <li><a href="#%E7%9B%AE%E7%9A%84">目的</a></li>
-<li><a href="#%E8%A1%8C%E4%B8%BA-1">行为</a></li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E4%BA%8B%E4%BB%B6">类型事件</a></li>
+<li><a href="#%E4%B8%BB%E9%A2%98%E4%BA%8B%E4%BB%B6">主题事件</a></li>
+<li><a href="#%E6%B3%9B%E5%9E%8B%E4%BA%8B%E4%BB%B6">泛型事件</a></li>
+<li><a href="#%E5%A7%94%E6%89%98%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E">委托类型说明</a></li>
 <li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<p><strong>.NET事件和委托：</strong></p>
+<p><strong>.NET 事件和委托：</strong></p>
 <ul>
-<li>直接性：事件是直接定义和触发的，订阅者必须直接知道发布者，形成了比较紧密的耦合</li>
-<li>简洁性：对于简单的场景，使用标准的.NET事件更直接、简单</li>
-<li>组件耦合：发布者和订阅者之间的耦合度较高，因为订阅者需要具体知道是哪个类或实例发布的事件</li>
+<li><strong>直接性</strong>：事件是直接定义和触发的，订阅者必须直接知道发布者，形成了比较紧密的耦合</li>
+<li><strong>简洁性</strong>：对于简单的场景，使用标准的 .NET 事件更直接、简单</li>
+<li><strong>组件耦合</strong>：发布者和订阅者之间的耦合度较高，因为订阅者需要具体知道是哪个类或实例发布的事件</li>
 </ul>
 <p><strong>事件聚合器（Event Aggregator）：</strong></p>
 <ul>
-<li>解耦合：发布者和订阅者之间不直接通信，而是通过事件聚合器，这降低了组件之间的耦合度</li>
-<li>灵活性：订阅者可以在运行时选择订阅或取消订阅事件，而不需要修改发布者的代码</li>
-<li>管理性：事件聚合器作为一个中心点管理所有的事件和订阅，更容易进行事件的管理和调试</li>
+<li><strong>解耦合</strong>：发布者和订阅者之间不直接通信，而是通过事件聚合器，降低了组件之间的耦合度</li>
+<li><strong>灵活性</strong>：订阅者可以在运行时选择订阅或取消订阅事件，而不需要修改发布者的代码</li>
+<li><strong>管理性</strong>：事件聚合器作为一个中心点管理所有的事件和订阅，更容易进行事件的管理和调试</li>
 </ul>
-<h2 id="ieventaggregator">IEventAggregator</h2>
-<h3 id="行为">行为</h3>
-<p><strong>- Step 1:</strong> 在 <code>MAS.SharedLibrary</code> 中定义事件（跨模块、避免循环依赖），便于集中管理以及访问</p>
-<pre><code class="lang-csharp">public class DataUpdatedEvent{
-    public string UpdatedData { get; set; }
+<p><code>IEventAggregatorService</code> 提供了一个线程安全的发布-订阅（Pub/Sub）机制，支持泛型事件（基于类型 <code>TEvent</code>）和字符串主题事件（基于 <code>topic</code> 字符串），适用于模块化系统（如插件架构）。它支持瞬时事件和持久化消息队列，结合 Fire-and-Forget 异步处理和过期管理</p>
+<h2 id="改变">改变</h2>
+<ul>
+<li>自<code>3.9.0</code>版本引入的消息队列模式，支持持久化消息，解决瞬时消息丢失问题</li>
+<li>自<code>3.10.0</code>版本引入字符串主题事件，解决因类型身份不一致导致的订阅者无法收到消息</li>
+</ul>
+<h2 id="目的">目的</h2>
+<ul>
+<li><strong>防丢失</strong>：允许延迟订阅者通过持久化队列获取历史消息</li>
+<li><strong>解耦</strong>：发布者和消费者通过约定（<code>publisherId</code> 和 <code>messageId</code>）通信，避免模块耦合</li>
+<li><strong>隔离性</strong>：消息按 <code>publisherId</code> 隔离，仅匹配订阅者可见</li>
+<li><strong>实时+手动</strong>：发布时存入队列并实时通知，消费者可通过 <code>GetMessage</code> 手动获取</li>
+<li><strong>过期管理</strong>：默认 10 分钟过期，自动清理，防止内存增长</li>
+<li><strong>线程安全</strong>：使用 <code>ConcurrentDictionary</code> 和 <code>lock</code>，确保多线程环境稳定</li>
+<li><strong>存储</strong>：当前为内存存储，高效但非永久。未来可扩展到数据库或<code>Redis</code></li>
+</ul>
+<h2 id="类型事件">类型事件</h2>
+<p><strong>- Step 1:</strong> 在共享程序集中定义事件类（跨模块、避免循环依赖），便于集中管理</p>
+<pre><code class="lang-csharp">namespace MAS.SharedLibrary.EventAggregator;
+
+/// &lt;summary&gt;
+/// 消息更新事件参数
+/// &lt;/summary&gt;
+public class DataUpdatedEvent(string data) {
+    /// &lt;summary&gt;
+    /// 获取更新数据
+    /// &lt;/summary&gt;
+    public string Data { get; } = data;
 }
 </code></pre>
-<p><strong>- Step 2:</strong> 订阅者可以在任意位置订阅事件</p>
-<pre><code class="lang-csharp">public class MainViewModel{
+<p><strong>- Step 2:</strong> 订阅者订阅事件，指定事件类型和处理器</p>
+<pre><code class="lang-csharp">public class MainViewModel {
     private readonly IEventAggregatorService _eventAggregator;
 
-    public MainViewModel(IEventAggregatorService eventAggregator){
+    public MainViewModel(IEventAggregatorService eventAggregator) {
         _eventAggregator = eventAggregator;
         _eventAggregator.Subscribe&lt;DataUpdatedEvent&gt;(OnDataUpdated);
+        _eventAggregator.Subscribe&lt;DataUpdatedEvent&gt;(OnDataUpdatedAsync);
     }
 
-    private void OnDataUpdated(DataUpdatedEvent e){
-        Console.WriteLine($&quot;数据已更新: {e.UpdatedData}&quot;);
+    private void OnDataUpdated(DataUpdatedEvent e) {
+        Console.WriteLine($&quot;数据已更新: {e.Data}&quot;);
+    }
+
+    private async Task OnDataUpdatedAsync(DataUpdatedEvent e) {
+        await Task.Delay(100);
+        Console.WriteLine($&quot;异步数据更新: {e.Data}&quot;);
     }
 }
 </code></pre>
-<p><strong>- Step 3:</strong> 发布者可以在任意位置发布事件</p>
-<pre><code class="lang-csharp">public class DataService{
+<p><strong>- Step 3:</strong> 发布者发布事件，通知所有订阅者</p>
+<pre><code class="lang-csharp">public class DataService {
     private readonly IEventAggregatorService _eventAggregator;
 
-    public DataService(IEventAggregatorService eventAggregator){
+    public DataService(IEventAggregatorService eventAggregator) {
         _eventAggregator = eventAggregator;
     }
 
-    public void UpdateData(){
-        // 执行数据更新操作
-        // ...
-
-        _eventAggregator.Publish(new DataUpdatedEvent { UpdatedData = &quot;新的数据内容&quot; });
+    public void UpdateData() {
+        var eventData = new DataUpdatedEvent(&quot;新的数据内容&quot;);
+        _eventAggregator.Publish(eventData);
+        _eventAggregator.PublishAsync(eventData);
     }
 }
 </code></pre>
-<h3 id="信息">信息</h3>
-<p>使用已存在的 <code>DataUpdateEvent&lt;T&gt;(T data)</code> 泛型事件类足以满足多种数据类型的需求</p>
-<pre><code class="lang-csharp">public class DataUpdateEvent&lt;T&gt;(T data) {
-    public T Data { get; } = data;
-}
-</code></pre>
-<h2 id="消息队列">消息队列</h2>
-<p>自<code>3.9.0</code>及以上版本中引入的消息队列模式</p>
-<h3 id="目的">目的</h3>
-<ul>
-<li>解决标准<code>Pub/Sub</code>的瞬时消息丢失问题：允许延迟订阅者（或在订阅后）通过持久化队列获取历史消息</li>
-<li>支持解耦：发布者和消费者通过约定（文档/业务键）知晓<code>publisherId</code>和<code>messageId</code>，避免模块耦合</li>
-<li>隔离性：消息按<code>publisherId</code>隔离，仅匹配<code>ID</code>的订阅者/消费者可见</li>
-<li>实时+手动：发布持久化消息时，既存入队列（防丢失），也实时通知匹配订阅者（无需轮询）。消费者可手动<code>GetMessage</code>获取遗漏消息</li>
-<li>过期管理：默认<code>30</code>分钟过期，自动移除，防止内存无限增长（理论支持上万条消息）</li>
-<li>线程安全：使用线程安全字典<code>ConcurrentDictionary</code>和<code>lock</code>，确保多线程环境稳定</li>
-<li>存储：当前内存实现（高效），未来可扩展到数据库（<code>Redis</code>）以支持持久化重启</li>
-</ul>
-<h3 id="行为-1">行为</h3>
-<p><strong>- Step 1:</strong> 在 <code>MAS.SharedLibrary</code> 中定义事件（跨模块、避免循环依赖），便于集中管理以及访问</p>
-<pre><code class="lang-csharp">public class DataUpdatedEvent{
-    public string UpdatedData { get; set; }
-}
-</code></pre>
-<p><strong>Step 2:</strong> 订阅特定消息（实时通知）</p>
-<pre><code class="lang-csharp">public class ConsumerViewModel {
+<h2 id="主题事件">主题事件</h2>
+<p><code>Key</code>是<code>主题 + 发布者Id + 消息Id</code>的组合，如果存在相同<code>Key</code>，则事件会被覆盖</p>
+<p><strong>- Step 1:</strong> 订阅者订阅特定字符串主题事件，使用 <code>topic</code>、<code>publisherId</code> 和 <code>messageId</code></p>
+<pre><code class="lang-csharp">public class PluginConsumer {
     private readonly IEventAggregatorService _eventAggregator;
 
-    public ConsumerViewModel(IEventAggregatorService eventAggregator) {
+    public PluginConsumer(IEventAggregatorService eventAggregator) {
         _eventAggregator = eventAggregator;
-        // 订阅特定publisherId和messageId（通过文档约定知晓）
-        _eventAggregator.SubscribeSpecific&lt;DataUpdatedEvent&gt;(OnSpecificDataUpdated, &quot;PublisherModule1&quot;, &quot;UpdateMessage123&quot;);
+
+        // 不推荐的订阅方式，Lambda 创建的匿名委托无法取消，导致内存泄漏
+        _eventAggregator.Subscribe(&quot;System&quot;, p =&gt; Console.WriteLine($&quot;同步方法，收到消息: {(string)p}&quot;), &quot;keeleycenc&quot;, &quot;EventTest&quot;);
+        _eventAggregator.Subscribe(&quot;System&quot;, async p =&gt; await Task.Run(() =&gt; Console.WriteLine($&quot;异步方法，收到消息: {(string)p}&quot;)), &quot;keeleycenc&quot;, &quot;EventTest&quot;);
+
+        // 推荐的订阅方式
+        _eventAggregator.Subscribe(&quot;System&quot;, HandleMessage, &quot;keeleycenc&quot;, &quot;SyncMethodEvent&quot;);
+        _eventAggregator.Subscribe(&quot;System&quot;, HandleMessageAsync, &quot;keeleycenc&quot;, &quot;AsyncMethodEvent&quot;);
     }
 
-    private void OnSpecificDataUpdated(DataUpdatedEvent e) {
-        Console.WriteLine($&quot;特定消息更新: {e.UpdatedData}&quot;);
+    private void HandleMessage(object payload) {
+        Console.WriteLine($&quot;收到消息: {(string)payload}&quot;);
+    }
+
+    private async Task HandleMessageAsync(object payload) {
+        await Task.Delay(100);
+        Console.WriteLine($&quot;收到消息: {(string)payload}&quot;)
     }
 }
 </code></pre>
-<p><strong>Step 3:</strong> 发布持久化消息</p>
-<pre><code class="lang-csharp">public class PublisherService {
+<p><strong>- Step 2:</strong> 发布者发布字符串主题事件，存入持久化队列并通知匹配订阅者</p>
+<pre><code class="lang-csharp">public class PluginPublisher {
     private readonly IEventAggregatorService _eventAggregator;
 
-    public PublisherService(IEventAggregatorService eventAggregator) {
+    public PluginPublisher(IEventAggregatorService eventAggregator) {
         _eventAggregator = eventAggregator;
     }
 
-    public void PublishUpdate() {
-        var eventData = new DataUpdatedEvent { UpdatedData = &quot;持久化数据&quot; };
-        // 使用约定ID发布，存队列 + 实时通知匹配订阅者，默认过期30分钟
-        _eventAggregator.PublishPersistent(eventData, &quot;PublisherModule1&quot;, &quot;UpdateMessage123&quot;);
+    public void PublishMessage() {
+        var payload = &quot;测试消息&quot;;
+        _eventAggregator.Publish(&quot;System&quot;, payload, &quot;keeleycenc&quot;, &quot;EventTest&quot;, TimeSpan.FromMinutes(30));
+        _eventAggregator.PublishAsync(&quot;System&quot;, payload, &quot;keeleycenc&quot;, &quot;EventTest&quot;);
     }
 }
 </code></pre>
-<p><strong>Step 4:</strong> 手动获取消息（如果订阅延迟或需重试）</p>
+<p><strong>- Step 3:</strong> 消费者手动获取持久化消息（如果订阅延迟或需重试）</p>
 <pre><code class="lang-csharp">public class LateConsumer {
     private readonly IEventAggregatorService _eventAggregator;
 
@@ -217,21 +228,238 @@
         _eventAggregator = eventAggregator;
     }
 
-    public void FetchMissedUpdate() {
-        var missedEvent = _eventAggregator.GetMessage&lt;DataUpdatedEvent&gt;(&quot;UpdateMessage123&quot;, &quot;PublisherModule1&quot;);
-        if (missedEvent != null) {
-            Console.WriteLine($&quot;手动获取: {missedEvent.UpdatedData}&quot;);
+    public void FetchMissedMessage() {
+        var payload = _eventAggregator.GetMessage(&quot;System&quot;, &quot;EventTest&quot;, &quot;keeleycenc&quot;);
+        if (payload != null) {
+            Console.WriteLine($&quot;手动获取: {payload as string}&quot;);
         }
     }
 }
 </code></pre>
-<h3 id="注意事项">注意事项</h3>
+<h2 id="泛型事件">泛型事件</h2>
+<p>泛型事件通过 <code>DataUpdateEvent&lt;T&gt;</code> 支持任意数据类型的消息更新，适合需要灵活传递不同类型数据的场景。相比 <code>DataUpdatedEvent</code>（固定字符串数据），<code>DataUpdateEvent&lt;T&gt;</code> 提供了更高的灵活性，允许模块定义和处理自定义数据类型（如数字、复杂对象等）</p>
+<p><strong>- Step 1:</strong> 在共享程序集中定义泛型事件类（跨模块、避免循环依赖）</p>
+<pre><code class="lang-csharp">namespace MAS.SharedLibrary.EventAggregator;
+
+/// &lt;summary&gt;
+/// 消息更新事件参数
+/// &lt;/summary&gt;
+/// &lt;typeparam name=&quot;T&quot;&gt;事件数据的类型&lt;/typeparam&gt;
+public class DataUpdateEvent&lt;T&gt;(T data) {
+    /// &lt;summary&gt;
+    /// 获取更新数据
+    /// &lt;/summary&gt;
+    public T Data { get; } = data;
+}
+</code></pre>
+<p><strong>- Step 2:</strong> 订阅者订阅泛型事件，指定数据类型和处理器</p>
+<pre><code class="lang-csharp">public class CustomData {
+    public string Name { get; set; } = string.Empty;
+    public int Value { get; set; }
+}
+
+public class GenericConsumer {
+    private readonly IEventAggregatorService _eventAggregator;
+
+    public GenericConsumer(IEventAggregatorService eventAggregator) {
+        _eventAggregator = eventAggregator;
+
+        _eventAggregator.Subscribe&lt;DataUpdateEvent&lt;int&gt;&gt;(OnIntDataUpdated);
+        _eventAggregator.Subscribe&lt;DataUpdateEvent&lt;CustomData&gt;&gt;(OnCustomDataUpdated);
+        _eventAggregator.Subscribe&lt;DataUpdateEvent&lt;string&gt;&gt;(OnStringDataUpdatedAsync);
+    }
+
+    private void OnIntDataUpdated(DataUpdateEvent&lt;int&gt; e) {
+        Console.WriteLine($&quot;收到整数数据: {e.Data}&quot;);
+    }
+
+    private void OnCustomDataUpdated(DataUpdateEvent&lt;CustomData&gt; e) {
+        Console.WriteLine($&quot;收到复杂数据: {e.Data.Name}, {e.Data.Value}&quot;);
+    }
+
+    private async Task OnStringDataUpdatedAsync(DataUpdateEvent&lt;string&gt; e) {
+        await Task.Delay(100);
+        Console.WriteLine($&quot;异步收到字符串数据: {e.Data}&quot;);
+    }
+}
+</code></pre>
+<p><strong>- Step 3:</strong> 发布者发布泛型事件，通知所有订阅者</p>
+<pre><code class="lang-csharp">public class GenericPublisher {
+    private readonly IEventAggregatorService _eventAggregator;
+
+    public GenericPublisher(IEventAggregatorService eventAggregator) {
+        _eventAggregator = eventAggregator;
+    }
+
+    public void PublishData() {
+        _eventAggregator.Publish(new DataUpdateEvent&lt;int&gt;(42));
+        _eventAggregator.Publish(new DataUpdateEvent&lt;CustomData&gt;(new CustomData { Name = &quot;Test&quot;, Value = 100 }));
+        _eventAggregator.PublishAsync(new DataUpdateEvent&lt;string&gt;(&quot;测试字符串&quot;));
+    }
+}
+</code></pre>
+<p><strong>- Step 4:</strong> 订阅特定持久化泛型事件（实时通知）</p>
+<pre><code class="lang-csharp">public class PersistentConsumer {
+    private readonly IEventAggregatorService _eventAggregator;
+
+    public PersistentConsumer(IEventAggregatorService eventAggregator) {
+        _eventAggregator = eventAggregator;
+
+        // 不推荐的订阅方式，Lambda 创建的匿名委托无法取消，导致内存泄漏
+        _eventAggregator.Subscribe&lt;DataUpdateEvent&lt;int&gt;&gt;(e =&gt; Console.WriteLine($&quot;持久化整数: {e.Data}&quot;), &quot;publisher1&quot;, &quot;msg1&quot;);
+        _eventAggregator.Subscribe&lt;DataUpdateEvent&lt;CustomData&gt;&gt;(async e =&gt; await Task.Run(() =&gt; Console.WriteLine($&quot;异步持久化: {e.Data.Name}&quot;)), &quot;publisher1&quot;, &quot;msg2&quot;);
+
+        // 推荐的订阅方式
+        _eventAggregator.Subscribe(&quot;System&quot;, HandleMessage, &quot;publisher1&quot;, &quot;msg1&quot;);
+        _eventAggregator.Subscribe(&quot;System&quot;, HandleMessageAsync, &quot;publisher1&quot;, &quot;msg2&quot;);
+    }
+
+    private void HandleMessage(DataUpdateEvent&lt;int&gt; e) {
+        Console.WriteLine($&quot;持久化整数: {e.Data}&quot;)
+    }
+
+    private async Task HandleMessageAsync(DataUpdateEvent&lt;CustomData&gt; e) {
+        await Task.Delay(100);
+        Console.WriteLine($&quot;收到消息: {(string)payload}&quot;)
+    }
+}
+</code></pre>
+<p><strong>- Step 5:</strong> 发布持久化泛型事件，存入队列并通知匹配订阅者</p>
+<pre><code class="lang-csharp">public class PersistentPublisher {
+    private readonly IEventAggregatorService _eventAggregator;
+
+    public PersistentPublisher(IEventAggregatorService eventAggregator) {
+        _eventAggregator = eventAggregator;
+    }
+
+    public void PublishPersistentData() {
+        _eventAggregator.Publish(new DataUpdateEvent&lt;int&gt;(42), &quot;publisher1&quot;, &quot;msg1&quot;, TimeSpan.FromMinutes(30));
+        _eventAggregator.PublishAsync(new DataUpdateEvent&lt;CustomData&gt;(new CustomData { Name = &quot;Test&quot;, Value = 100 }), &quot;publisher1&quot;, &quot;msg2&quot;);
+    }
+}
+</code></pre>
+<p><strong>- Step 6:</strong> 手动获取持久化泛型消息（如果订阅延迟或需重试）</p>
+<pre><code class="lang-csharp">public class LateConsumer {
+    private readonly IEventAggregatorService _eventAggregator;
+
+    public LateConsumer(IEventAggregatorService eventAggregator) {
+        _eventAggregator = eventAggregator;
+    }
+
+    public void FetchMissedData() {
+        var intEvent = _eventAggregator.GetMessage&lt;DataUpdateEvent&lt;int&gt;&gt;(&quot;msg1&quot;, &quot;publisher1&quot;);
+        if (intEvent != null) {
+            Console.WriteLine($&quot;手动获取整数: {intEvent.Data}&quot;);
+        }
+
+        var customEvent = _eventAggregator.GetMessage&lt;DataUpdateEvent&lt;CustomData&gt;&gt;(&quot;msg2&quot;, &quot;publisher1&quot;);
+        if (customEvent != null) {
+            Console.WriteLine($&quot;手动获取复杂数据: {customEvent.Data.Name}, {customEvent.Data.Value}&quot;);
+        }
+    }
+}
+</code></pre>
+<h2 id="委托类型说明">委托类型说明</h2>
+<p>订阅方法支持多种委托类型，适用于不同场景。以下是 <code>Action</code>（无参）、<code>Action&lt;object&gt;</code>（有参）、<code>Action&lt;TEvent&gt;</code>、<code>Func&lt;TEvent, Task&gt;</code> 和 <code>Func&lt;object, Task&gt;</code> 的区别和使用场景：</p>
 <ul>
-<li><code>publisherId</code>和<code>messageId</code>为<code>string</code>，便于业务键</li>
-<li>唯一性：发布者需确保<code>messageId</code>在<code>publisherId</code>下唯一（覆盖旧消息）</li>
-<li>过期：<code>expiration</code>为<code>null</code>时默认30分钟</li>
-<li>性能：内存存储支持上万条；若需清理，可监控字典大小</li>
-<li>解耦：<code>ID</code>通过文档/配置约定，避免直接通信</li>
+<li><p><strong><code>Action</code></strong>（无参数，无返回值，<code>void ()</code>）：</p>
+<ul>
+<li><strong>用途</strong>：表示无需处理事件数据的简单通知处理器，适合仅关心事件发生的情况</li>
+<li><strong>限制</strong>：当前接口不支持直接使用 <code>Action</code>，需包装为 <code>Action&lt;object&gt;</code> 或 <code>Action&lt;TEvent&gt;</code>（忽略参数）</li>
+<li><strong>比喻</strong>：像订阅了“门铃通知”，只知道事件发生（如“有新消息”），不关心具体内容</li>
+<li><strong>示例</strong>（需包装）：
+<pre><code class="lang-csharp">_eventAggregator.Subscribe(&quot;System&quot;, p =&gt; Console.WriteLine(&quot;事件触发&quot;), &quot;publisher1&quot;, &quot;msg1&quot;);
+_eventAggregator.Publish(&quot;System&quot;, &quot;测试&quot;, &quot;publisher1&quot;, &quot;msg1&quot;); 
+</code></pre>
+</li>
+<li><strong>场景</strong>：适合轻量通知，如触发固定日志或信号</li>
+</ul>
+</li>
+<li><p><strong><code>Action&lt;object&gt;</code></strong>（带 <code>object</code> 参数，无返回值，<code>void (object)</code>）：</p>
+<ul>
+<li><strong>用途</strong>：表示需要处理事件数据的同步处理器，payload 可为字符串、JSON 或其他对象，适合动态编译场景</li>
+<li><strong>比喻</strong>：像订阅了“报纸”，可以读取具体内容（如消息文本或 JSON 数据）</li>
+<li><strong>示例</strong>：
+<pre><code class="lang-csharp">_eventAggregator.Subscribe(&quot;System&quot;, p =&gt; Console.WriteLine($&quot;收到: {(string)p}&quot;), &quot;publisher1&quot;, &quot;msg1&quot;);
+_eventAggregator.Publish(&quot;System&quot;, &quot;测试&quot;, &quot;publisher1&quot;, &quot;msg1&quot;); 
+</code></pre>
+JSON 示例：
+<pre><code class="lang-csharp">_eventAggregator.Subscribe(&quot;System&quot;, p =&gt; {
+    var data = JsonConvert.DeserializeObject&lt;Dictionary&lt;string, string&gt;&gt;((string)p);
+    Console.WriteLine($&quot;收到: {data[&quot;Message&quot;]}&quot;);
+}, &quot;publisher1&quot;, &quot;msg1&quot;);
+_eventAggregator.Publish(&quot;System&quot;, JsonConvert.SerializeObject(new { Message = &quot;测试&quot; }), &quot;publisher1&quot;, &quot;msg1&quot;);
+</code></pre>
+</li>
+<li><strong>场景</strong>：适合需要处理动态数据或在动态编译场景中使用</li>
+</ul>
+</li>
+<li><p><strong><code>Action&lt;TEvent&gt;</code></strong>（带 <code>TEvent</code> 参数，无返回值，<code>void (TEvent)</code>）：</p>
+<ul>
+<li><strong>用途</strong>：表示需要处理强类型事件数据的同步处理器，适合需要类型安全的场景</li>
+<li><strong>比喻</strong>：像订阅了“定制报纸”，明确知道报纸内容类型（如 <code>DataUpdatedEvent</code>）</li>
+<li><strong>示例</strong>：
+<pre><code class="lang-csharp">_eventAggregator.Subscribe&lt;DataUpdatedEvent&gt;(e =&gt; Console.WriteLine(e.UpdatedData), &quot;publisher1&quot;, &quot;msg1&quot;);
+_eventAggregator.Publish(new DataUpdatedEvent { UpdatedData = &quot;测试&quot; }, &quot;publisher1&quot;, &quot;msg1&quot;);
+</code></pre>
+</li>
+<li><strong>场景</strong>：适合模块内强类型事件处理</li>
+</ul>
+</li>
+<li><p><strong><code>Func&lt;TEvent, Task&gt;</code></strong>（带 <code>TEvent</code> 参数，返回 <code>Task</code>，<code>Task (TEvent)</code>）：</p>
+<ul>
+<li><strong>用途</strong>：表示需要异步处理强类型事件数据的处理器，适合耗时操作或异步 I/O</li>
+<li><strong>比喻</strong>：像订阅了“定制报纸”并需要异步处理（如在线解析内容）</li>
+<li><strong>示例</strong>：
+<ul>
+<li>直接传递异步方法：
+<pre><code class="lang-csharp">async Task OnDataUpdatedAsync(DataUpdatedEvent e) {
+    await Task.Delay(100);
+    Console.WriteLine($&quot;异步收到: {e.UpdatedData}&quot;);
+}
+_eventAggregator.Subscribe&lt;DataUpdatedEvent&gt;(OnDataUpdatedAsync);
+await _eventAggregator.PublishAsync(new DataUpdatedEvent { UpdatedData = &quot;测试&quot; });
+</code></pre>
+</li>
+<li>Lambda 包装：
+<pre><code class="lang-csharp">_eventAggregator.Subscribe&lt;DataUpdatedEvent&gt;(async e =&gt; await Task.Run(() =&gt; Console.WriteLine($&quot;异步收到: {e.UpdatedData}&quot;)));
+await _eventAggregator.PublishAsync(new DataUpdatedEvent { UpdatedData = &quot;测试&quot; });
+</code></pre>
+</li>
+</ul>
+</li>
+<li><strong>场景</strong>：适合异步任务，如网络请求、文件操作或复杂计算</li>
+</ul>
+</li>
+<li><p><strong><code>Func&lt;object, Task&gt;</code></strong>（带 <code>object</code> 参数，返回 <code>Task</code>，<code>Task (object)</code>）：</p>
+<ul>
+<li><strong>用途</strong>：表示需要异步处理动态事件数据的处理器，适合动态编译场景</li>
+<li><strong>比喻</strong>：像订阅了“报纸”并需要异步处理（如在线解析内容）</li>
+<li><strong>示例</strong>：
+<pre><code class="lang-csharp">_eventAggregator.Subscribe(&quot;System&quot;, async p =&gt; await Task.Run(() =&gt; Console.WriteLine($&quot;异步收到: {p as string}&quot;)), &quot;publisher1&quot;, &quot;msg1&quot;);
+await _eventAggregator.PublishAsync(&quot;System&quot;, &quot;测试&quot;, &quot;publisher1&quot;, &quot;msg1&quot;);
+</code></pre>
+</li>
+<li><strong>场景</strong>：适合插件系统的异步数据处理</li>
+</ul>
+</li>
+<li><p><strong>选择建议</strong>：</p>
+<ul>
+<li>使用 <code>Action&lt;TEvent&gt;</code> 或 <code>Action&lt;object&gt;</code> 当需要同步处理事件数据</li>
+<li>使用 <code>Func&lt;TEvent, Task&gt;</code> 或 <code>Func&lt;object, Task&gt;</code> 当需要异步处理，优先直接传递异步方法（如 <code>OnDataUpdatedAsync</code>）以提高代码清晰度</li>
+<li>如果不需要 payload，可以使用 <code>Action&lt;object&gt;</code> 或 <code>Action&lt;TEvent&gt;</code> 忽略参数（<code>p =&gt; ...</code>），但当前接口不支持直接使用 <code>Action</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="注意事项">注意事项</h2>
+<p>注：如果滥用事件聚合器（EventAggregatorService），将提高维护成本，谨慎使用</p>
+<ul>
+<li>在模块卸载或销毁时，不要忘记取消订阅，否则会造成内存泄漏</li>
+<li>事件聚合器的解耦特性使事件流难以直观追踪，滥用可能导致难以定位发布者或订阅者的具体来源</li>
+<li>在简单场景下（如模块间直接依赖明确），优先考虑接口、方法调用或<code>.NET</code>事件，而不是事件聚合器</li>
+<li>事件聚合器适合解耦需求高的场景（如跨模块、动态编译）</li>
+<li>为<code>publisherId</code>和<code>messageId</code>建立清晰的命名规则（如模块名+事件类型），记录在文档或配置中，避免混乱</li>
+<li>避免使用<code>Lambda</code>表达式创建的匿名委托，会导致内存泄漏</li>
 </ul>
 
 </article>

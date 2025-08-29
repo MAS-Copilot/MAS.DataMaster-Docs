@@ -92,7 +92,7 @@
 <h2 id="系统架构概述">系统架构概述</h2>
 <p>事件驱动架构以及分层架构，主要分为以下几个层级：</p>
 <ol>
-<li><strong>通信层</strong>：负责PLC与PC之间的数据交换</li>
+<li><strong>通信层</strong>：负责<code>PLC</code>与<code>PC</code>之间的数据交换</li>
 <li><strong>任务处理层</strong>：解析通信任务，根据任务标志位执行相应的操作</li>
 <li><strong>数据访问层</strong>：与数据库进行交互，实现数据的持久化</li>
 <li><strong>导出层</strong>：处理数据的导出逻辑，将数据导出为Excel文件</li>
@@ -111,12 +111,14 @@ public interface IProtocol : IDisposable
 <h2 id="数据交换">数据交换</h2>
 <h3 id="西门子工程结构目录推荐">西门子工程结构目录推荐</h3>
 <pre><code class="lang-bash">├─DataMaster
-│  ├─DataExchange           # 数据交换层
-│  │   ├─DataReader         # 存放所有数据读取 DB (PC 读取)
-│  │   └─DataWrite          # 存放所有数据写入 DB (PC 写入)
-│  ├─TaskExecution          # 任务执行层
-│  │   ├─TaskCompleted      # 任务完成写入索引 DB
-│  │   └─TaskExecution      # 任务执行请求读取 DB
+│  ├─Biud                      # Biud 模块
+│  │  ├─DataExchange           # 数据交换层
+│  │  │   ├─DataReader         # 存放所有数据读取 DB (PC 读取)
+│  │  │   └─DataWrite          # 存放所有数据写入 DB (PC 写入)
+│  │  ├─TaskExecution          # 任务执行层
+│  │  │   ├─TaskCompleted      # 任务完成写入索引 DB
+│  │  │   └─TaskExecution      # 任务执行请求读取 DB
+# 以此类推...
 </code></pre>
 <p><strong>数据流逻辑：</strong></p>
 <ul>
@@ -139,7 +141,7 @@ public interface IProtocol : IDisposable
 </ul>
 <p><strong>操作标志位：</strong></p>
 <ul>
-<li>在<code>DataExchange/DataReader</code>读取的数据结构中，往往包含操作标志位</li>
+<li>在<code>Biud</code>模块中<code>DataExchange/DataReader</code>读取的数据结构中，往往包含操作标志位</li>
 <li>PC 根据读取到的操作标志决定执行对应的增删改查或文件创建等操作</li>
 <li>标志位的判断逻辑（CRUD 是指数据库的增删改查操作）：
 <ul>
@@ -156,6 +158,24 @@ public interface IProtocol : IDisposable
 <h2 id="网络流量">网络流量</h2>
 <p><img src="../../images/BuildRun/NetworkFlow.png" alt="网络流量"></p>
 <p>如图，该电脑某时间段一分钟内经过以太网2的累计流量：7.86MB，平均每秒1.05Mbps，<code>DataMaster</code>软件占总流量的7.9%</p>
+<h2 id="数据读取处理程序">数据读取处理程序</h2>
+<p>更多信息，请参阅 <a href="../MAS.EventAggregator.html">MAS.EventAggregator</a></p>
+<h3 id="类型事件">类型事件</h3>
+<pre><code class="lang-csharp">await aggregatorService.PublishAsync(new DataUpdateEventArgs&lt;T&gt;(data.Value)).ConfigureAwait(false);
+</code></pre>
+<ul>
+<li>事件类型: <code>DataUpdateEventArgs&lt;T&gt;</code></li>
+<li>数据类型: 泛型<code>T</code>，要求为结构体（<code>where T : struct</code>）</li>
+</ul>
+<h3 id="主题事件">主题事件</h3>
+<pre><code class="lang-csharp">await aggregatorService.PublishAsync(&quot;MAS.Communication&quot;, dataObject, &quot;ReadDataHandler&quot;, TaskName);
+</code></pre>
+<ul>
+<li>事件主题: <code>MAS.Communication</code></li>
+<li>数据对象: <code>dataObject</code></li>
+<li>发布者Id：<code>ReadDataHandler</code></li>
+<li>消息Id：<code>TaskName</code></li>
+</ul>
 
 </article>
 
