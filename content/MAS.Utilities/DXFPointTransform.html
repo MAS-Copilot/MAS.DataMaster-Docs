@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../public/docfx.min.css">
       <link rel="stylesheet" href="../../public/main.css">
       <meta name="docfx:navrel" content="../../toc.html">
-      <meta name="docfx:tocrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
       
       <meta name="docfx:rel" content="../../">
       
@@ -63,23 +63,9 @@
     </header>
 
     <main class="container-xxl">
-      <div class="toc-offcanvas">
-        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <nav class="toc" id="toc"></nav>
-          </div>
-        </div>
-      </div>
 
       <div class="content">
         <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
-            <i class="bi bi-list"></i>
-          </button>
 
           <nav id="breadcrumb"></nav>
         </div>
@@ -164,7 +150,18 @@ T = \begin{bmatrix}
 </li>
 </ul>
 </li>
-<li><strong>计算矩阵变换</strong>：使用最小二乘法求解 3x3 矩阵 <span class="math">\(T\)</span>，使得 <span class="math">\(P_t = T \cdot P_w\)</span>（<a href="https://zh.wikipedia.org/zh-hans/%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87">齐次形式</a>）</li>
+<li><strong>计算矩阵变换</strong>：
+<ul>
+<li>构建源坐标矩阵 ( src ) 和目标坐标矩阵 ( dst )，点以列向量形式表示（齐次坐标）：
+<div class="math">
+\[
+   src = \begin{bmatrix} x_{w1} &amp; x_{w2} &amp; x_{w3} \\ y_{w1} &amp; y_{w2} &amp; y_{w3} \\ 1 &amp; 1 &amp; 1 \end{bmatrix},
+   \quad dst = \begin{bmatrix} x_{t1} &amp; x_{t2} &amp; x_{t3} \\ y_ {t1} &amp; y_{t2} &amp; y_{t3} \\ 1 &amp; 1 &amp; 1 \end{bmatrix}
+\]</div>
+</li>
+<li>使用公式 <span class="math">\(T = dst \cdot src^{-1}\)</span> 求解 3x3 变换矩阵 <span class="math">\(T\)</span>，使得 <span class="math">\(P_t = T \cdot P_w\)</span>（<a href="https://zh.wikipedia.org/zh-hans/%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87">齐次形式</a>）</li>
+</ul>
+</li>
 </ol>
 <h3 id="step-2转换点位">Step 2：转换点位</h3>
 <p>对于 DXF 解析的点位 <span class="math">\(P_w = (x_w, y_w)\)</span>，转换为目标坐标 <span class="math">\(P_t = (x_t, y_t)\)</span> 的公式：<span class="math">\(P_t = T \cdot \begin{bmatrix} x_w \ y_w \ 1 \end{bmatrix}\)</span></p>
@@ -187,7 +184,7 @@ T = \begin{bmatrix}
   \end{bmatrix}
 \]</div>
 </li>
-<li>应用补偿：将 $P_t$转换为执行机构坐标 <span class="math">\(P_{exec}\)</span>：
+<li>应用补偿：将 <span class="math">\(P_t\)</span> 转换为执行机构坐标 <span class="math">\(P_{exec}\)</span>：
 <div class="math">
 \[
   P_{exec} = T_{offset} \cdot \begin{bmatrix} x_t \ y_t \ 1 \end{bmatrix}
@@ -227,7 +224,7 @@ T = \begin{bmatrix}
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright © 2024-2025 MAS(厦门威光). All rights reserved.</span>
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
         </div>
       </div>
     </footer>
