@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService" class="text-break">
-Interface IDXFTrajectoryPersistenceService  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-19"><i class="bi bi-code-slash"></i></a>
+Interface IDXFTrajectoryPersistenceService  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-19"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -171,7 +171,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_AddRecipeFromDxfAsync_System_String_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.AddRecipeFromDxfAsync(System.String)">
   AddRecipeFromDxfAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从修改后的 DXF 文件新增配方（图层），合并到现有解析结果中，而不重置现有数据</p>
@@ -215,7 +215,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetAllTrajectoryParameters" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetAllTrajectoryParameters">
   GetAllTrajectoryParameters()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-115"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取所有的图层轨迹生成参数数据</p>
@@ -244,11 +244,44 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
+  <a id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetCalibrationItems_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetCalibrationItems*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetCalibrationItems" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetCalibrationItems">
+  GetCalibrationItems()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取已有标定列表的深度副本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">List&lt;CalibrationItem&gt; GetCalibrationItems()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.CalibrationItem.html">CalibrationItem</a>&gt;</dt>
+    <dd><p><a class="xref" href="MAS.Utilities.DXFPathPlanning.CalibrationItem.html">CalibrationItem</a>列表或空列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetCurrentDxfContent_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetCurrentDxfContent*"></a>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetCurrentDxfContent" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetCurrentDxfContent">
   GetCurrentDxfContent()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前关联的 DXF 字符串内容</p>
@@ -281,7 +314,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetCurrentDxfFilePath" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetCurrentDxfFilePath">
   GetCurrentDxfFilePath()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前 DXF 文件路径</p>
@@ -314,7 +347,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetLastDxfParseResult" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetLastDxfParseResult">
   GetLastDxfParseResult()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-66"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最后一次 dxf 的解析结果</p>
@@ -343,11 +376,44 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
+  <a id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoriesData_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoriesData*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoriesData" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoriesData">
+  GetTrajectoriesData()
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取已有的所有运动轨迹数据的深度副本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">List&lt;TrajectoryPath&gt; GetTrajectoriesData()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPath.html">TrajectoryPath</a>&gt;</dt>
+    <dd><p>已存在的轨迹图层路径列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoryData_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoryData*"></a>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoryData_System_String_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoryData(System.String)">
   GetTrajectoryData(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定图层运动轨迹数据的深度副本</p>
@@ -386,7 +452,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoryParameters_System_String_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoryParameters(System.String)">
   GetTrajectoryParameters(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-103"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定图层轨迹生成参数数据的深度副本</p>
@@ -424,7 +490,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_ParseDxfAsync" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.ParseDxfAsync">
   ParseDxfAsync()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步解析 DXF 内容</p>
@@ -460,11 +526,50 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
+  <a id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_RemoveCalibrationItem_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.RemoveCalibrationItem*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_RemoveCalibrationItem_MAS_Utilities_DXFPathPlanning_CalibrationItem_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.RemoveCalibrationItem(MAS.Utilities.DXFPathPlanning.CalibrationItem)">
+  RemoveCalibrationItem(CalibrationItem)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-144"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>移除指的的标定项</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveCalibrationItem(CalibrationItem item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.CalibrationItem.html">CalibrationItem</a></dt>
+    <dd><p>要移除的项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否移除成功</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_SaveAllTrajectoryParameters_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.SaveAllTrajectoryParameters*"></a>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_SaveAllTrajectoryParameters_System_Collections_Generic_Dictionary_System_String_MAS_Utilities_DXFPathPlanning_TrajectoryParameters__" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.SaveAllTrajectoryParameters(System.Collections.Generic.Dictionary{System.String,MAS.Utilities.DXFPathPlanning.TrajectoryParameters})">
   SaveAllTrajectoryParameters(Dictionary&lt;string, TrajectoryParameters&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存所有的轨迹生成参数到当前工程</p>
@@ -500,11 +605,50 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
+  <a id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_SaveCalibrationItem_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.SaveCalibrationItem*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_SaveCalibrationItem_MAS_Utilities_DXFPathPlanning_CalibrationItem_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.SaveCalibrationItem(MAS.Utilities.DXFPathPlanning.CalibrationItem)">
+  SaveCalibrationItem(CalibrationItem)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存指的的标定项</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SaveCalibrationItem(CalibrationItem item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.CalibrationItem.html">CalibrationItem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.ProjectSaveException.html">ProjectSaveException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.Exceptions.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
   <a id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_SaveScriptCode_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.SaveScriptCode*"></a>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_SaveScriptCode_System_String_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.SaveScriptCode(System.String)">
   SaveScriptCode(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-97"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-103"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存脚本代码到当前工程</p>
@@ -544,7 +688,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_SaveTrajectoryData_MAS_Utilities_DXFPathPlanning_TrajectoryPath_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.SaveTrajectoryData(MAS.Utilities.DXFPathPlanning.TrajectoryPath)">
   SaveTrajectoryData(TrajectoryPath)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存指定的轨迹数据到当前工程</p>
@@ -584,7 +728,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_SaveTrajectoryParameters_MAS_Utilities_DXFPathPlanning_TrajectoryParameters_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.SaveTrajectoryParameters(MAS.Utilities.DXFPathPlanning.TrajectoryParameters)">
   SaveTrajectoryParameters(TrajectoryParameters)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存指定的轨迹生成参数到当前工程</p>
@@ -624,7 +768,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_SelectDxfFileAsync_System_String_" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.SelectDxfFileAsync(System.String)">
   SelectDxfFileAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步选择 DXF 文件并关联到当前工程</p>
@@ -674,7 +818,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_Utilities_DXFPathPlanning_IDXFTrajectoryPersistenceService_NewLayersAdded" data-uid="MAS.Utilities.DXFPathPlanning.IDXFTrajectoryPersistenceService.NewLayersAdded">
   NewLayersAdded
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当新新增配方完成时触发</p>
@@ -706,7 +850,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://bitbucket.org/mas-software/mas-data-master/src/bugfix/word-print/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-19" class="edit-link">Edit this page</a>
+          <a href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs#lines-19" class="edit-link">Edit this page</a>
         </div>
 
 

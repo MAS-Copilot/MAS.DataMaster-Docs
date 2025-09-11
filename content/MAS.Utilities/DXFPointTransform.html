@@ -143,7 +143,7 @@ T = \begin{bmatrix}
 </li>
 <li><strong>要求</strong>：
 <ul>
-<li><strong>非共线</strong>：三个点必须形成三角形（面积非零），验证公式：
+<li><strong>非共线</strong>：三个点必须形成三角形（面积非零），验证公式（底乘高除2）：
 <div class="math">
 \[
 \text{Area} = \frac{1}{2} \left| (x_B - x_A)(y_C - y_A) - (y_B - y_A)(x_C - x_A) \right| &gt; 1e-6
@@ -178,7 +178,7 @@ T = \begin{bmatrix}
 </li>
 </ol>
 <h3 id="step-2转换点位">Step 2：转换点位</h3>
-<p>对于 DXF 解析的点位 <span class="math">\(P_w = (x_w, y_w)\)</span>，转换为目标坐标 <span class="math">\(P_t = (x_t, y_t)\)</span> 的公式：<span class="math">\(P_t = T \cdot \begin{bmatrix} x_w \ y_w \ 1 \end{bmatrix}\)</span></p>
+<p>对于 DXF 解析的点位 <span class="math">\(P_w = (x_w, y_w)\)</span>，转换为目标坐标 <span class="math">\(P_t = (x_t, y_t)\)</span> 的公式：<span class="math">\(P_t = T \cdot \begin{bmatrix} x_w \\ y_w \\ 1 \end{bmatrix}\)</span></p>
 <h3 id="step-3下发点位">Step 3：下发点位</h3>
 <ul>
 <li>转换后点位：<span class="math">\(P_t = (x_t, y_t)\)</span> 可通过通信协议发送给执行机构</li>
@@ -201,7 +201,7 @@ T = \begin{bmatrix}
 <li>应用补偿：将 <span class="math">\(P_t\)</span> 转换为执行机构坐标 <span class="math">\(P_{exec}\)</span>：
 <div class="math">
 \[
-  P_{exec} = T_{offset} \cdot \begin{bmatrix} x_t \ y_t \ 1 \end{bmatrix}
+  P_{exec} = T_{offset} \cdot \begin{bmatrix} x_t \\ y_t \\ 1 \end{bmatrix}
 \]</div>
 </li>
 </ul>
