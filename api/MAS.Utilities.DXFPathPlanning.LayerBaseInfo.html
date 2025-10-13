@@ -218,6 +218,109 @@ Class LayerBaseInfo
 </h2>
 
 
+  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Bounds_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Bounds*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Bounds" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Bounds">
+  Bounds
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置该图层的边界过滤</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rect? Bounds { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.rect">Rect</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Bounds_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>原点坐标通过解析图层中的单行文本提取，文本需遵循格式：Bounds: W = {value}, H = {value}，
+使用正则表达式匹配 W 和 H 值</p>
+<p>
+如果图层中未找到符合格式的文本，则该属性为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+</p>
+</div>
+
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Description_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Description*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Description" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Description">
+  Description
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置图层描述</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Description { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_ExtendedPoints_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.ExtendedPoints*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_ExtendedPoints" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.ExtendedPoints">
+  ExtendedPoints
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置该图层的扩展点列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;ExtendedPoint&gt; ExtendedPoints { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_IsLayerVisible_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.IsLayerVisible*"></a>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_IsLayerVisible" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.IsLayerVisible">
@@ -231,6 +334,38 @@ Class LayerBaseInfo
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsLayerVisible { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_IsLocked_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.IsLocked*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_IsLocked" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.IsLocked">
+  IsLocked
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置图层是否锁定</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLocked { get; set; }</code></pre>
   </div>
 
 
@@ -457,7 +592,7 @@ Class LayerBaseInfo
 
   <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Clone" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Clone">
   Clone()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs#lines-72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs#lines-103"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new object that is a copy of the current instance.</p>
@@ -490,7 +625,7 @@ Class LayerBaseInfo
 
   <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Clone__1" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Clone``1">
   Clone&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs#lines-82"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs#lines-113"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>序列化的深度克隆方法，创建当前 <a class="xref" href="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.html">LayerBaseInfo</a> 对象的独立副本</p>
@@ -535,7 +670,7 @@ Class LayerBaseInfo
 
   <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_CreateFromBase_MAS_Utilities_DXFPathPlanning_LayerBaseInfo_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.CreateFromBase(MAS.Utilities.DXFPathPlanning.LayerBaseInfo)">
   CreateFromBase(LayerBaseInfo)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs#lines-92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs#lines-123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从另一个 LayerBaseInfo 实例初始化当前对象的属性</p>

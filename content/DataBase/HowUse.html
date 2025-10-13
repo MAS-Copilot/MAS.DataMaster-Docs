@@ -157,6 +157,19 @@
 <pre><code class="lang-csharp">string dbPassword = Environment.GetEnvironmentVariable(&quot;DB_PASSWORD&quot;) ?? &quot;MAS63626189&quot;;
 </code></pre>
 <p><strong>注意事项</strong>：第一次创建时，这些变量可能不会自动地传递到调试环境中，重启<strong>IDE</strong>即可</p>
+<h2 id="开发者角色">开发者角色</h2>
+<h3 id="登录到">登录到</h3>
+<pre><code class="lang-sql">mysql -u root -p;
+</code></pre>
+<h3 id="选择数据">选择数据</h3>
+<pre><code class="lang-sql">use mas_data_master;
+</code></pre>
+<h3 id="查看表数据">查看表数据</h3>
+<pre><code class="lang-sql">SELECT * FROM users;
+</code></pre>
+<h3 id="更新角色">更新角色</h3>
+<pre><code class="lang-sql">UPDATE users SET Role = 5 WHERE Username = '用户名';
+</code></pre>
 <h2 id="注意事项">注意事项</h2>
 <ul>
 <li>不建议在类的生命周期内保持一个长期打开的数据库连接</li>

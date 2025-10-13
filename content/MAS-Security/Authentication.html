@@ -546,6 +546,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>项目保存</td>
 <td>Engineer</td>
 </tr>
+<tr>
+<td>CurrentPositionCommand</td>
+<td>打开当前位置</td>
+<td>Operator</td>
+</tr>
 </tbody>
 </table>
 <h3 id="masdatamastercontrolsapplicationinitial">MAS.DataMaster.Controls.ApplicationInitial</h3>
@@ -755,6 +760,16 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>开调试信息</td>
 <td>Visitor</td>
 </tr>
+<tr>
+<td>MASCodeCommand</td>
+<td>打开MAS Code</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>AssemblyCommand</td>
+<td>程序集</td>
+<td>Operator</td>
+</tr>
 </tbody>
 </table>
 <h4 id="homeviewmodel">HomeViewModel</h4>
@@ -875,11 +890,6 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <tr>
 <td>ExportAsDXFCommand</td>
 <td>导出为DXF</td>
-<td>Operator</td>
-</tr>
-<tr>
-<td>CurrentPositionCommand</td>
-<td>打开文件当前位置</td>
 <td>Operator</td>
 </tr>
 <tr>
@@ -1664,6 +1674,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>删除点位</td>
 <td>Engineer</td>
 </tr>
+<tr>
+<td>ExtendedPointCommand</td>
+<td>扩展点</td>
+<td>Engineer</td>
+</tr>
 </tbody>
 </table>
 <h4 id="trajectoryanimationviewmodel">TrajectoryAnimationViewModel</h4>
@@ -1732,6 +1747,114 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>UpdateTrajectoryCommand</td>
 <td>更新标定轨迹</td>
 <td>None</td>
+</tr>
+</tbody>
+</table>
+<h4 id="pointeditorviewmodel">PointEditorViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ConfirmCommand</td>
+<td>确认命令</td>
+<td>Admin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindowsbuid">MAS.DataMaster.ViewModels.Windows.Buid</h3>
+<h4 id="assemblyviewmodel">AssemblyViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ExportCommand</td>
+<td>导出 DLL</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>RefreshCommand</td>
+<td>刷新</td>
+<td>Visitor</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelspagesdatabase">MAS.DataMaster.ViewModels.Pages.Database</h3>
+<h4 id="entityqueryviewmodel">EntityQueryViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SelectDllFilesCommand</td>
+<td>选择 DLL</td>
+<td>None</td>
+</tr>
+<tr>
+<td>RemoveLinkCommand</td>
+<td>移除关联文件</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenParseInfoCommand</td>
+<td>打开解析信息</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RefreshInstancesCommand</td>
+<td>刷新实例命令</td>
+<td>None</td>
+</tr>
+<tr>
+<td>AddConditionCommand</td>
+<td>添加条件命令</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>ClearAllConditionsCommand</td>
+<td>清除全部条件命令</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SingleTableQueryCommand</td>
+<td>单表查询</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SelectDbInstanceCommand</td>
+<td>选择数据实例</td>
+<td>None</td>
+</tr>
+<tr>
+<td>ExportDataCommand</td>
+<td>数据导出</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>DeleteDataCommand</td>
+<td>删除数据</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>SqlQueryCommand</td>
+<td>SQL 查询</td>
+<td>Admin</td>
 </tr>
 </tbody>
 </table>

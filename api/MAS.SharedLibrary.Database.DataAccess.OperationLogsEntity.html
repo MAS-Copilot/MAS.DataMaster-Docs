@@ -165,7 +165,7 @@ public class OperationLogsEntity</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_OperationLogsEntity_ActionMethod" data-uid="MAS.SharedLibrary.Database.DataAccess.OperationLogsEntity.ActionMethod">
   ActionMethod
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-57"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置操作的方法名</p>
@@ -174,6 +174,7 @@ public class OperationLogsEntity</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Column(&quot;ActionMethod&quot;, &quot;VARCHAR(50)&quot;, IsNullable = false, Comment = &quot;操作的方法名&quot;)]
+[DisplayName(&quot;方法&quot;)]
 public string ActionMethod { get; set; }</code></pre>
   </div>
 
@@ -198,7 +199,7 @@ public string ActionMethod { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_OperationLogsEntity_ActionNamespace" data-uid="MAS.SharedLibrary.Database.DataAccess.OperationLogsEntity.ActionNamespace">
   ActionNamespace
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置操作的命名空间</p>
@@ -207,6 +208,7 @@ public string ActionMethod { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Column(&quot;ActionNamespace&quot;, &quot;VARCHAR(255)&quot;, IsNullable = true, Comment = &quot;操作的命名空间&quot;)]
+[DisplayName(&quot;作用域&quot;)]
 public string? ActionNamespace { get; set; }</code></pre>
   </div>
 
@@ -231,7 +233,7 @@ public string? ActionNamespace { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_OperationLogsEntity_ActionType" data-uid="MAS.SharedLibrary.Database.DataAccess.OperationLogsEntity.ActionType">
   ActionType
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-67"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置操作类型（同步/异步）</p>
@@ -240,6 +242,7 @@ public string? ActionNamespace { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Column(&quot;ActionType&quot;, &quot;VARCHAR(20)&quot;, IsNullable = false, Comment = &quot;操作类型（同步/异步）&quot;)]
+[DisplayName(&quot;类型&quot;)]
 public string ActionType { get; set; }</code></pre>
   </div>
 
@@ -264,7 +267,7 @@ public string ActionType { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_OperationLogsEntity_CreatedAt" data-uid="MAS.SharedLibrary.Database.DataAccess.OperationLogsEntity.CreatedAt">
   CreatedAt
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-87"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置创建时间</p>
@@ -273,6 +276,7 @@ public string ActionType { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Column(&quot;CreatedAt&quot;, &quot;DATETIME&quot;, IsNullable = false, IsUpdatable = false, Comment = &quot;创建时间&quot;)]
+[DisplayName(&quot;创建时间&quot;)]
 public DateTime CreatedAt { get; set; }</code></pre>
   </div>
 
@@ -297,7 +301,7 @@ public DateTime CreatedAt { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_OperationLogsEntity_Description" data-uid="MAS.SharedLibrary.Database.DataAccess.OperationLogsEntity.Description">
   Description
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置操作描述或详细信息</p>
@@ -306,6 +310,7 @@ public DateTime CreatedAt { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Column(&quot;Description&quot;, &quot;VARCHAR(255)&quot;, IsNullable = true, Comment = &quot;操作描述或详细信息&quot;)]
+[DisplayName(&quot;描述&quot;)]
 public string? Description { get; set; }</code></pre>
   </div>
 
@@ -330,7 +335,7 @@ public string? Description { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_OperationLogsEntity_DurationTicks" data-uid="MAS.SharedLibrary.Database.DataAccess.OperationLogsEntity.DurationTicks">
   DurationTicks
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-88"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置操作持续时间（以Ticks为单位，100纳秒/Tick（即 0.0001 毫秒））</p>
@@ -339,6 +344,7 @@ public string? Description { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Column(&quot;DurationTicks&quot;, &quot;BIGINT&quot;, IsNullable = true, Comment = &quot;操作持续时间（以Ticks为单位，100纳秒/Tick（即 0.0001 毫秒）&quot;, Default = &quot;0&quot;)]
+[DisplayName(&quot;耗时&quot;)]
 public long DurationTicks { get; set; }</code></pre>
   </div>
 
@@ -372,6 +378,7 @@ public long DurationTicks { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Column(&quot;Id&quot;, &quot;INT&quot;, IsPrimaryKey = true, IsAutoIncrement = true, IsNullable = false, Comment = &quot;操作日志的唯一标识符，主键&quot;)]
+[DisplayName(&quot;主键&quot;)]
 public int Id { get; set; }</code></pre>
   </div>
 
@@ -396,7 +403,7 @@ public int Id { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_OperationLogsEntity_ResourceId" data-uid="MAS.SharedLibrary.Database.DataAccess.OperationLogsEntity.ResourceId">
   ResourceId
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置操作资源的Id</p>
@@ -405,6 +412,7 @@ public int Id { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Column(&quot;ResourceId&quot;, &quot;VARCHAR(100)&quot;, IsNullable = true, Comment = &quot;操作资源的Id&quot;)]
+[DisplayName(&quot;资源&quot;)]
 public string? ResourceId { get; set; }</code></pre>
   </div>
 
@@ -429,7 +437,7 @@ public string? ResourceId { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_OperationLogsEntity_Username" data-uid="MAS.SharedLibrary.Database.DataAccess.OperationLogsEntity.Username">
   Username
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/OperationLogsEntity.cs#lines-40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置操作者的用户名，外键，关联到 Users 表</p>
@@ -438,6 +446,7 @@ public string? ResourceId { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Column(&quot;Username&quot;, &quot;VARCHAR(20)&quot;, IsNullable = true, ForeignKeyTable = &quot;Users&quot;, ForeignKeyColumn = &quot;Username&quot;, Comment = &quot;操作者的用户名，外键，关联到 Users 表&quot;)]
+[DisplayName(&quot;用户名&quot;)]
 public string? Username { get; set; }</code></pre>
   </div>
 

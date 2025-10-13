@@ -170,7 +170,8 @@ public class LoginLogsEntity</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Column(&quot;Id&quot;, &quot;INT&quot;, IsPrimaryKey = true, IsAutoIncrement = true, IsNullable = false, Comment = &quot;登录记录的唯一标识符，主键&quot;)]
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;主键&quot;)]
+[Column(&quot;Id&quot;, &quot;INT&quot;, IsPrimaryKey = true, IsAutoIncrement = true, IsNullable = false, Comment = &quot;登录记录的唯一标识符，主键&quot;)]
 public int Id { get; set; }</code></pre>
   </div>
 
@@ -195,7 +196,7 @@ public int Id { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_LoginLogsEntity_IsSuccess" data-uid="MAS.SharedLibrary.Database.DataAccess.LoginLogsEntity.IsSuccess">
   IsSuccess
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/LoginLogsEntity.cs#lines-42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/LoginLogsEntity.cs#lines-45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置是否登录成功</p>
@@ -203,7 +204,8 @@ public int Id { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Column(&quot;IsSuccess&quot;, &quot;BIT&quot;, Default = &quot;1&quot;, Comment = &quot;是否登录成功&quot;)]
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;是否登录成功&quot;)]
+[Column(&quot;IsSuccess&quot;, &quot;BIT&quot;, Default = &quot;1&quot;, Comment = &quot;是否登录成功&quot;)]
 public bool IsSuccess { get; set; }</code></pre>
   </div>
 
@@ -228,7 +230,7 @@ public bool IsSuccess { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_LoginLogsEntity_LoginTime" data-uid="MAS.SharedLibrary.Database.DataAccess.LoginLogsEntity.LoginTime">
   LoginTime
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/LoginLogsEntity.cs#lines-36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/LoginLogsEntity.cs#lines-38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置登录时间</p>
@@ -236,7 +238,8 @@ public bool IsSuccess { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Column(&quot;LoginTime&quot;, &quot;DATETIME&quot;, IsNullable = false, Comment = &quot;登录时间&quot;)]
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;登录时间&quot;)]
+[Column(&quot;LoginTime&quot;, &quot;DATETIME&quot;, IsNullable = false, Comment = &quot;登录时间&quot;)]
 public DateTime LoginTime { get; set; }</code></pre>
   </div>
 
@@ -261,7 +264,7 @@ public DateTime LoginTime { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_LoginLogsEntity_Notes" data-uid="MAS.SharedLibrary.Database.DataAccess.LoginLogsEntity.Notes">
   Notes
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/LoginLogsEntity.cs#lines-48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/LoginLogsEntity.cs#lines-52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置备注</p>
@@ -269,7 +272,8 @@ public DateTime LoginTime { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Column(&quot;Notes&quot;, &quot;VARCHAR(20)&quot;, Comment = &quot;备注信息&quot;)]
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;备注&quot;)]
+[Column(&quot;Notes&quot;, &quot;VARCHAR(20)&quot;, Comment = &quot;备注信息&quot;)]
 public string? Notes { get; set; }</code></pre>
   </div>
 
@@ -294,7 +298,7 @@ public string? Notes { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_LoginLogsEntity_Username" data-uid="MAS.SharedLibrary.Database.DataAccess.LoginLogsEntity.Username">
   Username
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/LoginLogsEntity.cs#lines-30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Models/Database/DataAccess/Entities/LoginLogsEntity.cs#lines-31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置用户名</p>
@@ -302,7 +306,8 @@ public string? Notes { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Column(&quot;Username&quot;, &quot;VARCHAR(20)&quot;, IsNullable = false, Comment = &quot;登录用户名&quot;)]
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;用户名&quot;)]
+[Column(&quot;Username&quot;, &quot;VARCHAR(20)&quot;, IsNullable = false, Comment = &quot;登录用户名&quot;)]
 public string Username { get; set; }</code></pre>
   </div>
 

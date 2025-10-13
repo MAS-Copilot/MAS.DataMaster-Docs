@@ -159,9 +159,9 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <a id="MAS_SharedLibrary_Database_IDbOperations_BeginTransactionAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.BeginTransactionAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Database_IDbOperations_BeginTransactionAsync" data-uid="MAS.SharedLibrary.Database.IDbOperations.BeginTransactionAsync">
-  BeginTransactionAsync()
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-27"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_BeginTransactionAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.BeginTransactionAsync(System.Threading.CancellationToken)">
+  BeginTransactionAsync(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步开始一个数据库事务</p>
@@ -169,9 +169,15 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;IDbTransaction&gt; BeginTransactionAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;IDbTransaction&gt; BeginTransactionAsync(CancellationToken token = default)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
@@ -194,7 +200,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_CommitTransaction_System_Data_IDbTransaction_" data-uid="MAS.SharedLibrary.Database.IDbOperations.CommitTransaction(System.Data.IDbTransaction)">
   CommitTransaction(IDbTransaction)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>提交当前事务</p>
@@ -233,7 +239,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_System_Collections_Generic_IEnumerable_System_ValueTuple_System_String_System_Action_System_Data_IDbCommand____System_Data_IDbTransaction_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Action{System.Data.IDbCommand}}},System.Data.IDbTransaction,System.Threading.CancellationToken)">
   ExecuteCommandAsync(IEnumerable&lt;(string sql, Action&lt;IDbCommand&gt; parameterSetter)&gt;, IDbTransaction, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-103"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-152"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步使用事务执行多个命令操作</p>
@@ -278,7 +284,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_System_String_System_Action_System_Data_IDbCommand__System_Data_IDbTransaction_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync(System.String,System.Action{System.Data.IDbCommand},System.Data.IDbTransaction,System.Threading.CancellationToken)">
   ExecuteCommandAsync(string, Action&lt;IDbCommand&gt;, IDbTransaction, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-131"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-180"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行命令操作，并在指定的事务中使用指定的参数设置函数</p>
@@ -332,7 +338,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_System_String_System_Action_System_Data_IDbCommand__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync(System.String,System.Action{System.Data.IDbCommand},System.Threading.CancellationToken)">
   ExecuteCommandAsync(string, Action&lt;IDbCommand&gt;, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-166"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行命令操作，并使用指定的参数设置函数</p>
@@ -377,7 +383,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_System_String_System_Data_IDbTransaction_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync(System.String,System.Data.IDbTransaction,System.Threading.CancellationToken)">
   ExecuteCommandAsync(string, IDbTransaction, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-145"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-194"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行不带参数的 SQL 命令，并在指定的事务中执行</p>
@@ -422,7 +428,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteCommandAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteCommandAsync(System.String,System.Threading.CancellationToken)">
   ExecuteCommandAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-156"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-205"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行不带参数的命令操作</p>
@@ -462,9 +468,9 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteInTransactionAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteInTransactionAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteInTransactionAsync_System_Func_System_Data_IDbTransaction_System_Threading_Tasks_Task__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteInTransactionAsync(System.Func{System.Data.IDbTransaction,System.Threading.Tasks.Task})">
-  ExecuteInTransactionAsync(Func&lt;IDbTransaction, Task&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-46"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteInTransactionAsync_System_Func_System_Data_IDbTransaction_System_Threading_Tasks_Task__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteInTransactionAsync(System.Func{System.Data.IDbTransaction,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+  ExecuteInTransactionAsync(Func&lt;IDbTransaction, Task&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行事务操作</p>
@@ -472,13 +478,16 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task ExecuteInTransactionAsync(Func&lt;IDbTransaction, Task&gt; transactionWork)</code></pre>
+    <pre><code class="lang-csharp hljs">Task ExecuteInTransactionAsync(Func&lt;IDbTransaction, Task&gt; transactionWork, CancellationToken token = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>transactionWork</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbtransaction">IDbTransaction</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
     <dd><p>包含数据库操作的函数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
 </dd>
   </dl>
 
@@ -502,7 +511,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteInsertAndReturnIdAsync_System_String_System_Action_System_Data_IDbCommand__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteInsertAndReturnIdAsync(System.String,System.Action{System.Data.IDbCommand},System.Threading.CancellationToken)">
   ExecuteInsertAndReturnIdAsync(string, Action&lt;IDbCommand&gt;, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-165"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-214"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行插入操作，并返回新插入记录的自增 ID</p>
@@ -545,9 +554,9 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_System_String_System_Func_System_Data_IDataReader_System_Threading_Tasks_Task__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync(System.String,System.Func{System.Data.IDataReader,System.Threading.Tasks.Task})">
-  ExecuteQueryAsync(string, Func&lt;IDataReader, Task&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-54"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_System_String_System_Action_System_Data_IDataReader__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync(System.String,System.Action{System.Data.IDataReader},System.Threading.CancellationToken)">
+  ExecuteQueryAsync(string, Action&lt;IDataReader&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-69"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行查询操作，并使用指定的处理函数处理结果集</p>
@@ -555,7 +564,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task ExecuteQueryAsync(string sql, Func&lt;IDataReader, Task&gt; resultProcessor)</code></pre>
+    <pre><code class="lang-csharp hljs">Task ExecuteQueryAsync(string sql, Action&lt;IDataReader&gt; resultProcessor, CancellationToken token = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -563,8 +572,11 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
     <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>要执行的 SQL 查询语句</p>
 </dd>
-    <dt><code>resultProcessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dt><code>resultProcessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>&gt;</dt>
     <dd><p>用于处理数据读取器的函数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
 </dd>
   </dl>
 
@@ -587,9 +599,150 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync__1_System_String_System_Action_System_Data_IDbCommand__System_Func_System_Data_IDataReader___0__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync``1(System.String,System.Action{System.Data.IDbCommand},System.Func{System.Data.IDataReader,``0})">
-  ExecuteQueryAsync&lt;T&gt;(string, Action&lt;IDbCommand&gt;, Func&lt;IDataReader, T&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-90"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_System_String_System_Action_System_Data_IDbCommand__System_Action_System_Data_IDataReader__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync(System.String,System.Action{System.Data.IDbCommand},System.Action{System.Data.IDataReader},System.Threading.CancellationToken)">
+  ExecuteQueryAsync(string, Action&lt;IDbCommand&gt;, Action&lt;IDataReader&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行查询操作，使用指定的参数设置函数和同步结果处理函数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ExecuteQueryAsync(string sql, Action&lt;IDbCommand&gt; parameterSetter, Action&lt;IDataReader&gt; resultProcessor, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 查询语句</p>
+</dd>
+    <dt><code>parameterSetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt;</dt>
+    <dd><p>用于设置命令参数的函数</p>
+</dd>
+    <dt><code>resultProcessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>&gt;</dt>
+    <dd><p>用于处理数据读取器的同步函数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_System_String_System_Action_System_Data_IDbCommand__System_Func_System_Data_IDataReader_System_Threading_Tasks_Task__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync(System.String,System.Action{System.Data.IDbCommand},System.Func{System.Data.IDataReader,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+  ExecuteQueryAsync(string, Action&lt;IDbCommand&gt;, Func&lt;IDataReader, Task&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行查询操作，使用指定的参数设置函数和异步结果处理函数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ExecuteQueryAsync(string sql, Action&lt;IDbCommand&gt; parameterSetter, Func&lt;IDataReader, Task&gt; resultProcessor, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 查询语句</p>
+</dd>
+    <dt><code>parameterSetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt;</dt>
+    <dd><p>用于设置命令参数的函数</p>
+</dd>
+    <dt><code>resultProcessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>用于异步处理数据读取器的函数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_System_String_System_Func_System_Data_IDataReader_System_Threading_Tasks_Task__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync(System.String,System.Func{System.Data.IDataReader,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+  ExecuteQueryAsync(string, Func&lt;IDataReader, Task&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行查询操作，并使用指定的处理函数处理结果集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ExecuteQueryAsync(string sql, Func&lt;IDataReader, Task&gt; resultProcessor, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要执行的 SQL 查询语句</p>
+</dd>
+    <dt><code>resultProcessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>用于处理数据读取器的函数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync__1_System_String_System_Action_System_Data_IDbCommand__System_Func_System_Data_IDataReader___0__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync``1(System.String,System.Action{System.Data.IDbCommand},System.Func{System.Data.IDataReader,``0},System.Threading.CancellationToken)">
+  ExecuteQueryAsync&lt;T&gt;(string, Action&lt;IDbCommand&gt;, Func&lt;IDataReader, T&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-122"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行查询操作，并将结果集映射为指定类型的列表</p>
@@ -597,7 +750,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;List&lt;T&gt;&gt; ExecuteQueryAsync&lt;T&gt;(string sql, Action&lt;IDbCommand&gt; parameterSetter, Func&lt;IDataReader, T&gt; selector)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;List&lt;T&gt;&gt; ExecuteQueryAsync&lt;T&gt;(string sql, Action&lt;IDbCommand&gt; parameterSetter, Func&lt;IDataReader, T&gt; selector, CancellationToken token = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -610,6 +763,9 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 </dd>
     <dt><code>selector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>, T&gt;</dt>
     <dd><p>用于从数据读取器中提取数据的函数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消命令</p>
 </dd>
   </dl>
 
@@ -638,9 +794,9 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync__1_System_String_System_Func_System_Data_IDataReader___0__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync``1(System.String,System.Func{System.Data.IDataReader,``0})">
-  ExecuteQueryAsync&lt;T&gt;(string, Func&lt;IDataReader, T&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-63"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQueryAsync__1_System_String_System_Func_System_Data_IDataReader___0__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQueryAsync``1(System.String,System.Func{System.Data.IDataReader,``0},System.Threading.CancellationToken)">
+  ExecuteQueryAsync&lt;T&gt;(string, Func&lt;IDataReader, T&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行查询操作，并将结果集映射为指定类型的列表</p>
@@ -648,7 +804,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;List&lt;T&gt;&gt; ExecuteQueryAsync&lt;T&gt;(string sql, Func&lt;IDataReader, T&gt; selector)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;List&lt;T&gt;&gt; ExecuteQueryAsync&lt;T&gt;(string sql, Func&lt;IDataReader, T&gt; selector, CancellationToken token = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -658,6 +814,9 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 </dd>
     <dt><code>selector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idatareader">IDataReader</a>, T&gt;</dt>
     <dd><p>用于从数据读取器中提取数据的函数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
 </dd>
   </dl>
 
@@ -688,7 +847,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteQuerySingleAsync__1_System_String_System_Action_System_Data_IDbCommand__System_Func_System_Data_IDataReader___0__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteQuerySingleAsync``1(System.String,System.Action{System.Data.IDbCommand},System.Func{System.Data.IDataReader,``0},System.Threading.CancellationToken)">
   ExecuteQuerySingleAsync&lt;T&gt;(string, Action&lt;IDbCommand&gt;, Func&lt;IDataReader, T&gt;, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-179"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-228"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行 SQL 查询并返回单个实体</p>
@@ -742,7 +901,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteScalarAsync__1_System_String_System_Action_System_Data_IDbCommand__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteScalarAsync``1(System.String,System.Action{System.Data.IDbCommand},System.Threading.CancellationToken)">
   ExecuteScalarAsync&lt;T&gt;(string, Action&lt;IDbCommand&gt;?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-210"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-259"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行标量 SQL 查询并返回结果</p>
@@ -791,9 +950,9 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <a id="MAS_SharedLibrary_Database_IDbOperations_ExecuteSingleRowAsync_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteSingleRowAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteSingleRowAsync__1_System_String_System_Func_System_Data_IDataReader___0__System_Action_System_Data_IDbCommand__" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteSingleRowAsync``1(System.String,System.Func{System.Data.IDataReader,``0},System.Action{System.Data.IDbCommand})">
-  ExecuteSingleRowAsync&lt;T&gt;(string, Func&lt;IDataReader, T&gt;, Action&lt;IDbCommand&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-76"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Database_IDbOperations_ExecuteSingleRowAsync__1_System_String_System_Func_System_Data_IDataReader___0__System_Action_System_Data_IDbCommand__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.ExecuteSingleRowAsync``1(System.String,System.Func{System.Data.IDataReader,``0},System.Action{System.Data.IDbCommand},System.Threading.CancellationToken)">
+  ExecuteSingleRowAsync&lt;T&gt;(string, Func&lt;IDataReader, T&gt;, Action&lt;IDbCommand&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-138"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行查询操作，并将结果映射为指定类型的单行数据</p>
@@ -801,7 +960,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;T?&gt; ExecuteSingleRowAsync&lt;T&gt;(string sql, Func&lt;IDataReader, T&gt; selector, Action&lt;IDbCommand&gt;? parameterSetter = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;T?&gt; ExecuteSingleRowAsync&lt;T&gt;(string sql, Func&lt;IDataReader, T&gt; selector, Action&lt;IDbCommand&gt;? parameterSetter = null, CancellationToken token = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -814,6 +973,9 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 </dd>
     <dt><code>parameterSetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.idbcommand">IDbCommand</a>&gt;</dt>
     <dd><p>用于设置命令参数的函数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
 </dd>
   </dl>
 
@@ -844,7 +1006,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_RollbackTransaction_System_Data_IDbTransaction_" data-uid="MAS.SharedLibrary.Database.IDbOperations.RollbackTransaction(System.Data.IDbTransaction)">
   RollbackTransaction(IDbTransaction)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>回滚当前事务</p>
@@ -877,7 +1039,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_TestDatabaseConnectionAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.TestDatabaseConnectionAsync(System.Threading.CancellationToken)">
   TestDatabaseConnectionAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-192"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-241"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步测试数据库连接是否成功</p>
@@ -922,7 +1084,7 @@ Interface IDbOperations  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Database_IDbOperations_VerifyDatabaseConnectionAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbOperations.VerifyDatabaseConnectionAsync(System.Threading.CancellationToken)">
   VerifyDatabaseConnectionAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-200"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://bitbucket.org/mas-software/mas-data-master/src/main/src/MAS.SharedLibrary/Interfaces/Database/IDbOperations.cs#lines-249"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步验证数据库连接性，并执行简单的查询语句</p>

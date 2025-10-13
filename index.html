@@ -81,16 +81,18 @@
 <li>DXF 解析中的源文件编辑</li>
 <li>DXF 解析中的图层轨迹参数编辑</li>
 <li>数据库使用环境变量为<code>DB_PASSWORD</code>的明文密码</li>
+<li>Biud 中的源文件编辑</li>
+<li>Word 打印中的源文件编辑</li>
 </ul>
 <h2 id="-分支规范">🔀 分支规范</h2>
 <ul>
-<li>主分支（Main）：<code>main</code>为项目的主分支，存放最新的稳定版本</li>
-<li>开发分支（Development）：<code>develop</code>用于进行功能开发或整体项目的开发版本</li>
-<li>功能分支（Feature）：<code>feature/</code>每个新功能对应一个功能分支，从开发分支拉出</li>
-<li>修复分支（Bugfix）：<code>bugfix/</code>用于修复特定问题的分支，通常也从开发分支拉出</li>
-<li>发布分支（Release）：<code>release/</code>用于版本发布，进入发布阶段时从开发分支创建</li>
-<li>热修复分支（Hotfix）：<code>hotfix/</code>用于紧急修复生产环境问题，从主分支拉出并直接合并回主分支和开发分支</li>
-<li>文档分支（Docs）：<code>docs/</code>用于修改或新增文档内容的分支</li>
+<li>主分支：<code>main</code>为项目的主分支，存放最新的稳定版本</li>
+<li>开发分支：<code>develop</code>用于进行功能开发或整体项目的开发版本</li>
+<li>功能分支：<code>feature/</code>每个新功能对应一个功能分支，从开发分支拉出</li>
+<li>修复分支：<code>bugfix/</code>用于修复特定问题的分支，通常也从开发分支拉出</li>
+<li>发布分支：<code>release/</code>用于版本发布，进入发布阶段时从开发分支创建</li>
+<li>热修复分支：<code>hotfix/</code>用于紧急修复生产环境问题，从主分支拉出并直接合并回主分支和开发分支</li>
+<li>文档分支：<code>docs/</code>用于修改或新增文档内容的分支</li>
 </ul>
 <h2 id="-设计原则与最佳实践">📏 设计原则与最佳实践</h2>
 <p><strong>内存与资源管理：</strong></p>
@@ -151,25 +153,18 @@
 <ul>
 <li>使用 Git 等版本控制系统管理代码，采用分支策略促进团队协作和代码管理</li>
 </ul>
-<h2 id="-应用程序">🖥️ 应用程序</h2>
-<h3 id="实时运行信息">实时运行信息</h3>
-<p><img src="images/InstantMessages.jpg" alt="Data Visualization"></p>
-<h3 id="数据表格">数据表格</h3>
-<p><img src="images/DataBase.jpg" alt="Data Visualization"></p>
-<h3 id="数据可视化-v2024_05_beta">数据可视化 v2024_05_beta</h3>
-<p><img src="images/DataMaster_PLC_Charts.jpg" alt="Data Visualization"></p>
-<h3 id="数据可视化-v2024_07_beta">数据可视化 v2024_07_beta</h3>
-<p><img src="images/DataMaster_Charts.png" alt="Data Visualization"></p>
-<h3 id="数据可视化-v2024_12_rc">数据可视化 v2024_12_rc</h3>
-<p><img src="images/QueryMaster_tJoAtYqqqy.png" alt="Data Visualization"></p>
-<h3 id="产品密钥生成">产品密钥生成</h3>
-<p><img src="images/ProductKey.jpg" alt="ProductKey"></p>
-<h3 id="代码编辑">代码编辑</h3>
-<p><img src="images/DataMaster_IXWA2qNWHz.png" alt="Code Editor"></p>
-<h3 id="通讯构建">通讯构建</h3>
-<p><img src="images/DataMaster_xlJosHcFcp.png" alt="通讯构建"></p>
-<h3 id="节点式工作流">节点式工作流</h3>
-<p><img src="images/DataMaster_Y92IWbZyWW.png" alt="工作流"></p>
+<h2 id="-命名规范">📜 命名规范</h2>
+<ul>
+<li>帕斯卡命名法（PascalCase）：所有类、方法、属性和公共成员采用帕斯卡命名法，每个单词首字母大写，例如<code>DataProcessor</code>, <code>CalculateMetrics</code></li>
+<li>下划线使用：仅在全大写（如常量）或全小写（如私有字段）的情况下使用下划线分隔，例如 <code>MAX_RETRY_COUNT</code>, <code>database_connection</code></li>
+<li>接口命名：接口名称以<code>I</code>开头，后接帕斯卡命名法，例如<code>IDataRepository</code></li>
+<li>私有字段：以下划线开头，后接驼峰命名法（camelCase），例如<code>_userSession</code></li>
+<li>命名清晰性：变量和方法名称应清晰反映其功能和意图，避免使用模糊或缩写名称，如使用 <code>UserProfile</code>而非<code>UP</code></li>
+<li>避免匈牙利命名法：不使用类型前缀，如<code>strName</code>或<code>intCount</code>，保持命名简洁</li>
+<li>一致性：项目中所有命名遵循 Microsoft C# 编码规范，确保代码风格统一，提升可读性</li>
+</ul>
+<hr>
+<p><img src="images/DatamasterHome.png" alt="datamaster"></p>
 <p><img src="https://img.shields.io/badge/.NET-8.0-purple" alt="NET7">
 <img src="https://img.shields.io/badge/IDE-VSCode-blue?logo=visual-studio-code" alt="VSCode">
 <img src="https://img.shields.io/badge/IDE-Visual%20Studio-5C2D91?logo=visual-studio" alt="Visual Studio 2022">

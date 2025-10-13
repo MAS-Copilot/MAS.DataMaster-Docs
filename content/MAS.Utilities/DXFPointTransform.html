@@ -215,6 +215,41 @@ T = \begin{bmatrix}
 <li>用户/工具到世界：使用逆矩阵 <span class="math">\(T^{-1}\)</span></li>
 <li>链式转换：若涉及多坐标系（世界 → 用户 → 工具），计算复合矩阵： <span class="math">\(T_{total} = T_{user \to tool} \cdot T_{world \to user}\)</span></li>
 </ul>
+<h2 id="自动标定">自动标定</h2>
+<p>在自动化标定中，系统通过通信协议获取目标坐标系（用户/工具坐标系）的三个参考点 <span class="math">\(（Origin, XAxis, YAxis）\)</span>，并根据以下规则反推世界坐标系的对应点，用于后续的变换矩阵计算。自动标定无需手动输入世界坐标，减少人工干预，提高效率</p>
+<h3 id="数据结构">数据结构</h3>
+<pre><code class="lang-csharp">public struct CoordinateCoords {
+    public double OriginX { get; set; }
+    public double OriginY { get; set; }
+    public double XAxisX { get; set; }
+    public double XAxisY { get; set; }
+    public double YAxisX { get; set; }
+    public double YAxisY { get; set; }
+    public double CameraX { get; set; }
+    public double CameraY { get; set; }
+    public double CameraTheta { get; set; }
+}
+</code></pre>
+<h3 id="标定规则">标定规则</h3>
+<ul>
+<li>原点映射
+<ul>
+<li>目标坐标系的原点 <span class="math">\((x_{t0}, y_{t0})\)</span> 直接映射到世界坐标系的原点：<span class="math">\((x_{w0}, y_{w0}) = (0, 0)\)</span></li>
+</ul>
+</li>
+<li>X 轴映射
+<ul>
+<li>目标坐标系中从原点到 X 轴点 <span class="math">\((x_{t1}, y_{t1})\)</span> 的欧几里得距离定义世界坐标系 X 轴的长度</li>
+<li>世界坐标 X 轴点：<span class="math">\((x_{w1}, y_{w1}) = (d_1, 0)\)</span>，其中： <span class="math">\(d_1 = \sqrt{(x_{t1} - x_{t0})^2 + (y_{t1} - y_{t0})^2}\)</span></li>
+</ul>
+</li>
+<li>Y 轴映射
+<ul>
+<li>目标坐标系中从原点到 Y 轴点 <span class="math">\((x_{t2}, y_{t2})\)</span> 的欧几里得距离定义世界坐标系 Y 轴的长度</li>
+<li>世界坐标 Y 轴点：<span class="math">\((x_{w2}, y_{w2}) = (0, d_2)\)</span>，其中： <span class="math">\(d_2 = \sqrt{(x_{t2} - x_{t0})^2 + (y_{t2} - y_{t0})^2}\)</span></li>
+</ul>
+</li>
+</ul>
 <h2 id="结语">结语</h2>
 <p>通过标定和<code>3*3</code>矩阵转换，可从相对位置升级到全坐标变换，支持复杂场景。下发点位经转换后可直接执行，减少手动干预。<code>3D</code>扩展需<code>4x4</code>矩阵和<code>3D</code>图纸导入功能的支持</p>
 
