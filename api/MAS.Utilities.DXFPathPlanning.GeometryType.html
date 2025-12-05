@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Enum GeometryType | DataMaster ">
       
-      <meta name="description" content="几何类型枚举">
+      <meta name="description" content="支持解析的几何类型枚举">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -90,7 +90,7 @@
 
 
   <h1 id="MAS_Utilities_DXFPathPlanning_GeometryType" data-uid="MAS.Utilities.DXFPathPlanning.GeometryType" class="text-break">
-Enum GeometryType  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/GeometryType.cs/#L18"><i class="bi bi-code-slash"></i></a>
+Enum GeometryType  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/DxfModels/GeometryType.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -98,7 +98,7 @@ Enum GeometryType  <a class="header-action link-secondary" title="View source" h
   <dl><dt>Assembly</dt><dd>MAS.Utilities.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>几何类型枚举</p>
+  <div class="markdown summary"><p>支持解析的几何类型枚举</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -114,58 +114,68 @@ public enum GeometryType</code></pre>
 
 
 
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.SharedLibrary.EnumDisplayNameExtensions.html#MAS_SharedLibrary_EnumDisplayNameExtensions_GetDisplayName_System_Enum_">EnumDisplayNameExtensions.GetDisplayName(Enum)</a>
+  </div>
+  </dd></dl>
 
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
-    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Arc"><code>Arc = 4</code></dt>
+    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Arc"><code>[EnumColor(&quot;#C71585&quot;)]
+Arc = 5</code></dt>
   
-  <dd><p>圆弧，表示圆的一部分，由起点、终点和半径定义</p>
+  <dd><p>圆弧</p>
 </dd>
-    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Circle"><code>Circle = 3</code></dt>
+    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Circle"><code>[EnumColor(&quot;#00CED1&quot;)]
+Circle = 4</code></dt>
   
-  <dd><p>圆，表示以中心点和半径定义的圆形</p>
+  <dd><p>圆</p>
 </dd>
-    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Line"><code>Line = 1</code></dt>
+    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Ellipse"><code>[EnumColor(&quot;#7B68EE&quot;)]
+Ellipse = 6</code></dt>
   
-  <dd><p>直线，表示从起点到终点的单一直线段</p>
+  <dd><p>椭圆</p>
 </dd>
-    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_MText"><code>MText = 8</code></dt>
+    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Line"><code>[EnumColor(&quot;#FFD700&quot;)]
+Line = 1</code></dt>
   
-  <dd><p>多行文本，表示 DXF 中的 MTEXT 图元</p>
+  <dd><p>直线</p>
 </dd>
-    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Not"><code>Not = 0</code></dt>
+    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Point"><code>[EnumColor(&quot;#1E90FF&quot;)]
+Point = 0</code></dt>
   
-  <dd><p>无</p>
+  <dd><p>点</p>
 </dd>
-    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Point"><code>Point = 6</code></dt>
+    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Polyline2D"><code>[EnumColor(&quot;#FF8C00&quot;)]
+Polyline2D = 2</code></dt>
   
-  <dd><p>点，表示 DXF 中的 Point 图元</p>
+  <dd><p>二维多段线</p>
 </dd>
-    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Polyline2D"><code>Polyline2D = 2</code></dt>
+    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Polyline3D"><code>[EnumColor(&quot;#8B4513&quot;)]
+Polyline3D = 3</code></dt>
   
-  <dd><p>二维折线，表示由多个直线段连接构成的多段线</p>
+  <dd><p>三维多段线</p>
 </dd>
-    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Solid"><code>Solid = 9</code></dt>
+    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Spline"><code>[EnumColor(&quot;#800080&quot;)]
+Spline = 7</code></dt>
   
-  <dd><p>填充实体，表示 DXF 中的 SOLID 图元</p>
-</dd>
-    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Spline"><code>Spline = 5</code></dt>
-  
-  <dd><p>样条曲线，表示 DXF 中的 Splines 图元</p>
-</dd>
-    <dt id="MAS_Utilities_DXFPathPlanning_GeometryType_Text"><code>Text = 7</code></dt>
-  
-  <dd><p>单行文本，表示 DXF 中的 TEXT 图元</p>
+  <dd><p>样条曲线（NURBS 曲线）</p>
 </dd>
   </dl>
 
 
+  <h2 id="MAS_Utilities_DXFPathPlanning_GeometryType_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>表示支持用于轨迹解析的类型</p>
+</div>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/GeometryType.cs/#L18" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/DxfModels/GeometryType.cs/#L20" class="edit-link">Edit this page</a>
         </div>
 
 

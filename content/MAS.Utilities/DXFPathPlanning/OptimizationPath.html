@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>路径优化 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="路径优化 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.Utilities/DXFPathPlanning/OptimizationPath.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="路径优化">路径优化</h1>
+
+<h2 id="概述">概述</h2>
+<p>为 DXF 几何实体的坐标提供轨迹生成和排序功能。根据已解析的几何实体转换为轨迹点的数据生成优化的加工轨迹，从起始点到终点的有序移动</p>
+<h2 id="算法列表">算法列表</h2>
+<p>其流程分为两个主要阶段：排序和轨迹生成。排序阶段根据参数中的<code>OptimizationStrategy</code>选择合适的求解器，以生成有序点列表；轨迹生成阶段则基于该列表构建最终轨迹序列</p>
+<h3 id="最近邻算法nearestneighbor">最近邻算法（NearestNeighbor）</h3>
+<p>最近邻算法用于对“可双向遍历的几何段”进行排序。其核心思想是在当前点与所有未访问段之间，选择最容易接入的段，并自动决定遍历方向，以最小化段与段之间的移动距离</p>
+<ol>
+<li>从一个起点（指定点或原点）开始</li>
+<li>在所有未访问段中，比较当前点到该段“首点”和“末点”的距离</li>
+<li>选择接入代价最小的段，并根据较近端点决定正向或反向遍历</li>
+<li>将该段按选定方向加入结果列表，并将当前点更新为该段的出口点</li>
+<li>重复上述步骤直到所有有效段完成排序</li>
+</ol>
+<ul>
+<li>时间复杂度：<code>O(n²)</code></li>
+<li>局限性：典型贪心策略，属于局部最优</li>
+</ul>
+<h2 id="圆弧arc">圆弧（Arc）</h2>
+<p>圆弧实体在路径优化中被视为至少由 3 个点构成的有序轨迹段（起点—中间采样点—终点）。优化流程包含两个阶段：排序（Order） 与 轨迹生成（Generate Trajectory）</p>
+<h3 id="排序阶段arc">排序阶段（Arc）</h3>
+<p>对所有圆弧段进行排序。排序阶段会输出一组<code>OrderedSegment</code>，其中包含原始段、按最佳方向排列后的点列表以及闭合标记</p>
+<p><strong>最近邻算法（NearestNeighbor）：</strong></p>
+<ol>
+<li>以指定起点（或原点）作为初始位置</li>
+<li>遍历所有未访问圆弧段，分别计算当前点到该段“首点”和“末点”的距离</li>
+<li>选择接入代价最小的圆弧段</li>
+<li>将根据较近端点自动决定正向或反向遍历，并克隆点列表</li>
+<li>将该段包装 <code>OrderedSegment</code>后加入结果列表，并更新当前点为段出口点</li>
+<li>重复上述步骤直到所有有效圆弧段排序完成</li>
+</ol>
+<p><strong>排序输出结构如下：</strong></p>
+<ul>
+<li><code>Segment</code>：原始圆弧段</li>
+<li><code>Points</code>：按方向重排后的轨迹点</li>
+<li><code>IsClosed</code>：圆弧永远为 false</li>
+</ul>
+<h3 id="轨迹生成阶段arc">轨迹生成阶段（Arc）</h3>
+<p><strong>轨迹生成阶段基于排序后的 OrderedSegment 链表，按顺序输出最终加工轨迹。对每个圆弧段执行：</strong></p>
+<ol>
+<li>若为首段：根据配置执行安全抬升、定位、下降（SafeZ）</li>
+<li>将该段的所有点按加工顺序加入轨迹</li>
+<li>段与段之间根据参数决定使用 SafeZ 过渡或直接移动</li>
+<li>每个输出点会按全局索引编号并设置加工描述</li>
+<li>若启用回零（UseReturnToOrigin），在最后追加返回原点的轨迹点序列</li>
+</ol>
+<p>轨迹生成阶段只负责在<code>OrderedSegment</code>的基础上生成点序列，不会再对方向或闭合性进行推断</p>
+<h2 id="圆circle">圆（Circle）</h2>
+<p>圆实体在路径优化中被视为闭合曲线。在解析阶段，圆会根据分段参数被拆分为若干圆弧段（每段至少 3 个点）。优化流程包含两个阶段：排序（Order）与轨迹生成（Generate Trajectory）</p>
+<h3 id="排序阶段circle">排序阶段（Circle）</h3>
+<p>对所有圆弧段进行排序。排序阶段会输出一组<code>OrderedSegment</code>，其中包含原始弧段与按最佳方向排列后的点列表</p>
+<p><strong>最近邻算法（NearestNeighbor）：</strong></p>
+<ol>
+<li>以指定起点（或原点）作为初始位置</li>
+<li>遍历所有未访问圆弧段，分别计算当前点到该段“首点”和“末点”的距离</li>
+<li>选择接入代价最小的圆弧段</li>
+<li>根据较近端点自动决定正向或反向遍历，并克隆点列表</li>
+<li>将该段包装为<code>OrderedSegment</code>后加入结果列表，并更新当前点为段出口点</li>
+<li>重复上述步骤直到所有有效圆弧段排序完成</li>
+</ol>
+<p><strong>排序输出结构如下：</strong></p>
+<ul>
+<li><code>Segment</code>：原始圆弧段（来自同一个 Circle 的拆分）</li>
+<li><code>Points</code>：按方向重排后的轨迹点</li>
+<li><code>IsClosed</code>：圆弧段恒为 false</li>
+</ul>
+<h3 id="轨迹生成阶段circle">轨迹生成阶段（Circle）</h3>
+<p>轨迹生成阶段基于排序后的<code>OrderedSegment</code>链表，按顺序输出整圆加工轨迹。对每段圆弧执行：</p>
+<ol>
+<li>若为首段：根据配置执行安全抬升、定位、下降（若启用 SafeZ）</li>
+<li>按方向顺序将该弧段的采样点依次加入轨迹</li>
+<li>若下一弧段起点与上一弧段终点重合，则直接连续加工，不插 SafeZ 过渡</li>
+<li>若弧段间存在实际跳转，则依据参数执行 SafeZ 过渡或直接移动</li>
+<li>每个输出点会按全局索引编号并设置加工阶段描述</li>
+<li>若启用回零（UseReturnToOrigin），最后追加返回原点的轨迹点序列</li>
+</ol>
+<p>轨迹生成阶段只在“弧段间存在真实位移”时插入安全高度动作，以保证拆分圆弧段能够无缝组成完整闭合圆轨迹</p>
+<h2 id="椭圆ellipse">椭圆（Ellipse）</h2>
+<p>椭圆实体在路径优化中被视为 由 N 个离散点构成的可双向遍历轨迹段（P0 → P1 → … → Pn）。优化流程包含两个阶段：排序（Order）与轨迹生成（Generate Trajectory）</p>
+<h3 id="排序阶段ellipse">排序阶段（Ellipse）</h3>
+<p>对所有椭圆段进行排序。排序阶段输出一组 OrderedSegment，包含原始段、确定方向后的点列表与闭合标记</p>
+<p><strong>最近邻算法（NearestNeighbor）：</strong></p>
+<ol>
+<li>以指定起点（或原点）作为初始位置</li>
+<li>遍历所有未访问椭圆段，分别计算当前点到该段“首点”和“末点”的距离</li>
+<li>选择接入代价最小的椭圆段</li>
+<li>根据较近端点自动决定正向或反向遍历，并克隆点列表</li>
+<li>将该段包装为<code>OrderedSegment</code>后加入结果列表，并更新当前点为段出口点</li>
+<li>重复上述步骤直到所有有效椭圆段排序完成</li>
+</ol>
+<p><strong>排序输出结构如下：</strong></p>
+<ul>
+<li><code>Segment</code>：原始椭圆段</li>
+<li><code>Points</code>：按方向重排后的轨迹点</li>
+<li><code>IsClosed</code>：完整椭圆为 true，椭圆弧为 false</li>
+</ul>
+<h3 id="轨迹生成阶段ellipse">轨迹生成阶段（Ellipse）</h3>
+<p><strong>轨迹生成阶段基于排序后的 OrderedSegment 链表，按顺序输出最终加工轨迹。对每个椭圆段执行：</strong></p>
+<ol>
+<li>若为首段：根据配置执行安全抬升、定位、下降（若启用 SafeZ）</li>
+<li>将该段的离散点按方向顺序加入轨迹（首点只入场，不重复输出）</li>
+<li>若 IsClosed = true：在段末尾追加一次首点，形成闭合边</li>
+<li>若下一段起点与上一段终点重合，则直接连续加工，不插 SafeZ 过渡</li>
+<li>若段间存在实际跳转，则依据参数执行 SafeZ 过渡或直接移动</li>
+<li>每个输出点会按全局索引编号并设置加工阶段描述</li>
+<li>若启用回零（UseReturnToOrigin），最后追加返回原点的轨迹点序列</li>
+</ol>
+<p>轨迹生成阶段仅依据<code>OrderedSegment</code>的顺序与闭合标记生成轨迹，不会再次推断方向或闭合性</p>
+<h2 id="直线段line">直线段（Line）</h2>
+<p>线段实体在路径优化中被视为由 2 个点构成的可双向遍历轨迹段（起点—终点）。优化流程包含两个阶段：排序（Order）与轨迹生成（Generate Trajectory）</p>
+<h3 id="排序阶段line">排序阶段（Line）</h3>
+<p>对所有线段段进行排序。排序阶段会输出一组<code>OrderedSegment</code>，其中包含原始段与按最佳方向排列后的点列表</p>
+<p><strong>最近邻算法（NearestNeighbor）：</strong></p>
+<ol>
+<li>以指定起点（或原点）作为初始位置</li>
+<li>遍历所有未访问线段，分别计算当前点到该段“首点”和“末点”的距离</li>
+<li>选择接入代价最小的线段</li>
+<li>根据较近端点自动决定正向或反向遍历，并克隆点列表</li>
+<li>将该段包装为<code>OrderedSegment</code>后加入结果列表，并更新当前点为段出口点</li>
+<li>重复上述步骤直到所有有效线段排序完成</li>
+</ol>
+<p><strong>排序输出结构如下：</strong></p>
+<ul>
+<li><code>Segment</code>：原始线段</li>
+<li><code>Points</code>：按方向重排后的轨迹点</li>
+<li><code>IsClosed</code>：线段恒为 false</li>
+</ul>
+<h3 id="轨迹生成阶段line">轨迹生成阶段（Line）</h3>
+<p><strong>轨迹生成阶段基于排序后的 OrderedSegment 链表，按顺序输出最终加工轨迹。对每条线段执行：</strong></p>
+<ol>
+<li>若为首段：根据配置执行安全抬升、定位、下降（若启用 SafeZ）</li>
+<li>将该段的点按方向顺序加入轨迹（首点只入场，不重复输出）</li>
+<li>若下一段起点与上一段终点重合，则直接连续加工，不插 SafeZ 过渡</li>
+<li>若段与段之间存在实际跳转，则根据参数执行 SafeZ 过渡或直接移动</li>
+<li>每个输出点会按全局索引编号并设置加工描述</li>
+<li>若启用回零（UseReturnToOrigin），最后追加返回原点的轨迹点序列</li>
+</ol>
+<p>迹生成阶段只在“段间存在真实位移”时插入安全高度动作，避免相接线段产生多余抬升/下降</p>
+<h2 id="点point">点（Point）</h2>
+<p>点实体在路径优化中被视为 单点轨迹段（每段仅包含一个点）。优化流程包含两个阶段：排序（Order）与轨迹生成（Generate Trajectory）</p>
+<h3 id="排序阶段point">排序阶段（Point）</h3>
+<p>对所有点段进行排序。排序阶段输出一组 OrderedSegment（每个段只包含一个点），用于后续轨迹生成</p>
+<p><strong>最近邻算法（NearestNeighbor）：</strong></p>
+<ol>
+<li>以指定起点（或原点）作为初始位置</li>
+<li>遍历所有未访问点，分别计算当前点到该点距离</li>
+<li>选择距离最短的点作为下一个目标</li>
+<li>将该点包装为<code>OrderedSegment</code>加入结果列表，并更新当前位置为该点</li>
+<li>重复上述步骤直到所有有效点排序完成</li>
+</ol>
+<p><strong>排序输出结构如下：</strong></p>
+<ul>
+<li><code>Segment</code>：对点类型无实际意义，可为空</li>
+<li><code>Points</code>：仅包含一个点的列表</li>
+<li><code>IsClosed</code>：点段恒为 false</li>
+</ul>
+<h3 id="轨迹生成阶段point">轨迹生成阶段（Point）</h3>
+<p><strong>轨迹生成阶段基于排序后的 OrderedSegment 链表，依次输出点位轨迹。对每个点执行：</strong></p>
+<ol>
+<li>若为首点：根据配置执行安全抬升（若启用 SafeZ）</li>
+<li>输出该点作为加工目标点</li>
+<li>点与点之间若存在位移，则按参数执行 SafeZ 过渡或直接移动</li>
+<li>每个输出点会按全局索引编号，并设置加工阶段描述</li>
+<li>若启用回零（UseReturnToOrigin），最后追加返回原点的轨迹点序列</li>
+</ol>
+<p>轨迹生成阶段仅依赖<code>OrderedSegment</code>的顺序，不会对点集顺序进行二次推断</p>
+<h2 id="多段线polyline">多段线（Polyline）</h2>
+<p>多段线实体在路径优化中被视为由至少 2 个点构成的可双向遍历轨迹段（点序列 P0 → P1 → … → Pn）。优化流程包含两个阶段：排序（Order） 与 轨迹生成（Generate Trajectory）</p>
+<h3 id="排序阶段polyline">排序阶段（Polyline）</h3>
+<p>对所有多段线段进行排序。排序阶段会输出一组<code>OrderedSegment</code>，其中包含原始段、按最佳方向排列后的点列表以及闭合标记</p>
+<p><strong>最近邻算法（NearestNeighbor）：</strong></p>
+<ol>
+<li>以指定起点（或原点）作为初始位置</li>
+<li>遍历所有未访问多段线段，分别计算当前点到该段“首点”和“末点”的距离</li>
+<li>选择接入代价最小的多段线段</li>
+<li>根据较近端点自动决定正向或反向遍历，并克隆点列表</li>
+<li>将该段包装为<code>OrderedSegment</code>后加入结果列表，并更新当前点为段出口点</li>
+<li>重复上述步骤直到所有有效多段线段排序完成</li>
+</ol>
+<p><strong>排序输出结构如下：</strong></p>
+<ul>
+<li><code>Segment</code>：原始多段线段</li>
+<li><code>Points</code>：按方向重排后的轨迹点</li>
+<li><code>IsClosed</code>：指示该多段线是否闭合</li>
+</ul>
+<h3 id="轨迹生成阶段polyline">轨迹生成阶段（Polyline）</h3>
+<p><strong>轨迹生成阶段基于排序后的 OrderedSegment 链表，按顺序输出最终加工轨迹。对每个多段线段执行：</strong></p>
+<ol>
+<li>若为首段：根据配置执行安全抬升、定位、下降（若启用 SafeZ）</li>
+<li>将该段的点按方向顺序依次加入轨迹（从第 2 个点开始，避免首点重复）</li>
+<li>若<code>IsClosed = true</code>：在段末尾追加一次首点，形成最后一条闭合边</li>
+<li>段与段之间根据参数决定使用 SafeZ 过渡或直接移动</li>
+<li>每个输出点会按全局索引编号并设置加工描述</li>
+<li>若启用回零（UseReturnToOrigin），最后追加返回原点的轨迹点序列</li>
+</ol>
+<p>轨迹生成阶段只负责在<code>OrderedSegment</code>的基础上生成点序列，不会再对方向或闭合性进行推断</p>
+<h2 id="三维多段线polyline3d">三维多段线（Polyline3D）</h2>
+<p>三维多段线实体在路径优化中被视为由 至少 2 个点构成的可双向遍历轨迹段（点序列 P0 → P1 → … → Pn）。优化流程包含两个阶段：排序（Order）与轨迹生成（Generate Trajectory）</p>
+<h3 id="排序阶段polyline3d">排序阶段（Polyline3D）</h3>
+<p>对所有三维多段线段进行排序。排序阶段输出一组 OrderedSegment，其中包含原始段、按最佳方向排列后的点列表以及闭合标记</p>
+<p><strong>最近邻算法（NearestNeighbor）：</strong></p>
+<ol>
+<li>以指定起点（或原点）作为初始位置</li>
+<li>遍历所有未访问三维多段线段，分别计算当前点到该段“首点”和“末点”的距离</li>
+<li>选择接入代价最小的多段线段</li>
+<li>根据较近端点自动决定正向或反向遍历，并克隆点列表</li>
+<li>将该段包装为<code>OrderedSegment</code>后加入结果列表，并更新当前点为段出口点</li>
+<li>重复上述步骤直到所有有效三维多段线段排序完成</li>
+</ol>
+<p><strong>排序输出结构如下：</strong></p>
+<ul>
+<li><code>Segment</code>：原始三维多段线段</li>
+<li><code>Points</code>：按方向重排后的轨迹点</li>
+<li><code>IsClosed</code>：指示该三维多段线是否闭合</li>
+</ul>
+<h3 id="轨迹生成阶段polyline3d">轨迹生成阶段（Polyline3D）</h3>
+<p><strong>轨迹生成阶段基于排序后的 OrderedSegment 链表，按顺序输出最终加工轨迹。对每个三维多段线段执行：</strong></p>
+<ol>
+<li>若为首段：根据配置执行安全抬升、定位、下降（若启用 SafeZ）</li>
+<li>将该段的点按方向顺序加入轨迹（首点只入场，不重复输出）</li>
+<li>若<code>IsClosed = true</code>：在段末尾追加一次首点，形成最后一条闭合边</li>
+<li>若下一段起点与上一段终点重合，则直接连续加工，不插 SafeZ 过渡</li>
+<li>若段间存在实际跳转，则依据参数执行 SafeZ 过渡或直接移动</li>
+<li>每个输出点会按全局索引编号并设置加工阶段描述</li>
+<li>若启用回零（UseReturnToOrigin），最后追加返回原点的轨迹点序列</li>
+</ol>
+<p>轨迹生成阶段仅依据<code>OrderedSegment</code>的顺序与闭合标记生成轨迹，不会再次推断方向或闭合性</p>
+<h2 id="样条曲线spline">样条曲线（Spline）</h2>
+<p>样条曲线实体在路径优化中被视为 由 N 个离散点构成的可双向遍历轨迹段（P0 → P1 → … → Pn）。优化流程包含两个阶段：排序（Order）与轨迹生成（Generate Trajectory）</p>
+<h3 id="排序阶段spline">排序阶段（Spline）</h3>
+<p>对所有样条段进行排序。排序阶段输出一组<code>OrderedSegment</code>，包含原始段、确定方向后的点列表与闭合标记</p>
+<p><strong>最近邻算法（NearestNeighbor）：</strong></p>
+<ol>
+<li>以指定起点（或原点）作为初始位置</li>
+<li>遍历所有未访问样条段，分别计算当前点到该段“首点”和“末点”的距离</li>
+<li>选择接入代价最小的样条段</li>
+<li>根据较近端点自动决定正向或反向遍历，并克隆点列表</li>
+<li>将该段包装为<code>OrderedSegment</code>后加入结果列表，并更新当前点为段出口点</li>
+<li>重复上述步骤直到所有有效样条段排序完成</li>
+</ol>
+<p><strong>排序输出结构如下：</strong></p>
+<ul>
+<li><code>Segment</code>：原始样条段</li>
+<li><code>Points</code>：按方向重排后的轨迹点</li>
+<li><code>IsClosed</code>：闭合样条为 true，非闭合为 false</li>
+</ul>
+<h3 id="轨迹生成阶段spline">轨迹生成阶段（Spline）</h3>
+<p><strong>轨迹生成阶段基于排序后的 OrderedSegment 链表，按顺序输出最终加工轨迹。对每个样条段执行：</strong></p>
+<ol>
+<li>若为首段：根据配置执行安全抬升、定位、下降（若启用 SafeZ）</li>
+<li>将该段的离散点按方向顺序加入轨迹（首点只入场，不重复输出）</li>
+<li>若 IsClosed = true：在段末尾追加一次首点，形成闭合边</li>
+<li>若下一段起点与上一段终点重合，则直接连续加工，不插 SafeZ 过渡</li>
+<li>若段间存在实际跳转，则依据参数执行 SafeZ 过渡或直接移动</li>
+<li>每个输出点会按全局索引编号并设置加工阶段描述</li>
+<li>若启用回零（UseReturnToOrigin），最后追加返回原点的轨迹点序列</li>
+</ol>
+<p>轨迹生成阶段仅依据<code>OrderedSegment</code>的顺序与闭合标记生成轨迹，不会再次推断方向或闭合性</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.Utilities/DXFPathPlanning/OptimizationPath.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

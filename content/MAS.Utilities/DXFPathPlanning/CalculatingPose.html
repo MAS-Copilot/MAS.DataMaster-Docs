@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>姿态生成系统设计 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="姿态生成系统设计 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.Utilities/DXFPathPlanning/CalculatingPose.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="姿态生成系统设计">姿态生成系统设计</h1>
+
+<p>本模块将离散的几何路径点（XYZ）转化为包含完整六自由度信息的机器路径（XYZ + RxRyRz）。为了计算出物理意义正确的旋转角度，算法强依赖于以下前置数据的完整性与准确性</p>
+<h2 id="计算流程概览">计算流程概览</h2>
+<ul>
+<li>加载 DXF 文件（参见 <a href="DXFParser.html">DXFParser</a>）</li>
+<li>按图层组织实体集合数据</li>
+<li>移除属于忽略组的几何实体</li>
+<li>限制生成过多轨迹点</li>
+<li>将几何实体转换为轨迹点</li>
+<li>执行路径优化，生成最优轨迹序列（参见 <a href="OptimizationPath.html">OptimizationPath</a>）</li>
+<li><strong>从最终轨迹生成姿态(在本文档解释范围)</strong></li>
+<li>确保相对位置</li>
+<li>得到该图层完整的轨迹数据</li>
+</ul>
+<h2 id="姿态规则前置">姿态规则前置</h2>
+<blockquote>
+<p>[!tip] 关于正交坐标系</p>
+<p><span class="math">\(T, B, N_{eq}\)</span> 这三个向量构成一个<strong>局部工具坐标系</strong></p>
+<ul>
+<li><p><span class="math">\(T\)</span>（Tangent → 切向）: 工具的<strong>相对前后</strong></p>
+</li>
+<li><p><span class="math">\(B\)</span>（Binormal → 副法向）: 工具的<strong>相对左右</strong></p>
+</li>
+<li><p><span class="math">\(N_eq\)</span>（Equivalent Normal → 等效法向）: 工具的<strong>相对上下</strong></p>
+</li>
+</ul>
+<p>只要这三个向量互相垂直且都归一化，就得到一个完美无翻转的工具姿态</p>
+</blockquote>
+<p>定义机器人在路径上的行为策略及数学解算标准。此部分数据通常来源于<code>TrajectoryParameters</code>配置</p>
+<h3 id="旋转顺序">旋转顺序</h3>
+<p>机器人的欧拉角解算强依赖于旋转轴的叠加顺序。不同的控制器标准不同</p>
+<ul>
+<li>标准：通用顺序多为<code>ZYX</code>（Yaw-Pitch-Roll）或<code>XYZ</code>（Roll-Pitch-Yaw）</li>
+<li>输入：必须在配置文件中指定目标控制器的旋转顺序</li>
+<li>影响：若顺序错误，计算出的 <span class="math">\((Rx, Ry, Rz)\)</span> 会导致机器做出完全不可预测的姿态</li>
+</ul>
+<blockquote>
+<p>[!warning] 注意事项
+当前姿态求解在内部统一使用 ZYX 约定来还原欧拉角</p>
+</blockquote>
+<h3 id="生成策略">生成策略</h3>
+<p>决定工具姿态如何随路径变化</p>
+<ul>
+<li>Fixed (固定姿态)：适用于点胶、三轴雕刻。全过程保持工具垂直或特定角度，忽略路径方向</li>
+<li>Tangent Following (切向跟随)：适用于切割、刀片裁剪、焊接。<span class="math">\(Rz\)</span> (Yaw) 始终指向路径行进方向</li>
+<li>Surface Normal (法向跟随)：适用于需要姿态随空间路径实时变化的工艺（打磨、3D 曲线加工等）</li>
+</ul>
+<p>若没有真实曲面，就无法生成贴合物理曲面的 Rx/Ry。此时系统采用 GlobalUp 等工艺约定，构造等效法向并自动计算 Rx/Ry，使姿态满足工艺需求</p>
+<blockquote>
+<p>[!note] 常用法向构造解法（无真实曲面时）
+已知：<span class="math">\(T\)</span>（路径切线），<span class="math">\(U\)</span> = GlobalUp（工艺参考 Up）
+步骤：</p>
+<ol>
+<li>去掉 <span class="math">\(U\)</span> 在 <span class="math">\(T\)</span> 方向上的分量：<span class="math">\(U_{proj} = (U\cdot T)T\)</span></li>
+<li>得到 <span class="math">\(U\)</span> 在法平面上的投影：<span class="math">\(N_{raw} = U - U_{proj}\)</span></li>
+<li>归一化 <span class="math">\(N_{raw}\)</span>，得到等效法向 <span class="math">\(N_{eq}\)</span></li>
+<li>再用 <span class="math">\(B = T \times N_{eq}\)</span> 得到第三个轴，构成正交坐标系 <span class="math">\(T, B, N_{eq}\)</span></li>
+</ol>
+</blockquote>
+<h3 id="零位定义">零位定义</h3>
+<p>定义“什么都不转”时的物理状态</p>
+<ul>
+<li>垂直向下参考值：例如，对于许多 6 轴机器人，<span class="math">\((Rx=180, Ry=0, Rz=0)\)</span> 代表法兰盘垂直指向地面</li>
+<li>数据需求：需要配置<code>BaseRx, BaseRy, BaseRz</code>作为计算的基底值</li>
+</ul>
+<h2 id="几何数据前置">几何数据前置</h2>
+<p>定义从 DXF 图元中提取的数学向量。此部分数据来源于<code>DxfLayerEntities</code>解析结果</p>
+<h3 id="切向向量">切向向量</h3>
+<ul>
+<li>定义：当前点指向下一个点的单位向量</li>
+<li>计算公式：<span class="math">\(\vec{T} = \text{Normalize}(P_{next} - P_{current})\)</span></li>
+<li>用途：决定 <span class="math">\(Rz\)</span> (偏航角/Yaw)</li>
+<li>约束：点集必须是有序的（Ordered）。对于圆弧，离散密度必须足够高以保证向量变化平滑</li>
+</ul>
+<h3 id="法向量">法向量</h3>
+<ul>
+<li>定义：几何体所在平面的垂直向量</li>
+<li>来源：
+<ul>
+<li>2D DXF：默认为 <span class="math">\(\vec{N} = (0, 0, 1)\)</span></li>
+<li>3D Surface：需从 CAD 模型表面投影获取 <span class="math">\((Nx, Ny, Nz)\)</span></li>
+</ul>
+</li>
+<li>用途：决定 <span class="math">\(Rx\)</span> (滚转角/Roll) 和 <span class="math">\(Ry\)</span> (俯仰角/Pitch)</li>
+<li>约束：若法向量错误，机器人可能尝试从侧面切入平面</li>
+</ul>
+<h3 id="路径平滑度">路径平滑度</h3>
+<ul>
+<li>要求：路径中是否存在尖锐拐角（Sharp Corner）</li>
+<li>处理：在尖角处，切向向量会发生突变（如 90 度）。需要做圆角过渡（Fillet）或单独旋转点</li>
+</ul>
+<h2 id="补偿与校准前置">补偿与校准前置</h2>
+<p>定义物理硬件与理论模型之间的偏差。此部分数据来源于现场校准参数</p>
+<h3 id="工具安装角度">工具安装角度</h3>
+<p>工具本身安装在法兰盘上时的旋转偏差</p>
+<ul>
+<li>场景：切刀可能安装在法兰盘侧面，或者刀刃默认朝向与法兰盘 X 轴呈 90 度</li>
+<li>输入：
+<ul>
+<li><code>ToolMountingRx</code> (deg)：工具相对于法兰盘工具坐标系绕 X 轴的固定旋转偏差（度）</li>
+<li><code>ToolMountingRy</code> (deg)：工具相对于法兰盘工具坐标系绕 Y 轴的固定旋转偏差（度）</li>
+<li><code>ToolMountingRz</code> (deg)：工具相对于法兰盘工具坐标系绕 Z 轴的固定旋转偏差（度，通常用于补偿刀刃方向与法兰盘默认 X 轴的夹角）</li>
+</ul>
+</li>
+<li>算法动作：在计算出的理论角度上叠加此偏移量</li>
+</ul>
+<h3 id="工艺角">工艺角</h3>
+<p>工艺需要的额外倾斜角</p>
+<ul>
+<li>场景：焊接枪不能垂直焊接，需要前倾 15 度（Push angle）</li>
+<li>输入：<code>LeadAngle</code> (进给倾角), <code>TiltAngle</code> (侧倾角)</li>
+<li>算法动作：基于切向坐标系（Frenet Frame）进行局部旋转叠加</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.Utilities/DXFPathPlanning/CalculatingPose.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

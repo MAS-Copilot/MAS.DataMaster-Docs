@@ -129,7 +129,9 @@ Class LayerBaseInfo  <a class="header-action link-secondary" title="View source"
   <dl class="typelist derived">
     <dt>Derived</dt>
     <dd>
-      <div><a class="xref" href="MAS.Utilities.DXFPathPlanning.DxfLayerGeometry.html">DxfLayerGeometry</a></div>
+      <div><a class="xref" href="MAS.Utilities.DXFPathPlanning.DxfEntityItem.html">DxfEntityItem</a></div>
+      <div><a class="xref" href="MAS.Utilities.DXFPathPlanning.DxfLayerEntities.html">DxfLayerEntities</a></div>
+      <div><a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></div>
       <div><a class="xref" href="MAS.Utilities.DXFPathPlanning.LayerCardModel.html">LayerCardModel</a></div>
       <div><a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPath.html">TrajectoryPath</a></div>
     </dd>
@@ -222,16 +224,16 @@ Class LayerBaseInfo  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Bounds" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Bounds">
   Bounds
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置该图层的边界过滤</p>
+  <div class="markdown level1 summary"><p>获取或设置该图层的边界</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public Rect? Bounds { get; set; }</code></pre>
+public Rect3D Bounds { get; set; }</code></pre>
   </div>
 
 
@@ -240,20 +242,46 @@ public Rect? Bounds { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.rect">Rect</a>?</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.rect3d">Rect3D</a></dt>
     <dd></dd>
   </dl>
 
 
 
 
-  <h4 class="section" id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Bounds_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>原点坐标通过解析图层中的单行文本提取，文本需遵循格式：Bounds: W = {value}, H = {value}，
-使用正则表达式匹配 W 和 H 值</p>
-<p>
-如果图层中未找到符合格式的文本，则该属性为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
-</p>
+
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Color_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Color*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Color" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Color">
+  Color
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置图层颜色</p>
 </div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public Color Color { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.color">Color</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
 
 
 
@@ -262,7 +290,7 @@ public Rect? Bounds { get; set; }</code></pre>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Description" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Description">
   Description
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L158"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置图层描述</p>
@@ -291,77 +319,11 @@ public string Description { get; set; }</code></pre>
 
 
 
-  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_ExtendedPoints_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.ExtendedPoints*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_ExtendedPoints" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.ExtendedPoints">
-  ExtendedPoints
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L222"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置该图层的扩展点列表</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public List&lt;ExtendedPoint&gt; ExtendedPoints { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_IsLayerVisible_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.IsLayerVisible*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_IsLayerVisible" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.IsLayerVisible">
-  IsLayerVisible
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L116"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置图层是否可见</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public bool IsLayerVisible { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_IsLocked_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.IsLocked*"></a>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_IsLocked" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.IsLocked">
   IsLocked
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L180"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置图层是否锁定</p>
@@ -390,20 +352,20 @@ public bool IsLocked { get; set; }</code></pre>
 
 
 
-  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_LayerBounds_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.LayerBounds*"></a>
+  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_IsVisible_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.IsVisible*"></a>
 
-  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_LayerBounds" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.LayerBounds">
-  LayerBounds
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_IsVisible" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.IsVisible">
+  IsVisible
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置该图层的边界</p>
+  <div class="markdown level1 summary"><p>获取或设置图层是否可见</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public Rect LayerBounds { get; set; }</code></pre>
+public bool IsVisible { get; set; }</code></pre>
   </div>
 
 
@@ -412,7 +374,7 @@ public Rect LayerBounds { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.rect">Rect</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
@@ -423,44 +385,11 @@ public Rect LayerBounds { get; set; }</code></pre>
 
 
 
-  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_LayerColor_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.LayerColor*"></a>
+  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Level_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Level*"></a>
 
-  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_LayerColor" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.LayerColor">
-  LayerColor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L32"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置图层颜色</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public Color LayerColor { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.color">Color</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_LayerLevel_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.LayerLevel*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_LayerLevel" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.LayerLevel">
-  LayerLevel
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Level" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Level">
+  Level
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L116"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置图层级别</p>
@@ -469,7 +398,7 @@ public Color LayerColor { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public int LayerLevel { get; set; }</code></pre>
+public int Level { get; set; }</code></pre>
   </div>
 
 
@@ -489,10 +418,10 @@ public int LayerLevel { get; set; }</code></pre>
 
 
 
-  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_LayerName_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.LayerName*"></a>
+  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Name_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Name*"></a>
 
-  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_LayerName" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.LayerName">
-  LayerName
+  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Name" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Name">
+  Name
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -502,7 +431,7 @@ public int LayerLevel { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public string LayerName { get; set; }</code></pre>
+public string Name { get; set; }</code></pre>
   </div>
 
 
@@ -512,39 +441,6 @@ public string LayerName { get; set; }</code></pre>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_LayerTotalElements_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.LayerTotalElements*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_LayerTotalElements" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.LayerTotalElements">
-  LayerTotalElements
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L158"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置图层元素总数</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public int LayerTotalElements { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd></dd>
   </dl>
 
@@ -568,7 +464,7 @@ public int LayerTotalElements { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public Point? Origin { get; set; }</code></pre>
+public Point3D Origin { get; set; }</code></pre>
   </div>
 
 
@@ -577,7 +473,7 @@ public Point? Origin { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a>?</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a></dt>
     <dd></dd>
   </dl>
 
@@ -585,11 +481,47 @@ public Point? Origin { get; set; }</code></pre>
 
 
   <h4 class="section" id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Origin_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>原点坐标通过解析图层中的单行文本提取，文本需遵循格式：Origin: X = {value}, Y = {value}，
-使用正则表达式匹配 X 和 Y 坐标值</p>
+  <div class="markdown level1 remarks"><p>原点坐标通过解析图层中的单行文本提取，文本需遵循格式：Origin: X = value, Y = value, Z = value，
+使用正则表达式匹配</p>
 <p>
-如果图层中未找到符合格式的文本，则该属性为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+如果图层中未找到符合格式的文本，则该属性为默认值0, 0, 0/&gt;
 </p>
+</div>
+
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_TotalElements_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.TotalElements*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_TotalElements" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.TotalElements">
+  TotalElements
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.Utilities.DXFPathPlanning.LayerBaseInfo.g.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置图层实体数量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public int TotalElements { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_TotalElements_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>表示可支持用于轨迹解析的实体，并不是总实体数量</p>
 </div>
 
 
@@ -603,7 +535,7 @@ public Point? Origin { get; set; }</code></pre>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Clone" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Clone">
   Clone()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new object that is a copy of the current instance.</p>
@@ -636,7 +568,7 @@ public Point? Origin { get; set; }</code></pre>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_Clone__1" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.Clone``1">
   Clone&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs/#L86"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>序列化的深度克隆方法，创建当前 <a class="xref" href="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.html">LayerBaseInfo</a> 对象的独立副本</p>
@@ -681,7 +613,7 @@ public Point? Origin { get; set; }</code></pre>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_LayerBaseInfo_CreateFromBase_MAS_Utilities_DXFPathPlanning_LayerBaseInfo_" data-uid="MAS.Utilities.DXFPathPlanning.LayerBaseInfo.CreateFromBase(MAS.Utilities.DXFPathPlanning.LayerBaseInfo)">
   CreateFromBase(LayerBaseInfo)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Abstractions/LayerBaseInfo.cs/#L96"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从另一个 LayerBaseInfo 实例初始化当前对象的属性</p>

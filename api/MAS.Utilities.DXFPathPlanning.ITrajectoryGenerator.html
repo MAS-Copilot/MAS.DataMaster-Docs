@@ -121,25 +121,76 @@ Interface ITrajectoryGenerator  <a class="header-action link-secondary" title="V
 </h2>
 
 
-  <a id="MAS_Utilities_DXFPathPlanning_ITrajectoryGenerator_GenerateTrajectory_" data-uid="MAS.Utilities.DXFPathPlanning.ITrajectoryGenerator.GenerateTrajectory*"></a>
+  <a id="MAS_Utilities_DXFPathPlanning_ITrajectoryGenerator_GenerateGCode_" data-uid="MAS.Utilities.DXFPathPlanning.ITrajectoryGenerator.GenerateGCode*"></a>
 
-  <h3 id="MAS_Utilities_DXFPathPlanning_ITrajectoryGenerator_GenerateTrajectory_MAS_Utilities_DXFPathPlanning_DxfLayerGeometry_MAS_Utilities_DXFPathPlanning_TrajectoryParameters_" data-uid="MAS.Utilities.DXFPathPlanning.ITrajectoryGenerator.GenerateTrajectory(MAS.Utilities.DXFPathPlanning.DxfLayerGeometry,MAS.Utilities.DXFPathPlanning.TrajectoryParameters)">
-  GenerateTrajectory(DxfLayerGeometry, TrajectoryParameters?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/ITrajectoryGenerator.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Utilities_DXFPathPlanning_ITrajectoryGenerator_GenerateGCode_MAS_Utilities_DXFPathPlanning_TrajectoryPath_MAS_Utilities_DXFPathPlanning_GCodeParameters_" data-uid="MAS.Utilities.DXFPathPlanning.ITrajectoryGenerator.GenerateGCode(MAS.Utilities.DXFPathPlanning.TrajectoryPath,MAS.Utilities.DXFPathPlanning.GCodeParameters)">
+  GenerateGCode(TrajectoryPath, GCodeParameters)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/ITrajectoryGenerator.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>根据输入的图层几何数据生成轨迹路径</p>
+  <div class="markdown level1 summary"><p>根据已生成的轨迹路径以及 G 代码输出参数</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">TrajectoryPath GenerateTrajectory(DxfLayerGeometry layerGeometry, TrajectoryParameters? parameters = null)</code></pre>
+    <pre><code class="lang-csharp hljs">string GenerateGCode(TrajectoryPath trajectoryPath, GCodeParameters gcodeParameters)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>layerGeometry</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.DxfLayerGeometry.html">DxfLayerGeometry</a></dt>
-    <dd><p>输入的图层几何数据</p>
+    <dt><code>trajectoryPath</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPath.html">TrajectoryPath</a></dt>
+    <dd><p>由 <a class="xref" href="MAS.Utilities.DXFPathPlanning.ITrajectoryGenerator.html#MAS_Utilities_DXFPathPlanning_ITrajectoryGenerator_GenerateTrajectory_MAS_Utilities_DXFPathPlanning_DxfLayerEntities_MAS_Utilities_DXFPathPlanning_TrajectoryParameters_">GenerateTrajectory(DxfLayerEntities, TrajectoryParameters)</a> 方法生成的完整轨迹路径对象</p>
+</dd>
+    <dt><code>gcodeParameters</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.GCodeParameters.html">GCodeParameters</a></dt>
+    <dd><p>G 代码输出参数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>完整的 G 代码程序字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>trajectoryPath 或 gcodeParameters 为 null 时抛出</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>轨迹中包含不支持的几何类型或运动模式时抛出</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_ITrajectoryGenerator_GenerateTrajectory_" data-uid="MAS.Utilities.DXFPathPlanning.ITrajectoryGenerator.GenerateTrajectory*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_ITrajectoryGenerator_GenerateTrajectory_MAS_Utilities_DXFPathPlanning_DxfLayerEntities_MAS_Utilities_DXFPathPlanning_TrajectoryParameters_" data-uid="MAS.Utilities.DXFPathPlanning.ITrajectoryGenerator.GenerateTrajectory(MAS.Utilities.DXFPathPlanning.DxfLayerEntities,MAS.Utilities.DXFPathPlanning.TrajectoryParameters)">
+  GenerateTrajectory(DxfLayerEntities, TrajectoryParameters)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/ITrajectoryGenerator.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据指定的图层几何实体数据生成轨迹路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TrajectoryPath GenerateTrajectory(DxfLayerEntities entities, TrajectoryParameters parameters)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.DxfLayerEntities.html">DxfLayerEntities</a></dt>
+    <dd><p>输入的图层实体数据</p>
 </dd>
     <dt><code>parameters</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryParameters.html">TrajectoryParameters</a></dt>
     <dd><p>轨迹生成参数</p>
@@ -167,48 +218,6 @@ Interface ITrajectoryGenerator  <a class="header-action link-secondary" title="V
 </dd>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
     <dd><p>不包含可处理的几何图形类型时</p>
-</dd>
-  </dl>
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_ITrajectoryGenerator_InsertTrajectoryPoint_" data-uid="MAS.Utilities.DXFPathPlanning.ITrajectoryGenerator.InsertTrajectoryPoint*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_ITrajectoryGenerator_InsertTrajectoryPoint_MAS_Utilities_DXFPathPlanning_TrajectoryPath_MAS_Utilities_DXFPathPlanning_TrajectoryPoint_" data-uid="MAS.Utilities.DXFPathPlanning.ITrajectoryGenerator.InsertTrajectoryPoint(MAS.Utilities.DXFPathPlanning.TrajectoryPath,MAS.Utilities.DXFPathPlanning.TrajectoryPoint)">
-  InsertTrajectoryPoint(TrajectoryPath, TrajectoryPoint)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Interfaces/ITrajectoryGenerator.cs/#L32"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>在现有的轨迹路径中插入单个轨迹点</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void InsertTrajectoryPoint(TrajectoryPath updateData, TrajectoryPoint insertPoint)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>updateData</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPath.html">TrajectoryPath</a></dt>
-    <dd><p>待更新的轨迹路径</p>
-</dd>
-    <dt><code>insertPoint</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPoint.html">TrajectoryPoint</a></dt>
-    <dd><p>待插入的轨迹点</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
-    <dd><p>当 insertIndex 小于 1 或大于当前点数加 1 时抛出</p>
 </dd>
   </dl>
 
