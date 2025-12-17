@@ -102,7 +102,7 @@ Class BarcodeParameters  <a class="header-action link-secondary" title="View sou
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BarcodeParameters : ViewModelBase, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
+    <pre><code class="lang-csharp hljs">public class BarcodeParameters : ViewModelBase, INotifyPropertyChanged, INotifyPropertyChanging, ICloneable</code></pre>
   </div>
 
 
@@ -123,6 +123,7 @@ Class BarcodeParameters  <a class="header-action link-secondary" title="View sou
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icloneable">ICloneable</a></div>
     </dd>
   </dl>
 
@@ -235,7 +236,7 @@ Class BarcodeParameters  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Utilities_WordPrinter_BarcodeParameters_BarcodeFormats" data-uid="MAS.Utilities.WordPrinter.BarcodeParameters.BarcodeFormats">
   BarcodeFormats
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/WordPrinter/Models/BarcodeParameters.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/WordPrinter/Models/BarcodeParameters.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取条码格式</p>
@@ -268,7 +269,7 @@ public List&lt;string&gt; BarcodeFormats { get; }</code></pre>
 
   <h3 id="MAS_Utilities_WordPrinter_BarcodeParameters_BarcodeSavePath" data-uid="MAS.Utilities.WordPrinter.BarcodeParameters.BarcodeSavePath">
   BarcodeSavePath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/WordPrinter/Models/BarcodeParameters.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/WordPrinter/Models/BarcodeParameters.cs/#L82"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置条码备份路径</p>
@@ -590,6 +591,88 @@ public int Width { get; set; }</code></pre>
 
 
 
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Utilities_WordPrinter_BarcodeParameters_Clone_" data-uid="MAS.Utilities.WordPrinter.BarcodeParameters.Clone*"></a>
+
+  <h3 id="MAS_Utilities_WordPrinter_BarcodeParameters_Clone" data-uid="MAS.Utilities.WordPrinter.BarcodeParameters.Clone">
+  Clone()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/WordPrinter/Models/BarcodeParameters.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new object that is a copy of the current instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Clone()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>A new object that is a copy of this instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Utilities_WordPrinter_BarcodeParameters_Clone_" data-uid="MAS.Utilities.WordPrinter.BarcodeParameters.Clone*"></a>
+
+  <h3 id="MAS_Utilities_WordPrinter_BarcodeParameters_Clone__1" data-uid="MAS.Utilities.WordPrinter.BarcodeParameters.Clone``1">
+  Clone&lt;T&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/WordPrinter/Models/BarcodeParameters.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>序列化的深度克隆方法，创建当前 <a class="xref" href="MAS.Utilities.WordPrinter.BarcodeParameters.html">BarcodeParameters</a> 对象的独立副本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Clone&lt;T&gt;() where T : BarcodeParameters</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>与原对象具有相同状态的新实例</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>目标类型，必须继承自 <a class="xref" href="MAS.Utilities.WordPrinter.BarcodeParameters.html">BarcodeParameters</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>反序列化失败时抛出</p>
+</dd>
+  </dl>
 
 
 

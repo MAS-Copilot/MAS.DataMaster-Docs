@@ -155,9 +155,9 @@ Class ExtendedPointExtensions  <a class="header-action link-secondary" title="Vi
 
   <a id="MAS_Utilities_DXFPathPlanning_ExtendedPointExtensions_GetFinalRelativePose_" data-uid="MAS.Utilities.DXFPathPlanning.ExtendedPointExtensions.GetFinalRelativePose*"></a>
 
-  <h3 id="MAS_Utilities_DXFPathPlanning_ExtendedPointExtensions_GetFinalRelativePose_MAS_Utilities_DXFPathPlanning_ExtendedPoint_" data-uid="MAS.Utilities.DXFPathPlanning.ExtendedPointExtensions.GetFinalRelativePose(MAS.Utilities.DXFPathPlanning.ExtendedPoint)">
-  GetFinalRelativePose(ExtendedPoint)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Extensions/ExtendedPointExtensions.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Utilities_DXFPathPlanning_ExtendedPointExtensions_GetFinalRelativePose_MAS_Utilities_DXFPathPlanning_ExtendedPoint_System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.ExtendedPointExtensions.GetFinalRelativePose(MAS.Utilities.DXFPathPlanning.ExtendedPoint,System.Boolean)">
+  GetFinalRelativePose(ExtendedPoint, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Extensions/ExtendedPointExtensions.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取扩展点最终相对姿态数据</p>
@@ -165,7 +165,7 @@ Class ExtendedPointExtensions  <a class="header-action link-secondary" title="Vi
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ExtendedFinalRelativePose GetFinalRelativePose(this ExtendedPoint point)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ExtendedFinalRelativePose GetFinalRelativePose(this ExtendedPoint point, bool useAbsolute = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -173,12 +173,59 @@ Class ExtendedPointExtensions  <a class="header-action link-secondary" title="Vi
     <dt><code>point</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
     <dd><p>扩展点对象</p>
 </dd>
+    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true（默认）：使用绝对坐标 (X,Y,Z)；<br>
+false：使用相对坐标 (RelativeX, RelativeY, RelativeZ)</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedFinalRelativePose.html">ExtendedFinalRelativePose</a></dt>
     <dd><p><a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedFinalRelativePose.html">ExtendedFinalRelativePose</a> 对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_ExtendedPointExtensions_ToGoalPosition_" data-uid="MAS.Utilities.DXFPathPlanning.ExtendedPointExtensions.ToGoalPosition*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_ExtendedPointExtensions_ToGoalPosition_MAS_Utilities_DXFPathPlanning_ExtendedPoint_System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.ExtendedPointExtensions.ToGoalPosition(MAS.Utilities.DXFPathPlanning.ExtendedPoint,System.Boolean)">
+  ToGoalPosition(ExtendedPoint, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Extensions/ExtendedPointExtensions.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将扩展点转换为目标位置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GoalPosition ToGoalPosition(this ExtendedPoint point, bool useAbsolute = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>point</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
+    <dd><p>扩展点实例</p>
+</dd>
+    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true（默认）：使用绝对坐标 (X,Y,Z)；<br>
+false：使用相对坐标 (RelativeX, RelativeY, RelativeZ)</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Utilities.DXFPathPlanning.GoalPosition.html">GoalPosition</a></dt>
+    <dd><p><a class="xref" href="MAS.Utilities.DXFPathPlanning.GoalPosition.html">GoalPosition</a> 对象</p>
 </dd>
   </dl>
 
@@ -222,6 +269,45 @@ false：使用相对坐标 (RelativeX, RelativeY, RelativeZ)</p>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a></dt>
     <dd><p>对应的 Point3D 实例</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_ExtendedPointExtensions_ToRotationAngles_" data-uid="MAS.Utilities.DXFPathPlanning.ExtendedPointExtensions.ToRotationAngles*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_ExtendedPointExtensions_ToRotationAngles_MAS_Utilities_DXFPathPlanning_ExtendedPoint_" data-uid="MAS.Utilities.DXFPathPlanning.ExtendedPointExtensions.ToRotationAngles(MAS.Utilities.DXFPathPlanning.ExtendedPoint)">
+  ToRotationAngles(ExtendedPoint)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Extensions/ExtendedPointExtensions.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将扩展点的旋转部分转换为 RotationAngles</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RotationAngles ToRotationAngles(this ExtendedPoint point)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>point</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
+    <dd><p>扩展点实例</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Utilities.DXFPathPlanning.RotationAngles.html">RotationAngles</a></dt>
+    <dd><p><a class="xref" href="MAS.Utilities.DXFPathPlanning.RotationAngles.html">RotationAngles</a> 对象</p>
 </dd>
   </dl>
 

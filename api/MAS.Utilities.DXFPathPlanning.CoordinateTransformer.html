@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class CoordinateTransformer | DataMaster ">
       
-      <meta name="description" content="坐标转换器，用于处理 DXF 图纸点位的坐标系变换">
+      <meta name="description" content="坐标转换器，用于处理二维空间中的坐标系变换">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer" class="text-break">
-Class CoordinateTransformer  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L19"><i class="bi bi-code-slash"></i></a>
+Class CoordinateTransformer  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class CoordinateTransformer  <a class="header-action link-secondary" title="View
   <dl><dt>Assembly</dt><dd>MAS.Utilities.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>坐标转换器，用于处理 DXF 图纸点位的坐标系变换</p>
+  <div class="markdown summary"><p>坐标转换器，用于处理二维空间中的坐标系变换</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -153,188 +153,35 @@ Class CoordinateTransformer  <a class="header-action link-secondary" title="View
 </h2>
 
 
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ApplyOffset_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ApplyOffset*"></a>
+  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_CreateRigidTransformMatrix_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.CreateRigidTransformMatrix*"></a>
 
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ApplyOffset_System_Windows_Point_System_Double_MAS_Utilities_DXFPathPlanning_ExtendedPoint_System_Windows_Point_System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ApplyOffset(System.Windows.Point,System.Double,MAS.Utilities.DXFPathPlanning.ExtendedPoint,System.Windows.Point,System.Boolean)">
-  ApplyOffset(Point, double, ExtendedPoint, Point, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L254"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_CreateRigidTransformMatrix_System_Collections_Generic_List_System_Windows_Point__System_Collections_Generic_List_System_Windows_Point__" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.CreateRigidTransformMatrix(System.Collections.Generic.List{System.Windows.Point},System.Collections.Generic.List{System.Windows.Point})">
+  CreateRigidTransformMatrix(List&lt;Point&gt;, List&lt;Point&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>对轨扩展点应用旋转和平移变换，处理工具中心点（TCP）偏移或坐标系对齐（围绕指定旋转中心）</p>
+  <div class="markdown level1 summary"><p>创建 3x3 刚体变换矩阵，通过三个非共线点标定</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ExtendedPoint ApplyOffset(Point offset, double rotationAngle, ExtendedPoint point, Point rotationCenter, bool useAbsolute = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Matrix&lt;double&gt; CreateRigidTransformMatrix(List&lt;Point&gt; worldPoints, List&lt;Point&gt; targetPoints)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
-    <dd><p>平移偏移量 (dx, dy)，单位：毫米</p>
+    <dt><code>worldPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a>&gt;</dt>
+    <dd><p>世界坐标系中的三个点 (x_w, y_w)</p>
 </dd>
-    <dt><code>rotationAngle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>旋转角度（度）</p>
-</dd>
-    <dt><code>point</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
-    <dd><p>目标坐标系中的扩展点</p>
-</dd>
-    <dt><code>rotationCenter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
-    <dd><p>旋转中心点</p>
-</dd>
-    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否使用绝对坐标（X, Y），否则使用相对坐标（RelativeX, RelativeY）</p>
+    <dt><code>targetPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a>&gt;</dt>
+    <dd><p>目标坐标系（用户/工具）中的对应点 (x_t, y_t)</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
-    <dd><p>执行机构坐标系中的扩展点</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ApplyOffset_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ApplyOffset*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ApplyOffset_System_Windows_Point_System_Double_System_Collections_Generic_List_MAS_Utilities_DXFPathPlanning_TrajectoryPoint__System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ApplyOffset(System.Windows.Point,System.Double,System.Collections.Generic.List{MAS.Utilities.DXFPathPlanning.TrajectoryPoint},System.Boolean)">
-  ApplyOffset(Point, double, List&lt;TrajectoryPoint&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L218"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>对轨迹点列表应用旋转和平移变换，处理工具中心点（TCP）偏移或坐标系对齐（围绕原点）</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static List&lt;TrajectoryPoint&gt; ApplyOffset(Point offset, double rotationAngle, List&lt;TrajectoryPoint&gt; points, bool useAbsolute = false)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
-    <dd><p>平移偏移量 (dx, dy)，单位：毫米</p>
-</dd>
-    <dt><code>rotationAngle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>旋转角度（度）</p>
-</dd>
-    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPoint.html">TrajectoryPoint</a>&gt;</dt>
-    <dd><p>目标坐标系中的轨迹点列表</p>
-</dd>
-    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否使用绝对坐标（X, Y），否则使用相对坐标（RelativeX, RelativeY）</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPoint.html">TrajectoryPoint</a>&gt;</dt>
-    <dd><p>执行机构坐标系中的轨迹点列表</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ApplyOffset_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ApplyOffset*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ApplyOffset_System_Windows_Point_System_Double_System_Collections_Generic_List_MAS_Utilities_DXFPathPlanning_TrajectoryPoint__System_Windows_Point_System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ApplyOffset(System.Windows.Point,System.Double,System.Collections.Generic.List{MAS.Utilities.DXFPathPlanning.TrajectoryPoint},System.Windows.Point,System.Boolean)">
-  ApplyOffset(Point, double, List&lt;TrajectoryPoint&gt;, Point, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L235"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>对轨迹点列表应用旋转和平移变换，处理工具中心点（TCP）偏移或坐标系对齐（围绕指定旋转中心）</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static List&lt;TrajectoryPoint&gt; ApplyOffset(Point offset, double rotationAngle, List&lt;TrajectoryPoint&gt; points, Point rotationCenter, bool useAbsolute = false)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
-    <dd><p>平移偏移量 (dx, dy)，单位：毫米</p>
-</dd>
-    <dt><code>rotationAngle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>旋转角度（度）</p>
-</dd>
-    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPoint.html">TrajectoryPoint</a>&gt;</dt>
-    <dd><p>目标坐标系中的轨迹点列表</p>
-</dd>
-    <dt><code>rotationCenter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
-    <dd><p>旋转中心点</p>
-</dd>
-    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否使用绝对坐标（X, Y），否则使用相对坐标（RelativeX, RelativeY）</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPoint.html">TrajectoryPoint</a>&gt;</dt>
-    <dd><p>执行机构坐标系中的轨迹点列表</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ChainTransform_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ChainTransform*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ChainTransform_System_Collections_Generic_List_MathNet_Numerics_LinearAlgebra_Matrix_System_Double___MAS_Utilities_DXFPathPlanning_ExtendedPoint_System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ChainTransform(System.Collections.Generic.List{MathNet.Numerics.LinearAlgebra.Matrix{System.Double}},MAS.Utilities.DXFPathPlanning.ExtendedPoint,System.Boolean)">
-  ChainTransform(List&lt;Matrix&lt;double&gt;&gt;, ExtendedPoint, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L170"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>对扩展点应用链式坐标变换</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ExtendedPoint ChainTransform(List&lt;Matrix&lt;double&gt;&gt; transformMatrices, ExtendedPoint point, bool useAbsolute = false)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>transformMatrices</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;&gt;</dt>
-    <dd><p>变换矩阵列表（按顺序，如 T_world_to_user, T_user_to_tool）</p>
-</dd>
-    <dt><code>point</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
-    <dd><p>世界坐标系中的扩展点</p>
-</dd>
-    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否使用绝对坐标（X, Y），否则使用相对坐标（RelativeX, RelativeY）</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
-    <dd><p>目标坐标系中的扩展点</p>
+    <dt><span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
+    <dd><p>3x3 变换矩阵 T，使得 P_t = T * P_w</p>
 </dd>
   </dl>
 
@@ -348,107 +195,8 @@ Class CoordinateTransformer  <a class="header-action link-secondary" title="View
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ChainTransform_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ChainTransform*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ChainTransform_System_Collections_Generic_List_MathNet_Numerics_LinearAlgebra_Matrix_System_Double___System_Collections_Generic_List_MAS_Utilities_DXFPathPlanning_ExtendedPoint__System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ChainTransform(System.Collections.Generic.List{MathNet.Numerics.LinearAlgebra.Matrix{System.Double}},System.Collections.Generic.List{MAS.Utilities.DXFPathPlanning.ExtendedPoint},System.Boolean)">
-  ChainTransform(List&lt;Matrix&lt;double&gt;&gt;, List&lt;ExtendedPoint&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L194"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>对扩展点列表应用链式坐标变换</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static List&lt;ExtendedPoint&gt; ChainTransform(List&lt;Matrix&lt;double&gt;&gt; transformMatrices, List&lt;ExtendedPoint&gt; points, bool useAbsolute = false)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>transformMatrices</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;&gt;</dt>
-    <dd><p>变换矩阵列表（按顺序，如 T_world_to_user, T_user_to_tool）</p>
+    <dd><p>若点数不足或共线</p>
 </dd>
-    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a>&gt;</dt>
-    <dd><p>世界坐标系中的扩展点列表</p>
-</dd>
-    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否使用绝对坐标（X, Y），否则使用相对坐标（RelativeX, RelativeY）</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a>&gt;</dt>
-    <dd><p>目标坐标系中的扩展点</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ChainTransform_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ChainTransform*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_ChainTransform_System_Collections_Generic_List_MathNet_Numerics_LinearAlgebra_Matrix_System_Double___System_Collections_Generic_List_MAS_Utilities_DXFPathPlanning_TrajectoryPoint__System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.ChainTransform(System.Collections.Generic.List{MathNet.Numerics.LinearAlgebra.Matrix{System.Double}},System.Collections.Generic.List{MAS.Utilities.DXFPathPlanning.TrajectoryPoint},System.Boolean)">
-  ChainTransform(List&lt;Matrix&lt;double&gt;&gt;, List&lt;TrajectoryPoint&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L146"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>对轨迹列表应用链式变换</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static List&lt;TrajectoryPoint&gt; ChainTransform(List&lt;Matrix&lt;double&gt;&gt; transformMatrices, List&lt;TrajectoryPoint&gt; points, bool useAbsolute = false)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>transformMatrices</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;&gt;</dt>
-    <dd><p>变换矩阵列表（按顺序，如 T_world_to_user, T_user_to_tool）</p>
-</dd>
-    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPoint.html">TrajectoryPoint</a>&gt;</dt>
-    <dd><p>世界坐标系中的轨迹点列表</p>
-</dd>
-    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否使用绝对坐标（X, Y），否则使用相对坐标（RelativeX, RelativeY）</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPoint.html">TrajectoryPoint</a>&gt;</dt>
-    <dd><p>目标坐标系中的轨迹点列表</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
-    <dd></dd>
   </dl>
 
 
@@ -457,7 +205,7 @@ Class CoordinateTransformer  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_CreateTransformMatrix_System_Collections_Generic_List_System_Windows_Point__System_Collections_Generic_List_System_Windows_Point__" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.CreateTransformMatrix(System.Collections.Generic.List{System.Windows.Point},System.Collections.Generic.List{System.Windows.Point})">
   CreateTransformMatrix(List&lt;Point&gt;, List&lt;Point&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>创建 3x3 变换矩阵，通过三个非共线点标定</p>
@@ -501,288 +249,11 @@ Class CoordinateTransformer  <a class="header-action link-secondary" title="View
 
 
 
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_GetOffsetMatrix_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.GetOffsetMatrix*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_GetOffsetMatrix_System_Windows_Point_System_Double_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.GetOffsetMatrix(System.Windows.Point,System.Double)">
-  GetOffsetMatrix(Point, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L276"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取包含平移和旋转的 3x3 偏移矩阵（围绕原点）</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Matrix&lt;double&gt; GetOffsetMatrix(Point offset, double rotationAngle)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
-    <dd><p>平移偏移量 (dx, dy)，单位：与坐标一致</p>
-</dd>
-    <dt><code>rotationAngle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>旋转角度（度），遵循右手坐标系，逆时针为正</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
-    <dd><p>3x3 偏移矩阵 T_offset</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_GetOffsetMatrix_System_Windows_Point_System_Double__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>矩阵形式：
-[ cosθ  -sinθ  dx ]
-[ sinθ   cosθ  dy ]
-[ 0      0      1 ]</p>
-</div>
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_GetOffsetMatrix_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.GetOffsetMatrix*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_GetOffsetMatrix_System_Windows_Point_System_Double_System_Windows_Point_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.GetOffsetMatrix(System.Windows.Point,System.Double,System.Windows.Point)">
-  GetOffsetMatrix(Point, double, Point)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L294"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取包含平移和旋转的 3x3 偏移矩阵（围绕指定旋转中心）</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Matrix&lt;double&gt; GetOffsetMatrix(Point offset, double rotationAngle, Point rotationCenter)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
-    <dd><p>平移偏移量 (dx, dy)，单位：与坐标一致</p>
-</dd>
-    <dt><code>rotationAngle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>旋转角度（度），遵循右手坐标系，逆时针为正</p>
-</dd>
-    <dt><code>rotationCenter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
-    <dd><p>旋转中心点</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
-    <dd><p>3x3 偏移矩阵 T_offset</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_GetOffsetMatrix_System_Windows_Point_System_Double_System_Windows_Point__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>矩阵形式：
-[ cosθ  -sinθ  dx + cx - cx<em>cosθ + cy</em>sinθ ]
-[ sinθ   cosθ  dy + cy - cx<em>sinθ - cy</em>cosθ ]
-[ 0      0      1                           ]
-其中 (cx, cy) 是旋转中心</p>
-</div>
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_TransformPoint_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.TransformPoint*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_TransformPoint_MathNet_Numerics_LinearAlgebra_Matrix_System_Double__System_Windows_Point_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.TransformPoint(MathNet.Numerics.LinearAlgebra.Matrix{System.Double},System.Windows.Point)">
-  TransformPoint(Matrix&lt;double&gt;, Point)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L61"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>对单个点进行坐标变换</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point TransformPoint(Matrix&lt;double&gt; t, Point point)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>t</code> <span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
-    <dd><p>3x3 变换矩阵</p>
-</dd>
-    <dt><code>point</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
-    <dd><p>世界坐标点 (x_w, y_w)</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
-    <dd><p>目标坐标点 (x_t, y_t)</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_TransformPoints_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.TransformPoints*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_TransformPoints_MathNet_Numerics_LinearAlgebra_Matrix_System_Double__MAS_Utilities_DXFPathPlanning_ExtendedPoint_System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.TransformPoints(MathNet.Numerics.LinearAlgebra.Matrix{System.Double},MAS.Utilities.DXFPathPlanning.ExtendedPoint,System.Boolean)">
-  TransformPoints(Matrix&lt;double&gt;, ExtendedPoint, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L105"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>对扩展点进行坐标变换</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ExtendedPoint TransformPoints(Matrix&lt;double&gt; t, ExtendedPoint point, bool useAbsolute)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>t</code> <span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
-    <dd><p>3x3 变换矩阵</p>
-</dd>
-    <dt><code>point</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
-    <dd><p>要变换的扩展点</p>
-</dd>
-    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否使用绝对坐标（X, Y），否则使用相对坐标（RelativeX, RelativeY）</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
-    <dd><p>转换后的扩展点</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_TransformPoints_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.TransformPoints*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_TransformPoints_MathNet_Numerics_LinearAlgebra_Matrix_System_Double__System_Collections_Generic_List_MAS_Utilities_DXFPathPlanning_ExtendedPoint__System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.TransformPoints(MathNet.Numerics.LinearAlgebra.Matrix{System.Double},System.Collections.Generic.List{MAS.Utilities.DXFPathPlanning.ExtendedPoint},System.Boolean)">
-  TransformPoints(Matrix&lt;double&gt;, List&lt;ExtendedPoint&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L129"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>对扩展点列表进行坐标变换</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static List&lt;ExtendedPoint&gt; TransformPoints(Matrix&lt;double&gt; t, List&lt;ExtendedPoint&gt; points, bool useAbsolute)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>t</code> <span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
-    <dd><p>3x3 变换矩阵</p>
-</dd>
-    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a>&gt;</dt>
-    <dd><p>要变换的扩展点列表</p>
-</dd>
-    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否使用绝对坐标（X, Y），否则使用相对坐标（RelativeX, RelativeY）</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a>&gt;</dt>
-    <dd><p>转换后的扩展点列表</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_TransformPoints_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.TransformPoints*"></a>
-
-  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer_TransformPoints_MathNet_Numerics_LinearAlgebra_Matrix_System_Double__System_Collections_Generic_List_MAS_Utilities_DXFPathPlanning_TrajectoryPoint__System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer.TransformPoints(MathNet.Numerics.LinearAlgebra.Matrix{System.Double},System.Collections.Generic.List{MAS.Utilities.DXFPathPlanning.TrajectoryPoint},System.Boolean)">
-  TransformPoints(Matrix&lt;double&gt;, List&lt;TrajectoryPoint&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L80"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>对轨迹点列表进行坐标变换</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static List&lt;TrajectoryPoint&gt; TransformPoints(Matrix&lt;double&gt; t, List&lt;TrajectoryPoint&gt; points, bool useAbsolute = false)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>t</code> <span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
-    <dd><p>3x3 变换矩阵</p>
-</dd>
-    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPoint.html">TrajectoryPoint</a>&gt;</dt>
-    <dd><p>世界坐标系中的轨迹点列表</p>
-</dd>
-    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否使用绝对坐标（X, Y），否则使用相对坐标（RelativeX, RelativeY）</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryPoint.html">TrajectoryPoint</a>&gt;</dt>
-    <dd><p>转换后的轨迹点列表</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L19" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer.cs/#L20" class="edit-link">Edit this page</a>
         </div>
 
 
