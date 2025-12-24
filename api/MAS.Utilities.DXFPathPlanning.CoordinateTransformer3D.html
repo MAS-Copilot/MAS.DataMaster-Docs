@@ -153,6 +153,159 @@ Class CoordinateTransformer3D  <a class="header-action link-secondary" title="Vi
 </h2>
 
 
+  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer3D_CreateOrthonormalBasisTransform_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer3D.CreateOrthonormalBasisTransform*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer3D_CreateOrthonormalBasisTransform_System_Collections_Generic_List_System_Windows_Media_Media3D_Point3D__System_Collections_Generic_List_System_Windows_Media_Media3D_Point3D__" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer3D.CreateOrthonormalBasisTransform(System.Collections.Generic.List{System.Windows.Media.Media3D.Point3D},System.Collections.Generic.List{System.Windows.Media.Media3D.Point3D})">
+  CreateOrthonormalBasisTransform(List&lt;Point3D&gt;, List&lt;Point3D&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer3D.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建完全刚体正交化的 4x4 变换矩阵</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Matrix&lt;double&gt; CreateOrthonormalBasisTransform(List&lt;Point3D&gt; worldPoints, List&lt;Point3D&gt; targetPoints)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worldPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a>&gt;</dt>
+    <dd><p>世界坐标系中的四个点 (o_w, x_w, y_w, z_w)</p>
+</dd>
+    <dt><code>targetPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a>&gt;</dt>
+    <dd><p>目标坐标系中的对应点 (o_t, x_t, y_t, z_t)</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
+    <dd><p>4x4 刚体变换矩阵</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer3D_CreateOrthonormalBasisTransform_System_Collections_Generic_List_System_Windows_Media_Media3D_Point3D__System_Collections_Generic_List_System_Windows_Media_Media3D_Point3D___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>通过显式构建源坐标系和目标坐标系的单位正交基（Basis）来实现</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer3D_CreateRigidTransformLeastSquares_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer3D.CreateRigidTransformLeastSquares*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer3D_CreateRigidTransformLeastSquares_System_Collections_Generic_List_System_Windows_Media_Media3D_Point3D__System_Collections_Generic_List_System_Windows_Media_Media3D_Point3D__" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer3D.CreateRigidTransformLeastSquares(System.Collections.Generic.List{System.Windows.Media.Media3D.Point3D},System.Collections.Generic.List{System.Windows.Media.Media3D.Point3D})">
+  CreateRigidTransformLeastSquares(List&lt;Point3D&gt;, List&lt;Point3D&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer3D.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建通过最小二乘（SVD/Kabsch）计算刚体变换矩阵：最小化 ∑||R*p + t - q||²</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Matrix&lt;double&gt; CreateRigidTransformLeastSquares(List&lt;Point3D&gt; worldPoints, List&lt;Point3D&gt; targetPoints)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worldPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a>&gt;</dt>
+    <dd><p>世界坐标点集（&gt;=3）</p>
+</dd>
+    <dt><code>targetPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a>&gt;</dt>
+    <dd><p>目标坐标点集（&gt;=3）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
+    <dd><p>4x4 刚体变换矩阵</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer3D_CreateRigidTransformLeastSquaresFixOrigin_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer3D.CreateRigidTransformLeastSquaresFixOrigin*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer3D_CreateRigidTransformLeastSquaresFixOrigin_System_Collections_Generic_List_System_Windows_Media_Media3D_Point3D__System_Collections_Generic_List_System_Windows_Media_Media3D_Point3D__" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer3D.CreateRigidTransformLeastSquaresFixOrigin(System.Collections.Generic.List{System.Windows.Media.Media3D.Point3D},System.Collections.Generic.List{System.Windows.Media.Media3D.Point3D})">
+  CreateRigidTransformLeastSquaresFixOrigin(List&lt;Point3D&gt;, List&lt;Point3D&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Helpers/CoordinateTransformer3D.cs/#L194"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建基于最小二乘（SVD）的刚体变换求解（固定原点约束）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Matrix&lt;double&gt; CreateRigidTransformLeastSquaresFixOrigin(List&lt;Point3D&gt; worldPoints, List&lt;Point3D&gt; targetPoints)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worldPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a>&gt;</dt>
+    <dd><p>世界坐标系中的点集，
+其中 <code>worldPoints[0]</code> 作为坐标系原点，其余点用于确定坐标轴方向</p>
+</dd>
+    <dt><code>targetPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a>&gt;</dt>
+    <dd><p>目标坐标系中的对应点集，
+其中 <code>targetPoints[0]</code> 作为目标坐标系原点</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
+    <dd><p>4×4 刚体变换矩阵 <code>T</code>，满足：<br>
+<code>P_target = T · P_world</code></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p><code class="paramref">worldPoints</code> 或 <code class="paramref">targetPoints</code> 为 null</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>点数不足、点集分布退化，或无法稳定求解刚体旋转</p>
+</dd>
+  </dl>
+
+
+
   <a id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer3D_CreateRigidTransformMatrix_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer3D.CreateRigidTransformMatrix*"></a>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateTransformer3D_CreateRigidTransformMatrix_System_Collections_Generic_List_System_Windows_Media_Media3D_Point3D__System_Collections_Generic_List_System_Windows_Media_Media3D_Point3D__" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateTransformer3D.CreateRigidTransformMatrix(System.Collections.Generic.List{System.Windows.Media.Media3D.Point3D},System.Collections.Generic.List{System.Windows.Media.Media3D.Point3D})">
@@ -171,10 +324,10 @@ Class CoordinateTransformer3D  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>worldPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a>&gt;</dt>
-    <dd><p>世界坐标系中的四个点 (x_w, y_w, z_w)</p>
+    <dd><p>世界坐标系中的四个点 (o_w, x_w, y_w, z_w)</p>
 </dd>
     <dt><code>targetPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a>&gt;</dt>
-    <dd><p>目标坐标系（用户/工具）中的对应点 (x_t, y_t, z_t)</p>
+    <dd><p>目标坐标系中的对应点 (o_t, x_t, y_t, z_t)</p>
 </dd>
   </dl>
 
@@ -219,10 +372,10 @@ Class CoordinateTransformer3D  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>worldPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a>&gt;</dt>
-    <dd><p>世界坐标系中的四个点 (x_w, y_w, z_w)</p>
+    <dd><p>世界坐标系中的四个点 (o_w, x_w, y_w, z_w)</p>
 </dd>
     <dt><code>targetPoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.point3d">Point3D</a>&gt;</dt>
-    <dd><p>目标坐标系（用户/工具）中的对应点 (x_t, y_t, z_t)</p>
+    <dd><p>目标坐标系中的对应点 (o_t, x_t, y_t, z_t)</p>
 </dd>
   </dl>
 

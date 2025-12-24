@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Controls_DxfReader" data-uid="MAS.Controls.DxfReader" class="text-break">
-Class DxfReader  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L30"><i class="bi bi-code-slash"></i></a>
+Class DxfReader  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -124,7 +124,7 @@ public sealed class DxfReader : ModelReader</code></pre>
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="MAS.Controls.ModelReader.html#MAS_Controls_ModelReader_ReadAsync_System_String_System_IProgress_MAS_Controls_ImportProgress__System_Threading_CancellationToken_">ModelReader.ReadAsync(string, IProgress&lt;ImportProgress&gt;, CancellationToken)</a>
+      <a class="xref" href="MAS.Controls.ModelReader.html#MAS_Controls_ModelReader_ReadAsync_System_String_System_Threading_CancellationToken_">ModelReader.ReadAsync(string, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -159,7 +159,7 @@ public sealed class DxfReader : ModelReader</code></pre>
 
   <h3 id="MAS_Controls_DxfReader_CurveSegments" data-uid="MAS.Controls.DxfReader.CurveSegments">
   CurveSegments
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置曲线逼近的默认段数</p>
@@ -191,7 +191,7 @@ public sealed class DxfReader : ModelReader</code></pre>
 
   <h3 id="MAS_Controls_DxfReader_InfiniteLineHalfLength" data-uid="MAS.Controls.DxfReader.InfiniteLineHalfLength">
   InfiniteLineHalfLength
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置用于近似表示无限直线（如 Ray、XLine）</p>
@@ -223,7 +223,7 @@ public sealed class DxfReader : ModelReader</code></pre>
 
   <h3 id="MAS_Controls_DxfReader_SplineMaxSegmentLength" data-uid="MAS.Controls.DxfReader.SplineMaxSegmentLength">
   SplineMaxSegmentLength
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置样条的最大分段长度</p>
@@ -255,19 +255,19 @@ public sealed class DxfReader : ModelReader</code></pre>
 </h2>
 
 
-  <a id="MAS_Controls_DxfReader_GetModels_" data-uid="MAS.Controls.DxfReader.GetModels*"></a>
+  <a id="MAS_Controls_DxfReader_GetModelsAsync_" data-uid="MAS.Controls.DxfReader.GetModelsAsync*"></a>
 
-  <h3 id="MAS_Controls_DxfReader_GetModels_System_Object_System_IProgress_MAS_Controls_ImportProgress__" data-uid="MAS.Controls.DxfReader.GetModels(System.Object,System.IProgress{MAS.Controls.ImportProgress})">
-  GetModels(object, IProgress&lt;ImportProgress&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Controls_DxfReader_GetModelsAsync_System_Object_System_Threading_CancellationToken_" data-uid="MAS.Controls.DxfReader.GetModelsAsync(System.Object,System.Threading.CancellationToken)">
+  GetModelsAsync(object, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>从已加载的模型文件数据获取 3D 模型</p>
+  <div class="markdown level1 summary"><p>异步从已加载的模型文件数据获取 3D 模型</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override GroupModel3D? GetModels(object data, IProgress&lt;ImportProgress&gt;? progress)</code></pre>
+    <pre><code class="lang-csharp hljs">public override Task&lt;GroupModel3D?&gt; GetModelsAsync(object data, CancellationToken token = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -275,15 +275,15 @@ public sealed class DxfReader : ModelReader</code></pre>
     <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
     <dd><p>已加载的模型数文件据</p>
 </dd>
-    <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="MAS.Controls.ImportProgress.html">ImportProgress</a>&gt;</dt>
-    <dd><p>进展报告</p>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><span class="xref">GroupModel3D</span></dt>
-    <dd><p><span class="xref">HelixToolkit.Wpf.SharpDX.GroupModel3D</span>对象或 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<span class="xref">GroupModel3D</span>&gt;</dt>
+    <dd><p>异步操作任务，<span class="xref">HelixToolkit.Wpf.SharpDX.GroupModel3D</span>对象或 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
 </dd>
   </dl>
 
@@ -299,9 +299,9 @@ public sealed class DxfReader : ModelReader</code></pre>
 
   <a id="MAS_Controls_DxfReader_ReadAsync_" data-uid="MAS.Controls.DxfReader.ReadAsync*"></a>
 
-  <h3 id="MAS_Controls_DxfReader_ReadAsync_System_IO_Stream_System_IProgress_MAS_Controls_ImportProgress__System_Threading_CancellationToken_" data-uid="MAS.Controls.DxfReader.ReadAsync(System.IO.Stream,System.IProgress{MAS.Controls.ImportProgress},System.Threading.CancellationToken)">
-  ReadAsync(Stream, IProgress&lt;ImportProgress&gt;?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Controls_DxfReader_ReadAsync_System_IO_Stream_System_Threading_CancellationToken_" data-uid="MAS.Controls.DxfReader.ReadAsync(System.IO.Stream,System.Threading.CancellationToken)">
+  ReadAsync(Stream, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步从指定的文件流读取 3D 模型</p>
@@ -310,16 +310,13 @@ public sealed class DxfReader : ModelReader</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS100:方法长度超出推荐行数&quot;, Justification = &quot;不必理会&quot;)]
-public override Task&lt;GroupModel3D?&gt; ReadAsync(Stream stream, IProgress&lt;ImportProgress&gt;? progress, CancellationToken token = default)</code></pre>
+public override Task&lt;GroupModel3D?&gt; ReadAsync(Stream stream, CancellationToken token = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>stream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
     <dd><p>模型数据的输入流</p>
-</dd>
-    <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="MAS.Controls.ImportProgress.html">ImportProgress</a>&gt;</dt>
-    <dd><p>进展报告</p>
 </dd>
     <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd><p>取消令牌</p>
@@ -347,7 +344,7 @@ public override Task&lt;GroupModel3D?&gt; ReadAsync(Stream stream, IProgress&lt;
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L30" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/Importers/DxfReader.cs/#L31" class="edit-link">Edit this page</a>
         </div>
 
 

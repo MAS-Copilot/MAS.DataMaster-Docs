@@ -330,11 +330,139 @@ Struct GoalPosition  <a class="header-action link-secondary" title="View source"
 </h2>
 
 
+  <a id="MAS_Utilities_DXFPathPlanning_GoalPosition_IsBypassSignal_" data-uid="MAS.Utilities.DXFPathPlanning.GoalPosition.IsBypassSignal*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_GoalPosition_IsBypassSignal" data-uid="MAS.Utilities.DXFPathPlanning.GoalPosition.IsBypassSignal">
+  IsBypassSignal()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/GoalPosition.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断是否为刚体变换旁路信号</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool IsBypassSignal()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>若为旁路信号则返回 true；否则返回 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Utilities_DXFPathPlanning_GoalPosition_IsBypassSignal_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>约定：当位置与姿态字段（X/Y/Z/Rx/Ry/Rz）全部为 -1 时，
+表示本次不启用刚体变换，用于初始化或旁路场景。
+该值仅作为协议语义标记，不参与任何实际运动或数学计算。</p>
+</div>
+
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_GoalPosition_OffsetFrom_" data-uid="MAS.Utilities.DXFPathPlanning.GoalPosition.OffsetFrom*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_GoalPosition_OffsetFrom_MAS_Utilities_DXFPathPlanning_ExtendedPoint__MAS_Utilities_DXFPathPlanning_RotationCenter__" data-uid="MAS.Utilities.DXFPathPlanning.GoalPosition.OffsetFrom(MAS.Utilities.DXFPathPlanning.ExtendedPoint@,MAS.Utilities.DXFPathPlanning.RotationCenter@)">
+  OffsetFrom(in ExtendedPoint, in RotationCenter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/GoalPosition.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>计算当前目标位姿相对于指定旋转中心与扩展点姿态的位姿偏移</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly PoseOffset OffsetFrom(in ExtendedPoint point, in RotationCenter center)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>point</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
+    <dd><p>扩展点，用作姿态偏移计算的基准（仅使用其 Rx / Ry / Rz）</p>
+</dd>
+    <dt><code>center</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.RotationCenter.html">RotationCenter</a></dt>
+    <dd><p>旋转中心，表示当前目标位姿所处的空间参考位置（用于位置偏移计算）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Utilities.DXFPathPlanning.PoseOffset.html">PoseOffset</a></dt>
+    <dd><p><a class="xref" href="MAS.Utilities.DXFPathPlanning.PoseOffset.html">PoseOffset</a> 对象，
+其中：</p>
+<ul>
+<li>位置偏移为当前位姿相对于旋转中心的坐标差值；</li>
+<li>姿态偏移为当前位姿相对于扩展点姿态的欧拉角差值（已归一化）</li>
+</ul>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_GoalPosition_OffsetFrom_" data-uid="MAS.Utilities.DXFPathPlanning.GoalPosition.OffsetFrom*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_GoalPosition_OffsetFrom_MAS_Utilities_DXFPathPlanning_ExtendedPoint__System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.GoalPosition.OffsetFrom(MAS.Utilities.DXFPathPlanning.ExtendedPoint@,System.Boolean)">
+  OffsetFrom(in ExtendedPoint, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/GoalPosition.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>计算当前目标位姿相对于扩展点的位姿偏移</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly PoseOffset OffsetFrom(in ExtendedPoint point, bool useAbsolute = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>point</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.ExtendedPoint.html">ExtendedPoint</a></dt>
+    <dd><p>扩展点，用作偏移计算的基准点</p>
+</dd>
+    <dt><code>useAbsolute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否使用扩展点的绝对坐标作为基准</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Utilities.DXFPathPlanning.PoseOffset.html">PoseOffset</a></dt>
+    <dd><p><a class="xref" href="MAS.Utilities.DXFPathPlanning.PoseOffset.html">PoseOffset</a> 对象，
+其中位置为坐标差值，姿态为欧拉角差值（已归一化）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_Utilities_DXFPathPlanning_GoalPosition_ToString_" data-uid="MAS.Utilities.DXFPathPlanning.GoalPosition.ToString*"></a>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_GoalPosition_ToString" data-uid="MAS.Utilities.DXFPathPlanning.GoalPosition.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/GoalPosition.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/GoalPosition.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns the fully qualified type name of this instance.</p>
@@ -371,7 +499,7 @@ Struct GoalPosition  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_Utilities_DXFPathPlanning_GoalPosition_op_Subtraction_MAS_Utilities_DXFPathPlanning_GoalPosition_MAS_Utilities_DXFPathPlanning_RotationCenter_" data-uid="MAS.Utilities.DXFPathPlanning.GoalPosition.op_Subtraction(MAS.Utilities.DXFPathPlanning.GoalPosition,MAS.Utilities.DXFPathPlanning.RotationCenter)">
   operator -(GoalPosition, RotationCenter)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/GoalPosition.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Models/GoalPosition.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>计算目标位置相对于旋转中心的偏移（位置相减，旋转不变）</p>

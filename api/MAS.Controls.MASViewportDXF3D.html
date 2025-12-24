@@ -181,7 +181,7 @@ Class MASViewportDXF3D  <a class="header-action link-secondary" title="View sour
       <a class="xref" href="MAS.Controls.MASViewport3DPro.html#MAS_Controls_MASViewport3DPro_ZoomLerpSpeed">MASViewport3DPro.ZoomLerpSpeed</a>
     </div>
     <div>
-      <a class="xref" href="MAS.Controls.MASViewport3DPro.html#MAS_Controls_MASViewport3DPro_LoadAsync_System_String_System_IProgress_MAS_Controls_ImportProgress__System_Boolean_System_Threading_CancellationToken_">MASViewport3DPro.LoadAsync(string, IProgress&lt;ImportProgress&gt;, bool, CancellationToken)</a>
+      <a class="xref" href="MAS.Controls.MASViewport3DPro.html#MAS_Controls_MASViewport3DPro_LoadAsync_System_String_System_Boolean_System_Threading_CancellationToken_">MASViewport3DPro.LoadAsync(string, bool, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="MAS.Controls.MASViewport3DPro.html#MAS_Controls_MASViewport3DPro_CameraReset">MASViewport3DPro.CameraReset()</a>
@@ -2761,19 +2761,19 @@ Class MASViewportDXF3D  <a class="header-action link-secondary" title="View sour
 
 
 
-  <a id="MAS_Controls_MASViewportDXF3D_Load_" data-uid="MAS.Controls.MASViewportDXF3D.Load*"></a>
+  <a id="MAS_Controls_MASViewportDXF3D_LoadAsync_" data-uid="MAS.Controls.MASViewportDXF3D.LoadAsync*"></a>
 
-  <h3 id="MAS_Controls_MASViewportDXF3D_Load_System_Object_System_IProgress_MAS_Controls_ImportProgress__System_Boolean_" data-uid="MAS.Controls.MASViewportDXF3D.Load(System.Object,System.IProgress{MAS.Controls.ImportProgress},System.Boolean)">
-  Load(object, IProgress&lt;ImportProgress&gt;?, bool)
+  <h3 id="MAS_Controls_MASViewportDXF3D_LoadAsync_System_Object_System_Boolean_System_Threading_CancellationToken_" data-uid="MAS.Controls.MASViewportDXF3D.LoadAsync(System.Object,System.Boolean,System.Threading.CancellationToken)">
+  LoadAsync(object, bool, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/VisualHost/MASViewportDXF3D.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>加载已解析的模型数据文件到场景</p>
+  <div class="markdown level1 summary"><p>异步加载已解析的模型数据文件到场景</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Load(object data, IProgress&lt;ImportProgress&gt;? progress = null, bool isReplaceMode = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public override Task LoadAsync(object data, bool isReplaceMode = true, CancellationToken token = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -2781,14 +2781,19 @@ Class MASViewportDXF3D  <a class="header-action link-secondary" title="View sour
     <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
     <dd><p>已解析的模型文件对象</p>
 </dd>
-    <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="MAS.Controls.ImportProgress.html">ImportProgress</a>&gt;</dt>
-    <dd><p>进度报告</p>
-</dd>
     <dt><code>isReplaceMode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>是否替换已有模型（true=清除后加载，false=追加），默认 true</p>
 </dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
   </dl>
 
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
 
 
 

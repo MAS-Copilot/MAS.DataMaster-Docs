@@ -153,6 +153,54 @@ Class CoordinateCoordsExtensions  <a class="header-action link-secondary" title=
 </h2>
 
 
+  <a id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_NormalizeZAxisFromXY_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateCoordsExtensions.NormalizeZAxisFromXY*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_NormalizeZAxisFromXY_MAS_Utilities_DXFPathPlanning_CoordinateCoords__System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateCoordsExtensions.NormalizeZAxisFromXY(MAS.Utilities.DXFPathPlanning.CoordinateCoords@,System.Boolean)">
+  NormalizeZAxisFromXY(ref CoordinateCoords, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Extensions/CoordinateCoordsExtensions.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据当前坐标系的 X 轴与 Y 轴，重新计算一个与其正交的 Z 轴方向</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CoordinateCoords NormalizeZAxisFromXY(this ref CoordinateCoords c, bool shouldAlignWithOriginalOz = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>c</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.CoordinateCoords.html">CoordinateCoords</a></dt>
+    <dd><p>标定结构体实例</p>
+</dd>
+    <dt><code>shouldAlignWithOriginalOz</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否保持新生成的 Z 轴方向与原始 Z 轴方向一致
+若为 true，当叉积方向与原始 Z 轴相反时会自动翻转，
+以避免坐标系整体发生 180° 翻转。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Utilities.DXFPathPlanning.CoordinateCoords.html">CoordinateCoords</a></dt>
+    <dd><p>返回修正后的坐标系实例；
+若 X、Y 共线或数值非法，则直接返回原始坐标系，不做修改。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_NormalizeZAxisFromXY_MAS_Utilities_DXFPathPlanning_CoordinateCoords__System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>用于修复 Z 轴不正交或存在数值漂移的问题</p>
+</div>
+
+
+
+
   <a id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_ToOrigin_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateCoordsExtensions.ToOrigin*"></a>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_ToOrigin_MAS_Utilities_DXFPathPlanning_CoordinateCoords_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateCoordsExtensions.ToOrigin(MAS.Utilities.DXFPathPlanning.CoordinateCoords)">
@@ -608,6 +656,53 @@ Class CoordinateCoordsExtensions  <a class="header-action link-secondary" title=
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.vector3d">Vector3D</a></dt>
     <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.vector3d">Vector3D</a> 类型的 Z 轴方向向量</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_TryNormalizeZAxisFromXY_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateCoordsExtensions.TryNormalizeZAxisFromXY*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_TryNormalizeZAxisFromXY_MAS_Utilities_DXFPathPlanning_CoordinateCoords_MAS_Utilities_DXFPathPlanning_CoordinateCoords__System_Boolean_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateCoordsExtensions.TryNormalizeZAxisFromXY(MAS.Utilities.DXFPathPlanning.CoordinateCoords,MAS.Utilities.DXFPathPlanning.CoordinateCoords@,System.Boolean)">
+  TryNormalizeZAxisFromXY(CoordinateCoords, out CoordinateCoords, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Extensions/CoordinateCoordsExtensions.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试根据当前坐标系的 X 轴与 Y 轴重建一个正交的 Z 轴</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryNormalizeZAxisFromXY(this CoordinateCoords c, out CoordinateCoords normalized, bool shouldAlignWithOriginalOz = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>c</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.CoordinateCoords.html">CoordinateCoords</a></dt>
+    <dd><p>标定结构体实例</p>
+</dd>
+    <dt><code>normalized</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.CoordinateCoords.html">CoordinateCoords</a></dt>
+    <dd><p>返回 true 时，输出一个 Z 轴已被重新构建且保持长度一致的坐标系副本</p>
+</dd>
+    <dt><code>shouldAlignWithOriginalOz</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否强制新 Z 轴与原始 Z 轴保持同向，
+用于防止由叉积方向不确定性导致的坐标系翻转。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>当 X、Y 可构成有效法向（非共线）时返回 true；
+若叉积长度过小（数值退化），返回 false，表示无法安全重建 Z 轴。</p>
 </dd>
   </dl>
 
