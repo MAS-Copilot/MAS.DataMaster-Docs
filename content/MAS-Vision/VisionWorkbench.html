@@ -105,10 +105,6 @@
 <p><strong>工程实例运行管理，在后台运行工作台中的实例列表：</strong></p>
 <pre><code class="lang-csharp">services.AddTransient&lt;IVisionProjectManager, VisionProjectManagerService&gt;();
 </code></pre>
-<h2 id="基本事件">基本事件</h2>
-<h2 id="连接线管理">连接线管理</h2>
-<h2 id="连接事件">连接事件</h2>
-<h2 id="拓扑排序">拓扑排序</h2>
 <h3 id="队列">队列</h3>
 <p><strong>1. 拓扑排序中的队列：</strong></p>
 <p>初始化阶段</p>
@@ -185,59 +181,6 @@ B   C
   I   J
 </code></pre>
 <p>顶点<code>E</code>指向顶点<code>F</code>和<code>G</code>，而<code>F</code>和<code>G</code>都指向<code>H</code>，接着<code>H</code>指向<code>I</code>和<code>J</code>，一种可能的拓扑排序结果是<code>E, F, G, H, I, J</code>这个顺序表示首先处理<code>E</code>，接着可以同时或依次处理<code>F</code>和<code>G</code>（因为它们之间没有依赖关系），然后处理<code>H</code>，最后处理<code>I</code>和<code>J</code></p>
-<h3 id="代码">代码</h3>
-<pre><code class="lang-csharp">private List&lt;ModuleWithConnections&gt; TopologicalSort() {
-    // 初始化各模块的入度计数字典
-    var inDegrees = new Dictionary&lt;Guid, short&gt;();
-     // 初始化邻接表，记录模块的依赖关系
-    var adjacencyList = new Dictionary&lt;Guid, List&lt;(Guid, short)&gt;&gt;();
-    // 用于存储模块及其连接信息的字典
-    var modulesWithConnections = new Dictionary&lt;Guid, ModuleWithConnections&gt;();
-
-    // 遍历所有模块，初始化入度为0，邻接表为空，连接信息列表为空
-    foreach (var module in _modules.Values) {
-        inDegrees[module.ModuleId] = 0;
-        adjacencyList[module.ModuleId] = [];
-        modulesWithConnections[module.ModuleId] = new ModuleWithConnections(module, new List&lt;(Guid, short)&gt;());
-    }
-
-    // 遍历所有连接，更新目标模块的入度和源模块的邻接表和连接信息
-    foreach (var connection in _connectionService.GetAllConnections()) {
-        inDegrees[connection.TargetId]++;
-        adjacencyList[connection.SourceId].Add((connection.TargetId, connection.TargetInputIndex));
-        modulesWithConnections[connection.SourceId].Connections.Add((connection.TargetId, connection.TargetInputIndex));
-    }
-
-    // 查找所有入度为0的模块，作为起始点
-    var zeroInDegreeQueue = new Queue&lt;ModuleWithConnections&gt;(modulesWithConnections.Values.Where(m =&gt; inDegrees[m.Module.ModuleId] == 0));
-     // 准备一个列表存储排序后的模块
-    var sortedModules = new List&lt;ModuleWithConnections&gt;();
-
-    // 使用队列进行拓扑排序
-    while (zeroInDegreeQueue.Count &gt; 0) {
-        var moduleWithConnections = zeroInDegreeQueue.Dequeue();
-        sortedModules.Add(moduleWithConnections);
-        // 遍历当前模块的所有依赖模块
-        foreach (var (dependentModuleId, inputIndex) in adjacencyList[moduleWithConnections.Module.ModuleId]) {
-            // 减少依赖模块的入度，因为其一个依赖来源已经被处理
-            inDegrees[dependentModuleId]--;
-            // 如果依赖模块的入度变为0，则加入队列
-            if (inDegrees[dependentModuleId] == 0) {
-                zeroInDegreeQueue.Enqueue(modulesWithConnections[dependentModuleId]);
-            }
-        }
-    }
-
-    // 如果排序后的模块数量不等于原模块数量，说明存在循环依赖
-    if (sortedModules.Count != _modules.Count) {
-        var unsortedModules = _modules.Values.Where(m =&gt; !sortedModules.Select(sm =&gt; sm.Module.ModuleId).Contains(m.ModuleId));
-        string message = &quot;存在循环依赖，涉及模块: &quot; + string.Join(&quot;, &quot;, unsortedModules.Select(m =&gt; m.ModuleId));
-        throw new InvalidOperationException(message);
-    }
-
-    return sortedModules;
-}
-</code></pre>
 <h3 id="示例">示例</h3>
 <p><img src="../../images/Vision/0LNxNDnNP5.png" alt="示例"></p>
 <p><strong>通过<code>TopologicalSort</code>方法进行拓扑排序后的结果：</strong></p>
@@ -277,79 +220,11 @@ D   C
 <strong>3.</strong> 模块<code>C</code>和 模块<code>D</code>在接收到所需的数据后开始执行。这两个模块可以并行执行，因为它们之间没有依赖关系<br>
 <strong>4.</strong> 模块<code>E</code>必须等待模块<code>C</code>和模块<code>D</code>都执行完成并获得它们的输出数据，因为它依赖于这两个模块的输出。一旦模块<code>C</code>和模块<code>D</code>的输出准备就绪，模块<code>E</code>将合并或处理这些数据，并执行<br>
 <strong>5.</strong> 最后，模块<code>F</code>将等待 模块<code>E</code>完成执行，将模块<code>E</code>的输出作为输入数据。完成后，整个流程结束</p>
-<p><strong>代码：</strong></p>
 <p>入度为0的模块不需要设置输入数据，那么将省略这一步</p>
 <pre><code class="lang-csharp">void SetInputData(short index, object input);
 </code></pre>
-<p>出度为0的模块也不需要设置输出数据，也会省略这一步</p>
+<p>出度为 0 的模块也不需要设置输出数据，也会省略这一步</p>
 <pre><code class="lang-csharp">Task&lt;object&gt; ExecuteAsync();
-</code></pre>
-<p>所有模块都有自身的连接信息</p>
-<pre><code class="lang-csharp">public abstract List&lt;Guid&gt; InputModuleIds { get; set; }
-public abstract List&lt;Guid&gt; OutputModuleIds { get; set; }
-</code></pre>
-<p><strong>代码：</strong></p>
-<pre><code class="lang-csharp">public async Task ExecuteAllAsync() {
-    // 如果已排序模块列表为空或未初始化，抛出异常，说明没有注册任何模块
-    if (_sortedModules == null || _sortedModules.Count == 0) {
-        throw new InvalidOperationException(&quot;未注册任何模块&quot;);
-    }
-
-    // 如果模块没有成功编译，抛出异常，防止执行未编译的模块
-    if (!_isCompiledSuccessfully) {
-        throw new InvalidOperationException(&quot;尝试执行模块，但模块未成功编译或未编译&quot;);
-    }
-
-    // 初始化队列，筛选出入度为0的模块（即没有输入依赖的模块），这些模块可以立即执行
-    _readyModules = new Queue&lt;ModuleWithConnections&gt;(_sortedModules.Where(m =&gt; m.Module.InputModuleIds.Count == 0));
-
-    // 清空存储模块任务的字典，以防之前有未清理的任务
-    _moduleTasks.Clear();
-
-    // 清空存储模块输出数据的字典，确保执行时不会使用之前的残留数据
-    _moduleOutputs.Clear();
-
-    // 当队列中还有可以执行的模块时
-    while (_readyModules.Count &gt; 0) {
-        // 从队列中取出一个准备执行的模块
-        var currentModule = _readyModules.Dequeue();
-
-        // 如果当前模块没有任何连接（出度为0），则执行结束，不再处理下游模块
-        if(currentModule.Connections.Count == 0) {
-            continue;
-        }
-
-        // 调用当前模块的异步执行方法，开始执行模块的逻辑操作，返回一个执行任务
-        var executionTask = currentModule.Module.ExecuteAsync();
-
-        // 将模块的执行任务存储在任务字典中，使用模块的唯一标识符作为键
-        _moduleTasks[currentModule.Module.ModuleId] = executionTask;
-
-        // 等待任务执行完成，获取执行结果（输出值）
-        var output = await executionTask;
-
-        // 将当前模块的执行结果存储在模块输出字典中，值为包含输出的列表
-        _moduleOutputs[currentModule.Module.ModuleId] = [output];
-
-        // 遍历当前模块的所有连接（即输出数据要传递到的目标模块及其输入索引）
-        foreach (var (TargetModuleId, TargetInputIndex) in currentModule.Connections) {
-            // 在已排序的模块列表中查找对应的目标模块
-            var targetModule = _sortedModules.FirstOrDefault(m =&gt; m.Module.ModuleId == TargetModuleId);
-
-            // 如果找到目标模块，则继续处理
-            if (targetModule != null) {
-                // 设置目标模块的指定输入数据，将当前模块的输出数据传递给目标模块
-                targetModule.Module.SetInputData(TargetInputIndex, output);
-
-                // 检查目标模块的所有输入模块是否都已经有输出数据（即所有输入都已准备好）
-                if (targetModule.Module.InputModuleIds.All(_moduleOutputs.ContainsKey)) {
-                    // 如果所有输入都已准备好，将目标模块加入到准备执行的队列中
-                    _readyModules.Enqueue(targetModule);
-                }
-            }
-        }
-    }
-}
 </code></pre>
 
 </article>

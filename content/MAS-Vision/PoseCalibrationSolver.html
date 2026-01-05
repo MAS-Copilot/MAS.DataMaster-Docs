@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>姿态标定 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="姿态标定 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS-Vision/PoseCalibrationSolver.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="姿态标定">姿态标定</h1>
+
+<h2 id="类核心定位与整体设计">类核心定位与整体设计</h2>
+<p>基于 <a href="https://docs.opencv.ac.cn/4.10.0/db/da9/tutorial_aruco_board_detection.html">ArUco 标记</a>物完成相机与平面之间的位姿（姿态+位置）标定</p>
+<ul>
+<li>使用队列维护历史位姿数据，通过稳定性滤波优化结果，提升输出的平滑性</li>
+<li>支持图像去畸变预处理，适配不同相机的畸变特性</li>
+<li>完整的输入校验和错误处理，确保程序鲁棒性</li>
+<li>通过轴映射矩阵支持 CV 坐标系与真实世界坐标系的转换，适配不同场景的坐标系定义</li>
+<li>详细的结果可视化（标记物绘制、轴绘制、位姿参数文本），便于调试和结果验证</li>
+</ul>
+<h2 id="关键依赖">关键依赖</h2>
+<ul>
+<li><code>PoseEuler</code>：欧拉角位姿类，存储 Yaw（偏航）、Pitch（俯仰）、Roll（翻滚）角度（度）</li>
+<li><code>PoseCalibrationConfig</code>：标定配置类，包含标记物长度、最小检测数量、重投影误差阈值、坐标系映射规则等参数</li>
+<li><code>CameraIntrinsics</code>：相机内参类，存储相机矩阵（焦距、主点）和畸变系数；</li>
+<li><code>PoseCalibrationResult</code>：标定结果类，包含是否成功、可视化图像、位姿参数、质量指标（检测数量、重投影误差等）、错误信息</li>
+<li><code>Mat</code>：OpenCV 中的图像/矩阵类型，用于存储图像数据、相机矩阵、旋转向量/矩阵、平移向量等</li>
+</ul>
+<h2 id="核心流程">核心流程</h2>
+<p>整体流程可分为 <strong>10 个步骤</strong>：</p>
+<ol>
+<li>输入校验</li>
+<li>数据预处理</li>
+<li>标记物检测</li>
+<li>筛选有效标记物</li>
+<li>位姿估计</li>
+<li>重投影误差验证</li>
+<li>坐标系转换</li>
+<li>稳定性滤波</li>
+<li>结果可视化</li>
+<li>结果封装</li>
+</ol>
+<h3 id="初始化与输入校验">初始化与输入校验</h3>
+<ul>
+<li>配置（config）和相机内参（intrinsics）不可为 null</li>
+<li>标记物长度（MarkerLengthMm）必须大于 0</li>
+<li>最小检测数量（MinMarkers）、稳定性帧数（StabilityFrames）需 ≥ 0</li>
+<li>重投影误差阈值（MaxReprojErrorPx）必须大于 0</li>
+</ul>
+<h3 id="相机参数转换">相机参数转换</h3>
+<p>将 <code>CameraIntrinsics</code> 转换为 OpenCV 支持的矩阵格式：</p>
+<ul>
+<li>相机矩阵（cameraMatrix）：存储焦距（fx, fy）和主点坐标（cx, cy），用于后续位姿估计和投影计算</li>
+<li>畸变系数（distCoeffs）：存储径向畸变（k1, k2, k3）和切向畸变（p1, p2）参数，用于图像去畸变或位姿估计时的畸变补偿</li>
+</ul>
+<h3 id="图像预处理">图像预处理</h3>
+<p>根据配置中的 <code>UndistortBeforeSolve</code> 标志，决定是否对输入图像进行去畸变处理：</p>
+<ul>
+<li>若开启去畸变：
+<ul>
+<li>使用相机矩阵和畸变系数校正图像，消除镜头畸变对标记物检测的影响</li>
+<li>此时后续位姿估计使用“零畸变系数”，因为图像已提前校正</li>
+</ul>
+</li>
+<li>若不开启去畸变：
+<ul>
+<li>直接使用原始图像进行后续处理</li>
+<li>位姿估计时需传入原始畸变系数</li>
+</ul>
+</li>
+</ul>
+<h3 id="aruco-标记物检测">ArUco 标记物检测</h3>
+<ol>
+<li>根据配置的字典名称获取对应的 ArUco 字典（默认使用 Dict6X6_100）</li>
+<li>对输入预处理后的图像、字典和检测参数，输出：
+<ul>
+<li>markerCorners：检测到的每个标记物的 4 个角点坐标（图像坐标系）</li>
+<li>markerIds：每个标记物的 ID</li>
+<li>rejectedImgPoints：被拒绝的候选角点（不符合标记物特征）</li>
+</ul>
+</li>
+<li>克隆原始图像作为“可视化图像”（annotated），后续用于绘制标记物、轴和文本</li>
+</ol>
+<h3 id="有效标记物筛选">有效标记物筛选</h3>
+<ol>
+<li>若检测到的标记物数量（markerCount）小于配置的最小数量（MinMarkers），返回失败结果（说明标记物太少，无法完成可靠标定）</li>
+<li>筛选出“面积最大”的标记物
+<ul>
+<li>计算每个标记物的多边形面积（基于 4 个角点，使用<a href="https://zh.wikipedia.org/wiki/%E6%B8%AC%E9%87%8F%E5%93%A1%E5%85%AC%E5%BC%8F">shoelace 公式</a>）</li>
+<li>选择面积最大的标记物作为“核心标定标记物”（面积最大通常意味着距离相机更近、成像更清晰，位姿估计更准确）</li>
+<li>若没有有效标记物（如角点数量不足 4），返回失败结果</li>
+</ul>
+</li>
+</ol>
+<h3 id="单标记物位姿估计">单标记物位姿估计</h3>
+<p>基于筛选出的标记物完成位姿估计（核心原理：<a href="https://zh.wikipedia.org/wiki/P/NP%E9%97%AE%E9%A2%98">PnP 问题</a>求解）：</p>
+<ol>
+<li>输入参数：标记物角点、标记物长度（真实世界尺寸）、相机矩阵、畸变系数</li>
+<li>核心调用：封装 OpenCV 的 <code>CvAruco.EstimatePoseSingleMarkers</code> 方法，该方法通过“ Perspective-n-Point ”（PnP）算法求解相机与标记物之间的位姿：
+<ul>
+<li>输出旋转向量（rvec）：3×1 矩阵，用旋转向量表示相机与标记物的相对姿态（可通过<a href="https://zh.wikipedia.org/wiki/%E7%BD%97%E5%BE%B7%E9%87%8C%E6%A0%BC%E6%97%8B%E8%BD%AC%E5%85%AC%E5%BC%8F">Rodrigues 变换</a>转换为 3×3 旋转矩阵）</li>
+<li>输出平移向量（tvec）：3×1 矩阵，用平移向量表示相机与标记物的相对位置（单位：mm，与标记物长度单位一致）</li>
+</ul>
+</li>
+<li>若位姿估计失败（如 rvec/tvec 为空），返回失败结果</li>
+</ol>
+<h3 id="重投影误差验证">重投影误差验证</h3>
+<p>重投影误差是评估位姿估计准确性的核心指标，其原理是：<strong>将真实世界中的标记物角点，通过估计出的位姿（rvec + tvec）和相机内参，投影到图像坐标系，计算投影点与实际检测到的角点之间的平均距离</strong>。距离越小，说明位姿估计越准确</p>
+<ol>
+<li>计算重投影误差：
+<ul>
+<li>构建标记物在真实世界中的 3D 角点（以标记物中心为原点，边长为<code>MarkerLengthMm</code>）</li>
+<li>OpenCV 的<code>Cv2.ProjectPoints</code>将 3D 角点投影到图像坐标系，得到投影角点</li>
+<li>计算投影角点与实际检测角点的欧氏距离，取平均值作为重投影误差（单位：像素）</li>
+</ul>
+</li>
+<li>若重投影误差大于配置的阈值（MaxReprojErrorPx），返回失败结果（包含误差信息）；若误差有效且小于阈值，继续后续流程</li>
+</ol>
+<h3 id="坐标系转换cv-坐标系--真实世界坐标系">坐标系转换（CV 坐标系 → 真实世界坐标系）</h3>
+<p>OpenCV 中默认的图像坐标系（CV 坐标系）与真实世界中的坐标系可能存在轴方向差异（如 CV 坐标系的 Y 轴向下）。因此需要通过轴映射矩阵完成坐标转换：</p>
+<ol>
+<li>根据配置的轴映射规则（RealXAxisFromCv、RealYAxisFromCv、RealZAxisFromCv），生成 CV 坐标系到真实世界坐标系的转换矩阵（mCvToReal）</li>
+<li>旋转矩阵转换：真实世界旋转矩阵 = mCvToReal × CV 旋转矩阵 × mCvToReal 的转置（确保旋转矩阵的正交性）</li>
+<li>平移向量转换：真实世界平移向量 = mCvToReal × CV 平移向量</li>
+<li>将转换后的旋转矩阵转换为欧拉角（PoseEuler），得到“平面到相机”（planeToCameraEuler）和“相机到平面”（cameraToPlaneEuler）的位姿（后者通过转置旋转矩阵得到，代表反向位姿）</li>
+</ol>
+<h3 id="稳定性滤波">稳定性滤波</h3>
+<p>为了避免单帧位姿波动过大，通过历史数据平滑得到稳定结果，核心逻辑是“滑动窗口平均”：</p>
+<ol>
+<li>将当前帧的位姿（planeToCameraEuler、cameraToPlaneEuler）加入对应的历史队列</li>
+<li>若队列长度超过配置的稳定性帧数（StabilityFrames），移除最旧的位姿数据</li>
+<li>对队列中的历史位姿进行角度平均（注意：角度平均通过三角函数转换，避免 360°/0° 边界问题）
+<ul>
+<li>将每个角度转换为弧度，计算余弦值和正弦值的平均值</li>
+<li>通过反正切函数将平均余弦值和正弦值转换回角度，得到平滑后的位姿（stablePlaneToCamera、stableCameraToPlane）</li>
+</ul>
+</li>
+</ol>
+<h3 id="结果可视化与封装">结果可视化与封装</h3>
+<ol>
+<li><code>AnnotatePose</code> 方法完成可视化：
+<ul>
+<li>若配置开启 DrawAxes，调用绘制坐标系轴（X 红、Y 绿、Z 蓝），轴长为标记物长度的 0.8 倍</li>
+<li>若配置开启文本显示，绘制位姿参数（Yaw、Pitch、Roll）和重投影误差到可视化图像</li>
+</ul>
+</li>
+<li>停止计时器，封装成功结果：包含稳定后的位姿参数、可视化图像、质量指标（检测数量、重投影误差、使用的标记物索引/面积、耗时、真实世界的 rvec/tvec 等）</li>
+</ol>
+<h2 id="核心原理">核心原理</h2>
+<h3 id="aruco-标记物检测原理">ArUco 标记物检测原理</h3>
+<p>ArUco 标记物是一种由黑白方块组成的正方形标记，每个标记物有唯一的 ID。检测流程为：</p>
+<ol>
+<li>图像预处理（灰度化、二值化）</li>
+<li>查找轮廓，筛选出正方形轮廓</li>
+<li>对正方形轮廓进行透视变换，得到正方向的标记物图像</li>
+<li>解码标记物的 ID，匹配到对应的 ArUco 字典</li>
+</ol>
+<h3 id="pnp-位姿估计原理">PnP 位姿估计原理</h3>
+<p>PnP（Perspective-n-Point）是求解“已知 3D 点坐标和对应的 2D 图像点坐标，估计相机位姿”的问题。ArUco 标记物的 3D 角点坐标可由其真实尺寸确定（已知），2D 角点坐标由检测得到（已知），因此可通过 PnP 算法求解旋转向量（rvec）和平移向量（tvec），从而得到相机与标记物的相对位姿</p>
+<h3 id="重投影误差验证原理">重投影误差验证原理</h3>
+<p>重投影误差是衡量位姿估计准确性的“金标准”。其本质是验证“估计的位姿是否能准确映射 3D 点到 2D 图像点”：若误差小，说明位姿估计符合真实场景；若误差大，说明检测到的角点可能存在噪声或误检测，位姿估计不可靠</p>
+<h2 id="常见问题">常见问题</h2>
+<blockquote>
+<p>[!warning] 标记物检测失败</p>
+<p>当图像中无法可靠检测到 ArUco 标记物时，位姿标定无法建立有效的几何约束</p>
+<p>常见原因包括：</p>
+<ul>
+<li>图像质量不足（模糊、过暗、过曝）</li>
+<li>使用的 ArUco 字典与实际标记物不匹配</li>
+<li>拍摄距离过远，标记物在图像中像素尺寸过小</li>
+</ul>
+<p>应优先保证<strong>成像质量与字典一致性</strong>，再考虑检测参数的微调</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>[!warning] 重投影误差过大</p>
+<p>重投影误差过大表明：当前求解的位姿<strong>无法一致地解释观测到的角点几何关系</strong></p>
+<p>该问题通常源于：</p>
+<ul>
+<li>标记物物理尺寸配置与真实尺寸不一致</li>
+<li>相机内参存在系统性误差</li>
+<li>成像畸变较大但未进行几何一致化处理</li>
+</ul>
+<p>在工程上，<strong>重投影误差是位姿可信度的硬性判据</strong>，不应通过滤波或平均手段掩盖</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>[!tip] 位姿结果波动较大</p>
+<p>连续帧中位姿轻微波动是像素噪声和角点抖动的自然结果，并不一定代表算法失效</p>
+<p>为获得稳定输出，可采用以下策略：</p>
+<ul>
+<li>在时间维度上引入有限窗口的姿态稳定处理</li>
+<li>改善拍摄环境，减少相机或标记物的非期望运动</li>
+<li>仅对通过几何一致性验证的帧参与稳定计算</li>
+</ul>
+<p>稳定性处理的目标是<strong>抑制测量噪声，而非修正错误几何解</strong></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>[!warning] 多个标记物时结果偶发跳变</p>
+<p>当视野中存在多个标记物且几何条件接近时，参与位姿求解的平面可能在帧间切换</p>
+<p>该现象会导致姿态输出不连续，即使单帧解本身是正确的</p>
+<p>工程上应确保：<strong>参与位姿估计的平面在时间维度上保持一致性</strong></p>
+</blockquote>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS-Vision/PoseCalibrationSolver.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

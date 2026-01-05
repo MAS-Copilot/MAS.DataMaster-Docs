@@ -604,19 +604,77 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>删除控件</td>
 <td>Engineer</td>
 </tr>
+</tbody>
+</table>
+<h3 id="masdatamastercontrolsimageproceflowviewmodelsresources">MAS.DataMaster.Controls.ImageProceFlow.ViewModels.Resources</h3>
+<h4 id="cameracalibrationviewmodel">CameraCalibrationViewModel</h4>
+<table>
+<thead>
 <tr>
-<td>OpenInputImagePopupCommand</td>
-<td>图形类型输入</td>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ResetCommand</td>
+<td>重置标定</td>
 <td>Operator</td>
 </tr>
+</tbody>
+</table>
+<h3 id="masdatamastercontrolsimageproceflowviewmodelsexecute">MAS.DataMaster.Controls.ImageProceFlow.ViewModels.Execute</h3>
+<h4 id="posecalibrationviewmodel">PoseCalibrationViewModel</h4>
+<table>
+<thead>
 <tr>
-<td>OpenOutputImagePopupCommand</td>
-<td>图形类型输出</td>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ResetCommand</td>
+<td>重置标定</td>
 <td>Operator</td>
 </tr>
 </tbody>
 </table>
 <h3 id="masdatamastercontrolsimageproceflowviewmodelsprepare">MAS.DataMaster.Controls.ImageProceFlow.ViewModels.Prepare</h3>
+<h4 id="imagesourceviewmodel">ImageSourceViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SelectedImageFileCommand</td>
+<td>选择图像文件</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SetImageSourceCommand</td>
+<td>设置图像源</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenFilePathCommand</td>
+<td>打开文件路径</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>LoadImageCommand</td>
+<td>加载图片</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
 <h4 id="cameraviewmodel">CameraViewModel</h4>
 <table>
 <thead>
@@ -630,6 +688,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <tr>
 <td>ToggleCameraCommand</td>
 <td>打开或关闭相机</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SearchDeviceListCommand</td>
+<td>查找可用的相机设备列表</td>
 <td>Operator</td>
 </tr>
 </tbody>
@@ -1018,6 +1081,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>打开调试信息窗口</td>
 <td>Visitor</td>
 </tr>
+<tr>
+<td>ViewResourcesCommand</td>
+<td>查看资源</td>
+<td>Engineer</td>
+</tr>
 </tbody>
 </table>
 <h3 id="masdatamasterviewmodelswindows">MAS.DataMaster.ViewModels.Windows</h3>
@@ -1376,7 +1444,7 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </tr>
 </tbody>
 </table>
-<h3 id="masdatamasterviewmodelswindowsimageproceflowfinish">MAS.DataMaster.ViewModels.Windows.ImageProceFlow.Finish</h3>
+<h3 id="masdatamastercontrolsimageproceflowviewmodelsfinish">MAS.DataMaster.Controls.ImageProceFlow.ViewModels.Finish</h3>
 <h4 id="imageviewersetviewmodel">ImageViewerSetViewModel</h4>
 <table>
 <thead>
@@ -1395,56 +1463,6 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <tr>
 <td>OpenSavePathCommand</td>
 <td>打开保存路径</td>
-<td>Operator</td>
-</tr>
-</tbody>
-</table>
-<h3 id="masdatamasterviewmodelswindowsimageproceflowprepare">MAS.DataMaster.ViewModels.Windows.ImageProceFlow.Prepare</h3>
-<h4 id="camerasetviewmodel">CameraSetViewModel</h4>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>描述</th>
-<th>权限</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SearchDeviceListCommand</td>
-<td>查找可用的相机设备列表</td>
-<td>Operator</td>
-</tr>
-</tbody>
-</table>
-<h4 id="imagesourcesetviewmodel">ImageSourceSetViewModel</h4>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>描述</th>
-<th>权限</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SelectedImageFileCommand</td>
-<td>选择图像文件</td>
-<td>Operator</td>
-</tr>
-<tr>
-<td>SetImageSourceCommand</td>
-<td>设置图像源</td>
-<td>Operator</td>
-</tr>
-<tr>
-<td>OpenFilePathCommand</td>
-<td>打开文件路径</td>
-<td>Operator</td>
-</tr>
-<tr>
-<td>LoadImageCommand</td>
-<td>加载图片</td>
 <td>Operator</td>
 </tr>
 </tbody>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>相机标定 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="相机标定 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS-Vision/CameraCalibrationService.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="相机标定">相机标定</h1>
+
+<h2 id="概述">概述</h2>
+<p>相机标定用于估计相机的<strong>内参模型</strong>，包括焦距、主点位置以及镜头畸变参数。
+该过程基于 <strong>ArUco 平面标记阵列（GridBoard）</strong>，通过多帧不同视角的观测，利用几何约束反推出相机成像模型参数</p>
+<p>标定结果将作为后续所有几何计算（位姿估计、重投影、去畸变等）的基础前提，其准确性直接决定整个视觉系统的可靠性</p>
+<h2 id="标定目标">标定目标</h2>
+<p>相机标定的核心目标包括：</p>
+<ul>
+<li>估计相机的<strong>内参矩阵</strong>
+<ul>
+<li>焦距（fx, fy）</li>
+<li>主点位置（cx, cy）</li>
+</ul>
+</li>
+<li>估计镜头的<strong>畸变参数</strong>
+<ul>
+<li>径向畸变（k₁, k₂, k₃ …）</li>
+<li>切向畸变（p₁, p₂）</li>
+</ul>
+</li>
+<li>通过重投影误差评估标定结果的整体质量</li>
+</ul>
+<h2 id="核心流程">核心流程</h2>
+<p>整体流程可抽象为以下步骤：</p>
+<ol>
+<li>采集包含 ArUco 标记阵列的图像帧</li>
+<li>在每帧图像中检测可用的标记角点</li>
+<li>构建二维图像点与三维物理点的对应关系</li>
+<li>累积满足条件的有效标定帧</li>
+<li>在多帧约束下求解相机内参</li>
+<li>通过重投影误差验证标定质量</li>
+</ol>
+<h2 id="标定数据构建原理">标定数据构建原理</h2>
+<h3 id="平面几何约束">平面几何约束</h3>
+<p>ArUco 标记阵列是一个<strong>几何结构已知的平面目标</strong>：</p>
+<ul>
+<li>所有标记物位于同一平面（Z = 0）</li>
+<li>每个标记的物理尺寸和相对位置是已知的</li>
+<li>标记 ID 与其在阵列中的行列位置一一对应</li>
+</ul>
+<p>因此，每个检测到的标记角点都可以建立一组确定的：</p>
+<ul>
+<li><strong>三维物理坐标</strong>（Object Points）</li>
+<li><strong>二维图像坐标</strong>（Image Points）</li>
+</ul>
+<h3 id="单帧标定">单帧标定</h3>
+<p>单帧图像虽然可以提供角点对应关系，但存在明显不足：</p>
+<ul>
+<li>无法充分约束相机的所有内参参数</li>
+<li>对噪声和角点误差高度敏感</li>
+<li>在特定视角下会出现参数退化</li>
+</ul>
+<p>因此，<strong>相机标定必须基于多帧观测</strong>，并且这些帧应具备足够的几何多样性</p>
+<h2 id="多帧标定">多帧标定</h2>
+<p><strong>在标定过程中，每一帧图像提供一组独立的几何约束：</strong></p>
+<ul>
+<li>不同的拍摄距离</li>
+<li>不同的平面倾角</li>
+<li>不同的视野覆盖范围</li>
+</ul>
+<p>通过在多帧条件下联合求解，使相机内参在整体意义上最优，从而获得稳定且可信的结果</p>
+<p><strong>为控制标定质量，通常会：</strong></p>
+<ul>
+<li>要求每帧包含不少于指定数量的标记物</li>
+<li>限制参与标定的最大帧数，避免低质量帧长期累积</li>
+<li>使用滑动窗口策略保留最新、质量较高的观测数据</li>
+</ul>
+<h2 id="相机内参求解原理">相机内参求解原理</h2>
+<p><strong>在累积足够的二维–三维点对应关系后，通过非线性优化求解相机参数，使得：</strong></p>
+<blockquote>
+<p>所有三维物理点在投影到图像平面后，与真实检测到的二维角点之间的误差最小</p>
+</blockquote>
+<p><strong>该优化过程同时估计：</strong></p>
+<ul>
+<li>相机内参矩阵</li>
+<li>畸变参数</li>
+<li>每一帧对应的外参（仅作为中间变量）</li>
+</ul>
+<p>最终保留的是<strong>对整体重投影误差最优的内参解</strong></p>
+<h2 id="重投影误差的意义">重投影误差的意义</h2>
+<p><strong>重投影误差用于衡量标定结果的可信度，其定义为：</strong></p>
+<ul>
+<li>将已知三维角点通过标定得到的内参模型投影回图像</li>
+<li>与真实检测到的二维角点计算平均像素误差</li>
+</ul>
+<p>其工程意义为：</p>
+<ul>
+<li>数值越小，说明成像模型越接近真实相机</li>
+<li>数值越大，说明角点检测、拍摄姿态或内参模型存在问题</li>
+</ul>
+<p>重投影误差是<strong>相机标定质量的核心评价指标</strong>。</p>
+<h2 id="常见问题">常见问题</h2>
+<blockquote>
+<p>[!warning] 标定结果不稳定或误差较大</p>
+<p>标定完成后重投影误差明显偏大，或不同批次标定结果差异明显</p>
+<p>常见原因包括：</p>
+<ul>
+<li>拍摄角度过于单一，几何约束不足</li>
+<li>有效标记数量偏少，角点分布集中</li>
+<li>图像存在模糊或明显噪声</li>
+</ul>
+<p>标定应覆盖<strong>不同距离与倾角</strong>，避免所有帧几何条件过于相似</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>[!warning] 畸变参数异常</p>
+<p>标定结果中畸变参数数值异常放大，或出现明显不合理的符号变化。</p>
+<p>该问题通常源于：</p>
+<ul>
+<li>实际镜头畸变较弱，但标定数据噪声较大</li>
+<li>标定图像数量不足，模型被迫用畸变项拟合噪声</li>
+</ul>
+<p>畸变参数的可信度高度依赖于<strong>标定数据质量与多样性</strong>。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>[!tip] 单帧角点检测成功并不代表可用于标定</p>
+<p>即使某一帧检测到了足够数量的标记角点，也不意味着该帧一定适合参与标定</p>
+<p>在工程实践中，应避免将：</p>
+<ul>
+<li>角点集中在图像局部区域的帧</li>
+<li>极端视角或严重遮挡的帧</li>
+</ul>
+<p>直接纳入标定数据集</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>[!note] 相机标定是系统级基础能力</p>
+<p>相机标定并非一次性操作，其结果将影响：</p>
+<ul>
+<li>位姿估计精度</li>
+<li>重投影一致性</li>
+<li>去畸变效果</li>
+</ul>
+<p>在更换镜头、调整焦距或分辨率后，应重新执行标定流程</p>
+</blockquote>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS-Vision/CameraCalibrationService.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
