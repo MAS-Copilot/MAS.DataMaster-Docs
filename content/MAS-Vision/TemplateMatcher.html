@@ -396,8 +396,9 @@ I'(x + x', y + y') = I(x + x', y + y') - \frac{1}{w \cdot h} \sum_{x''=0}^{w-1} 
 </tbody>
 </table>
 <h2 id="常见问题">常见问题</h2>
-<blockquote>
-<p>[!warning] 匹配位置明显偏移</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><strong>匹配位置明显偏移</strong></p>
 <p>匹配结果的得分看似合理，但定位点与实际目标存在系统性偏移</p>
 <p>该问题通常由以下原因导致：</p>
 <ul>
@@ -405,10 +406,11 @@ I'(x + x', y + y') = I(x + x', y + y') - \frac{1}{w \cdot h} \sum_{x''=0}^{w-1} 
 <li>模板边缘包含多余背景，导致最佳响应位置发生偏移</li>
 </ul>
 <p>模板匹配假设：<strong>模板与目标在几何结构上完全一致</strong>，任何多余或缺失的边界都会直接影响定位精度</p>
-</blockquote>
+</div>
 <hr>
-<blockquote>
-<p>[!warning] 多个位置出现相似高分</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><strong>多个位置出现相似高分</strong></p>
 <p>响应图中存在多个局部极值，难以唯一确定匹配位置</p>
 <p>这是模板匹配的固有特性，而非算法异常：</p>
 <ul>
@@ -416,10 +418,11 @@ I'(x + x', y + y') = I(x + x', y + y') - \frac{1}{w \cdot h} \sum_{x''=0}^{w-1} 
 <li>场景中存在多个与模板外观相似的区域</li>
 </ul>
 <p>模板匹配本质上是<strong>局部外观相似度搜索</strong>，无法区分语义或结构层级的差异</p>
-</blockquote>
+</div>
 <hr>
-<blockquote>
-<p>[!warning] 匹配对光照变化高度敏感</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><strong>匹配对光照变化高度敏感</strong></p>
 <p>在不同光照条件下，同一目标的匹配得分波动明显，甚至完全失效</p>
 <p>该现象源于模板匹配直接基于像素强度统计：</p>
 <ul>
@@ -427,17 +430,19 @@ I'(x + x', y + y') = I(x + x', y + y') - \frac{1}{w \cdot h} \sum_{x''=0}^{w-1} 
 <li>局部阴影或高光会显著改变匹配响应</li>
 </ul>
 <p>当场景光照不可控时，应优先使用<strong>对亮度和对比度不敏感的匹配度量</strong></p>
-</blockquote>
+</div>
 <hr>
-<blockquote>
-<p>[!warning] 模板尺度或旋转变化后匹配失败</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><strong>模板尺度或旋转变化后匹配失败</strong></p>
 <p>当目标在图像中发生尺度变化或旋转时，匹配效果显著下降</p>
 <p>模板匹配隐含的核心假设是：<strong>模板与目标在尺度和朝向上保持一致</strong></p>
 <p>该算法不具备尺度不变性和旋转不变性，超出该假设的场景应采用其他特征或几何方法</p>
-</blockquote>
+</div>
 <hr>
-<blockquote>
-<p>[!note] 高匹配得分不等于目标唯一存在</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p><strong>高匹配得分不等于目标唯一存在</strong></p>
 <p>模板匹配只能回答一个问题：“在当前位置，模板与子图像是否相似？”</p>
 <p>它并不能判断：</p>
 <ul>
@@ -445,10 +450,11 @@ I'(x + x', y + y') = I(x + x', y + y') - \frac{1}{w \cdot h} \sum_{x''=0}^{w-1} 
 <li>该目标是否是语义上正确的目标</li>
 </ul>
 <p>在复杂系统中，模板匹配更适合作为<strong>局部定位或候选生成手段</strong>，而非最终判决依据</p>
-</blockquote>
+</div>
 <hr>
-<blockquote>
-<p>[!tip] 匹配结果抖动但目标未移动</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p><strong>匹配结果抖动但目标未移动</strong></p>
 <p>在连续帧中，匹配位置在相邻像素间轻微跳动</p>
 <p>这是由以下因素共同导致的正常现象：</p>
 <ul>
@@ -456,7 +462,7 @@ I'(x + x', y + y') = I(x + x', y + y') - \frac{1}{w \cdot h} \sum_{x''=0}^{w-1} 
 <li>图像噪声引起的局部响应变化</li>
 </ul>
 <p>模板匹配输出的是<strong>离散像素级最优解</strong>，在工程应用中应区分“检测抖动”与“真实目标运动”</p>
-</blockquote>
+</div>
 
 </article>
 

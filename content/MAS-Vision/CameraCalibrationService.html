@@ -178,8 +178,9 @@
 </ul>
 <p>重投影误差是<strong>相机标定质量的核心评价指标</strong>。</p>
 <h2 id="常见问题">常见问题</h2>
-<blockquote>
-<p>[!warning] 标定结果不稳定或误差较大</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><strong>标定结果不稳定或误差较大</strong></p>
 <p>标定完成后重投影误差明显偏大，或不同批次标定结果差异明显</p>
 <p>常见原因包括：</p>
 <ul>
@@ -188,10 +189,11 @@
 <li>图像存在模糊或明显噪声</li>
 </ul>
 <p>标定应覆盖<strong>不同距离与倾角</strong>，避免所有帧几何条件过于相似</p>
-</blockquote>
+</div>
 <hr>
-<blockquote>
-<p>[!warning] 畸变参数异常</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><strong>畸变参数异常</strong></p>
 <p>标定结果中畸变参数数值异常放大，或出现明显不合理的符号变化。</p>
 <p>该问题通常源于：</p>
 <ul>
@@ -199,10 +201,11 @@
 <li>标定图像数量不足，模型被迫用畸变项拟合噪声</li>
 </ul>
 <p>畸变参数的可信度高度依赖于<strong>标定数据质量与多样性</strong>。</p>
-</blockquote>
+</div>
 <hr>
-<blockquote>
-<p>[!tip] 单帧角点检测成功并不代表可用于标定</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p><strong>单帧角点检测成功并不代表可用于标定</strong></p>
 <p>即使某一帧检测到了足够数量的标记角点，也不意味着该帧一定适合参与标定</p>
 <p>在工程实践中，应避免将：</p>
 <ul>
@@ -210,10 +213,11 @@
 <li>极端视角或严重遮挡的帧</li>
 </ul>
 <p>直接纳入标定数据集</p>
-</blockquote>
+</div>
 <hr>
-<blockquote>
-<p>[!note] 相机标定是系统级基础能力</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p><strong>相机标定是系统级基础能力</strong></p>
 <p>相机标定并非一次性操作，其结果将影响：</p>
 <ul>
 <li>位姿估计精度</li>
@@ -221,7 +225,7 @@
 <li>去畸变效果</li>
 </ul>
 <p>在更换镜头、调整焦距或分辨率后，应重新执行标定流程</p>
-</blockquote>
+</div>
 
 </article>
 
