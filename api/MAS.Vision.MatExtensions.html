@@ -153,6 +153,54 @@ Class MatExtensions  <a class="header-action link-secondary" title="View source"
 </h2>
 
 
+  <a id="MAS_Vision_MatExtensions_ToAnnotatedCanvas_" data-uid="MAS.Vision.MatExtensions.ToAnnotatedCanvas*"></a>
+
+  <h3 id="MAS_Vision_MatExtensions_ToAnnotatedCanvas_OpenCvSharp_Mat_MAS_Vision_TextRenderConfig_" data-uid="MAS.Vision.MatExtensions.ToAnnotatedCanvas(OpenCvSharp.Mat,MAS.Vision.TextRenderConfig)">
+  ToAnnotatedCanvas(Mat, TextRenderConfig)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/MatExtensions.cs/#L229"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建用于绘制的画布</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Mat ToAnnotatedCanvas(this Mat poseInput, TextRenderConfig textRender)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>poseInput</code> <span class="xref">Mat</span></dt>
+    <dd><p>输入图像</p>
+</dd>
+    <dt><code>textRender</code> <a class="xref" href="MAS.Vision.TextRenderConfig.html">TextRenderConfig</a></dt>
+    <dd><p>文本渲染配置</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Mat</span></dt>
+    <dd><p>用于标注的画布Mat（BGR/克隆原图像）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Vision_MatExtensions_ToAnnotatedCanvas_OpenCvSharp_Mat_MAS_Vision_TextRenderConfig__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><ul>
+<li>灰度图 + ForceColorRenderOnGray = true → 转为 BGR</li>
+<li>其他情况 → Clone</li>
+</ul>
+</div>
+
+
+
+
   <a id="MAS_Vision_MatExtensions_ToArray3_" data-uid="MAS.Vision.MatExtensions.ToArray3*"></a>
 
   <h3 id="MAS_Vision_MatExtensions_ToArray3_OpenCvSharp_Mat_" data-uid="MAS.Vision.MatExtensions.ToArray3(OpenCvSharp.Mat)">

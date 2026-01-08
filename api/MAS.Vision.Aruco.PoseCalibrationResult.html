@@ -186,7 +186,7 @@ Class PoseCalibrationResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_Vision_Aruco_PoseCalibrationResult_CameraToPlaneEulerDeg" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.CameraToPlaneEulerDeg">
   CameraToPlaneEulerDeg
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取相机相对于平面的欧拉角（Yaw/Pitch/Roll，单位：度）</p>
@@ -214,11 +214,84 @@ Class PoseCalibrationResult  <a class="header-action link-secondary" title="View
 
 
 
+  <a id="MAS_Vision_Aruco_PoseCalibrationResult_DepthMm_" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.DepthMm*"></a>
+
+  <h3 id="MAS_Vision_Aruco_PoseCalibrationResult_DepthMm" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.DepthMm">
+  DepthMm
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取沿 RealZ 方向的深度/高度（单位：mm）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double? DepthMm { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Vision_Aruco_PoseCalibrationResult_DepthMm_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>该值等于 <a class="xref" href="MAS.Vision.Aruco.PoseCalibrationResult.html#MAS_Vision_Aruco_PoseCalibrationResult_ZRealMm">ZRealMm</a>，即 Marker 原点在 Real 坐标系下的 Z 分量。
+是否等价“离地高度/工件高度”取决于 Real 坐标轴映射与世界坐标定义</p>
+</div>
+
+
+
+
+  <a id="MAS_Vision_Aruco_PoseCalibrationResult_DistanceMm_" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.DistanceMm*"></a>
+
+  <h3 id="MAS_Vision_Aruco_PoseCalibrationResult_DistanceMm" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.DistanceMm">
+  DistanceMm
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取相机到 Marker 原点的空间直线距离（单位：mm）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double? DistanceMm { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Vision_Aruco_PoseCalibrationResult_DistanceMm_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>该值基于 <a class="xref" href="MAS.Vision.Aruco.PoseQualityMetrics.html#MAS_Vision_Aruco_PoseQualityMetrics_Tvec">Tvec</a>（Real 坐标系下的 [X,Y,Z]，单位：mm）计算欧氏范数：
+sqrt(x^2 + y^2 + z^2)。
+当 <a class="xref" href="MAS.Vision.Aruco.PoseQualityMetrics.html#MAS_Vision_Aruco_PoseQualityMetrics_Tvec">Tvec</a> 不存在或长度不足时返回 null</p>
+</div>
+
+
+
+
   <a id="MAS_Vision_Aruco_PoseCalibrationResult_ErrorMessage_" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.ErrorMessage*"></a>
 
   <h3 id="MAS_Vision_Aruco_PoseCalibrationResult_ErrorMessage" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.ErrorMessage">
   ErrorMessage
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取失败原因</p>
@@ -282,7 +355,7 @@ Class PoseCalibrationResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_Vision_Aruco_PoseCalibrationResult_PlaneToCameraEulerDeg" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.PlaneToCameraEulerDeg">
   PlaneToCameraEulerDeg
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取平面相对于相机的欧拉角（Yaw/Pitch/Roll，单位：度）</p>
@@ -314,7 +387,7 @@ Class PoseCalibrationResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_Vision_Aruco_PoseCalibrationResult_Quality" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.Quality">
   Quality
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L85"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取质量信息</p>
@@ -332,6 +405,102 @@ Class PoseCalibrationResult  <a class="header-action link-secondary" title="View
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.Vision.Aruco.PoseQualityMetrics.html">PoseQualityMetrics</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_Aruco_PoseCalibrationResult_XRealMm_" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.XRealMm*"></a>
+
+  <h3 id="MAS_Vision_Aruco_PoseCalibrationResult_XRealMm" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.XRealMm">
+  XRealMm
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 Marker 原点在 Real 坐标系下的 X（mm）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double? XRealMm { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_Aruco_PoseCalibrationResult_YRealMm_" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.YRealMm*"></a>
+
+  <h3 id="MAS_Vision_Aruco_PoseCalibrationResult_YRealMm" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.YRealMm">
+  YRealMm
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 Marker 原点在 Real 坐标系下的 Y（mm）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double? YRealMm { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_Aruco_PoseCalibrationResult_ZRealMm_" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.ZRealMm*"></a>
+
+  <h3 id="MAS_Vision_Aruco_PoseCalibrationResult_ZRealMm" data-uid="MAS.Vision.Aruco.PoseCalibrationResult.ZRealMm">
+  ZRealMm
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/PoseCalibrationResult.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 Marker 原点在 Real 坐标系下的 Z（mm）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double? ZRealMm { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
     <dd></dd>
   </dl>
 

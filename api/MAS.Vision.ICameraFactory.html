@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Interface IColorRecognizer | DataMaster </title>
+      <title>Interface ICameraFactory | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface IColorRecognizer | DataMaster ">
+      <meta name="title" content="Interface ICameraFactory | DataMaster ">
       
-      <meta name="description" content="颜色识别接口">
+      <meta name="description" content="相机工厂接口，用于创建不同类型的相机实例">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Vision_IColorRecognizer.md&amp;value=---%0Auid%3A%20MAS.Vision.IColorRecognizer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Vision_ICameraFactory.md&amp;value=---%0Auid%3A%20MAS.Vision.ICameraFactory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.Vision.IColorRecognizer">
+        <article data-uid="MAS.Vision.ICameraFactory">
 
 
 
-  <h1 id="MAS_Vision_IColorRecognizer" data-uid="MAS.Vision.IColorRecognizer" class="text-break">
-Interface IColorRecognizer  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Interfaces/IColorRecognizer.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_Vision_ICameraFactory" data-uid="MAS.Vision.ICameraFactory" class="text-break">
+Interface ICameraFactory  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICameraFactory.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Interface IColorRecognizer  <a class="header-action link-secondary" title="View 
   <dl><dt>Assembly</dt><dd>MAS.Vision.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>颜色识别接口</p>
+  <div class="markdown summary"><p>相机工厂接口，用于创建不同类型的相机实例</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IColorRecognizer</code></pre>
+    <pre><code class="lang-csharp hljs">public interface ICameraFactory</code></pre>
   </div>
 
 
@@ -121,47 +121,32 @@ Interface IColorRecognizer  <a class="header-action link-secondary" title="View 
 </h2>
 
 
-  <a id="MAS_Vision_IColorRecognizer_Process_" data-uid="MAS.Vision.IColorRecognizer.Process*"></a>
+  <a id="MAS_Vision_ICameraFactory_Create_" data-uid="MAS.Vision.ICameraFactory.Create*"></a>
 
-  <h3 id="MAS_Vision_IColorRecognizer_Process_OpenCvSharp_Mat_OpenCvSharp_Scalar_OpenCvSharp_Scalar_MAS_Vision_TextRenderConfig_System_Nullable_System_Int32__System_Nullable_System_Double__" data-uid="MAS.Vision.IColorRecognizer.Process(OpenCvSharp.Mat,OpenCvSharp.Scalar,OpenCvSharp.Scalar,MAS.Vision.TextRenderConfig,System.Nullable{System.Int32},System.Nullable{System.Double})">
-  Process(Mat, Scalar, Scalar, TextRenderConfig, int?, double?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Interfaces/IColorRecognizer.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Vision_ICameraFactory_Create_MAS_Vision_CameraProvider_" data-uid="MAS.Vision.ICameraFactory.Create(MAS.Vision.CameraProvider)">
+  Create(CameraProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICameraFactory.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>对输入图像进行颜色范围检测</p>
+  <div class="markdown level1 summary"><p>根据相机提供者类型创建相机实例</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ColorDetectResult Process(Mat image, Scalar lowerBound, Scalar upperBound, TextRenderConfig textRender, int? pixels = null, double? percentage = null)</code></pre>
+    <pre><code class="lang-csharp hljs">ICamera Create(CameraProvider provider)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>image</code> <span class="xref">Mat</span></dt>
-    <dd><p>输入图像</p>
-</dd>
-    <dt><code>lowerBound</code> <span class="xref">Scalar</span></dt>
-    <dd><p>颜色范围的下界（HSV空间）</p>
-</dd>
-    <dt><code>upperBound</code> <span class="xref">Scalar</span></dt>
-    <dd><p>颜色范围的上界（HSV空间）</p>
-</dd>
-    <dt><code>textRender</code> <a class="xref" href="MAS.Vision.TextRenderConfig.html">TextRenderConfig</a></dt>
-    <dd><p>文本渲染配置项</p>
-</dd>
-    <dt><code>pixels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
-    <dd><p>设定的像素数量阈值</p>
-</dd>
-    <dt><code>percentage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
-    <dd><p>设定的像素百分比阈值</p>
+    <dt><code>provider</code> <a class="xref" href="MAS.Vision.CameraProvider.html">CameraProvider</a></dt>
+    <dd><p>相机提供者枚举</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.Vision.ColorDetectResult.html">ColorDetectResult</a></dt>
-    <dd><p>颜色检测结果</p>
+    <dt><a class="xref" href="MAS.Vision.ICamera.html">ICamera</a></dt>
+    <dd><p>对应类型的相机接口实例</p>
 </dd>
   </dl>
 
@@ -174,9 +159,7 @@ Interface IColorRecognizer  <a class="header-action link-secondary" title="View 
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
-    <dd></dd>
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
     <dd></dd>
   </dl>
 
@@ -186,7 +169,7 @@ Interface IColorRecognizer  <a class="header-action link-secondary" title="View 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Interfaces/IColorRecognizer.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICameraFactory.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

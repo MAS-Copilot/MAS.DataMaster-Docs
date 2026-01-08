@@ -101,8 +101,9 @@
 <li>得到该图层完整的轨迹数据</li>
 </ul>
 <h2 id="姿态规则前置">姿态规则前置</h2>
-<blockquote>
-<p>[!tip] 关于正交坐标系</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p><strong>关于正交坐标系</strong></p>
 <p><span class="math">\(T, B, N_{eq}\)</span> 这三个向量构成一个<strong>局部工具坐标系</strong></p>
 <ul>
 <li><p><span class="math">\(T\)</span>（Tangent → 切向）: 工具的<strong>相对前后</strong></p>
@@ -113,7 +114,7 @@
 </li>
 </ul>
 <p>只要这三个向量互相垂直且都归一化，就得到一个完美无翻转的工具姿态</p>
-</blockquote>
+</div>
 <p>定义机器人在路径上的行为策略及数学解算标准。此部分数据通常来源于<code>TrajectoryParameters</code>配置</p>
 <h3 id="旋转顺序">旋转顺序</h3>
 <p>机器人的欧拉角解算强依赖于旋转轴的叠加顺序。不同的控制器标准不同</p>
@@ -122,10 +123,11 @@
 <li>输入：必须在配置文件中指定目标控制器的旋转顺序</li>
 <li>影响：若顺序错误，计算出的 <span class="math">\((Rx, Ry, Rz)\)</span> 会导致机器做出完全不可预测的姿态</li>
 </ul>
-<blockquote>
-<p>[!warning] 注意事项
-当前姿态求解在内部统一使用 ZYX 约定来还原欧拉角</p>
-</blockquote>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><strong>注意事项</strong></p>
+<p>当前姿态求解在内部统一使用 ZYX 约定来还原欧拉角</p>
+</div>
 <h3 id="生成策略">生成策略</h3>
 <p>决定工具姿态如何随路径变化</p>
 <ul>
@@ -134,9 +136,10 @@
 <li>Surface Normal (法向跟随)：适用于需要姿态随空间路径实时变化的工艺（打磨、3D 曲线加工等）</li>
 </ul>
 <p>若没有真实曲面，就无法生成贴合物理曲面的 Rx/Ry。此时系统采用 GlobalUp 等工艺约定，构造等效法向并自动计算 Rx/Ry，使姿态满足工艺需求</p>
-<blockquote>
-<p>[!note] 常用法向构造解法（无真实曲面时）
-已知：<span class="math">\(T\)</span>（路径切线），<span class="math">\(U\)</span> = GlobalUp（工艺参考 Up）
+<div class="NOTE">
+<h5>Note</h5>
+<p><strong>常用法向构造解法（无真实曲面时）</strong></p>
+<p>已知：<span class="math">\(T\)</span>（路径切线），<span class="math">\(U\)</span> = GlobalUp（工艺参考 Up）
 步骤：</p>
 <ol>
 <li>去掉 <span class="math">\(U\)</span> 在 <span class="math">\(T\)</span> 方向上的分量：<span class="math">\(U_{proj} = (U\cdot T)T\)</span></li>
@@ -144,7 +147,7 @@
 <li>归一化 <span class="math">\(N_{raw}\)</span>，得到等效法向 <span class="math">\(N_{eq}\)</span></li>
 <li>再用 <span class="math">\(B = T \times N_{eq}\)</span> 得到第三个轴，构成正交坐标系 <span class="math">\(T, B, N_{eq}\)</span></li>
 </ol>
-</blockquote>
+</div>
 <h3 id="零位定义">零位定义</h3>
 <p>定义“什么都不转”时的物理状态</p>
 <ul>

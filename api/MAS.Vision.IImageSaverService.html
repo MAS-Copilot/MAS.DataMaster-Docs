@@ -102,7 +102,7 @@ Interface IImageSaverService  <a class="header-action link-secondary" title="Vie
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IImageSaverService</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IImageSaverService : IAsyncDisposable</code></pre>
   </div>
 
 
@@ -111,6 +111,13 @@ Interface IImageSaverService  <a class="header-action link-secondary" title="Vie
 
 
 
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable.disposeasync">IAsyncDisposable.DisposeAsync()</a>
+    </div>
+  </dd></dl>
 
 
 
@@ -198,6 +205,54 @@ Interface IImageSaverService  <a class="header-action link-secondary" title="Vie
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
     <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_IImageSaverService_TryQueueSave_" data-uid="MAS.Vision.IImageSaverService.TryQueueSave*"></a>
+
+  <h3 id="MAS_Vision_IImageSaverService_TryQueueSave_System_Windows_Media_ImageSource_System_String_MAS_Vision_ImageSaveFormat_System_String_" data-uid="MAS.Vision.IImageSaverService.TryQueueSave(System.Windows.Media.ImageSource,System.String,MAS.Vision.ImageSaveFormat,System.String)">
+  TryQueueSave(ImageSource, string, ImageSaveFormat, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Interfaces/IImageSaverService.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>火忘模式：提交保存任务后立即返回，不等待实际保存完成。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryQueueSave(ImageSource image, string path, ImageSaveFormat format, string? prefix = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>image</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imagesource">ImageSource</a></dt>
+    <dd><p>图像对象</p>
+</dd>
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>保存路径</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="MAS.Vision.ImageSaveFormat.html">ImageSaveFormat</a></dt>
+    <dd><p>保存格式</p>
+</dd>
+    <dt><code>prefix</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件名前缀，可选</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>提交成功返回 true；队列满/参数非法返回 false</p>
+</dd>
   </dl>
 
 

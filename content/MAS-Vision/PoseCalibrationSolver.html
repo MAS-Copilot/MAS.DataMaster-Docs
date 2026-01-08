@@ -203,17 +203,23 @@
 <li>将转换后的旋转矩阵转换为欧拉角（PoseEuler），得到“平面到相机”（planeToCameraEuler）和“相机到平面”（cameraToPlaneEuler）的位姿（后者通过转置旋转矩阵得到，代表反向位姿）</li>
 </ol>
 <h3 id="稳定性滤波">稳定性滤波</h3>
-<p>为了避免单帧位姿波动过大，通过历史数据平滑得到稳定结果，核心逻辑是“滑动窗口平均”：</p>
+<p>为避免单帧位姿解算抖动，通过历史姿态数据计算稳定结果</p>
+<p>当前实现采用 <strong>Quaternion 滑动窗口均值滤波（SO(3) Mean）</strong>，核心逻辑如下：</p>
 <ol>
-<li>将当前帧的位姿（planeToCameraEuler、cameraToPlaneEuler）加入对应的历史队列</li>
-<li>若队列长度超过配置的稳定性帧数（StabilityFrames），移除最旧的位姿数据</li>
-<li>对队列中的历史位姿进行角度平均（注意：角度平均通过三角函数转换，避免 360°/0° 边界问题）
+<li>将当前帧位姿转换为旋转四元数（Quaternion），并进行归一化</li>
+<li>对四元数进行半球一致性处理，避免 q / -q 表示差异导致不连续</li>
+<li>将处理后的四元数加入对应的历史窗口队列</li>
+<li>若队列长度超过配置的稳定帧数（StabilityFrames），移除最旧的历史数据</li>
+<li>对窗口内的四元数集合计算 <strong>Markley Quaternion Mean</strong>
 <ul>
-<li>将每个角度转换为弧度，计算余弦值和正弦值的平均值</li>
-<li>通过反正切函数将平均余弦值和正弦值转换回角度，得到平滑后的位姿（stablePlaneToCamera、stableCameraToPlane）</li>
+<li>构造旋转协方差矩阵 <span class="math">\(A = \sum_{i=1}^{N} q_i q_i^{\mathrm T}\)</span></li>
+<li>其中 <span class="math">\(q_i\)</span> 为窗口内第 <span class="math">\(i\)</span> 帧的单位四元数（列向量）</li>
+<li>通过幂迭代求取矩阵 <span class="math">\(A\)</span> 的最大特征值对应的特征向量，作为平均旋转</li>
 </ul>
 </li>
+<li>将得到的稳定四元数转换为欧拉角，作为最终稳定输出结果</li>
 </ol>
+<p>该方法在 SO(3) 旋转空间内进行平均，能够有效避免欧拉角平均在 ±180° 边界、大角度变化及 Pitch 奇异区间引发的数值不稳定问题</p>
 <h3 id="结果可视化与封装">结果可视化与封装</h3>
 <ol>
 <li><code>AnnotatePose</code> 方法完成可视化：
