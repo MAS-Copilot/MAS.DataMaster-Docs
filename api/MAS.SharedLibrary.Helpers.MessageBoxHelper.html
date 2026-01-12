@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Helpers_MessageBoxHelper" data-uid="MAS.SharedLibrary.Helpers.MessageBoxHelper" class="text-break">
-Class MessageBoxHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L23"><i class="bi bi-code-slash"></i></a>
+Class MessageBoxHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -157,7 +157,7 @@ Class MessageBoxHelper  <a class="header-action link-secondary" title="View sour
 
   <h3 id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ShowDialogAsync_System_String_System_String_MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption___" data-uid="MAS.SharedLibrary.Helpers.MessageBoxHelper.ShowDialogAsync(System.String,System.String,MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption[])">
   ShowDialogAsync(string, string, params ButtonOption[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>显示一个模态对话框</p>
@@ -189,7 +189,7 @@ Class MessageBoxHelper  <a class="header-action link-secondary" title="View sour
 当点击 <a class="xref" href="MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption.html#MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_Yes">Yes</a> 返回的结果是 <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/MessageBox/MessageBoxResult.cs">Primary</a>
 </p>
 <p>
-当点击 <a class="xref" href="MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption.html#MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_No">No</a> 返回的结果是  <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/MessageBox/MessageBoxResult.cs">Secondary</a>
+当点击 <a class="xref" href="MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption.html#MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_No">No</a>、<a class="xref" href="MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption.html#MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_Retry">Retry</a> 返回的结果是  <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/MessageBox/MessageBoxResult.cs">Secondary</a>
 </p><br>
 其余总是返回  <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/MessageBox/MessageBoxResult.cs">None</a>
 </dd>
@@ -216,9 +216,54 @@ Class MessageBoxHelper  <a class="header-action link-secondary" title="View sour
 
   <a id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ShowDialogAsync_" data-uid="MAS.SharedLibrary.Helpers.MessageBoxHelper.ShowDialogAsync*"></a>
 
+  <h3 id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ShowDialogAsync_System_String_System_String_MAS_SharedLibrary_Models_MessageBoxButton___" data-uid="MAS.SharedLibrary.Helpers.MessageBoxHelper.ShowDialogAsync(System.String,System.String,MAS.SharedLibrary.Models.MessageBoxButton[])">
+  ShowDialogAsync(string, string, MessageBoxButton[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>显示一个带自定义按钮的模态对话框</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;MessageBoxResult&gt; ShowDialogAsync(string titleKey, string contentKey, MessageBoxButton[] buttons)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>titleKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>标题的语言资源键</p>
+</dd>
+    <dt><code>contentKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>内容的语言资源键</p>
+</dd>
+    <dt><code>buttons</code> <a class="xref" href="MAS.SharedLibrary.Models.MessageBoxButton.html">MessageBoxButton</a>[]</dt>
+    <dd><p>对话框按钮定义集合</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/MessageBox/MessageBoxResult.cs">MessageBoxResult</a>&gt;</dt>
+    <dd><p>点击按钮对应的 <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/MessageBox/MessageBoxResult.cs">MessageBoxResult</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ShowDialogAsync_" data-uid="MAS.SharedLibrary.Helpers.MessageBoxHelper.ShowDialogAsync*"></a>
+
   <h3 id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ShowDialogAsync_System_String_System_String___MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption___" data-uid="MAS.SharedLibrary.Helpers.MessageBoxHelper.ShowDialogAsync(System.String,System.String[],MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption[])">
   ShowDialogAsync(string, string[], params ButtonOption[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L70"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>显示一个模态对话框</p>
@@ -250,7 +295,7 @@ Class MessageBoxHelper  <a class="header-action link-secondary" title="View sour
 当点击 <a class="xref" href="MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption.html#MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_Yes">Yes</a> 返回的结果是 <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/MessageBox/MessageBoxResult.cs">Primary</a>
 </p>
 <p>
-当点击 <a class="xref" href="MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption.html#MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_No">No</a> 返回的结果是  <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/MessageBox/MessageBoxResult.cs">Secondary</a>
+当点击 <a class="xref" href="MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption.html#MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_No">No</a>、<a class="xref" href="MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption.html#MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_Retry">Retry</a> 返回的结果是  <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/MessageBox/MessageBoxResult.cs">Secondary</a>
 </p><br>
 其余总是返回  <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/MessageBox/MessageBoxResult.cs">None</a>
 </dd>
@@ -279,7 +324,7 @@ Class MessageBoxHelper  <a class="header-action link-secondary" title="View sour
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L23" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L24" class="edit-link">Edit this page</a>
         </div>
 
 

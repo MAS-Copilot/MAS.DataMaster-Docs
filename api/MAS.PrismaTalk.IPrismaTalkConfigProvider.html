@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Enum MessageBoxHelper.ButtonOption | DataMaster </title>
+      <title>Interface IPrismaTalkConfigProvider | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Enum MessageBoxHelper.ButtonOption | DataMaster ">
+      <meta name="title" content="Interface IPrismaTalkConfigProvider | DataMaster ">
       
-      <meta name="description" content="按钮选择枚举">
+      <meta name="description" content="PrismaTalk 当前配置提供者">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption.md&amp;value=---%0Auid%3A%20MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PrismaTalk_IPrismaTalkConfigProvider.md&amp;value=---%0Auid%3A%20MAS.PrismaTalk.IPrismaTalkConfigProvider%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,26 +84,25 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption">
+        <article data-uid="MAS.PrismaTalk.IPrismaTalkConfigProvider">
 
 
 
-
-  <h1 id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption" data-uid="MAS.SharedLibrary.Helpers.MessageBoxHelper.ButtonOption" class="text-break">
-Enum MessageBoxHelper.ButtonOption  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L198"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_PrismaTalk_IPrismaTalkConfigProvider" data-uid="MAS.PrismaTalk.IPrismaTalkConfigProvider" class="text-break">
+Interface IPrismaTalkConfigProvider  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkConfigProvider.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.SharedLibrary.html">SharedLibrary</a>.<a class="xref" href="MAS.SharedLibrary.Helpers.html">Helpers</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.PrismaTalk.html">PrismaTalk</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.PrismaTalk.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>按钮选择枚举</p>
+  <div class="markdown summary"><p>PrismaTalk 当前配置提供者</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum MessageBoxHelper.ButtonOption</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IPrismaTalkConfigProvider</code></pre>
   </div>
 
 
@@ -113,45 +112,90 @@ Enum MessageBoxHelper.ButtonOption  <a class="header-action link-secondary" titl
 
 
 
-  <dl class="typelist extensionMethods">
-    <dt>Extension Methods</dt>
-    <dd>
-  <div>
-      <a class="xref" href="MAS.SharedLibrary.EnumDisplayNameExtensions.html#MAS_SharedLibrary_EnumDisplayNameExtensions_GetDisplayName_System_Enum_">EnumDisplayNameExtensions.GetDisplayName(Enum)</a>
-  </div>
-  </dd></dl>
 
-  <h2 id="fields">Fields
+
+
+  <h2 id="MAS_PrismaTalk_IPrismaTalkConfigProvider_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>向系统暴露“当前正在使用的配置快照”，并在配置切换/更新时发出通知</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
 </h2>
+
+
+  <a id="MAS_PrismaTalk_IPrismaTalkConfigProvider_CurrentConfig_" data-uid="MAS.PrismaTalk.IPrismaTalkConfigProvider.CurrentConfig*"></a>
+
+  <h3 id="MAS_PrismaTalk_IPrismaTalkConfigProvider_CurrentConfig" data-uid="MAS.PrismaTalk.IPrismaTalkConfigProvider.CurrentConfig">
+  CurrentConfig
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkConfigProvider.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前正在使用的配置快照</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PrismaTalkConfig CurrentConfig { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_Cancel"><code>Cancel = 2</code></dt>
-  
-  <dd><p>取消</p>
-</dd>
-    <dt id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_No"><code>No = 1</code></dt>
-  
-  <dd><p>否</p>
-</dd>
-    <dt id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_Refuse"><code>Refuse = 3</code></dt>
-  
-  <dd><p>拒绝</p>
-</dd>
-    <dt id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_Retry"><code>Retry = 4</code></dt>
-  
-  <dd><p>重试</p>
-</dd>
-    <dt id="MAS_SharedLibrary_Helpers_MessageBoxHelper_ButtonOption_Yes"><code>Yes = 0</code></dt>
-  
-  <dd><p>确认</p>
-</dd>
+    <dt><a class="xref" href="MAS.PrismaTalk.Models.Configurations.PrismaTalkConfig.html">PrismaTalkConfig</a></dt>
+    <dd></dd>
   </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_PrismaTalk_IPrismaTalkConfigProvider_CurrentConfigChanged" data-uid="MAS.PrismaTalk.IPrismaTalkConfigProvider.CurrentConfigChanged">
+  CurrentConfigChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkConfigProvider.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当 <a class="xref" href="MAS.PrismaTalk.IPrismaTalkConfigProvider.html#MAS_PrismaTalk_IPrismaTalkConfigProvider_CurrentConfig">CurrentConfig</a> 发生变化时触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PrismaTalkConfigChangedEventArgs&gt;? CurrentConfigChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.PrismaTalk.PrismaTalkConfigChangedEventArgs.html">PrismaTalkConfigChangedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
 
 
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/MessageBoxHelper.cs/#L198" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkConfigProvider.cs/#L20" class="edit-link">Edit this page</a>
         </div>
 
 
