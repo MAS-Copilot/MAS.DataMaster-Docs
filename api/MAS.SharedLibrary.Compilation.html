@@ -95,8 +95,8 @@
 Classes
 </h3>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.AssemblyInfo.html">AssemblyInfo</a></dt>
-      <dd><p>表示程序集的详细信息数据模型</p>
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.AssemblyInfoBase.html">AssemblyInfoBase</a></dt>
+      <dd><p>表示程序集的通用信息数据模型</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -110,8 +110,38 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.CommAssemblySnapshot.html">CommAssemblySnapshot</a></dt>
+      <dd><p>通讯程序集快照</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.CompilationArtifact.html">CompilationArtifact</a></dt>
+      <dd><p>表示一次编译的“显式产物”数据模型</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.SharedLibrary.Compilation.CompilationResult.html">CompilationResult</a></dt>
       <dd><p>表示编译结果的数据模型</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.DataAccessAssemblyInfo.html">DataAccessAssemblyInfo</a></dt>
+      <dd><p>数据访问模块使用的程序集信息</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.DataAccessTypeDetails.html">DataAccessTypeDetails</a></dt>
+      <dd><p>表示用于数据访问层详细信息数据模型</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.DataExportAssemblyInfo.html">DataExportAssemblyInfo</a></dt>
+      <dd><p>数据导出模块使用的程序集信息</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.DataExportTypeDetails.html">DataExportTypeDetails</a></dt>
+      <dd><p>表示用于数据导出详细信息数据模型</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -119,22 +149,37 @@ Classes
       <dd><p>表示已加载程序集的详细信息</p>
 </dd>
     </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.TypeMappingIndex.html">TypeMappingIndex</a></dt>
+      <dd><p>类型映射索引</p>
+</dd>
+    </dl>
     <h3 id="interfaces">
 Interfaces
 </h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.IActiveInstanceKeyStore.html">IActiveInstanceKeyStore</a></dt>
+      <dd><p>当前画布激活的实例 Key 仓库</p>
+</dd>
+    </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.SharedLibrary.Compilation.IBuildConfig.html">IBuildConfig</a></dt>
       <dd><p>构建配置接口</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.ICommBuildConfig.html">ICommBuildConfig</a></dt>
-      <dd><p>通讯构建相关的配置接口</p>
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.ICommCompilationService.html">ICommCompilationService</a></dt>
+      <dd><p>动态加载和编译通讯代码的服务接口</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.ICommCompilationService.html">ICommCompilationService</a></dt>
-      <dd><p>动态加载和编译通讯代码的服务接口</p>
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.ICommCompiledTypeProvider.html">ICommCompiledTypeProvider</a></dt>
+      <dd><p>通讯编译的产物类型提供者</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.ICommStructSource.html">ICommStructSource</a></dt>
+      <dd><p>通讯模块结构体数据源</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -158,8 +203,18 @@ Interfaces
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.IDXFScriptCode.html">IDXFScriptCode</a></dt>
+      <dd><p>DXF 脚本代码提供接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.SharedLibrary.Compilation.IDataAccessCompilationService.html">IDataAccessCompilationService</a></dt>
       <dd><p>动态加载和编译数据访问层的服务接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.IDataAccessCompiledTypeProvider.html">IDataAccessCompiledTypeProvider</a></dt>
+      <dd><p>数据访问编译产物类型提供器</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -168,8 +223,28 @@ Interfaces
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.IDataExportCompiledTypeProvider.html">IDataExportCompiledTypeProvider</a></dt>
+      <dd><p>数据导出脚本编译产物类型提供器</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.IHasBuildConfig.html">IHasBuildConfig</a></dt>
+      <dd><p>表示该配置对象包含构建相关配置接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.ISkillCompilationService.html">ISkillCompilationService</a></dt>
+      <dd><p>Skill 脚本编译服务接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.SharedLibrary.Compilation.IWordPrinterCompilationService.html">IWordPrinterCompilationService</a></dt>
       <dd><p>Word 打印脚本编译服务接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.SharedLibrary.Compilation.IWordPrinterScriptCode.html">IWordPrinterScriptCode</a></dt>
+      <dd><p>Word 打印脚本代码提供接口</p>
 </dd>
     </dl>
 

@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Communication_ProtocolModelBase" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase" class="text-break">
-Class ProtocolModelBase  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/Communicaiton/ProtocolModelBase.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class ProtocolModelBase  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Communication.ProtocolModelBase.g.cs/#L7"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class ProtocolModelBase</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class ProtocolModelBase : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
 
@@ -112,22 +112,79 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
       <div><span class="xref">ProtocolModelBase</span></div>
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+    </dd>
+  </dl>
 
   <dl class="typelist derived">
     <dt>Derived</dt>
     <dd>
-      <div><a class="xref" href="MAS.SharedLibrary.Communication.McProtocols.McProtocolStatusModel.html">McProtocolStatusModel</a></div>
-      <div><a class="xref" href="MAS.SharedLibrary.Communication.S7Protocols.S7ProtocolStatusModel.html">S7ProtocolStatusModel</a></div>
+      <div><a class="xref" href="MAS.SharedLibrary.Communication.McProtocol.McProtocolStatusModel.html">McProtocolStatusModel</a></div>
+      <div><a class="xref" href="MAS.SharedLibrary.Communication.ModbusProtocol.ModbusProtocolStatusModel.html">ModbusProtocolStatusModel</a></div>
+      <div><a class="xref" href="MAS.SharedLibrary.Communication.S7Protocol.S7ProtocolStatusModel.html">S7ProtocolStatusModel</a></div>
     </dd>
   </dl>
 
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanged#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanged(system-componentmodel-propertychangedeventargs)">ObservableObject.OnPropertyChanged(PropertyChangedEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanging#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanging(system-componentmodel-propertychangingeventargs)">ObservableObject.OnPropertyChanging(PropertyChangingEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanged#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanged(system-string)">ObservableObject.OnPropertyChanged(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanging#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanging(system-string)">ObservableObject.OnPropertyChanging(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0@-0-system-string)">ObservableObject.SetProperty&lt;T&gt;(ref T, T, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0@-0-system-collections-generic-iequalitycomparer((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(ref T, T, IEqualityComparer&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0-0-system-action((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(T, T, Action&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0-0-system-collections-generic-iequalitycomparer((-0))-system-action((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(T, T, IEqualityComparer&lt;T&gt;, Action&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-2(-1-1-0-system-action((-0-1))-system-string)">ObservableObject.SetProperty&lt;TModel, T&gt;(T, T, TModel, Action&lt;TModel, T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-2(-1-1-system-collections-generic-iequalitycomparer((-1))-0-system-action((-0-1))-system-string)">ObservableObject.SetProperty&lt;TModel, T&gt;(T, T, IEqualityComparer&lt;T&gt;, TModel, Action&lt;TModel, T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier@-system-threading-tasks-task-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion(ref ObservableObject.TaskNotifier, Task, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier@-system-threading-tasks-task-system-action((system-threading-tasks-task))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion(ref ObservableObject.TaskNotifier, Task, Action&lt;Task&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion-1(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier((-0))@-system-threading-tasks-task((-0))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion&lt;T&gt;(ref ObservableObject.TaskNotifier&lt;T&gt;, Task&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion-1(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier((-0))@-system-threading-tasks-task((-0))-system-action((system-threading-tasks-task((-0))))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion&lt;T&gt;(ref ObservableObject.TaskNotifier&lt;T&gt;, Task&lt;T&gt;, Action&lt;Task&lt;T&gt;&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -154,6 +211,9 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h2 id="MAS_SharedLibrary_Communication_ProtocolModelBase_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>属性支持 MVVM 绑定</p>
+</div>
 
 
   <h2 class="section" id="properties">Properties
@@ -164,7 +224,7 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Communication_ProtocolModelBase_Id" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.Id">
   Id
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/Communicaiton/ProtocolModelBase.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Communication.ProtocolModelBase.g.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置唯一标识符Guid</p>
@@ -172,7 +232,8 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Guid Id { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public Guid Id { get; set; }</code></pre>
   </div>
 
 
@@ -196,7 +257,7 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Communication_ProtocolModelBase_Ip" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.Ip">
   Ip
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/Communicaiton/ProtocolModelBase.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Communication.ProtocolModelBase.g.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置 ip 地址</p>
@@ -204,7 +265,8 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Ip { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string Ip { get; set; }</code></pre>
   </div>
 
 
@@ -224,19 +286,20 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
 
 
 
-  <a id="MAS_SharedLibrary_Communication_ProtocolModelBase_IsActive_" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.IsActive*"></a>
+  <a id="MAS_SharedLibrary_Communication_ProtocolModelBase_IsBusy_" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.IsBusy*"></a>
 
-  <h3 id="MAS_SharedLibrary_Communication_ProtocolModelBase_IsActive" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.IsActive">
-  IsActive
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/Communicaiton/ProtocolModelBase.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Communication_ProtocolModelBase_IsBusy" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.IsBusy">
+  IsBusy
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Communication.ProtocolModelBase.g.cs/#L117"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置是否活跃</p>
+  <div class="markdown level1 summary"><p>获取或设置是否忙碌中</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsActive { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public bool IsBusy { get; set; }</code></pre>
   </div>
 
 
@@ -256,11 +319,11 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
 
 
 
-  <a id="MAS_SharedLibrary_Communication_ProtocolModelBase_IsConnect_" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.IsConnect*"></a>
+  <a id="MAS_SharedLibrary_Communication_ProtocolModelBase_IsConnected_" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.IsConnected*"></a>
 
-  <h3 id="MAS_SharedLibrary_Communication_ProtocolModelBase_IsConnect" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.IsConnect">
-  IsConnect
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/Communicaiton/ProtocolModelBase.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Communication_ProtocolModelBase_IsConnected" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.IsConnected">
+  IsConnected
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Communication.ProtocolModelBase.g.cs/#L96"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置是否连接</p>
@@ -268,7 +331,8 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsConnect { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public bool IsConnected { get; set; }</code></pre>
   </div>
 
 
@@ -292,7 +356,7 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Communication_ProtocolModelBase_Key" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.Key">
   Key
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/Communicaiton/ProtocolModelBase.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Communication.ProtocolModelBase.g.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置协议实例的唯一键</p>
@@ -300,7 +364,8 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Key { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string Key { get; set; }</code></pre>
   </div>
 
 
@@ -324,7 +389,7 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_SharedLibrary_Communication_ProtocolModelBase_LastUsed" data-uid="MAS.SharedLibrary.Communication.ProtocolModelBase.LastUsed">
   LastUsed
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/Communicaiton/ProtocolModelBase.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Communication.ProtocolModelBase.g.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置最后使用时间</p>
@@ -332,7 +397,8 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime LastUsed { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public DateTime LastUsed { get; set; }</code></pre>
   </div>
 
 
@@ -356,7 +422,7 @@ Class ProtocolModelBase  <a class="header-action link-secondary" title="View sou
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/Communicaiton/ProtocolModelBase.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Communication.ProtocolModelBase.g.cs/#L7" class="edit-link">Edit this page</a>
         </div>
 
 

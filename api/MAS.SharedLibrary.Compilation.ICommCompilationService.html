@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Compilation_ICommCompilationService" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService" class="text-break">
-Interface ICommCompilationService  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Compilation/ICommCompilationService.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Interface ICommCompilationService  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICommCompilationService.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Interface ICommCompilationService  <a class="header-action link-secondary" title
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ICommCompilationService : ICompilationService, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface ICommCompilationService : ICompilationService, IDisposable, ICommCompiledTypeProvider</code></pre>
   </div>
 
 
@@ -130,7 +130,7 @@ Interface ICommCompilationService  <a class="header-action link-secondary" title
       <a class="xref" href="MAS.SharedLibrary.Compilation.ICompilationService.html#MAS_SharedLibrary_Compilation_ICompilationService_LastCompilationResult">ICompilationService.LastCompilationResult</a>
     </div>
     <div>
-      <a class="xref" href="MAS.SharedLibrary.Compilation.ICompilationService.html#MAS_SharedLibrary_Compilation_ICompilationService_LoadAndCompileAsync">ICompilationService.LoadAndCompileAsync()</a>
+      <a class="xref" href="MAS.SharedLibrary.Compilation.ICompilationService.html#MAS_SharedLibrary_Compilation_ICompilationService_LoadAndCompileAsync_System_Threading_CancellationToken_">ICompilationService.LoadAndCompileAsync(CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="MAS.SharedLibrary.Compilation.ICompilationService.html#MAS_SharedLibrary_Compilation_ICompilationService_GetTypeByName_System_String_System_String_">ICompilationService.GetTypeByName(string, string)</a>
@@ -168,6 +168,15 @@ Interface ICommCompilationService  <a class="header-action link-secondary" title
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
     </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Compilation.ICommCompiledTypeProvider.html#MAS_SharedLibrary_Compilation_ICommCompiledTypeProvider_GetTaskIndexForType_System_Type_">ICommCompiledTypeProvider.GetTaskIndexForType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Compilation.ICommCompiledTypeProvider.html#MAS_SharedLibrary_Compilation_ICommCompiledTypeProvider_GetDataReadStructTypes_System_Boolean_">ICommCompiledTypeProvider.GetDataReadStructTypes(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Compilation.ICommCompiledTypeProvider.html#MAS_SharedLibrary_Compilation_ICommCompiledTypeProvider_GetTaskHandlerReadStructType">ICommCompiledTypeProvider.GetTaskHandlerReadStructType()</a>
+    </div>
   </dd></dl>
 
 
@@ -179,283 +188,34 @@ Interface ICommCompilationService  <a class="header-action link-secondary" title
 </h2>
 
 
-  <a id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetDataReadStructTypes_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetDataReadStructTypes*"></a>
+  <a id="MAS_SharedLibrary_Compilation_ICommCompilationService_PrepareDataReadTypesAsync_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.PrepareDataReadTypesAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetDataReadStructTypes" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetDataReadStructTypes">
-  GetDataReadStructTypes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Compilation/ICommCompilationService.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Compilation_ICommCompilationService_PrepareDataReadTypesAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.PrepareDataReadTypesAsync(System.Threading.CancellationToken)">
+  PrepareDataReadTypesAsync(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICommCompilationService.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取编译后的所有定义的任务读取结构体类型</p>
+  <div class="markdown level1 summary"><p>异步准备并返回当前通讯实例可用的“数据读取”结构体类型集合</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerable&lt;Type&gt; GetDataReadStructTypes()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
-    <dd><p>结构体类型的枚举</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetDataWriteStructTypes_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetDataWriteStructTypes*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetDataWriteStructTypes" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetDataWriteStructTypes">
-  GetDataWriteStructTypes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Compilation/ICommCompilationService.cs/#L45"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取编译后的所有定义的任务写入结构体类型</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerable&lt;Type&gt; GetDataWriteStructTypes()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
-    <dd><p>结构体类型的枚举</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetStructTypes_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetStructTypes*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetStructTypes" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetStructTypes">
-  GetStructTypes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Compilation/ICommCompilationService.cs/#L33"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取编译后的所有结构体类型</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerable&lt;Type&gt; GetStructTypes()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
-    <dd><p>结构体类型的枚举</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetTaskHandlerReadStructType_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetTaskHandlerReadStructType*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetTaskHandlerReadStructType" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetTaskHandlerReadStructType">
-  GetTaskHandlerReadStructType()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Compilation/ICommCompilationService.cs/#L53"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取编译后定义的任务读取处理结构体类型</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Type GetTaskHandlerReadStructType()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>结构体类型的枚举</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
-    <dd><p>当无法加载指定的程序集时抛出</p>
-</dd>
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.typeloadexception">TypeLoadException</a></dt>
-    <dd><p>在已加载的程序集内找不到指定的类型时抛出</p>
-</dd>
-  </dl>
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetTaskHandlerWriteStructType_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetTaskHandlerWriteStructType*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetTaskHandlerWriteStructType" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetTaskHandlerWriteStructType">
-  GetTaskHandlerWriteStructType()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Compilation/ICommCompilationService.cs/#L61"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取编译后定义的任务写入处理结构体类型</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Type GetTaskHandlerWriteStructType()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>结构体类型的枚举</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
-    <dd><p>当无法加载指定的程序集时抛出</p>
-</dd>
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.typeloadexception">TypeLoadException</a></dt>
-    <dd><p>在已加载的程序集内找不到指定的类型时抛出</p>
-</dd>
-  </dl>
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetTaskIndexForType_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetTaskIndexForType*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICommCompilationService_GetTaskIndexForType_System_Type_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.GetTaskIndexForType(System.Type)">
-  GetTaskIndexForType(Type)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Compilation/ICommCompilationService.cs/#L27"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取对应类型的任务索引</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">short GetTaskIndexForType(Type type)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;IReadOnlyList&lt;Type&gt;&gt; PrepareDataReadTypesAsync(CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>结构体类型</p>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
-    <dd><p>任务索引，如果不存在则返回 -1</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;&gt;</dt>
+    <dd><p>异步操作任务结果，一个只读的结构体类型列表</p>
 </dd>
   </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICommCompilationService_InitPlcStructuresAsync_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.InitPlcStructuresAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICommCompilationService_InitPlcStructuresAsync" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.InitPlcStructuresAsync">
-  InitPlcStructuresAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Compilation/ICommCompilationService.cs/#L20"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步初始化 PLC 通信结构体和代码生成</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task InitPlcStructuresAsync()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步操作任务结果</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICommCompilationService_PopulateAssemblyMetadata_" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.PopulateAssemblyMetadata*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICommCompilationService_PopulateAssemblyMetadata_System_Collections_Generic_IEnumerable_MAS_SharedLibrary_Compilation_AssemblyInfo__" data-uid="MAS.SharedLibrary.Compilation.ICommCompilationService.PopulateAssemblyMetadata(System.Collections.Generic.IEnumerable{MAS.SharedLibrary.Compilation.AssemblyInfo})">
-  PopulateAssemblyMetadata(IEnumerable&lt;AssemblyInfo&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Compilation/ICommCompilationService.cs/#L67"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>填充程序集的元数据，在编译完成后调用以填充文件路径和其他元信息</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void PopulateAssemblyMetadata(IEnumerable&lt;AssemblyInfo&gt; assemblyInfos)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>assemblyInfos</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.SharedLibrary.Compilation.AssemblyInfo.html">AssemblyInfo</a>&gt;</dt>
-    <dd><p>需要更新的程序集信息集合</p>
-</dd>
-  </dl>
-
 
 
 
@@ -471,7 +231,7 @@ Interface ICommCompilationService  <a class="header-action link-secondary" title
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Compilation/ICommCompilationService.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICommCompilationService.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

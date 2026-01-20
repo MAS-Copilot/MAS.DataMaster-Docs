@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Database_IDbConfig" data-uid="MAS.SharedLibrary.Database.IDbConfig" class="text-break">
-Interface IDbConfig  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Interface IDbConfig  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IDbConfig : ICloneable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IDbConfig : IHasBuildConfig, ICloneable</code></pre>
   </div>
 
 
@@ -128,43 +128,11 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 </h2>
 
 
-  <a id="MAS_SharedLibrary_Database_IDbConfig_ActiveThreshold_" data-uid="MAS.SharedLibrary.Database.IDbConfig.ActiveThreshold*"></a>
-
-  <h3 id="MAS_SharedLibrary_Database_IDbConfig_ActiveThreshold" data-uid="MAS.SharedLibrary.Database.IDbConfig.ActiveThreshold">
-  ActiveThreshold
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L54"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置实例活跃阈值，单位分钟，超过设置阈值则表示不活跃</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ushort ActiveThreshold { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_SharedLibrary_Database_IDbConfig_Build_" data-uid="MAS.SharedLibrary.Database.IDbConfig.Build*"></a>
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_Build" data-uid="MAS.SharedLibrary.Database.IDbConfig.Build">
   Build
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取构建相关的配置</p>
@@ -196,7 +164,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_ConnectionTimeout" data-uid="MAS.SharedLibrary.Database.IDbConfig.ConnectionTimeout">
   ConnectionTimeout
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置连接数据库的超时时间（秒）</p>
@@ -228,7 +196,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_DatabaseName" data-uid="MAS.SharedLibrary.Database.IDbConfig.DatabaseName">
   DatabaseName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置数据库名称</p>
@@ -260,7 +228,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_ExecutionTimeout" data-uid="MAS.SharedLibrary.Database.IDbConfig.ExecutionTimeout">
   ExecutionTimeout
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置执行超时时间（ms）</p>
@@ -288,43 +256,11 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
 
 
-  <a id="MAS_SharedLibrary_Database_IDbConfig_ExpirationTime_" data-uid="MAS.SharedLibrary.Database.IDbConfig.ExpirationTime*"></a>
-
-  <h3 id="MAS_SharedLibrary_Database_IDbConfig_ExpirationTime" data-uid="MAS.SharedLibrary.Database.IDbConfig.ExpirationTime">
-  ExpirationTime
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L49"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置实例过期时间，单位分钟，将清除过期的实例</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ushort ExpirationTime { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_SharedLibrary_Database_IDbConfig_HeartbeatInterval_" data-uid="MAS.SharedLibrary.Database.IDbConfig.HeartbeatInterval*"></a>
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_HeartbeatInterval" data-uid="MAS.SharedLibrary.Database.IDbConfig.HeartbeatInterval">
   HeartbeatInterval
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置心跳间隔(s)</p>
@@ -352,43 +288,11 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
 
 
-  <a id="MAS_SharedLibrary_Database_IDbConfig_IsAutoClear_" data-uid="MAS.SharedLibrary.Database.IDbConfig.IsAutoClear*"></a>
-
-  <h3 id="MAS_SharedLibrary_Database_IDbConfig_IsAutoClear" data-uid="MAS.SharedLibrary.Database.IDbConfig.IsAutoClear">
-  IsAutoClear
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L59"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置是否自动清除过期实例</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool IsAutoClear { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_SharedLibrary_Database_IDbConfig_Password_" data-uid="MAS.SharedLibrary.Database.IDbConfig.Password*"></a>
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_Password" data-uid="MAS.SharedLibrary.Database.IDbConfig.Password">
   Password
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置数据库密码</p>
@@ -420,7 +324,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_Port" data-uid="MAS.SharedLibrary.Database.IDbConfig.Port">
   Port
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置数据库服务器端口</p>
@@ -452,7 +356,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_Server" data-uid="MAS.SharedLibrary.Database.IDbConfig.Server">
   Server
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置数据库服务器地址</p>
@@ -484,7 +388,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_Type" data-uid="MAS.SharedLibrary.Database.IDbConfig.Type">
   Type
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置数据库类型</p>
@@ -516,7 +420,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_User" data-uid="MAS.SharedLibrary.Database.IDbConfig.User">
   User
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置数据库用户名</p>
@@ -552,7 +456,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_Clone__1" data-uid="MAS.SharedLibrary.Database.IDbConfig.Clone``1">
   Clone&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L85"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>泛型克隆方法，返回指定类型的克隆实例</p>
@@ -591,7 +495,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_GetConnectionString" data-uid="MAS.SharedLibrary.Database.IDbConfig.GetConnectionString">
   GetConnectionString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取数据库连接字符串</p>
@@ -629,7 +533,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Database_IDbConfig_GetServerConnectionString" data-uid="MAS.SharedLibrary.Database.IDbConfig.GetServerConnectionString">
   GetServerConnectionString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取服务器级连接字符串（不包含数据库名称，用于创建数据库等操作）</p>
@@ -667,7 +571,7 @@ Interface IDbConfig  <a class="header-action link-secondary" title="View source"
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Database/IDbConfig.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbConfig.cs/#L17" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Modbus TCP Protocol | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Modbus TCP Protocol | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS-Communication/ModbusTcpCommunication.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="modbus-tcp-protocol">Modbus TCP Protocol</h1>
+
+<h2 id="概述">概述</h2>
+<p>Modbus 协议是由 Modicon 公司（现施耐德电气）于 1979 年开发的工业通信协议，最初专为 PLC（可编程逻辑控制器）通信而设计​
+。该协议具有简单、高效、开放和可靠等特点，已成为工业自动化领域应用最广泛的通信协议之一</p>
+<p>从技术架构来看，Modbus 协议位于 OSI 模型的第 7 层（应用层），定义了主从式（Master-Slave）通信架构​
+。在这种架构中，主设备负责发起通信请求，从设备被动响应。一个 Modbus 网络支持最多 247 个从设备（地址范围 1-247），其中地址 0 为广播地址​</p>
+<h2 id="角色定位">角色定位</h2>
+<p><strong><code>ModbusProtocolTcp</code>始终作为 Modbus TCP 主站（Client / Master） 使用：</strong></p>
+<ul>
+<li>主站主动发起所有请求</li>
+<li>从站被动响应</li>
+<li>不支持从站（Server）模式</li>
+<li>不支持 RTU 直连（仅 TCP）</li>
+</ul>
+<p>若需要 RTU / TCP Gateway / 从站能力，应使用独立实现，不在本组件职责范围内</p>
+<h2 id="功能码与接口映射">功能码与接口映射</h2>
+<table>
+<thead>
+<tr>
+<th>接口方法</th>
+<th>数据区</th>
+<th>功能码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReadBitsAsync(Coils)</td>
+<td>线圈</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>ReadBitsAsync(DiscreteInputs)</td>
+<td>离散输入</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>ReadRegistersAsync(HoldingRegisters)</td>
+<td>保持寄存器</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>ReadRegistersAsync(InputRegisters)</td>
+<td>输入寄存器</td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>WriteBitsAsync(1 bit)</td>
+<td>线圈</td>
+<td>0x05</td>
+</tr>
+<tr>
+<td>WriteBitsAsync(n bits)</td>
+<td>线圈</td>
+<td>0x0F</td>
+</tr>
+<tr>
+<td>WriteRegistersAsync(1 reg)</td>
+<td>保持寄存器</td>
+<td>0x06</td>
+</tr>
+<tr>
+<td>WriteRegistersAsync(n regs)</td>
+<td>保持寄存器</td>
+<td>0x10</td>
+</tr>
+</tbody>
+</table>
+<h2 id="协议基础">协议基础</h2>
+<h3 id="协议架构与分层模型">协议架构与分层模型</h3>
+<p>Modbus 协议的核心架构基于主从式通信模型，具有严格的层次结构​
+。在通信网络中，只能有一个主设备（Master），它负责发起所有通信请求并处理从设备的响应。从设备（Slave）不能主动发送数据，只能在接收到主设备的合法请求后进行响应​</p>
+<p>在实际应用中，Modbus 支持四种主要的数据模型：线圈（Coils）、离散输入（Discrete Inputs）、输入寄存器（Input Registers）和保持寄存器（Holding Registers）。每种数据模型都有特定的地址范围和访问权限：</p>
+<ul>
+<li>线圈（00001-09999）：可读可写的开关量输出​</li>
+<li>离散输入（10001-19999）：只读的开关量输入​</li>
+<li>输入寄存器（30001-39999）：只读的模拟量输入​</li>
+<li>保持寄存器（40001-49999）：可读可写的模拟量数据</li>
+</ul>
+<h3 id="传输模式">传输模式</h3>
+<p>Modbus TCP 是基于以太网的传输模式，在 RTU 帧基础上增加了 7 字节的 MBAP（Modbus Application Protocol）报文头​
+。MBAP 头包含事务标识符（2 字节）、协议标识符（2 字节）、长度字段（2 字节）和单元标识符（1 字节），支持多客户端并发访问和 TCP/IP 网络通信。Modbus TCP 使用标准的 TCP 端口 502，支持全双工通信，在 100Mbps 网络中典型吞吐量可达 8000 帧 / 秒</p>
+<h3 id="功能码体系">功能码体系</h3>
+<p>Modbus 功能码是协议的核心指令集，用于定义各种数据访问和控制操作。功能码以一字节（8 位）形式表示，取值范围为 0x01 到 0x7F（1-127），其中常用功能码集中在 0x01 至 0x10 之间​</p>
+<p><strong>根据功能类型，可将常用功能码分为以下几类：</strong></p>
+<ul>
+<li>读取类功能码：​
+<ul>
+<li>0x01（读线圈状态）：读取一个或多个离散输出（线圈）的状态，最多可读取 2000 个线圈​</li>
+<li>0x02（读离散输入状态）：读取一个或多个离散输入的状态，最多可读取 2000 个离散输入​</li>
+<li>0x03（读保持寄存器）：读取一个或多个保持寄存器的值，最多可读取 125 个寄存器​
+= 0x04（读输入寄存器）：读取一个或多个输入寄存器的值，最多可读取 125 个寄存器​</li>
+</ul>
+</li>
+<li>写入类功能码：​
+<ul>
+<li>0x05（写单个线圈）：强制设置单个线圈的状态（ON/OFF）​</li>
+<li>0x06（写单个保持寄存器）：向单个保持寄存器写入 16 位数据​</li>
+<li>0x0F（写多个线圈）：批量设置多个线圈的状态，最多可写 1968 个线圈​</li>
+<li>0x10（写多个保持寄存器）：批量向多个保持寄存器写入数据，最多可写 123 个寄存器</li>
+</ul>
+</li>
+<li>特殊功能码：​</li>
+<li>0x07（报告从设备 ID）：获取从设备的标识信息​</li>
+<li>0x08（诊断）：用于通信链路测试和错误检测​​</li>
+<li>0x17（读写多个寄存器）：同时读取和写入多个寄存器，最多可操作 125 个寄存器</li>
+</ul>
+<h3 id="帧结构与事务匹配">帧结构与事务匹配</h3>
+<ul>
+<li>一次请求/响应以 MBAP Header + PDU 组成：
+<ul>
+<li>MBAP（7 字节）：TransactionId、ProtocolId、Length、UnitId</li>
+<li>PDU：FunctionCode + Data</li>
+</ul>
+</li>
+</ul>
+<h2 id="寄存器地址映射">寄存器地址映射</h2>
+<p>Modbus 寄存器地址采用分层映射机制，理解这种映射关系对于正确访问设备数据至关重要</p>
+<h3 id="地址映射规则">地址映射规则</h3>
+<p><strong>Modbus 地址采用 5 位数字格式，第一位表示数据类型，后四位表示偏移地址：</strong></p>
+<ul>
+<li>0xxxx：线圈（00001-09999）​</li>
+<li>1xxxx：离散输入（10001-19999）​</li>
+<li>3xxxx：输入寄存器（30001-39999）​</li>
+<li>4xxxx：保持寄存器（40001-49999）</li>
+</ul>
+<h3 id="相对地址与绝对地址">相对地址与绝对地址</h3>
+<p><strong>在实际通信中，协议使用的是相对地址而非绝对地址。相对地址等于绝对地址减 1。例如：</strong></p>
+<ul>
+<li>绝对地址 40001 → 相对地址 0​</li>
+<li>绝对地址 40002 → 相对地址 1​</li>
+<li>绝对地址 40100 → 相对地址 99</li>
+</ul>
+<h3 id="多字节数据处理">多字节数据处理</h3>
+<p><strong>对于 32 位或 64 位数据，需要使用多个连续的寄存器存储：</strong></p>
+<ul>
+<li>32 位整数：使用 2 个连续寄存器，高位在前​</li>
+<li>32 位浮点数：使用 2 个连续寄存器，按照 <a href="https://zh.wikipedia.org/wiki/IEEE_754">IEEE 754</a> 格式存储​</li>
+<li>64 位数据：使用 4 个连续寄存器</li>
+</ul>
+<h2 id="使用示例">使用示例</h2>
+<pre><code class="lang-csharp">IModbusProtocol protocol = new ModbusProtocolTcp(config);
+
+// 连接
+await protocol.ConnectAsync(cts);
+
+// 读线圈
+bool[] coils = await protocol.ReadBitsAsync(
+    ModbusDataArea.Coils,
+    startAddress: 0,
+    count: 16,
+    unitId: null,
+    cts: cts);
+
+// 读保持寄存器
+ushort[] regs = await protocol.ReadRegistersAsync(
+    ModbusDataArea.HoldingRegisters,
+    startAddress: 0,
+    count: 10,
+    unitId: null,
+    cts: cts);
+
+// 写单线圈
+await protocol.WriteBitsAsync(
+    startAddress: 5,
+    values: [true],
+    unitId: null,
+    cts: cts);
+
+// 写多个寄存器
+await protocol.WriteRegistersAsync(
+    startAddress: 100,
+    values: [1, 2, 3, 4],
+    unitId: null,
+    cts: cts);
+
+// 读结构体
+public struct DeviceStatus {
+    public ushort AlarmCode { get; set; }
+    public ushort State { get; set; }
+}
+var status = await protocol.ReadStructAsync&lt;DeviceStatus&gt;(startAddress: 100, cts);
+
+// 写结构体
+public struct DeviceParams {
+    public ushort Speed { get; set; }
+    public ushort Acc { get; set; }
+}
+await protocol.WriteStructAsync(new DeviceParams { Speed = 1200, Acc = 50 }, startAddress: 200, cts);
+
+// 断开
+protocol.Disconnect();
+</code></pre>
+<h2 id="常见问题">常见问题</h2>
+<div class="TIP">
+<h5>Tip</h5>
+<p><strong>开关量状态监控</strong></p>
+<ul>
+<li>设备运行状态：使用 0x01 读线圈状态</li>
+<li>传感器输入状态：使用 0x02 读离散输入</li>
+<li>单设备控制：使用 0x05 写单个线圈</li>
+<li>批量设备控制：使用 0x0F 写多个线圈</li>
+</ul>
+</div>
+<hr>
+<div class="TIP">
+<h5>Tip</h5>
+<p><strong>模拟量数据采集</strong></p>
+<ul>
+<li>传感器测量值：使用 0x04 读输入寄存器</li>
+<li>设备参数读取：使用 0x03 读保持寄存器</li>
+<li>参数配置：使用 0x06 或 0x10 写保持寄存器</li>
+</ul>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS-Communication/ModbusTcpCommunication.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

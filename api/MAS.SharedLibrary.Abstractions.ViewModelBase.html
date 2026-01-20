@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Abstractions_ViewModelBase" data-uid="MAS.SharedLibrary.Abstractions.ViewModelBase" class="text-break">
-Class ViewModelBase  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L21"><i class="bi bi-code-slash"></i></a>
+Class ViewModelBase  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Abstractions.ViewModelBase.g.cs/#L7"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -131,8 +131,8 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
       <div><a class="xref" href="MAS.Controls.PageNumberModel.html">PageNumberModel</a></div>
       <div><a class="xref" href="MAS.PrismaTalk.Abstractions.DialogViewModelBase.html">DialogViewModelBase</a></div>
       <div><a class="xref" href="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.html">MainViewModel</a></div>
-      <div><a class="xref" href="MAS.SharedLibrary.DataExport.DataExportTypeDetails.html">DataExportTypeDetails</a></div>
-      <div><a class="xref" href="MAS.SharedLibrary.Database.DataAccessTypeDetails.html">DataAccessTypeDetails</a></div>
+      <div><a class="xref" href="MAS.SharedLibrary.Compilation.DataAccessTypeDetails.html">DataAccessTypeDetails</a></div>
+      <div><a class="xref" href="MAS.SharedLibrary.Compilation.DataExportTypeDetails.html">DataExportTypeDetails</a></div>
       <div><a class="xref" href="MAS.Utilities.DXFPathPlanning.TrajectoryParameters.html">TrajectoryParameters</a></div>
       <div><a class="xref" href="MAS.Utilities.WordPrinter.BarcodeParameters.html">BarcodeParameters</a></div>
       <div><a class="xref" href="MAS.Utilities.WordPrinter.PrintParameters.html">PrintParameters</a></div>
@@ -226,7 +226,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Abstractions_ViewModelBase_BusyCursor" data-uid="MAS.SharedLibrary.Abstractions.ViewModelBase.BusyCursor">
   BusyCursor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>忙碌状态光标</p>
@@ -257,7 +257,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Abstractions_ViewModelBase_WorkingCursor" data-uid="MAS.SharedLibrary.Abstractions.ViewModelBase.WorkingCursor">
   WorkingCursor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>正在工作/任务中光标</p>
@@ -293,7 +293,7 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_SharedLibrary_Abstractions_ViewModelBase_IsBusy" data-uid="MAS.SharedLibrary.Abstractions.ViewModelBase.IsBusy">
   IsBusy
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Abstractions.ViewModelBase.g.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置是否忙碌</p>
@@ -301,8 +301,43 @@ Class ViewModelBase  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[JsonIgnore]
-public virtual bool IsBusy { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonIgnore]
+public bool IsBusy { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Abstractions_ViewModelBase_IsWorking_" data-uid="MAS.SharedLibrary.Abstractions.ViewModelBase.IsWorking*"></a>
+
+  <h3 id="MAS_SharedLibrary_Abstractions_ViewModelBase_IsWorking" data-uid="MAS.SharedLibrary.Abstractions.ViewModelBase.IsWorking">
+  IsWorking
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Abstractions.ViewModelBase.g.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是正在任务中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonIgnore]
+public bool IsWorking { get; set; }</code></pre>
   </div>
 
 
@@ -330,7 +365,7 @@ public virtual bool IsBusy { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Abstractions_ViewModelBase_ResetCursor" data-uid="MAS.SharedLibrary.Abstractions.ViewModelBase.ResetCursor">
   ResetCursor()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>恢复默认光标状态</p>
@@ -357,7 +392,7 @@ public virtual bool IsBusy { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Abstractions_ViewModelBase_SetBusyCursor" data-uid="MAS.SharedLibrary.Abstractions.ViewModelBase.SetBusyCursor">
   SetBusyCursor()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L58"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置为忙碌状态光标</p>
@@ -384,7 +419,7 @@ public virtual bool IsBusy { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Abstractions_ViewModelBase_SetField__1___0____0_System_String_" data-uid="MAS.SharedLibrary.Abstractions.ViewModelBase.SetField``1(``0@,``0,System.String)">
   SetField&lt;T&gt;(ref T, T, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>辅助方法，用于设置属性值并触发属性更改通知</p>
@@ -435,7 +470,7 @@ public virtual bool IsBusy { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Abstractions_ViewModelBase_SetWorkingCursor" data-uid="MAS.SharedLibrary.Abstractions.ViewModelBase.SetWorkingCursor">
   SetWorkingCursor()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置为正在工作/任务中的光标</p>
@@ -462,7 +497,7 @@ public virtual bool IsBusy { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Abstractions/ViewModelBase.cs/#L21" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/obj/Release/net8.0-windows/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/MAS.SharedLibrary.Abstractions.ViewModelBase.g.cs/#L7" class="edit-link">Edit this page</a>
         </div>
 
 
