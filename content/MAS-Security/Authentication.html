@@ -599,6 +599,23 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </tr>
 </tbody>
 </table>
+<h4 id="handeyecalibrationviewmodel">HandEyeCalibrationViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ResetCommand</td>
+<td>重置标定</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
 <h3 id="masdatamastercontrolsimageproceflowviewmodelsexecute">MAS.DataMaster.Controls.ImageProceFlow.ViewModels.Execute</h3>
 <h4 id="posecalibrationviewmodel">PoseCalibrationViewModel</h4>
 <table>
@@ -630,7 +647,7 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <tbody>
 <tr>
 <td>SelectedImageFileCommand</td>
-<td>选择图像文件</td>
+<td>选择图像源文件</td>
 <td>Operator</td>
 </tr>
 <tr>
@@ -640,12 +657,22 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </tr>
 <tr>
 <td>OpenFilePathCommand</td>
-<td>打开文件路径</td>
+<td>打开图像源文件路径</td>
 <td>Operator</td>
 </tr>
 <tr>
 <td>LoadImageCommand</td>
 <td>加载图片</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SelectedImageFolderommand</td>
+<td>选择图像源文件夹</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenFolderPathCommand</td>
+<td>打开图像源文件夹路径</td>
 <td>Operator</td>
 </tr>
 </tbody>
@@ -668,6 +695,24 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <tr>
 <td>SearchDeviceListCommand</td>
 <td>查找可用的相机设备列表</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamastercontrolsimageproceflowviewmodelstools">MAS.DataMaster.Controls.ImageProceFlow.ViewModels.Tools</h3>
+<h4 id="posegenerationviewmodel">PoseGenerationViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StateSwitchCommand</td>
+<td>切换状态</td>
 <td>Operator</td>
 </tr>
 </tbody>
@@ -1060,6 +1105,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>ViewResourcesCommand</td>
 <td>查看资源</td>
 <td>Engineer</td>
+</tr>
+<tr>
+<td>CopyPipelineIdCommand</td>
+<td>复制管道 Id</td>
+<td>Operator</td>
 </tr>
 </tbody>
 </table>

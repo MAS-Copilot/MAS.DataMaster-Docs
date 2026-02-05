@@ -89,22 +89,49 @@
 
 <h2 id="拓扑或构建流程图">拓扑或构建流程图</h2>
 <p><img src="../../images/Vision/VisionFlow.drawio.png" alt="VisionFlow"></p>
-<h2 id="基本服务">基本服务</h2>
-<p><strong>模块连接服务，建立、移除模块间的连接关系：</strong></p>
-<pre><code class="lang-csharp">services.AddSingleton&lt;IModuleConnectionService, ModuleConnectionService&gt;();
-</code></pre>
-<p><strong>模块连接线管理，更新、创建、移除表示UI元素的线条：</strong></p>
-<pre><code class="lang-csharp">services.AddSingleton&lt;IConnectionLineManager, ConnectionLineManager&gt;();
-</code></pre>
-<p><strong>模块流程执行管理服务，拓扑排序逻辑依赖关系处理：</strong></p>
-<pre><code class="lang-csharp">services.AddTransient&lt;IExecutionFlowManager, ExecutionFlowManagerService&gt;();
-</code></pre>
-<p><strong>模块生命周期管理，在主画布中统一管理所有的模块的添加、删除；同时支持无画布的实例创建：</strong></p>
-<pre><code class="lang-csharp">services.AddTransient&lt;IModuleControlManager, ModuleControlManager&gt;();
-</code></pre>
-<p><strong>工程实例运行管理，在后台运行工作台中的实例列表：</strong></p>
-<pre><code class="lang-csharp">services.AddTransient&lt;IVisionProjectManager, VisionProjectManagerService&gt;();
-</code></pre>
+<h2 id="分类">分类</h2>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工具（Tools）</td>
+<td>不参与流程</td>
+</tr>
+<tr>
+<td>准备（Prepare）</td>
+<td>流程前置节点</td>
+</tr>
+<tr>
+<td>设备输入（DeviceInputs）</td>
+<td>数据源节点</td>
+</tr>
+<tr>
+<td>资源（Resources）</td>
+<td>被流程消费的资源</td>
+</tr>
+<tr>
+<td>预处理（Preproc）</td>
+<td>数据变换节点</td>
+</tr>
+<tr>
+<td>扩展（Expanding）</td>
+<td>插件型流程节点</td>
+</tr>
+<tr>
+<td>执行（Execute）</td>
+<td>有副作用的流程节点</td>
+</tr>
+<tr>
+<td>结束（Finish）</td>
+<td>流程收尾节点</td>
+</tr>
+</tbody>
+</table>
 <h3 id="队列">队列</h3>
 <p><strong>1. 拓扑排序中的队列：</strong></p>
 <p>初始化阶段</p>

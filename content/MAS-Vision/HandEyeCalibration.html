@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>手眼标定 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="手眼标定 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS-Vision/HandEyeCalibration.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="手眼标定">手眼标定</h1>
+
+<h2 id="概述">概述</h2>
+<p>手眼标定用于建立相机坐标系与机器人坐标系之间的几何关系，其目标是：</p>
+<blockquote>
+<p>将视觉系统得到的“目标在相机坐标系下的位置&quot;，转换为机器人能够直接使用的“目标在机器人基坐标系下的位置</p>
+</blockquote>
+<ul>
+<li>建立：相机坐标系 ↔ 机器人坐标系的刚体关系</li>
+<li>求解：相机与机器人之间的外参</li>
+</ul>
+<h2 id="公式">公式</h2>
+<ul>
+<li>手眼标定（眼在手上）：
+<ul>
+<li><code>T_base_to_target = T_base_to_tool × T_tool_to_cam × T_cam_to_target</code></li>
+</ul>
+</li>
+<li>手眼标定（眼在手外）：
+<ul>
+<li><code>T_base_to_target = T_base_to_cam × T_cam_to_target</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="类型">类型</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>相机是否随末端动</th>
+<th>手眼标定结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>眼在手上（Eye-in-Hand）</td>
+<td>是</td>
+<td><code>T_tool_to_cam</code></td>
+</tr>
+<tr>
+<td>眼在手外（Eye-to-Hand）</td>
+<td>否</td>
+<td><code>T_base_to_cam</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="变换符号">变换符号</h3>
+<ul>
+<li><code>T_base_to_target</code>: 机器人基坐标系 → 目标坐标系
+<ul>
+<li>含义：目标在机器人基坐标系（Base）下的位姿</li>
+<li>用途：最终下发给机器人 / PLC 使用</li>
+</ul>
+</li>
+<li><code>T_base_to_tool</code>: 机器人基坐标系 → 机器人末端坐标系
+<ul>
+<li>含义：机器人末端（Tool）在机器人基坐标系下的当前位姿</li>
+<li>来源：机器人控制器 / PLC 实时读取</li>
+<li>特点：运行时实时变化</li>
+</ul>
+</li>
+<li><code>T_tool_to_cam</code>: 机器人末端坐标系 → 相机坐标系
+<ul>
+<li>含义：相机相对于机器人末端的固定安装关系</li>
+<li>来源：眼在手上手眼标定结果</li>
+<li>特点：固定不变</li>
+</ul>
+</li>
+<li><code>T_base_to_cam</code>: 机器人基坐标系 → 相机坐标系
+<ul>
+<li>含义：相机在机器人基坐标系下的位姿</li>
+<li>来源：眼在手外手眼标定结果</li>
+<li>特点：固定不变</li>
+</ul>
+</li>
+<li><code>T_cam_to_target</code>: 相机坐标系 → 目标坐标系
+<ul>
+<li>含义：目标相对于相机坐标系的位姿</li>
+<li>来源：视觉算法输出</li>
+<li>常见形式
+<ul>
+<li>2D：<code>(X, Y, θ)</code></li>
+<li>3D：<code>(X, Y, Z, Rx, Ry, Rz)</code></li>
+<li>说明：表示相对相机的偏移量，不是绝对世界坐标</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="职责划分">职责划分</h2>
+<ul>
+<li>视觉系统
+<ul>
+<li>只负责输出<code>T_cam_to_target</code></li>
+<li>不关心机器人、基坐标、手眼关系</li>
+</ul>
+</li>
+<li>DM（中间调度/算法模块）
+<ul>
+<li>读取机器人当前位姿<code>T_base_to_tool</code></li>
+<li>持有手眼标定结果</li>
+<li>计算<code>T_base_to_target</code></li>
+<li>可进一步叠加抓取偏置</li>
+</ul>
+</li>
+<li>机器人/PCL
+<ul>
+<li>只接收并执行<code>T_base_to_target</code>或抓取位姿</li>
+</ul>
+</li>
+</ul>
+<h2 id="抓取补充">抓取补充</h2>
+<blockquote>
+<p>手眼标定只能解决“看准”，不能保证“抓准”</p>
+</blockquote>
+<ul>
+<li>在实际抓取中，通常需要引入抓取偏置：
+<ul>
+<li><code>T_base_to_grasp = T_base_to_target × T_target_to_grasp</code></li>
+</ul>
+</li>
+<li><code>T_target_to_grasp</code>：
+<ul>
+<li>含义：抓取点（夹爪 TCP）相对于目标基准的固定偏移</li>
+<li>来源：
+<ul>
+<li>CAD / 图纸（初值）</li>
+<li>自动校正治具</li>
+<li>少量人工示教</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="标定算法">标定算法</h2>
+<h3 id="eye-in-hand眼在手上">Eye-in-Hand（眼在手上）</h3>
+<p><strong>数学模型：</strong></p>
+<ul>
+<li><code>A X = X B</code>
+<ul>
+<li>A：机器人末端相对运动</li>
+<li>B：标定板在相机坐标系下的相对运动</li>
+<li>X：末端到相机的固定安装外参</li>
+</ul>
+</li>
+</ul>
+<h4 id="算法列表">算法列表</h4>
+<ul>
+<li>两步法（Tsai-Lenz）：先解旋转再解平移，快且稳，默认首选</li>
+<li>对偶四元数（Park / Daniilidis）：用四元数/对偶四元数整体建模旋转（及平移），精度高但更吃数据质量与姿态覆盖</li>
+<li>正交矩阵分解（Horaud）：用 SVD 等方法在正交约束下求旋转，旋转更“干净”，适合高精度</li>
+<li>改进型解耦（Andreff）：更联合地处理旋转和平移，样本较少时往往更稳</li>
+<li>所有算法的差别，本质是：
+<ul>
+<li>旋转/平移的数学表示方式</li>
+<li>误差最小化策略</li>
+<li>分步求解或联合求解</li>
+</ul>
+</li>
+</ul>
+<h3 id="eye-to-hand眼在手外">Eye-to-Hand（眼在手外）</h3>
+<p>...</p>
+<h2 id="常见问题">常见问题</h2>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><strong>误解</strong></p>
+<ul>
+<li>标手眼标定 ≠ 夹爪 TCP 标定</li>
+<li>手眼标定 ≠ 抓取策略</li>
+<li>视觉定位精度 ≠ 最终抓取精度</li>
+</ul>
+<p>手眼标定仅解决坐标映射问题，实际抓取效果仍依赖机械结构、TCP 定义与抓取偏置建模</p>
+</div>
+<hr>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><strong>机器人位姿参与不充分</strong></p>
+<p>当用于手眼标定的机器人位姿分布过于集中时，求解的刚体变换将出现退化</p>
+<p>常见表现包括：</p>
+<ul>
+<li>标定在当前拍照点附近看似准确</li>
+<li>机器人换位后误差明显放大</li>
+</ul>
+<p>手眼标定应覆盖<strong>足够多样的末端姿态（平移 + 旋转）</strong>，避免仅在局部空间内拟合</p>
+</div>
+<hr>
+<div class="TIP">
+<h5>Tip</h5>
+<p><strong>区分“手眼误差”与“抓取误差”</strong></p>
+<p>手眼标定只建立相机与机器人之间的几何关系，并不包含夹爪 TCP 定义或抓取点偏置</p>
+<p>当误差在不同目标位置下保持一致时，应优先检查：</p>
+<ul>
+<li>TCP 是否准确</li>
+<li>是否缺失抓取偏置<code>T_target_to_grasp</code></li>
+</ul>
+<p>避免将抓取问题错误归因于手眼标定失败</p>
+</div>
+<hr>
+<div class="TIP">
+<h5>Tip</h5>
+<p><strong>标定完成后缺乏最小可用性验证”</strong></p>
+<p>手眼标定完成后，建议至少进行以下验证：</p>
+<ul>
+<li>在不同机器人位姿下重复计算同一目标的<code>T_base_to_target</code></li>
+<li>验证结果在 Base 坐标系下的一致性</li>
+</ul>
+<p>通过验证的标定结果，才应被用于正式运行</p>
+</div>
+<hr>
+<div class="TIP">
+<h5>Tip</h5>
+<p><strong>眼在手上与眼在手外的选择建议</strong></p>
+<ul>
+<li>眼在手上（Eye-in-Hand）适用于：
+<ul>
+<li>多拍照位</li>
+<li>跟随抓取</li>
+<li>工位变化频繁的场景</li>
+</ul>
+</li>
+<li>眼在手外（Eye-to-Hand）适用于：
+<ul>
+<li>工位固定</li>
+<li>结构简单</li>
+<li>调试周期短</li>
+</ul>
+</li>
+</ul>
+</div>
+<hr>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS-Vision/HandEyeCalibration.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

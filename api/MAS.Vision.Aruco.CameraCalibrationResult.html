@@ -102,7 +102,7 @@ Class CameraCalibrationResult  <a class="header-action link-secondary" title="Vi
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class CameraCalibrationResult</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class CameraCalibrationResult : CalibrationResultBase</code></pre>
   </div>
 
 
@@ -112,6 +112,7 @@ Class CameraCalibrationResult  <a class="header-action link-secondary" title="Vi
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="MAS.Vision.CalibrationResultBase.html">CalibrationResultBase</a></div>
       <div><span class="xref">CameraCalibrationResult</span></div>
     </dd>
   </dl>
@@ -121,6 +122,15 @@ Class CameraCalibrationResult  <a class="header-action link-secondary" title="Vi
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="MAS.Vision.CalibrationResultBase.html#MAS_Vision_CalibrationResultBase_IsSuccess">CalibrationResultBase.IsSuccess</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.Vision.CalibrationResultBase.html#MAS_Vision_CalibrationResultBase_ElapsedMs">CalibrationResultBase.ElapsedMs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.Vision.CalibrationResultBase.html#MAS_Vision_CalibrationResultBase_Summary">CalibrationResultBase.Summary</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -153,7 +163,7 @@ Class CameraCalibrationResult  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_Vision_Aruco_CameraCalibrationResult_Default" data-uid="MAS.Vision.Aruco.CameraCalibrationResult.Default">
   Default
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/CameraCalibrationResult.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/CameraCalibrationResult.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取默认的相机标定结果</p>
@@ -192,7 +202,7 @@ Class CameraCalibrationResult  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_Vision_Aruco_CameraCalibrationResult_Intrinsics" data-uid="MAS.Vision.Aruco.CameraCalibrationResult.Intrinsics">
   Intrinsics
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/CameraCalibrationResult.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/CameraCalibrationResult.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取相机内参</p>
@@ -220,75 +230,11 @@ Class CameraCalibrationResult  <a class="header-action link-secondary" title="Vi
 
 
 
-  <a id="MAS_Vision_Aruco_CameraCalibrationResult_IsSuccess_" data-uid="MAS.Vision.Aruco.CameraCalibrationResult.IsSuccess*"></a>
-
-  <h3 id="MAS_Vision_Aruco_CameraCalibrationResult_IsSuccess" data-uid="MAS.Vision.Aruco.CameraCalibrationResult.IsSuccess">
-  IsSuccess
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/CameraCalibrationResult.cs/#L19"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取是否完成功生成标定结果</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required bool IsSuccess { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_Vision_Aruco_CameraCalibrationResult_Message_" data-uid="MAS.Vision.Aruco.CameraCalibrationResult.Message*"></a>
-
-  <h3 id="MAS_Vision_Aruco_CameraCalibrationResult_Message" data-uid="MAS.Vision.Aruco.CameraCalibrationResult.Message">
-  Message
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/CameraCalibrationResult.cs/#L24"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取信息</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? Message { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_Vision_Aruco_CameraCalibrationResult_ReprojectionErrorPx_" data-uid="MAS.Vision.Aruco.CameraCalibrationResult.ReprojectionErrorPx*"></a>
 
   <h3 id="MAS_Vision_Aruco_CameraCalibrationResult_ReprojectionErrorPx" data-uid="MAS.Vision.Aruco.CameraCalibrationResult.ReprojectionErrorPx">
   ReprojectionErrorPx
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/CameraCalibrationResult.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/CameraCalibrationResult.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取重投影误差（像素，越小越好；成功时有值）</p>
@@ -320,7 +266,7 @@ Class CameraCalibrationResult  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_Vision_Aruco_CameraCalibrationResult_ValidFrameCount" data-uid="MAS.Vision.Aruco.CameraCalibrationResult.ValidFrameCount">
   ValidFrameCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/CameraCalibrationResult.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Aruco/Models/CameraCalibrationResult.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前已缓存的有效帧数量</p>

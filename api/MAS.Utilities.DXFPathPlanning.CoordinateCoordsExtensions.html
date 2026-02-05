@@ -201,6 +201,63 @@ Class CoordinateCoordsExtensions  <a class="header-action link-secondary" title=
 
 
 
+  <a id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_OrthonormalizeAxesFromReference_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateCoordsExtensions.OrthonormalizeAxesFromReference*"></a>
+
+  <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_OrthonormalizeAxesFromReference_MAS_Utilities_DXFPathPlanning_CoordinateCoords__System_String_System_Boolean_System_Double_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateCoordsExtensions.OrthonormalizeAxesFromReference(MAS.Utilities.DXFPathPlanning.CoordinateCoords@,System.String,System.Boolean,System.Double)">
+  OrthonormalizeAxesFromReference(ref CoordinateCoords, string, bool, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Utilities/DXFPathPlanning/Extensions/CoordinateCoordsExtensions.cs/#L219"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>对坐标系 X / Y / Z 三轴进行正交化处理，以指定参考轴为基准构造严格正交的右手坐标系，</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS100:方法长度超出推荐行数&quot;, Justification = &quot;不必理会&quot;)]
+public static CoordinateCoords OrthonormalizeAxesFromReference(this ref CoordinateCoords c, string referenceAxis = &quot;X&quot;, bool shouldAlignWithOriginalAxes = true, double eps = 1E-12)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>c</code> <a class="xref" href="MAS.Utilities.DXFPathPlanning.CoordinateCoords.html">CoordinateCoords</a></dt>
+    <dd><p>标定坐标结构体”</p>
+</dd>
+    <dt><code>referenceAxis</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>参考轴名称（&quot;X&quot; / &quot;Y&quot;，大小写不敏感）</p>
+</dd>
+    <dt><code>shouldAlignWithOriginalAxes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否尽量保持新轴方向与原始轴方向一致，避免整体 180° 翻转</p>
+</dd>
+    <dt><code>eps</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>数值稳定性阈值，用于共线与退化判断</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Utilities.DXFPathPlanning.CoordinateCoords.html">CoordinateCoords</a></dt>
+    <dd><p>正交化后的坐标系；若失败则返回原值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_OrthonormalizeAxesFromReference_MAS_Utilities_DXFPathPlanning_CoordinateCoords__System_String_System_Boolean_System_Double__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><ul><li>修复标定数据中轴不正交、数值漂移的问题</li><li>参考轴方向会被保留（仅归一化，不旋转到其他方向）</li><li>其余轴通过投影剔除 + 叉积方式构造，保证三轴严格正交</li><li>若轴共线或数值退化，则直接返回原始坐标，不做修改</li><li>结果保证正交性，但不保证三轴长度一致（沿用原始长度）</li></ul>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
   <a id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_ToOrigin_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateCoordsExtensions.ToOrigin*"></a>
 
   <h3 id="MAS_Utilities_DXFPathPlanning_CoordinateCoordsExtensions_ToOrigin_MAS_Utilities_DXFPathPlanning_CoordinateCoords_" data-uid="MAS.Utilities.DXFPathPlanning.CoordinateCoordsExtensions.ToOrigin(MAS.Utilities.DXFPathPlanning.CoordinateCoords)">

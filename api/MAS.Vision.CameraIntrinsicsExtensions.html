@@ -157,7 +157,7 @@ Class CameraIntrinsicsExtensions  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Vision_CameraIntrinsicsExtensions_ToCameraMatrix_MAS_Vision_CameraIntrinsics_" data-uid="MAS.Vision.CameraIntrinsicsExtensions.ToCameraMatrix(MAS.Vision.CameraIntrinsics)">
   ToCameraMatrix(CameraIntrinsics)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/CameraIntrinsicsExtensions.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/CameraIntrinsicsExtensions.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构建 OpenCV 使用的 3x3 相机内参矩阵（CV_64F）</p>
@@ -171,13 +171,15 @@ Class CameraIntrinsicsExtensions  <a class="header-action link-secondary" title=
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>intrinsics</code> <a class="xref" href="MAS.Vision.CameraIntrinsics.html">CameraIntrinsics</a></dt>
-    <dd></dd>
+    <dd><p>相机内参实例</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><span class="xref">Mat</span></dt>
-    <dd></dd>
+    <dd><p>3x3 的 CV_64FC1 类型矩阵，对应 OpenCV 相机标定的内参矩阵 K</p>
+</dd>
   </dl>
 
 
@@ -186,6 +188,13 @@ Class CameraIntrinsicsExtensions  <a class="header-action link-secondary" title=
 
 
 
+  <h4 class="section" id="MAS_Vision_CameraIntrinsicsExtensions_ToCameraMatrix_MAS_Vision_CameraIntrinsics__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>相机内参矩阵结构：
+[ fx   0   cx ]
+[  0  fy   cy ]
+[  0   0    1 ]
+其中：fx/fy 为焦距，cx/cy 为主点坐标</p>
+</div>
 
 
 
@@ -194,7 +203,7 @@ Class CameraIntrinsicsExtensions  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Vision_CameraIntrinsicsExtensions_ToDistCoeffs_MAS_Vision_CameraIntrinsics_" data-uid="MAS.Vision.CameraIntrinsicsExtensions.ToDistCoeffs(MAS.Vision.CameraIntrinsics)">
   ToDistCoeffs(CameraIntrinsics)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/CameraIntrinsicsExtensions.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/CameraIntrinsicsExtensions.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构建 OpenCV 使用的畸变系数向量（CV_64F，Nx1）</p>
@@ -208,13 +217,15 @@ Class CameraIntrinsicsExtensions  <a class="header-action link-secondary" title=
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>intrinsics</code> <a class="xref" href="MAS.Vision.CameraIntrinsics.html">CameraIntrinsics</a></dt>
-    <dd></dd>
+    <dd><p>相机内参实例</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><span class="xref">Mat</span></dt>
-    <dd></dd>
+    <dd><p>Nx1 的 CV_64FC1 类型列向量，N 为畸变系数个数（通常 5/8 个）</p>
+</dd>
   </dl>
 
 
@@ -223,6 +234,13 @@ Class CameraIntrinsicsExtensions  <a class="header-action link-secondary" title=
 
 
 
+  <h4 class="section" id="MAS_Vision_CameraIntrinsicsExtensions_ToDistCoeffs_MAS_Vision_CameraIntrinsics__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>OpenCV 畸变系数向量格式：[k1, k2, p1, p2, k3, (k4, k5, k6)]</p>
+<ul>
+<li>k1/k2/k3/k4/k5/k6：径向畸变系数</li>
+<li>p1/p2：切向畸变系数</li>
+</ul>
+</div>
 
 
 
