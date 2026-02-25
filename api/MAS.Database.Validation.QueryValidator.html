@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Database_Validation_QueryValidator.md&amp;value=---%0Auid%3A%20MAS.Database.Validation.QueryValidator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Database_Validation_QueryValidator" data-uid="MAS.Database.Validation.QueryValidator" class="text-break">
-Class QueryValidator  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/obj/Release/net8.0-windows/System.Text.RegularExpressions.Generator/System.Text.RegularExpressions.Generator.RegexGenerator/RegexGenerator.g.cs/#L710"><i class="bi bi-code-slash"></i></a>
+Class QueryValidator  
   </h1>
 
   <div class="facts text-secondary">
@@ -184,79 +184,80 @@ public static Regex MySqlNonQueryRegex()</code></pre>
   <h4 class="section" id="MAS_Database_Validation_QueryValidator_MySqlNonQueryRegex_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Pattern:<br></p>
 <pre><code class="lang-csharp">\\b(INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|TRUNCATE|LOAD\\s+DATA|HANDLER)\\b</code></pre><br>
-<p>Options:<br></p>
-<pre><code class="lang-csharp">RegexOptions.IgnoreCase | RegexOptions.Compiled</code></pre><br>
-<p>Explanation:<br></p>
-<pre><code class="lang-csharp">○ Match if at a word boundary.
-○ 1st capture group.
-    ○ Match with 9 alternative expressions.
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Nn].
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Tt].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Uu].
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Oo].
-            ○ Match a character in the set [Pp].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Uu].
-            ○ Match a character in the set [Nn].
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Oo].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Dd].
-            ○ Match a whitespace character atomically at least once.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Aa].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Hh].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Nn].
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-○ Match if at a word boundary.</code></pre>
+<pre><code>Options:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;RegexOptions.IgnoreCase | RegexOptions.Compiled&lt;/code&gt;&lt;/pre&gt;&lt;br /&gt;
+Explanation:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;○ Match if at a word boundary.
+</code></pre>
+<p>○ 1st capture group.
+○ Match with 9 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Nn].
+○ Match a character in the set [Ss].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Tt].
+○ Match a sequence of expressions.
+○ Match a character in the set [Uu].
+○ Match a character in the set [Pp].
+○ Match a character in the set [Dd].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Cc].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Pp].
+○ Match a sequence of expressions.
+○ Match a character in the set [Aa].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a sequence of expressions.
+○ Match a character in the set [Tt].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Uu].
+○ Match a character in the set [Nn].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Ll].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Dd].
+○ Match a whitespace character atomically at least once.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Aa].
+○ Match a sequence of expressions.
+○ Match a character in the set [Hh].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Nn].
+○ Match a character in the set [Dd].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match if at a word boundary.</p>
 </div>
 
 
@@ -293,50 +294,51 @@ public static Regex MySqlQueryRegex()</code></pre>
   <h4 class="section" id="MAS_Database_Validation_QueryValidator_MySqlQueryRegex_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Pattern:<br></p>
 <pre><code class="lang-csharp">^\\s*\\b(SELECT|SHOW|DESCRIBE|EXPLAIN|DESC)\\b</code></pre><br>
-<p>Options:<br></p>
-<pre><code class="lang-csharp">RegexOptions.IgnoreCase | RegexOptions.Compiled</code></pre><br>
-<p>Explanation:<br></p>
-<pre><code class="lang-csharp">○ Match if at the beginning of the string.
-○ Match a whitespace character greedily any number of times.
+<pre><code>Options:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;RegexOptions.IgnoreCase | RegexOptions.Compiled&lt;/code&gt;&lt;/pre&gt;&lt;br /&gt;
+Explanation:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;○ Match if at the beginning of the string.
+</code></pre>
+<p>○ Match a whitespace character greedily any number of times.
 ○ Match if at a word boundary.
 ○ 1st capture group.
-    ○ Match with 4 alternative expressions.
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ss].
-            ○ Match with 2 alternative expressions.
-                ○ Match a sequence of expressions.
-                    ○ Match a character in the set [Ee].
-                    ○ Match a character in the set [Ll].
-                    ○ Match a character in the set [Ee].
-                    ○ Match a character in the set [Cc].
-                    ○ Match a character in the set [Tt].
-                ○ Match a sequence of expressions.
-                    ○ Match a character in the set [Hh].
-                    ○ Match a character in the set [Oo].
-                    ○ Match a character in the set [Ww].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Bb].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Xx].
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Nn].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Cc].
-○ Match if at a word boundary.</code></pre>
+○ Match with 4 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ss].
+○ Match with 2 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Tt].
+○ Match a sequence of expressions.
+○ Match a character in the set [Hh].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Ww].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ss].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Bb].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Ee].
+○ Match a character in the set [Xx].
+○ Match a character in the set [Pp].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Nn].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ss].
+○ Match a character in the set [Cc].
+○ Match if at a word boundary.</p>
 </div>
 
 
@@ -373,77 +375,78 @@ public static Regex OracleNonQueryRegex()</code></pre>
   <h4 class="section" id="MAS_Database_Validation_QueryValidator_OracleNonQueryRegex_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Pattern:<br></p>
 <pre><code class="lang-csharp">\\b(INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|TRUNCATE|MERGE|FLASHBACK)\\b</code></pre><br>
-<p>Options:<br></p>
-<pre><code class="lang-csharp">RegexOptions.IgnoreCase | RegexOptions.Compiled</code></pre><br>
-<p>Explanation:<br></p>
-<pre><code class="lang-csharp">○ Match if at a word boundary.
-○ 1st capture group.
-    ○ Match with 9 alternative expressions.
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Nn].
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Tt].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Uu].
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Oo].
-            ○ Match a character in the set [Pp].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Uu].
-            ○ Match a character in the set [Nn].
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Mm].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Gg].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ff].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Hh].
-            ○ Match a character in the set [Bb].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Kk\u212A].
-○ Match if at a word boundary.</code></pre>
+<pre><code>Options:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;RegexOptions.IgnoreCase | RegexOptions.Compiled&lt;/code&gt;&lt;/pre&gt;&lt;br /&gt;
+Explanation:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;○ Match if at a word boundary.
+</code></pre>
+<p>○ 1st capture group.
+○ Match with 9 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Nn].
+○ Match a character in the set [Ss].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Tt].
+○ Match a sequence of expressions.
+○ Match a character in the set [Uu].
+○ Match a character in the set [Pp].
+○ Match a character in the set [Dd].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Cc].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Pp].
+○ Match a sequence of expressions.
+○ Match a character in the set [Aa].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a sequence of expressions.
+○ Match a character in the set [Tt].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Uu].
+○ Match a character in the set [Nn].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Mm].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Gg].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Ff].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Ss].
+○ Match a character in the set [Hh].
+○ Match a character in the set [Bb].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Kk\u212A].
+○ Match if at a word boundary.</p>
 </div>
 
 
@@ -480,50 +483,51 @@ public static Regex OracleQueryRegex()</code></pre>
   <h4 class="section" id="MAS_Database_Validation_QueryValidator_OracleQueryRegex_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Pattern:<br></p>
 <pre><code class="lang-csharp">^\\s*\\b(SELECT|SHOW|DESCRIBE|EXPLAIN\\s+PLAN)\\b</code></pre><br>
-<p>Options:<br></p>
-<pre><code class="lang-csharp">RegexOptions.IgnoreCase | RegexOptions.Compiled</code></pre><br>
-<p>Explanation:<br></p>
-<pre><code class="lang-csharp">○ Match if at the beginning of the string.
-○ Match a whitespace character greedily any number of times.
+<pre><code>Options:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;RegexOptions.IgnoreCase | RegexOptions.Compiled&lt;/code&gt;&lt;/pre&gt;&lt;br /&gt;
+Explanation:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;○ Match if at the beginning of the string.
+</code></pre>
+<p>○ Match a whitespace character greedily any number of times.
 ○ Match if at a word boundary.
 ○ 1st capture group.
-    ○ Match with 3 alternative expressions.
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ss].
-            ○ Match with 2 alternative expressions.
-                ○ Match a sequence of expressions.
-                    ○ Match a character in the set [Ee].
-                    ○ Match a character in the set [Ll].
-                    ○ Match a character in the set [Ee].
-                    ○ Match a character in the set [Cc].
-                    ○ Match a character in the set [Tt].
-                ○ Match a sequence of expressions.
-                    ○ Match a character in the set [Hh].
-                    ○ Match a character in the set [Oo].
-                    ○ Match a character in the set [Ww].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Bb].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Xx].
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Nn].
-            ○ Match a whitespace character atomically at least once.
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Nn].
-○ Match if at a word boundary.</code></pre>
+○ Match with 3 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ss].
+○ Match with 2 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Tt].
+○ Match a sequence of expressions.
+○ Match a character in the set [Hh].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Ww].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ss].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Bb].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Ee].
+○ Match a character in the set [Xx].
+○ Match a character in the set [Pp].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Nn].
+○ Match a whitespace character atomically at least once.
+○ Match a character in the set [Pp].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Nn].
+○ Match if at a word boundary.</p>
 </div>
 
 
@@ -560,66 +564,67 @@ public static Regex PostgreSqlNonQueryRegex()</code></pre>
   <h4 class="section" id="MAS_Database_Validation_QueryValidator_PostgreSqlNonQueryRegex_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Pattern:<br></p>
 <pre><code class="lang-csharp">\\b(INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|TRUNCATE|COPY)\\b</code></pre><br>
-<p>Options:<br></p>
-<pre><code class="lang-csharp">RegexOptions.IgnoreCase | RegexOptions.Compiled</code></pre><br>
-<p>Explanation:<br></p>
-<pre><code class="lang-csharp">○ Match if at a word boundary.
-○ 1st capture group.
-    ○ Match with 8 alternative expressions.
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Nn].
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Tt].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Uu].
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Oo].
-            ○ Match a character in the set [Pp].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Uu].
-            ○ Match a character in the set [Nn].
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Oo].
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Yy].
-○ Match if at a word boundary.</code></pre>
+<pre><code>Options:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;RegexOptions.IgnoreCase | RegexOptions.Compiled&lt;/code&gt;&lt;/pre&gt;&lt;br /&gt;
+Explanation:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;○ Match if at a word boundary.
+</code></pre>
+<p>○ 1st capture group.
+○ Match with 8 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Nn].
+○ Match a character in the set [Ss].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Tt].
+○ Match a sequence of expressions.
+○ Match a character in the set [Uu].
+○ Match a character in the set [Pp].
+○ Match a character in the set [Dd].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Cc].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Pp].
+○ Match a sequence of expressions.
+○ Match a character in the set [Aa].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a sequence of expressions.
+○ Match a character in the set [Tt].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Uu].
+○ Match a character in the set [Nn].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Cc].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Pp].
+○ Match a character in the set [Yy].
+○ Match if at a word boundary.</p>
 </div>
 
 
@@ -656,36 +661,37 @@ public static Regex PostgreSqlQueryRegex()</code></pre>
   <h4 class="section" id="MAS_Database_Validation_QueryValidator_PostgreSqlQueryRegex_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Pattern:<br></p>
 <pre><code class="lang-csharp">^\\s*\\b(SELECT|SHOW|EXPLAIN)\\b</code></pre><br>
-<p>Options:<br></p>
-<pre><code class="lang-csharp">RegexOptions.IgnoreCase | RegexOptions.Compiled</code></pre><br>
-<p>Explanation:<br></p>
-<pre><code class="lang-csharp">○ Match if at the beginning of the string.
-○ Match a whitespace character greedily any number of times.
+<pre><code>Options:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;RegexOptions.IgnoreCase | RegexOptions.Compiled&lt;/code&gt;&lt;/pre&gt;&lt;br /&gt;
+Explanation:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;○ Match if at the beginning of the string.
+</code></pre>
+<p>○ Match a whitespace character greedily any number of times.
 ○ Match if at a word boundary.
 ○ 1st capture group.
-    ○ Match with 2 alternative expressions.
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ss].
-            ○ Match with 2 alternative expressions.
-                ○ Match a sequence of expressions.
-                    ○ Match a character in the set [Ee].
-                    ○ Match a character in the set [Ll].
-                    ○ Match a character in the set [Ee].
-                    ○ Match a character in the set [Cc].
-                    ○ Match a character in the set [Tt].
-                ○ Match a sequence of expressions.
-                    ○ Match a character in the set [Hh].
-                    ○ Match a character in the set [Oo].
-                    ○ Match a character in the set [Ww].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Xx].
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Nn].
-○ Match if at a word boundary.</code></pre>
+○ Match with 2 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ss].
+○ Match with 2 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Tt].
+○ Match a sequence of expressions.
+○ Match a character in the set [Hh].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Ww].
+○ Match a sequence of expressions.
+○ Match a character in the set [Ee].
+○ Match a character in the set [Xx].
+○ Match a character in the set [Pp].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Nn].
+○ Match if at a word boundary.</p>
 </div>
 
 
@@ -722,58 +728,59 @@ public static Regex SQLiteNonQueryRegex()</code></pre>
   <h4 class="section" id="MAS_Database_Validation_QueryValidator_SQLiteNonQueryRegex_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Pattern:<br></p>
 <pre><code class="lang-csharp">\\b(INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|VACUUM)\\b</code></pre><br>
-<p>Options:<br></p>
-<pre><code class="lang-csharp">RegexOptions.IgnoreCase | RegexOptions.Compiled</code></pre><br>
-<p>Explanation:<br></p>
-<pre><code class="lang-csharp">○ Match if at a word boundary.
-○ 1st capture group.
-    ○ Match with 7 alternative expressions.
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Nn].
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Tt].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Uu].
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Oo].
-            ○ Match a character in the set [Pp].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Vv].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Uu] exactly 2 times.
-            ○ Match a character in the set [Mm].
-○ Match if at a word boundary.</code></pre>
+<pre><code>Options:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;RegexOptions.IgnoreCase | RegexOptions.Compiled&lt;/code&gt;&lt;/pre&gt;&lt;br /&gt;
+Explanation:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;○ Match if at a word boundary.
+</code></pre>
+<p>○ 1st capture group.
+○ Match with 7 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Nn].
+○ Match a character in the set [Ss].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Tt].
+○ Match a sequence of expressions.
+○ Match a character in the set [Uu].
+○ Match a character in the set [Pp].
+○ Match a character in the set [Dd].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Cc].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Pp].
+○ Match a sequence of expressions.
+○ Match a character in the set [Aa].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a sequence of expressions.
+○ Match a character in the set [Vv].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Uu] exactly 2 times.
+○ Match a character in the set [Mm].
+○ Match if at a word boundary.</p>
 </div>
 
 
@@ -810,37 +817,38 @@ public static Regex SQLiteQueryRegex()</code></pre>
   <h4 class="section" id="MAS_Database_Validation_QueryValidator_SQLiteQueryRegex_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Pattern:<br></p>
 <pre><code class="lang-csharp">^\\s*\\b(SELECT|PRAGMA|EXPLAIN)\\b</code></pre><br>
-<p>Options:<br></p>
-<pre><code class="lang-csharp">RegexOptions.IgnoreCase | RegexOptions.Compiled</code></pre><br>
-<p>Explanation:<br></p>
-<pre><code class="lang-csharp">○ Match if at the beginning of the string.
-○ Match a whitespace character greedily any number of times.
+<pre><code>Options:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;RegexOptions.IgnoreCase | RegexOptions.Compiled&lt;/code&gt;&lt;/pre&gt;&lt;br /&gt;
+Explanation:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;○ Match if at the beginning of the string.
+</code></pre>
+<p>○ Match a whitespace character greedily any number of times.
 ○ Match if at a word boundary.
 ○ 1st capture group.
-    ○ Match with 3 alternative expressions.
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Tt].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Gg].
-            ○ Match a character in the set [Mm].
-            ○ Match a character in the set [Aa].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Xx].
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Nn].
-○ Match if at a word boundary.</code></pre>
+○ Match with 3 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ss].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Tt].
+○ Match a sequence of expressions.
+○ Match a character in the set [Pp].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Gg].
+○ Match a character in the set [Mm].
+○ Match a character in the set [Aa].
+○ Match a sequence of expressions.
+○ Match a character in the set [Ee].
+○ Match a character in the set [Xx].
+○ Match a character in the set [Pp].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Nn].
+○ Match if at a word boundary.</p>
 </div>
 
 
@@ -877,78 +885,79 @@ public static Regex SqlServerNonQueryRegex()</code></pre>
   <h4 class="section" id="MAS_Database_Validation_QueryValidator_SqlServerNonQueryRegex_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Pattern:<br></p>
 <pre><code class="lang-csharp">\\b(INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|TRUNCATE|MERGE|EXEC|EXECUTE)\\b</code></pre><br>
-<p>Options:<br></p>
-<pre><code class="lang-csharp">RegexOptions.IgnoreCase | RegexOptions.Compiled</code></pre><br>
-<p>Explanation:<br></p>
-<pre><code class="lang-csharp">○ Match if at a word boundary.
-○ 1st capture group.
-    ○ Match with 9 alternative expressions.
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Nn].
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Tt].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Uu].
-            ○ Match a character in the set [Pp].
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Oo].
-            ○ Match a character in the set [Pp].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Ll].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Uu].
-            ○ Match a character in the set [Nn].
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Aa].
-            ○ Match a character in the set [Tt].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Mm].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Gg].
-            ○ Match a character in the set [Ee].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Xx].
-            ○ Match a character in the set [Ee].
-            ○ Match with 2 alternative expressions.
-                ○ Match a character in the set [Cc].
-                ○ Match a sequence of expressions.
-                    ○ Match a character in the set [Cc].
-                    ○ Match a character in the set [Uu].
-                    ○ Match a character in the set [Tt].
-                    ○ Match a character in the set [Ee].
-○ Match if at a word boundary.</code></pre>
+<pre><code>Options:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;RegexOptions.IgnoreCase | RegexOptions.Compiled&lt;/code&gt;&lt;/pre&gt;&lt;br /&gt;
+Explanation:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;○ Match if at a word boundary.
+</code></pre>
+<p>○ 1st capture group.
+○ Match with 9 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Nn].
+○ Match a character in the set [Ss].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Tt].
+○ Match a sequence of expressions.
+○ Match a character in the set [Uu].
+○ Match a character in the set [Pp].
+○ Match a character in the set [Dd].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Cc].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Pp].
+○ Match a sequence of expressions.
+○ Match a character in the set [Aa].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a sequence of expressions.
+○ Match a character in the set [Tt].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Uu].
+○ Match a character in the set [Nn].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Aa].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Mm].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Gg].
+○ Match a character in the set [Ee].
+○ Match a sequence of expressions.
+○ Match a character in the set [Ee].
+○ Match a character in the set [Xx].
+○ Match a character in the set [Ee].
+○ Match with 2 alternative expressions.
+○ Match a character in the set [Cc].
+○ Match a sequence of expressions.
+○ Match a character in the set [Cc].
+○ Match a character in the set [Uu].
+○ Match a character in the set [Tt].
+○ Match a character in the set [Ee].
+○ Match if at a word boundary.</p>
 </div>
 
 
@@ -985,37 +994,38 @@ public static Regex SqlServerQueryRegex()</code></pre>
   <h4 class="section" id="MAS_Database_Validation_QueryValidator_SqlServerQueryRegex_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Pattern:<br></p>
 <pre><code class="lang-csharp">^\\s*\\b(SELECT|SHOW|DESCRIBE)\\b</code></pre><br>
-<p>Options:<br></p>
-<pre><code class="lang-csharp">RegexOptions.IgnoreCase | RegexOptions.Compiled</code></pre><br>
-<p>Explanation:<br></p>
-<pre><code class="lang-csharp">○ Match if at the beginning of the string.
-○ Match a whitespace character greedily any number of times.
+<pre><code>Options:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;RegexOptions.IgnoreCase | RegexOptions.Compiled&lt;/code&gt;&lt;/pre&gt;&lt;br /&gt;
+Explanation:&lt;br /&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;○ Match if at the beginning of the string.
+</code></pre>
+<p>○ Match a whitespace character greedily any number of times.
 ○ Match if at a word boundary.
 ○ 1st capture group.
-    ○ Match with 2 alternative expressions.
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Ss].
-            ○ Match with 2 alternative expressions.
-                ○ Match a sequence of expressions.
-                    ○ Match a character in the set [Ee].
-                    ○ Match a character in the set [Ll].
-                    ○ Match a character in the set [Ee].
-                    ○ Match a character in the set [Cc].
-                    ○ Match a character in the set [Tt].
-                ○ Match a sequence of expressions.
-                    ○ Match a character in the set [Hh].
-                    ○ Match a character in the set [Oo].
-                    ○ Match a character in the set [Ww].
-        ○ Match a sequence of expressions.
-            ○ Match a character in the set [Dd].
-            ○ Match a character in the set [Ee].
-            ○ Match a character in the set [Ss].
-            ○ Match a character in the set [Cc].
-            ○ Match a character in the set [Rr].
-            ○ Match a character in the set [Ii\u0130].
-            ○ Match a character in the set [Bb].
-            ○ Match a character in the set [Ee].
-○ Match if at a word boundary.</code></pre>
+○ Match with 2 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ss].
+○ Match with 2 alternative expressions.
+○ Match a sequence of expressions.
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ll].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Tt].
+○ Match a sequence of expressions.
+○ Match a character in the set [Hh].
+○ Match a character in the set [Oo].
+○ Match a character in the set [Ww].
+○ Match a sequence of expressions.
+○ Match a character in the set [Dd].
+○ Match a character in the set [Ee].
+○ Match a character in the set [Ss].
+○ Match a character in the set [Cc].
+○ Match a character in the set [Rr].
+○ Match a character in the set [Ii\u0130].
+○ Match a character in the set [Bb].
+○ Match a character in the set [Ee].
+○ Match if at a word boundary.</p>
 </div>
 
 
@@ -1070,7 +1080,6 @@ public static Regex SqlServerQueryRegex()</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/obj/Release/net8.0-windows/System.Text.RegularExpressions.Generator/System.Text.RegularExpressions.Generator.RegexGenerator/RegexGenerator.g.cs/#L710" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Vision_PoseCalculationResultExtensions" data-uid="MAS.Vision.PoseCalculationResultExtensions" class="text-break">
-Class PoseCalculationResultExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L19"><i class="bi bi-code-slash"></i></a>
+Class PoseCalculationResultExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -155,9 +155,9 @@ Class PoseCalculationResultExtensions  <a class="header-action link-secondary" t
 
   <a id="MAS_Vision_PoseCalculationResultExtensions_ToPose6D_" data-uid="MAS.Vision.PoseCalculationResultExtensions.ToPose6D*"></a>
 
-  <h3 id="MAS_Vision_PoseCalculationResultExtensions_ToPose6D_MAS_Vision_Aruco_PoseCalculationResult_System_Boolean_" data-uid="MAS.Vision.PoseCalculationResultExtensions.ToPose6D(MAS.Vision.Aruco.PoseCalculationResult,System.Boolean)">
-  ToPose6D(PoseCalculationResult, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Vision_PoseCalculationResultExtensions_ToPose6D_MAS_Vision_Aruco_PoseCalculationResult_MAS_Numerics_RotationOrder_" data-uid="MAS.Vision.PoseCalculationResultExtensions.ToPose6D(MAS.Vision.Aruco.PoseCalculationResult,MAS.Numerics.RotationOrder)">
+  ToPose6D(PoseCalculationResult, RotationOrder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将视觉姿态解算结果转换为 Pose6D</p>
@@ -165,7 +165,7 @@ Class PoseCalculationResultExtensions  <a class="header-action link-secondary" t
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Pose6D ToPose6D(this PoseCalculationResult src, bool useCameraToPlaneEuler = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Pose6D ToPose6D(this PoseCalculationResult src, RotationOrder order = RotationOrder.Zyx)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -173,16 +173,15 @@ Class PoseCalculationResultExtensions  <a class="header-action link-secondary" t
     <dt><code>src</code> <a class="xref" href="MAS.Vision.Aruco.PoseCalculationResult.html">PoseCalculationResult</a></dt>
     <dd><p>视觉姿态解算结果</p>
 </dd>
-    <dt><code>useCameraToPlaneEuler</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true: 使用 CameraToPlaneEulerDeg
-false: 使用 PlaneToCameraEulerDeg</p>
+    <dt><code>order</code> <a class="xref" href="MAS.Numerics.RotationOrder.html">RotationOrder</a></dt>
+    <dd><p>欧拉角顺序（用于将旋转矩阵转 PoseEuler）</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a></dt>
-    <dd><p><a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a> 对象</p>
+    <dd><p>相机坐标系下 Camera→Target 的6D位姿</p>
 </dd>
   </dl>
 
@@ -196,7 +195,8 @@ false: 使用 PlaneToCameraEulerDeg</p>
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
-    <dd></dd>
+    <dd><p>CvRvec/CvTvec为空时抛出</p>
+</dd>
   </dl>
 
 
@@ -205,7 +205,7 @@ false: 使用 PlaneToCameraEulerDeg</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L19" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L21" class="edit-link">Edit this page</a>
         </div>
 
 

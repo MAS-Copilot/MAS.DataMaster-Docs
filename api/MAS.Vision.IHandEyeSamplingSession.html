@@ -175,10 +175,10 @@ Interface IHandEyeSamplingSession  <a class="header-action link-secondary" title
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>robotPoses</code> <a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a></dt>
-    <dd><p>机器人位姿（Base → Gripper）</p>
+    <dd><p>机器人位姿（Gripper -&gt; Base）</p>
 </dd>
     <dt><code>visionPoses</code> <a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a></dt>
-    <dd><p>视觉位姿（Camera → Target）</p>
+    <dd><p>视觉位姿（Camera -&gt; Target）</p>
 </dd>
     <dt><code>robotRotationOrder</code> <a class="xref" href="MAS.Numerics.RotationOrder.html">RotationOrder</a></dt>
     <dd><p>机器人欧拉角旋转顺序</p>
@@ -223,10 +223,10 @@ Interface IHandEyeSamplingSession  <a class="header-action link-secondary" title
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>robotPoses</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a>&gt;</dt>
-    <dd><p>机器人位姿序列（Base → Gripper）</p>
+    <dd><p>机器人位姿序列（Gripper -&gt; Base）</p>
 </dd>
     <dt><code>visionPoses</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a>&gt;</dt>
-    <dd><p>视觉位姿序列（Camera → Target）</p>
+    <dd><p>视觉位姿序列（Camera -&gt; Target）</p>
 </dd>
     <dt><code>robotRotationOrder</code> <a class="xref" href="MAS.Numerics.RotationOrder.html">RotationOrder</a></dt>
     <dd><p>机器人欧拉角旋转顺序</p>
@@ -256,7 +256,7 @@ Interface IHandEyeSamplingSession  <a class="header-action link-secondary" title
 
 <p>
 位姿语义约定：
-<ul><li><code class="paramref">robotPoses</code>：Base → Gripper（或 Tool）的位姿</li><li><code class="paramref">visionPoses</code>：Camera → Target（标定板/靶标）的位姿</li></ul>
+<ul><li><code class="paramref">robotPoses</code>：Gripper（或 Tool） -&gt; Base的位姿</li><li><code class="paramref">visionPoses</code>：Camera -&gt; Target（标定板/靶标）的位姿</li></ul>
 
 </div>
 
