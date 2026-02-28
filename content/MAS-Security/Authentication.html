@@ -526,6 +526,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>打开当前位置</td>
 <td>Operator</td>
 </tr>
+<tr>
+<td>OpenProjectInfoCommand</td>
+<td>打开项目元数据</td>
+<td>Operator</td>
+</tr>
 </tbody>
 </table>
 <h3 id="masdatamastercontrolsapplicationinitial">MAS.DataMaster.Controls.ApplicationInitial</h3>
@@ -1261,6 +1266,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </thead>
 <tbody>
 <tr>
+<td>ConfirmCommand</td>
+<td>确认</td>
+<td>Admin</td>
+</tr>
+<tr>
 <td>BrowseCommand</td>
 <td>浏览</td>
 <td>Engineer</td>
@@ -1333,6 +1343,23 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </tbody>
 </table>
 <h3 id="masdatamasterviewmodelswindowsdatabase">MAS.DataMaster.ViewModels.Windows.Database</h3>
+<h4 id="globaldatabasesetviewmodel">GlobalDatabaseSetViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ConfirmCommand</td>
+<td>确认</td>
+<td>Admin</td>
+</tr>
+</tbody>
+</table>
 <h4 id="databasesetviewmodel">DatabaseSetViewModel</h4>
 <table>
 <thead>
@@ -1855,7 +1882,7 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <tr>
 <td>SqlQueryCommand</td>
 <td>SQL 查询</td>
-<td>Admin</td>
+<td>Engineer</td>
 </tr>
 </tbody>
 </table>
