@@ -87,74 +87,131 @@
         <article data-uid="">
 <h1 id="几何实体解析">几何实体解析</h1>
 
-<h2 id="正则表达式">正则表达式</h2>
-<p>正则表达式用于匹配每个图层中，使用文本注解的特定扩展点</p>
+<h2 id="文本注解解析">文本注解解析</h2>
+<p>系统支持在 DXF 图层中通过文本注解定义原点与扩展点，用于辅助路径规划</p>
+<p>注解解析对大小写不敏感，并按图层分别处理</p>
 <h3 id="注意事项">注意事项</h3>
 <ul>
-<li>文本类型分为Text（单行）和MText（多行）类型的文本</li>
-<li>注解解析对大小写不敏感</li>
+<li>文本实体分为 <code>Text</code>（单行文本）和 <code>MText</code>（多行文本）</li>
+<li>原点当前仅从 <code>Text</code> 实体中解析</li>
+<li>扩展点同时支持从 <code>Text</code> 与 <code>MText</code> 实体中解析</li>
+<li>当 <code>MText</code> 包含格式控制符时，系统会先去除富文本标记，再进行匹配</li>
+<li>注解仅作为辅助语义数据，不参与轨迹几何本体的构建</li>
 </ul>
-<h3 id="注解">注解</h3>
+<h2 id="注解格式">注解格式</h2>
 <table>
 <thead>
 <tr>
 <th>标题</th>
-<th>文本</th>
+<th>文本格式</th>
 <th>描述</th>
 <th>是否必须</th>
-<th>实体类型</th>
+<th>支持实体类型</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>原点</td>
 <td><code>Origin: X = value, Y = value, Z = value</code></td>
-<td>设置该图层的原点坐标，排除在轨迹点外</td>
+<td>设置该图层的原点坐标，用于相对坐标计算</td>
 <td>否</td>
-<td>单行文本</td>
+<td>Text</td>
+</tr>
+<tr>
+<td>原点（2D）</td>
+<td><code>Origin: X = value, Y = value</code></td>
+<td>设置该图层的二维原点，Z 默认为 <code>0</code></td>
+<td>否</td>
+<td>Text</td>
 </tr>
 <tr>
 <td>扩展点</td>
-<td><code>Name-index: X, Y, Z</code></td>
-<td>设置该图层的扩展点坐标，排除在轨迹点外</td>
+<td><code>Name-Index: X, Y, Z</code></td>
+<td>设置该图层的扩展功能点坐标</td>
 <td>否</td>
-<td>多行文本 or 单行文本</td>
+<td>Text / MText</td>
 </tr>
 </tbody>
 </table>
-<h3 id="原点">原点</h3>
+<h2 id="原点">原点</h2>
 <ul>
-<li>原点坐标通过解析图层中的单行文本提取</li>
-<li>每个图层有且只有一个，如果解析存在多个，则返回列表的第一个</li>
-<li>示例：3D: <code>Origin: X = 10.0, Y = 20.0, Z = 0.0</code>, 2D: <code>Origin: X = 10.0, Y = 20.0</code></li>
+<li>原点坐标通过解析当前图层中的 <code>Text</code> 文本提取</li>
+<li>支持 2D 和 3D 两种格式</li>
+<li>若同一图层存在多个符合规则的原点文本，则按遍历顺序返回第一个匹配项</li>
+<li>若未定义原点，则使用默认值 <code>(0, 0, 0)</code></li>
+</ul>
+<p><strong>示例：</strong></p>
+<ul>
+<li>3D：<code>Origin: X = 10.0, Y = 20.0, Z = 0.0</code></li>
+<li>2D：<code>Origin: X = 10.0, Y = 20.0</code></li>
 </ul>
 <h2 id="扩展点">扩展点</h2>
 <ul>
-<li>扩展点坐标通过解析图层中的多行文本提取</li>
-<li>扩展点映射列表：
+<li>扩展点坐标通过解析当前图层中的 <code>Text</code> 或 <code>MText</code> 文本提取</li>
+<li>扩展点名称支持中英文映射，解析后统一转换为系统内部标准名称</li>
+<li>同一图层内允许存在多个扩展点</li>
+<li>若同一图层中出现重复的 <code>Name-Index</code> 或重复 <code>Index</code>，仅保留首次解析成功的点</li>
+<li>扩展点解析结果包含：
 <ul>
-<li>拍照点 =&gt; PhotoPoint</li>
-<li>抓取点 =&gt; GrabPoint</li>
-<li>放置点 =&gt; PlacementPoint</li>
-<li>结合点 =&gt; CombinePoint</li>
-<li>作业点 =&gt; OperationPoint</li>
+<li>点名称 <code>PointName</code></li>
+<li>点序号 <code>Index</code></li>
+<li>绝对坐标 <code>AbsolutePoint</code></li>
+<li>点类型 <code>PointType</code></li>
+<li>数据来源 <code>Source=Parse</code></li>
 </ul>
 </li>
-<li>每个图层可以存在多个，如果单个图层的<code>Name-Index</code>存在重复，只使用重复列表的第一个</li>
-<li>示例（顺序排序 X,Y,Z）：
-<ul>
-<li><code>拍照点-1: 10.0, 20.0, 0.0</code></li>
-<li><code>PhotoPoint-2: 10.0, 20.0, 0.0</code></li>
+<li>扩展点解析完成后，会基于图层原点进一步计算相对坐标</li>
 </ul>
-</li>
+<h3 id="扩展点名称映射">扩展点名称映射</h3>
+<ul>
+<li>拍照点 =&gt; <code>PhotoPoint</code></li>
+<li>PhotoPoint =&gt; <code>PhotoPoint</code></li>
+<li>抓取点 =&gt; <code>GrabPoint</code></li>
+<li>GrabPoint =&gt; <code>GrabPoint</code></li>
+<li>放置点 =&gt; <code>PlacementPoint</code></li>
+<li>PlacementPoint =&gt; <code>PlacementPoint</code></li>
+<li>结合点 =&gt; <code>CombinePoint</code></li>
+<li>CombinePoint =&gt; <code>CombinePoint</code></li>
+<li>作业点 =&gt; <code>OperationPoint</code></li>
+<li>OperationPoint =&gt; <code>OperationPoint</code></li>
+</ul>
+<h3 id="格式要求">格式要求</h3>
+<p>扩展点文本格式如下：</p>
+<pre><code class="lang-text">Name-Index: X, Y, Z
+</code></pre>
+<p>其中：</p>
+<ul>
+<li><code>Name</code> 为扩展点名称，支持中英文</li>
+<li><code>Index</code> 为正整数编号</li>
+<li><code>X, Y, Z</code> 为三维坐标，按顺序分别表示 X、Y、Z</li>
+</ul>
+<p><strong>示例：</strong></p>
+<ul>
+<li>拍照点-1: 10.0, 20.0, 0.0</li>
+<li>PhotoPoint-2: 10.0, 20.0, 0.0</li>
+<li>GrabPoint-3: -5.5, 12.0, 8.0</li>
 </ul>
 <h2 id="组">组</h2>
-<h3 id="几何忽略">几何忽略</h3>
+<p>系统会读取 DXF 中的 <code>Group</code> 信息，并保存组名称与描述等元数据</p>
+<h3 id="当前行为">当前行为</h3>
 <ul>
-<li>在 CAD 软件中，将不需要解析的线段分配到任意的组</li>
-<li>组（Group）用于组织图层中的几何体，以控制解析过程，决定哪些几何体需要被忽略</li>
-<li>几何体可以分配到任意组（没有命名要求），以标记为不需要解析</li>
-<li>选择忽略的几何 -&gt; 右键 -&gt; 组</li>
+<li>当前阶段仅解析并保留组信息</li>
+<li>组信息已写入解析结果中，供后续业务使用</li>
+<li>当前这部分代码尚未基于组信息对几何实体执行过滤或忽略处理</li>
+</ul>
+<h3 id="后续用途">后续用途</h3>
+<p>组（Group）可用于组织图层中的几何体，以实现更精细的解析控制。例如：</p>
+<ul>
+<li>标记某些几何体为辅助线</li>
+<li>标记某些几何体为忽略对象</li>
+<li>控制路径规划时参与计算的实体范围</li>
+</ul>
+<h3 id="cad-使用建议">CAD 使用建议</h3>
+<p>在 CAD 软件中，可将不希望参与后续路径规划的几何体划分到特定组中，供后续解析阶段识别和过滤</p>
+<ul>
+<li>选择需忽略的几何体</li>
+<li>右键创建组</li>
+<li>为后续解析规则保留该组信息</li>
 </ul>
 
 </article>

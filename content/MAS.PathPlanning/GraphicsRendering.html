@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>图形渲染 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="图形渲染 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.PathPlanning/GraphicsRendering.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="图形渲染">图形渲染</h1>
+
+<h2 id="概述">概述</h2>
+<p>图形渲染模块负责将解析后的几何数据或三维模型可视化显示在视口中，并提供交互式浏览能力</p>
+<p>该模块基于三维视口组件构建，负责场景组织、相机控制、用户交互与辅助信息绘制</p>
+<p>其目标是在保证渲染性能的前提下，提供稳定、流畅的三维查看体验，用于路径预览、模型检查与调试</p>
+<p>图形渲染流程主要包含以下阶段：</p>
+<ol>
+<li>场景初始化</li>
+<li>模型加载</li>
+<li>相机控制</li>
+<li>实时渲染更新</li>
+<li>辅助信息绘制</li>
+</ol>
+<h2 id="场景结构">场景结构</h2>
+<p>三维场景采用统一的节点结构进行管理</p>
+<p><strong>SceneRoot：</strong></p>
+<p>场景根节点，用于承载所有三维对象。</p>
+<p><strong>ImportedModel：</strong></p>
+<p>模型节点，用于存放加载的三维模型或解析后的几何对象。</p>
+<p><strong>Scene Behavior：</strong></p>
+<p>场景行为节点，用于添加辅助元素，例如背景效果或参考对象。</p>
+<p>通过这种结构可以实现：</p>
+<ul>
+<li>模型数据与辅助元素分离</li>
+<li>支持模型替换与追加加载</li>
+<li>便于扩展新的渲染元素</li>
+</ul>
+<h2 id="模型加载">模型加载</h2>
+<p>模型加载负责将外部数据转换为可渲染对象，并加入场景</p>
+<p>支持两种输入形式：</p>
+<ul>
+<li>模型文件</li>
+<li>已解析的模型对象</li>
+</ul>
+<p>加载方式支持两种模式：</p>
+<p><strong>替换模式：</strong></p>
+<p>清空现有模型后加载新模型</p>
+<p>适用于：</p>
+<ul>
+<li>单模型查看</li>
+<li>切换图纸或工件</li>
+</ul>
+<p><strong>追加模式：</strong></p>
+<p>保留已有模型并追加新模型</p>
+<p>适用于：</p>
+<ul>
+<li>多对象对比</li>
+<li>叠加显示路径或辅助元素</li>
+</ul>
+<h2 id="相机控制">相机控制</h2>
+<p>视口使用透视相机进行场景观察</p>
+<p>相机维护以下核心参数：</p>
+<ul>
+<li>Position：相机位置</li>
+<li>LookDirection：观察方向</li>
+<li>UpDirection：上方向</li>
+<li>TargetPoint：观察目标点</li>
+<li>Distance：相机与目标点距离</li>
+<li>FieldOfView：视场角</li>
+</ul>
+<p>相机控制提供以下能力：</p>
+<ul>
+<li>视角旋转</li>
+<li>视角平移</li>
+<li>视距缩放</li>
+<li>相机重置</li>
+<li>飞行到指定视角</li>
+<li>自适应视图</li>
+</ul>
+<h2 id="第一人称模式firstperson">第一人称模式（FirstPerson）</h2>
+<p>第一人称模式用于在场景中自由移动观察</p>
+<p>操作方式：</p>
+<ul>
+<li>鼠标移动：控制视角旋转</li>
+<li>W / A / S / D：前后左右移动</li>
+<li>Space / C：上下移动</li>
+<li>Shift：移动加速</li>
+<li>鼠标左键：临时缩小视场角进行观察</li>
+</ul>
+<p>该模式适用于：</p>
+<ul>
+<li>场景漫游</li>
+<li>设备内部结构查看</li>
+<li>大型模型浏览</li>
+</ul>
+<h2 id="第三人称模式orbit">第三人称模式（Orbit）</h2>
+<p>第三人称模式用于围绕目标点观察模型</p>
+<p>操作方式：</p>
+<ul>
+<li>右键拖动：轨道旋转</li>
+<li>中键拖动：平移视图</li>
+<li>滚轮：缩放距离</li>
+<li>左键：临时缩小视场角</li>
+</ul>
+<p>该模式适用于：</p>
+<ul>
+<li>模型检查</li>
+<li>路径预览</li>
+<li>工件姿态观察</li>
+</ul>
+<h2 id="缩放zoom">缩放（Zoom）</h2>
+<p>缩放通过改变相机与目标点之间的距离实现</p>
+<p>缩放过程采用指数缩放方式，使缩放过程更加平滑</p>
+<p>同时引入缩放惯性：</p>
+<ul>
+<li>鼠标滚轮产生缩放冲量</li>
+<li>每帧逐渐衰减</li>
+<li>形成平滑缩放效果</li>
+</ul>
+<h2 id="轨道旋转orbit">轨道旋转（Orbit）</h2>
+<p>轨道旋转用于围绕目标点观察模型</p>
+<p>旋转过程通过以下步骤实现：</p>
+<ol>
+<li>计算相机到目标点的向量</li>
+<li>根据鼠标位移计算偏航角与俯仰角</li>
+<li>更新相机位置</li>
+<li>更新观察方向与上方向</li>
+</ol>
+<p>旋转结束后保留旋转速度，并逐帧衰减，形成惯性旋转效果</p>
+<h2 id="平移pan">平移（Pan）</h2>
+<p>平移用于在保持视角方向不变的情况下移动观察区域</p>
+<p>平移过程：</p>
+<ol>
+<li>根据当前相机方向计算右方向与上方向</li>
+<li>将鼠标位移转换为世界坐标位移</li>
+<li>同时移动相机位置与目标点</li>
+</ol>
+<h2 id="相机重置camera-reset">相机重置（Camera Reset）</h2>
+<p>相机重置用于恢复初始视角</p>
+<p>重置过程：</p>
+<ol>
+<li>记录当前相机状态</li>
+<li>使用缓动函数进行插值</li>
+<li>在指定时间内逐帧更新相机参数</li>
+<li>恢复初始相机位置、方向和距离</li>
+</ol>
+<p>该过程使用平滑动画，避免视角突变</p>
+<h2 id="视角飞行view-animation">视角飞行（View Animation）</h2>
+<p>视角飞行用于平滑移动到指定视角</p>
+<p>执行流程：</p>
+<ol>
+<li>记录当前相机状态</li>
+<li>设定目标相机状态</li>
+<li>在指定时间内进行插值</li>
+<li>每帧更新相机位置与方向</li>
+</ol>
+<p>该功能常用于：</p>
+<ul>
+<li>视角预设切换</li>
+<li>自动定位模型</li>
+<li>视图导航</li>
+</ul>
+<h2 id="实时渲染">实时渲染</h2>
+<p>渲染系统使用逐帧更新机制。</p>
+<p>每帧执行以下更新：</p>
+<ol>
+<li>更新背景或场景行为</li>
+<li>更新相机移动</li>
+<li>更新轨道旋转惯性</li>
+<li>更新缩放惯性</li>
+<li>更新相机动画</li>
+<li>更新辅助显示</li>
+</ol>
+<p>渲染系统支持：</p>
+<ul>
+<li>启动实时渲染</li>
+<li>停止实时渲染</li>
+</ul>
+<p>用于控制后台资源消耗</p>
+<h2 id="坐标轴axes">坐标轴（Axes）</h2>
+<p>系统提供两种坐标轴显示：</p>
+<p><strong>世界坐标轴：</strong></p>
+<p>位于三维场景中，用于表示全局坐标方向。</p>
+<p><strong>参考坐标轴：</strong></p>
+<p>绘制在屏幕角落，用于指示当前视角方向</p>
+<h2 id="辅助信息显示">辅助信息显示</h2>
+<p>视口支持绘制调试信息</p>
+<p>显示内容包括：</p>
+<ul>
+<li>FPS</li>
+<li>相机位置</li>
+<li>目标点坐标</li>
+<li>相机距离</li>
+<li>偏航角与俯仰角</li>
+<li>当前视场角</li>
+</ul>
+<p>该信息主要用于调试与开发阶段</p>
+<h2 id="设计模式design-mode">设计模式（Design Mode）</h2>
+<p>在设计模式下不会执行真实渲染逻辑，而是显示占位信息</p>
+<p>其作用包括：</p>
+<ul>
+<li>避免设计器加载三维资源</li>
+<li>提供组件占位显示</li>
+<li>提高设计器稳定性</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.PathPlanning/GraphicsRendering.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

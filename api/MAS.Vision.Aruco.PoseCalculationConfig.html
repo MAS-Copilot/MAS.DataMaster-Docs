@@ -102,7 +102,7 @@ Class PoseCalculationConfig
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class PoseCalculationConfig : ArUcoConfigBase, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class PoseCalculationConfig : ChArUcoConfigBase, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
 
@@ -113,7 +113,8 @@ Class PoseCalculationConfig
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
-      <div><a class="xref" href="MAS.Vision.ArUcoConfigBase.html">ArUcoConfigBase</a></div>
+      <div><a class="xref" href="MAS.Vision.Aruco.ArUcoConfigBase.html">ArUcoConfigBase</a></div>
+      <div><a class="xref" href="MAS.Vision.Aruco.ChArUcoConfigBase.html">ChArUcoConfigBase</a></div>
       <div><span class="xref">PoseCalculationConfig</span></div>
     </dd>
   </dl>
@@ -131,22 +132,34 @@ Class PoseCalculationConfig
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="MAS.Vision.ArUcoConfigBase.html#MAS_Vision_ArUcoConfigBase_MarkerLengthMm">ArUcoConfigBase.MarkerLengthMm</a>
+      <a class="xref" href="MAS.Vision.Aruco.ChArUcoConfigBase.html#MAS_Vision_Aruco_ChArUcoConfigBase_SquaresX">ChArUcoConfigBase.SquaresX</a>
     </div>
     <div>
-      <a class="xref" href="MAS.Vision.ArUcoConfigBase.html#MAS_Vision_ArUcoConfigBase_SelectedDictionary">ArUcoConfigBase.SelectedDictionary</a>
+      <a class="xref" href="MAS.Vision.Aruco.ChArUcoConfigBase.html#MAS_Vision_Aruco_ChArUcoConfigBase_SquaresY">ChArUcoConfigBase.SquaresY</a>
     </div>
     <div>
-      <a class="xref" href="MAS.Vision.ArUcoConfigBase.html#MAS_Vision_ArUcoConfigBase_MinMarkers">ArUcoConfigBase.MinMarkers</a>
+      <a class="xref" href="MAS.Vision.Aruco.ChArUcoConfigBase.html#MAS_Vision_Aruco_ChArUcoConfigBase_SquareLengthMm">ChArUcoConfigBase.SquareLengthMm</a>
     </div>
     <div>
-      <a class="xref" href="MAS.Vision.ArUcoConfigBase.html#MAS_Vision_ArUcoConfigBase_MarkersX">ArUcoConfigBase.MarkersX</a>
+      <a class="xref" href="MAS.Vision.Aruco.ChArUcoConfigBase.html#MAS_Vision_Aruco_ChArUcoConfigBase_MinCharucoCorners">ChArUcoConfigBase.MinCharucoCorners</a>
     </div>
     <div>
-      <a class="xref" href="MAS.Vision.ArUcoConfigBase.html#MAS_Vision_ArUcoConfigBase_MarkersY">ArUcoConfigBase.MarkersY</a>
+      <a class="xref" href="MAS.Vision.Aruco.ArUcoConfigBase.html#MAS_Vision_Aruco_ArUcoConfigBase_MarkerLengthMm">ArUcoConfigBase.MarkerLengthMm</a>
     </div>
     <div>
-      <a class="xref" href="MAS.Vision.ArUcoConfigBase.html#MAS_Vision_ArUcoConfigBase_MarkerSeparationMm">ArUcoConfigBase.MarkerSeparationMm</a>
+      <a class="xref" href="MAS.Vision.Aruco.ArUcoConfigBase.html#MAS_Vision_Aruco_ArUcoConfigBase_SelectedDictionary">ArUcoConfigBase.SelectedDictionary</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.Vision.Aruco.ArUcoConfigBase.html#MAS_Vision_Aruco_ArUcoConfigBase_MinMarkers">ArUcoConfigBase.MinMarkers</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.Vision.Aruco.ArUcoConfigBase.html#MAS_Vision_Aruco_ArUcoConfigBase_MarkersX">ArUcoConfigBase.MarkersX</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.Vision.Aruco.ArUcoConfigBase.html#MAS_Vision_Aruco_ArUcoConfigBase_MarkersY">ArUcoConfigBase.MarkersY</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.Vision.Aruco.ArUcoConfigBase.html#MAS_Vision_Aruco_ArUcoConfigBase_MarkerSeparationMm">ArUcoConfigBase.MarkerSeparationMm</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
@@ -425,6 +438,39 @@ public RotationOrder SelectedEulerOrder { get; set; }</code></pre>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.Numerics.RotationOrder.html">RotationOrder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_Aruco_PoseCalculationConfig_SelectedSolveMode_" data-uid="MAS.Vision.Aruco.PoseCalculationConfig.SelectedSolveMode*"></a>
+
+  <h3 id="MAS_Vision_Aruco_PoseCalculationConfig_SelectedSolveMode" data-uid="MAS.Vision.Aruco.PoseCalculationConfig.SelectedSolveMode">
+  SelectedSolveMode
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置姿态解算模式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public PoseSolveMode SelectedSolveMode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.Aruco.PoseSolveMode.html">PoseSolveMode</a></dt>
     <dd></dd>
   </dl>
 
