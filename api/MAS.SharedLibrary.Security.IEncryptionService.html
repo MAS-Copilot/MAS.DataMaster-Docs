@@ -160,6 +160,45 @@ Interface IEncryptionService  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_SharedLibrary_Security_IEncryptionService_DecryptBytes_" data-uid="MAS.SharedLibrary.Security.IEncryptionService.DecryptBytes*"></a>
+
+  <h3 id="MAS_SharedLibrary_Security_IEncryptionService_DecryptBytes_System_Byte___" data-uid="MAS.SharedLibrary.Security.IEncryptionService.DecryptBytes(System.Byte[])">
+  DecryptBytes(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Security/IEncryptionService.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>解密二进制数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">byte[] DecryptBytes(byte[] cipherBytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cipherBytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>加密字节数组（前置 IV）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>解密后的原始字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_SharedLibrary_Security_IEncryptionService_Encrypt_" data-uid="MAS.SharedLibrary.Security.IEncryptionService.Encrypt*"></a>
 
   <h3 id="MAS_SharedLibrary_Security_IEncryptionService_Encrypt_System_String_" data-uid="MAS.SharedLibrary.Security.IEncryptionService.Encrypt(System.String)">
@@ -186,6 +225,45 @@ Interface IEncryptionService  <a class="header-action link-secondary" title="Vie
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
     <dd><p>加密后的字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Security_IEncryptionService_EncryptBytes_" data-uid="MAS.SharedLibrary.Security.IEncryptionService.EncryptBytes*"></a>
+
+  <h3 id="MAS_SharedLibrary_Security_IEncryptionService_EncryptBytes_System_Byte___" data-uid="MAS.SharedLibrary.Security.IEncryptionService.EncryptBytes(System.Byte[])">
+  EncryptBytes(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/Security/IEncryptionService.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>加密二进制数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">byte[] EncryptBytes(byte[] plainBytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>plainBytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>原始字节数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>加密后的字节数组（前置 IV）</p>
 </dd>
   </dl>
 
