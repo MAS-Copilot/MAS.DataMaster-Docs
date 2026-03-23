@@ -98,7 +98,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="问题">问题</h2>
+<h2 id="兼容">兼容</h2>
 <p>目前存在以下问题：</p>
 <ol>
 <li>VM 的全局样式影响 DM 部分控件样式，如按钮</li>
@@ -106,6 +106,15 @@
 <li>VM 脚本编辑器内部依赖了某些老 API，而这些 API 在 .NET 8 上不支持</li>
 <li>双击脚本模块时引发的错误：<code>System.Windows.Markup.XamlParseException: The invocation of the constructor on type 'ShellModuleControl.ShellCodeEditor' that matches the specified binding constraints threw an exception. </code></li>
 </ol>
+<h2 id="集成">集成</h2>
+<p>由于 VM SDK 部分组件依赖 .NET Framework，当前无法在 .NET 8 环境中完全兼容运行</p>
+<p>因此采用“独立进程”方式集成：</p>
+<ul>
+<li>VisionMaster 作为独立应用运行（.NET Framework）</li>
+<li>DM（.NET 8）通过环境变量检测并启动 VisionMaster</li>
+<li>两者通过进程级解耦，避免运行时冲突</li>
+<li>环境变量仅表示“已注册”，有时需要配合<code>File.Exists</code>校验</li>
+</ul>
 
 </article>
 
