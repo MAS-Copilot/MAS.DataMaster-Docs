@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_IPersistenceService" data-uid="MAS.SharedLibrary.IPersistenceService" class="text-break">
-Interface IPersistenceService  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L19"><i class="bi bi-code-slash"></i></a>
+Interface IPersistenceService  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IPersistenceService : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IPersistenceService : IRecentFileService, IDisposable</code></pre>
   </div>
 
 
@@ -114,6 +114,15 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Interfaces.IRecentFileService.html#MAS_SharedLibrary_Interfaces_IRecentFileService_GetRecentFiles_System_Int32_">IRecentFileService.GetRecentFiles(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Interfaces.IRecentFileService.html#MAS_SharedLibrary_Interfaces_IRecentFileService_OpenRecentFileAsync_System_String_">IRecentFileService.OpenRecentFileAsync(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.SharedLibrary.Interfaces.IRecentFileService.html#MAS_SharedLibrary_Interfaces_IRecentFileService_RemoveRecentFile_System_String_">IRecentFileService.RemoveRecentFile(string)</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
     </div>
@@ -132,7 +141,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_CreationProject_System_String_" data-uid="MAS.SharedLibrary.IPersistenceService.CreationProject(System.String)">
   CreationProject(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>创建项目并重置工程数据模型</p>
@@ -170,7 +179,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_GetCurrentFileStream" data-uid="MAS.SharedLibrary.IPersistenceService.GetCurrentFileStream">
   GetCurrentFileStream()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L58"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前工程文件流</p>
@@ -203,7 +212,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_GetCurrentProject" data-uid="MAS.SharedLibrary.IPersistenceService.GetCurrentProject">
   GetCurrentProject()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前工程数据模型</p>
@@ -241,7 +250,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_LoadProjectAsync_System_String_" data-uid="MAS.SharedLibrary.IPersistenceService.LoadProjectAsync(System.String)">
   LoadProjectAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L91"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步加载工程</p>
@@ -288,7 +297,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_ReloadCurrentProjectAsync" data-uid="MAS.SharedLibrary.IPersistenceService.ReloadCurrentProjectAsync">
   ReloadCurrentProjectAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L106"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步重新加载当前项目</p>
@@ -329,7 +338,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_SaveProjectAsync" data-uid="MAS.SharedLibrary.IPersistenceService.SaveProjectAsync">
   SaveProjectAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步保存工程文件</p>
@@ -367,7 +376,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_SaveProjectAsync_System_String_" data-uid="MAS.SharedLibrary.IPersistenceService.SaveProjectAsync(System.String)">
   SaveProjectAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步保存编辑后的工程文件</p>
@@ -414,7 +423,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_ProjectChanged" data-uid="MAS.SharedLibrary.IPersistenceService.ProjectChanged">
   ProjectChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当项目数据发生改变时触发</p>
@@ -445,7 +454,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_ProjectCreated" data-uid="MAS.SharedLibrary.IPersistenceService.ProjectCreated">
   ProjectCreated
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当新项目创建完成时触发</p>
@@ -476,7 +485,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_ProjectLoaded" data-uid="MAS.SharedLibrary.IPersistenceService.ProjectLoaded">
   ProjectLoaded
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当项目加载完成时触发</p>
@@ -507,7 +516,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_ProjectRelocated" data-uid="MAS.SharedLibrary.IPersistenceService.ProjectRelocated">
   ProjectRelocated
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当工程文件所在目录发生迁移时触发</p>
@@ -541,7 +550,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_ProjectSaved" data-uid="MAS.SharedLibrary.IPersistenceService.ProjectSaved">
   ProjectSaved
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当项目保存完成时触发</p>
@@ -572,7 +581,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_IPersistenceService_ProjectSaving" data-uid="MAS.SharedLibrary.IPersistenceService.ProjectSaving">
   ProjectSaving
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当项目即将保存时触发</p>
@@ -604,7 +613,7 @@ Interface IPersistenceService  <a class="header-action link-secondary" title="Vi
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L19" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IPersistenceService.cs/#L20" class="edit-link">Edit this page</a>
         </div>
 
 
