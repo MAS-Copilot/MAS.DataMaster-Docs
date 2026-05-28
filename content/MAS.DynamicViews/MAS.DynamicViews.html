@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>MAS.DynamicViews | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="MAS.DynamicViews | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="masdynamicviews">MAS.DynamicViews</h1>
+
+<p><code>动态工业组态与运行时界面引擎</code>简称<code>MAS.DynamicViews</code></p>
+<p>包含设计态编辑器、运行时渲染器、变量系统、通讯绑定、事件系统和扩展机制，目标是让界面、数据、设备和业务逻辑能够以可配置、可维护、可扩展的方式协同工作</p>
+<p>使用场景：</p>
+<ul>
+<li>工业设备上位机界面</li>
+<li>PLC 数据监控</li>
+<li>产线状态看板</li>
+<li>数据采集界面</li>
+<li>多页面工艺流程展示</li>
+<li>动态参数配置</li>
+<li>设备调试工具</li>
+<li>简易 SCADA/HMI 系统</li>
+<li>可视化运行监控平台</li>
+</ul>
+<h2 id="特性">特性</h2>
+<ul>
+<li>动态页面设计器</li>
+<li>设计态与运行态分离</li>
+<li>MVVM 数据绑定</li>
+<li>PLC 通讯集成</li>
+<li>Modbus TCP 通讯支持</li>
+<li>通讯轮询与变量写回</li>
+<li>运行时事件系统</li>
+<li>控件预设系统</li>
+<li>页面缩放与布局系统</li>
+<li>多页面工程</li>
+<li>工程持久化</li>
+<li>Undo/Redo 历史系统</li>
+<li>自定义控件扩展</li>
+<li>结构体变量绑定</li>
+<li>字段级变量绑定</li>
+<li>变量引用追踪</li>
+<li>设备中心</li>
+<li>数据中心</li>
+<li>变量监控</li>
+<li>全局脚本与页面脚本</li>
+<li>主题与外观配置</li>
+<li>控件属性检查器</li>
+<li>控件事件检查器</li>
+<li>拖拽式控件创建</li>
+<li>控件选择、移动、缩放与对齐辅助</li>
+<li>运行时宿主集成</li>
+<li>后续插件化扩展能力</li>
+</ul>
+<h2 id="核心模块">核心模块</h2>
+<h3 id="工程系统">工程系统</h3>
+<p>工程系统负责维护动态视图项目的整体数据，包括页面、变量、设备、参数、启动页、页面尺寸等信息</p>
+<p>主要职责：</p>
+<ul>
+<li>管理项目基础信息</li>
+<li>管理多页面数据</li>
+<li>管理项目级页面尺寸</li>
+<li>管理启动页</li>
+<li>管理变量、设备、通讯配置</li>
+<li>支持项目持久化与恢复</li>
+</ul>
+<h3 id="页面系统">页面系统</h3>
+<p>页面系统负责描述每一个动态界面页面</p>
+<p>主要职责：</p>
+<ul>
+<li>页面尺寸管理</li>
+<li>页面背景与外观配置</li>
+<li>页面控件集合管理</li>
+<li>页面切换</li>
+<li>页面缩放</li>
+<li>页面控件同步缩放</li>
+</ul>
+<h3 id="控件系统">控件系统</h3>
+<p>控件系统负责描述动态界面中的所有控件</p>
+<p>每个控件通常包含：</p>
+<ul>
+<li>基础信息</li>
+<li>布局属性</li>
+<li>外观属性</li>
+<li>文本属性</li>
+<li>数据绑定</li>
+<li>事件配置</li>
+</ul>
+<p>控件本身不直接依赖 WPF 控件实例，而是通过模型描述，再由渲染器生成真实界面元素</p>
+<h3 id="预设系统">预设系统</h3>
+<p>预设系统用于快速创建常用控件</p>
+<p>主要职责：</p>
+<ul>
+<li>注册内置控件预设</li>
+<li>按分类组织控件</li>
+<li>支持拖拽创建控件</li>
+<li>支持扩展自定义预设</li>
+<li>统一控件默认属性和绑定配置</li>
+</ul>
+<p>常见预设包括：</p>
+<ul>
+<li>按钮</li>
+<li>开关</li>
+<li>文本</li>
+<li>输入框</li>
+<li>容器</li>
+<li>图片</li>
+<li>状态灯</li>
+<li>指示器</li>
+<li>进度显示控件</li>
+</ul>
+<h3 id="设计器系统">设计器系统</h3>
+<p>设计器系统负责动态界面的可视化编辑</p>
+<p>主要职责：</p>
+<ul>
+<li>控件渲染</li>
+<li>控件拖拽</li>
+<li>控件选择</li>
+<li>控件移动</li>
+<li>控件缩放</li>
+<li>多选操作</li>
+<li>对齐辅助</li>
+<li>网格背景</li>
+<li>缩放视图</li>
+<li>属性编辑</li>
+<li>事件编辑</li>
+<li>历史记录</li>
+</ul>
+<p>设计器中的控件通过 <code>DesignerControlChrome</code> 包装，选择框、缩放点等设计态元素不会直接改变控件本体尺寸，避免设计态视觉元素影响真实布局</p>
+<h3 id="渲染系统">渲染系统</h3>
+<p>渲染系统负责将动态视图模型转换为 WPF 界面元素</p>
+<p>当前主要分为：</p>
+<ul>
+<li>设计态渲染器</li>
+<li>运行态渲染器</li>
+</ul>
+<p>设计态渲染器侧重编辑体验，运行态渲染器侧重数据绑定、事件执行和业务交互</p>
+<h3 id="运行时系统">运行时系统</h3>
+<p>运行时系统负责项目运行时的页面展示、变量绑定、事件执行和宿主交互</p>
+<p>主要职责：</p>
+<ul>
+<li>加载运行页面</li>
+<li>渲染真实控件</li>
+<li>建立变量绑定</li>
+<li>绑定运行事件</li>
+<li>响应用户操作</li>
+<li>与变量服务、通讯服务、宿主服务协同</li>
+</ul>
+<h3 id="变量系统">变量系统</h3>
+<p>变量系统是动态视图的数据核心。</p>
+<p>当前变量系统以结构体变量为主要方向，支持结构体字段级绑定</p>
+<p>主要职责：</p>
+<ul>
+<li>管理结构体变量</li>
+<li>管理字段定义</li>
+<li>管理字段值</li>
+<li>支持变量监控</li>
+<li>支持变量更新通知</li>
+<li>支持结构体整体更新</li>
+<li>支持字段级更新</li>
+<li>支持批量更新</li>
+</ul>
+<h3 id="绑定系统">绑定系统</h3>
+<p>绑定系统负责将控件属性和变量字段建立关联</p>
+<p>常见绑定类型包括：</p>
+<ul>
+<li>文本绑定</li>
+<li>可见性绑定</li>
+<li>启用状态绑定</li>
+<li>颜色绑定</li>
+<li>选中状态绑定</li>
+<li>状态绑定</li>
+<li>数值绑定</li>
+</ul>
+<p>绑定目标采用结构体字段路径，例如：</p>
+<pre><code class="lang-text">结构体.字段
+</code></pre>
+<p>绑定配置内部保存结构体标识和字段标识，显示名称仅用于 UI 展示</p>
+<h3 id="通讯系统">通讯系统</h3>
+<p>通讯系统负责设备数据和动态视图变量之间的数据同步</p>
+<p>主要职责：</p>
+<ul>
+<li>管理设备配置</li>
+<li>管理通讯通道</li>
+<li>支持 Modbus TCP</li>
+<li>支持通道读取</li>
+<li>支持变量写回</li>
+<li>支持轮询更新</li>
+<li>支持结构体字段映射</li>
+<li>支持运行期缓存，避免频繁读取持久化工程数据</li>
+</ul>
+<p>通讯系统通常包含：</p>
+<ul>
+<li>设备中心</li>
+<li>通道配置</li>
+<li>轮询更新服务</li>
+<li>写回服务</li>
+<li>通讯服务</li>
+<li>协议适配层</li>
+</ul>
+<h3 id="数据中心">数据中心</h3>
+<p>数据中心负责维护动态视图中的结构体变量、字段、分组、访问模式和数据类型</p>
+<p>主要职责：</p>
+<ul>
+<li>结构体变量管理</li>
+<li>字段管理</li>
+<li>数据类型配置</li>
+<li>访问模式配置</li>
+<li>默认值配置</li>
+<li>变量校验</li>
+<li>变量选择</li>
+<li>变量引用查询</li>
+</ul>
+<h3 id="设备中心">设备中心</h3>
+<p>设备中心负责维护外部设备与变量之间的关联</p>
+<p>主要职责：</p>
+<ul>
+<li>设备配置</li>
+<li>通讯协议配置</li>
+<li>通道配置</li>
+<li>地址配置</li>
+<li>数据区配置</li>
+<li>结构体字段绑定</li>
+<li>读写权限约束</li>
+<li>通讯参数配置</li>
+</ul>
+<h3 id="引用追踪系统">引用追踪系统</h3>
+<p>引用追踪系统用于查看变量、字段、设备通道、控件绑定和事件配置之间的引用关系</p>
+<p>主要目标：</p>
+<ul>
+<li>查找某个变量被哪些控件绑定</li>
+<li>查找某个字段被哪些设备通道关联</li>
+<li>查找某个变量是否被事件或脚本引用</li>
+<li>删除变量前进行安全检查</li>
+<li>降低后期维护和排查成本</li>
+</ul>
+<h3 id="事件系统">事件系统</h3>
+<p>事件系统用于描述控件在运行时触发的业务行为</p>
+<p>常见事件包括：</p>
+<ul>
+<li>点击</li>
+<li>按下</li>
+<li>松开</li>
+<li>状态切换</li>
+<li>页面跳转</li>
+<li>变量写入</li>
+<li>脚本执行</li>
+</ul>
+<p>事件系统应与运行时上下文协同，避免设计态与运行态逻辑混杂</p>
+<h3 id="脚本系统">脚本系统</h3>
+<p>脚本系统用于提供更灵活的业务扩展能力</p>
+<p>当前规划包括：</p>
+<ul>
+<li>全局脚本</li>
+<li>页面脚本</li>
+<li>控件事件脚本</li>
+<li>变量处理脚本</li>
+<li>通讯处理脚本</li>
+</ul>
+<p>脚本系统应受到权限、安全和运行时上下文约束，避免影响系统稳定性</p>
+<h3 id="历史系统">历史系统</h3>
+<p>历史系统用于支持设计器中的撤销和重做</p>
+<p>主要职责：</p>
+<ul>
+<li>添加控件历史</li>
+<li>删除控件历史</li>
+<li>移动控件历史</li>
+<li>属性修改历史</li>
+<li>页面操作历史</li>
+<li>限制最大历史数量</li>
+</ul>
+<h3 id="持久化系统">持久化系统</h3>
+<p>持久化系统负责将动态视图工程保存到项目数据中，并在需要时恢复</p>
+<p>主要职责：</p>
+<ul>
+<li>保存工程模型</li>
+<li>恢复工程模型</li>
+<li>标记工程脏状态</li>
+<li>监听变量变化</li>
+<li>监听页面变化</li>
+<li>与主工程系统集成</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -261,15 +261,28 @@
 <td>Action</td>
 <td>VARCHAR(100)</td>
 <td>操作名称</td>
-<td></td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>LoginTime</td>
+<td>DATETIME</td>
+<td>登录时间</td>
+<td>不为Null</td>
+</tr>
+<tr>
+<td>IsSuccess</td>
+<td>BIT</td>
+<td>是否登录成功</td>
+<td>默认 1</td>
+</tr>
+<tr>
+<td>Notes</td>
+<td>VARCHAR(20)</td>
+<td>备注信息</td>
+<td>无</td>
 </tr>
 </tbody>
 </table>
-<pre><code>        | 不为Null |
-</code></pre>
-<p>| LoginTime          | DATETIME         | 登录时间                           | 不为Null |
-| IsSuccess          | BIT              | 是否登录成功                       | 默认 1 |
-| Notes              | VARCHAR(20)      | 备注信息                           | 无 |</p>
 <h2 id="本地文件">本地文件</h2>
 <h3 id="用户历史登录凭证userhistoryitem">用户历史登录凭证（UserHistoryItem）</h3>
 <table>
@@ -825,78 +838,6 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </tr>
 </tbody>
 </table>
-<h4 id="buildrunworkbenchviewmodel">BuildRunWorkbenchViewModel</h4>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>描述</th>
-<th>权限</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UnloadAssemblyCommand</td>
-<td>卸载程序集</td>
-<td>Engineer</td>
-</tr>
-<tr>
-<td>RefreshLoadedAssemblyInfoCommand</td>
-<td>刷新加载的程序集信息</td>
-<td>Operator</td>
-</tr>
-<tr>
-<td>GenerateAssemblyCommand</td>
-<td>生成程序集</td>
-<td>Engineer</td>
-</tr>
-<tr>
-<td>UnloadAllAssembliesCommand</td>
-<td>卸载所有程序集</td>
-<td>Engineer</td>
-</tr>
-<tr>
-<td>OpenBuildSettingCommand</td>
-<td>打开构建设置</td>
-<td>Engineer</td>
-</tr>
-<tr>
-<td>StartAllInstancesCommand</td>
-<td>启动所有实例</td>
-<td>Operator</td>
-</tr>
-<tr>
-<td>StopAllInstancesCommand</td>
-<td>停止所有实例</td>
-<td>Operator</td>
-</tr>
-<tr>
-<td>HotReloadCommand</td>
-<td>热重载</td>
-<td>Operator</td>
-</tr>
-<tr>
-<td>RefreshDataSourceCommand</td>
-<td>刷新数据源</td>
-<td>Engineer</td>
-</tr>
-<tr>
-<td>OpenDebugInfoCommand</td>
-<td>开调试信息</td>
-<td>Visitor</td>
-</tr>
-<tr>
-<td>MASCodeCommand</td>
-<td>打开MAS Code</td>
-<td>Admin</td>
-</tr>
-<tr>
-<td>AssemblyCommand</td>
-<td>程序集</td>
-<td>Operator</td>
-</tr>
-</tbody>
-</table>
 <h4 id="homeviewmodel">HomeViewModel</h4>
 <table>
 <thead>
@@ -986,8 +927,81 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </tr>
 </tbody>
 </table>
+<h3 id="masdatamasterviewmodelspagesdataacquisition">MAS.DataMaster.ViewModels.Pages.DataAcquisition</h3>
+<h4 id="dataacquisitionworkbenchviewmodel">DataAcquisitionWorkbenchViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UnloadAssemblyCommand</td>
+<td>卸载程序集</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>RefreshLoadedAssemblyInfoCommand</td>
+<td>刷新加载的程序集信息</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>GenerateAssemblyCommand</td>
+<td>生成程序集</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>UnloadAllAssembliesCommand</td>
+<td>卸载所有程序集</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenBuildSettingCommand</td>
+<td>打开构建设置</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>StartAllInstancesCommand</td>
+<td>启动所有实例</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>StopAllInstancesCommand</td>
+<td>停止所有实例</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>HotReloadCommand</td>
+<td>热重载</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RefreshDataSourceCommand</td>
+<td>刷新数据源</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenDebugInfoCommand</td>
+<td>开调试信息</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>MASCodeCommand</td>
+<td>打开MAS Code</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>AssemblyCommand</td>
+<td>程序集</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
 <h3 id="masdatamasterviewmodelspagespathplanning">MAS.DataMaster.ViewModels.Pages.PathPlanning</h3>
-<h4 id="workbenchviewmodel">WorkbenchViewModel</h4>
+<h4 id="pathplanningworkbenchviewmodel">PathPlanningWorkbenchViewModel</h4>
 <table>
 <thead>
 <tr>
@@ -1066,30 +1080,336 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </table>
 <h3 id="masdatamasterviewmodelspagesutilities">MAS.DataMaster.ViewModels.Pages.Utilities</h3>
 <h4 id="asciiconversionviewmodel">AsciiConversionViewModel</h4>
-<p>| AddToHistoryCommand | 添加到历史 | None |
-| CopyContentCommand | 复制 | None |</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AddToHistoryCommand</td>
+<td>添加到历史</td>
+<td>None</td>
+</tr>
+<tr>
+<td>CopyContentCommand</td>
+<td>复制</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
 <h4 id="wordprinterviewmodel">WordPrinterViewModel</h4>
-<p>| RefreshPrintersCommand | 刷新打印机列表 | None |
-| SelectPrinterCommand | 选择打印机 | None |
-| SelectWordFilesCommand | 选择文件 | None |
-| OpenFileCommand | 打开文件 | None |
-| RemoveLinkCommand | 移除关联 | Operator |
-| PrintCommand | 打印 | Operator |
-| ReplacementCommand | 替换 | Operator |
-| DocumentPrintCommand | 存档打印 | Operator |
-| TriggerCommand | 触发 | Engineer |
-| StateSwitchCommand | 切换运行状态 | Operator  |
-| HotReloadCommand | 热重载 | Operator |
-| OpenDebugInfoCommand | 打开调试信息窗口 | Visitor |
-| OpenScriptCodeCommand | 打开脚本 | Admin |
-| BrowseCommand | 浏览路径 | Operator |
-| OpenCommand | 打开路径 | Operator |
-| RefreshPrintHistoryCommand | 刷新打印历史 | Visitor |
-| OpenHistoryCommand | 打开历史 | Visitor |
-| PrintHistoryCommand | 打印历史 | Visitor |
-| DeleteHistoryCommand | 删除历史 | Visitor |</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RefreshPrintersCommand</td>
+<td>刷新打印机列表</td>
+<td>None</td>
+</tr>
+<tr>
+<td>SelectPrinterCommand</td>
+<td>选择打印机</td>
+<td>None</td>
+</tr>
+<tr>
+<td>SelectWordFilesCommand</td>
+<td>选择文件</td>
+<td>None</td>
+</tr>
+<tr>
+<td>OpenFileCommand</td>
+<td>打开文件</td>
+<td>None</td>
+</tr>
+<tr>
+<td>RemoveLinkCommand</td>
+<td>移除关联</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>PrintCommand</td>
+<td>打印</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>ReplacementCommand</td>
+<td>替换</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>DocumentPrintCommand</td>
+<td>存档打印</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>TriggerCommand</td>
+<td>触发</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>StateSwitchCommand</td>
+<td>切换运行状态</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>HotReloadCommand</td>
+<td>热重载</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenDebugInfoCommand</td>
+<td>打开调试信息窗口</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>OpenScriptCodeCommand</td>
+<td>打开脚本</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>BrowseCommand</td>
+<td>浏览路径</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenCommand</td>
+<td>打开路径</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RefreshPrintHistoryCommand</td>
+<td>刷新打印历史</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>OpenHistoryCommand</td>
+<td>打开历史</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>PrintHistoryCommand</td>
+<td>打印历史</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>DeleteHistoryCommand</td>
+<td>删除历史</td>
+<td>Visitor</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelswindowsdynamicviews">MAS.DataMaster.ViewModels.Windows.DynamicViews</h3>
+<h4 id="dynamicviewdesignerviewmodel">DynamicViewDesignerViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SyncProjectToMemoryCommand</td>
+<td>同步数据到内存</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>OpenDataCenterCommand</td>
+<td>打开数据中心</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SelectVariableCommand</td>
+<td>变量选择</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SelectBindingVariableCommand</td>
+<td>绑定变量选择</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dynamicviewdatacenterviewmodel">DynamicViewDataCenterViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SyncProjectToMemoryCommand</td>
+<td>同步数据到内存</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>AddStructCommand</td>
+<td>添加结构体变量</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RemoveCommand</td>
+<td>移除变量</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>AddFieldCommand</td>
+<td>添加字段</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RemoveFieldCommand</td>
+<td>移除字段</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>CheckCommand</td>
+<td>检查属性</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>ExportCommand</td>
+<td>导出变量</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>MoveFieldUpCommand</td>
+<td>字段上移命令</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>MoveFieldDownCommand</td>
+<td>字段下移命令</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>MoveFieldCommand</td>
+<td>字段移动命令</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>CopyStructCommand</td>
+<td>复制结构体</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dynamicviewdevicecenterviewmodel">DynamicViewDeviceCenterViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AddDeviceCommand</td>
+<td>添加设备</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RemoveDeviceCommand</td>
+<td>删除设备</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>SyncProjectToMemoryCommand</td>
+<td>同步数据到内存</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>AddChannelCommand</td>
+<td>添加通道</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>RemoveChannelCommand</td>
+<td>删除通道</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>CheckCommand</td>
+<td>检查属性</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>ExportCommand</td>
+<td>导出变量</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>SelectVariableCommand</td>
+<td>选择变量</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="masdatamasterviewmodelspagesdynamicviews">MAS.DataMaster.ViewModels.Pages.DynamicViews</h3>
+<h4 id="dynamicviewsworkbenchviewmodel">DynamicViewsWorkbenchViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DesignPatternsCommand</td>
+<td>设计器模式</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenDataCenterCommand</td>
+<td>打开数据中心</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenVariableMonitorCommand</td>
+<td>打开变量监控</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenDeviceCenterCommand</td>
+<td>打开设备中心</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>StateSwitchCommand</td>
+<td>切换运行状态</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>OpenDebugInfoCommand</td>
+<td>打开调试信息查看</td>
+<td>Visitor</td>
+</tr>
+<tr>
+<td>OpenScriptCodeCommand</td>
+<td>打开脚本</td>
+<td>Admin</td>
+</tr>
+</tbody>
+</table>
 <h3 id="masdatamasterviewmodelspagesvision">MAS.DataMaster.ViewModels.Pages.Vision</h3>
-<h4 id="workbenchviewmodel-1">WorkbenchViewModel</h4>
+<h4 id="visionworkbenchviewmodel">VisionWorkbenchViewModel</h4>
 <table>
 <thead>
 <tr>
@@ -1179,6 +1499,28 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </tbody>
 </table>
 <h3 id="masdatamasterviewmodelswindows">MAS.DataMaster.ViewModels.Windows</h3>
+<h4 id="projectclosecheckviewmodel">ProjectCloseCheckViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ConfirmCommand</td>
+<td>确认</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>DiscardAllCommand</td>
+<td>丢弃所有</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
 <h4 id="codeeditorviewmodel">CodeEditorViewModel</h4>
 <table>
 <thead>
@@ -1598,7 +1940,7 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <tr>
 <td>LogOutCommand</td>
 <td>退出登录</td>
-<td>Visitor</td>
+<td>None</td>
 </tr>
 <tr>
 <td>AssignRoleCommand</td>
@@ -1800,16 +2142,48 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>删除配方</td>
 <td>Admin</td>
 </tr>
+<tr>
+<td>ConfirmNewRecipeCommand</td>
+<td>确认新配方</td>
+<td>None</td>
+</tr>
+<tr>
+<td>CancelNewRecipeCommand</td>
+<td>取消新配方</td>
+<td>None</td>
+</tr>
+<tr>
+<td>ParameterValidationCommand</td>
+<td>参数校验</td>
+<td>None</td>
+</tr>
+<tr>
+<td>UpdateCombinedVerifyCommand</td>
+<td>更新标定验证列表</td>
+<td>None</td>
+</tr>
+<tr>
+<td>ExportCoordinateTrajectoryCommand</td>
+<td>导出标定验证列表</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>WorldPointPositioningCommand</td>
+<td>世界标定点定位</td>
+<td>None</td>
+</tr>
+<tr>
+<td>TargetPointPositioningCommand</td>
+<td>目标标定点定位</td>
+<td>None</td>
+</tr>
+<tr>
+<td>UpdateMatrixHealthCommand</td>
+<td>更新矩阵健康度</td>
+<td>None</td>
+</tr>
 </tbody>
 </table>
-<p>| ConfirmNewRecipeCommand | 确认新配方 | None |
-| CancelNewRecipeCommand | 取消新配方 | None |
-| ParameterValidationCommand | 参数校验 | None |
-| UpdateCombinedVerifyCommand | 更新标定验证列表 | None |
-| ExportCoordinateTrajectoryCommand | 导出标定验证列表 | Operator |
-| WorldPointPositioningCommand | 世界标定点定位 | None |
-| TargetPointPositioningCommand | 目标标定点定位 | None |
-| UpdateMatrixHealthCommand | 更新矩阵健康度 | None |</p>
 <h4 id="pointeditorviewmodel">PointEditorViewModel</h4>
 <table>
 <thead>

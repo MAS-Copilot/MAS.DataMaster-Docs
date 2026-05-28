@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>MAS.DynamicViews.Variable | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="MAS.DynamicViews.Variable | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.Variable.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="masdynamicviewsvariable">MAS.DynamicViews.Variable</h1>
+
+<p>变量系统是 <code>MAS.DynamicViews</code> 的数据核心</p>
+<p>整个动态视图运行过程中：</p>
+<ul>
+<li>控件绑定</li>
+<li>通讯同步</li>
+<li>运行时刷新</li>
+<li>状态显示</li>
+<li>事件交互</li>
+</ul>
+<p>最终都依赖变量系统完成数据驱动</p>
+<h2 id="变量系统目标">变量系统目标</h2>
+<p>变量系统主要目标：</p>
+<ul>
+<li>统一管理变量定义</li>
+<li>支持结构体变量</li>
+<li>支持字段级绑定</li>
+<li>支持变量监控</li>
+<li>支持批量更新</li>
+<li>支持通讯映射</li>
+<li>支持运行时绑定</li>
+<li>支持引用追踪</li>
+<li>支持高频实时刷新</li>
+</ul>
+<h2 id="变量模型">变量模型</h2>
+<p>当前变量系统采用<code>结构体变量 + 字段模型</code>架构</p>
+<p>整体结构：</p>
+<pre><code class="lang-txt">DynamicViewVariableModel
+├── VariableId
+├── Name
+├── GroupName
+├── AccessMode
+├── IsEnabled
+├── Description
+├── Fields
+└── Properties
+</code></pre>
+<p>其中：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VariableId</td>
+<td>结构体变量唯一标识</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>结构体名称</td>
+</tr>
+<tr>
+<td>GroupName</td>
+<td>结构体分组</td>
+</tr>
+<tr>
+<td>AccessMode</td>
+<td>结构体访问模式</td>
+</tr>
+<tr>
+<td>IsEnabled</td>
+<td>是否启用</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>结构体描述</td>
+</tr>
+<tr>
+<td>Fields</td>
+<td>字段定义集合</td>
+</tr>
+<tr>
+<td>Properties</td>
+<td>扩展属性</td>
+</tr>
+</tbody>
+</table>
+<h2 id="为什么使用结构体变量">为什么使用结构体变量</h2>
+<p>传统动态组态通常采用<code>全局变量列表</code>模式</p>
+<p>例如：</p>
+<pre><code class="lang-txt">Motor1Running
+Motor1Speed
+Motor1Alarm
+</code></pre>
+<p>这种方式存在问题：</p>
+<ul>
+<li>变量数量巨大</li>
+<li>难以组织</li>
+<li>难以维护</li>
+<li>不符合 PLC 数据结构</li>
+<li>通讯映射复杂</li>
+<li>引用关系混乱</li>
+</ul>
+<p>因此当前系统采用<code>结构体变量</code>组织数据</p>
+<p>例如：</p>
+<pre><code class="lang-txt">Motor1
+├── Running
+├── Speed
+├── Alarm
+└── Temperature
+</code></pre>
+<p>这样更符合</p>
+<ul>
+<li>PLC 数据块</li>
+<li>设备结构</li>
+<li>工业对象模型</li>
+<li>通讯映射方式</li>
+</ul>
+<h2 id="字段模型">字段模型</h2>
+<p>字段模型用于描述结构体中的具体数据点</p>
+<p>典型结构：</p>
+<pre><code class="lang-txt">DynamicViewVariableFieldModel
+├── FieldId
+├── Name
+├── VariableType
+├── DefaultValue
+├── FixedString
+├── Description
+└── Properties
+</code></pre>
+<p>其中：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FieldId</td>
+<td>字段唯一标识</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>字段名称</td>
+</tr>
+<tr>
+<td>VariableType</td>
+<td>字段数据类型</td>
+</tr>
+<tr>
+<td>DefaultValue</td>
+<td>字段默认值，运行时按 VariableType 转换</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>字段描述</td>
+</tr>
+<tr>
+<td>FixedString</td>
+<td>固定字符串配置，仅字符串类型使用</td>
+</tr>
+<tr>
+<td>Properties</td>
+<td>扩展属性</td>
+</tr>
+</tbody>
+</table>
+<h2 id="访问模式">访问模式</h2>
+<p>访问模式定义在结构体变量层。当前结构体变量整体共享访问模式，而不是每个字段单独配置访问模式</p>
+<p>访问模式主要用于：</p>
+<ul>
+<li>变量选择过滤</li>
+<li>控件绑定限制</li>
+<li>通讯读写限制</li>
+<li>写回限制</li>
+<li>后续权限控制</li>
+</ul>
+<p>常见模式：</p>
+<ul>
+<li>ReadOnly</li>
+<li>WriteOnly</li>
+<li>ReadWrite</li>
+</ul>
+<h2 id="数据类型">数据类型</h2>
+<p>字段通过<code>VariableType</code>描述数据类型，当前常见类型包括：</p>
+<ul>
+<li>Bool</li>
+<li>Int16</li>
+<li>UInt16</li>
+<li>Int32</li>
+<li>UInt32</li>
+<li>Float</li>
+<li>Double</li>
+<li>String</li>
+</ul>
+<p>字段类型主要用于：</p>
+<ul>
+<li>默认值转换</li>
+<li>变量选择过滤</li>
+<li>控件绑定适配</li>
+<li>通讯数据解析</li>
+<li>通讯数据写回</li>
+<li>运行时值转换</li>
+</ul>
+<h2 id="变量筛选">变量筛选</h2>
+<p>变量选择场景中，通常需要支持筛选</p>
+<p>常见筛选条件包括：</p>
+<ul>
+<li>分组</li>
+<li>数据类型</li>
+<li>访问模式</li>
+<li>启用状态</li>
+<li>关键字</li>
+</ul>
+<p>筛选主要用于：</p>
+<ul>
+<li>控件绑定</li>
+<li>通讯通道绑定</li>
+<li>变量监控</li>
+<li>事件配置</li>
+<li>脚本变量选择</li>
+</ul>
+<h2 id="批量更新">批量更新</h2>
+<p>变量系统需要支持批量更新</p>
+<p>原因是 PLC 通讯通常不是逐字段读取，而是按设备、通道或结构体批量读取</p>
+<p>批量更新可以减少：</p>
+<ul>
+<li>通知次数</li>
+<li>UI 刷新次数</li>
+<li>Dispatcher 压力</li>
+<li>高频轮询开销</li>
+</ul>
+<p>推荐运行时更新链路：</p>
+<pre><code class="lang-txt">CommunicationService
+    ↓
+VariableService
+    ↓
+RuntimeBindingManager
+    ↓
+WPF Control
+</code></pre>
+<h2 id="变量监控">变量监控</h2>
+<p>变量监控用于观察运行时变量状态</p>
+<p>通常显示：</p>
+<ul>
+<li>结构体名称</li>
+<li>字段名称</li>
+<li>数据类型</li>
+<li>当前值</li>
+<li>默认值</li>
+<li>访问模式</li>
+<li>启用状态</li>
+<li>更新时间</li>
+</ul>
+<p>变量监控应读取运行时变量服务中的当前值，而不是直接依赖字段定义模型</p>
+<h2 id="引用追踪">引用追踪</h2>
+<p>变量系统需要支持引用追踪，引用追踪用于分析：变量字段被哪里使用</p>
+<p>常见引用来源：</p>
+<ul>
+<li>控件绑定</li>
+<li>通讯通道</li>
+<li>事件配置</li>
+<li>后续报警配置</li>
+<li>后续趋势配置</li>
+</ul>
+<p>引用追踪主要用于：</p>
+<ul>
+<li>删除检查</li>
+<li>重命名影响分析</li>
+<li>工程维护</li>
+<li>调试排查</li>
+<li>无效引用检测</li>
+</ul>
+<h2 id="克隆规则">克隆规则</h2>
+<p>变量模型和字段模型支持克隆</p>
+<p>当前克隆方式基于 JSON 序列化和反序列化</p>
+<p>克隆主要用于：</p>
+<ul>
+<li>编辑副本</li>
+<li>弹窗编辑</li>
+<li>撤销重做</li>
+<li>临时修改</li>
+<li>深拷贝模型</li>
+</ul>
+<p>注意：克隆结果会复制当前对象数据，但应避免把运行时缓存、服务实例或临时状态放入变量定义模型中</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.Variable.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

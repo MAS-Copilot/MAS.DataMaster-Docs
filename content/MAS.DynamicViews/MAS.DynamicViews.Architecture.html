@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>MAS.DynamicViews.Architecture | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="MAS.DynamicViews.Architecture | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.Architecture.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="masdynamicviewsarchitecture">MAS.DynamicViews.Architecture</h1>
+
+<p><code>MAS.DynamicViews</code> 采用设计态与运行态分离的动态组态架构</p>
+<p>整个系统围绕：</p>
+<ul>
+<li>工程模型</li>
+<li>页面模型</li>
+<li>控件模型</li>
+<li>变量系统</li>
+<li>通讯系统</li>
+<li>渲染系统</li>
+<li>运行时系统</li>
+</ul>
+<p>进行协同构建</p>
+<p>系统目标是：</p>
+<ul>
+<li>支持工业动态组态</li>
+<li>支持运行时数据驱动</li>
+<li>支持 PLC 通讯联动</li>
+<li>支持可扩展控件体系</li>
+<li>支持 MVVM 架构</li>
+<li>支持后续插件化扩展</li>
+</ul>
+<h2 id="总体架构">总体架构</h2>
+<pre><code class="lang-text">MAS.DynamicViews
+├── Project
+│   ├── Pages
+│   │   └── Controls
+│   │       ├── Properties
+│   │       ├── Bindings
+│   │       └── Events
+│   │
+│   ├── Variables
+│   │   └── Fields
+│   │
+│   ├── Devices
+│   │   └── Channels
+│   │
+│   └── Parameters
+│
+├── Designer
+│   ├── Designer Renderer
+│   ├── Selection System
+│   ├── Property Inspector
+│   ├── Events Inspector
+│   ├── Alignment System
+│   └── History System
+│
+├── Runtime
+│   ├── Runtime Renderer
+│   ├── Runtime Binding Manager
+│   ├── Runtime Event Executor
+│   ├── Runtime Host
+│   └── Runtime Context
+│
+├── Communication
+│   ├── Device Center
+│   ├── Channel System
+│   ├── Polling Updater
+│   ├── Variable WriteBack
+│   └── Protocol Adapter
+│
+├── Persistence
+│   ├── Project Persistence
+│   ├── Change Tracking
+│   └── Dirty State
+│
+└── Extensibility
+    ├── Preset Provider
+    ├── Custom Renderer
+    ├── Custom Binding
+    ├── Custom Event
+    └── Plugin Extension
+</code></pre>
+<h2 id="设计理念">设计理念</h2>
+<h3 id="模型驱动">模型驱动</h3>
+<p><code>MAS.DynamicViews</code>采用模型驱动架构</p>
+<p>页面、控件、变量、设备、绑定、事件都优先以模型描述</p>
+<p>渲染器只负责：<code>模型 → WPF 界面元素</code>，而不是直接操作业务逻辑</p>
+<p>这样可以实现：</p>
+<ul>
+<li>设计态与运行态统一</li>
+<li>工程可持久化</li>
+<li>动态生成界面</li>
+<li>后续跨平台渲染</li>
+<li>运行时热加载</li>
+</ul>
+<h2 id="设计态与运行态">设计态与运行态</h2>
+<p>系统核心原则之一是：</p>
+<ul>
+<li>设计态负责编辑</li>
+<li>运行态负责执行</li>
+</ul>
+<h3 id="设计态">设计态</h3>
+<p>设计态主要用于：</p>
+<ul>
+<li>控件编辑</li>
+<li>页面布局</li>
+<li>拖拽创建</li>
+<li>属性修改</li>
+<li>事件配置</li>
+<li>对齐辅助</li>
+<li>缩放操作</li>
+<li>历史记录</li>
+</ul>
+<p>设计态强调：</p>
+<ul>
+<li>编辑体验</li>
+<li>可视化操作</li>
+<li>布局精确性</li>
+<li>非侵入式选择框</li>
+</ul>
+<h3 id="运行态">运行态</h3>
+<p>运行态主要用于：</p>
+<ul>
+<li>实际界面显示</li>
+<li>变量绑定</li>
+<li>数据刷新</li>
+<li>PLC 联动</li>
+<li>用户交互</li>
+<li>运行时事件执行</li>
+</ul>
+<p>运行态强调：</p>
+<ul>
+<li>数据驱动</li>
+<li>稳定性</li>
+<li>性能</li>
+<li>实时性</li>
+</ul>
+<h2 id="工程模型">工程模型</h2>
+<p>整个系统的数据入口是：<code>DynamicViewProjectModel</code></p>
+<p>工程模型通常包含：</p>
+<pre><code class="lang-txt">Project
+├── Pages
+├── Variables
+├── Devices
+├── Parameters
+└── Runtime Configurations
+</code></pre>
+<h3 id="页面模型">页面模型</h3>
+<p>页面用于描述动态界面</p>
+<p>每个页面通常包含：</p>
+<pre><code class="lang-txt">Page
+├── Appearance
+├── Controls
+├── Width
+├── Height
+└── Background
+</code></pre>
+<p>页面本身不直接依赖运行时逻辑</p>
+<h3 id="控件模型">控件模型</h3>
+<p>控件模型用于描述动态控件</p>
+<p>每个控件通常包含：</p>
+<pre><code class="lang-txt">Control
+├── Layout
+├── Appearance
+├── Text
+├── Bindings
+└── Events
+</code></pre>
+<p>控件模型只描述状态，不直接持有真实 WPF 控件实例</p>
+<h2 id="渲染系统">渲染系统</h2>
+<p>渲染系统负责：<code>模型 → WPF 控件</code></p>
+<p>系统当前包含：</p>
+<pre><code class="lang-txt">DynamicViewRendererBase
+├── DynamicViewDesignerRenderer
+└── DynamicViewRuntimeRenderer
+</code></pre>
+<h3 id="设计态渲染器">设计态渲染器</h3>
+<p>设计态渲染器主要负责：</p>
+<ul>
+<li>创建设计态控件</li>
+<li>添加选择框</li>
+<li>添加缩放控制点</li>
+<li>提供设计辅助能力</li>
+</ul>
+<p>设计态通过<code>DesignerControlChrome</code>包装真实控件。这样可以避免：</p>
+<ul>
+<li>修改真实控件尺寸</li>
+<li>影响布局测量</li>
+<li>影响文本排列</li>
+<li>影响运行态表现</li>
+</ul>
+<h3 id="运行态渲染器">运行态渲染器</h3>
+<p>运行态渲染器主要负责：</p>
+<ul>
+<li>创建真实运行控件</li>
+<li>建立运行时绑定</li>
+<li>绑定运行事件</li>
+<li>连接运行时上下文</li>
+</ul>
+<p>运行态渲染器会与以下协同工作：</p>
+<ul>
+<li>RuntimeBindingManager</li>
+<li>RuntimeEventExecutor</li>
+<li>VariableService</li>
+</ul>
+<h2 id="变量系统">变量系统</h2>
+<p>变量系统是动态视图的数据核心，当前系统采用<code>结构体变量 + 字段绑定</code>模式</p>
+<h3 id="结构体变量">结构体变量</h3>
+<p>结构体变量用于描述：</p>
+<ul>
+<li>PLC 数据块</li>
+<li>设备数据结构</li>
+<li>运行时状态集合</li>
+</ul>
+<p>例如：</p>
+<pre><code class="lang-txt">Motor
+├── Running
+├── Speed
+├── Alarm
+└── Temperature
+</code></pre>
+<h3 id="字段级绑定">字段级绑定</h3>
+<p>大部分控件绑定是<code>结构体字段</code>，而不是单独的全局变量</p>
+<p>例如：</p>
+<ul>
+<li>Motor.Speed</li>
+<li>Motor.Alarm</li>
+</ul>
+<p>这样可以：</p>
+<ul>
+<li>更符合 PLC 数据组织</li>
+<li>更方便通讯映射</li>
+<li>更方便批量同步</li>
+<li>更方便引用追踪</li>
+</ul>
+<h2 id="绑定系统">绑定系统</h2>
+<p>绑定系统负责：<code>变量 → 控件属性</code></p>
+<p>常见绑定包括：</p>
+<ul>
+<li>文本绑定</li>
+<li>状态绑定</li>
+<li>数值绑定</li>
+<li>可见性绑定</li>
+<li>启用状态绑定</li>
+<li>颜色绑定</li>
+<li>选中状态绑定</li>
+</ul>
+<p>绑定系统统一通过<code>Binding Model</code>描述，而不是每个控件单独实现绑定逻辑</p>
+<h2 id="通讯系统">通讯系统</h2>
+<p>通讯系统负责<code>PLC ↔ DynamicViews</code>之间的数据同步</p>
+<h3 id="核心职责">核心职责</h3>
+<ul>
+<li>设备管理</li>
+<li>通道管理</li>
+<li>数据轮询</li>
+<li>数据写回</li>
+<li>协议适配</li>
+<li>变量同步</li>
+</ul>
+<h3 id="数据轮询">数据轮询</h3>
+<p>轮询系统负责<code>PLC → VariableService</code>运行时更新</p>
+<p>轮询系统会缓存：</p>
+<ul>
+<li>设备</li>
+<li>通道</li>
+<li>变量映射</li>
+</ul>
+<p>避免频繁读取工程数据</p>
+<h3 id="数据回写">数据回写</h3>
+<p>写回系统负责<code>VariableService → PLC</code>同步</p>
+<p>主要用于：</p>
+<ul>
+<li>按钮操作</li>
+<li>开关控制</li>
+<li>参数写入</li>
+<li>用户交互</li>
+</ul>
+<h2 id="运行时系统">运行时系统</h2>
+<p>运行时系统负责：</p>
+<ul>
+<li>页面运行</li>
+<li>数据刷新</li>
+<li>用户交互</li>
+<li>事件执行</li>
+</ul>
+<p>核心组件包括：</p>
+<pre><code class="lang-txt">Runtime
+├── Runtime Renderer
+├── Runtime Binding Manager
+├── Runtime Event Executor
+├── Runtime Context
+└── Runtime Host
+</code></pre>
+<h2 id="事件系统">事件系统</h2>
+<p>事件系统用于描述<code>用户操作 → 动作执行</code></p>
+<p>例如：</p>
+<ul>
+<li>点击按钮</li>
+<li>页面跳转</li>
+<li>写入变量</li>
+<li>执行脚本</li>
+</ul>
+<p>事件系统与<code>Runtime Context</code>协同工作，避免设计态与运行态逻辑混合</p>
+<h2 id="持久化系统">持久化系统</h2>
+<p>持久化系统负责：</p>
+<ul>
+<li>工程保存</li>
+<li>工程恢复</li>
+<li>脏状态跟踪</li>
+<li>页面变更监听</li>
+<li>变量变更监听</li>
+</ul>
+<p>系统目标是<code>完整恢复工程运行状态</code></p>
+<h2 id="历史系统">历史系统</h2>
+<p>历史系统用于支持：</p>
+<ul>
+<li>Undo</li>
+<li>Redo</li>
+</ul>
+<p>当前支持：</p>
+<ul>
+<li>控件创建</li>
+<li>控件删除</li>
+<li>控件移动</li>
+<li>属性修改</li>
+<li>页面操作</li>
+</ul>
+<p>历史系统主要服务于设计器</p>
+<h2 id="引用追踪">引用追踪</h2>
+<p>引用追踪系统用于<code>变量 ↔ 控件 ↔ 通讯 ↔ 事件</code>之间的关系分析</p>
+<p>主要用于：</p>
+<ul>
+<li>删除检查</li>
+<li>重命名同步</li>
+<li>调试排查</li>
+<li>引用查看</li>
+<li>工程维护</li>
+</ul>
+<p>这是后期大型工程维护的重要基础能力</p>
+<h2 id="扩展架构">扩展架构</h2>
+<p>系统保留扩展能力，包括：</p>
+<ul>
+<li>自定义控件</li>
+<li>自定义预设</li>
+<li>自定义绑定</li>
+<li>自定义事件</li>
+<li>自定义渲染器</li>
+<li>插件扩展</li>
+</ul>
+<h2 id="生命周期">生命周期</h2>
+<p>系统典型运行流程：</p>
+<pre><code class="lang-txt">加载工程
+    ↓
+加载页面模型
+    ↓
+创建渲染器
+    ↓
+生成运行控件
+    ↓
+建立变量绑定
+    ↓
+绑定运行事件
+    ↓
+启动通讯轮询
+    ↓
+运行时交互
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.Architecture.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

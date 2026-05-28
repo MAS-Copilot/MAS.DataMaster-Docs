@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>全局脚本 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="全局脚本 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.Scripts.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="全局脚本">全局脚本</h1>
+
+<p>全局脚本是 <code>MAS.DynamicViews</code> 提供的工程级运行时扩展能力。</p>
+<p>它允许动态视图工程在运行过程中执行统一的 C# 脚本逻辑，用于处理工程级公共行为，例如变量监听、导航监听、运行状态处理、公共业务逻辑等。</p>
+<p>当前脚本系统只支持 <strong>全局脚本</strong>，不区分页面脚本和窗口脚本。</p>
+<h2 id="设计目标">设计目标</h2>
+<p>全局脚本系统主要用于：</p>
+<ul>
+<li>提供工程级公共逻辑入口</li>
+<li>支持访问动态视图运行时服务</li>
+<li>支持监听变量变化</li>
+<li>支持监听页面导航变化</li>
+<li>支持执行变量读取和写入</li>
+<li>支持脚本内容变更后重新编译</li>
+<li>支持脚本内容未变化时复用已编译实例</li>
+<li>避免重复编译和重复初始化</li>
+</ul>
+<h2 id="脚本定位">脚本定位</h2>
+<p>全局脚本作用于整个动态视图工程。</p>
+<pre><code class="lang-txt">动态视图工程
+└── 全局脚本
+    ├── 变量变化处理
+    ├── 页面导航处理
+    ├── 公共运行逻辑
+    └── 公共辅助方法
+</code></pre>
+<p>全局脚本不是页面或窗口模型的一部分，而是工程运行时的公共扩展逻辑</p>
+<h2 id="脚本服务集合">脚本服务集合</h2>
+<p>脚本运行时通过<code>DynamicViewScriptServices</code>暴露可访问的服务</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// 动态视图脚本服务集合
+/// &lt;/summary&gt;
+/// &lt;remarks&gt;
+/// 向全局脚本暴露便捷的且允许运行时访问的公开服务。
+/// &lt;/remarks&gt;
+public sealed class DynamicViewScriptServices {
+    /// &lt;summary&gt;
+    /// 获取变量值提供者
+    /// &lt;/summary&gt;
+    public required IDynamicViewVariableValueProvider VariableProvider { get; init; }
+
+    /// &lt;summary&gt;
+    /// 获取变量写入服务
+    /// &lt;/summary&gt;
+    public required IDynamicViewVariableWriteService VariableWriter { get; init; }
+
+    /// &lt;summary&gt;
+    /// 获取动态视图导航服务
+    /// &lt;/summary&gt;
+    public required IDynamicViewNavigationService NavigationService { get; init; }
+}
+</code></pre>
+<p>脚本通过服务集合访问运行时能力，不直接依赖具体运行时实现</p>
+<p>这样可以降低脚本与内部实现的耦合，也方便后续控制脚本可访问的能力范围</p>
+<h2 id="编译与缓存">编译与缓存</h2>
+<p>全局脚本内容本质上是字符串。</p>
+<p>为了避免每次运行时刷新都重复编译，运行时应根据脚本文本计算签名</p>
+<pre><code class="lang-txt">读取全局脚本文本
+  ↓
+计算脚本哈希
+  ↓
+判断哈希是否变化
+  ↓
+未变化：复用已编译脚本
+  ↓
+已变化：重新编译并初始化
+</code></pre>
+<p>这样可以避免：</p>
+<ul>
+<li>重复编译造成性能浪费</li>
+<li>重复初始化导致事件重复订阅</li>
+<li>脚本未变化时产生不必要对象</li>
+<li>频繁刷新时出现卡顿</li>
+</ul>
+<h2 id="资源释放">资源释放</h2>
+<p>全局脚本可能会订阅变量事件、导航事件或持有运行时服务引用。</p>
+<p>因此脚本重新编译、工程关闭或运行时释放时，必须释放旧脚本资源。</p>
+<p>释放时应处理：</p>
+<ul>
+<li>取消变量事件订阅</li>
+<li>取消导航事件订阅</li>
+<li>清空脚本服务引用</li>
+<li>释放旧脚本实例</li>
+<li>避免事件重复订阅</li>
+</ul>
+<h2 id="异常处理">异常处理</h2>
+<p>全局脚本异常不应直接中断动态视图主流程</p>
+<pre><code class="lang-txt">执行脚本逻辑
+  ↓
+捕获异常
+  ↓
+记录日志
+  ↓
+跳过本次脚本处理
+  ↓
+不中断页面显示、变量刷新、通讯流程
+</code></pre>
+<h2 id="注意事项">注意事项</h2>
+<p>使用全局脚本时需要注意：</p>
+<ul>
+<li>不要在脚本中执行长时间阻塞操作</li>
+<li>不要重复订阅事件</li>
+<li>重新编译前必须释放旧脚本实例</li>
+<li>变量写入应避免形成循环触发</li>
+<li>脚本异常应记录日志，不应影响主流程</li>
+<li>脚本服务只暴露必要能力，避免脚本直接操作内部对象</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.Scripts.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

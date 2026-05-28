@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface ICompilationService | DataMaster ">
       
-      <meta name="description" content="动态加载和编译的通用服务接口">
+      <meta name="description" content="提供动态编译与编译结果查询能力">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,61 +97,18 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
   <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>动态加载和编译的通用服务接口</p>
+  <div class="markdown summary"><p>提供动态编译与编译结果查询能力</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ICompilationService : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface ICompilationService</code></pre>
   </div>
 
 
 
 
 
-
-
-  <dl class="typelist inheritedMembers">
-    <dt>Inherited Members</dt>
-    <dd>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
-    </div>
-  </dd></dl>
-
-
-
-
-
-
-  <h2 class="section" id="properties">Properties
-</h2>
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICompilationService_LastCompilationResult_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.LastCompilationResult*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_LastCompilationResult" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.LastCompilationResult">
-  LastCompilationResult
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L47"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取最后一次的编译状态结果</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">CompilationResult? LastCompilationResult { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="MAS.SharedLibrary.Compilation.CompilationResult.html">CompilationResult</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -164,26 +121,35 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
 </h2>
 
 
-  <a id="MAS_SharedLibrary_Compilation_ICompilationService_GetAllFullNames_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetAllFullNames*"></a>
+  <a id="MAS_SharedLibrary_Compilation_ICompilationService_CompileAsync_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.CompileAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetAllFullNames" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetAllFullNames">
-  GetAllFullNames()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_CompileAsync_MAS_SharedLibrary_Compilation_CompilationRequest_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.CompileAsync(MAS.SharedLibrary.Compilation.CompilationRequest,System.Threading.CancellationToken)">
+  CompileAsync(CompilationRequest, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取所有已编译的完全限定名称</p>
+  <div class="markdown level1 summary"><p>异步执行动态编译</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerable&lt;string&gt; GetAllFullNames()</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;CompilationResult&gt; CompileAsync(CompilationRequest request, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>request</code> <a class="xref" href="MAS.SharedLibrary.Compilation.CompilationRequest.html">CompilationRequest</a></dt>
+    <dd><p>编译请求</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>完全限定名称的枚举</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.SharedLibrary.Compilation.CompilationResult.html">CompilationResult</a>&gt;</dt>
+    <dd><p>异步操作任务，编译结果</p>
 </dd>
   </dl>
 
@@ -194,95 +160,40 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
 
 
 
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICompilationService_GetAllNames_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetAllNames*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetAllNames" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetAllNames">
-  GetAllNames()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L108"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取所有已编译的简单名称</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerable&lt;string&gt; GetAllNames()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
+  <h4 class="section">Exceptions</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>简单名称的枚举</p>
-</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd></dd>
   </dl>
-
-
-
-
-
-
-
-
 
 
 
   <a id="MAS_SharedLibrary_Compilation_ICompilationService_GetAllTypes_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetAllTypes*"></a>
 
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetAllTypes" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetAllTypes">
-  GetAllTypes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetAllTypes_System_String_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetAllTypes(System.String)">
+  GetAllTypes(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取所有已编译的类型</p>
+  <div class="markdown level1 summary"><p>根据程序集名称获取程序集中的所有类型</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerable&lt;Type&gt; GetAllTypes()</code></pre>
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;Type&gt; GetAllTypes(string assemblyName)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assemblyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>程序集名称</p>
+</dd>
+  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
-    <dd><p>类型的枚举</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICompilationService_GetBuildConfig_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetBuildConfig*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetBuildConfig" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetBuildConfig">
-  GetBuildConfig()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L22"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取构建配置</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IBuildConfig GetBuildConfig()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="MAS.SharedLibrary.Compilation.IBuildConfig.html">IBuildConfig</a></dt>
-    <dd><p><a class="xref" href="MAS.SharedLibrary.Compilation.IBuildConfig.html">IBuildConfig</a> 实例</p>
+    <dd><p>类型集合</p>
 </dd>
   </dl>
 
@@ -298,24 +209,30 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
 
   <a id="MAS_SharedLibrary_Compilation_ICompilationService_GetCompiledAssembly_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetCompiledAssembly*"></a>
 
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetCompiledAssembly" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetCompiledAssembly">
-  GetCompiledAssembly()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetCompiledAssembly_System_String_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetCompiledAssembly(System.String)">
+  GetCompiledAssembly(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取编译后的程序集</p>
+  <div class="markdown level1 summary"><p>根据程序集名称获取已加载的程序集</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Assembly? GetCompiledAssembly()</code></pre>
+    <pre><code class="lang-csharp hljs">Assembly? GetCompiledAssembly(string assemblyName)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assemblyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>程序集名称</p>
+</dd>
+  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></dt>
-    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a> 对象或 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+    <dd><p>已加载程序集；未找到返回 null</p>
 </dd>
   </dl>
 
@@ -333,10 +250,10 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetDocumentationForType_System_Type_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetDocumentationForType(System.Type)">
   GetDocumentationForType(Type?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取给定类型的文档</p>
+  <div class="markdown level1 summary"><p>获取类型的 XML 文档摘要</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -354,7 +271,7 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>如果不存在则返回null</p>
+    <dd><p>摘要；未找到返回 null</p>
 </dd>
   </dl>
 
@@ -372,10 +289,10 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetFilePathForFullName_System_String_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetFilePathForFullName(System.String)">
   GetFilePathForFullName(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>根据完全限定名称获取对应的文件路径</p>
+  <div class="markdown level1 summary"><p>根据完整限定名获取源文件路径</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -386,14 +303,14 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>fullName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>完全限定名称</p>
+    <dd><p>类型完整限定名</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>如果不存在则返回null</p>
+    <dd><p>源文件路径；未找到返回 null</p>
 </dd>
   </dl>
 
@@ -411,10 +328,10 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetFilePathForType_System_Type_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetFilePathForType(System.Type)">
   GetFilePathForType(Type)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取对应类型的文件路径</p>
+  <div class="markdown level1 summary"><p>根据类型获取源文件路径</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -425,56 +342,14 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>仓储类型</p>
+    <dd><p>类型</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>如果不存在则返回null</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICompilationService_GetProperties_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetProperties*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetProperties_System_String_System_String_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetProperties(System.String,System.String)">
-  GetProperties(string, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L95"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取指定类型的属性列表</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerable&lt;PropertyInfo&gt; GetProperties(string typeName, string? namespaceName = null)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>typeName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>类型的名称</p>
-</dd>
-    <dt><code>namespaceName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>类型的命名空间</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a>&gt;</dt>
-    <dd><p>包含属性信息的列表</p>
+    <dd><p>源文件路径；未找到返回 null</p>
 </dd>
   </dl>
 
@@ -492,10 +367,10 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetTypeByFullName_System_String_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetTypeByFullName(System.String)">
   GetTypeByFullName(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>根据完全限定名称获取特定的类型</p>
+  <div class="markdown level1 summary"><p>根据完整限定名获取类型</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -506,14 +381,14 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>fullName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>类型的名称</p>
+    <dd><p>类型完整限定名</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>如果找到，返回类型；否则返回 null</p>
+    <dd><p>类型；未找到返回 null</p>
 </dd>
   </dl>
 
@@ -531,10 +406,10 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_GetTypeByName_System_String_System_String_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.GetTypeByName(System.String,System.String)">
   GetTypeByName(string, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>根据类型名称获取特定的类型</p>
+  <div class="markdown level1 summary"><p>根据类型名获取类型</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -545,167 +420,17 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>typeName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>类型的名称</p>
+    <dd><p>类型名</p>
 </dd>
     <dt><code>namespaceName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>命名空间</p>
+    <dd><p>命名空间，可选</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>如果找到，返回类型；否则返回 null</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICompilationService_InitDirectory_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.InitDirectory*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_InitDirectory" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.InitDirectory">
-  InitDirectory()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L28"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>初始化目录构建，用于检查目录是否存在。如果不存在则创建</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool InitDirectory()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果创建成功返回true，否则false</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICompilationService_InitDirectory_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.InitDirectory*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_InitDirectory_System_String_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.InitDirectory(System.String)">
-  InitDirectory(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L35"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>初始化目录构建，用于检查目录是否存在。如果不存在则创建</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool InitDirectory(string directory)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>directory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>要检查的目录</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果创建成功返回true，否则false</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICompilationService_InitDirectory_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.InitDirectory*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_InitDirectory_System_String___" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.InitDirectory(System.String[])">
-  InitDirectory(params string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L42"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>初始化目录构建，用于检查一个或多个目录是否存在。如果不存在则创建</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool InitDirectory(params string[] directories)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>directories</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd><p>要检查和创建的目录数组</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果至少创建了一个目录则返回 true，否则返回 false</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="MAS_SharedLibrary_Compilation_ICompilationService_LoadAndCompileAsync_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.LoadAndCompileAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_LoadAndCompileAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.LoadAndCompileAsync(System.Threading.CancellationToken)">
-  LoadAndCompileAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L54"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步加载并编译所有源目录下的所有定义文件到同一程序集</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;CompilationResult&gt; LoadAndCompileAsync(CancellationToken cancellationToken = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd><p>取消令牌</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.SharedLibrary.Compilation.CompilationResult.html">CompilationResult</a>&gt;</dt>
-    <dd><p>异步操作任务结果，<a class="xref" href="MAS.SharedLibrary.Compilation.CompilationResult.html">CompilationResult</a> 对象</p>
+    <dd><p>类型；未找到返回 null</p>
 </dd>
   </dl>
 
@@ -721,24 +446,33 @@ Interface ICompilationService  <a class="header-action link-secondary" title="Vi
 
   <a id="MAS_SharedLibrary_Compilation_ICompilationService_SaveCompiledAssembly_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.SaveCompiledAssembly*"></a>
 
-  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_SaveCompiledAssembly" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.SaveCompiledAssembly">
-  SaveCompiledAssembly()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Compilation_ICompilationService_SaveCompiledAssembly_System_String_System_String_" data-uid="MAS.SharedLibrary.Compilation.ICompilationService.SaveCompiledAssembly(System.String,System.String)">
+  SaveCompiledAssembly(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICompilationService.cs/#L83"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将编译后的程序集保存为 DLL 文件</p>
+  <div class="markdown level1 summary"><p>将指定程序集保存到文件</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool SaveCompiledAssembly()</code></pre>
+    <pre><code class="lang-csharp hljs">bool SaveCompiledAssembly(string assemblyName, string outputFilePath)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assemblyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>程序集名称</p>
+</dd>
+    <dt><code>outputFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>输出文件完整路径</p>
+</dd>
+  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果保存成功，返回 true；否则返回 false</p>
+    <dd><p>保存成功返回 true，否则返回 false</p>
 </dd>
   </dl>
 

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>MAS.DynamicViews.Renderer | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="MAS.DynamicViews.Renderer | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.Renderer.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="masdynamicviewsrenderer">MAS.DynamicViews.Renderer</h1>
+
+<p>渲染系统负责将动态视图模型转换为真实 WPF 界面元素</p>
+<p>渲染系统是<code>模型 -&gt; 界面</code>之间的核心桥梁</p>
+<h2 id="渲染目标">渲染目标</h2>
+<p>渲染系统主要负责：</p>
+<ul>
+<li>根据页面模型生成界面</li>
+<li>根据控件模型创建控件</li>
+<li>建立控件属性绑定</li>
+<li>建立运行时变量绑定</li>
+<li>建立运行时事件</li>
+<li>提供设计态可视化能力</li>
+<li>保持设计态与运行态一致性</li>
+</ul>
+<h2 id="渲染流程">渲染流程</h2>
+<p>典型渲染流程：</p>
+<pre><code class="lang-txt">PageModel
+    ↓
+RenderPage
+    ↓
+遍历 Controls
+    ↓
+RenderControl
+    ↓
+CreateContentElement
+    ↓
+建立基础绑定
+    ↓
+建立运行时绑定
+    ↓
+建立事件
+    ↓
+返回 FrameworkElement
+</code></pre>
+<h2 id="页面渲染">页面渲染</h2>
+<p>页面渲染负责<code>DynamicViewPageModel -&gt; Canvas</code></p>
+<p>通常流程：</p>
+<pre><code class="lang-txt">创建 Canvas
+    ↓
+设置页面尺寸
+    ↓
+遍历控件集合
+    ↓
+按 ZIndex 排序
+    ↓
+生成控件
+    ↓
+添加到 Canvas
+</code></pre>
+<p>页面渲染器不直接处理业务逻辑，页面只是<code>控件容器</code></p>
+<h2 id="控件渲染">控件渲染</h2>
+<p>控件渲染负责<code>DynamicViewControlModel -&gt; FrameworkElement</code></p>
+<p>每个控件通常包含：</p>
+<pre><code class="lang-txt">Control
+├── Layout
+├── Appearance
+├── Text
+├── Bindings
+└── Events
+</code></pre>
+<p>渲染器负责：</p>
+<ul>
+<li>创建真实控件</li>
+<li>应用属性</li>
+<li>设置布局</li>
+<li>建立 Binding</li>
+<li>配置事件</li>
+</ul>
+<h2 id="rendererbase">RendererBase</h2>
+<p><code>DynamicViewRendererBase</code>是渲染系统基础类</p>
+<p>主要职责：</p>
+<ul>
+<li>提供统一渲染入口</li>
+<li>提供控件创建逻辑</li>
+<li>提供基础属性绑定</li>
+<li>提供布局绑定</li>
+<li>提供外观绑定</li>
+<li>提供公共辅助方法</li>
+</ul>
+<h2 id="设计目标">设计目标</h2>
+<p>基础渲染器主要用于<code>共享设计态与运行态公共逻辑</code></p>
+<p>避免：</p>
+<ul>
+<li>重复创建控件</li>
+<li>重复绑定属性</li>
+<li>重复布局逻辑</li>
+<li>重复样式逻辑</li>
+</ul>
+<h2 id="基础控件创建">基础控件创建</h2>
+<p><code>RendererBase</code>通常负责<code>ControlType -&gt; CreateControl</code></p>
+<p>例如：</p>
+<pre><code class="lang-txt">Button
+ToggleButton
+TextBlock
+TextBox
+Image
+Border
+Card
+StatusLamp
+</code></pre>
+<h2 id="createcontentelement">CreateContentElement</h2>
+<p>控件真实创建通常由<code>CreateContentElement</code>负责</p>
+<p>该方法主要职责：</p>
+<ul>
+<li>根据控件类型创建 WPF 控件</li>
+<li>设置 DataContext</li>
+<li>建立基础属性绑定</li>
+<li>返回真实控件元素</li>
+</ul>
+<p>返回值通常为<code>FrameworkElement</code></p>
+<h2 id="基础属性绑定">基础属性绑定</h2>
+<p><code>RendererBase</code>通常负责建立：</p>
+<ul>
+<li>布局绑定</li>
+<li>外观绑定</li>
+<li>文本绑定</li>
+<li>可见性绑定</li>
+<li>启用状态绑定</li>
+</ul>
+<p>例如：</p>
+<pre><code class="lang-txt">Properties.Layout.Width
+Properties.Appearance.Background
+Properties.Text.Content
+</code></pre>
+<p>这些绑定属于<code>静态模型绑定</code>，而不是运行时变量绑定</p>
+<h2 id="布局系统">布局系统</h2>
+<p>布局绑定通常包括：</p>
+<pre><code class="lang-txt">Left
+Top
+Width
+Height
+ZIndex
+Margin
+Padding
+</code></pre>
+<p>页面使用<code>Canvas</code>作为主要布局容器，因此通常需要以下作为绑定：</p>
+<pre><code class="lang-txt">Canvas.Left
+Canvas.Top
+Panel.ZIndex
+</code></pre>
+<h2 id="外观系统">外观系统</h2>
+<p>外观绑定负责：</p>
+<ul>
+<li>背景</li>
+<li>前景</li>
+<li>边框</li>
+<li>圆角</li>
+<li>透明度</li>
+<li>字体</li>
+</ul>
+<p>等属性，来源<code>Properties.Appearance</code></p>
+<h2 id="文本系统">文本系统</h2>
+<p>文本绑定负责：</p>
+<ul>
+<li>显示文本</li>
+<li>字体大小</li>
+<li>字体粗细</li>
+<li>对齐方式</li>
+</ul>
+<p>等属性，来源<code>Properties.Text</code></p>
+<h2 id="设计态渲染器">设计态渲染器</h2>
+<p><code>DynamicViewDesignerRenderer</code>用于<code>设计器模式</code>下的控件渲染</p>
+<p>主要职责：</p>
+<ul>
+<li>创建设计态控件</li>
+<li>禁用运行时行为</li>
+<li>添加选择框</li>
+<li>添加缩放控制点</li>
+<li>提供设计辅助</li>
+</ul>
+<h2 id="设计态特点">设计态特点</h2>
+<p>设计态重点关注：</p>
+<ul>
+<li>编辑体验</li>
+<li>拖拽体验</li>
+<li>多选体验</li>
+<li>精确布局</li>
+<li>非侵入式可视化</li>
+</ul>
+<h2 id="designercontrolchrome">DesignerControlChrome</h2>
+<p>设计态通过<code>DesignerControlChrome</code>包装真实控件</p>
+<p>结构通常为：</p>
+<pre><code class="lang-txt">DesignerControlChrome
+└── RealControl
+</code></pre>
+<p><strong>为什么使用 Chrome 包装？</strong></p>
+<p>原因是<code>设计态可视化 ≠ 控件本体</code></p>
+<p>如果直接修改控件：</p>
+<ul>
+<li>Border</li>
+<li>Padding</li>
+<li>Margin</li>
+<li>Size</li>
+</ul>
+<p>会导致：</p>
+<ul>
+<li>控件布局变化</li>
+<li>文本偏移</li>
+<li>测量异常</li>
+<li>设计态与运行态不一致</li>
+</ul>
+<p>因此选择框必须独立绘制，而不是修改真实控件</p>
+<h2 id="disablehittestrecursive">DisableHitTestRecursive</h2>
+<p>设计态通常需要<code>DisableHitTestRecursive</code></p>
+<p>原因：</p>
+<p>真实控件可能拦截：</p>
+<ul>
+<li>MouseDown</li>
+<li>Click</li>
+<li>Drag</li>
+<li>Selection</li>
+</ul>
+<p>导致：</p>
+<ul>
+<li>无法正常选择控件</li>
+<li>无法拖拽</li>
+<li>多选异常</li>
+</ul>
+<p>因此设计态通常禁用真实控件输入，真正的输入由<code>DesignerControlChrome</code>统一处理</p>
+<h2 id="运行态渲染器">运行态渲染器</h2>
+<p><code>DynamicViewRuntimeRenderer</code>用于运行时模式下的控件渲染</p>
+<p>主要职责：</p>
+<ul>
+<li>创建真实运行控件</li>
+<li>建立变量绑定</li>
+<li>建立运行时事件</li>
+<li>连接<code>RuntimeContext</code></li>
+<li>连接<code>RuntimeBindingManager</code></li>
+</ul>
+<h2 id="运行态特点">运行态特点</h2>
+<p>运行态重点关注：</p>
+<ul>
+<li>数据驱动</li>
+<li>实时刷新</li>
+<li>用户交互</li>
+<li>性能</li>
+<li>稳定性</li>
+</ul>
+<p>运行态不需要：</p>
+<ul>
+<li>选择框</li>
+<li>缩放点</li>
+<li>编辑辅助</li>
+<li>对齐线</li>
+</ul>
+<h2 id="runtimebindingmanager">RuntimeBindingManager</h2>
+<p>运行态变量绑定通常由<code>RuntimeBindingManager</code>统一管理</p>
+<p>主要职责：</p>
+<pre><code class="lang-txt">Variable
+    ↓
+Binding
+    ↓
+WPF Control
+</code></pre>
+<h2 id="runtimeeventexecutor">RuntimeEventExecutor</h2>
+<p>运行时事件通常由<code>RuntimeEventExecutor</code>统一处理</p>
+<p>例如：</p>
+<pre><code class="lang-txt">Button.Click
+ToggleButton.Checked
+MouseDown
+MouseUp
+</code></pre>
+<h2 id="runtimecontext">RuntimeContext</h2>
+<p>运行态通常通过<code>RuntimeContext</code>向事件和绑定系统提供上下文</p>
+<p>通常包含：</p>
+<pre><code class="lang-txt">RuntimeContext
+├── VariableService
+├── RuntimeHost
+├── DynamicViewManager
+├── CommunicationService
+└── Services
+</code></pre>
+<h2 id="控件分类">控件分类</h2>
+<h3 id="输入控件">输入控件</h3>
+<pre><code class="lang-txt">Button
+ToggleButton
+ToggleSwitch
+TextBox
+NumberBox
+CheckBox
+RadioButton
+</code></pre>
+<h3 id="显示控件">显示控件</h3>
+<pre><code class="lang-txt">TextBlock
+Image
+StatusLamp
+Progress
+</code></pre>
+<h3 id="容器控件">容器控件</h3>
+<pre><code class="lang-txt">Border
+Card
+GroupBox
+</code></pre>
+<h2 id="绑定分层">绑定分层</h2>
+<p>分层的原因是因为<code>静态属性 ≠ 实时数据</code>，两者生命周期不同</p>
+<p>静态属性：</p>
+<ul>
+<li>来源于工程模型</li>
+<li>修改频率低</li>
+</ul>
+<p>运行时数据：</p>
+<ul>
+<li>来源于<code>VariableService</code></li>
+<li>高频刷新</li>
+</ul>
+<h3 id="模型绑定">模型绑定</h3>
+<p>用于<code>Model → WPF Property</code></p>
+<p>例如：</p>
+<pre><code class="lang-txt">Width
+Background
+Text
+</code></pre>
+<h3 id="运行时绑定">运行时绑定</h3>
+<p>用于<code>Variable → WPF Property</code></p>
+<p>例如：</p>
+<pre><code class="lang-txt">Motor.Running → StatusLamp
+Temperature → TextBlock
+</code></pre>
+<h2 id="渲染原则">渲染原则</h2>
+<h3 id="renderer-不保存业务状态">Renderer 不保存业务状态</h3>
+<p>Renderer 只负责<code>生成 UI</code>，不负责：</p>
+<ul>
+<li>保存变量</li>
+<li>保存运行状态</li>
+<li>保存通讯状态</li>
+</ul>
+<h3 id="renderer-不直接操作通讯">Renderer 不直接操作通讯</h3>
+<p>Renderer 不应直接<code>PLC Read</code>、<code>PLC Write</code>，通讯必须通过：</p>
+<pre><code class="lang-txt">VariableService
+CommunicationService
+</code></pre>
+<p>间接协同</p>
+<h3 id="renderer-不负责持久化">Renderer 不负责持久化</h3>
+<p>Renderer 不应：</p>
+<ul>
+<li>保存工程</li>
+<li>修改文件</li>
+<li>管理序列化</li>
+</ul>
+<h2 id="生命周期">生命周期</h2>
+<p>典型运行流程：</p>
+<pre><code class="lang-txt">加载工程
+    ↓
+创建 Renderer
+    ↓
+渲染页面
+    ↓
+生成控件
+    ↓
+建立 Binding
+    ↓
+建立 Runtime Event
+    ↓
+进入运行状态
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.Renderer.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
