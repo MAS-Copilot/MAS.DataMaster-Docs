@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IDynamicViewVariableWriteService | DataMaster ">
       
-      <meta name="description" content="动态视图变量写入服务。负责将变量值安全写入设备，写入成功后才允许提交变量中心">
+      <meta name="description" content="动态视图变量写入服务接口">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,7 @@ Interface IDynamicViewVariableWriteService  <a class="header-action link-seconda
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>动态视图变量写入服务。负责将变量值安全写入设备，写入成功后才允许提交变量中心</p>
+  <div class="markdown summary"><p>动态视图变量写入服务接口</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -118,7 +118,7 @@ Interface IDynamicViewVariableWriteService  <a class="header-action link-seconda
   <h2 id="MAS_DynamicViews_IDynamicViewVariableWriteService_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>此接口用于保证：</p>
 <ul><li>PLC写入成功</li><li>多设备同步成功</li><li>安全一致性</li></ul>
-<p>禁止直接绕过此接口修改运行时变量值</p>
+<p>修改运行时变量值都应该使用此接口</p>
 </div>
 
 

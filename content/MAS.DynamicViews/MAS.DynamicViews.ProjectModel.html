@@ -88,7 +88,7 @@
 <h1 id="masdynamicviewsprojectmodel">MAS.DynamicViews.ProjectModel</h1>
 
 <p>工程模型是 <code>MAS.DynamicViews</code> 的数据根节点</p>
-<p>所有页面、控件、变量、设备、通讯通道、参数和运行配置，最终都应归属于工程模型</p>
+<p>所有页面、窗口、背景、控件、结构体变量、通讯设备、通讯通道、参数和全局脚本，最终都应归属于工程模型</p>
 <p>工程模型的核心目标是：</p>
 <ul>
 <li>描述完整动态视图工程</li>
@@ -108,27 +108,40 @@
 │               ├── Bindings
 │               └── Events
 │
-├── Variables
+├── Windows
+│   └── DynamicViewWindowModel
+│       └── Controls
+│
+├── Backgrounds
+│   └── DynamicViewBackgroundModel
+│       └── Controls
+│
+├── Structures
 │   └── DynamicViewVariableModel
 │       └── Fields
 │           └── DynamicViewVariableFieldModel
 │
-├── Devices
+├── CommunicationDevices
 │   └── DynamicViewCommunicationDeviceModel
 │       └── Channels
 │           └── DynamicViewCommunicationChannelModel
 │
+├── ContentGroups
 ├── Parameters
-└── Runtime Configurations
+└── GlobalScriptCode
 </code></pre>
 <h2 id="工程模型">工程模型</h2>
 <p><code>DynamicViewProjectModel</code>用于描述一个完整动态视图工程</p>
 <ul>
 <li>保存工程基础信息</li>
 <li>保存页面集合</li>
-<li>保存变量集合</li>
-<li>保存设备集合</li>
+<li>保存窗口集合</li>
+<li>保存背景集合</li>
+<li>保存结构体变量集合</li>
+<li>保存通讯设备集合</li>
+<li>保存内容分组</li>
 <li>保存项目参数</li>
+<li>保存全局脚本代码</li>
 <li>保存启动页面</li>
 <li>保存统一页面尺寸</li>
 <li>作为设计态和运行态的共同数据源</li>
@@ -140,9 +153,13 @@ StartupPageId
 PageWidth
 PageHeight
 Pages
-Variables
+Windows
+Backgrounds
+Structures
 Parameters
-Devices
+CommunicationDevices
+ContentGroups
+GlobalScriptCode
 </code></pre>
 <h2 id="页面模型">页面模型</h2>
 <p><code>DynamicViewPageModel</code>用于描述一个动态页面</p>
@@ -164,6 +181,29 @@ Devices
 └── Controls
 </code></pre>
 <p>页面只是描述当前界面应该包含哪些控件，以及这些控件如何布局</p>
+<h2 id="窗口模型">窗口模型</h2>
+<p>窗口用于在运行时弹出独立界面。适合参数确认、设备详情、报警处理、配方操作等不适合放在主画面的内容</p>
+<p>窗口常见配置包括：</p>
+<ul>
+<li>窗口名称和标题</li>
+<li>宽度和高度</li>
+<li>是否允许调整大小</li>
+<li>是否模态显示</li>
+<li>是否允许重复打开</li>
+<li>是否显示最大化、最小化按钮</li>
+<li>窗口内控件集合</li>
+</ul>
+<p>运行时打开窗口时，如果窗口不允许重复打开，再次触发打开动作会激活已有窗口，而不是创建新窗口</p>
+<h2 id="背景模型">背景模型</h2>
+<p>背景用于复用公共画面内容，例如：</p>
+<ul>
+<li>顶部标题栏</li>
+<li>底部状态栏</li>
+<li>左侧导航栏</li>
+<li>设备运行摘要区</li>
+<li>公共报警提示区</li>
+</ul>
+<p>页面可以选择一个背景。运行时显示页面时，会先加载页面关联的背景，再显示页面自身控件。适合多个页面共享统一框架，减少重复维护</p>
 <h2 id="页面尺寸">页面尺寸</h2>
 <p>页面尺寸应优先由工程统一管理</p>
 <pre><code class="lang-txt">Project.PageWidth  → 默认页面宽度
@@ -183,7 +223,8 @@ Project.PageHeight → 默认页面高度
 ├── ControlType
 ├── Properties
 ├── Bindings
-└── Events
+├── Events
+└── Security
 </code></pre>
 <p>控件模型主要包含三类配置：</p>
 <table>
@@ -205,6 +246,10 @@ Project.PageHeight → 默认页面高度
 <tr>
 <td>Events</td>
 <td>控件运行时事件配置</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>控件运行时操作保护配置</td>
 </tr>
 </tbody>
 </table>
@@ -294,12 +339,15 @@ DisplayName
 <pre><code class="lang-txt">Events
 ├── Click
 ├── MouseDown
-├── MouseUp
-├── Checked
-├── Unchecked
-└── Custom
+└── MouseUp
 </code></pre>
-<p>事件模型只描述事件配置，不直接执行逻辑。真正的执行应由运行时事件执行器处理</p>
+<p>事件模型只描述事件配置，不直接执行逻辑。真正的执行由运行时处理。每个事件可配置切换页面、打开窗口和变量操作</p>
+<p>适用建议：</p>
+<ul>
+<li>Click：适合启动、停止、复位、打开窗口、切换页面等一次性动作</li>
+<li>MouseDown：适合按下立即动作、点动、长按保护等场景</li>
+<li>MouseUp：适合释放保持信号、结束点动、撤销临时控制等场景</li>
+</ul>
 <h2 id="变量模型">变量模型</h2>
 <p><code>DynamicViewVariableModel</code>用于描述动态视图中的结构体变量</p>
 <p>当前推荐采用<code>结构体变量 + 字段集合</code>模型</p>
@@ -308,8 +356,12 @@ DisplayName
 ├── VariableId
 ├── Name
 ├── GroupName
+├── AccessMode
+├── IsEnabled
+├── Usage
 ├── Fields
-└── Description
+├── Description
+└── Properties
 </code></pre>
 <h2 id="字段模型">字段模型</h2>
 <p>字段模型用于描述结构体变量中的单个字段</p>
@@ -339,11 +391,11 @@ DisplayName
 ├── Name
 ├── IsEnabled
 ├── ProtocolType
-├── CommunicationConfig
+├── ModbusTcpConfig
 ├── PollingInterval
 └── Channels
 </code></pre>
-<p>设备模型不直接处理通讯逻辑。真实通讯应由通讯服务和协议适配器负责</p>
+<p>当前设备中心支持 Modbus TCP。设备模型保存连接参数和通道集合，不直接处理通讯逻辑。真实通讯由运行时通讯服务负责</p>
 <h2 id="通道模型">通道模型</h2>
 <p>通道模型用于描述设备数据区与变量字段之间的映射关系</p>
 <p>典型结构：</p>
@@ -351,13 +403,13 @@ DisplayName
 ├── ChannelId
 ├── Name
 ├── IsEnabled
-├── Area
+├── AddressArea
 ├── Address
 ├── StructureId
 ├── DisplayName
 └── Description
 </code></pre>
-<p>通道绑定应保存<code>StructureId</code>，而不是直接保存变量对象，这样可以：</p>
+<p>通道绑定结构体变量时保存<code>StructureId</code>，而不是直接保存变量对象，这样可以：</p>
 <ul>
 <li>降低序列化复杂度</li>
 <li>避免对象引用失效</li>
@@ -365,6 +417,7 @@ DisplayName
 <li>支持删除检查</li>
 <li>支持后续迁移</li>
 </ul>
+<p>通道关联的是整个结构体，而不是单个字段。Modbus 运行时会从起始地址开始按结构体字段顺序读写</p>
 <h2 id="参数模型">参数模型</h2>
 <p>参数模型用于保存工程级配置，可用于：</p>
 <ul>
@@ -410,6 +463,15 @@ Page1.Button1
 <li>名称不适合作为稳定标识</li>
 </ul>
 <p>稳定关联必须依赖唯一 Id</p>
+<h2 id="内容同步原则">内容同步原则</h2>
+<p>数据中心和设备中心采用“编辑副本 → 校验 → 同步工程数据到内存”的方式工作</p>
+<p>这意味着：</p>
+<ul>
+<li>在窗口中修改结构体、字段、设备或通道后，必须同步到工程数据，运行时才会使用新配置</li>
+<li>关闭窗口时如果存在未同步改动，会提示是否保存</li>
+<li>同步前会进行校验；校验失败时不会写入工程</li>
+<li>删除结构体或字段前会检查引用，仍被控件绑定、控件事件或通讯通道引用时会阻止删除</li>
+</ul>
 <h2 id="设计态使用方式">设计态使用方式</h2>
 <p>设计态主要通过工程模型完成：</p>
 <ul>

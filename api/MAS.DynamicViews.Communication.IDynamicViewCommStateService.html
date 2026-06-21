@@ -553,12 +553,12 @@ Interface IDynamicViewCommStateService  <a class="header-action link-secondary" 
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Communication/Interfaces/IDynamicViewCommStateService.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>通讯状态改变事件</p>
+  <div class="markdown level1 summary"><p>通讯状态改变事件，携带变化类型及变化前后的状态快照</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">event EventHandler? StateChanged</code></pre>
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;DynamicViewCommStateChangedEventArgs&gt;? StateChanged</code></pre>
   </div>
 
 
@@ -568,7 +568,7 @@ Interface IDynamicViewCommStateService  <a class="header-action link-secondary" 
 
   <h4 class="section">Event Type</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.DynamicViews.Communication.DynamicViewCommStateChangedEventArgs.html">DynamicViewCommStateChangedEventArgs</a>&gt;</dt>
     <dd></dd>
   </dl>
 

@@ -92,11 +92,14 @@
 <ul>
 <li>工程模型</li>
 <li>页面模型</li>
+<li>窗口和背景模型</li>
 <li>控件模型</li>
 <li>变量系统</li>
 <li>通讯系统</li>
 <li>渲染系统</li>
 <li>运行时系统</li>
+<li>控件安全</li>
+<li>全局脚本</li>
 </ul>
 <p>进行协同构建</p>
 <p>系统目标是：</p>
@@ -117,13 +120,21 @@
 │   │       ├── Bindings
 │   │       └── Events
 │   │
-│   ├── Variables
+│   ├── Windows
+│   │   └── Controls
+│   │
+│   ├── Backgrounds
+│   │   └── Controls
+│   │
+│   ├── Structures
 │   │   └── Fields
 │   │
-│   ├── Devices
+│   ├── CommunicationDevices
 │   │   └── Channels
 │   │
-│   └── Parameters
+│   ├── ContentGroups
+│   ├── Parameters
+│   └── GlobalScriptCode
 │
 ├── Designer
 │   ├── Designer Renderer
@@ -137,6 +148,7 @@
 │   ├── Runtime Renderer
 │   ├── Runtime Binding Manager
 │   ├── Runtime Event Executor
+│   ├── Runtime Control Security
 │   ├── Runtime Host
 │   └── Runtime Context
 │
@@ -146,6 +158,9 @@
 │   ├── Polling Updater
 │   ├── Variable WriteBack
 │   └── Protocol Adapter
+│
+├── Script
+│   └── Global Script Runtime
 │
 ├── Persistence
 │   ├── Project Persistence
@@ -219,10 +234,12 @@
 <p>工程模型通常包含：</p>
 <pre><code class="lang-txt">Project
 ├── Pages
-├── Variables
-├── Devices
+├── Windows
+├── Backgrounds
+├── Structures
+├── CommunicationDevices
 ├── Parameters
-└── Runtime Configurations
+└── GlobalScriptCode
 </code></pre>
 <h3 id="页面模型">页面模型</h3>
 <p>页面用于描述动态界面</p>
@@ -375,11 +392,27 @@
 <p>例如：</p>
 <ul>
 <li>点击按钮</li>
+<li>按下按钮</li>
+<li>松开按钮</li>
 <li>页面跳转</li>
+<li>打开窗口</li>
 <li>写入变量</li>
-<li>执行脚本</li>
 </ul>
 <p>事件系统与<code>Runtime Context</code>协同工作，避免设计态与运行态逻辑混合</p>
+<p>当前控件事件支持点击、按下和松开。每个事件可配置切换页面、打开窗口和变量操作。</p>
+<h2 id="控件安全">控件安全</h2>
+<p>控件安全用于在运行态执行事件前进行保护，主要包括：</p>
+<ul>
+<li>最低角色校验</li>
+<li>按下事件长按限制</li>
+<li>按下事件防抖</li>
+<li>二次确认</li>
+<li>操作日志</li>
+</ul>
+<p>权限不足时事件不会执行。启用操作日志后，系统会记录操作者、事件类型、资源和耗时。</p>
+<h2 id="全局脚本">全局脚本</h2>
+<p>全局脚本是工程级运行时扩展点。当前只支持全局脚本，不支持页面脚本或控件事件脚本。</p>
+<p>脚本可以通过公开服务访问变量、变量写入、导航和动态视图管理能力。脚本编译、初始化或启动失败会导致动态视图运行时启动失败。</p>
 <h2 id="持久化系统">持久化系统</h2>
 <p>持久化系统负责：</p>
 <ul>
@@ -439,6 +472,8 @@
 建立变量绑定
     ↓
 绑定运行事件
+    ↓
+启动全局脚本
     ↓
 启动通讯轮询
     ↓

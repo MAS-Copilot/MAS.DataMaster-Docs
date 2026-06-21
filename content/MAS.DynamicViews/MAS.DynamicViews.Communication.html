@@ -98,6 +98,20 @@
 <li>运行时生命周期管理</li>
 </ul>
 <p>整个系统采用<code>运行时调度 + 通讯服务 + 安全写入 + 状态反馈</code>的分层架构</p>
+<p>当前可直接配置的协议为 Modbus TCP。通信配置主要通过设备中心完成，变量定义主要通过数据中心完成</p>
+<h2 id="配置方法">配置方法</h2>
+<p>典型配置流程：</p>
+<ol>
+<li>在数据中心创建结构体变量，并按设备数据块顺序配置字段</li>
+<li>设置结构体访问模式：只读、只写或读写</li>
+<li>在设备中心添加 Modbus TCP 设备</li>
+<li>配置设备 IP、端口、UnitId、超时、重试、字节序和字序</li>
+<li>为设备添加通道，选择地址区和起始地址</li>
+<li>将通道绑定到结构体变量</li>
+<li>执行检查，确认设备名、通道名、地址和访问模式合法</li>
+<li>同步工程数据到内存</li>
+</ol>
+<p>未同步的设备中心改动不会参与运行时通讯</p>
 <h2 id="通讯系统目标">通讯系统目标</h2>
 <p>通讯系统主要目标：</p>
 <ul>
@@ -188,13 +202,22 @@ CommStartupService
     ↓
 检查设备连接
     ↓
-至少一个设备在线
+至少一个启用设备连接成功
+    ↓
+准备并启动全局脚本
     ↓
 启动 PollingUpdater
     ↓
 进入 Running 状态
 </code></pre>
-<p>如果所有设备连接失败：</p>
+<p>启动时必须同时满足：</p>
+<ul>
+<li>至少有一个启用设备</li>
+<li>启用设备下至少有一个启用通道</li>
+<li>通道已绑定结构体并配置了地址</li>
+<li>至少一个设备连接成功</li>
+</ul>
+<p>如果没有可用设备、没有可用通道，或所有设备连接失败：</p>
 <pre><code class="lang-txt">启动失败
 Runtime 保持 Stopped
 </code></pre>
@@ -225,6 +248,7 @@ Runtime 保持 Stopped
 <li>独立异常处理</li>
 </ul>
 <p>设备之间互不影响</p>
+<p>轮询按设备分组执行。同一设备内的通道按顺序读取，不同设备之间可以并行轮询。设备轮询间隔来自设备配置，实际运行时最小不会低于 10 ms</p>
 <h2 id="通讯状态系统">通讯状态系统</h2>
 <p>通讯状态系统仅负责：</p>
 <ul>
@@ -256,6 +280,15 @@ VariableValueCommitter
 <p>读取属于单向同步：</p>
 <pre><code class="lang-txt">设备 -&gt; 变量中心
 </code></pre>
+<p>轮询只会读取满足以下条件的通道：</p>
+<ul>
+<li>设备已启用</li>
+<li>通道已启用</li>
+<li>通道绑定了结构体</li>
+<li>结构体存在并已启用</li>
+<li>结构体访问模式为 ReadOnly 或 ReadWrite</li>
+</ul>
+<p>WriteOnly 结构体不会被轮询读取</p>
 <h2 id="安全写入流程">安全写入流程</h2>
 <p>变量写入流程：</p>
 <pre><code class="lang-txt">UI操作
@@ -274,6 +307,60 @@ VariableWriteService
 <p>这样可保证：</p>
 <pre><code class="lang-txt">界面状态 == 设备真实状态
 </code></pre>
+<p>写入只会发送到满足以下条件的通道：</p>
+<ul>
+<li>设备已启用</li>
+<li>通道已启用</li>
+<li>通道绑定到目标结构体</li>
+<li>通道地址不为空</li>
+<li>目标结构体已启用，且访问模式不是 ReadOnly</li>
+</ul>
+<p>如果结构体没有关联任何可写通道，写入会被阻止。写入成功后，变量中心才会提交本地值并刷新界面</p>
+<h2 id="modbus-tcp-通道规则">Modbus TCP 通道规则</h2>
+<p>当前支持的 Modbus 地址区：</p>
+<table>
+<thead>
+<tr>
+<th>地址区</th>
+<th>读写能力</th>
+<th>推荐字段类型</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coils</td>
+<td>读写</td>
+<td>Bool</td>
+<td>启停命令、复位信号、布尔输出</td>
+</tr>
+<tr>
+<td>DiscreteInputs</td>
+<td>只读</td>
+<td>Bool</td>
+<td>到位信号、报警输入、传感器状态</td>
+</tr>
+<tr>
+<td>HoldingRegisters</td>
+<td>读写</td>
+<td>Int16、UInt16</td>
+<td>参数设定、配方数据、工艺数值</td>
+</tr>
+<tr>
+<td>InputRegisters</td>
+<td>只读</td>
+<td>Int16、UInt16</td>
+<td>采集值、测量值、设备状态字</td>
+</tr>
+</tbody>
+</table>
+<p>通道地址表示结构体读写的起始地址，必须是有效的无符号短整型。结构体字段顺序会影响实际读写顺序，实施时应与设备寄存器布局保持一致</p>
+<p>访问模式与地址区需要兼容：</p>
+<ul>
+<li>ReadOnly 和 ReadWrite 结构体可绑定到只读或可写地址区</li>
+<li>WriteOnly 结构体只能绑定到 Coils 或 HoldingRegisters</li>
+<li>配方结构体当前只支持 HoldingRegisters</li>
+</ul>
 <h2 id="结构体通讯">结构体通讯</h2>
 <p>通讯系统采用<code>结构体变量</code>作为核心通讯模型</p>
 <p>例如：</p>
@@ -289,13 +376,47 @@ VariableWriteService
 <p>写入时：</p>
 <pre><code class="lang-txt">变量中心 → Runtime Struct → PLC结构体
 </code></pre>
+<p>结构体通讯的核心原则是“按结构体整体读写”。因此，字段新增、删除或调整顺序后，需要同步确认 PLC 地址布局，避免字段错位</p>
+<h2 id="配方通讯">配方通讯</h2>
+<p>配方结构体是一种特殊用途的结构体。运行时轮询到配方结构体时，不走普通读写流程，而是读取操作字段并执行配方任务</p>
+<p>操作约定：</p>
+<ul>
+<li>0：无操作</li>
+<li>1：存储配方</li>
+<li>2：获取配方</li>
+</ul>
+<p>任务完成后，系统会写回结果、错误码、耗时和数据长度，并将操作字段重置为 0</p>
+<p>注意事项：</p>
+<ul>
+<li>配方任务只支持 Modbus TCP 保持寄存器</li>
+<li>配方编号由固定字段组合得到，实施时 PLC 侧需要按约定写入</li>
+<li>数据长度不能超过配方结构体创建时配置的数据区容量</li>
+</ul>
 <h2 id="线程模型">线程模型</h2>
 <ul>
-<li>多设备并行轮询<code>通讯系统支持</code></li>
-<li>不同设备<code>独立 Task</code>运行</li>
-<li>变量中心负责<code>运行时值线程安全</code></li>
+<li>通讯系统支持多设备并行轮询</li>
+<li>不同设备以独立任务运行</li>
+<li>变量中心负责运行时值线程安全</li>
 <li>通讯层不负责变量锁控制</li>
 </ul>
+<h2 id="常见问题">常见问题</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<p><strong>为什么启动后没有进入 Running 状态</strong></p>
+<p>请检查是否存在启用设备、启用通道、通道地址、结构体绑定，以及至少一个设备能连接成功</p>
+</div>
+<hr>
+<div class="NOTE">
+<h5>Note</h5>
+<p><strong>为什么界面操作后变量没有变化</strong></p>
+<p>写入失败时变量中心不会提交新值。请检查结构体是否为 ReadOnly、是否有关联可写通道、设备是否在线、地址区是否支持写入</p>
+</div>
+<hr>
+<div class="NOTE">
+<h5>Note</h5>
+<p><strong>为什么修改设备中心后运行时没有变化</strong></p>
+<p>设备中心使用编辑副本。修改后需要执行检查并同步工程数据到内存</p>
+</div>
 
 </article>
 

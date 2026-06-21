@@ -88,8 +88,8 @@
 <h1 id="全局脚本">全局脚本</h1>
 
 <p>全局脚本是 <code>MAS.DynamicViews</code> 提供的工程级运行时扩展能力。</p>
-<p>它允许动态视图工程在运行过程中执行统一的 C# 脚本逻辑，用于处理工程级公共行为，例如变量监听、导航监听、运行状态处理、公共业务逻辑等。</p>
-<p>当前脚本系统只支持 <strong>全局脚本</strong>，不区分页面脚本和窗口脚本。</p>
+<p>它允许动态视图工程在运行过程中执行统一的 C# 脚本逻辑，用于处理工程级公共行为，例如变量监听、导航监听、运行状态处理、公共业务逻辑等</p>
+<p>当前脚本系统只支持 <strong>全局脚本</strong>，不区分页面脚本、窗口脚本和控件事件脚本</p>
 <h2 id="设计目标">设计目标</h2>
 <p>全局脚本系统主要用于：</p>
 <ul>
@@ -98,12 +98,13 @@
 <li>支持监听变量变化</li>
 <li>支持监听页面导航变化</li>
 <li>支持执行变量读取和写入</li>
+<li>支持访问动态视图管理能力</li>
 <li>支持脚本内容变更后重新编译</li>
 <li>支持脚本内容未变化时复用已编译实例</li>
 <li>避免重复编译和重复初始化</li>
 </ul>
 <h2 id="脚本定位">脚本定位</h2>
-<p>全局脚本作用于整个动态视图工程。</p>
+<p>全局脚本作用于整个动态视图工程</p>
 <pre><code class="lang-txt">动态视图工程
 └── 全局脚本
     ├── 变量变化处理
@@ -135,6 +136,11 @@ public sealed class DynamicViewScriptServices {
     /// 获取动态视图导航服务
     /// &lt;/summary&gt;
     public required IDynamicViewNavigationService NavigationService { get; init; }
+
+    /// &lt;summary&gt;
+    /// 获取动态视图管理器
+    /// &lt;/summary&gt;
+    public required IDynamicViewManager Manager { get; init; }
 }
 </code></pre>
 <p>脚本通过服务集合访问运行时能力，不直接依赖具体运行时实现</p>
@@ -159,9 +165,31 @@ public sealed class DynamicViewScriptServices {
 <li>脚本未变化时产生不必要对象</li>
 <li>频繁刷新时出现卡顿</li>
 </ul>
+<h2 id="运行生命周期">运行生命周期</h2>
+<p>全局脚本随动态视图运行时启动和停止</p>
+<p>典型流程：</p>
+<pre><code class="lang-txt">启动动态视图运行时
+  ↓
+读取全局脚本文本
+  ↓
+脚本为空时写入默认模板
+  ↓
+编译脚本
+  ↓
+创建脚本实例
+  ↓
+InitializeAsync
+  ↓
+StartAsync
+  ↓
+运行时停止时 StopAsync
+  ↓
+DisposeAsync
+</code></pre>
+<p>如果脚本编译、初始化或启动失败，动态视图通讯运行时会启动失败。脚本内部的业务异常应由脚本自行捕获、记录并隔离，避免影响主运行流程</p>
 <h2 id="资源释放">资源释放</h2>
-<p>全局脚本可能会订阅变量事件、导航事件或持有运行时服务引用。</p>
-<p>因此脚本重新编译、工程关闭或运行时释放时，必须释放旧脚本资源。</p>
+<p>全局脚本可能会订阅变量事件、导航事件或持有运行时服务引用</p>
+<p>因此脚本重新编译、工程关闭或运行时释放时，必须释放旧脚本资源</p>
 <p>释放时应处理：</p>
 <ul>
 <li>取消变量事件订阅</li>
@@ -171,7 +199,7 @@ public sealed class DynamicViewScriptServices {
 <li>避免事件重复订阅</li>
 </ul>
 <h2 id="异常处理">异常处理</h2>
-<p>全局脚本异常不应直接中断动态视图主流程</p>
+<p>脚本实现中应主动隔离业务异常</p>
 <pre><code class="lang-txt">执行脚本逻辑
   ↓
 捕获异常
@@ -182,6 +210,7 @@ public sealed class DynamicViewScriptServices {
   ↓
 不中断页面显示、变量刷新、通讯流程
 </code></pre>
+<p>注意：上述要求适用于脚本内部运行逻辑。脚本编译、InitializeAsync 或 StartAsync 失败属于启动失败，会阻止运行时进入 Running 状态</p>
 <h2 id="注意事项">注意事项</h2>
 <p>使用全局脚本时需要注意：</p>
 <ul>

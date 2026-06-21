@@ -312,6 +312,57 @@ Class ExcelExporterHelper
 
 
 
+  <a id="MAS_DataExport_ExcelExporterHelper_ExportItemCollectionsToExcel_" data-uid="MAS.DataExport.ExcelExporterHelper.ExportItemCollectionsToExcel*"></a>
+
+  <h3 id="MAS_DataExport_ExcelExporterHelper_ExportItemCollectionsToExcel__1_System_Collections_Generic_IEnumerable_System_ValueTuple_System_String_System_Collections_Generic_IEnumerable___0____System_String_" data-uid="MAS.DataExport.ExcelExporterHelper.ExportItemCollectionsToExcel``1(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Collections.Generic.IEnumerable{``0}}},System.String)">
+  ExportItemCollectionsToExcel&lt;T&gt;(IEnumerable&lt;(string SheetName, IEnumerable&lt;T&gt; Items)&gt;, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DataExport/Helpers/ExcelExporterHelper.cs/#L217"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>导出多个数据集合到同一个 Excel 文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ExportItemCollectionsToExcel&lt;T&gt;(IEnumerable&lt;(string SheetName, IEnumerable&lt;T&gt; Items)&gt; sheets, string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sheets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.collections.generic.ienumerable---0--.sheetname">SheetName</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.collections.generic.ienumerable---0--.items">Items</a>)&gt;</dt>
+    <dd><p>要导出的工作表集合</p>
+<p>
+Item1：工作表名称
+</p>
+<p>
+Item2：对应工作表的数据集合
+</p>
+</dd>
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Excel 文件保存路径</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>数据对象类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DataExport_ExcelExporterHelper_ExportItemCollectionsToExcel__1_System_Collections_Generic_IEnumerable_System_ValueTuple_System_String_System_Collections_Generic_IEnumerable___0____System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>每个数据集合对应一个工作表。空数据集合将被自动忽略，不会创建对应工作表。</p>
+</div>
+
+
+
+
   <a id="MAS_DataExport_ExcelExporterHelper_ExportItemToExcel_" data-uid="MAS.DataExport.ExcelExporterHelper.ExportItemToExcel*"></a>
 
   <h3 id="MAS_DataExport_ExcelExporterHelper_ExportItemToExcel__1___0_System_String_System_String_" data-uid="MAS.DataExport.ExcelExporterHelper.ExportItemToExcel``1(``0,System.String,System.String)">

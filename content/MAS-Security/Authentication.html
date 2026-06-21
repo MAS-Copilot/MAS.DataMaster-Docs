@@ -881,11 +881,6 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>Operator</td>
 </tr>
 <tr>
-<td>SwitchModeCommand</td>
-<td>切换模式</td>
-<td>Developer</td>
-</tr>
-<tr>
 <td>RefreshComponentCommand</td>
 <td>刷新组件</td>
 <td>Operator</td>
@@ -1209,6 +1204,55 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 </tbody>
 </table>
 <h3 id="masdatamasterviewmodelswindowsdynamicviews">MAS.DataMaster.ViewModels.Windows.DynamicViews</h3>
+<h4 id="dynamicviewvariablemonitorviewmodel">DynamicViewVariableMonitorViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChangeCurrentValueCommand</td>
+<td>打开当前值更改弹窗</td>
+<td>Operator</td>
+</tr>
+<tr>
+<td>ConfirmChangeValueCommand</td>
+<td>确认写入新值</td>
+<td>Engineer</td>
+</tr>
+<tr>
+<td>CancelChangeValueCommand</td>
+<td>取消当前值更改</td>
+<td>None</td>
+</tr>
+<tr>
+<td>RestoreDefaultValueCommand</td>
+<td>恢复默认值</td>
+<td>Engineer</td>
+</tr>
+</tbody>
+</table>
+<h4 id="selecticonviewmodel">SelectIconViewModel</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IconSelectedCommand</td>
+<td>图标选择</td>
+<td>Operator</td>
+</tr>
+</tbody>
+</table>
 <h4 id="dynamicviewdesignerviewmodel">DynamicViewDesignerViewModel</h4>
 <table>
 <thead>
@@ -1306,6 +1350,11 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <td>复制结构体</td>
 <td>Operator</td>
 </tr>
+<tr>
+<td>ExportAllCommand</td>
+<td>导出所有</td>
+<td>Operator</td>
+</tr>
 </tbody>
 </table>
 <h4 id="dynamicviewdevicecenterviewmodel">DynamicViewDeviceCenterViewModel</h4>
@@ -1374,7 +1423,7 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 <tr>
 <td>DesignPatternsCommand</td>
 <td>设计器模式</td>
-<td>Operator</td>
+<td>Admin</td>
 </tr>
 <tr>
 <td>OpenDataCenterCommand</td>

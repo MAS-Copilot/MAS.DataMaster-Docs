@@ -344,7 +344,6 @@ WPF Control
 <p>运行时事件通常由<code>RuntimeEventExecutor</code>统一处理</p>
 <p>例如：</p>
 <pre><code class="lang-txt">Button.Click
-ToggleButton.Checked
 MouseDown
 MouseUp
 </code></pre>
@@ -364,13 +363,14 @@ MouseUp
 ToggleButton
 ToggleSwitch
 TextBox
-NumberBox
 CheckBox
 RadioButton
+CardAction
 </code></pre>
 <h3 id="显示控件">显示控件</h3>
 <pre><code class="lang-txt">TextBlock
 Image
+Icon
 StatusLamp
 Progress
 </code></pre>
@@ -379,6 +379,18 @@ Progress
 Card
 GroupBox
 </code></pre>
+<h3 id="图形控件">图形控件</h3>
+<pre><code class="lang-txt">Rectangle
+RoundedRectangle
+Ellipse
+Line
+Polyline
+Arrow
+Polygon
+Bezier
+Arc
+</code></pre>
+<p>图形控件主要用于工艺流程、设备轮廓、管线、方向箭头和区域标注。</p>
 <h2 id="绑定分层">绑定分层</h2>
 <p>分层的原因是因为<code>静态属性 ≠ 实时数据</code>，两者生命周期不同</p>
 <p>静态属性：</p>
@@ -404,6 +416,27 @@ Text
 <pre><code class="lang-txt">Motor.Running → StatusLamp
 Temperature → TextBlock
 </code></pre>
+<p>当前运行时绑定行为：</p>
+<ul>
+<li>文本绑定可作用于 TextBlock、TextBox 和 ContentControl</li>
+<li>文本框在失去焦点时写回变量；按 Enter 会移出焦点并触发写回</li>
+<li>可见性绑定使用布尔值，True 时采用配置值，False 时自动取相反可见性</li>
+<li>启用状态绑定会同时受控件外观启用状态和变量绑定结果影响</li>
+<li>颜色绑定使用布尔值切换前景色和背景色</li>
+<li>选中状态绑定只作用于 ToggleButton、ToggleSwitch、RadioButton、CheckBox 等具备选中状态的控件</li>
+<li>状态绑定作用于布尔状态灯</li>
+<li>数值状态绑定根据数值映射颜色，适用于数值状态灯</li>
+<li>数值绑定作用于 RangeBase 控件，例如进度条</li>
+</ul>
+<p>写回失败时，运行时会从变量中心读取当前值并恢复界面，避免界面显示与真实变量状态不一致</p>
+<h2 id="设计态绘图">设计态绘图</h2>
+<p>设计器支持两类绘图方式：</p>
+<ul>
+<li>拖拽创建：矩形、圆角矩形、椭圆、圆弧、直线、箭头</li>
+<li>多点创建：折线、多边形、贝塞尔曲线</li>
+</ul>
+<p>多点创建时，双击、回车或右键结束绘制，Esc 取消绘制。贝塞尔曲线在放置 4 个点后自动完成</p>
+<p>绘图控件创建后会作为普通控件参与选择、移动、缩放、属性编辑和历史记录</p>
 <h2 id="渲染原则">渲染原则</h2>
 <h3 id="renderer-不保存业务状态">Renderer 不保存业务状态</h3>
 <p>Renderer 只负责<code>生成 UI</code>，不负责：</p>

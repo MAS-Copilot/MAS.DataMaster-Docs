@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class DynamicViewDesigner | DataMaster ">
       
-      <meta name="description" content="动态界面设计器核心类 负责页面加载、控件渲染、选中、拖拽与模型同步">
+      <meta name="description" content="动态界面设计器核心门面类 负责协调内容加载、控件管理、选择、拖拽、历史和事件转发">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_DynamicViews_Designers_DynamicViewDesigner" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner" class="text-break">
-Class DynamicViewDesigner  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L23"><i class="bi bi-code-slash"></i></a>
+Class DynamicViewDesigner  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,13 +97,13 @@ Class DynamicViewDesigner  <a class="header-action link-secondary" title="View s
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>动态界面设计器核心类
-负责页面加载、控件渲染、选中、拖拽与模型同步</p>
+  <div class="markdown summary"><p>动态界面设计器核心门面类
+负责协调内容加载、控件管理、选择、拖拽、历史和事件转发</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS101:类长度超出推荐行数&quot;, Justification = &quot;不必理会&quot;)]
+    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS101:类长度超出推荐行数&quot;, Justification = &quot;&lt;挂起&gt;&quot;)]
 public sealed class DynamicViewDesigner</code></pre>
   </div>
 
@@ -156,10 +156,10 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner__ctor_System_Windows_Controls_Canvas_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.#ctor(System.Windows.Controls.Canvas)">
   DynamicViewDesigner(Canvas)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L196"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.DynamicViews.Designers.DynamicViewDesigner.html">DynamicViewDesigner</a> 新实例</p>
+  <div class="markdown level1 summary"><p>初始化动态界面设计器</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -189,11 +189,75 @@ public sealed class DynamicViewDesigner</code></pre>
 </h2>
 
 
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_CanDeleteSelectedControls_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CanDeleteSelectedControls*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_CanDeleteSelectedControls" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CanDeleteSelectedControls">
+  CanDeleteSelectedControls
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取所选控件是否可以删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanDeleteSelectedControls { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_CanPasteControls_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CanPasteControls*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_CanPasteControls" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CanPasteControls">
+  CanPasteControls
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取控件是否可以从设计器剪贴板粘贴</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanPasteControls { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_CanRedo_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CanRedo*"></a>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_CanRedo" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CanRedo">
   CanRedo
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否可执行重做</p>
@@ -225,7 +289,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_CanUndo" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CanUndo">
   CanUndo
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否可执行撤销</p>
@@ -257,7 +321,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_CurrentContent" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CurrentContent">
   CurrentContent
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前动态内容</p>
@@ -289,7 +353,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_HasMultiSelection" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.HasMultiSelection">
   HasMultiSelection
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否为多选状态</p>
@@ -321,10 +385,10 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_HasSelection" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.HasSelection">
   HasSelection
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L77"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取是否存在任何选中项（单选/多选）</p>
+  <div class="markdown level1 summary"><p>获取是否存在任何选中项</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -349,11 +413,43 @@ public sealed class DynamicViewDesigner</code></pre>
 
 
 
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_IsPageGridSnapEnabled_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.IsPageGridSnapEnabled*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_IsPageGridSnapEnabled" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.IsPageGridSnapEnabled">
+  IsPageGridSnapEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否启用页面网格吸附</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsPageGridSnapEnabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_IsSnapEnabled_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.IsSnapEnabled*"></a>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_IsSnapEnabled" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.IsSnapEnabled">
   IsSnapEnabled
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置是否启用吸附与对齐线</p>
@@ -377,9 +473,38 @@ public sealed class DynamicViewDesigner</code></pre>
 
 
 
-  <h4 class="section" id="MAS_DynamicViews_Designers_DynamicViewDesigner_IsSnapEnabled_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>默认值：true</p>
+
+
+
+
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_PageGridSize_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.PageGridSize*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_PageGridSize" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.PageGridSize">
+  PageGridSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置启用网格吸附时使用的页面网格大小</p>
 </div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double PageGridSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
 
 
 
@@ -388,10 +513,10 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_SelectedControl" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SelectedControl">
   SelectedControl
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L62"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取当前选中的控件模型</p>
+  <div class="markdown level1 summary"><p>获取当前单选控件；多选时返回 null</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -420,7 +545,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_SelectedControlId" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SelectedControlId">
   SelectedControlId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前选中控件标识</p>
@@ -452,7 +577,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_SelectedControls" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SelectedControls">
   SelectedControls
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L67"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前选中的控件集合</p>
@@ -480,6 +605,70 @@ public sealed class DynamicViewDesigner</code></pre>
 
 
 
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_SnapReferenceMode_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SnapReferenceMode*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_SnapReferenceMode" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SnapReferenceMode">
+  SnapReferenceMode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置哪些选中的参考参与吸附计算</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DesignerSnapReferenceMode SnapReferenceMode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.Designers.DesignerSnapReferenceMode.html">DesignerSnapReferenceMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_SnapReleaseThreshold_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SnapReleaseThreshold*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_SnapReleaseThreshold" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SnapReleaseThreshold">
+  SnapReleaseThreshold
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置解除现有吸附锁定的距离</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double SnapReleaseThreshold { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -488,7 +677,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_AddControl_MAS_DynamicViews_DynamicViewControlModel_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.AddControl(MAS.DynamicViews.DynamicViewControlModel)">
   AddControl(DynamicViewControlModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L325"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>向当前内容新增控件并立即渲染</p>
@@ -502,8 +691,7 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>control</code> <a class="xref" href="MAS.DynamicViews.DynamicViewControlModel.html">DynamicViewControlModel</a></dt>
-    <dd><p>控件模型</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -521,7 +709,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_AddControls_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewControlModel__" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.AddControls(System.Collections.Generic.IEnumerable{MAS.DynamicViews.DynamicViewControlModel})">
   AddControls(IEnumerable&lt;DynamicViewControlModel&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L332"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>向当前内容新增多个控件并立即渲染</p>
@@ -535,8 +723,7 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>controls</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.DynamicViews.DynamicViewControlModel.html">DynamicViewControlModel</a>&gt;</dt>
-    <dd><p>控件集合</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -554,7 +741,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_ClearSelection" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.ClearSelection">
   ClearSelection()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L247"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L392"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>清空所有选择状态</p>
@@ -577,11 +764,41 @@ public sealed class DynamicViewDesigner</code></pre>
 
 
 
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_CommitKeyboardNudge_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CommitKeyboardNudge*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_CommitKeyboardNudge" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CommitKeyboardNudge">
+  CommitKeyboardNudge()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L264"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>提交键盘虚拟框微调：将累计位移一次性写回并记录一次历史</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CommitKeyboardNudge()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Designers_DynamicViewDesigner_CommitKeyboardNudge_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>由防抖计时器或 <a class="xref" href="MAS.DynamicViews.Designers.DynamicViewDesigner.html#MAS_DynamicViews_Designers_DynamicViewDesigner_FlushKeyboardNudge">FlushKeyboardNudge()</a> 触发</p>
+</div>
+
+
+
+
   <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_CopySelectedControls_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CopySelectedControls*"></a>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_CopySelectedControls" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CopySelectedControls">
   CopySelectedControls()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L534"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L468"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>复制当前选中的控件到设计器剪贴板</p>
@@ -596,8 +813,39 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>复制成功返回 true，否则返回 false</p>
-</dd>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_CutSelectedControls_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CutSelectedControls*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_CutSelectedControls" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.CutSelectedControls">
+  CutSelectedControls()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L476"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将选定的控件剪切到设计器剪贴板</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CutSelectedControls()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
   </dl>
 
 
@@ -614,7 +862,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_DeleteSelectedControl" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.DeleteSelectedControl">
   DeleteSelectedControl()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L472"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L426"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>删除当前选中控件</p>
@@ -629,8 +877,7 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>删除成功返回 true，否则返回 false</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -647,7 +894,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_DeleteSelectedControls" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.DeleteSelectedControls">
   DeleteSelectedControls()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L484"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L433"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>删除当前所有选中控件</p>
@@ -670,11 +917,41 @@ public sealed class DynamicViewDesigner</code></pre>
 
 
 
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_FlushKeyboardNudge_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.FlushKeyboardNudge*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_FlushKeyboardNudge" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.FlushKeyboardNudge">
+  FlushKeyboardNudge()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L291"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>立即提交挂起的键盘虚拟框微调</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlushKeyboardNudge()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Designers_DynamicViewDesigner_FlushKeyboardNudge_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>在选区变化、内容变化等操作前调用，确保累计位移写回到正确的控件上</p>
+</div>
+
+
+
+
   <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_LoadContent_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.LoadContent*"></a>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_LoadContent_MAS_DynamicViews_IDynamicViewContentModel_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.LoadContent(MAS.DynamicViews.IDynamicViewContentModel)">
   LoadContent(IDynamicViewContentModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L303"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>加载动态内容</p>
@@ -688,8 +965,7 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>content</code> <a class="xref" href="MAS.DynamicViews.IDynamicViewContentModel.html">IDynamicViewContentModel</a></dt>
-    <dd><p>动态内容模型</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -707,11 +983,10 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_MoveSelectedControl_System_Double_System_Double_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.MoveSelectedControl(System.Double,System.Double)">
   MoveSelectedControl(double, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L345"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L414"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将当前选中控件移动指定偏移量
-并同步回模型</p>
+  <div class="markdown level1 summary"><p>将当前选中控件移动指定偏移量</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -722,11 +997,9 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>deltaX</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>X 偏移量</p>
-</dd>
+    <dd></dd>
     <dt><code>deltaY</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>Y 偏移量</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -744,7 +1017,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_NudgeSelectedControl_System_Windows_Input_Key_System_Boolean_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.NudgeSelectedControl(System.Windows.Input.Key,System.Boolean)">
   NudgeSelectedControl(Key, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L416"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L224"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将当前选中控件按指定方向移动</p>
@@ -752,7 +1025,7 @@ public sealed class DynamicViewDesigner</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool NudgeSelectedControl(Key direction, bool isFastMode)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool NudgeSelectedControl(Key direction, bool isPreciseMode)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -760,16 +1033,15 @@ public sealed class DynamicViewDesigner</code></pre>
     <dt><code>direction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.key">Key</a></dt>
     <dd><p>方向键</p>
 </dd>
-    <dt><code>isFastMode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否快速移动</p>
+    <dt><code>isPreciseMode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否精细模式（按住 Ctrl）：精细模式按 1px 移动，否则按网格步进移动</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>处理成功返回 true，否则返回 false</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -786,7 +1058,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_PasteControls" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.PasteControls">
   PasteControls()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L552"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L484"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>粘贴设计器剪贴板中的控件</p>
@@ -801,8 +1073,7 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>粘贴成功返回 true，否则返回 false</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -819,7 +1090,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_Redo" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.Redo">
   Redo()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L521"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L454"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>重做上一步撤销的操作</p>
@@ -834,8 +1105,7 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否执行成功</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -852,10 +1122,10 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_Refresh" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.Refresh">
   Refresh()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L236"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L381"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>重新渲染当前页面</p>
+  <div class="markdown level1 summary"><p>重新渲染当前内容</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -879,7 +1149,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_RemoveControl_System_String_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.RemoveControl(System.String)">
   RemoveControl(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L354"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>删除指定控件</p>
@@ -893,9 +1163,35 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>controlId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>控件标识</p>
-</dd>
+    <dd></dd>
   </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_SelectAllControls_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SelectAllControls*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_SelectAllControls" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SelectAllControls">
+  SelectAllControls()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L565"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>选中当前内容中的全部控件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SelectAllControls()</code></pre>
+  </div>
+
 
 
 
@@ -912,10 +1208,10 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_SelectControl_MAS_DynamicViews_DynamicViewControlModel_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SelectControl(MAS.DynamicViews.DynamicViewControlModel)">
   SelectControl(DynamicViewControlModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L597"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L491"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>选中指定控件。</p>
+  <div class="markdown level1 summary"><p>选中指定控件</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -926,15 +1222,13 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>control</code> <a class="xref" href="MAS.DynamicViews.DynamicViewControlModel.html">DynamicViewControlModel</a></dt>
-    <dd><p>控件模型</p>
-</dd>
+    <dd></dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>选中成功返回 true，否则返回 false</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -951,7 +1245,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_SelectControlsInBounds_System_Windows_Rect_System_Boolean_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SelectControlsInBounds(System.Windows.Rect,System.Boolean)">
   SelectControlsInBounds(Rect, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L281"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L405"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据矩形范围选择控件</p>
@@ -965,10 +1259,41 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>selectionBounds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.rect">Rect</a></dt>
-    <dd><p>页面坐标系下的选择矩形</p>
-</dd>
+    <dd></dd>
     <dt><code>isAppendSelection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否追加选择</p>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_ToggleControlLock_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.ToggleControlLock*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_ToggleControlLock_MAS_DynamicViews_DynamicViewControlModel_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.ToggleControlLock(MAS.DynamicViews.DynamicViewControlModel)">
+  ToggleControlLock(DynamicViewControlModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L525"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>切换指定控件的锁定状态并记录历史</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ToggleControlLock(DynamicViewControlModel control)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>control</code> <a class="xref" href="MAS.DynamicViews.DynamicViewControlModel.html">DynamicViewControlModel</a></dt>
+    <dd><p>目标控件</p>
 </dd>
   </dl>
 
@@ -983,11 +1308,89 @@ public sealed class DynamicViewDesigner</code></pre>
 
 
 
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_ToggleControlVisibility_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.ToggleControlVisibility*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_ToggleControlVisibility_MAS_DynamicViews_DynamicViewControlModel_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.ToggleControlVisibility(MAS.DynamicViews.DynamicViewControlModel)">
+  ToggleControlVisibility(DynamicViewControlModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L545"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>切换指定控件的显示/隐藏状态并记录历史</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ToggleControlVisibility(DynamicViewControlModel control)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>control</code> <a class="xref" href="MAS.DynamicViews.DynamicViewControlModel.html">DynamicViewControlModel</a></dt>
+    <dd><p>目标控件</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Designers_DynamicViewDesigner_ToggleControlVisibility_MAS_DynamicViews_DynamicViewControlModel__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>隐藏仅影响设计器画布与运行时渲染，不影响图层面板显示</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_ToggleSelectControl_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.ToggleSelectControl*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_ToggleSelectControl_MAS_DynamicViews_DynamicViewControlModel_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.ToggleSelectControl(MAS.DynamicViews.DynamicViewControlModel)">
+  ToggleSelectControl(DynamicViewControlModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L509"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>切换指定控件的选中状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ToggleSelectControl(DynamicViewControlModel control)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>control</code> <a class="xref" href="MAS.DynamicViews.DynamicViewControlModel.html">DynamicViewControlModel</a></dt>
+    <dd><p>目标控件</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>控件已渲染并完成切换返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Designers_DynamicViewDesigner_ToggleSelectControl_MAS_DynamicViews_DynamicViewControlModel__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>用于图层面板的 Shift 多选，复用画布同一套选中逻辑</p>
+</div>
+
+
+
+
   <a id="MAS_DynamicViews_Designers_DynamicViewDesigner_Undo_" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.Undo*"></a>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_Undo" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.Undo">
   Undo()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L508"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L440"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>撤销上一步操作</p>
@@ -1002,8 +1405,7 @@ public sealed class DynamicViewDesigner</code></pre>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否执行成功</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -1023,7 +1425,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_AlignmentGuidesChanged" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.AlignmentGuidesChanged">
   AlignmentGuidesChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L176"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>对齐参考线变更事件</p>
@@ -1052,9 +1454,40 @@ public sealed class DynamicViewDesigner</code></pre>
 
 
 
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_ContentChanged" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.ContentChanged">
+  ContentChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前内容变更事件（加载或切换内容后触发）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler? ContentChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_ControlMoved" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.ControlMoved">
   ControlMoved
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L156"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>控件位置变更事件</p>
@@ -1085,7 +1518,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_ControlRemoved" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.ControlRemoved">
   ControlRemoved
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L161"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>控件删除事件</p>
@@ -1114,9 +1547,40 @@ public sealed class DynamicViewDesigner</code></pre>
 
 
 
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_GhostRectChanged" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.GhostRectChanged">
+  GhostRectChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>多选虚拟框变更事件（页面坐标，null 表示隐藏）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GhostRectChangedEventArgs&gt;? GhostRectChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.DynamicViews.Designers.GhostRectChangedEventArgs.html">GhostRectChangedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_GuideChanged" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.GuideChanged">
   GuideChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L171"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>参考线变更事件</p>
@@ -1147,7 +1611,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_HistoryStateChanged" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.HistoryStateChanged">
   HistoryStateChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L166"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>撤销/重做状态变更事件</p>
@@ -1178,7 +1642,7 @@ public sealed class DynamicViewDesigner</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewDesigner_SelectedControlChanged" data-uid="MAS.DynamicViews.Designers.DynamicViewDesigner.SelectedControlChanged">
   SelectedControlChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L151"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>选中控件变更事件</p>
@@ -1210,7 +1674,7 @@ public sealed class DynamicViewDesigner</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L23" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/DynamicViewDesigner.cs/#L22" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ControlPositionSnapshot | DataMaster </title>
+      <title>Class DynamicViewNumberBoxModel | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ControlPositionSnapshot | DataMaster ">
+      <meta name="title" content="Class DynamicViewNumberBoxModel | DataMaster ">
       
-      <meta name="description" content="控件位置快照">
+      <meta name="description" content="动态界面数值框属性模型">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_Models_ControlPositionSnapshot.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.Models.ControlPositionSnapshot%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,25 +84,25 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.DynamicViews.Models.ControlPositionSnapshot">
+        <article data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel">
 
 
 
-  <h1 id="MAS_DynamicViews_Models_ControlPositionSnapshot" data-uid="MAS.DynamicViews.Models.ControlPositionSnapshot" class="text-break">
-Class ControlPositionSnapshot  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/ControlPositionSnapshot.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_DynamicViews_DynamicViewNumberBoxModel" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel" class="text-break">
+Class DynamicViewNumberBoxModel  
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a>.<a class="xref" href="MAS.DynamicViews.Models.html">Models</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a></dd></dl>
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>控件位置快照</p>
+  <div class="markdown summary"><p>动态界面数值框属性模型</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed record ControlPositionSnapshot : IEquatable&lt;ControlPositionSnapshot&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class DynamicViewNumberBoxModel : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
 
@@ -112,14 +112,16 @@ Class ControlPositionSnapshot  <a class="header-action link-secondary" title="Vi
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">ControlPositionSnapshot</span></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><span class="xref">DynamicViewNumberBoxModel</span></div>
     </dd>
   </dl>
 
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="MAS.DynamicViews.Models.ControlPositionSnapshot.html">ControlPositionSnapshot</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
     </dd>
   </dl>
 
@@ -127,6 +129,12 @@ Class ControlPositionSnapshot  <a class="header-action link-secondary" title="Vi
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -150,100 +158,29 @@ Class ControlPositionSnapshot  <a class="header-action link-secondary" title="Vi
 
 
 
-
-
-  <h2 class="section" id="constructors">Constructors
-</h2>
-
-
-  <a id="MAS_DynamicViews_Models_ControlPositionSnapshot__ctor_" data-uid="MAS.DynamicViews.Models.ControlPositionSnapshot.#ctor*"></a>
-
-  <h3 id="MAS_DynamicViews_Models_ControlPositionSnapshot__ctor_System_String_System_Double_System_Double_" data-uid="MAS.DynamicViews.Models.ControlPositionSnapshot.#ctor(System.String,System.Double,System.Double)">
-  ControlPositionSnapshot(string, double, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/ControlPositionSnapshot.cs/#L18"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>控件位置快照</p>
+  <h2 id="MAS_DynamicViews_DynamicViewNumberBoxModel_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>属性支持 MVVM 绑定</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ControlPositionSnapshot(string ControlId, double Left, double Top)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>ControlId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>控件标识</p>
-</dd>
-    <dt><code>Left</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>左坐标</p>
-</dd>
-    <dt><code>Top</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>上坐标</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
 
 
   <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="MAS_DynamicViews_Models_ControlPositionSnapshot_ControlId_" data-uid="MAS.DynamicViews.Models.ControlPositionSnapshot.ControlId*"></a>
+  <a id="MAS_DynamicViews_DynamicViewNumberBoxModel_LargeChange_" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel.LargeChange*"></a>
 
-  <h3 id="MAS_DynamicViews_Models_ControlPositionSnapshot_ControlId" data-uid="MAS.DynamicViews.Models.ControlPositionSnapshot.ControlId">
-  ControlId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/ControlPositionSnapshot.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_DynamicViews_DynamicViewNumberBoxModel_LargeChange" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel.LargeChange">
+  LargeChange
+  
   </h3>
 
-  <div class="markdown level1 summary"><p>控件标识</p>
+  <div class="markdown level1 summary"><p>获取或设置大幅步进值（PageUp / PageDown）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ControlId { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_DynamicViews_Models_ControlPositionSnapshot_Left_" data-uid="MAS.DynamicViews.Models.ControlPositionSnapshot.Left*"></a>
-
-  <h3 id="MAS_DynamicViews_Models_ControlPositionSnapshot_Left" data-uid="MAS.DynamicViews.Models.ControlPositionSnapshot.Left">
-  Left
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/ControlPositionSnapshot.cs/#L20"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>左坐标</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double Left { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double LargeChange { get; set; }</code></pre>
   </div>
 
 
@@ -259,23 +196,27 @@ Class ControlPositionSnapshot  <a class="header-action link-secondary" title="Vi
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewNumberBoxModel_LargeChange_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认值：10</p>
+</div>
 
 
 
 
-  <a id="MAS_DynamicViews_Models_ControlPositionSnapshot_Top_" data-uid="MAS.DynamicViews.Models.ControlPositionSnapshot.Top*"></a>
+  <a id="MAS_DynamicViews_DynamicViewNumberBoxModel_Maximum_" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel.Maximum*"></a>
 
-  <h3 id="MAS_DynamicViews_Models_ControlPositionSnapshot_Top" data-uid="MAS.DynamicViews.Models.ControlPositionSnapshot.Top">
-  Top
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/ControlPositionSnapshot.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_DynamicViews_DynamicViewNumberBoxModel_Maximum" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel.Maximum">
+  Maximum
+  
   </h3>
 
-  <div class="markdown level1 summary"><p>上坐标</p>
+  <div class="markdown level1 summary"><p>获取或设置允许输入的最大值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double Top { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double Maximum { get; set; }</code></pre>
   </div>
 
 
@@ -291,6 +232,117 @@ Class ControlPositionSnapshot  <a class="header-action link-secondary" title="Vi
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewNumberBoxModel_Maximum_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认值：9999999</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewNumberBoxModel_Minimum_" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel.Minimum*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewNumberBoxModel_Minimum" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel.Minimum">
+  Minimum
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置允许输入的最小值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double Minimum { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewNumberBoxModel_Minimum_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认值：-9999999</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewNumberBoxModel_SmallChange_" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel.SmallChange*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewNumberBoxModel_SmallChange" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel.SmallChange">
+  SmallChange
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置小幅步进值（方向键、滚轮、微调按钮）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double SmallChange { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewNumberBoxModel_SmallChange_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认值：1</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewNumberBoxModel_Value_" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel.Value*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewNumberBoxModel_Value" data-uid="MAS.DynamicViews.DynamicViewNumberBoxModel.Value">
+  Value
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置数值（设计期默认显示值；运行时由绑定变量驱动）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double? Value { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewNumberBoxModel_Value_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认值：0</p>
+</div>
 
 
 
@@ -299,7 +351,6 @@ Class ControlPositionSnapshot  <a class="header-action link-secondary" title="Vi
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/ControlPositionSnapshot.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
 

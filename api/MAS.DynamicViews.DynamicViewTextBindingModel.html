@@ -197,6 +197,42 @@ Class DynamicViewTextBindingModel
 </h2>
 
 
+  <a id="MAS_DynamicViews_DynamicViewTextBindingModel_DecimalPlaces_" data-uid="MAS.DynamicViews.DynamicViewTextBindingModel.DecimalPlaces*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewTextBindingModel_DecimalPlaces" data-uid="MAS.DynamicViews.DynamicViewTextBindingModel.DecimalPlaces">
+  DecimalPlaces
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置显示小数位数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public int DecimalPlaces { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewTextBindingModel_DecimalPlaces_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>仅用于文本/只读显示控件（文本框、文本块）：将整数值按小数位显示，例如 3： 987654 =&gt; 987.654</p>
+</div>
+
+
+
+
   <a id="MAS_DynamicViews_DynamicViewTextBindingModel_Format_" data-uid="MAS.DynamicViews.DynamicViewTextBindingModel.Format*"></a>
 
   <h3 id="MAS_DynamicViews_DynamicViewTextBindingModel_Format" data-uid="MAS.DynamicViews.DynamicViewTextBindingModel.Format">
@@ -228,6 +264,75 @@ public string? Format { get; set; }</code></pre>
 
   <h4 class="section" id="MAS_DynamicViews_DynamicViewTextBindingModel_Format_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>示例：{0}、{0:F2}、当前值：{0}</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewTextBindingModel_IsIntegerType_" data-uid="MAS.DynamicViews.DynamicViewTextBindingModel.IsIntegerType*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewTextBindingModel_IsIntegerType" data-uid="MAS.DynamicViews.DynamicViewTextBindingModel.IsIntegerType">
+  IsIntegerType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewTextBindingModel.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取所绑定变量是否为整数类型（Int16/UInt16/Int32/UInt32）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public bool IsIntegerType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewTextBindingModel_VariableType_" data-uid="MAS.DynamicViews.DynamicViewTextBindingModel.VariableType*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewTextBindingModel_VariableType" data-uid="MAS.DynamicViews.DynamicViewTextBindingModel.VariableType">
+  VariableType
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置所绑定变量的数据类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public DynamicViewVariableType? VariableType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewVariableType.html">DynamicViewVariableType</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewTextBindingModel_VariableType_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>数值框使用该类型区分整数/浮点（整数限制为 0 位小数并对输入取整）</p>
 </div>
 
 

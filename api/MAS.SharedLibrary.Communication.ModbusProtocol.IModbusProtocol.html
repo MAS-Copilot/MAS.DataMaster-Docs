@@ -289,6 +289,135 @@ Interface IModbusProtocol  <a class="header-action link-secondary" title="View s
 
   <a id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_ReadStructAsync_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.ReadStructAsync*"></a>
 
+  <h3 id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_ReadStructAsync_System_Type_MAS_SharedLibrary_Communication_ModbusProtocol_ModbusDataArea_System_UInt16_System_Byte_System_UInt16_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.ReadStructAsync(System.Type,MAS.SharedLibrary.Communication.ModbusProtocol.ModbusDataArea,System.UInt16,System.Byte,System.UInt16,System.Threading.CancellationToken)">
+  ReadStructAsync(Type, ModbusDataArea, ushort, byte, ushort, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/ModbusProtocol/Interfaces/IModbusProtocol.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步从指定的 Modbus 数据区域读取一个结构体</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;object?&gt; ReadStructAsync(Type structType, ModbusDataArea area, ushort startAddress, byte unitId, ushort maxRegistersPerRequest = 125, CancellationToken cts = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>structType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>结构体类型</p>
+</dd>
+    <dt><code>area</code> <a class="xref" href="MAS.SharedLibrary.Communication.ModbusProtocol.ModbusDataArea.html">ModbusDataArea</a></dt>
+    <dd><p>数据区域</p>
+</dd>
+    <dt><code>startAddress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>起始寄存器地址</p>
+</dd>
+    <dt><code>unitId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>从站地址</p>
+</dd>
+    <dt><code>maxRegistersPerRequest</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>每次 Modbus 请求读取的最大寄存器数量，默认 125</p>
+</dd>
+    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>解析后的结构体对象，若失败返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.ReadErrorException.html">ReadErrorException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_ReadStructAsync_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.ReadStructAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_ReadStructAsync__1_MAS_SharedLibrary_Communication_ModbusProtocol_ModbusDataArea_System_UInt16_System_Byte_System_UInt16_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.ReadStructAsync``1(MAS.SharedLibrary.Communication.ModbusProtocol.ModbusDataArea,System.UInt16,System.Byte,System.UInt16,System.Threading.CancellationToken)">
+  ReadStructAsync&lt;T&gt;(ModbusDataArea, ushort, byte, ushort, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/ModbusProtocol/Interfaces/IModbusProtocol.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步从指定的 Modbus 数据区域读取一个结构体</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T?&gt; ReadStructAsync&lt;T&gt;(ModbusDataArea area, ushort startAddress, byte unitId, ushort maxRegistersPerRequest = 125, CancellationToken cts = default) where T : struct</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>area</code> <a class="xref" href="MAS.SharedLibrary.Communication.ModbusProtocol.ModbusDataArea.html">ModbusDataArea</a></dt>
+    <dd><p>数据区域</p>
+</dd>
+    <dt><code>startAddress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>起始寄存器地址（0-based）</p>
+</dd>
+    <dt><code>unitId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>从站地址</p>
+</dd>
+    <dt><code>maxRegistersPerRequest</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>每次 Modbus 请求读取的最大寄存器数量，默认 125</p>
+</dd>
+    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T?&gt;</dt>
+    <dd><p>解析后的结构体，若失败返回 null</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>结构体类型，必须为值类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.ReadErrorException.html">ReadErrorException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_ReadStructAsync_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.ReadStructAsync*"></a>
+
   <h3 id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_ReadStructAsync__1_System_UInt16_System_Byte_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.ReadStructAsync``1(System.UInt16,System.Byte,System.Threading.CancellationToken)">
   ReadStructAsync&lt;T&gt;(ushort, byte, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/ModbusProtocol/Interfaces/IModbusProtocol.cs/#L99"><i class="bi bi-code-slash"></i></a>
@@ -463,9 +592,150 @@ Interface IModbusProtocol  <a class="header-action link-secondary" title="View s
 
   <a id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_WriteStructAsync_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.WriteStructAsync*"></a>
 
+  <h3 id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_WriteStructAsync_System_Type_MAS_SharedLibrary_Communication_ModbusProtocol_ModbusDataArea_System_UInt16_System_Object_System_Byte_System_UInt16_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.WriteStructAsync(System.Type,MAS.SharedLibrary.Communication.ModbusProtocol.ModbusDataArea,System.UInt16,System.Object,System.Byte,System.UInt16,System.Threading.CancellationToken)">
+  WriteStructAsync(Type, ModbusDataArea, ushort, object, byte, ushort, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/ModbusProtocol/Interfaces/IModbusProtocol.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步将结构体写入到指定的 Modbus 数据区域</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task WriteStructAsync(Type structType, ModbusDataArea area, ushort startAddress, object value, byte unitId, ushort maxRegistersPerRequest = 125, CancellationToken cts = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>structType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>结构体类型</p>
+</dd>
+    <dt><code>area</code> <a class="xref" href="MAS.SharedLibrary.Communication.ModbusProtocol.ModbusDataArea.html">ModbusDataArea</a></dt>
+    <dd><p>数据区域</p>
+</dd>
+    <dt><code>startAddress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>起始寄存器地址</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>要写入的结构体对象</p>
+</dd>
+    <dt><code>unitId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>从站地址</p>
+</dd>
+    <dt><code>maxRegistersPerRequest</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>每次 Modbus 请求写入的最大寄存器数量，默认 125</p>
+</dd>
+    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步写入操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_WriteStructAsync_System_Type_MAS_SharedLibrary_Communication_ModbusProtocol_ModbusDataArea_System_UInt16_System_Object_System_Byte_System_UInt16_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>当结构体较大时，会分多次写入</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.WriteErrorException.html">WriteErrorException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_WriteStructAsync_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.WriteStructAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_WriteStructAsync__1_MAS_SharedLibrary_Communication_ModbusProtocol_ModbusDataArea_System_UInt16___0_System_Byte_System_UInt16_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.WriteStructAsync``1(MAS.SharedLibrary.Communication.ModbusProtocol.ModbusDataArea,System.UInt16,``0,System.Byte,System.UInt16,System.Threading.CancellationToken)">
+  WriteStructAsync&lt;T&gt;(ModbusDataArea, ushort, T, byte, ushort, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/ModbusProtocol/Interfaces/IModbusProtocol.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步将结构体写入到指定的 Modbus 数据区域</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task WriteStructAsync&lt;T&gt;(ModbusDataArea area, ushort startAddress, T value, byte unitId, ushort maxRegistersPerRequest = 125, CancellationToken cts = default) where T : struct</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>area</code> <a class="xref" href="MAS.SharedLibrary.Communication.ModbusProtocol.ModbusDataArea.html">ModbusDataArea</a></dt>
+    <dd><p>数据区域</p>
+</dd>
+    <dt><code>startAddress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>起始寄存器地址</p>
+</dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd><p>要写入的结构体实例</p>
+</dd>
+    <dt><code>unitId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>从站地址</p>
+</dd>
+    <dt><code>maxRegistersPerRequest</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>每次 Modbus 请求写入的最大寄存器数量，默认 125</p>
+</dd>
+    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步写入操作的任务</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>结构体类型，必须为值类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_WriteStructAsync__1_MAS_SharedLibrary_Communication_ModbusProtocol_ModbusDataArea_System_UInt16___0_System_Byte_System_UInt16_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>当结构体较大时，会分多次写入</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.WriteErrorException.html">WriteErrorException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_WriteStructAsync_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.WriteStructAsync*"></a>
+
   <h3 id="MAS_SharedLibrary_Communication_ModbusProtocol_IModbusProtocol_WriteStructAsync__1___0_System_UInt16_System_Byte_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Communication.ModbusProtocol.IModbusProtocol.WriteStructAsync``1(``0,System.UInt16,System.Byte,System.Threading.CancellationToken)">
   WriteStructAsync&lt;T&gt;(T, ushort, byte, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/ModbusProtocol/Interfaces/IModbusProtocol.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/ModbusProtocol/Interfaces/IModbusProtocol.cs/#L204"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步写入结构体数据到设备</p>
@@ -516,7 +786,7 @@ Interface IModbusProtocol  <a class="header-action link-secondary" title="View s
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
     <dd></dd>
-    <dt><a class="xref" href="MAS.SharedLibrary.ReadErrorException.html">ReadErrorException</a></dt>
+    <dt><a class="xref" href="MAS.SharedLibrary.WriteErrorException.html">WriteErrorException</a></dt>
     <dd></dd>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></dt>
     <dd></dd>
