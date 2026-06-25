@@ -97,8 +97,7 @@
 <li>通讯状态管理</li>
 <li>运行时生命周期管理</li>
 </ul>
-<p>整个系统采用<code>运行时调度 + 通讯服务 + 安全写入 + 状态反馈</code>的分层架构</p>
-<p>当前可直接配置的协议为 Modbus TCP。通信配置主要通过设备中心完成，变量定义主要通过数据中心完成</p>
+<p>整个系统采用<code>运行时调度 + 通讯服务 + 安全写入 + 状态反馈</code>的分层架构。通信配置主要通过设备中心完成，变量定义主要通过数据中心完成</p>
 <h2 id="配置方法">配置方法</h2>
 <p>典型配置流程：</p>
 <ol>
@@ -112,7 +111,7 @@
 <li>同步工程数据到内存</li>
 </ol>
 <p>未同步的设备中心改动不会参与运行时通讯</p>
-<h2 id="通讯系统目标">通讯系统目标</h2>
+<h2 id="通讯目标">通讯目标</h2>
 <p>通讯系统主要目标：</p>
 <ul>
 <li>支持多设备并行通讯</li>
@@ -165,35 +164,42 @@
 </tr>
 </tbody>
 </table>
-<p>整体架构：</p>
-<pre><code class="lang-txt">DynamicViewCommRuntimeService
-│
-├── DynamicViewCommStartupService
-│   ├── 检查设备
-│   ├── 建立连接
-│   └── 初始化状态
-│
-├── DynamicViewVariablePollingUpdater
-│   ├── 多设备轮询
-│   ├── 周期调度
-│   └── 异常隔离
-│
-├── DynamicViewCommService
-│   ├── 协议读写
-│   ├── 结构体通讯
-│   └── 协议适配
-│
-├── DynamicViewVariableWriteService
-│   ├── 安全写入
-│   ├── 多设备同步
-│   └── 写入成功后提交变量中心
-│
-└── DynamicViewCommStateService
-    ├── 在线状态
-    ├── 错误状态
-    └── UI状态反馈
-</code></pre>
-<h2 id="运行时生命周期">运行时生命周期</h2>
+<p>职责分层：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>主要职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运行时编排</td>
+<td>启停、连接设备、启动脚本和轮询、统一清理</td>
+</tr>
+<tr>
+<td>轮询调度</td>
+<td>选择可读上下文、按设备并发、设备内串行、按 Usage 分派</td>
+</tr>
+<tr>
+<td>通信服务</td>
+<td>把结构体读写转换为具体协议调用</td>
+</tr>
+<tr>
+<td>协议访问</td>
+<td>创建、缓存和配置失效后重建协议实例</td>
+</tr>
+<tr>
+<td>变量存储</td>
+<td>保存运行时值、比较变化、发布 <code>ValueChanged</code></td>
+</tr>
+<tr>
+<td>UI 绑定</td>
+<td>消费变量变化事件并刷新控件；用户编辑时走独立写入链</td>
+</tr>
+</tbody>
+</table>
+<h2 id="运行时">运行时</h2>
 <h3 id="启动流程">启动流程</h3>
 <p>运行时启动流程：</p>
 <pre><code class="lang-txt">StartAsync
@@ -231,6 +237,100 @@ Runtime 保持 Stopped
     ↓
 状态恢复为 Stopped
 </code></pre>
+<h2 id="变量轮询">变量轮询</h2>
+<h3 id="任务模型">任务模型</h3>
+<p>轮询器按 <code>DeviceId</code> 分组，每台设备创建一个 <code>Task.Run</code>：</p>
+<pre><code class="lang-text">设备 A -&gt; Task A -&gt; Channel A1 -&gt; Channel A2 -&gt; Delay
+设备 B -&gt; Task B -&gt; Channel B1 -&gt; Channel B2 -&gt; Delay
+</code></pre>
+<p>其并发策略是：</p>
+<ul>
+<li>不同设备之间并行</li>
+<li>同一设备的通道之间串行</li>
+</ul>
+<p>这个设计避免同一协议设备被多个轮询任务同时访问，同时允许不同设备并发通信</p>
+<p>轮询间隔：</p>
+<pre><code class="lang-csharp">Math.Max(device.PollingInterval, 10)
+</code></pre>
+<p>实际相邻两轮开始时间约为：</p>
+<pre><code class="lang-text">本轮所有通道执行耗时 + PollingInterval
+</code></pre>
+<p>它不是固定频率定时器。如果读取耗时增加，实际轮询周期也会变长</p>
+<h3 id="轮询流程">轮询流程</h3>
+<pre><code class="lang-txt">PollingUpdater
+    ↓
+CommService.ReadStructureAsync
+    ↓
+协议读取结构体
+    ↓
+VariableValueCommitter
+    ↓
+更新变量中心
+    ↓
+触发绑定刷新
+</code></pre>
+<p>读取属于单向同步：</p>
+<pre><code class="lang-txt">设备 -&gt; 变量中心
+</code></pre>
+<p>轮询只会读取满足以下条件的通道：</p>
+<ul>
+<li>设备已启用</li>
+<li>通道已启用</li>
+<li>通道绑定了结构体</li>
+<li>结构体存在并已启用</li>
+<li>结构体访问模式为 ReadOnly 或 ReadWrite</li>
+</ul>
+<p>WriteOnly 结构体不会被轮询读取</p>
+<h3 id="轮询处理">轮询处理</h3>
+<ol>
+<li>在通信运行时启动时，根据当前工程的“设备 → 通道 → 结构体变量”配置构建轮询上下文</li>
+<li>按设备创建独立后台任务</li>
+<li>在每个设备任务中，依次处理该设备下所有可轮询通道</li>
+<li>普通变量调用 <code>DynamicViewCommService.ReadStructureAsync</code>，从设备读取整个结构体</li>
+<li>特殊用途变量按 <code>DynamicViewVariableUsage</code> 分派给任务处理器，例如配方任务</li>
+<li>根据本次处理结果 <code>DynamicViewCommOutcome</code> 更新设备状态：
+<ul>
+<li><code>Read</code>：记录最近读取时间与在线状态</li>
+<li><code>Written</code>：记录最近写入时间与在线状态（配方等会回写设备的任务）</li>
+<li><code>Skipped</code> / <code>NoData</code>：不可通信而跳过，或未读到数据，不计为成功</li>
+<li>异常：记录错误状态</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><code>ReadStructureAsync</code> 在上下文不可通信时返回 <code>Skipped</code>，读取到空数据时返回 <code>NoData</code>。跳过读取不会再被误记为读取成功</p>
+</blockquote>
+<p>轮询的基本单位不是单个字段，而是一个 <code>DynamicViewCommunicationChannelContext</code>：</p>
+<pre><code class="lang-text">设备 Device + 通道 Channel + 结构体变量 Structure
+</code></pre>
+<p>普通变量最终调用 Modbus <code>ReadStructAsync</code>，按照通道配置的地址区和起始地址读取整个运行时结构体</p>
+<h3 id="异常范围">异常范围</h3>
+<p>异常捕获以<strong>单个通道</strong>为单位，单通道异常不会影响同设备本轮的其它通道</p>
+<p>某个通道抛出异常后，按设备连接状态分两种情况处理：</p>
+<p><strong>通道级错误（连接仍正常）：</strong></p>
+<ol>
+<li>记录该通道的错误信息</li>
+<li>继续遍历本设备的后续通道</li>
+<li>下一轮仍会重新尝试该通道</li>
+</ol>
+<p>因此排序靠前的通道持续失败，不会导致后续通道长期得不到轮询</p>
+<p><strong>设备断线（连接已断开）：</strong></p>
+<ol>
+<li>中断本设备本轮剩余通道</li>
+<li>调用 <code>DynamicViewCommService.TryReconnectDeviceAsync</code> 尝试重连，重连次数与等待时间取自协议配置的 <code>MaxRetries</code> 与 <code>ExecutionTimeout</code></li>
+<li>重连成功：恢复在线状态，下一轮继续轮询</li>
+<li>重连失败：将该设备标记为故障并停止其轮询任务，不再持续刷错误日志</li>
+</ol>
+<h3 id="故障与异常停止">故障与异常停止</h3>
+<p>当<strong>所有设备</strong>都因断线且重连失败而进入故障状态时，轮询器触发 <code>IDynamicViewVariablePollingUpdater.Faulted</code> 事件。</p>
+<p><code>DynamicViewCommRuntimeService</code> 订阅该事件后：</p>
+<ol>
+<li>触发 <code>OnTaskAbnormalStop</code>（任务名“动态视图通讯运行时异常停止”）</li>
+<li>取消运行时令牌，经 <code>KeepAliveAsync → CleanupAsync</code> 正常收尾，将运行时状态切换为 <code>Stopped</code></li>
+</ol>
+<blockquote>
+<p>仅当所有设备均故障时才会异常停止整个运行时。部分设备故障时，故障设备会停止轮询（不再刷日志），其余设备继续正常运行；故障设备需重启运行时才会重新连接。建议在配置阶段禁用不可用的设备</p>
+</blockquote>
 <h2 id="多设备架构">多设备架构</h2>
 <p>通讯系统支持：</p>
 <ul>
@@ -263,32 +363,6 @@ Runtime 保持 Stopped
 不保证实时一致性
 </code></pre>
 <p>安全控制由<code>DynamicViewVariableWriteService</code>负责</p>
-<h2 id="变量读取流程">变量读取流程</h2>
-<p>变量读取流程：</p>
-<pre><code class="lang-txt">PollingUpdater
-    ↓
-CommService.ReadStructureAsync
-    ↓
-协议读取结构体
-    ↓
-VariableValueCommitter
-    ↓
-更新变量中心
-    ↓
-触发绑定刷新
-</code></pre>
-<p>读取属于单向同步：</p>
-<pre><code class="lang-txt">设备 -&gt; 变量中心
-</code></pre>
-<p>轮询只会读取满足以下条件的通道：</p>
-<ul>
-<li>设备已启用</li>
-<li>通道已启用</li>
-<li>通道绑定了结构体</li>
-<li>结构体存在并已启用</li>
-<li>结构体访问模式为 ReadOnly 或 ReadWrite</li>
-</ul>
-<p>WriteOnly 结构体不会被轮询读取</p>
 <h2 id="安全写入流程">安全写入流程</h2>
 <p>变量写入流程：</p>
 <pre><code class="lang-txt">UI操作
@@ -377,21 +451,6 @@ VariableWriteService
 <pre><code class="lang-txt">变量中心 → Runtime Struct → PLC结构体
 </code></pre>
 <p>结构体通讯的核心原则是“按结构体整体读写”。因此，字段新增、删除或调整顺序后，需要同步确认 PLC 地址布局，避免字段错位</p>
-<h2 id="配方通讯">配方通讯</h2>
-<p>配方结构体是一种特殊用途的结构体。运行时轮询到配方结构体时，不走普通读写流程，而是读取操作字段并执行配方任务</p>
-<p>操作约定：</p>
-<ul>
-<li>0：无操作</li>
-<li>1：存储配方</li>
-<li>2：获取配方</li>
-</ul>
-<p>任务完成后，系统会写回结果、错误码、耗时和数据长度，并将操作字段重置为 0</p>
-<p>注意事项：</p>
-<ul>
-<li>配方任务只支持 Modbus TCP 保持寄存器</li>
-<li>配方编号由固定字段组合得到，实施时 PLC 侧需要按约定写入</li>
-<li>数据长度不能超过配方结构体创建时配置的数据区容量</li>
-</ul>
 <h2 id="线程模型">线程模型</h2>
 <ul>
 <li>通讯系统支持多设备并行轮询</li>
