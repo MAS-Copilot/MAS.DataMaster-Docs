@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>按判定结果查询 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="按判定结果查询 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/DataBase/QueryAsset/Example4.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="按判定结果查询">按判定结果查询</h1>
+
+<blockquote>
+<p>本示例集中演示 <code>enum</code>（下拉框）参数的用法：候选项写在「说明」列，格式 <code>选项: A,B,C</code>，选中值替换进 SQL 时按字符串加单引号</p>
+</blockquote>
+<h2 id="使用说明">使用说明</h2>
+<ul>
+<li>本小节不含 SQL 代码块，解析时会被自动忽略</li>
+<li><code>IsOk</code> 字段 <code>b'1'</code> 为 OK、<code>b'0'</code> 为 NG；查询时间统一使用 <code>CreatedAt</code></li>
+<li><code>enum</code> 的「默认值」需与某个候选项完全一致才能预选中。</li>
+</ul>
+<h2 id="按判定结果查询膜厚记录">按判定结果查询膜厚记录</h2>
+<p>按 OK / NG 判定筛选膜厚检测记录，演示最简单的二选一 <code>enum</code></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>标签</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Result</td>
+<td>判定结果</td>
+<td>enum</td>
+<td>OK</td>
+<td>选项: OK,NG</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-sql">SELECT
+    f.ProductId   AS '产品ID',
+    f.DetectionId AS '检测批次',
+    ROUND(f.Thickness, 2) AS '膜厚(nm)',
+    CASE f.IsOk WHEN b'1' THEN 'OK' ELSE 'NG' END AS '判定',
+    f.CreatedAt   AS '检测时间'
+FROM film_thickness_result f
+WHERE CASE f.IsOk WHEN b'1' THEN 'OK' ELSE 'NG' END = {{Result}}
+ORDER BY f.CreatedAt DESC;
+</code></pre>
+<h2 id="按缺陷类型查询外观缺陷">按缺陷类型查询外观缺陷</h2>
+<p><code>enum</code> 选项可多于两个，并可与其他类型参数（<code>datetime</code>、<code>number</code>）组合使用</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>标签</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DefectType</td>
+<td>缺陷类型</td>
+<td>enum</td>
+<td>划痕</td>
+<td>选项: 划痕,污点,崩边,气泡</td>
+</tr>
+<tr>
+<td>StartTime</td>
+<td>开始时间</td>
+<td>datetime</td>
+<td>2026-06-01 00:00:00</td>
+<td>查询开始时间</td>
+</tr>
+<tr>
+<td>EndTime</td>
+<td>结束时间</td>
+<td>datetime</td>
+<td>2026-07-01 00:00:00</td>
+<td>查询结束时间（不含）</td>
+</tr>
+<tr>
+<td>Limit</td>
+<td>查看记录数</td>
+<td>number</td>
+<td>100</td>
+<td>返回前 N 条</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-sql">SELECT
+    a.CreatedAt   AS '检测时间',
+    a.ProductId   AS '产品ID',
+    a.DetectionId AS '检测批次',
+    a.DefectType  AS '缺陷类型',
+    a.Severity    AS '严重等级',
+    a.AreaMm2     AS '面积(mm²)'
+FROM appearance_defect_point a
+WHERE a.DefectType = {{DefectType}}
+  AND a.CreatedAt &gt;= {{StartTime}}
+  AND a.CreatedAt &lt;  {{EndTime}}
+ORDER BY a.Severity DESC, a.CreatedAt DESC
+LIMIT {{Limit}};
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/DataBase/QueryAsset/Example4.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

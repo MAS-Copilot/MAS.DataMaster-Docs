@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>查询预设 MD 格式规范 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="查询预设 MD 格式规范 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/DataBase/QueryAsset/FormatSpecification.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="查询预设-md-格式规范">查询预设 MD 格式规范</h1>
+
+<blockquote>
+<p>纯 Markdown，表格 + 代码块都是 Markdown 原生语法，可无损转换为 HTML / Word / PDF</p>
+</blockquote>
+<h2 id="一文件与层级">一、文件与层级</h2>
+<ul>
+<li><strong>一个 <code>.md</code> 文件 = 一个一级分类</strong>，分类名默认取<strong>文件名</strong>（去掉扩展名）。如需自定义显示名，可在文件开头写一个 <code>#</code> 一级标题覆盖它。</li>
+<li>文件内<strong>每个 <code>##</code> 二级标题小节 = 一条查询</strong>（二级）。</li>
+<li><strong>不含 SQL 代码块的小节会被自动忽略</strong>（例如「使用说明」「表结构说明」），可以放任意文档说明，不影响解析</li>
+</ul>
+<h2 id="二单条查询的结构固定顺序">二、单条查询的结构（固定顺序）</h2>
+<pre><code class="lang-txt">## 查询标题                         ← 1. H2，作为查询标题
+
+一句话描述放在这里。                 ← 2. 描述（紧跟标题的第一段文字，可省略）
+
+| 参数 | 标签 | 类型 | 默认值 | 说明 |   ← 3. 参数表（无参数则整张表省略）
+| --- | --- | --- | --- | --- |
+| ProductId | 产品 ID | text | PROD-001 | 要查询的产品编号 |
+
+​```sql                             ← 4. SQL 代码块，用 {{参数名}} 占位
+SELECT ... WHERE d.ProductId = {{ProductId}};
+​```
+</code></pre>
+<h2 id="三参数表列定义固定-5-列">三、参数表列定义（固定 5 列）</h2>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数</td>
+<td>占位符名</td>
+<td>对应 SQL 里的 <code>{{参数名}}</code>，英文、唯一</td>
+</tr>
+<tr>
+<td>标签</td>
+<td>界面显示名</td>
+<td>表单里那个中文 label</td>
+</tr>
+<tr>
+<td>类型</td>
+<td>控件类型</td>
+<td><code>text</code> / <code>number</code> / <code>date</code> / <code>datetime</code> / <code>enum</code>，详见「五、类型 → 控件映射」</td>
+</tr>
+<tr>
+<td>默认值</td>
+<td>预填值</td>
+<td>打开查询时输入框的初始值</td>
+</tr>
+<tr>
+<td>说明</td>
+<td>输入框提示</td>
+<td>显示在控件下方的灰字，可留空；<code>enum</code> 类型在此列声明候选项（见第六节）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="四占位符与参数替换">四、占位符与参数替换</h2>
+<ul>
+<li>SQL 里统一用 <strong><code>{{参数名}}</code></strong> 双大括号占位</li>
+<li>替换规则按<strong>类型</strong>决定要不要加引号：
+<ul>
+<li><code>text</code> / <code>date</code> / <code>datetime</code> / <code>enum</code> → 自动加单引号，如 <code>'PROD-001'</code>、<code>'2026-06-01 00:00:00'</code>、<code>'OK'</code></li>
+<li><code>number</code> → 不加引号，如 <code>100</code></li>
+</ul>
+</li>
+<li>兜底：如果 SQL 里出现了某个 <code>{{X}}</code>，但参数表里没列它，就当作 <code>text</code> 类型、标签 = <code>X</code></li>
+</ul>
+<h2 id="五类型--控件映射">五、类型 → 控件映射</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>渲染的控件</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>文本输入框</td>
+<td>自由输入文本</td>
+</tr>
+<tr>
+<td>number</td>
+<td>数值输入框</td>
+<td>仅接受数值，替换时不加引号</td>
+</tr>
+<tr>
+<td>date</td>
+<td>日期选择器（DatePicker）</td>
+<td>选日期（不含时间），写回 <code>yyyy-MM-dd</code></td>
+</tr>
+<tr>
+<td>datetime</td>
+<td>文本框</td>
+<td>手动输入完整日期时间，如 <code>2026-06-01 00:00:00</code></td>
+</tr>
+<tr>
+<td>enum</td>
+<td>下拉框（ComboBox）</td>
+<td>候选项在「说明」列声明，见第六节</td>
+</tr>
+</tbody>
+</table>
+<h2 id="六enum下拉框">六、enum（下拉框）</h2>
+<p><code>enum</code> 用于把参数限定为若干预设值，渲染为下拉框</p>
+<ul>
+<li><strong>声明候选项</strong>：在「类型」列写 <code>enum</code>，候选项写在「说明」列，格式 <code>选项: A,B,C</code>
+<ul>
+<li>冒号支持中/英文（<code>:</code> 或 <code>：</code>），逗号支持中/英文（<code>,</code> 或 <code>，</code>）</li>
+<li>冒号前的文字（如「选项」）只是提示词，不参与解析；冒号后按逗号切分得到候选项</li>
+</ul>
+</li>
+<li><strong>值始终按字符串处理</strong>：选中项替换进 SQL 时会<strong>加单引号</strong>（如 <code>'OK'</code>）。即便候选项看起来像数字（<code>选项: 1,2,3</code>），替换结果仍是字符串 <code>'1'</code>。如需不加引号的数值，请用 <code>number</code> 类型</li>
+<li><strong>默认值</strong>：若想打开时预选某项，「默认值」列必须与某个候选项<strong>完全一致</strong>（区分大小写）</li>
+<li><strong>提示文字</strong>：整串「说明」（含 <code>选项:</code> 前缀）会作为灰字提示显示在下拉框下方</li>
+</ul>
+<p>示例参数行：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>标签</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Result</td>
+<td>判定结果</td>
+<td>enum</td>
+<td>OK</td>
+<td>选项: OK,NG,未知</td>
+</tr>
+</tbody>
+</table>
+<h2 id="示例">示例</h2>
+<ul>
+<li><a href="Example1.html">膜厚检测</a></li>
+<li><a href="Example2.html">透过率检测</a></li>
+<li><a href="Example3.html">外观检测</a></li>
+<li><a href="Example4.html">按判定结果查询（enum 示例）</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/DataBase/QueryAsset/FormatSpecification.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

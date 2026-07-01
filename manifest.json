@@ -726,6 +726,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Controls.ResponsiveWrapPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Controls.ResponsiveWrapPanel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Controls.ResponsiveWrapPanel",
+      "Summary": "<p sourcefile=\"api/MAS.Controls.ResponsiveWrapPanel.yml\" sourcestartlinenumber=\"1\">响应式换行面板，行为类似 Web 的 CSS Grid <code>repeat(auto-fill, minmax(MinItemWidth, 1fr))</code>：\n根据可用宽度自动计算列数，再将每一列等宽拉伸以填满整行，从而消除右侧留白。\n子项应使用 <xref href=\"System.Windows.HorizontalAlignment.Stretch\" data-throw-if-not-resolved=\"false\"></xref>（不要设置固定 Width）以撑满所在列；\n子项自身的 Margin 会被保留作为间距</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/MAS.Controls.ServiceCollectionExtensions.yml",
       "output": {
         ".html": {
@@ -1422,6 +1436,286 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "MAS.Database.MySql",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.IPresetParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.IPresetParser.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.IPresetParser",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.IPresetParser.yml\" sourcestartlinenumber=\"1\">MD 预设解析器：把一个 .md 文件文本解析成 <xref href=\"MAS.Database.QueryAsset.PresetFile\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.IPresetSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.IPresetSerializer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.IPresetSerializer",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.IPresetSerializer.yml\" sourcestartlinenumber=\"1\">MD 预设序列化器：把 <xref href=\"MAS.Database.QueryAsset.PresetFile\" data-throw-if-not-resolved=\"false\"></xref> 还原成符合规范的 .md 文本，是 <xref href=\"MAS.Database.QueryAsset.IPresetParser\" data-throw-if-not-resolved=\"false\"></xref> 的逆操作</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.IQueryAssetProjectPersistenceService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.IQueryAssetProjectPersistenceService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.IQueryAssetProjectPersistenceService",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.IQueryAssetProjectPersistenceService.yml\" sourcestartlinenumber=\"1\">查询资产工程持久化服务接口</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.IQueryExecutor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.IQueryExecutor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.IQueryExecutor",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.IQueryExecutor.yml\" sourcestartlinenumber=\"1\">查询执行器：把已绑定的命令交给具体数据库执行并返回结果</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.ISqlPreviewRenderer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.ISqlPreviewRenderer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.ISqlPreviewRenderer",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.ISqlPreviewRenderer.yml\" sourcestartlinenumber=\"1\">SQL 预览渲染器：把参数值<b>内联</b>进 SQL</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.Models.PreparedSqlCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.Models.PreparedSqlCommand.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.Models.PreparedSqlCommand",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.Models.PreparedSqlCommand.yml\" sourcestartlinenumber=\"1\">一个已绑定参数、可安全执行的数据库命令\nSQL 中的 <code>{{参数名}}</code> 已被替换为命名参数占位符（如 <code><xref href=\"ProductId\" data-throw-if-not-resolved=\"False\" data-raw-source=\"@ProductId\" sourcefile=\"api/MAS.Database.QueryAsset.Models.PreparedSqlCommand.yml\" sourcestartlinenumber=\"2\"></xref></code>），\n实际值放在 <xref href=\"MAS.Database.QueryAsset.Models.PreparedSqlCommand.Parameters\" data-throw-if-not-resolved=\"false\"></xref> 中以参数化方式传入，避免 SQL 注入</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.Models",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.ParameterError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.ParameterError.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.ParameterError",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.ParameterError.yml\" sourcestartlinenumber=\"1\">单个参数的校验错误</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.ParameterType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.ParameterType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.ParameterType",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.ParameterType.yml\" sourcestartlinenumber=\"1\">参数类型。决定 UI 渲染哪种控件，以及替换进 SQL 时是否需要加引号</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.ParameterValidationResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.ParameterValidationResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.ParameterValidationResult",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.ParameterValidationResult.yml\" sourcestartlinenumber=\"1\">参数校验结果</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.ParameterValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.ParameterValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.ParameterValidator",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.ParameterValidator.yml\" sourcestartlinenumber=\"1\">参数校验器：在执行前检查用户填入的值</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.PresetFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.PresetFile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.PresetFile",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.PresetFile.yml\" sourcestartlinenumber=\"1\">表示一个预设文件</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.PresetParseResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.PresetParseResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.PresetParseResult",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.PresetParseResult.yml\" sourcestartlinenumber=\"1\">解析单个 MD 文件的结果</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.PresetQuery.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.PresetQuery.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.PresetQuery",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.PresetQuery.yml\" sourcestartlinenumber=\"1\">表示一条预设查询数据模型</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.PresetQueryExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.PresetQueryExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.PresetQueryExtensions",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.PresetQueryExtensions.yml\" sourcestartlinenumber=\"1\">PresetQuery 扩展方法</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.QueryAssetProjectModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.QueryAssetProjectModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.QueryAssetProjectModel",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.QueryAssetProjectModel.yml\" sourcestartlinenumber=\"1\">查询资产工程持久化模型</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.QueryParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.QueryParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.QueryParameter",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.QueryParameter.yml\" sourcestartlinenumber=\"1\">单个查询参数的定义，来自规范参数表中的一行</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.QueryResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.QueryResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.QueryResult",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.QueryResult.yml\" sourcestartlinenumber=\"1\">查询结果。以 <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref> 承载</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.SqlParameterValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.SqlParameterValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.SqlParameterValue",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.SqlParameterValue.yml\" sourcestartlinenumber=\"1\">一个数据库命名参数及其已转换为目标类型的值</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset",
       "Summary": null
     },
     {
@@ -9990,7 +10284,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "MAS.SharedLibrary.Helpers.PasswordBoxHelper",
-      "Summary": "<p sourcefile=\"api/MAS.SharedLibrary.Helpers.PasswordBoxHelper.yml\" sourcestartlinenumber=\"1\">提供一个辅助工具，用于使PasswordBox的Password属性能够进行数据绑定。</p>\n"
+      "Summary": "<p sourcefile=\"api/MAS.SharedLibrary.Helpers.PasswordBoxHelper.yml\" sourcestartlinenumber=\"1\">提供 PasswordBox 密码绑定能力</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12671,6 +12965,66 @@
       "output": {
         ".html": {
           "relative_path": "content/DataBase/HowUse.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "content/DataBase/QueryAsset/Example1.md",
+      "output": {
+        ".html": {
+          "relative_path": "content/DataBase/QueryAsset/Example1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "content/DataBase/QueryAsset/Example2.md",
+      "output": {
+        ".html": {
+          "relative_path": "content/DataBase/QueryAsset/Example2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "content/DataBase/QueryAsset/Example3.md",
+      "output": {
+        ".html": {
+          "relative_path": "content/DataBase/QueryAsset/Example3.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "content/DataBase/QueryAsset/Example4.md",
+      "output": {
+        ".html": {
+          "relative_path": "content/DataBase/QueryAsset/Example4.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "content/DataBase/QueryAsset/FormatSpecification.md",
+      "output": {
+        ".html": {
+          "relative_path": "content/DataBase/QueryAsset/FormatSpecification.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "content/DataBase/QueryAsset/QueryAsset.md",
+      "output": {
+        ".html": {
+          "relative_path": "content/DataBase/QueryAsset/QueryAsset.html"
         }
       },
       "version": ""

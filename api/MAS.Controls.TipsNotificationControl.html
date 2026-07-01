@@ -2345,7 +2345,7 @@ Class TipsNotificationControl  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_Controls_TipsNotificationControl_Close" data-uid="MAS.Controls.TipsNotificationControl.Close">
   Close()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Notifications/TipsNotificationControl.xaml.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Notifications/TipsNotificationControl.xaml.cs/#L212"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>关闭通知的动画</p>
@@ -2387,6 +2387,43 @@ Class TipsNotificationControl  <a class="header-action link-secondary" title="Vi
   <dl class="parameters">
     <dt><code>propertyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>更改的属性名称</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Controls_TipsNotificationControl_SetStackOffset_" data-uid="MAS.Controls.TipsNotificationControl.SetStackOffset*"></a>
+
+  <h3 id="MAS_Controls_TipsNotificationControl_SetStackOffset_System_Double_System_Boolean_" data-uid="MAS.Controls.TipsNotificationControl.SetStackOffset(System.Double,System.Boolean)">
+  SetStackOffset(double, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Notifications/TipsNotificationControl.xaml.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置堆叠偏移。使用 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.translatetransform">TranslateTransform</a> 实现，走渲染线程合成、
+不触发宿主布局回流，从而避免堆叠重排时的卡顿。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetStackOffset(double offset, bool isAnimated)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>相对锚点的堆叠距离（始终非负，方向由 <a class="xref" href="MAS.Controls.TipsNotificationControl.html#MAS_Controls_TipsNotificationControl_Position">Position</a> 决定）</p>
+</dd>
+    <dt><code>isAnimated</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否平滑过渡到目标位置（用于某条关闭后其余通知的重排）</p>
 </dd>
   </dl>
 

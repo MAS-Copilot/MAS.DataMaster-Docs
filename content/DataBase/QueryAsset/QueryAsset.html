@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>查询预设/资产功能 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="查询预设/资产功能 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/DataBase/QueryAsset/QueryAsset.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="查询预设资产功能">查询预设/资产功能</h1>
+
+<h2 id="概述">概述</h2>
+<p>用于将常用数据库查询封装为可复用的查询资产。可以提前编写并导入标准化的 Markdown 查询预设文件，系统解析后自动生成查询分类、查询卡片、参数输入区和查询结果区。用户无需复制 SQL、修改 SQL 或理解数据库结构，只需要选择查询功能并填写业务参数，即可完成数据查询</p>
+<p>该功能的核心目标是将“写 SQL 查询”转变为“使用查询功能”，降低现场操作复杂度，提高查询效率，并减少因手动修改 SQL 导致的错误</p>
+<h2 id="解析逻辑">解析逻辑</h2>
+<p>整个解析就是&quot;切块 → 判断 → 抽字段&quot;五步:</p>
+<ol>
+<li>定分类:读入一个<code>.md</code>,文件名去扩展名 = 一级分类名(也可被文件开头的 # 标题覆盖)</li>
+<li>按<code>##</code>切块:用<code>^##</code>把正文切成若干小节,每个小节是一条候选查询</li>
+<li>判断是不是查询:看这个小节里有没有 ```sql 代码块。没有就跳过——这是&quot;使用说明&quot;&quot;表结构说明&quot;这类文档段被自动忽略的原因</li>
+<li>抽四个字段(对有 SQL 的小节):
+<ul>
+<li>标题 = <code>##</code>后面的文字</li>
+<li>描述 = 标题和(表格/代码块)之间的第一段普通文字</li>
+<li>参数 = 解析那张 Markdown 表格,逐行变成<code>{name, label, type, default, hint}</code>(跳过 --- 分隔行)</li>
+<li>SQL = 代码块里的内容</li>
+</ul>
+</li>
+<li>校验 + 产出:用<code>/\{\{(\w+)\}\}/</code>把 SQL 里所有占位符扫出来,跟参数表对一遍(缺的兜底成 text)。最终每个文件产出<code>{ 分类名, queries: [{id, title, description, params, sql}] }</code></li>
+</ol>
+<p>关键正则就三条:切小节<code>/^## /m</code>、取 SQL<code>/```sql\s*([\s\S]*?)```/</code>、取占位符<code>/\{\{(\w+)\}\}/g</code>。表格按行 split <code>|</code>即可</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/DataBase/QueryAsset/QueryAsset.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
