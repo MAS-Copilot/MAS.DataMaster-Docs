@@ -255,6 +255,72 @@ Class ChatMessage  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <a id="MAS_PrismaTalk_Models_ChatMessage_ToolCallId_" data-uid="MAS.PrismaTalk.Models.ChatMessage.ToolCallId*"></a>
+
+  <h3 id="MAS_PrismaTalk_Models_ChatMessage_ToolCallId" data-uid="MAS.PrismaTalk.Models.ChatMessage.ToolCallId">
+  ToolCallId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ChatMessage.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置本条 tool 结果消息关联的工具调用标识；非空时序列化为 tool_call_id 字段
+（对应 <a class="xref" href="MAS.PrismaTalk.Models.ChatRole.html#MAS_PrismaTalk_Models_ChatRole_Tool">Tool</a> 角色）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ToolCallId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Models_ChatMessage_ToolCalls_" data-uid="MAS.PrismaTalk.Models.ChatMessage.ToolCalls*"></a>
+
+  <h3 id="MAS_PrismaTalk_Models_ChatMessage_ToolCalls" data-uid="MAS.PrismaTalk.Models.ChatMessage.ToolCalls">
+  ToolCalls
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ChatMessage.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置本条 assistant 消息发起的原生工具调用；非空时序列化为 tool_calls 字段。
+用于把动作轮结构化地写回对话历史，保证多轮 function-calling 协议正确</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;ToolCall&gt;? ToolCalls { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.PrismaTalk.Models.ToolCall.html">ToolCall</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
 
 </article>
 

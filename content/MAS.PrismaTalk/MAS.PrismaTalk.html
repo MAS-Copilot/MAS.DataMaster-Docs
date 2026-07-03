@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>当前前后端交互的所有方法 | DataMaster </title>
+      <title>MAS.PrismaTalk | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="当前前后端交互的所有方法 | DataMaster ">
+      <meta name="title" content="MAS.PrismaTalk | DataMaster ">
       
       
       <link rel="icon" href="../../images/favicon.ico">
@@ -85,104 +85,70 @@
         </div>
 
         <article data-uid="">
-<h1 id="当前前后端交互的所有方法">当前前后端交互的所有方法</h1>
+<h1 id="masprismatalk">MAS.PrismaTalk</h1>
 
-<h2 id="后端c调用前端javascript的函数">后端（C#）调用前端（JavaScript）的函数</h2>
-<p>后端通过 <code>IMASCodeService</code> 接口与前端进行交互，主要通过执行 JavaScript 脚本的方式实现。以下是后端调用前端的方法列表：</p>
+<p>MAS.PrismaTalk 是 MAS.DataMaster 中的本地 AI 对话与 Agent 编排模块。当前实现已经从早期的“模型生成 C# 脚本并执行”演进为统一的 Agent Runtime：模型可以读取内置 Skill 文档、发现多来源工具、结构化调用工具、接收执行结果并继续推理，最后把自然语言结果返回给用户</p>
+<h2 id="当前定位">当前定位</h2>
+<p>PrismaTalk 负责对话、工具目录汇聚、工具调用编排、WebView 展示和配置读取。真正依赖宿主上下文的能力，例如数据库实例、运行时脚本编译、设备访问等，优先由 MAS.DataMaster 宿主通过 NamedPipe IPC 暴露为内部工具</p>
+<p>MCP 已经作为外部扩展入口接入，但不是内部能力的主干。内部 MAS 能力优先走 <code>RemoteToolProvider</code> + <code>MAS.NamedPipeIpc</code>，MCP 主要用于第三方工具、客户自定义独立工具进程、跨 Agent 生态复用等场景</p>
+<h2 id="关键源码入口">关键源码入口</h2>
 <table>
 <thead>
 <tr>
-<th>C# 方法名</th>
-<th>前端函数名</th>
-<th>描述</th>
-<th>调用时机</th>
+<th>入口</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>DisplayUserMessageAsync(string content)</code></td>
-<td><code>addUserMessage(content)</code></td>
-<td>在聊天窗口中追加一条用户消息气泡</td>
-<td>用户发送消息后</td>
+<td><code>Agent/Core/AgentLoop.cs</code></td>
+<td>Agent 主循环，负责工具目录注入、模型调用、工具执行、审批和最终回答</td>
 </tr>
 <tr>
-<td><code>StartAssistantStreamAsync(string streamId)</code></td>
-<td><code>startAssistantStream(streamId)</code></td>
-<td>创建一条新的助手流式消息容器并显示加载指示</td>
-<td>流式响应开始前</td>
+<td><code>Agent/Core/ToolRegistry.cs</code></td>
+<td>聚合所有 <code>IToolProvider</code>，按工具名路由调用</td>
 </tr>
 <tr>
-<td><code>UpdateAssistantStreamAsync(string streamId, string chunk)</code></td>
-<td><code>updateAssistantStream(streamId, chunk)</code></td>
-<td>向指定流式消息追加内容片段，并触发 Markdown 渲染与代码高亮</td>
-<td>流式响应过程中（每个 chunk）</td>
+<td><code>Agent/Protocols/NativeToolCallProtocol.cs</code></td>
+<td>OpenAI 兼容 <code>tools</code> / <code>tool_calls</code> 结构化协议适配</td>
 </tr>
 <tr>
-<td><code>EndAssistantStreamAsync(string streamId)</code></td>
-<td><code>endAssistantStream(streamId)</code></td>
-<td>结束流式消息，移除 loading 状态；内容为空时显示“（已取消）”</td>
-<td>流式响应结束 / 中断</td>
+<td><code>Agent/Protocols/TextEnvelopeProtocol.cs</code></td>
+<td>文本信封 fallback 协议</td>
 </tr>
 <tr>
-<td><code>ClearConversationAsync()</code></td>
-<td><code>clearAllMessages()</code></td>
-<td>清空当前对话消息列表，并清理流式消息缓存</td>
-<td>用户新建会话 / 清空会话</td>
+<td><code>Agent/Providers/*ToolProvider.cs</code></td>
+<td>各类工具来源</td>
 </tr>
 <tr>
-<td><code>ShowToastMessageAsync(string content, InfoLevel level)</code></td>
-<td><code>showToastMessage(content, level)</code></td>
-<td>显示 Toast 提示（success / info / warning / error）</td>
-<td>网络异常、状态提示等</td>
+<td><code>Services/PrismaTalkClient.cs</code></td>
+<td>OpenAI 兼容流式请求、tool_calls 增量解析和 WebView 脚本调用</td>
 </tr>
 <tr>
-<td><code>CaptureLongScreenshotAsync()</code></td>
-<td><code>captureLongScreenshot()</code></td>
-<td>对当前会话生成长截图并下载</td>
-<td>用户点击“长截图”按钮</td>
+<td><code>HTML/js/main.js</code></td>
+<td>对话 UI、Agent timeline、审批卡片和 WebView 回传</td>
 </tr>
 <tr>
-<td><code>SetThemeAsync(AppTheme theme)</code></td>
-<td><code>setTheme(theme)</code></td>
-<td>设置前端主题（仅支持 <code>dark</code> / <code>light</code>）</td>
-<td>应用启动、主题切换、跟随系统主题变化时</td>
-</tr>
-<tr>
-<td><code>SetBlurActiveAsync(bool isActive)</code></td>
-<td><code>setBlurActive(isActive)</code></td>
-<td>设置前端模糊遮罩层</td>
-<td>WindowBlurHelper.BlurStateChanging 触发时</td>
-</tr>
-<tr>
-<td><code>UpdateAssistantStreamLoadingAsync(string streamId, string text)</code></td>
-<td><code>updateAssistantStreamLoading(streamId, text)</code></td>
-<td>更新助手流式回复中的加载提示</td>
-<td>在同一条 assistant 消息里显示加载控件</td>
+<td><code>Models/Configurations/PrismaTalkConfig.cs</code></td>
+<td>服务地址、模型、代理、Prompt 和 MCP server 配置</td>
 </tr>
 </tbody>
 </table>
-<h2 id="前端javascript发送消息到后端c的方法">前端（JavaScript）发送消息到后端（C#）的方法</h2>
-<p>前端通过 <code>window.chrome.webview.postMessage</code> 方法向后端发送消息。以下是前端发送到后端的方法列表：</p>
-<table>
-<thead>
-<tr>
-<th>方法名</th>
-<th>描述</th>
-<th>调用时机</th>
-<th>消息类型</th>
-<th>数据模型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>（暂无）</td>
-<td>（暂无）</td>
-<td>（暂无）</td>
-<td>（暂无）</td>
-<td>（暂无）</td>
-</tr>
-</tbody>
-</table>
+<h2 id="与-masdatamaster-的关系">与 MAS.DataMaster 的关系</h2>
+<p>PrismaTalk 是模块侧 Agent 编排器，MAS.DataMaster 是宿主侧业务能力执行环境。两者通过 <code>MAS.NamedPipeIpc</code> 通信：</p>
+<ul>
+<li>PrismaTalk 通过 <code>RemoteToolProvider</code> 调用宿主的 <code>tool.list</code> 和 <code>tool.invoke</code></li>
+<li>MAS.DataMaster 在 <code>NamedPipeIpc/IpcBootstrapper.cs</code> 注册 <code>skill.execute</code>、<code>tool.list</code>、<code>tool.invoke</code></li>
+<li>宿主侧 <code>DatabaseToolProvider</code> 以 <code>entity.*</code> 工具暴露数据库实例、表结构、查询和写操作</li>
+<li>旧的 C# 脚本链路仍保留为 <code>script.csharp.execute</code>，用于兼容 Modbus、Siemens、Mitsubishi 等 Skill 脚本</li>
+</ul>
+<h2 id="设计原则">设计原则</h2>
+<ul>
+<li>内部能力优先使用强类型 ToolProvider 和 IPC，不把内部软件接口为了形式统一而强行 MCP 化</li>
+<li>高风险工具必须经过统一审批门，审批点在执行前，由 WebView 工具审批卡片完成</li>
+<li>普通问答保持轻量，不创建 timeline；只有真实工具调用、资源读取、审批等可审计动作才显示 Agent 过程</li>
+<li>MCP 保留为高级外部扩展能力，默认无 server 配置时不影响普通对话和内置工具</li>
+</ul>
 
 </article>
 

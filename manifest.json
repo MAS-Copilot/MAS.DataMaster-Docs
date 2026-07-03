@@ -918,7 +918,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "MAS.Controls.UnitySceneGridBehavior",
-      "Summary": "<p sourcefile=\"api/MAS.Controls.UnitySceneGridBehavior.yml\" sourcestartlinenumber=\"1\">Unity Scene View 风格的多层级网格背景</p>\n"
+      "Summary": "<p sourcefile=\"api/MAS.Controls.UnitySceneGridBehavior.yml\" sourcestartlinenumber=\"1\">Unity Scene View 风格的自适应网格背景（线几何 + 矩阵变换实现）。</p>\n<p>\n网格由三组<b>互不重叠</b>的 <xref href=\"HelixToolkit.Wpf.SharpDX.LineGeometryModel3D\" data-throw-if-not-resolved=\"false\"></xref> 组成：\n按线的整数索引 k 分类——k 为 100 倍数进次主级组、10 倍数进主级组、\n其余进细级组。三组之间没有任何重合线段，也不存在叠加的透明平面，\n从根源上消除 Z-fighting、阴影与闪烁。\n</p>\n<p>\n顶点在\"单位索引空间\"（间距 = 1）构建，缩放与平移通过组节点的\n缩放×平移 矩阵完成；窗口中心吸附到 100 格的整数倍，保证平移后\n各线的模分类不变。常规视角下每帧最多更新一个 4×4 矩阵与三个线色。\n</p>\n<p>\n近平面裁剪：HelixToolkit 的线几何着色器把端点做透视除法后在屏幕空间\n展开线宽，<b>不处理端点落在相机平面附近（w≈0）的情况</b>——除以趋零的 w\n产生无穷大/NaN，整条线随机丢帧（低端显卡上尤其明显）。因此当网格窗口\n伸到相机近平面之后时，在 CPU 侧按近平面对每条线做一维区间裁剪后重建，\n保证任何端点都严格位于相机前方；窗口完全在相机前方时跳过裁剪、零重建。\n</p>\n<p>\n缩放自适应：以相机视线与网格平面交点处的\"每像素世界单位\"推导目标间距，\n取 log10 得到离散层级（细级间距 = MinSpacing × 10^level）；层级的小数部分\n经 smoothstep 后作为混合因子——细级线淡出、主级线向细级亮度过渡、\n次主级恒定，换级瞬间三组亮度首尾衔接、无跳变。\"透明度\"通过把线色向\n背景色插值实现，渲染始终不透明——不依赖透明混合与绘制顺序。\n</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1482,6 +1482,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.IQueryAssetToolService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.IQueryAssetToolService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.IQueryAssetToolService",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.IQueryAssetToolService.yml\" sourcestartlinenumber=\"1\">查询资产管理服务，供 PrismaTalk IPC 工具等外部工具使用</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/MAS.Database.QueryAsset.IQueryExecutor.yml",
       "output": {
         ".html": {
@@ -1650,6 +1664,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.QueryAssetAssetsChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.QueryAssetAssetsChangedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.QueryAssetAssetsChangedEventArgs",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.QueryAssetAssetsChangedEventArgs.yml\" sourcestartlinenumber=\"1\">查询资产变更事件参数，包含本次提交中新增、更新、删除的资产快照</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.QueryAssetChangeResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.QueryAssetChangeResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.QueryAssetChangeResult",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.QueryAssetChangeResult.yml\" sourcestartlinenumber=\"1\">查询资产变更（upsert/delete）结果</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/MAS.Database.QueryAsset.QueryAssetProjectModel.yml",
       "output": {
         ".html": {
@@ -1661,6 +1703,48 @@
       "IsMRef": true,
       "Title": "MAS.Database.QueryAsset.QueryAssetProjectModel",
       "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.QueryAssetProjectModel.yml\" sourcestartlinenumber=\"1\">查询资产工程持久化模型</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.QueryAssetQueryChange.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.QueryAssetQueryChange.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.QueryAssetQueryChange",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.QueryAssetQueryChange.yml\" sourcestartlinenumber=\"1\">查询级别变更快照</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.QueryAssetUpsertRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.QueryAssetUpsertRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.QueryAssetUpsertRequest",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.QueryAssetUpsertRequest.yml\" sourcestartlinenumber=\"1\">结构化的单条查询 upsert 请求</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.Database.QueryAsset.QueryAssetValidationResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.Database.QueryAsset.QueryAssetValidationResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.Database.QueryAsset.QueryAssetValidationResult",
+      "Summary": "<p sourcefile=\"api/MAS.Database.QueryAsset.QueryAssetValidationResult.yml\" sourcestartlinenumber=\"1\">查询资产 SQL 可执行性验证结果</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5654,6 +5738,286 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.AgentAction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.AgentAction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.AgentAction",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.AgentAction.yml\" sourcestartlinenumber=\"1\">表示模型在一轮推理中输出的单个结构化动作</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.AgentActionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.AgentActionType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.AgentActionType",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.AgentActionType.yml\" sourcestartlinenumber=\"1\">Agent 单步动作类型</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.ConversationTurnResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.ConversationTurnResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.ConversationTurnResult",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.ConversationTurnResult.yml\" sourcestartlinenumber=\"1\">表示一次对话的结果，包括内部内存更新和工具使用信息</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.IAgentLoop.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.IAgentLoop.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.IAgentLoop",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.IAgentLoop.yml\" sourcestartlinenumber=\"1\">Agent 推理循环。负责规划、调用工具、观察结果、继续推理并最终回答</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.IAgentProtocol.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.IAgentProtocol.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.IAgentProtocol",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.IAgentProtocol.yml\" sourcestartlinenumber=\"1\">Agent 协议适配器。负责在「内部统一 <xref href=\"MAS.PrismaTalk.Agent.AgentAction\" data-throw-if-not-resolved=\"false\"></xref> 协议」与「具体模型交互形态」之间转换</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.IConversationDriver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.IConversationDriver.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.IConversationDriver",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.IConversationDriver.yml\" sourcestartlinenumber=\"1\">对话驱动器接口</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.IToolApprovalService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.IToolApprovalService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.IToolApprovalService",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.IToolApprovalService.yml\" sourcestartlinenumber=\"1\">工具审批服务。高风险工具执行前请求用户确认</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.IToolProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.IToolProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.IToolProvider",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.IToolProvider.yml\" sourcestartlinenumber=\"1\">工具来源。每个来源负责声明并执行一组工具</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.IToolRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.IToolRegistry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.IToolRegistry",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.IToolRegistry.yml\" sourcestartlinenumber=\"1\">工具注册表，聚合所有 <xref href=\"MAS.PrismaTalk.Agent.IToolProvider\" data-throw-if-not-resolved=\"false\"></xref> 的工具目录，并按工具名路由调用</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.ToolApprovalDecision.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.ToolApprovalDecision.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.ToolApprovalDecision",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.ToolApprovalDecision.yml\" sourcestartlinenumber=\"1\">高风险工具审批结果</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.ToolCallRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.ToolCallRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.ToolCallRequest",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.ToolCallRequest.yml\" sourcestartlinenumber=\"1\">表示一次结构化的工具调用请求</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.ToolDefinition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.ToolDefinition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.ToolDefinition",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.ToolDefinition.yml\" sourcestartlinenumber=\"1\">表示一个可被模型发现和调用的工具定义</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.ToolListRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.ToolListRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.ToolListRequest",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.ToolListRequest.yml\" sourcestartlinenumber=\"1\">IPC tool.list 请求（宿主工具目录发现）。当前无参数，预留扩展位</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.ToolListResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.ToolListResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.ToolListResponse",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.ToolListResponse.yml\" sourcestartlinenumber=\"1\">IPC tool.list 响应，携带宿主可用工具定义列表</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.ToolRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.ToolRegistry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.ToolRegistry",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.ToolRegistry.yml\" sourcestartlinenumber=\"1\">默认工具注册表，聚合所有 <xref href=\"MAS.PrismaTalk.Agent.IToolProvider\" data-throw-if-not-resolved=\"false\"></xref> 并按工具名路由调用</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.ToolResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.ToolResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.ToolResult",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.ToolResult.yml\" sourcestartlinenumber=\"1\">表示一次工具调用的结果</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.ToolRisk.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.ToolRisk.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.ToolRisk",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.ToolRisk.yml\" sourcestartlinenumber=\"1\">工具风险等级枚举</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.ToolSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.ToolSchema.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.ToolSchema",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.ToolSchema.yml\" sourcestartlinenumber=\"1\">工具参数 JSON Schema 的流式构建器，替代手写单行 JSON 字符串</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.WorkspaceInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.WorkspaceInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent.WorkspaceInfo",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Agent.WorkspaceInfo.yml\" sourcestartlinenumber=\"1\">描述一个进程的工作区存储路径\n作为 IPC workspace.get 的响应，也作为 runtime 工具 workspace 能力的数据载体</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Agent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Agent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Agent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/MAS.PrismaTalk.App.yml",
       "output": {
         ".html": {
@@ -5822,6 +6186,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Models.AssistantStreamResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Models.AssistantStreamResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Models.AssistantStreamResult",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Models.AssistantStreamResult.yml\" sourcestartlinenumber=\"1\">一次原生流式助手响应结果（一次 turn）\n内容为自然语言文本；在包含工具调用的 turn 中可能作为前置说明出现。\n工具调用本身仍通过 <xref href=\"MAS.PrismaTalk.Models.AssistantStreamResult.ToolCalls\" data-throw-if-not-resolved=\"false\"></xref> 结构化通道返回</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/MAS.PrismaTalk.Models.ChatMessage.yml",
       "output": {
         ".html": {
@@ -5934,6 +6312,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Models.McpServerConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Models.McpServerConfig.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Models.McpServerConfig",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Models.McpServerConfig.yml\" sourcestartlinenumber=\"1\">一个标准输入输出 MCP 服务器的配置</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/MAS.PrismaTalk.Models.MessageModel.yml",
       "output": {
         ".html": {
@@ -6004,6 +6396,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Models.ToolCall.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Models.ToolCall.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Models.ToolCall",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Models.ToolCall.yml\" sourcestartlinenumber=\"1\">表示一次已组装完成的原生工具调用（native tool_calls）。\n由 <xref href=\"MAS.PrismaTalk.Models.MessageDelta.ToolCalls\" data-throw-if-not-resolved=\"false\"></xref> 的增量分片按 index 拼装而成</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/MAS.PrismaTalk.Models.yml",
       "output": {
         ".html": {
@@ -6032,6 +6438,76 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Scripting.IScriptHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Scripting.IScriptHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Scripting.IScriptHandler",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Scripting.IScriptHandler.yml\" sourcestartlinenumber=\"1\">模型脚本处理器</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Scripting.IScriptRuntimeService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Scripting.IScriptRuntimeService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Scripting.IScriptRuntimeService",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Scripting.IScriptRuntimeService.yml\" sourcestartlinenumber=\"1\">脚本运行时服务接口</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Scripting.ScriptExecuteRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Scripting.ScriptExecuteRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Scripting.ScriptExecuteRequest",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Scripting.ScriptExecuteRequest.yml\" sourcestartlinenumber=\"1\">脚本执行请求数据模型</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Scripting.ScriptResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Scripting.ScriptResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Scripting.ScriptResult",
+      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Scripting.ScriptResult.yml\" sourcestartlinenumber=\"1\">脚本执行结果</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.PrismaTalk.Scripting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.PrismaTalk.Scripting.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.PrismaTalk.Scripting",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/MAS.PrismaTalk.ServiceCollectionExtensions.yml",
       "output": {
         ".html": {
@@ -6046,48 +6522,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/MAS.PrismaTalk.Skills.ConversationTurnResult.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/MAS.PrismaTalk.Skills.ConversationTurnResult.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "MAS.PrismaTalk.Skills.ConversationTurnResult",
-      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Skills.ConversationTurnResult.yml\" sourcestartlinenumber=\"1\">表示一次对话的结果，包括内部内存更新和技能使用信息</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/MAS.PrismaTalk.Skills.ExecutionResult.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/MAS.PrismaTalk.Skills.ExecutionResult.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "MAS.PrismaTalk.Skills.ExecutionResult",
-      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Skills.ExecutionResult.yml\" sourcestartlinenumber=\"1\">技能执行编排器的处理结果模型</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/MAS.PrismaTalk.Skills.IConversationDriver.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/MAS.PrismaTalk.Skills.IConversationDriver.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "MAS.PrismaTalk.Skills.IConversationDriver",
-      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Skills.IConversationDriver.yml\" sourcestartlinenumber=\"1\">对话驱动器接口</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/MAS.PrismaTalk.Skills.ISkillRegistry.yml",
       "output": {
         ".html": {
@@ -6099,48 +6533,6 @@
       "IsMRef": true,
       "Title": "MAS.PrismaTalk.Skills.ISkillRegistry",
       "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Skills.ISkillRegistry.yml\" sourcestartlinenumber=\"1\">技能注册中心接口</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/MAS.PrismaTalk.Skills.ISkillRuntimeService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/MAS.PrismaTalk.Skills.ISkillRuntimeService.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "MAS.PrismaTalk.Skills.ISkillRuntimeService",
-      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Skills.ISkillRuntimeService.yml\" sourcestartlinenumber=\"1\">技能运行时服务接口</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/MAS.PrismaTalk.Skills.ISkillScriptHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/MAS.PrismaTalk.Skills.ISkillScriptHandler.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "MAS.PrismaTalk.Skills.ISkillScriptHandler",
-      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Skills.ISkillScriptHandler.yml\" sourcestartlinenumber=\"1\">模型脚本技能处理器</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/MAS.PrismaTalk.Skills.SkillExecuteRequest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/MAS.PrismaTalk.Skills.SkillExecuteRequest.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "MAS.PrismaTalk.Skills.SkillExecuteRequest",
-      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Skills.SkillExecuteRequest.yml\" sourcestartlinenumber=\"1\">脚本执行请求数据模型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6183,34 +6575,6 @@
       "IsMRef": true,
       "Title": "MAS.PrismaTalk.Skills.SkillResourceKind",
       "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Skills.SkillResourceKind.yml\" sourcestartlinenumber=\"1\">技能资源类型</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/MAS.PrismaTalk.Skills.SkillResult.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/MAS.PrismaTalk.Skills.SkillResult.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "MAS.PrismaTalk.Skills.SkillResult",
-      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Skills.SkillResult.yml\" sourcestartlinenumber=\"1\">技能执行结果</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/MAS.PrismaTalk.Skills.SkillRisk.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/MAS.PrismaTalk.Skills.SkillRisk.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "MAS.PrismaTalk.Skills.SkillRisk",
-      "Summary": "<p sourcefile=\"api/MAS.PrismaTalk.Skills.SkillRisk.yml\" sourcestartlinenumber=\"1\">技能风险等级枚举</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7639,20 +8003,6 @@
       "IsMRef": true,
       "Title": "MAS.SharedLibrary.Compilation.IHasBuildConfig",
       "Summary": "<p sourcefile=\"api/MAS.SharedLibrary.Compilation.IHasBuildConfig.yml\" sourcestartlinenumber=\"1\">表示该配置对象包含构建相关配置接口</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/MAS.SharedLibrary.Compilation.ISkillCompilationService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/MAS.SharedLibrary.Compilation.ISkillCompilationService.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "MAS.SharedLibrary.Compilation.ISkillCompilationService",
-      "Summary": "<p sourcefile=\"api/MAS.SharedLibrary.Compilation.ISkillCompilationService.yml\" sourcestartlinenumber=\"1\">Skill 脚本编译服务接口</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9448,6 +9798,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/MAS.SharedLibrary.Database.DatabaseInstanceCreatedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.SharedLibrary.Database.DatabaseInstanceCreatedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.SharedLibrary.Database.DatabaseInstanceCreatedEventArgs",
+      "Summary": "<p sourcefile=\"api/MAS.SharedLibrary.Database.DatabaseInstanceCreatedEventArgs.yml\" sourcestartlinenumber=\"1\">Event arguments for database instance creation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.SharedLibrary.Database.DatabaseInstanceRemovedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.SharedLibrary.Database.DatabaseInstanceRemovedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.SharedLibrary.Database.DatabaseInstanceRemovedEventArgs",
+      "Summary": "<p sourcefile=\"api/MAS.SharedLibrary.Database.DatabaseInstanceRemovedEventArgs.yml\" sourcestartlinenumber=\"1\">Event arguments for database instance removal.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/MAS.SharedLibrary.Database.DatabaseModel.yml",
       "output": {
         ".html": {
@@ -9529,6 +9907,34 @@
       "IsMRef": true,
       "Title": "MAS.SharedLibrary.Database.DisplayNameAttribute",
       "Summary": "<p sourcefile=\"api/MAS.SharedLibrary.Database.DisplayNameAttribute.yml\" sourcestartlinenumber=\"1\">自定义属性类，用于标记实体属性上的显示名称</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.SharedLibrary.Database.IDatabaseInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.SharedLibrary.Database.IDatabaseInstance.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.SharedLibrary.Database.IDatabaseInstance",
+      "Summary": "<p sourcefile=\"api/MAS.SharedLibrary.Database.IDatabaseInstance.yml\" sourcestartlinenumber=\"1\">数据库运行时实例上下文</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MAS.SharedLibrary.Database.IDatabaseManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MAS.SharedLibrary.Database.IDatabaseManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MAS.SharedLibrary.Database.IDatabaseManager",
+      "Summary": "<p sourcefile=\"api/MAS.SharedLibrary.Database.IDatabaseManager.yml\" sourcestartlinenumber=\"1\">数据库运行时实例管理器</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13431,10 +13837,50 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "content/MAS.PrismaTalk/AgentRuntime.md",
+      "output": {
+        ".html": {
+          "relative_path": "content/MAS.PrismaTalk/AgentRuntime.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "content/MAS.PrismaTalk/FrontendEvents.md",
+      "output": {
+        ".html": {
+          "relative_path": "content/MAS.PrismaTalk/FrontendEvents.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "content/MAS.PrismaTalk/MAS.PrismaTalk.md",
       "output": {
         ".html": {
           "relative_path": "content/MAS.PrismaTalk/MAS.PrismaTalk.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "content/MAS.PrismaTalk/McpIntegration.md",
+      "output": {
+        ".html": {
+          "relative_path": "content/MAS.PrismaTalk/McpIntegration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "content/MAS.PrismaTalk/ToolProviders.md",
+      "output": {
+        ".html": {
+          "relative_path": "content/MAS.PrismaTalk/ToolProviders.html"
         }
       },
       "version": ""

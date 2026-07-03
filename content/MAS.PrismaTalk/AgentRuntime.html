@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Agent Runtime | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Agent Runtime | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.PrismaTalk/AgentRuntime.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="agent-runtime">Agent Runtime</h1>
+
+<p>Agent Runtime 是 MAS.PrismaTalk 当前的核心执行层。它把“模型回答”扩展为“模型可以结构化调用工具、观察结果、继续推理并最终回答”的循环</p>
+<h2 id="运行流程">运行流程</h2>
+<p>一次对话由 <code>ConversationDriver</code> 进入 <code>AgentLoop</code>：</p>
+<ol>
+<li>读取系统提示词和当前对话历史</li>
+<li>通过 <code>ToolRegistry.ListAllAsync</code> 汇聚所有工具定义</li>
+<li>根据当前 <code>IAgentProtocol</code> 生成模型可理解的工具上下文或 <code>tools</code> schema</li>
+<li>调用 <code>PrismaTalkClient</code> 发送 OpenAI 兼容流式请求</li>
+<li>如果模型返回工具调用，则解析参数、检查风险、必要时请求用户审批</li>
+<li>通过 <code>ToolRegistry.InvokeAsync</code> 路由到具体 <code>IToolProvider</code></li>
+<li>把 <code>ToolResult</code> 回填给模型，继续下一轮推理</li>
+<li>没有工具调用时，将自然语言内容作为最终回答写入 WebView</li>
+</ol>
+<p>当前 <code>MAX_STEPS</code> 为 8，超过后会要求模型停止调用工具并总结已完成工作</p>
+<h2 id="协议适配">协议适配</h2>
+<p>代码保留两套协议适配，但上层 loop 面向统一动作模型</p>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>文件</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Native tool calls</td>
+<td><code>Agent/Protocols/NativeToolCallProtocol.cs</code></td>
+<td>使用 OpenAI 兼容 <code>tools</code> / <code>tool_calls</code>，动作和文本分别走结构化通道与 <code>content</code> 通道</td>
+</tr>
+<tr>
+<td>Text envelope</td>
+<td><code>Agent/Protocols/TextEnvelopeProtocol.cs</code></td>
+<td>端点不支持 tool_calls 时的 fallback，模型输出 <code>&lt;agent_action&gt;{...}&lt;/agent_action&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>当前依赖注册中默认使用 <code>NativeToolCallProtocol</code>。该协议会把真实工具名映射为 wire-safe 名称，例如 <code>entity.listInstances</code> 或 <code>mcp.example.search</code> 会在发送给模型前转换为仅含字母、数字、下划线或短横线的函数名，并在执行时映射回真实工具名</p>
+<h2 id="结构化消息">结构化消息</h2>
+<p>Native 协议下，工具调用不再混入正文：</p>
+<ul>
+<li>助手自然语言输出走 <code>delta.content</code>，会实时进入 <code>.stream-output</code></li>
+<li>工具调用走 <code>delta.tool_calls</code>，由 <code>AssistantStreamResult.ToolCalls</code> 累积</li>
+<li>工具结果写回 <code>role=tool</code> 消息，并通过 <code>tool_call_id</code> 与原调用关联</li>
+<li>对话历史中的 assistant 工具调用保存为 <code>ChatMessage.ToolCalls</code></li>
+</ul>
+<p>这种结构避免旧文本信封模式下把 JSON、标签或半截工具参数泄漏给用户</p>
+<h2 id="工具风险与审批">工具风险与审批</h2>
+<p>每个 <code>ToolDefinition</code> 都带有 <code>ToolRisk</code>：</p>
+<table>
+<thead>
+<tr>
+<th>风险</th>
+<th>当前行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Low</code></td>
+<td>直接执行</td>
+</tr>
+<tr>
+<td><code>Medium</code></td>
+<td>当前代码直接执行，工具自身仍应做参数校验</td>
+</tr>
+<tr>
+<td><code>High</code></td>
+<td>执行前调用 <code>IToolApprovalService.RequestApprovalAsync</code></td>
+</tr>
+</tbody>
+</table>
+<p>默认审批实现是 <code>WebViewToolApprovalService</code>。它调用前端 <code>renderAgentApprovalRequest</code> 渲染审批卡片，并等待前端回传 <code>toolApprovalResponse</code>。用户拒绝时，Agent 会收到一个失败的 <code>ToolResult</code>，模型可据此解释已取消或选择其他方案</p>
+<h2 id="skill-资源读取">Skill 资源读取</h2>
+<p>早期设计中的 <code>resource_request</code> 在 native tool_calls 模式下被收敛为标准工具 <code>skill.read</code>。<code>SkillResourceToolProvider</code> 读取 <code>FileSystemSkillRegistry</code> 中发现的 <code>SKILL.md</code> 或资源文件，并以低风险工具形式进入统一目录</p>
+<p><code>FileSystemSkillRegistry</code> 从 <code>ApplicationInformation.PRISMATALK_PATH</code> 读取 Skill 包，解析 front matter 中的 <code>name</code>、<code>description</code>、<code>risk</code>，并索引 <code>references/</code>、<code>examples/</code>、<code>assets/</code>、<code>templates/</code> 等资源</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.PrismaTalk/AgentRuntime.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -90,7 +90,7 @@
 
 
   <h1 id="MAS_PrismaTalk_Models_FinishReason" data-uid="MAS.PrismaTalk.Models.FinishReason" class="text-break">
-Enum FinishReason  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/FinishReason.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Enum FinishReason  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/FinishReason.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -103,7 +103,8 @@ Enum FinishReason  <a class="header-action link-secondary" title="View source" h
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum FinishReason</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonConverter(typeof(FinishReasonConverter))]
+public enum FinishReason</code></pre>
   </div>
 
 
@@ -140,6 +141,11 @@ Enum FinishReason  <a class="header-action link-secondary" title="View source" h
 <p>通常表示模型认为已经输出了完整的回答</p>
 </dd>
   
+    <dt id="MAS_PrismaTalk_Models_FinishReason_ToolCalls"><code>ToolCalls = 3</code></dt>
+  <dd><p>模型决定发起原生工具调用而停止（finish_reason = &quot;tool_calls&quot;）</p>
+<p>此时助手消息携带 tool_calls，需要执行工具并回填结果后继续推理</p>
+</dd>
+  
   </dl>
 
 
@@ -147,7 +153,7 @@ Enum FinishReason  <a class="header-action link-secondary" title="View source" h
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/FinishReason.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/FinishReason.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
 

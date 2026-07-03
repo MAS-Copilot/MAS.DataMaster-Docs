@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class UnitySceneGridBehavior | DataMaster ">
       
-      <meta name="description" content="Unity Scene View 风格的多层级网格背景">
+      <meta name="description" content="Unity Scene View 风格的自适应网格背景（线几何 + 矩阵变换实现）。  网格由三组互不重叠的  组成： 按线的整数索引 k 分类——k 为 100 倍数进次主级组、10 倍数进主级组、 其余进细级组。三组之间没有任何重合线段，也不存在叠加的透明平面， 从根源上消除 Z-fighting、阴影与闪烁。   顶点在&quot;单位索引空间&quot;（间距 = 1）构建，缩放与平移通过组节点的 缩放&#215;平移 矩阵完成；窗口中心吸附到 100 格的整数倍，保证平移后 各线的模分类不变。常规视角下每帧最多更新一个 4&#215;4 矩阵与三个线色。   近平面裁剪：HelixToolkit 的线几何着色器把端点做透视除法后在屏幕空间 展开线宽，不处理端点落在相机平面附近（w≈0）的情况——除以趋零的 w 产生无穷大/NaN，整条线随机丢帧（低端显卡上尤其明显）。因此当网格窗口 伸到相机近平面之后时，在 CPU 侧按近平面对每条线做一维区间裁剪后重建， 保证任何端点都严格位于相机前方；窗口完全在相机前方时跳过裁剪、零重建。   缩放自适应：以相机视线与网格平面交点处的&quot;每像素世界单位&quot;推导目标间距， 取 log10 得到离散层级（细级间距 = MinSpacing &#215; 10^level）；层级的小数部分 经 smoothstep 后作为混合因子——细级线淡出、主级线向细级亮度过渡、 次主级恒定，换级瞬间三组亮度首尾衔接、无跳变。&quot;透明度&quot;通过把线色向 背景色插值实现，渲染始终不透明——不依赖透明混合与绘制顺序。">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Controls_UnitySceneGridBehavior" data-uid="MAS.Controls.UnitySceneGridBehavior" class="text-break">
-Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L22"><i class="bi bi-code-slash"></i></a>
+Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,32 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
   <dl><dt>Assembly</dt><dd>MAS.Controls.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Unity Scene View 风格的多层级网格背景</p>
+  <div class="markdown summary"><p>Unity Scene View 风格的自适应网格背景（线几何 + 矩阵变换实现）。</p>
+<p>
+网格由三组<b>互不重叠</b>的 <span class="xref">HelixToolkit.Wpf.SharpDX.LineGeometryModel3D</span> 组成：
+按线的整数索引 k 分类——k 为 100 倍数进次主级组、10 倍数进主级组、
+其余进细级组。三组之间没有任何重合线段，也不存在叠加的透明平面，
+从根源上消除 Z-fighting、阴影与闪烁。
+</p>
+<p>
+顶点在"单位索引空间"（间距 = 1）构建，缩放与平移通过组节点的
+缩放×平移 矩阵完成；窗口中心吸附到 100 格的整数倍，保证平移后
+各线的模分类不变。常规视角下每帧最多更新一个 4×4 矩阵与三个线色。
+</p>
+<p>
+近平面裁剪：HelixToolkit 的线几何着色器把端点做透视除法后在屏幕空间
+展开线宽，<b>不处理端点落在相机平面附近（w≈0）的情况</b>——除以趋零的 w
+产生无穷大/NaN，整条线随机丢帧（低端显卡上尤其明显）。因此当网格窗口
+伸到相机近平面之后时，在 CPU 侧按近平面对每条线做一维区间裁剪后重建，
+保证任何端点都严格位于相机前方；窗口完全在相机前方时跳过裁剪、零重建。
+</p>
+<p>
+缩放自适应：以相机视线与网格平面交点处的"每像素世界单位"推导目标间距，
+取 log10 得到离散层级（细级间距 = MinSpacing × 10^level）；层级的小数部分
+经 smoothstep 后作为混合因子——细级线淡出、主级线向细级亮度过渡、
+次主级恒定，换级瞬间三组亮度首尾衔接、无跳变。"透明度"通过把线色向
+背景色插值实现，渲染始终不透明——不依赖透明混合与绘制顺序。
+</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -160,7 +185,7 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Controls_UnitySceneGridBehavior__ctor_HelixToolkit_Wpf_SharpDX_GroupModel3D_" data-uid="MAS.Controls.UnitySceneGridBehavior.#ctor(HelixToolkit.Wpf.SharpDX.GroupModel3D)">
   UnitySceneGridBehavior(GroupModel3D)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L85"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>使用默认配置创建网格背景行为</p>
@@ -197,7 +222,7 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Controls_UnitySceneGridBehavior_Bounds" data-uid="MAS.Controls.UnitySceneGridBehavior.Bounds">
   Bounds
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取网格包围盒</p>
@@ -229,7 +254,7 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Controls_UnitySceneGridBehavior_GridGroupModel" data-uid="MAS.Controls.UnitySceneGridBehavior.GridGroupModel">
   GridGroupModel
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取网格背景组</p>
@@ -261,7 +286,7 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Controls_UnitySceneGridBehavior_HalfSize" data-uid="MAS.Controls.UnitySceneGridBehavior.HalfSize">
   HalfSize
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取网格半径，保持原背景覆盖范围</p>
@@ -293,7 +318,7 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Controls_UnitySceneGridBehavior_IsInitialized" data-uid="MAS.Controls.UnitySceneGridBehavior.IsInitialized">
   IsInitialized
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L115"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当前网格是否已经创建并添加到场景中</p>
@@ -325,7 +350,7 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Controls_UnitySceneGridBehavior_Options" data-uid="MAS.Controls.UnitySceneGridBehavior.Options">
   Options
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L120"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前网格配置副本</p>
@@ -361,7 +386,7 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Controls_UnitySceneGridBehavior_Dispose" data-uid="MAS.Controls.UnitySceneGridBehavior.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L139"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
@@ -388,10 +413,10 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Controls_UnitySceneGridBehavior_Initialize" data-uid="MAS.Controls.UnitySceneGridBehavior.Initialize">
   Initialize()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L151"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>创建多层级网格并添加到场景中</p>
+  <div class="markdown level1 summary"><p>创建三组网格线模型并添加到场景中，顶点为完整（未裁剪）的单位网格</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -415,7 +440,7 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Controls_UnitySceneGridBehavior_RemoveFromScene" data-uid="MAS.Controls.UnitySceneGridBehavior.RemoveFromScene">
   RemoveFromScene()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L180"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将网格从场景中移除</p>
@@ -440,17 +465,18 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <a id="MAS_Controls_UnitySceneGridBehavior_Update_" data-uid="MAS.Controls.UnitySceneGridBehavior.Update*"></a>
 
-  <h3 id="MAS_Controls_UnitySceneGridBehavior_Update_HelixToolkit_Wpf_SharpDX_PerspectiveCamera_System_Double_System_Double_System_Double_" data-uid="MAS.Controls.UnitySceneGridBehavior.Update(HelixToolkit.Wpf.SharpDX.PerspectiveCamera,System.Double,System.Double,System.Double)">
-  Update(PerspectiveCamera, double, double, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Controls_UnitySceneGridBehavior_Update_HelixToolkit_Wpf_SharpDX_PerspectiveCamera_System_Double_System_Double_" data-uid="MAS.Controls.UnitySceneGridBehavior.Update(HelixToolkit.Wpf.SharpDX.PerspectiveCamera,System.Double,System.Double)">
+  Update(PerspectiveCamera, double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L196"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>根据当前相机缩放连续更新各层网格透明度和线宽</p>
+  <div class="markdown level1 summary"><p>根据当前相机更新网格：必要时更新缩放平移矩阵、执行近平面裁剪重建，
+并按层级混合因子更新三组线的亮度</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Update(PerspectiveCamera camera, double viewportWidth, double viewportHeight, double dpiScaleY)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Update(PerspectiveCamera camera, double viewportWidth, double viewportHeight)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -460,8 +486,6 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
     <dt><code>viewportWidth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
     <dd></dd>
     <dt><code>viewportHeight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd></dd>
-    <dt><code>dpiScaleY</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
     <dd></dd>
   </dl>
 
@@ -480,7 +504,7 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Controls_UnitySceneGridBehavior_UpdateOptions_MAS_Controls_UnitySceneGridOptions_" data-uid="MAS.Controls.UnitySceneGridBehavior.UpdateOptions(MAS.Controls.UnitySceneGridOptions)">
   UpdateOptions(UnitySceneGridOptions)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L126"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>更新网格配置</p>
@@ -513,7 +537,7 @@ Class UnitySceneGridBehavior  <a class="header-action link-secondary" title="Vie
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L22" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/Behaviors/UnitySceneGridBehavior.cs/#L48" class="edit-link">Edit this page</a>
         </div>
 
 

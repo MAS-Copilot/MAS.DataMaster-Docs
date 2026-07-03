@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IAgentProtocol | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IAgentProtocol | DataMaster ">
+      
+      <meta name="description" content="Agent 协议适配器。负责在「内部统一  协议」与「具体模型交互形态」之间转换">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PrismaTalk_Agent_IAgentProtocol.md&amp;value=---%0Auid%3A%20MAS.PrismaTalk.Agent.IAgentProtocol%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.PrismaTalk.Agent.IAgentProtocol">
+
+
+
+  <h1 id="MAS_PrismaTalk_Agent_IAgentProtocol" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol" class="text-break">
+Interface IAgentProtocol  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.PrismaTalk.html">PrismaTalk</a>.<a class="xref" href="MAS.PrismaTalk.Agent.html">Agent</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.PrismaTalk.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Agent 协议适配器。负责在「内部统一 <a class="xref" href="MAS.PrismaTalk.Agent.AgentAction.html">AgentAction</a> 协议」与「具体模型交互形态」之间转换</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IAgentProtocol</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_PrismaTalk_Agent_IAgentProtocol_SupportsNativeToolCalls_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.SupportsNativeToolCalls*"></a>
+
+  <h3 id="MAS_PrismaTalk_Agent_IAgentProtocol_SupportsNativeToolCalls" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.SupportsNativeToolCalls">
+  SupportsNativeToolCalls
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取一个值，指示该协议是否走原生 function-calling 通道（tool_calls 结构化字段）。
+为 true 时 <span class="xref">MAS.PrismaTalk.Agent.AgentLoop</span> 采用结构化编排路径，动作与 content 物理分离</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool SupportsNativeToolCalls { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildContinuePrompt_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildContinuePrompt*"></a>
+
+  <h3 id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildContinuePrompt" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildContinuePrompt">
+  BuildContinuePrompt()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构建「继续输出下一个动作」的提示词（例如在注入资源后，防止模型自由文本被误判为最终回答）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string BuildContinuePrompt()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>提示词文本</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildRepairPrompt_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildRepairPrompt*"></a>
+
+  <h3 id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildRepairPrompt" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildRepairPrompt">
+  BuildRepairPrompt()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构建协议修复提示词（当模型输出无法解析时使用）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string BuildRepairPrompt()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>提示词文本</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildToolCatalogPrompt_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildToolCatalogPrompt*"></a>
+
+  <h3 id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildToolCatalogPrompt_System_Collections_Generic_IReadOnlyList_MAS_PrismaTalk_Agent_ToolDefinition__" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildToolCatalogPrompt(System.Collections.Generic.IReadOnlyList{MAS.PrismaTalk.Agent.ToolDefinition})">
+  BuildToolCatalogPrompt(IReadOnlyList&lt;ToolDefinition&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构建工具目录与协议说明提示词，注入到模型上下文</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string BuildToolCatalogPrompt(IReadOnlyList&lt;ToolDefinition&gt; tools)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tools</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.PrismaTalk.Agent.ToolDefinition.html">ToolDefinition</a>&gt;</dt>
+    <dd><p>可用工具列表</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>提示词文本</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildToolResultContent_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildToolResultContent*"></a>
+
+  <h3 id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildToolResultContent_MAS_PrismaTalk_Agent_ToolResult_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildToolResultContent(MAS.PrismaTalk.Agent.ToolResult)">
+  BuildToolResultContent(ToolResult)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构建回填给模型的工具结果消息体（role=tool 的 content）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string BuildToolResultContent(ToolResult result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="MAS.PrismaTalk.Agent.ToolResult.html">ToolResult</a></dt>
+    <dd><p>工具执行结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>结果 JSON 文本</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildToolResultPrompt_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildToolResultPrompt*"></a>
+
+  <h3 id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildToolResultPrompt_System_String_MAS_PrismaTalk_Agent_ToolResult_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildToolResultPrompt(System.String,MAS.PrismaTalk.Agent.ToolResult)">
+  BuildToolResultPrompt(string, ToolResult)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构建工具执行结果的回注提示词</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string BuildToolResultPrompt(string toolCallId, ToolResult result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>toolCallId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>工具调用标识</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="MAS.PrismaTalk.Agent.ToolResult.html">ToolResult</a></dt>
+    <dd><p>工具执行结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>提示词文本</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildToolSchemas_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildToolSchemas*"></a>
+
+  <h3 id="MAS_PrismaTalk_Agent_IAgentProtocol_BuildToolSchemas_System_Collections_Generic_IReadOnlyList_MAS_PrismaTalk_Agent_ToolDefinition__System_Collections_Generic_IDictionary_System_String_System_String__" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.BuildToolSchemas(System.Collections.Generic.IReadOnlyList{MAS.PrismaTalk.Agent.ToolDefinition},System.Collections.Generic.IDictionary{System.String,System.String})">
+  BuildToolSchemas(IReadOnlyList&lt;ToolDefinition&gt;, IDictionary&lt;string, string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构建 OpenAI 兼容的 tools 数组（function schema）。
+由于函数名不允许包含点号等字符，方法会把真实工具名映射为 wire 安全名，
+并把 wire 名 → 真实工具名写入 <code class="paramref">nameMap</code> 供执行阶段反解</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IReadOnlyList&lt;object&gt; BuildToolSchemas(IReadOnlyList&lt;ToolDefinition&gt; tools, IDictionary&lt;string, string&gt; nameMap)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tools</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.PrismaTalk.Agent.ToolDefinition.html">ToolDefinition</a>&gt;</dt>
+    <dd><p>可用工具列表</p>
+</dd>
+    <dt><code>nameMap</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>输出参数：wire 名到真实工具名的映射（方法负责填充）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>tools 数组（每项为一个 function 定义）；仅 native 协议返回非空</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Agent_IAgentProtocol_ParseAction_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.ParseAction*"></a>
+
+  <h3 id="MAS_PrismaTalk_Agent_IAgentProtocol_ParseAction_System_String_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.ParseAction(System.String)">
+  ParseAction(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从模型回复中解析出单个结构化动作</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">AgentAction ParseAction(string assistantText)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assistantText</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>模型回复文本</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.PrismaTalk.Agent.AgentAction.html">AgentAction</a></dt>
+    <dd><p>解析得到的动作</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Agent_IAgentProtocol_StripEnvelope_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.StripEnvelope*"></a>
+
+  <h3 id="MAS_PrismaTalk_Agent_IAgentProtocol_StripEnvelope_System_String_" data-uid="MAS.PrismaTalk.Agent.IAgentProtocol.StripEnvelope(System.String)">
+  StripEnvelope(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>去除模型回复中的协议信封，返回可直接展示给用户的纯文本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string StripEnvelope(string assistantText)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assistantText</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>模型回复文本</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>纯文本</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IAgentProtocol.cs/#L15" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
