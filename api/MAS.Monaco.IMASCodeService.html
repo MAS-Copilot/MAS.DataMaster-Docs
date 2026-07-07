@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Monaco_IMASCodeService" data-uid="MAS.Monaco.IMASCodeService" class="text-break">
-Interface IMASCodeService  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L17"><i class="bi bi-code-slash"></i></a>
+Interface IMASCodeService  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Interface IMASCodeService  <a class="header-action link-secondary" title="View s
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IMASCodeService : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IMASCodeService : IWebViewService, IDisposable</code></pre>
   </div>
 
 
@@ -114,6 +114,21 @@ Interface IMASCodeService  <a class="header-action link-secondary" title="View s
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="MAS.WebView.IWebViewService.html#MAS_WebView_IWebViewService_IsInitialized">IWebViewService.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.WebView.IWebViewService.html#MAS_WebView_IWebViewService_MessageReceived">IWebViewService.MessageReceived</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.WebView.IWebViewService.html#MAS_WebView_IWebViewService_Initialize_Microsoft_Web_WebView2_Core_CoreWebView2_">IWebViewService.Initialize(CoreWebView2)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.WebView.IWebViewService.html#MAS_WebView_IWebViewService_ExecuteScriptAsync_System_String_">IWebViewService.ExecuteScriptAsync(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.WebView.IWebViewService.html#MAS_WebView_IWebViewService_PostMessageAsync_System_Object_">IWebViewService.PostMessageAsync(object)</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
     </div>
@@ -132,10 +147,10 @@ Interface IMASCodeService  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_Monaco_IMASCodeService_InitializeAsync_Microsoft_Web_WebView2_Core_CoreWebView2_System_String_" data-uid="MAS.Monaco.IMASCodeService.InitializeAsync(Microsoft.Web.WebView2.Core.CoreWebView2,System.String)">
   InitializeAsync(CoreWebView2, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步初始化 MonacoService</p>
+  <div class="markdown level1 summary"><p>异步初始化 MAS Code 工作区并推送初始文件树</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -146,10 +161,48 @@ Interface IMASCodeService  <a class="header-action link-secondary" title="View s
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>webView</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.web.webview2.core.corewebview2">CoreWebView2</a></dt>
-    <dd><p>CoreWebView2 实例，用于在 Monaco Editor 中执行 JavaScript 脚本和加载内容</p>
+    <dd><p>CoreWebView2 实例，用于与前端页面交互</p>
 </dd>
     <dt><code>folder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>指定要加载到编辑器中的文件夹</p>
+    <dd><p>工作区根目录，所有文件操作都被限制在该目录内</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Monaco_IMASCodeService_SetThemeAsync_" data-uid="MAS.Monaco.IMASCodeService.SetThemeAsync*"></a>
+
+  <h3 id="MAS_Monaco_IMASCodeService_SetThemeAsync_System_String_" data-uid="MAS.Monaco.IMASCodeService.SetThemeAsync(System.String)">
+  SetThemeAsync(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步设置编辑器主题</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task SetThemeAsync(string appTheme)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>appTheme</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>应用主题名称（&quot;Dark&quot; 或 &quot;Light&quot;）</p>
 </dd>
   </dl>
 
@@ -176,7 +229,7 @@ Interface IMASCodeService  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_Monaco_IMASCodeService_EditorStatusChanged" data-uid="MAS.Monaco.IMASCodeService.EditorStatusChanged">
   EditorStatusChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>编辑器状态变化事件</p>
@@ -208,7 +261,7 @@ Interface IMASCodeService  <a class="header-action link-secondary" title="View s
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
 

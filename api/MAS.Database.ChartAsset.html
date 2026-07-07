@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Namespace MAS.Database.ChartAsset | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Namespace MAS.Database.ChartAsset | DataMaster ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Database.ChartAsset">
+
+  <h1 id="MAS_Database_ChartAsset" data-uid="MAS.Database.ChartAsset" class="text-break">Namespace MAS.Database.ChartAsset</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+
+    <h3 id="classes">
+Classes
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetChangeResult.html">ChartAssetChangeResult</a></dt>
+      <dd><p>图表资产变更（upsert/delete）结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetDefinition.html">ChartAssetDefinition</a></dt>
+      <dd><p>表示一个图表资产定义，可以是单图（单 widget）或仪表盘（多 widget）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetJson.html">ChartAssetJson</a></dt>
+      <dd><p>图表资产 JSON 规范的序列化辅助。对外（Agent/前端）统一使用 camelCase + 小写枚举</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatch.html">ChartAssetPatch</a></dt>
+      <dd><p>通用的结构化 JSON 补丁工具，基于 <span class="xref">Newtonsoft.Json.Linq.JToken</span> 对 JSON 树做局部修改。
+只理解 JSON 路径与节点操作，不包含 ChartAsset 业务语义（校验仍由 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetValidator.html">ChartAssetValidator</a> 承担）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html">ChartAssetPatchOperation</a></dt>
+      <dd><p>图表资产的单个结构化 JSON 补丁操作</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetProjectModel.html">ChartAssetProjectModel</a></dt>
+      <dd><p>图表资产持久化数据模型</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetSqlGuard.html">ChartAssetSqlGuard</a></dt>
+      <dd><p>图表资产只读 SQL 守卫，与 QueryAsset 的只读校验规则保持一致</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetTemplateFactory.html">ChartAssetTemplateFactory</a></dt>
+      <dd><p>图表资产模板工厂，用于在 UI 中快速创建可直接执行的示例资产</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetValidationResult.html">ChartAssetValidationResult</a></dt>
+      <dd><p>图表资产校验结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetValidator.html">ChartAssetValidator</a></dt>
+      <dd><p>图表资产结构校验器。只做静态检查</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetsChangedEventArgs.html">ChartAssetsChangedEventArgs</a></dt>
+      <dd><p>图表资产变更事件参数，包含本次提交中新增、更新、删除的资产快照</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartDashboardDefinition.html">ChartDashboardDefinition</a></dt>
+      <dd><p>仪表盘定义。widget 按声明顺序在网格中依次排布</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartDataResult.html">ChartDataResult</a></dt>
+      <dd><p>数据源执行结果。列名 + 行数据的轻量结构，可直接注入 ECharts dataset</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartDataSourceDefinition.html">ChartDataSourceDefinition</a></dt>
+      <dd><p>图表数据源定义</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartParameter.html">ChartParameter</a></dt>
+      <dd><p>图表资产参数定义</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartParameterValidator.html">ChartParameterValidator</a></dt>
+      <dd><p>图表资产参数值校验器：合并默认值并在执行前检查用户输入</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartRefreshPolicy.html">ChartRefreshPolicy</a></dt>
+      <dd><p>图表资产刷新策略</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartRenderPayload.html">ChartRenderPayload</a></dt>
+      <dd><p>后端返回给前端动态图表页的渲染 payload</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartScriptContext.html">ChartScriptContext</a></dt>
+      <dd><p>图表资产脚本的受控执行上下文</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartSummaryCardDefinition.html">ChartSummaryCardDefinition</a></dt>
+      <dd><p>摘要卡片（KPI Card）定义。是数据摘要组件而非 ECharts 图表：
+顶部标题（widget.title）、中间主数值、底部趋势文本与趋势方向。
+数值取自数据源执行结果的第一行；样式只允许受控枚举字段</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartWidgetDefinition.html">ChartWidgetDefinition</a></dt>
+      <dd><p>仪表盘中的一个组件定义（ECharts 图表或摘要卡片）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartWidgetRenderPayload.html">ChartWidgetRenderPayload</a></dt>
+      <dd><p>单个组件的渲染 payload</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.SummaryCardRenderPayload.html">SummaryCardRenderPayload</a></dt>
+      <dd><p>摘要卡片（KPI Card）的渲染 payload，字段均为已求值的展示内容</p>
+</dd>
+    </dl>
+    <h3 id="interfaces">
+Interfaces
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.html">IChartAssetProjectPersistenceService</a></dt>
+      <dd><p>图表资产工程持久化接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetRuntime.html">IChartAssetRuntime</a></dt>
+      <dd><p>图表资产运行时：执行资产的所有数据源并组装前端渲染 payload</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetScript.html">IChartAssetScript</a></dt>
+      <dd><p>图表资产 script 数据源必须实现的接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetScriptRunner.html">IChartAssetScriptRunner</a></dt>
+      <dd><p>图表资产 script 数据源运行器：编译并在受控上下文中执行脚本</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetToolService.html">IChartAssetToolService</a></dt>
+      <dd><p>图表资产管理服务，供 PrismaTalk IPC 工具与 UI 使用</p>
+</dd>
+    </dl>
+    <h3 id="enums">
+Enums
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartDataSourceMode.html">ChartDataSourceMode</a></dt>
+      <dd><p>数据源模式</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartRefreshMode.html">ChartRefreshMode</a></dt>
+      <dd><p>刷新模式</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartWidgetType.html">ChartWidgetType</a></dt>
+      <dd><p>仪表盘组件类型</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.SummaryCardTone.html">SummaryCardTone</a></dt>
+      <dd><p>摘要卡片色调，受控枚举，不开放任意 CSS</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.SummaryCardTrendDirection.html">SummaryCardTrendDirection</a></dt>
+      <dd><p>摘要卡片趋势方向</p>
+</dd>
+    </dl>
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

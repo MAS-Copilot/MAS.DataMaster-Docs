@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class FolderItem | DataMaster ">
       
-      <meta name="description" content="表示文件或文件夹项的数据模型">
+      <meta name="description" content="表示文件或文件夹项的数据模型（序列化为 camelCase 供前端直接使用）">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Monaco_FolderItem" data-uid="MAS.Monaco.FolderItem" class="text-break">
-Class FolderItem  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class FolderItem  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
   <dl><dt>Assembly</dt><dd>MAS.Monaco.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>表示文件或文件夹项的数据模型</p>
+  <div class="markdown summary"><p>表示文件或文件夹项的数据模型（序列化为 camelCase 供前端直接使用）</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -157,7 +157,7 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_Monaco_FolderItem_Children" data-uid="MAS.Monaco.FolderItem.Children">
   Children
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置文件夹子项集合</p>
@@ -165,7 +165,8 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;FolderItem&gt; Children { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;children&quot;)]
+public List&lt;FolderItem&gt; Children { get; set; }</code></pre>
   </div>
 
 
@@ -189,15 +190,16 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_Monaco_FolderItem_FullPath" data-uid="MAS.Monaco.FolderItem.FullPath">
   FullPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置文件夹完整路径</p>
+  <div class="markdown level1 summary"><p>获取或设置完整路径（统一使用 &quot;/&quot; 分隔符）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string FullPath { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;path&quot;)]
+public string FullPath { get; set; }</code></pre>
   </div>
 
 
@@ -221,7 +223,7 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_Monaco_FolderItem_IsExpanded" data-uid="MAS.Monaco.FolderItem.IsExpanded">
   IsExpanded
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置文件夹在 TreeView 中是否默认展开</p>
@@ -229,7 +231,8 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsExpanded { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;expanded&quot;)]
+public bool IsExpanded { get; set; }</code></pre>
   </div>
 
 
@@ -253,7 +256,7 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_Monaco_FolderItem_Name" data-uid="MAS.Monaco.FolderItem.Name">
   Name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置文件/文件夹的名称（显示用）</p>
@@ -261,7 +264,8 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;name&quot;)]
+public string Name { get; set; }</code></pre>
   </div>
 
 
@@ -285,7 +289,7 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="MAS_Monaco_FolderItem_Type" data-uid="MAS.Monaco.FolderItem.Type">
   Type
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置节点类型（&quot;folder&quot; 或 &quot;file&quot;）</p>
@@ -293,7 +297,8 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Type { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;type&quot;)]
+public string Type { get; set; }</code></pre>
   </div>
 
 
@@ -317,7 +322,7 @@ Class FolderItem  <a class="header-action link-secondary" title="View source" hr
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Monaco/Models/FolderItem.cs/#L17" class="edit-link">Edit this page</a>
         </div>
 
 

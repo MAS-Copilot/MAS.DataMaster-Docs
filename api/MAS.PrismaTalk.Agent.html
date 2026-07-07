@@ -100,8 +100,54 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.AgentPlanDecision.html">AgentPlanDecision</a></dt>
+      <dd><p>表示用户对整个计划的最终决策结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.AgentPlanDefinition.html">AgentPlanDefinition</a></dt>
+      <dd><p>表示一次 agent-plan 调用要展示给用户的完整计划</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.AgentPlanOption.html">AgentPlanOption</a></dt>
+      <dd><p>表示一个候选项</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.AgentPlanSelection.html">AgentPlanSelection</a></dt>
+      <dd><p>表示用户在某一步的选择</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.AgentPlanStep.html">AgentPlanStep</a></dt>
+      <dd><p>表示计划中的一个决策步骤</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PrismaTalk.Agent.ConversationTurnResult.html">ConversationTurnResult</a></dt>
       <dd><p>表示一次对话的结果，包括内部内存更新和工具使用信息</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.DraftEditOperation.html">DraftEditOperation</a></dt>
+      <dd><p>草稿文本编辑操作：把 <a class="xref" href="MAS.PrismaTalk.Agent.DraftEditOperation.html#MAS_PrismaTalk_Agent_DraftEditOperation_OldText">OldText</a> 的精确匹配替换为 <a class="xref" href="MAS.PrismaTalk.Agent.DraftEditOperation.html#MAS_PrismaTalk_Agent_DraftEditOperation_NewText">NewText</a></p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.DraftInfo.html">DraftInfo</a></dt>
+      <dd><p>单个草稿的元信息</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.DraftResult.html">DraftResult</a></dt>
+      <dd><p>草稿操作结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.DraftStore.html">DraftStore</a></dt>
+      <dd><p>基于本机临时目录的 <a class="xref" href="MAS.PrismaTalk.Agent.IDraftStore.html">IDraftStore</a> 默认实现。
+每个草稿是一个 UTF-8 文本文件，文件写入时间即最后更新时间</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -154,6 +200,12 @@ Interfaces
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.IAgentPlanService.html">IAgentPlanService</a></dt>
+      <dd><p>计划决策服务。agent-plan 工具执行时向用户展示分步决策卡片并等待逐步选择结果。
+与高风险审批服务（<a class="xref" href="MAS.PrismaTalk.Agent.IToolApprovalService.html">IToolApprovalService</a>）相互独立，不共用等待通道</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PrismaTalk.Agent.IAgentProtocol.html">IAgentProtocol</a></dt>
       <dd><p>Agent 协议适配器。负责在「内部统一 <a class="xref" href="MAS.PrismaTalk.Agent.AgentAction.html">AgentAction</a> 协议」与「具体模型交互形态」之间转换</p>
 </dd>
@@ -161,6 +213,12 @@ Interfaces
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.PrismaTalk.Agent.IConversationDriver.html">IConversationDriver</a></dt>
       <dd><p>对话驱动器接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Agent.IDraftStore.html">IDraftStore</a></dt>
+      <dd><p>通用临时草稿存储，面向&quot;强校验 + 大文本&quot;场景。
+模型先把完整内容存为草稿，之后用 draftId 引用并做小步编辑，避免每轮重传大文本</p>
 </dd>
     </dl>
     <dl class="jumplist">
