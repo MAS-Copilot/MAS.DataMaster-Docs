@@ -101,15 +101,15 @@
 
 一句话描述放在这里。                 ← 2. 描述（紧跟标题的第一段文字，可省略）
 
-| 参数 | 标签 | 类型 | 默认值 | 说明 |   ← 3. 参数表（无参数则整张表省略）
-| --- | --- | --- | --- | --- |
-| ProductId | 产品 ID | text | PROD-001 | 要查询的产品编号 |
+| 参数 | 标签 | 类型 | 默认值 | 是否可空 | 说明 |   ← 3. 参数表（无参数则整张表省略）
+| --- | --- | --- | --- | --- | --- |
+| ProductId | 产品 ID | text | PROD-001 | false | 要查询的产品编号 |
 
 ​```sql                             ← 4. SQL 代码块，用 {{参数名}} 占位
 SELECT ... WHERE d.ProductId = {{ProductId}};
 ​```
 </code></pre>
-<h2 id="三参数表列定义固定-5-列">三、参数表列定义（固定 5 列）</h2>
+<h2 id="三参数表列定义6-列是否可空列可省略">三、参数表列定义（6 列，「是否可空」列可省略）</h2>
 <table>
 <thead>
 <tr>
@@ -138,6 +138,11 @@ SELECT ... WHERE d.ProductId = {{ProductId}};
 <td>默认值</td>
 <td>预填值</td>
 <td>打开查询时输入框的初始值</td>
+</tr>
+<tr>
+<td>是否可空</td>
+<td>允许留空</td>
+<td><code>true</code> / <code>false</code>，留空视为 <code>false</code>；兼容旧格式：整列省略（5 列表）时全部参数默认不可空。详见「七、可空参数」</td>
 </tr>
 <tr>
 <td>说明</td>
@@ -215,6 +220,7 @@ SELECT ... WHERE d.ProductId = {{ProductId}};
 <th>标签</th>
 <th>类型</th>
 <th>默认值</th>
+<th>是否可空</th>
 <th>说明</th>
 </tr>
 </thead>
@@ -224,7 +230,51 @@ SELECT ... WHERE d.ProductId = {{ProductId}};
 <td>判定结果</td>
 <td>enum</td>
 <td>OK</td>
+<td>false</td>
 <td>选项: OK,NG,未知</td>
+</tr>
+</tbody>
+</table>
+<h2 id="七可空参数是否可空">七、可空参数（是否可空）</h2>
+<p>「是否可空」列声明参数是否允许留空，用于「留空 = 查询全部」这类场景</p>
+<ul>
+<li><strong>取值</strong>：<code>true</code>（可空）/ <code>false</code>（不可空），留空视为 <code>false</code>；也兼容中文 <code>是</code></li>
+<li><strong>兼容旧格式</strong>：没有「是否可空」列的 5 列参数表仍然有效，所有参数默认不可空</li>
+<li><strong>校验行为</strong>：不可空参数留空会阻止执行并提示「不能为空」；可空参数留空则跳过校验直接执行</li>
+<li><strong>留空时的替换规则</strong>（与预览一致）：
+<ul>
+<li><code>text</code> / <code>date</code> / <code>datetime</code> / <code>enum</code> → 空字符串 <code>''</code></li>
+<li><code>number</code> → <code>NULL</code></li>
+</ul>
+</li>
+<li><strong>SQL 写法</strong>：留空查询全部需要在 SQL 里自行兜底，例如：</li>
+</ul>
+<pre><code class="lang-sql">-- text：留空时 {{ProductId}} = ''，条件恒真，返回全部
+WHERE ({{ProductId}} = '' OR f.ProductId = {{ProductId}})
+
+-- number：留空时 {{Limit}} 为 NULL
+WHERE ({{Limit}} IS NULL OR f.Thickness &lt; {{Limit}})
+</code></pre>
+<p>示例参数行：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>标签</th>
+<th>类型</th>
+<th>默认值</th>
+<th>是否可空</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ProductId</td>
+<td>产品 ID</td>
+<td>text</td>
+<td></td>
+<td>true</td>
+<td>留空查询全部产品</td>
 </tr>
 </tbody>
 </table>

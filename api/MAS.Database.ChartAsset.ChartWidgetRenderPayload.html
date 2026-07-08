@@ -160,7 +160,7 @@ Class ChartWidgetRenderPayload  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_Database_ChartAsset_ChartWidgetRenderPayload_Card" data-uid="MAS.Database.ChartAsset.ChartWidgetRenderPayload.Card">
   Card
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置摘要卡片渲染数据；仅 <a class="xref" href="MAS.Database.ChartAsset.ChartWidgetType.html#MAS_Database_ChartAsset_ChartWidgetType_SummaryCard">SummaryCard</a> 类型且执行成功时非 null</p>
@@ -220,11 +220,44 @@ Class ChartWidgetRenderPayload  <a class="header-action link-secondary" title="V
 
 
 
+  <a id="MAS_Database_ChartAsset_ChartWidgetRenderPayload_DatasetSource_" data-uid="MAS.Database.ChartAsset.ChartWidgetRenderPayload.DatasetSource*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartWidgetRenderPayload_DatasetSource" data-uid="MAS.Database.ChartAsset.ChartWidgetRenderPayload.DatasetSource">
+  DatasetSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置 optionJs 模式下的数据源结果（首行列名 + 数据行）；
+前端以 data 形参提供给脚本，脚本未设置 dataset 时自动注入。无数据源时为 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JArray? DatasetSource { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">JArray</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_Database_ChartAsset_ChartWidgetRenderPayload_ElapsedMilliseconds_" data-uid="MAS.Database.ChartAsset.ChartWidgetRenderPayload.ElapsedMilliseconds*"></a>
 
   <h3 id="MAS_Database_ChartAsset_ChartWidgetRenderPayload_ElapsedMilliseconds" data-uid="MAS.Database.ChartAsset.ChartWidgetRenderPayload.ElapsedMilliseconds">
   ElapsedMilliseconds
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置数据源执行耗时（毫秒）；无数据源时为 null</p>
@@ -256,7 +289,7 @@ Class ChartWidgetRenderPayload  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_Database_ChartAsset_ChartWidgetRenderPayload_Error" data-uid="MAS.Database.ChartAsset.ChartWidgetRenderPayload.Error">
   Error
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置组件级错误信息，成功时为 null</p>
@@ -323,7 +356,7 @@ Class ChartWidgetRenderPayload  <a class="header-action link-secondary" title="V
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置已合并数据的 ECharts option；摘要卡片或执行失败时为 null</p>
+  <div class="markdown level1 summary"><p>获取或设置已合并数据的 ECharts option；optionJs 模式、摘要卡片或执行失败时为 null</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -348,11 +381,43 @@ Class ChartWidgetRenderPayload  <a class="header-action link-secondary" title="V
 
 
 
+  <a id="MAS_Database_ChartAsset_ChartWidgetRenderPayload_OptionJs_" data-uid="MAS.Database.ChartAsset.ChartWidgetRenderPayload.OptionJs*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartWidgetRenderPayload_OptionJs" data-uid="MAS.Database.ChartAsset.ChartWidgetRenderPayload.OptionJs">
+  OptionJs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置 option 的原生 JS 源码，前端求值后渲染；仅 optionJs 模式非 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? OptionJs { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_Database_ChartAsset_ChartWidgetRenderPayload_RowCount_" data-uid="MAS.Database.ChartAsset.ChartWidgetRenderPayload.RowCount*"></a>
 
   <h3 id="MAS_Database_ChartAsset_ChartWidgetRenderPayload_RowCount" data-uid="MAS.Database.ChartAsset.ChartWidgetRenderPayload.RowCount">
   RowCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartRenderPayload.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置数据行数；无数据源时为 null</p>

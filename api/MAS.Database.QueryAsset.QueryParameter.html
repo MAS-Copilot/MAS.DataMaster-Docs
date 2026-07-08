@@ -220,20 +220,21 @@ Class QueryParameter  <a class="header-action link-secondary" title="View source
 
 
 
-  <a id="MAS_Database_QueryAsset_QueryParameter_IsRequired_" data-uid="MAS.Database.QueryAsset.QueryParameter.IsRequired*"></a>
+  <a id="MAS_Database_QueryAsset_QueryParameter_IsNullable_" data-uid="MAS.Database.QueryAsset.QueryParameter.IsNullable*"></a>
 
-  <h3 id="MAS_Database_QueryAsset_QueryParameter_IsRequired" data-uid="MAS.Database.QueryAsset.QueryParameter.IsRequired">
-  IsRequired
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/QueryAsset/Models/QueryParameter.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_QueryAsset_QueryParameter_IsNullable" data-uid="MAS.Database.QueryAsset.QueryParameter.IsNullable">
+  IsNullable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/QueryAsset/Models/QueryParameter.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置是否必填。当前规范的参数表没有&quot;必填&quot;列，因此解析时统一默认 true；
-这是预留给校验环节使用的便捷字段，不由 MD 直接提供</p>
+  <div class="markdown level1 summary"><p>获取或设置是否可空。来自「是否可空」列（true/false）；
+旧格式没有该列时默认 false（必填）。可空参数留空时跳过校验，
+替换时 number 代入 NULL，其余类型代入空字符串</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsRequired { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsNullable { get; init; }</code></pre>
   </div>
 
 

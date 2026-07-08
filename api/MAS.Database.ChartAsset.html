@@ -166,6 +166,13 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartOptionJsGuard.html">ChartOptionJsGuard</a></dt>
+      <dd><p>chart widget option 中 <code>@js:</code> 函数字符串的静态检查。
+option 里以 <a class="xref" href="MAS.Database.ChartAsset.ChartOptionJsGuard.html#MAS_Database_ChartAsset_ChartOptionJsGuard_FUNCTION_PREFIX">FUNCTION_PREFIX</a> 开头的字符串值表示 JS 函数源码
+（如 formatter），由前端在渲染前编译；这里只做形态检查，不执行任何 JS</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Database.ChartAsset.ChartParameter.html">ChartParameter</a></dt>
       <dd><p>图表资产参数定义</p>
 </dd>
@@ -205,6 +212,14 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Database.ChartAsset.ChartWidgetRenderPayload.html">ChartWidgetRenderPayload</a></dt>
       <dd><p>单个组件的渲染 payload</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.StringOrLinesJsonConverter.html">StringOrLinesJsonConverter</a></dt>
+      <dd><p>允许字符串字段以「字符串」或「字符串数组（按行）」两种形式反序列化的转换器。
+数组形式用换行符连接成单个字符串，便于在 JSON 中携带多行源码
+（如 <code>optionJs</code>），避免整段代码挤在一行里做换行转义。
+序列化始终输出普通字符串</p>
 </dd>
     </dl>
     <dl class="jumplist">

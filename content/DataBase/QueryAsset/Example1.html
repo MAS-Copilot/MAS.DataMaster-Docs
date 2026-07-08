@@ -88,7 +88,7 @@
 <h1 id="膜厚检测">膜厚检测</h1>
 
 <h2 id="查询产品膜厚检测历史">查询产品膜厚检测历史</h2>
-<p>查看指定产品的所有膜厚检测记录。</p>
+<p>查看指定产品的所有膜厚检测记录；产品 ID 可空，留空时查询全部产品。</p>
 <table>
 <thead>
 <tr>
@@ -96,6 +96,7 @@
 <th>标签</th>
 <th>类型</th>
 <th>默认值</th>
+<th>是否可空</th>
 <th>说明</th>
 </tr>
 </thead>
@@ -105,7 +106,8 @@
 <td>产品 ID</td>
 <td>text</td>
 <td>PROD-001</td>
-<td>要查询的产品编号</td>
+<td>true</td>
+<td>要查询的产品编号，留空查询全部</td>
 </tr>
 </tbody>
 </table>
@@ -116,7 +118,7 @@
     CASE f.IsOk WHEN b'1' THEN 'OK' WHEN b'0' THEN 'NG' ELSE '未知' END AS '判定',
     f.CreatedAt   AS '检测时间'
 FROM film_thickness_result f
-WHERE f.ProductId = {{ProductId}}
+WHERE ({{ProductId}} = '' OR f.ProductId = {{ProductId}})
 ORDER BY f.CreatedAt DESC;
 </code></pre>
 <h2 id="按日期统计膜厚趋势">按日期统计膜厚趋势</h2>

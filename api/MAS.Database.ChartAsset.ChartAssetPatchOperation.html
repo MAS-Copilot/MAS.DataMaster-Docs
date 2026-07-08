@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Database_ChartAsset_ChartAssetPatchOperation" data-uid="MAS.Database.ChartAsset.ChartAssetPatchOperation" class="text-break">
-Class ChartAssetPatchOperation  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L27"><i class="bi bi-code-slash"></i></a>
+Class ChartAssetPatchOperation  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -152,10 +152,11 @@ Class ChartAssetPatchOperation  <a class="header-action link-secondary" title="V
 
   <h2 id="MAS_Database_ChartAsset_ChartAssetPatchOperation_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>通用 JSON 节点操作，不含 ChartAsset 业务语义。支持的 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Op">Op</a>：</p>
-<ul><li><code>replace</code>：替换 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Path">Path</a> 指向的已存在节点，值取自 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_ValueJson">ValueJson</a></li><li><code>remove</code>：删除 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Path">Path</a> 指向的已存在节点</li><li><code>append</code>：<a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Path">Path</a> 必须指向数组，把 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_ValueJson">ValueJson</a> 追加到末尾</li><li><code>insertAfter</code>：<a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Path">Path</a> 必须指向数组中的现有元素，在其后插入 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_ValueJson">ValueJson</a></li></ul>
-<a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Path">Path</a> 是 camelCase 资产 JSON 上的 JSON Pointer，数组节点可用下标或通用
+<ul><li><code>replace</code>：替换 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Path">Path</a> 指向的已存在节点</li><li><code>remove</code>：删除 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Path">Path</a> 指向的已存在节点</li><li><code>append</code>：<a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Path">Path</a> 必须指向数组，把值追加到末尾</li><li><code>insertAfter</code>：<a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Path">Path</a> 必须指向数组中的现有元素，在其后插入值</li></ul>
+<p>需要值的操作从 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_ValueJson">ValueJson</a>（JSON 文本）或 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_ValueText">ValueText</a>（原样字符串）
+二选一取值。<a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_Path">Path</a> 是 camelCase 资产 JSON 上的 JSON Pointer，数组节点可用下标或通用
 <code>byId/{id}</code> 段（按元素的 <code>id</code> 字段定位）导航，例如
-<code>/dashboard/widgets/byId/trend/option/series/0/type</code>
+<code>/dashboard/widgets/byId/trend/option/series/0/type</code></p>
 </div>
 
 
@@ -167,7 +168,7 @@ Class ChartAssetPatchOperation  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_Database_ChartAsset_ChartAssetPatchOperation_Op" data-uid="MAS.Database.ChartAsset.ChartAssetPatchOperation.Op">
   Op
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置操作类型（大小写不敏感）：<code>replace</code> / <code>remove</code> / <code>append</code> / <code>insertAfter</code></p>
@@ -199,7 +200,7 @@ Class ChartAssetPatchOperation  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_Database_ChartAsset_ChartAssetPatchOperation_Path" data-uid="MAS.Database.ChartAsset.ChartAssetPatchOperation.Path">
   Path
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置目标路径（JSON Pointer，数组支持下标与 <code>byId/{id}</code> 段）；所有操作必填</p>
@@ -231,11 +232,11 @@ Class ChartAssetPatchOperation  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_Database_ChartAsset_ChartAssetPatchOperation_ValueJson" data-uid="MAS.Database.ChartAsset.ChartAssetPatchOperation.ValueJson">
   ValueJson
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置操作值的 JSON 文本（任意合法 JSON，如 <code>&quot;&quot;标题&quot;&quot;</code> 或 <code>{...}</code>）；
-<code>replace</code>/<code>append</code>/<code>insertAfter</code> 必填</p>
+与 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_ValueText">ValueText</a> 二选一</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -260,11 +261,45 @@ Class ChartAssetPatchOperation  <a class="header-action link-secondary" title="V
 
 
 
+  <a id="MAS_Database_ChartAsset_ChartAssetPatchOperation_ValueText_" data-uid="MAS.Database.ChartAsset.ChartAssetPatchOperation.ValueText*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartAssetPatchOperation_ValueText" data-uid="MAS.Database.ChartAsset.ChartAssetPatchOperation.ValueText">
+  ValueText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置操作值的原样字符串：内容不经 JSON 解析，直接作为字符串节点写入。
+适用于 <code>optionJs</code>、<code>sql</code>、<code>script</code> 等长文本，避免 JSON 二次转义；
+与 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html#MAS_Database_ChartAsset_ChartAssetPatchOperation_ValueJson">ValueJson</a> 二选一</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ValueText { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L27" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetPatchOperation.cs/#L28" class="edit-link">Edit this page</a>
         </div>
 
 

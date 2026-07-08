@@ -224,7 +224,7 @@ Class ChartDataSourceDefinition  <a class="header-action link-secondary" title="
 
   <h3 id="MAS_Database_ChartAsset_ChartDataSourceDefinition_RowLimit" data-uid="MAS.Database.ChartAsset.ChartDataSourceDefinition.RowLimit">
   RowLimit
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartDataSourceDefinition.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartDataSourceDefinition.cs/#L58"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置返回行数上限，小于等于 0 时使用默认值 5000</p>
@@ -256,15 +256,17 @@ Class ChartDataSourceDefinition  <a class="header-action link-secondary" title="
 
   <h3 id="MAS_Database_ChartAsset_ChartDataSourceDefinition_Script" data-uid="MAS.Database.ChartAsset.ChartDataSourceDefinition.Script">
   Script
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartDataSourceDefinition.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartDataSourceDefinition.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置 C# 脚本源码，必须实现 <code>IChartAssetScript</code>；仅 <a class="xref" href="MAS.Database.ChartAsset.ChartDataSourceMode.html#MAS_Database_ChartAsset_ChartDataSourceMode_Script">Script</a> 模式有效</p>
+  <div class="markdown level1 summary"><p>获取或设置 C# 脚本源码，必须实现 <code>IChartAssetScript</code>；仅 <a class="xref" href="MAS.Database.ChartAsset.ChartDataSourceMode.html#MAS_Database_ChartAsset_ChartDataSourceMode_Script">Script</a> 模式有效。
+JSON 中可写成字符串或按行拆分的字符串数组（以换行符连接）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? Script { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonConverter(typeof(StringOrLinesJsonConverter))]
+public string? Script { get; init; }</code></pre>
   </div>
 
 
@@ -288,15 +290,17 @@ Class ChartDataSourceDefinition  <a class="header-action link-secondary" title="
 
   <h3 id="MAS_Database_ChartAsset_ChartDataSourceDefinition_Sql" data-uid="MAS.Database.ChartAsset.ChartDataSourceDefinition.Sql">
   Sql
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartDataSourceDefinition.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartDataSourceDefinition.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置只读 SQL 模板，内含 <code>{{参数名}}</code> 占位符；仅 <a class="xref" href="MAS.Database.ChartAsset.ChartDataSourceMode.html#MAS_Database_ChartAsset_ChartDataSourceMode_Sql">Sql</a> 模式有效</p>
+  <div class="markdown level1 summary"><p>获取或设置只读 SQL 模板，内含 <code>{{参数名}}</code> 占位符；仅 <a class="xref" href="MAS.Database.ChartAsset.ChartDataSourceMode.html#MAS_Database_ChartAsset_ChartDataSourceMode_Sql">Sql</a> 模式有效。
+JSON 中可写成字符串或按行拆分的字符串数组（以换行符连接）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? Sql { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonConverter(typeof(StringOrLinesJsonConverter))]
+public string? Sql { get; init; }</code></pre>
   </div>
 
 
@@ -320,7 +324,7 @@ Class ChartDataSourceDefinition  <a class="header-action link-secondary" title="
 
   <h3 id="MAS_Database_ChartAsset_ChartDataSourceDefinition_TimeoutSeconds" data-uid="MAS.Database.ChartAsset.ChartDataSourceDefinition.TimeoutSeconds">
   TimeoutSeconds
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartDataSourceDefinition.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartDataSourceDefinition.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置执行超时（秒），小于等于 0 时使用默认值 30 秒</p>

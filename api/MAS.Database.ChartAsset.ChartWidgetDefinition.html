@@ -160,7 +160,7 @@ Class ChartWidgetDefinition  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_Database_ChartAsset_ChartWidgetDefinition_Card" data-uid="MAS.Database.ChartAsset.ChartWidgetDefinition.Card">
   Card
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartWidgetDefinition.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartWidgetDefinition.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置摘要卡片配置；仅 <a class="xref" href="MAS.Database.ChartAsset.ChartWidgetType.html#MAS_Database_ChartAsset_ChartWidgetType_SummaryCard">SummaryCard</a> 类型使用</p>
@@ -320,10 +320,11 @@ Class ChartWidgetDefinition  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_Database_ChartAsset_ChartWidgetDefinition_Option" data-uid="MAS.Database.ChartAsset.ChartWidgetDefinition.Option">
   Option
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartWidgetDefinition.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartWidgetDefinition.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置 ECharts option JSON 配置；仅 <a class="xref" href="MAS.Database.ChartAsset.ChartWidgetType.html#MAS_Database_ChartAsset_ChartWidgetType_Chart">Chart</a> 类型使用</p>
+  <div class="markdown level1 summary"><p>获取或设置 ECharts option JSON 配置；仅 <a class="xref" href="MAS.Database.ChartAsset.ChartWidgetType.html#MAS_Database_ChartAsset_ChartWidgetType_Chart">Chart</a> 类型使用，
+与 <a class="xref" href="MAS.Database.ChartAsset.ChartWidgetDefinition.html#MAS_Database_ChartAsset_ChartWidgetDefinition_OptionJs">OptionJs</a> 二选一</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -345,9 +346,54 @@ Class ChartWidgetDefinition  <a class="header-action link-secondary" title="View
 
 
   <h4 class="section" id="MAS_Database_ChartAsset_ChartWidgetDefinition_Option_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>仅允许纯 JSON 配置，不允许函数等可执行内容。
+  <div class="markdown level1 remarks"><p>以 JSON 配置为主；需要函数（如 formatter）时，用
+<a class="xref" href="MAS.Database.ChartAsset.ChartOptionJsGuard.html#MAS_Database_ChartAsset_ChartOptionJsGuard_FUNCTION_PREFIX">FUNCTION_PREFIX</a>（<code>@js:</code>）前缀的字符串携带 JS 函数源码，
+由前端在渲染前编译（<code>dataset</code> 子树是纯数据，不参与编译）。
 数据源结果由运行时注入到 <code>option.dataset.source</code>，
 建议 option 使用 <code>encode</code> / <code>seriesLayoutBy</code> 引用数据列</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_ChartAsset_ChartWidgetDefinition_OptionJs_" data-uid="MAS.Database.ChartAsset.ChartWidgetDefinition.OptionJs*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartWidgetDefinition_OptionJs" data-uid="MAS.Database.ChartAsset.ChartWidgetDefinition.OptionJs">
+  OptionJs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartWidgetDefinition.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置 ECharts option 的原生 JS 源码；仅 <a class="xref" href="MAS.Database.ChartAsset.ChartWidgetType.html#MAS_Database_ChartAsset_ChartWidgetType_Chart">Chart</a> 类型使用，
+与 <a class="xref" href="MAS.Database.ChartAsset.ChartWidgetDefinition.html#MAS_Database_ChartAsset_ChartWidgetDefinition_Option">Option</a> 二选一</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonConverter(typeof(StringOrLinesJsonConverter))]
+public string? OptionJs { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_ChartAsset_ChartWidgetDefinition_OptionJs_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>源码是一段 JS 语句（可含变量声明、辅助函数），必须给已预声明的 <code>option</code> 变量赋值。
+后端不解析、不执行，原样推送给前端，由前端以
+<code>new Function('data', ...)</code> 求值后 <code>setOption</code>。
+数据源结果通过 <code>data</code> 形参（<code>{columns, rows, source}</code>，无数据源时为 null）提供；
+脚本未设置 <code>option.dataset</code> 时，前端自动注入 <code>dataset.source</code>。
+JSON 中可写成字符串，也可写成按行拆分的字符串数组（反序列化时以换行符连接），
+后者更适合在 JSON 里携带多行源码</p>
 </div>
 
 
