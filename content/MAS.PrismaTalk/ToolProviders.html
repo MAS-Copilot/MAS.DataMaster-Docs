@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>工具提供者 | DataMaster </title>
+      <title>工具系统 | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="工具提供者 | DataMaster ">
+      <meta name="title" content="工具系统 | DataMaster ">
       
       
       <link rel="icon" href="../../images/favicon.ico">
@@ -85,18 +85,146 @@
         </div>
 
         <article data-uid="">
-<h1 id="工具提供者">工具提供者</h1>
+<h1 id="工具系统">工具系统</h1>
 
-<p><code>IToolProvider</code> 是 PrismaTalk Agent Runtime 的工具来源抽象。每个 provider 负责列出工具定义，并在被路由时执行对应工具</p>
-<pre><code class="lang-csharp">public interface IToolProvider {
-    string ProviderId { get; }
-    Task&lt;IReadOnlyList&lt;ToolDefinition&gt;&gt; ListToolsAsync(CancellationToken ct = default);
-    Task&lt;ToolResult&gt; InvokeAsync(ToolCallRequest request, CancellationToken ct = default);
+<p>工具系统把不同来源的能力统一成模型可发现、可校验、可审批和可回填的 function calling 工具。</p>
+<h2 id="工具契约">工具契约</h2>
+<p>每个工具定义包含：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Name</code></td>
+<td>Runtime 内唯一的真实工具名</td>
+</tr>
+<tr>
+<td><code>Description</code></td>
+<td>提供给模型的用途和调用约束</td>
+</tr>
+<tr>
+<td><code>Parameters</code></td>
+<td>JSON Schema 参数定义</td>
+</tr>
+<tr>
+<td><code>Risk</code></td>
+<td><code>Low</code>、<code>Medium</code> 或 <code>High</code></td>
+</tr>
+<tr>
+<td><code>ProviderId</code></td>
+<td>工具来源标识</td>
+</tr>
+<tr>
+<td><code>IsHidden</code></td>
+<td>是否需要先通过工具发现流程激活</td>
+</tr>
+</tbody>
+</table>
+<p>调用请求包含真实工具名、JSON 参数和可选 provider；执行结果统一为 <code>ToolResult</code>：</p>
+<pre><code class="lang-json">{
+  &quot;isSuccess&quot;: true,
+  &quot;summary&quot;: &quot;简短结果摘要&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;asset-1&quot;
+  },
+  &quot;error&quot;: null
 }
 </code></pre>
-<p><code>ToolRegistry</code> 聚合所有 provider，并按工具名建立路由表。若 <code>ToolCallRequest.Provider</code> 为空，则按 <code>ToolName</code> 查找；若指定 provider，则优先按 provider id 解析</p>
+<p><code>data</code> 在 provider 内可以是 JSON 文本或普通文本。回填模型时，合法的 JSON 对象和数组会恢复为结构化节点，避免二次转义；其他内容保持字符串。</p>
+<h2 id="注册与路由">注册与路由</h2>
+<p>工具注册表在首次使用时向所有 provider 请求目录，并按工具名建立路由。模型调用工具时，执行管线先解析 wire-safe 名称，再由注册表路由到目标 provider。</p>
+<p>工具名不区分大小写。不同 provider 不应注册同名工具；外部工具应使用明确命名空间，避免覆盖 DM 内置能力。</p>
+<h2 id="两层工具发现">两层工具发现</h2>
+<p>为了避免每轮把大量业务工具 schema 发送给模型，Runtime 使用“目录 + 活跃集”机制：</p>
+<ul>
+<li>基础工具和发现元工具直接进入活跃集；</li>
+<li>隐藏工具只在目录摘要中出现；</li>
+<li>模型通过 <code>tool.search</code> 检索相关工具；</li>
+<li>通过 <code>tool.activate</code> 把选中的工具加入本轮活跃集；</li>
+<li>激活结果写回会话，后续轮次自动恢复。</li>
+</ul>
+<p>如果模型跳过激活而直接使用真实工具名，执行管线会在能够唯一解析时自动激活；无法解析时返回引导性错误，让模型重新搜索。</p>
+<h2 id="内置-provider">内置 provider</h2>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>主要能力</th>
+<th>定位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>runtime</code></td>
+<td>当前时间、应用信息、工作区信息</td>
+<td>低风险环境上下文</td>
+</tr>
+<tr>
+<td><code>skill</code></td>
+<td>读取 Skill 说明和关联资源</td>
+<td>按需加载领域知识</td>
+</tr>
+<tr>
+<td><code>draft</code></td>
+<td>草稿的创建、读取、编辑、删除、清空和列表</td>
+<td>大内容分段生成与修改</td>
+</tr>
+<tr>
+<td><code>plan</code></td>
+<td>向用户展示结构化决策步骤并等待选择</td>
+<td>复杂需求澄清，不是多 Agent 计划器</td>
+</tr>
+<tr>
+<td><code>script</code></td>
+<td>执行 C# 或 Python 脚本</td>
+<td>兼容和计算能力，高风险</td>
+</tr>
+<tr>
+<td><code>cli</code></td>
+<td>命令执行与专用文件操作</td>
+<td>开发诊断兜底能力</td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td>DM 宿主通过 IPC 暴露的 typed tools</td>
+<td>内部业务能力主干</td>
+</tr>
+<tr>
+<td><code>mcp</code></td>
+<td>stdio MCP server 工具</td>
+<td>第三方和客户扩展入口</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dm-宿主工具">DM 宿主工具</h2>
+<p>PrismaTalk 通过 IPC 获取宿主实时工具目录，而不是在对话进程中静态复制全部 DM 业务能力。宿主侧可以暴露数据库、QueryAsset、ChartAsset、ViewAsset 和其他依赖当前项目或运行环境的 typed tools。</p>
+<p>IPC 交互遵循三个基础方法：</p>
+<p>IPC 使用长度前缀 JSON 消息。外层请求包含关联标识、方法名和序列化后的负载字符串：</p>
+<pre><code class="lang-json">{
+  &quot;RequestId&quot;: &quot;7f6f0f9b...&quot;,
+  &quot;Method&quot;: &quot;ipc.ping&quot;,
+  &quot;PayloadJson&quot;: &quot;{}&quot;
+}
+</code></pre>
+<pre><code class="lang-json">{
+  &quot;RequestId&quot;: &quot;a81d24e1...&quot;,
+  &quot;Method&quot;: &quot;tool.list&quot;,
+  &quot;PayloadJson&quot;: &quot;{\&quot;ProviderId\&quot;:null}&quot;
+}
+</code></pre>
+<pre><code class="lang-json">{
+  &quot;RequestId&quot;: &quot;bd32c7a0...&quot;,
+  &quot;Method&quot;: &quot;tool.invoke&quot;,
+  &quot;PayloadJson&quot;: &quot;{\&quot;ToolName\&quot;:\&quot;entity.query\&quot;,\&quot;ArgumentsJson\&quot;:\&quot;{\\\&quot;instanceId\\\&quot;:\\\&quot;main\\\&quot;,\\\&quot;sql\\\&quot;:\\\&quot;SELECT * FROM Device\\\&quot;}\&quot;,\&quot;Provider\&quot;:null}&quot;
+}
+</code></pre>
+<p>宿主返回的工具定义直接进入统一目录，调用结果也转换为统一 <code>ToolResult</code>。因此宿主工具与本地工具共享相同的发现、审批、时间线和模型回填流程。</p>
 <h2 id="数据库-typed-tools">数据库 typed tools</h2>
-<p>宿主侧 <code>DatabaseToolProvider</code> 暴露以下工具：</p>
+<p>数据库工具按业务动作拆分，典型能力包括：</p>
 <table>
 <thead>
 <tr>
@@ -109,7 +237,7 @@
 <tr>
 <td><code>entity.listInstances</code></td>
 <td>Low</td>
-<td>列出可用数据库实例 key</td>
+<td>列出可用数据库实例</td>
 </tr>
 <tr>
 <td><code>entity.listTables</code></td>
@@ -124,48 +252,75 @@
 <tr>
 <td><code>entity.query</code></td>
 <td>Low</td>
-<td>执行单条只读 SELECT/WITH，并强制 LIMIT</td>
+<td>执行受限的只读查询</td>
 </tr>
 <tr>
 <td><code>entity.insert</code></td>
 <td>Medium</td>
-<td>执行单条 INSERT</td>
+<td>插入数据</td>
 </tr>
 <tr>
 <td><code>entity.update</code></td>
 <td>High</td>
-<td>执行单条 UPDATE，默认要求 WHERE</td>
+<td>更新数据，通常要求条件</td>
 </tr>
 <tr>
 <td><code>entity.delete</code></td>
 <td>High</td>
-<td>执行单条 DELETE，默认要求 WHERE</td>
+<td>删除数据，通常要求条件</td>
 </tr>
 <tr>
 <td><code>entity.alterTable</code></td>
 <td>High</td>
-<td>执行表级 DDL，拒绝数据库级操作</td>
+<td>执行受约束的表结构变更</td>
 </tr>
 </tbody>
 </table>
-<p>这些工具比让模型生成 C# 或任意 SQL 更可控：工具描述、参数 schema、风险等级和校验逻辑都由代码定义</p>
-<h2 id="cli-的定位">CLI 的定位</h2>
-<p><code>cli.run</code> 是高风险兜底工具，用于执行非交互式 PowerShell 命令。它适合开发、诊断、构建、查看文件等临时任务，但不应替代 typed tools</p>
-<p>使用 CLI 时应注意：</p>
+<p>这些工具比让模型生成任意脚本更可控：参数 schema、风险等级、SQL 范围和业务校验都由宿主决定。</p>
+<h2 id="skill-资源">Skill 资源</h2>
+<p>Skill 是可读取的能力包，包含领域知识、格式约定、工作流和示例。Skill 目录只把名称和描述放进本轮前置上下文；模型需要详细内容时调用：</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;skill.read&quot;,
+  &quot;arguments&quot;: {
+    &quot;name&quot;: &quot;QueryAsset&quot;,
+    &quot;path&quot;: &quot;SKILL.md&quot;
+  }
+}
+</code></pre>
+<p>资源路径只能指向该 Skill 包已索引的说明、参考、示例、资产或模板。读取 Skill 不代表必须执行代码；产生业务副作用仍应优先调用 typed tool。</p>
+<h2 id="草稿工具">草稿工具</h2>
+<p>草稿用于承载不适合一次性放进工具参数的大文本。支持创建/覆盖、读取、精确编辑、删除、清空和列举。草稿属于中间工作区，不等同于已经写入 DM 项目或文件系统。</p>
+<p>典型流程：</p>
+<pre><code class="lang-text">生成较长内容 → draft.put → 多次 draft.edit → draft.get 校验 → 交给 typed tool 正式应用
+</code></pre>
+<h2 id="计划交互工具">计划交互工具</h2>
+<p>计划工具用于一次性提交多个决策步骤，每个步骤包含一个问题和有限候选项。前端逐步收集用户选择，最终把结构化决策结果回填给模型。</p>
+<p>它适合在实施前澄清数据库、资产类型、覆盖策略等关键选项。它不创建子 Agent，也不改变单 Agent Runtime。</p>
+<h2 id="cli-与文件工具">CLI 与文件工具</h2>
+<p>CLI provider 包括通用非交互式 PowerShell 执行，以及读取、写入、复制和精确编辑文件的专用工具。</p>
 <ul>
-<li>所有调用都会进入高风险审批。</li>
-<li>默认超时为 60 秒，最大 600 秒。</li>
-<li>stdout / stderr 会截断，避免过长结果污染上下文。</li>
-<li>适合一次性诊断，不适合作为长期业务集成接口。</li>
+<li><code>cli.run</code>、写入、复制和编辑属于高风险操作；</li>
+<li><code>cli.read_file</code> 为中风险，只负责读取；</li>
+<li>命令具有超时限制；</li>
+<li>stdout 和 stderr 会截断，避免过长结果污染上下文；</li>
+<li>专用文件工具优先于把内容和路径拼接成 shell 命令；</li>
+<li>CLI 适合诊断和兜底，不应成为稳定 DM 业务集成的主接口。</li>
 </ul>
-<h2 id="mcp-的定位">MCP 的定位</h2>
-<p>MCP 不是内部工具总线的替代品。对于内部 MAS 能力，优先使用 <code>RemoteToolProvider</code>、typed tools 或脚本兼容层。MCP 更适合：</p>
+<h2 id="脚本工具">脚本工具</h2>
+<p>脚本 provider 支持 C# 和 Python。脚本执行属于高风险能力，适合计算、数据分析或兼容现有自动化 Skill。能够通过宿主 typed tool 完成的业务操作，不应优先生成脚本。</p>
+<h2 id="mcp-工具">MCP 工具</h2>
+<p>MCP provider 启动配置的 stdio server，完成初始化和 <code>tools/list</code> 后，将工具暴露为：</p>
+<pre><code class="lang-text">mcp.&lt;server&gt;.&lt;tool&gt;
+</code></pre>
+<p>MCP 工具默认使用高风险等级。只有明确确认只读且安全的工具才适合按名称降级。MCP 的配置、协议和风险建议见 <a href="McpIntegration.html">MCP 集成</a>。</p>
+<h2 id="风险边界">风险边界</h2>
+<p>风险等级决定 Runtime 的统一执行政策，但 provider 仍必须执行参数和业务校验：</p>
 <ul>
-<li>第三方工具生态</li>
-<li>客户现场自定义工具进程</li>
-<li>非 .NET 或不希望引用 MAS 主程序的独立服务</li>
-<li>希望同一工具同时被 PrismaTalk、其他桌面 Agent 或 IDE Agent 复用的场景</li>
+<li><code>Low</code>：直接调用；</li>
+<li><code>Medium</code>：直接调用，但工具应严格限制读取或变更范围；</li>
+<li><code>High</code>：执行前必须获得用户审批。</li>
 </ul>
+<p>审批只代表用户允许尝试执行，不代表参数合法。路径范围、SQL 限制、资产状态、设备连接和业务权限仍由具体工具验证。</p>
 
 </article>
 

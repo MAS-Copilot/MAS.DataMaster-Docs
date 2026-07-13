@@ -87,67 +87,122 @@
         <article data-uid="">
 <h1 id="masprismatalk">MAS.PrismaTalk</h1>
 
-<p>MAS.PrismaTalk 是 MAS.DataMaster 中的本地 AI 对话与 Agent 编排模块。当前实现已经从早期的“模型生成 C# 脚本并执行”演进为统一的 Agent Runtime：模型可以读取内置 Skill 文档、发现多来源工具、结构化调用工具、接收执行结果并继续推理，最后把自然语言结果返回给用户</p>
-<h2 id="当前定位">当前定位</h2>
-<p>PrismaTalk 负责对话、工具目录汇聚、工具调用编排、WebView 展示和配置读取。真正依赖宿主上下文的能力，例如数据库实例、运行时脚本编译、设备访问等，优先由 MAS.DataMaster 宿主通过 NamedPipe IPC 暴露为内部工具</p>
-<p>MCP 已经作为外部扩展入口接入，但不是内部能力的主干。内部 MAS 能力优先走 <code>RemoteToolProvider</code> + <code>MAS.NamedPipeIpc</code>，MCP 主要用于第三方工具、客户自定义独立工具进程、跨 Agent 生态复用等场景</p>
-<h2 id="关键源码入口">关键源码入口</h2>
+<p>MAS.PrismaTalk 是 MAS DataMaster（DM）专用的单 Agent 对话模块。它不是独立的通用 Agent 平台，也不负责多 Agent 编排。它的目标是让一个模型在统一、安全的运行时中理解用户请求，调用 DM 与扩展工具，并把执行过程和最终结果呈现给用户。</p>
+<h2 id="产品定位">产品定位</h2>
+<p>PrismaTalk 负责：</p>
+<ul>
+<li>维护一次会话的模型上下文和跨轮状态；</li>
+<li>调用模型并处理流式响应；</li>
+<li>汇聚、发现和执行多来源工具；</li>
+<li>对高风险操作发起用户审批；</li>
+<li>展示自然语言回复、工具时间线和错误状态；</li>
+<li>在长对话中评估上下文预算并压缩较早历史。</li>
+</ul>
+<p>数据库、资产、设备和其他依赖 DM 运行环境的能力由宿主提供。PrismaTalk 通过 NamedPipe IPC 使用这些能力；MCP 用于第三方或客户自定义扩展，不是 DM 内部能力的主干。</p>
+<h2 id="架构概览">架构概览</h2>
+<p>系统按职责分为四个边界：</p>
 <table>
 <thead>
 <tr>
-<th>入口</th>
-<th>说明</th>
+<th>边界</th>
+<th>职责</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>Agent/Core/AgentLoop.cs</code></td>
-<td>Agent 主循环，负责工具目录注入、模型调用、工具执行、审批和最终回答</td>
+<td>会话</td>
+<td>保存模型推理历史、已激活工具、调用幂等状态、token 用量和压缩状态</td>
 </tr>
 <tr>
-<td><code>Agent/Core/ToolRegistry.cs</code></td>
-<td>聚合所有 <code>IToolProvider</code>，按工具名路由调用</td>
+<td>Agent Runtime</td>
+<td>执行“模型 → 工具 → 结果 → 模型”的循环，决定何时完成一次对话</td>
 </tr>
 <tr>
-<td><code>Agent/Protocols/NativeToolCallProtocol.cs</code></td>
-<td>OpenAI 兼容 <code>tools</code> / <code>tool_calls</code> 结构化协议适配</td>
+<td>适配与执行</td>
+<td>把领域请求映射为具体模型 API；聚合工具、执行审批和调用具体 provider</td>
 </tr>
 <tr>
-<td><code>Agent/Protocols/TextEnvelopeProtocol.cs</code></td>
-<td>文本信封 fallback 协议</td>
-</tr>
-<tr>
-<td><code>Agent/Providers/*ToolProvider.cs</code></td>
-<td>各类工具来源</td>
-</tr>
-<tr>
-<td><code>Services/PrismaTalkClient.cs</code></td>
-<td>OpenAI 兼容流式请求、tool_calls 增量解析和 WebView 脚本调用</td>
-</tr>
-<tr>
-<td><code>HTML/js/main.js</code></td>
-<td>对话 UI、Agent timeline、审批卡片和 WebView 回传</td>
-</tr>
-<tr>
-<td><code>Models/Configurations/PrismaTalkConfig.cs</code></td>
-<td>服务地址、模型、代理、Prompt 和 MCP server 配置</td>
+<td>展示</td>
+<td>WebView 展示用户消息、流式回复、工具时间线、审批和重连状态</td>
 </tr>
 </tbody>
 </table>
-<h2 id="与-masdatamaster-的关系">与 MAS.DataMaster 的关系</h2>
-<p>PrismaTalk 是模块侧 Agent 编排器，MAS.DataMaster 是宿主侧业务能力执行环境。两者通过 <code>MAS.NamedPipeIpc</code> 通信：</p>
+<p>窗口层只管理输入、发送、取消、新会话和窗口显示状态。它不保存模型上下文，也不复制维护一份消息历史。一次调用仍返回结构化结果，供测试、自动化或未来非 WebView 调用方使用。</p>
+<h2 id="一次请求的生命周期">一次请求的生命周期</h2>
+<ol>
+<li>用户输入被追加到当前会话。</li>
+<li>Runtime 按当前配置重建系统提示、Skill 目录和工具发现提示。</li>
+<li>工具注册表汇聚内置工具、宿主 IPC 工具和已配置的 MCP 工具。</li>
+<li>当前领域上下文和活跃工具被组装为统一模型请求。</li>
+<li>API 适配器将请求转换为 Chat Completions 或 Responses 请求体并发送。</li>
+<li>自然语言增量立即进入 WebView；结构化工具调用不会作为正文展示。</li>
+<li>工具执行管线解析真实工具名、检查风险、必要时等待审批，然后调用对应 provider。</li>
+<li>结构化工具结果写回会话并再次发送给模型。</li>
+<li>当模型不再调用工具时，最终回答写入会话并结束本轮。</li>
+</ol>
+<p>循环最多允许 99 个工具编排步骤。达到上限后，Runtime 会移除工具并要求模型直接总结当前结果。</p>
+<h2 id="与-dm-宿主的关系">与 DM 宿主的关系</h2>
+<p>DM 宿主是业务能力执行环境，PrismaTalk 是对话和 Agent 编排器。二者通过固定 NamedPipe IPC 通道通信：</p>
 <ul>
-<li>PrismaTalk 通过 <code>RemoteToolProvider</code> 调用宿主的 <code>tool.list</code> 和 <code>tool.invoke</code></li>
-<li>MAS.DataMaster 在 <code>NamedPipeIpc/IpcBootstrapper.cs</code> 注册 <code>skill.execute</code>、<code>tool.list</code>、<code>tool.invoke</code></li>
-<li>宿主侧 <code>DatabaseToolProvider</code> 以 <code>entity.*</code> 工具暴露数据库实例、表结构、查询和写操作</li>
-<li>旧的 C# 脚本链路仍保留为 <code>script.csharp</code>，用于兼容 Modbus、Siemens、Mitsubishi 等 Skill 脚本</li>
+<li>启动时先调用 <code>ipc.ping</code> 检查宿主通信是否可用；</li>
+<li>IPC 不可用并不等价于宿主进程一定未启动，也可能是 IPC 服务尚未就绪；</li>
+<li>用户可以选择继续使用不依赖宿主的能力，或者关闭 PrismaTalk；</li>
+<li>宿主工具通过 <code>tool.list</code> 进入统一目录，通过 <code>tool.invoke</code> 执行；</li>
+<li>宿主工具和本地/MCP 工具使用相同的风险、审批与结果协议。</li>
 </ul>
+<h2 id="模型通道">模型通道</h2>
+<p>Runtime 使用统一的领域请求和响应，不直接依赖某一种模型 API。当前支持：</p>
+<table>
+<thead>
+<tr>
+<th>通道</th>
+<th>请求形态</th>
+<th>工具形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat Completions</td>
+<td><code>messages</code></td>
+<td>assistant <code>tool_calls</code> + <code>role=tool</code> 结果</td>
+</tr>
+<tr>
+<td>Responses</td>
+<td><code>input</code> items</td>
+<td><code>function_call</code> + <code>function_call_output</code></td>
+</tr>
+</tbody>
+</table>
+<p>Responses 默认采用无状态方式：每轮发送完整上下文并设置 <code>store: false</code>。会话状态始终由 PrismaTalk 自己维护。</p>
+<h2 id="工具来源">工具来源</h2>
+<p>工具统一表示为名称、说明、JSON Schema、风险等级和 provider 标识。当前来源包括：</p>
+<ul>
+<li>DM 宿主 IPC typed tools；</li>
+<li>Runtime 和工作区信息工具；</li>
+<li>Skill 资源读取；</li>
+<li>草稿管理；</li>
+<li>Agent 计划交互；</li>
+<li>C#、Python 脚本；</li>
+<li>CLI 与文件操作；</li>
+<li>stdio MCP server。</li>
+</ul>
+<p>内部 DM 能力优先设计为 typed tools。CLI 和脚本属于兼容或兜底能力，不应替代稳定的业务接口。</p>
 <h2 id="设计原则">设计原则</h2>
 <ul>
-<li>内部能力优先使用强类型 ToolProvider 和 IPC，不把内部软件接口为了形式统一而强行 MCP 化</li>
-<li>高风险工具必须经过统一审批门，审批点在执行前，由 WebView 工具审批卡片完成</li>
-<li>普通问答保持轻量，不创建 timeline；只有真实工具调用、资源读取、审批等可审计动作才显示 Agent 过程</li>
-<li>MCP 保留为高级外部扩展能力，默认无 server 配置时不影响普通对话和内置工具</li>
+<li>使用原生 function calling，不从助手正文解析动作标签或 JSON。</li>
+<li>领域会话与具体 wire 协议分离，同一套 Runtime 可切换模型通道。</li>
+<li>模型上下文、WebView 展示和窗口状态各自只有一个责任边界。</li>
+<li>工具执行统一经过发现、风险判断、审批、调用和结果标准化管线。</li>
+<li>内部能力优先使用 IPC typed tools；MCP 只作为外部扩展入口。</li>
+<li>普通问答保持轻量，只有真实工具行为才创建可审计时间线。</li>
+<li>长对话在预算阈值处压缩较早历史，当前任务和最近历史保持原样。</li>
+</ul>
+<h2 id="相关文档">相关文档</h2>
+<ul>
+<li><a href="AgentRuntime.html">Agent Runtime</a>：领域模型、循环、会话和上下文管理。</li>
+<li><a href="ToolProviders.html">工具提供者</a>：工具契约、内置来源和风险定位。</li>
+<li><a href="McpIntegration.html">MCP 集成</a>：stdio MCP 配置和边界。</li>
+<li><a href="FrontendEvents.html">WebView 事件与审批</a>：展示事件和交互请求体。</li>
 </ul>
 
 </article>

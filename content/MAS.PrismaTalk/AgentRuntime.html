@@ -87,55 +87,111 @@
         <article data-uid="">
 <h1 id="agent-runtime">Agent Runtime</h1>
 
-<p>Agent Runtime 是 MAS.PrismaTalk 当前的核心执行层。它把“模型回答”扩展为“模型可以结构化调用工具、观察结果、继续推理并最终回答”的循环</p>
-<h2 id="运行流程">运行流程</h2>
-<p>一次对话由 <code>ConversationDriver</code> 进入 <code>AgentLoop</code>：</p>
-<ol>
-<li>读取系统提示词和当前对话历史</li>
-<li>通过 <code>ToolRegistry.ListAllAsync</code> 汇聚所有工具定义</li>
-<li>根据当前 <code>IAgentProtocol</code> 生成模型可理解的工具上下文或 <code>tools</code> schema</li>
-<li>调用 <code>PrismaTalkClient</code> 发送 OpenAI 兼容流式请求</li>
-<li>如果模型返回工具调用，则解析参数、检查风险、必要时请求用户审批</li>
-<li>通过 <code>ToolRegistry.InvokeAsync</code> 路由到具体 <code>IToolProvider</code></li>
-<li>把 <code>ToolResult</code> 回填给模型，继续下一轮推理</li>
-<li>没有工具调用时，将自然语言内容作为最终回答写入 WebView</li>
-</ol>
-<p>当前 <code>MAX_STEPS</code> 为 8，超过后会要求模型停止调用工具并总结已完成工作</p>
-<h2 id="协议适配">协议适配</h2>
-<p>代码保留两套协议适配，但上层 loop 面向统一动作模型</p>
+<p>Agent Runtime 是 MAS.PrismaTalk 的核心执行层。它只编排一个 DM 专用 Agent，通过结构化 function calling 完成“模型判断 → 调用工具 → 观察结果 → 继续推理 → 最终回答”的循环。</p>
+<h2 id="分层与依赖方向">分层与依赖方向</h2>
+<p>Runtime 内部使用领域对象表达对话和工具行为，模型 API、工具来源和 WebView 都位于边界之外：</p>
+<pre><code class="lang-text">用户输入
+  → 会话驱动
+  → Agent 编排循环
+      → 模型 API 适配器 → HTTP/SSE
+      → 工具执行管线 → 工具注册表 → Tool Provider
+      → 事件与流式视图 → WebView
+  → 结构化调用结果
+</code></pre>
+<p>核心规则是：编排循环不构造 HTTP 请求体、不调用 JavaScript、不直接执行某类业务工具。它只处理领域请求、领域响应和领域会话项。</p>
+<h2 id="领域会话项">领域会话项</h2>
+<p>会话历史由以下 item 组成：</p>
 <table>
 <thead>
 <tr>
-<th>协议</th>
-<th>文件</th>
-<th>用途</th>
+<th>Item</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Native tool calls</td>
-<td><code>Agent/Protocols/NativeToolCallProtocol.cs</code></td>
-<td>使用 OpenAI 兼容 <code>tools</code> / <code>tool_calls</code>，动作和文本分别走结构化通道与 <code>content</code> 通道</td>
+<td><code>SystemMessageItem</code></td>
+<td>系统指令；通常作为每轮前置提示动态构建</td>
 </tr>
 <tr>
-<td>Text envelope</td>
-<td><code>Agent/Protocols/TextEnvelopeProtocol.cs</code></td>
-<td>端点不支持 tool_calls 时的 fallback，模型输出 <code>&lt;agent_action&gt;{...}&lt;/agent_action&gt;</code></td>
+<td><code>UserMessageItem</code></td>
+<td>用户输入或系统生成的会话摘要</td>
+</tr>
+<tr>
+<td><code>AssistantMessageItem</code></td>
+<td>助手说明文字或最终回答</td>
+</tr>
+<tr>
+<td><code>FunctionCallItem</code></td>
+<td>模型发起的工具调用，包含 <code>CallId</code>、工具名和 JSON 参数</td>
+</tr>
+<tr>
+<td><code>FunctionCallOutputItem</code></td>
+<td>与 <code>CallId</code> 配对的结构化工具结果</td>
 </tr>
 </tbody>
 </table>
-<p>当前依赖注册中默认使用 <code>NativeToolCallProtocol</code>。该协议会把真实工具名映射为 wire-safe 名称，例如 <code>entity.listInstances</code> 或 <code>mcp.example.search</code> 会在发送给模型前转换为仅含字母、数字、下划线或短横线的函数名，并在执行时映射回真实工具名</p>
-<h2 id="结构化消息">结构化消息</h2>
-<p>Native 协议下，工具调用不再混入正文：</p>
-<ul>
-<li>助手自然语言输出走 <code>delta.content</code>，会实时进入 <code>.stream-output</code></li>
-<li>工具调用走 <code>delta.tool_calls</code>，由 <code>AssistantStreamResult.ToolCalls</code> 累积</li>
-<li>工具结果写回 <code>role=tool</code> 消息，并通过 <code>tool_call_id</code> 与原调用关联</li>
-<li>对话历史中的 assistant 工具调用保存为 <code>ChatMessage.ToolCalls</code></li>
-</ul>
-<p>这种结构避免旧文本信封模式下把 JSON、标签或半截工具参数泄漏给用户</p>
-<h2 id="工具风险与审批">工具风险与审批</h2>
-<p>每个 <code>ToolDefinition</code> 都带有 <code>ToolRisk</code>：</p>
+<p>编排层不会直接操作 <code>messages</code>、<code>tool_calls</code>、<code>function_call_output</code> 等 wire 对象。协议映射只发生在模型适配边界。</p>
+<h2 id="统一模型请求与响应">统一模型请求与响应</h2>
+<p>一次模型调用使用统一领域请求：</p>
+<pre><code class="lang-text">ModelRequest
+├─ Items                 当前完整领域上下文
+├─ Tools                 本次允许模型调用的工具
+├─ Model?                可按请求覆盖模型
+├─ PreviousResponseId?   可选的 Responses 关联标识
+├─ MaxOutputTokens?      最大输出 token
+└─ Temperature?          采样温度
+</code></pre>
+<p>一次模型响应使用统一领域结果：</p>
+<pre><code class="lang-text">ModelTurn
+├─ Items          助手文本和零到多个工具调用
+├─ ResponseId?    Responses 通道可返回
+├─ FinishReason   结束原因
+└─ Usage?         模型报告的 token 用量
+</code></pre>
+<p>一个 turn 可以同时包含助手说明文字和多个工具调用。说明文字流向用户，工具调用进入执行管线，二者不会混在同一个文本解析通道中。</p>
+<h2 id="编排循环">编排循环</h2>
+<p>每次用户请求按以下顺序运行：</p>
+<ol>
+<li>获取当前会话，并修复上一轮取消或异常留下的悬空工具调用。</li>
+<li>汇聚工具目录，恢复本会话已经激活的隐藏工具。</li>
+<li>动态构建本轮前置上下文：系统提示、工具发现规则和 Skill 目录。</li>
+<li>评估下一次模型请求的上下文预算，必要时先压缩较早历史。</li>
+<li>将前置上下文、会话历史和活跃工具组装为 <code>ModelRequest</code>。</li>
+<li>模型输出自然语言时实时追加到当前流式消息。</li>
+<li>模型输出工具调用时，把助手说明和调用 item 写入会话。</li>
+<li>逐个执行工具调用，把每个结果 item 写入会话。</li>
+<li>带着工具结果再次调用模型。</li>
+<li>模型不再调用工具时，把最终回答写入会话并完成本轮。</li>
+</ol>
+<p>同一个 <code>CallId</code> 在会话中只允许执行一次。模型重复使用已经执行的调用标识时，Runtime 不会再次触发副作用，而是回填重复调用错误。</p>
+<h2 id="工具发现与激活">工具发现与激活</h2>
+<p>工具采用两层目录：少量基础工具直接处于活跃集，大量业务工具通过发现元工具按需检索和激活。这样可以避免把全部 JSON Schema 放进每次请求，降低 token 消耗，并减少模型在相似工具之间误选。</p>
+<p>工具激活状态属于会话状态。某个隐藏工具在本轮激活后，后续轮次会自动恢复；新会话不会继承旧会话的激活状态。</p>
+<p>真实工具名可能包含点号或超过模型 API 的函数名限制。发送前会映射为 wire-safe 名称，执行时再映射回真实名称。工具注册表和业务 provider 始终使用真实名称。</p>
+<h2 id="工具执行管线">工具执行管线</h2>
+<p>每个工具调用统一经过以下步骤：</p>
+<ol>
+<li>将 wire-safe 名称解析为真实工具名；</li>
+<li>必要时自动激活目录中的目标工具；</li>
+<li>解析工具定义、provider 和风险等级；</li>
+<li>找不到工具时返回可供模型修正的结构化错误；</li>
+<li>高风险工具执行前请求用户审批；</li>
+<li>路由到具体 provider；</li>
+<li>将成功或失败结果标准化为 <code>ToolResult</code>；</li>
+<li>发送开始、等待审批、完成等时间线事件；</li>
+<li>生成与原 <code>CallId</code> 配对的输出 item。</li>
+</ol>
+<p>工具结果的领域形态为：</p>
+<pre><code class="lang-json">{
+  &quot;isSuccess&quot;: true,
+  &quot;summary&quot;: &quot;操作完成&quot;,
+  &quot;data&quot;: &quot;可选的结构化或文本结果&quot;,
+  &quot;error&quot;: null
+}
+</code></pre>
+<p>映射到模型协议时，结果会被序列化为稳定 payload。模型收到的是执行事实，不是 WebView 展示事件。</p>
+<h2 id="风险与审批">风险与审批</h2>
 <table>
 <thead>
 <tr>
@@ -150,18 +206,151 @@
 </tr>
 <tr>
 <td><code>Medium</code></td>
-<td>当前代码直接执行，工具自身仍应做参数校验</td>
+<td>直接进入 provider，由工具继续进行参数和业务校验</td>
 </tr>
 <tr>
 <td><code>High</code></td>
-<td>执行前调用 <code>IToolApprovalService.RequestApprovalAsync</code></td>
+<td>执行前等待用户审批</td>
 </tr>
 </tbody>
 </table>
-<p>默认审批实现是 <code>WebViewToolApprovalService</code>。它调用前端 <code>renderAgentApprovalRequest</code> 渲染审批卡片，并等待前端回传 <code>toolApprovalResponse</code>。用户拒绝时，Agent 会收到一个失败的 <code>ToolResult</code>，模型可据此解释已取消或选择其他方案</p>
-<h2 id="skill-资源读取">Skill 资源读取</h2>
-<p>早期设计中的 <code>resource_request</code> 在 native tool_calls 模式下被收敛为标准工具 <code>skill.read</code>。<code>SkillResourceToolProvider</code> 读取 <code>FileSystemSkillRegistry</code> 中发现的 <code>SKILL.md</code> 或资源文件，并以低风险工具形式进入统一目录</p>
-<p><code>FileSystemSkillRegistry</code> 从 <code>ApplicationInformation.PRISMATALK_PATH</code> 读取 Skill 包，解析 front matter 中的 <code>name</code>、<code>description</code>、<code>risk</code>，并索引 <code>references/</code>、<code>examples/</code>、<code>assets/</code>、<code>templates/</code> 等资源</p>
+<p>高风险审批支持“本次允许”和“本轮始终允许”。轮级允许状态只在当前用户请求内有效，下一次用户请求开始时重置。用户拒绝不会抛弃调用历史，而是生成失败工具结果，让模型能够解释取消原因或选择其他方案。</p>
+<h2 id="chat-completions-映射">Chat Completions 映射</h2>
+<p>领域请求映射为 OpenAI 兼容 Chat Completions 请求：</p>
+<pre><code class="lang-json">{
+  &quot;model&quot;: &quot;model-name&quot;,
+  &quot;messages&quot;: [
+    { &quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;...&quot; },
+    { &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;...&quot; },
+    {
+      &quot;role&quot;: &quot;assistant&quot;,
+      &quot;content&quot;: &quot;我先检查当前状态。&quot;,
+      &quot;tool_calls&quot;: [
+        {
+          &quot;id&quot;: &quot;call_1&quot;,
+          &quot;type&quot;: &quot;function&quot;,
+          &quot;function&quot;: {
+            &quot;name&quot;: &quot;runtime_workspace&quot;,
+            &quot;arguments&quot;: &quot;{}&quot;
+          }
+        }
+      ]
+    },
+    {
+      &quot;role&quot;: &quot;tool&quot;,
+      &quot;tool_call_id&quot;: &quot;call_1&quot;,
+      &quot;content&quot;: &quot;{\&quot;isSuccess\&quot;:true,\&quot;summary\&quot;:\&quot;已获取工作区\&quot;,\&quot;data\&quot;:\&quot;...\&quot;}&quot;
+    }
+  ],
+  &quot;tools&quot;: [
+    {
+      &quot;type&quot;: &quot;function&quot;,
+      &quot;function&quot;: {
+        &quot;name&quot;: &quot;runtime_workspace&quot;,
+        &quot;description&quot;: &quot;Get current workspace information&quot;,
+        &quot;parameters&quot;: { &quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: {} }
+      }
+    }
+  ],
+  &quot;stream&quot;: true
+}
+</code></pre>
+<p>SSE 中的 <code>choices[].delta.content</code> 作为自然语言增量；<code>choices[].delta.tool_calls</code> 按索引累计名称和参数，完成后转换为领域工具调用。</p>
+<h2 id="responses-映射">Responses 映射</h2>
+<p>Responses 通道把同一批领域 item 映射为 <code>input</code>：</p>
+<pre><code class="lang-json">{
+  &quot;model&quot;: &quot;model-name&quot;,
+  &quot;input&quot;: [
+    {
+      &quot;role&quot;: &quot;user&quot;,
+      &quot;content&quot;: &quot;检查当前工作区&quot;
+    },
+    {
+      &quot;type&quot;: &quot;function_call&quot;,
+      &quot;call_id&quot;: &quot;call_1&quot;,
+      &quot;name&quot;: &quot;runtime_workspace&quot;,
+      &quot;arguments&quot;: &quot;{}&quot;
+    },
+    {
+      &quot;type&quot;: &quot;function_call_output&quot;,
+      &quot;call_id&quot;: &quot;call_1&quot;,
+      &quot;output&quot;: &quot;{\&quot;isSuccess\&quot;:true,\&quot;summary\&quot;:\&quot;已获取工作区\&quot;,\&quot;data\&quot;:\&quot;...\&quot;}&quot;
+    }
+  ],
+  &quot;tools&quot;: [
+    {
+      &quot;type&quot;: &quot;function&quot;,
+      &quot;name&quot;: &quot;runtime_workspace&quot;,
+      &quot;description&quot;: &quot;Get current workspace information&quot;,
+      &quot;parameters&quot;: { &quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: {} }
+    }
+  ],
+  &quot;store&quot;: false,
+  &quot;stream&quot;: true
+}
+</code></pre>
+<p>Responses 默认不依赖服务端会话存储：每轮发送完整 <code>input</code>，并设置 <code>store: false</code>。<code>previous_response_id</code> 只有在领域请求显式提供时才透传。</p>
+<p>SSE 按事件 <code>type</code> 分发，文本增量和函数调用分别累计；<code>completed</code>、<code>incomplete</code> 和 <code>[DONE]</code> 归一化为终态，<code>failed</code> 或 <code>error</code> 转为连接异常交由 Runtime 判断是否重连。</p>
+<h2 id="会话状态">会话状态</h2>
+<p>每个会话维护：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Items</code></td>
+<td>完整领域历史，包括用户、助手、工具调用和工具结果</td>
+</tr>
+<tr>
+<td><code>ActivatedToolNames</code></td>
+<td>已按需激活的隐藏工具</td>
+</tr>
+<tr>
+<td>已执行 CallId</td>
+<td>防止重复执行同一个工具调用</td>
+</tr>
+<tr>
+<td>最近 Usage</td>
+<td>优先使用模型报告的真实 token 用量</td>
+</tr>
+<tr>
+<td>ContextWindow</td>
+<td>当前配置的上下文窗口</td>
+</tr>
+<tr>
+<td>CompactionPending</td>
+<td>是否应在下一轮开始前压缩</td>
+</tr>
+</tbody>
+</table>
+<p>当前会话存储位于进程内。创建新会话会丢弃旧会话状态并生成新的会话标识。</p>
+<p>上一轮若在工具调用写入后、结果写入前被取消，下一轮开始时会在原调用块后补入“上一轮已中断”的失败结果，保证每个调用都有配对输出，满足模型协议约束。</p>
+<h2 id="上下文预算与压缩">上下文预算与压缩</h2>
+<p>可用输入预算按以下思路计算：</p>
+<pre><code class="lang-text">可用输入预算 = 上下文窗口 - 最大输出 token - 安全余量
+</code></pre>
+<ul>
+<li>达到约 70% 的软阈值时，标记下一轮开始前压缩；</li>
+<li>达到约 90% 的硬阈值时，在发送请求前立即尝试压缩；</li>
+<li>有真实 usage 时，以最近 usage 为基准，并估算之后新增的 item；</li>
+<li>没有真实 usage 时，对前置提示和完整会话进行估算。</li>
+</ul>
+<p>压缩会保留当前用户任务，把更早的完整前缀替换为一条 <code>CONVERSATION_SUMMARY</code>。摘要最多使用上下文窗口的 10%，再次压缩时旧摘要会与后续历史合并重写，不产生嵌套摘要。</p>
+<p>当前摘要输入只包含系统、用户和助手文本，不包含工具调用参数及原始工具结果。这能控制敏感数据和 token 体积，但意味着只存在于工具结果、未被助手复述的事实可能无法进入摘要；开发业务工具和长任务流程时应注意这一边界。</p>
+<h2 id="重连与取消">重连与取消</h2>
+<p>连接中断时，Runtime 最多重试 5 次，每次等待 10 秒。重试前会回滚当前未完成的助手流式输出并显示重连状态，成功或最终失败后隐藏状态。</p>
+<p>用户取消会停止模型请求、工具调用等待或重连延迟。已经写入但尚未配对结果的工具调用由下一轮的历史修复机制处理。</p>
+<h2 id="展示边界">展示边界</h2>
+<p>WebView 接收两类输出：</p>
+<ul>
+<li>流式视图：用户可见的助手文本、重连回滚和重连提示；</li>
+<li>Agent 事件：思考、工具开始、等待审批、工具完成、上下文用量和本轮完成。</li>
+</ul>
+<p>WebView 不决定工具是否允许执行，也不保存模型推理历史。审批结果只是用户输入，最终风险判断和工具调用始终在后端执行</p>
 
 </article>
 

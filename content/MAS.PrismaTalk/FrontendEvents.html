@@ -89,11 +89,11 @@
 
 <p>MAS.PrismaTalk 的对话 UI 由 WPF 后端通过 WebView 执行 JavaScript 驱动。普通文本回复、Agent timeline、工具审批都在同一个 WebView 对话流中呈现</p>
 <h2 id="后端调用前端">后端调用前端</h2>
-<p><code>PrismaTalkClient</code> 继承自 WebView 服务基类，通过 <code>ExecuteScriptAsync</code> 调用前端函数</p>
+<p>WebView 传输层通过脚本桥接调用前端函数</p>
 <table>
 <thead>
 <tr>
-<th>C# 方法</th>
+<th>后端操作</th>
 <th>前端函数</th>
 <th>说明</th>
 </tr>
@@ -122,7 +122,12 @@
 <tr>
 <td><code>ClearConversationAsync</code></td>
 <td><code>clearAllMessages()</code></td>
-<td>清空对话</td>
+<td>清空对话，输入区回到初始居中态</td>
+</tr>
+<tr>
+<td><code>SetSendingStateAsync</code></td>
+<td><code>setSendingState(isSending)</code></td>
+<td>同步发送状态，前端切换发送/停止按钮</td>
 </tr>
 <tr>
 <td><code>ShowToastMessageAsync</code></td>
@@ -163,6 +168,35 @@
 </tr>
 </tbody>
 </table>
+<h2 id="前端调用后端">前端调用后端</h2>
+<p>输入框与会话操作按钮位于 WebView 前端（初始与描述文案垂直居中，首次发送后吸底）。
+用户动作通过 <code>window.chrome.webview.postMessage</code> 回传，<code>MainViewModel</code> 订阅 <code>MessageReceived</code> 统一分发：</p>
+<table>
+<thead>
+<tr>
+<th>前端消息 <code>type</code></th>
+<th>载荷</th>
+<th>后端行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sendMessage</code></td>
+<td><code>content</code>：用户输入文本</td>
+<td>启动一轮对话（等价于旧发送命令）</td>
+</tr>
+<tr>
+<td><code>cancelSend</code></td>
+<td>无</td>
+<td>取消当前正在进行的发送</td>
+</tr>
+<tr>
+<td><code>newConversation</code></td>
+<td>无</td>
+<td>取消进行中的发送并清空会话，前端布局回到居中态</td>
+</tr>
+</tbody>
+</table>
 <h2 id="agent-timeline-事件">Agent timeline 事件</h2>
 <p>后端当前下发的事件主要有：</p>
 <pre><code class="lang-json">{
@@ -192,7 +226,7 @@
 </code></pre>
 <p>前端 <code>renderAgentEvent</code> 会懒创建 timeline。普通问答只显示 <code>showPlainThinking</code> 和最终流式文本；只有真实工具调用、资源读取、审批或观察结果才出现可折叠的 Agent 过程</p>
 <h2 id="审批卡片">审批卡片</h2>
-<p>高风险工具执行前，<code>AgentLoop</code> 会调用 <code>IToolApprovalService</code>。默认实现 <code>WebViewToolApprovalService</code> 会渲染如下 payload：</p>
+<p>高风险工具执行前，工具执行管线会调用统一审批服务。WebView 审批通道会渲染如下 payload：</p>
 <pre><code class="lang-json">{
   &quot;streamId&quot;: &quot;...&quot;,
   &quot;id&quot;: &quot;call_0&quot;,
@@ -215,7 +249,7 @@
 <p>后端用 <code>approvalId</code> 匹配等待中的审批请求。拒绝时不会执行工具，而是把取消结果作为 <code>ToolResult</code> 回填给模型</p>
 <h2 id="前端职责边界">前端职责边界</h2>
 <p>前端只负责展示和回传用户审批选择，不决定工具是否可执行。风险等级、参数校验、工具路由和执行都在后端完成。</p>
-<p>这使得安全逻辑集中在 Agent Runtime 和各 ToolProvider 内，WebView 只承担可视化与交互职责。</p>
+<p>这使得安全逻辑集中在 Agent Runtime 和各 Tool Provider 内，WebView 只承担可视化与交互职责。</p>
 
 </article>
 

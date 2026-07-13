@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>ViewAsset 视图资产 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="ViewAsset 视图资产 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/DataBase/ViewAsset/ViewAsset.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="viewasset-视图资产">ViewAsset 视图资产</h1>
+
+<h2 id="模块说明">模块说明</h2>
+<p>ViewAsset 用于承载自定义的数据库视图页面。每个视图资产是项目资产根目录下的独立文件夹，由普通 HTML、CSS、JavaScript、图片以及只读 SQL 文件组成。</p>
+<p>DataMaster 启动本地 Web Host，负责：</p>
+<ul>
+<li>托管资产目录中的前端文件；</li>
+<li>提供只读 SQL 查询接口；</li>
+<li>使用当前 ViewAsset 项目配置的数据库执行查询；</li>
+<li>将查询结果转换为 JSON 返回给资产页面。</li>
+</ul>
+<p>前端页面不直接连接数据库。页面只能通过 ViewAsset 查询接口请求后端执行资产目录中的 SQL 文件。</p>
+<p>ViewAsset 不负责生成页面中的查询控件。文本框、日期选择器、查询按钮、数据表格、图表和刷新逻辑都由资产自己的前端代码实现。</p>
+<h2 id="相关模块">相关模块</h2>
+<h3 id="masdatabaseviewasset">MAS.Database/ViewAsset</h3>
+<p>该模块实现 ViewAsset 的核心业务逻辑：</p>
+<ul>
+<li>资产索引与目录解析；</li>
+<li><code>manifest.json</code> 读取；</li>
+<li>资产文件扫描与校验；</li>
+<li>SQL 文件定位；</li>
+<li>只读 SQL 校验；</li>
+<li>SQL 参数命令构建；</li>
+<li>数据库查询执行；</li>
+<li>查询结果转换；</li>
+<li>ViewAsset 项目持久化。</li>
+</ul>
+<p>查询相关的主要类型如下：</p>
+<ul>
+<li><code>ViewAssetQueryRequest</code>：查询请求模型；</li>
+<li><code>ViewAssetQueryRequestParser</code>：HTTP 与 IPC 共用的请求与参数解析、类型转换和校验；</li>
+<li><code>IViewAssetQueryService</code>：查询服务接口；</li>
+<li><code>ViewAssetQueryService</code>：SQL 文件读取、校验和执行；</li>
+<li><code>ViewAssetSqlCommandBuilder</code>：占位符转换、缺参检查和参数绑定命令构建；</li>
+<li><code>ViewAssetSqlGuard</code>：单条只读 SQL 校验；</li>
+<li><code>ViewAssetQueryException</code>：数据库执行阶段失败（消息含 SQL 文件名，已脱敏）；</li>
+<li><code>ViewAssetResultConverter</code>：查询结果转换；</li>
+<li><code>ViewAssetQueryResult</code>：页面查询结果；</li>
+<li><code>ViewAssetPreviewResult</code>：工具预览结果。</li>
+</ul>
+<h3 id="masdatamasterservicesviewasset">MAS.DataMaster/Services/ViewAsset</h3>
+<p><code>ViewAssetWebModule</code> 将 ViewAsset 接入本地 Web Host，处理静态文件请求与页面查询请求。</p>
+<h3 id="masdatamasternamedpipeipcviewasset">MAS.DataMaster/NamedPipeIpc/ViewAsset</h3>
+<p><code>ViewAssetToolProvider</code> 向 PrismaTalk/IPC 暴露 <code>viewAsset.*</code> 工具，包括资产查询、校验、注册、注销、恢复、预览、运行验证和封面生成。</p>
+<p>其中 <code>viewAsset.preview</code> 调用的也是 <code>IViewAssetQueryService</code>，并且与页面 HTTP 查询共用同一个 <code>ViewAssetQueryRequestParser</code> 完成请求解析、参数类型转换与校验，两条入口的参数语义完全一致。</p>
+<h2 id="资产目录">资产目录</h2>
+<p>典型资产结构：</p>
+<pre><code class="lang-text">ViewAssets/
+├─ _shared/
+│  └─ echarts.min.js
+└─ production-query/
+   ├─ index.html
+   ├─ manifest.json
+   ├─ app.js
+   ├─ style.css
+   └─ main.sql
+</code></pre>
+<ul>
+<li><code>index.html</code>：默认入口页面；</li>
+<li><code>manifest.json</code>：资产描述文件；</li>
+<li><code>*.sql</code>：可由页面查询接口执行的只读 SQL；</li>
+<li><code>_shared</code>：所有 ViewAsset 可引用的共享前端资源目录。</li>
+</ul>
+<p><code>manifest.json</code> 当前描述资产入口、标题、说明、标签、样式、组件数量和刷新策略，不包含查询参数定义。</p>
+<h2 id="web-host-路由">Web Host 路由</h2>
+<h3 id="静态页面">静态页面</h3>
+<pre><code class="lang-http">GET /modules/view-assets/{assetId}/
+GET /modules/view-assets/{assetId}/{relativePath}
+</code></pre>
+<p>空路径加载 <code>manifest.entry</code> 指定的入口文件；未配置时使用 <code>index.html</code>。其他路径用于加载资产目录内的 CSS、JavaScript、图片等静态文件。</p>
+<p>共享资源通过以下路径访问：</p>
+<pre><code class="lang-http">GET /modules/view-assets/_shared/{fileName}
+</code></pre>
+<h3 id="查询接口">查询接口</h3>
+<pre><code class="lang-http">POST /api/view-assets/{assetId}/query
+Content-Type: application/json
+</code></pre>
+<p>查询接口只支持 <code>POST</code>。其他 HTTP 方法返回 405；不支持的 API 动作返回 404。</p>
+<h2 id="页面查询请求">页面查询请求</h2>
+<p>请求结构：</p>
+<pre><code class="lang-json">{
+  &quot;sqlFile&quot;: &quot;main.sql&quot;,
+  &quot;parameters&quot;: {
+    &quot;Keyword&quot;: &quot;%电机%&quot;,
+    &quot;MinQuantity&quot;: 10,
+    &quot;Enabled&quot;: true,
+    &quot;LineId&quot;: null,
+    &quot;StartTime&quot;: { &quot;type&quot;: &quot;datetime&quot;, &quot;value&quot;: &quot;2026-07-01T00:00:00+08:00&quot; }
+  },
+  &quot;rowLimit&quot;: 5000
+}
+</code></pre>
+<p>字段说明：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sqlFile</code></td>
+<td>string</td>
+<td>是</td>
+<td>资产目录内 SQL 文件的相对路径，必须以 <code>.sql</code> 结尾</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>object</td>
+<td>否</td>
+<td>参数名到参数值的映射，键名不区分大小写；值保留 JSON 原生类型，也支持显式类型包装</td>
+</tr>
+<tr>
+<td><code>rowLimit</code></td>
+<td>number</td>
+<td>否</td>
+<td>返回行数上限；小于等于 0 时使用默认值 5000</td>
+</tr>
+</tbody>
+</table>
+<p>请求体为空、JSON 无效、字段类型错误或缺少 SQL 参数时返回 HTTP 400，错误信息会说明具体原因。</p>
+<p>页面调用示例：</p>
+<pre><code class="lang-js">async function runQuery(parameters) {
+  const response = await fetch(`/api/view-assets/${assetId}/query`, {
+    method: &quot;POST&quot;,
+    headers: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;
+    },
+    body: JSON.stringify({
+      sqlFile: &quot;main.sql&quot;,
+      parameters,
+      rowLimit: 5000
+    })
+  });
+
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.error || `HTTP ${response.status}`);
+  }
+
+  return result;
+}
+</code></pre>
+<h2 id="sql-参数处理">SQL 参数处理</h2>
+<h3 id="占位符格式">占位符格式</h3>
+<p>当前 SQL 文件使用 <code>{{参数名}}</code> 占位符：</p>
+<pre><code class="lang-sql">SELECT id, product_name, created_at
+FROM production_record
+WHERE product_name LIKE {{Keyword}}
+  AND created_at &gt;= {{StartTime}}
+  AND created_at &lt; {{EndTime}}
+ORDER BY created_at DESC
+</code></pre>
+<p><code>ViewAssetSqlCommandBuilder</code> 从 SQL 中提取占位符，并将其转换为数据库命名参数：</p>
+<pre><code class="lang-sql">SELECT id, product_name, created_at
+FROM production_record
+WHERE product_name LIKE @Keyword
+  AND created_at &gt;= @StartTime
+  AND created_at &lt; @EndTime
+ORDER BY created_at DESC
+</code></pre>
+<p>参数值保存在 <code>PreparedSqlCommand.Parameters</code> 中。<code>QueryExecutor</code> 创建数据库命令后，通过 <code>AddParameter</code> 将每个值绑定到对应的 <code>@参数名</code>。</p>
+<p>因此，当前实现不是把参数值直接替换或拼接到 SQL 文本中。SQL 结构来自资产目录中的 SQL 文件，前端只提交参数值。</p>
+<h3 id="参数语义">参数语义</h3>
+<p>ViewAsset 没有参数定义模型，前端完全自由地决定发送哪些参数。<code>ViewAssetQueryRequestParser</code> 解析请求后，<code>ViewAssetQueryRequest.Parameters</code> 的类型为：</p>
+<pre><code class="lang-csharp">IReadOnlyDictionary&lt;string, object?&gt;
+</code></pre>
+<p>解析与绑定遵循以下规则：</p>
+<ul>
+<li><strong>缺失参数直接报错</strong>：SQL 使用的每个 <code>{{占位符}}</code> 都必须在 <code>parameters</code> 中出现，缺失时返回 HTTP 400 并列出缺失的参数名，例如 <code>SQL 文件「main.sql」缺少参数：StartTime</code>，不再静默绑定空字符串；</li>
+<li><strong>保留 JSON 原生类型</strong>：字符串按文本绑定（不做 <code>Trim</code>，按原样传入数据库）、数字按数字绑定（整数转 <code>long</code>，小数转 <code>decimal</code>）、布尔按布尔绑定；</li>
+<li><strong><code>null</code> 绑定数据库 <code>NULL</code></strong>：显式传 <code>null</code> 时按 <code>DBNull</code> 绑定，可配合 <code>({{LineId}} IS NULL OR line_id = {{LineId}})</code> 实现可选条件；</li>
+<li><strong>空字符串绑定空字符串</strong>：<code>&quot;&quot;</code> 与 <code>null</code> 不再混同；</li>
+<li><strong>多余参数忽略</strong>：请求中存在但 SQL 未使用的参数不会加入数据库命令；</li>
+<li><strong>数组值报错</strong>：<code>parameters</code> 的值不支持数组。</li>
+</ul>
+<p>参数名称通过正则表达式 <code>{{(\w+)}}</code> 提取并不区分大小写去重，同名占位符只生成一个绑定参数；大小写不同的同名占位符（如 <code>{{Start}}</code> 与 <code>{{START}}</code>）会替换为同一个命名参数。</p>
+<h3 id="显式类型参数">显式类型参数</h3>
+<p>普通字符串永远按文本绑定，不做任何自动类型猜测。需要让数据库拿到真正的日期或数字类型时，使用显式类型包装：</p>
+<pre><code class="lang-json">{
+  &quot;parameters&quot;: {
+    &quot;StartTime&quot;: { &quot;type&quot;: &quot;datetime&quot;, &quot;value&quot;: &quot;2026-07-01T00:00:00+08:00&quot; },
+    &quot;MinQuantity&quot;: { &quot;type&quot;: &quot;number&quot;, &quot;value&quot;: &quot;10&quot; }
+  }
+}
+</code></pre>
+<p><code>type</code> 支持以下取值（<code>value</code> 为 <code>null</code> 时一律绑定数据库 <code>NULL</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>value 要求</th>
+<th>绑定结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td>字符串</td>
+<td>文本</td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>数字或数字字符串（不变量文化）</td>
+<td><code>long</code> / <code>decimal</code> / <code>double</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>布尔或 <code>&quot;true&quot;</code>/<code>&quot;false&quot;</code> 字符串</td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>ISO 8601 字符串</td>
+<td><code>DateTime</code>，只保留日期部分</td>
+</tr>
+<tr>
+<td><code>datetime</code></td>
+<td>ISO 8601 字符串</td>
+<td><code>DateTime</code></td>
+</tr>
+<tr>
+<td><code>json</code></td>
+<td>任意 JSON</td>
+<td>原始 JSON 文本（按文本绑定）</td>
+</tr>
+</tbody>
+</table>
+<p>日期时间的时区规则：带时区偏移（含 <code>Z</code>）的值会换算为 DataMaster 所在机器的本机时间后绑定；不带时区的值按本机时间原样绑定。<code>type</code> 拼写错误或 <code>value</code> 无法转换都会返回明确错误。</p>
+<h3 id="可选条件与-null">可选条件与 NULL</h3>
+<p>参数只能代表「值」，不能改变 SQL 结构。动态启用/停用条件推荐用 <code>NULL</code> 判断写在 SQL 里：</p>
+<pre><code class="lang-sql">SELECT id, product_name, created_at
+FROM production_record
+WHERE ({{Keyword}} IS NULL OR product_name LIKE {{Keyword}})
+  AND ({{StartTime}} IS NULL OR created_at &gt;= {{StartTime}})
+</code></pre>
+<p>前端对「不过滤」的条件显式传 <code>null</code>：</p>
+<pre><code class="lang-json">{
+  &quot;sqlFile&quot;: &quot;main.sql&quot;,
+  &quot;parameters&quot;: { &quot;Keyword&quot;: &quot;%电机%&quot;, &quot;StartTime&quot;: null }
+}
+</code></pre>
+<p>查询形态差异较大时（如不同排序、不同聚合），更适合拆成多个 SQL 文件由前端选择，而不是把 SQL 结构做成参数。</p>
+<h2 id="模糊查询">模糊查询</h2>
+<p>模糊查询由 SQL 的 <code>LIKE</code> 条件与前端传入的通配符共同完成：</p>
+<pre><code class="lang-sql">SELECT id, product_name
+FROM production_record
+WHERE product_name LIKE {{Keyword}}
+</code></pre>
+<p>前端包含匹配：</p>
+<pre><code class="lang-js">await runQuery({
+  Keyword: `%${keyword.trim()}%`
+});
+</code></pre>
+<p>前端也可以根据查询需求传入：</p>
+<ul>
+<li><code>%关键字%</code>：包含匹配；</li>
+<li><code>关键字%</code>：前缀匹配；</li>
+<li><code>%关键字</code>：后缀匹配。</li>
+</ul>
+<p>值最终作为 <code>@Keyword</code> 的参数绑定，不会直接拼入 SQL。</p>
+<h2 id="日期时间查询">日期时间查询</h2>
+<p>日期输入同样由资产前端负责。页面可以使用 <code>input[type=date]</code>、<code>input[type=datetime-local]</code> 或其他日期组件产生字符串，然后作为参数提交：</p>
+<pre><code class="lang-js">await runQuery({
+  StartTime: &quot;2026-07-01 00:00:00&quot;,
+  EndTime: &quot;2026-08-01 00:00:00&quot;
+});
+</code></pre>
+<pre><code class="lang-sql">SELECT id, created_at
+FROM production_record
+WHERE created_at &gt;= {{StartTime}}
+  AND created_at &lt; {{EndTime}}
+</code></pre>
+<p>普通字符串仍按文本绑定，不会自动转换为 .NET <code>DateTime</code>；具体数据库是否接受该字符串格式，以及比较时如何进行隐式类型转换，由数据库和驱动决定。需要跨数据库稳定的日期比较时，改用显式类型包装：</p>
+<pre><code class="lang-js">await runQuery({
+  StartTime: { type: &quot;datetime&quot;, value: &quot;2026-07-01T00:00:00+08:00&quot; },
+  EndTime: { type: &quot;datetime&quot;, value: &quot;2026-08-01T00:00:00+08:00&quot; }
+});
+</code></pre>
+<p>推荐使用 ISO 8601 并显式携带时区偏移；不带时区的值按 DataMaster 本机时间处理。</p>
+<p>日期范围通常使用左闭右开条件。例如查询 2026 年 7 月时，开始值为 <code>2026-07-01 00:00:00</code>，结束值为 <code>2026-08-01 00:00:00</code>。</p>
+<h2 id="查询执行流程">查询执行流程</h2>
+<p><code>ViewAssetQueryService.ExecuteAsync</code> 的执行顺序如下：</p>
+<ol>
+<li>使用资产 ID 或名称查找资产；</li>
+<li>拒绝不存在或已注销的资产；</li>
+<li>解析资产实际目录；</li>
+<li>校验 <code>sqlFile</code> 非空并以 <code>.sql</code> 结尾；</li>
+<li>将相对路径解析到资产目录内；</li>
+<li>拒绝路径穿越和不存在的文件；</li>
+<li>异步读取 SQL 文件文本；</li>
+<li>调用 <code>ViewAssetSqlGuard.TryCheckReadonlySql</code>；</li>
+<li>调用 <code>ViewAssetSqlCommandBuilder.Build</code> 构建参数化命令（SQL 使用的占位符缺少参数时在此报错）；</li>
+<li>从当前 ViewAsset 项目取得数据库配置；</li>
+<li>将数据库实例设置到 <code>IQueryExecutor</code>；</li>
+<li>调用 <code>IQueryExecutor.ExecuteAsync</code> 执行查询（执行失败包装为 <code>ViewAssetQueryException</code>，消息含 SQL 文件名并脱敏）；</li>
+<li>将 <code>DataTable</code> 转换为 ViewAsset 查询结果。</li>
+</ol>
+<p>当前查询没有前端 SQL 文本入口。后端执行的 SQL 必须来自资产目录中的实际 <code>.sql</code> 文件。</p>
+<h2 id="sql-文件与路径限制">SQL 文件与路径限制</h2>
+<p><code>sqlFile</code> 只能是资产目录内的 <code>.sql</code> 文件：</p>
+<ul>
+<li>不接受 <code>index.html</code> 等其他扩展名；</li>
+<li>不接受不存在的文件；</li>
+<li>不允许通过 <code>../</code> 离开资产目录；</li>
+<li>不允许请求直接传递 SQL 文本。</li>
+</ul>
+<p>SQL 文件选择可以由前端控制。例如一个资产可以包含 <code>summary.sql</code>、<code>detail.sql</code> 和 <code>trend.sql</code>，页面根据功能调用不同文件，但每个文件都必须已经存在于当前资产目录内。</p>
+<h2 id="只读-sql-校验">只读 SQL 校验</h2>
+<p><code>ViewAssetSqlGuard</code> 在执行前移除行注释与块注释，然后进行以下检查：</p>
+<ol>
+<li>SQL 内容不能为空；</li>
+<li>去掉末尾分号后，内容仍不能为空；</li>
+<li>SQL 中不能存在其他分号，即只能执行一条语句；</li>
+<li>首关键字只能是：
+<ul>
+<li><code>SELECT</code></li>
+<li><code>WITH</code></li>
+<li><code>SHOW</code></li>
+<li><code>DESCRIBE</code></li>
+<li><code>DESC</code></li>
+<li><code>EXPLAIN</code></li>
+</ul>
+</li>
+<li>对 <code>SELECT</code> 和 <code>WITH</code> 检查禁止关键字，包括 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>、<code>DROP</code>、<code>ALTER</code>、<code>CREATE</code>、<code>TRUNCATE</code>、<code>GRANT</code>、<code>REVOKE</code>、<code>REPLACE</code>、<code>MERGE</code>、<code>CALL</code>、<code>EXECUTE</code>、<code>EXEC</code>、<code>INTO</code>、<code>LOAD</code>、<code>HANDLER</code>、<code>COPY</code> 和 <code>VACUUM</code>。</li>
+</ol>
+<p>校验失败时不会创建数据库查询，接口返回 HTTP 400 和具体错误信息。</p>
+<h2 id="行数限制">行数限制</h2>
+<p>页面查询的默认行数限制为 5000：</p>
+<ul>
+<li><code>rowLimit &gt; 0</code>：使用请求值；</li>
+<li><code>rowLimit &lt;= 0</code>：使用默认值 5000。</li>
+</ul>
+<p><code>QueryExecutor</code> 在执行前根据数据库类型调用 <code>DbQueryHelper.ApplyRowLimit</code>，将行数限制应用到 SQL。</p>
+<p><code>viewAsset.preview</code> 还会对返回给工具调用方的 <code>records</code> 再做一次预览截断。默认只返回前 50 条记录，最多允许请求 200 条；数据库查询本身仍使用 <code>rowLimit</code>。</p>
+<h2 id="页面查询响应">页面查询响应</h2>
+<p>成功响应：</p>
+<pre><code class="lang-json">{
+  &quot;sqlFile&quot;: &quot;main.sql&quot;,
+  &quot;columns&quot;: [&quot;id&quot;, &quot;product_name&quot;, &quot;created_at&quot;],
+  &quot;rows&quot;: [
+    [1, &quot;电机 A&quot;, &quot;2026-07-01 08:30:00&quot;],
+    [2, &quot;电机 B&quot;, &quot;2026-07-01 09:10:00&quot;]
+  ],
+  &quot;rowCount&quot;: 2,
+  &quot;elapsedMilliseconds&quot;: 18,
+  &quot;executedAt&quot;: &quot;2026-07-11T10:00:00&quot;
+}
+</code></pre>
+<p>字段说明：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sqlFile</code></td>
+<td>实际执行的 SQL 文件相对路径</td>
+</tr>
+<tr>
+<td><code>columns</code></td>
+<td>按查询结果顺序排列的列名</td>
+</tr>
+<tr>
+<td><code>rows</code></td>
+<td>二维数组，每行单元格顺序与 <code>columns</code> 一致</td>
+</tr>
+<tr>
+<td><code>rowCount</code></td>
+<td>返回结果行数</td>
+</tr>
+<tr>
+<td><code>elapsedMilliseconds</code></td>
+<td>数据库查询耗时，单位毫秒</td>
+</tr>
+<tr>
+<td><code>executedAt</code></td>
+<td>查询完成时间</td>
+</tr>
+</tbody>
+</table>
+<p>结果单元格转换规则：</p>
+<ul>
+<li><code>DBNull</code> 转换为 <code>null</code>；</li>
+<li><code>DateTime</code> 格式化为 <code>yyyy-MM-dd HH:mm:ss</code>；</li>
+<li><code>TimeSpan</code> 转换为字符串；</li>
+<li><code>byte[]</code> 转换为 <code>null</code>；</li>
+<li>其他值保留原始类型。</li>
+</ul>
+<p>前端可将二维数组转换为对象数组：</p>
+<pre><code class="lang-js">function toRecords(result) {
+  return result.rows.map(row =&gt;
+    Object.fromEntries(
+      result.columns.map((column, index) =&gt; [column, row[index]])
+    )
+  );
+}
+</code></pre>
+<h2 id="错误处理">错误处理</h2>
+<p>常见响应状态：</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td>JSON 无效、缺少 <code>sqlFile</code>、路径无效、文件不存在、SQL 非只读、缺少 SQL 参数、参数值非法、未配置数据库等</td>
+</tr>
+<tr>
+<td>404</td>
+<td>资产不存在、资产已注销或 API 动作不存在</td>
+</tr>
+<tr>
+<td>405</td>
+<td>查询接口使用了非 POST 方法</td>
+</tr>
+<tr>
+<td>500</td>
+<td>数据库执行失败或服务内部发生未处理异常</td>
+</tr>
+</tbody>
+</table>
+<p>错误响应包含 <code>error</code> 字段，前端应同时检查 HTTP 状态和响应内容。错误信息会指明失败阶段与相关名称，且不包含数据库密码等机密：</p>
+<pre><code class="lang-json">{ &quot;error&quot;: &quot;SQL 文件「main.sql」缺少参数：StartTime（SQL 使用的每个占位符都必须提供参数；显式传 null 表示绑定数据库 NULL）&quot; }
+</code></pre>
+<pre><code class="lang-json">{ &quot;error&quot;: &quot;参数「StartTime」的 datetime 值无效：\&quot;昨天\&quot;（要求 ISO 8601 格式，如 2026-07-01、2026-07-01T08:30:00 或带时区 2026-07-01T08:30:00+08:00）&quot; }
+</code></pre>
+<pre><code class="lang-json">{ &quot;error&quot;: &quot;SQL 文件「main.sql」执行失败：Unknown column 'produce_date' in 'where clause'&quot; }
+</code></pre>
+<p>数据库执行阶段的错误（HTTP 500）以 <code>SQL 文件「...」执行失败：</code> 开头，底层消息中的 <code>password</code>/<code>pwd</code> 键值会被替换为 <code>***</code>。</p>
+<h2 id="ipc-预览请求">IPC 预览请求</h2>
+<p><code>viewAsset.preview</code> 的外层结构与页面 HTTP API 略有不同，<code>parameters</code> 使用数组形式（对象形式也被接受）：</p>
+<pre><code class="lang-json">{
+  &quot;assetIdOrName&quot;: &quot;production-query&quot;,
+  &quot;sqlFile&quot;: &quot;main.sql&quot;,
+  &quot;parameters&quot;: [
+    { &quot;name&quot;: &quot;Keyword&quot;, &quot;value&quot;: &quot;%电机%&quot; },
+    { &quot;name&quot;: &quot;LineId&quot;, &quot;value&quot;: null },
+    { &quot;name&quot;: &quot;StartTime&quot;, &quot;value&quot;: { &quot;type&quot;: &quot;datetime&quot;, &quot;value&quot;: &quot;2026-07-01T00:00:00+08:00&quot; } }
+  ],
+  &quot;rowLimit&quot;: 5000,
+  &quot;maxRecords&quot;: 50
+}
+</code></pre>
+<p>数组元素的 <code>value</code> 与 HTTP 的参数值语义完全相同：保留 JSON 原生类型、<code>null</code> 绑定数据库 <code>NULL</code>、支持显式类型包装。<code>ViewAssetToolProvider</code> 与 <code>ViewAssetWebModule</code> 共用 <code>ViewAssetQueryRequestParser</code> 解析请求，因此缺参报错、类型转换和错误信息在两条入口上保持一致。</p>
+<p>预览结果除列、总行数和耗时外，还包含：</p>
+<ul>
+<li><code>records</code>：对象形式的前若干条记录；</li>
+<li><code>recordsTruncated</code>：是否发生预览截断；</li>
+<li><code>recordsTruncatedMessage</code>：截断说明。</li>
+</ul>
+<h2 id="当前能力边界">当前能力边界</h2>
+<ul>
+<li>支持一个请求执行一个资产 SQL 文件；</li>
+<li>支持字符串、数字、布尔与 <code>null</code> 的 JSON 原生参数，以及 <code>text</code>/<code>number</code>/<code>boolean</code>/<code>date</code>/<code>datetime</code>/<code>json</code> 显式类型包装；</li>
+<li>支持通过 <code>LIKE</code> 和前端通配符完成模糊查询；</li>
+<li>支持通过 <code>null</code> 参数配合 <code>IS NULL</code> 条件实现可选过滤；</li>
+<li>缺少 SQL 参数、参数值非法时明确报错；</li>
+<li>不支持数组参数（<code>IN (...)</code> 展开暂未提供）；</li>
+<li>不支持请求内联 SQL；</li>
+<li>不支持通过参数动态替换表名、列名、排序方向或其他 SQL 结构；</li>
+<li>不从 <code>manifest.json</code> 自动生成参数控件；</li>
+<li>不包含 ChartAsset 的参数类型定义与默认值合并逻辑；</li>
+<li>页面刷新由前端实现，<code>manifest.refresh</code> 仅描述刷新策略，不自动替页面执行查询。</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/DataBase/ViewAsset/ViewAsset.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

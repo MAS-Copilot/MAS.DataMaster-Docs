@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>ChartAsset 图表资产 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="ChartAsset 图表资产 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/DataBase/ChartAsset/ChartAsset.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="chartasset-图表资产">ChartAsset 图表资产</h1>
+
+<h2 id="模块说明">模块说明</h2>
+<p>ChartAsset 用于把数据库查询、参数定义、仪表盘布局和 ECharts 配置保存为可重复执行的图表资产。一个资产可以表示单个图表，也可以表示由多个图表和摘要卡片组成的仪表盘。</p>
+<p>ChartAsset 使用声明式 JSON 模型。后端负责校验资产、合并参数、执行数据源、组装渲染数据；DataMaster 页面负责生成参数输入控件；<code>MAS.Charts</code> 中的 <code>ChartAsset.html</code> 和 <code>ChartAsset.js</code> 负责最终的 HTML、摘要卡片与 ECharts 渲染。</p>
+<p>ChartAsset 与 ViewAsset 不同。ChartAsset 不托管每个资产独立编写的 HTML 页面，资产的页面结构由统一的 ChartAsset 前端提供；每个资产主要描述参数、数据源、布局和图表配置。</p>
+<h2 id="相关模块">相关模块</h2>
+<h3 id="masdatabasechartasset">MAS.Database/ChartAsset</h3>
+<p>该模块实现 ChartAsset 的核心逻辑：</p>
+<ul>
+<li>图表资产模型及 JSON 序列化；</li>
+<li>资产结构校验；</li>
+<li>SQL 只读校验；</li>
+<li>参数默认值合并和输入校验；</li>
+<li>SQL 参数化命令构建；</li>
+<li>SQL 与 C# 脚本数据源执行；</li>
+<li>查询结果转换；</li>
+<li>ECharts option 数据注入；</li>
+<li>摘要卡片数据计算；</li>
+<li>渲染 Payload 组装；</li>
+<li>资产增删改查与项目持久化。</li>
+</ul>
+<p>主要服务包括：</p>
+<ul>
+<li><code>IChartAssetRuntime</code> / <code>ChartAssetRuntime</code>：执行资产并生成渲染 Payload；</li>
+<li><code>IChartAssetToolService</code> / <code>ChartAssetToolService</code>：资产查询、校验、写入、补丁、删除和预览；</li>
+<li><code>IChartAssetProjectPersistenceService</code>：资产与数据库配置持久化；</li>
+<li><code>IChartAssetScriptRunner</code> / <code>ChartAssetScriptRunner</code>：编译并执行脚本数据源；</li>
+<li><code>ChartAssetValidator</code>：完整资产静态校验；</li>
+<li><code>ChartAssetSqlGuard</code>：SQL 数据源只读校验；</li>
+<li><code>ChartAssetSqlBuilder</code>：参数化 SQL 命令和查询结果转换；</li>
+<li><code>ChartOptionComposer</code>：将数据源结果注入 ECharts option；</li>
+<li><code>SummaryCardComposer</code>：计算摘要卡片显示数据。</li>
+</ul>
+<h3 id="masdatamasternamedpipeipcchartasset">MAS.DataMaster/NamedPipeIpc/ChartAsset</h3>
+<p><code>ChartAssetToolProvider</code> 通过 IPC 向 PrismaTalk 暴露 <code>chartAsset.*</code> 工具，用于列出、读取、校验、写入、局部修改、删除和预览资产。</p>
+<h3 id="masdatamaster-chartasset-页面">MAS.DataMaster ChartAsset 页面</h3>
+<p><code>ChartAssetViewModel</code> 维护资产列表、当前资产、参数值、执行状态和定时刷新。它调用 <code>IChartAssetRuntime</code> 取得 <code>ChartRenderPayload</code>，再通过 <code>ChartAssetWebViewService</code> 推送到 WebView2。</p>
+<h3 id="maschartshtml">MAS.Charts/HTML</h3>
+<p><code>ChartAsset.html</code> 是统一的图表渲染页面，<code>ChartAsset.js</code> 接收宿主消息，创建仪表盘网格、摘要卡片和 ECharts 实例，并处理主题、加载状态、错误状态及窗口大小变化。</p>
+<h2 id="资产定义">资产定义</h2>
+<p>ChartAsset 的根模型是 <code>ChartAssetDefinition</code>：</p>
+<pre><code class="lang-json">{
+  &quot;id&quot;: &quot;production-overview&quot;,
+  &quot;name&quot;: &quot;生产概览&quot;,
+  &quot;description&quot;: &quot;按日期查看产量趋势&quot;,
+  &quot;parameters&quot;: [],
+  &quot;dataSources&quot;: [],
+  &quot;dashboard&quot;: {
+    &quot;columns&quot;: 2,
+    &quot;widgets&quot;: []
+  },
+  &quot;refresh&quot;: {
+    &quot;mode&quot;: &quot;manual&quot;,
+    &quot;intervalSeconds&quot;: 0
+  }
+}
+</code></pre>
+<p>根字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>项目内稳定且唯一的资产标识</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>资产显示名称</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>可选说明</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>参数定义集合</td>
+</tr>
+<tr>
+<td><code>dataSources</code></td>
+<td>数据源定义集合</td>
+</tr>
+<tr>
+<td><code>dashboard</code></td>
+<td>仪表盘布局与组件集合</td>
+</tr>
+<tr>
+<td><code>refresh</code></td>
+<td>手动或定时刷新策略</td>
+</tr>
+</tbody>
+</table>
+<p>资产保存在当前 ChartAsset 项目的 <code>ChartAssetProjectModel.Assets</code> 中，不是单独的 SQL 或 HTML 文件目录。</p>
+<h2 id="参数定义">参数定义</h2>
+<p>参数模型为 <code>ChartParameter</code>：</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;StartTime&quot;,
+  &quot;label&quot;: &quot;开始时间&quot;,
+  &quot;type&quot;: &quot;dateTime&quot;,
+  &quot;required&quot;: true,
+  &quot;defaultValue&quot;: &quot;2026-07-01 00:00:00&quot;,
+  &quot;hint&quot;: &quot;请选择查询开始时间&quot;,
+  &quot;options&quot;: null
+}
+</code></pre>
+<p>字段说明：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>参数名称，对应 SQL 中的 <code>{{Name}}</code></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>页面输入控件的显示标签</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>text</code>、<code>number</code>、<code>date</code>、<code>dateTime</code> 或 <code>enum</code></td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td>是否必填，默认 <code>true</code></td>
+</tr>
+<tr>
+<td><code>defaultValue</code></td>
+<td>页面未提供值时使用的默认值</td>
+</tr>
+<tr>
+<td><code>hint</code></td>
+<td>输入提示文本</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>enum</code> 参数的候选值集合</td>
+</tr>
+</tbody>
+</table>
+<p>参数名称只允许字母、数字和下划线，在同一资产内不区分大小写且不能重复。枚举参数必须提供候选项；数字、日期、日期时间和枚举的默认值会在资产校验时检查。</p>
+<h2 id="参数合并与类型转换">参数合并与类型转换</h2>
+<p>执行资产时，<code>ChartParameterValidator.MergeAndValidate</code> 根据参数定义合并调用方参数与默认值：</p>
+<ol>
+<li>调用方提供的值优先；</li>
+<li>未提供时使用 <code>defaultValue</code>；</li>
+<li>必填参数没有有效值时产生校验错误；</li>
+<li>枚举值必须属于 <code>options</code>；</li>
+<li>校验通过后生成最终参数字典。</li>
+</ol>
+<p>构建 SQL 命令时，<code>ChartAssetSqlBuilder</code> 根据参数类型调用 <code>QueryAssetParsing.ConvertValue</code>：</p>
+<table>
+<thead>
+<tr>
+<th>参数类型</th>
+<th>绑定值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td>去除首尾空白后的字符串</td>
+</tr>
+<tr>
+<td><code>enum</code></td>
+<td>按文本绑定</td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>优先转换为 <code>long</code>，其次转换为 <code>decimal</code></td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>解析为 <code>DateTime.Date</code></td>
+</tr>
+<tr>
+<td><code>dateTime</code></td>
+<td>解析为 <code>DateTime</code></td>
+</tr>
+</tbody>
+</table>
+<p>如果数字或日期文本不能转换，转换函数会保留原始字符串；资产参数校验负责在执行前拦截无效输入。</p>
+<h2 id="数据源">数据源</h2>
+<p>数据源模型为 <code>ChartDataSourceDefinition</code>。每个数据源具有项目内资产范围唯一的 <code>id</code>，并使用 <code>sql</code> 或 <code>script</code> 模式。</p>
+<p>通用字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>数据源标识，供 widget 的 <code>dataSourceId</code> 引用</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td><code>sql</code> 或 <code>script</code></td>
+</tr>
+<tr>
+<td><code>sql</code></td>
+<td>SQL 模式的只读 SQL 模板</td>
+</tr>
+<tr>
+<td><code>script</code></td>
+<td>Script 模式的 C# 源码</td>
+</tr>
+<tr>
+<td><code>rowLimit</code></td>
+<td>行数上限，小于等于 0 时默认 5000</td>
+</tr>
+<tr>
+<td><code>timeoutSeconds</code></td>
+<td>超时秒数，小于等于 0 时默认 30 秒</td>
+</tr>
+</tbody>
+</table>
+<p><code>sql</code>、<code>script</code> 和 <code>optionJs</code> 在 JSON 中既可以写成一个字符串，也可以写成字符串数组；字符串数组反序列化时以换行连接。</p>
+<h3 id="sql-数据源">SQL 数据源</h3>
+<pre><code class="lang-json">{
+  &quot;id&quot;: &quot;trendData&quot;,
+  &quot;mode&quot;: &quot;sql&quot;,
+  &quot;sql&quot;: [
+    &quot;SELECT production_date, quantity&quot;,
+    &quot;FROM production_record&quot;,
+    &quot;WHERE production_date &gt;= {{StartDate}}&quot;,
+    &quot;  AND production_date &lt; {{EndDate}}&quot;,
+    &quot;ORDER BY production_date&quot;
+  ],
+  &quot;rowLimit&quot;: 5000,
+  &quot;timeoutSeconds&quot;: 30
+}
+</code></pre>
+<p>SQL 中的 <code>{{参数名}}</code> 必须在资产的 <code>parameters</code> 中声明。未声明的占位符会导致资产校验失败。</p>
+<p>执行时占位符被转换为命名参数：</p>
+<pre><code class="lang-sql">WHERE production_date &gt;= @StartDate
+  AND production_date &lt; @EndDate
+</code></pre>
+<p>实际值通过数据库命令参数绑定，不直接拼入 SQL 文本。</p>
+<h3 id="script-数据源">Script 数据源</h3>
+<p>Script 模式用于多次查询、聚合或需要 C# 处理的数据源。<code>script</code> 源码必须实现 <code>IChartAssetScript</code>。</p>
+<p>运行时向脚本提供 <code>ChartScriptContext</code>，其中包含：</p>
+<ul>
+<li>已合并的资产参数；</li>
+<li>当前数据源行数限制；</li>
+<li>可供脚本调用的查询函数。</li>
+</ul>
+<p>脚本查询同样通过 <code>PreparedSqlCommand</code> 和 <code>IQueryExecutor</code> 执行。脚本整体受数据源 <code>timeoutSeconds</code> 和调用取消令牌控制。</p>
+<h2 id="sql-只读校验">SQL 只读校验</h2>
+<p>SQL 数据源必须是一条只读语句。允许的首关键字为：</p>
+<ul>
+<li><code>SELECT</code></li>
+<li><code>WITH</code></li>
+<li><code>SHOW</code></li>
+<li><code>DESCRIBE</code></li>
+<li><code>DESC</code></li>
+<li><code>EXPLAIN</code></li>
+</ul>
+<p>SQL 去除末尾分号后不能再包含分号。对于 <code>SELECT</code> 和 <code>WITH</code>，守卫会拦截 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>、<code>DROP</code>、<code>ALTER</code>、<code>CREATE</code>、<code>TRUNCATE</code>、<code>GRANT</code>、<code>REVOKE</code>、<code>REPLACE</code>、<code>MERGE</code>、<code>CALL</code>、<code>EXECUTE</code>、<code>EXEC</code>、<code>INTO</code>、<code>LOAD</code>、<code>HANDLER</code>、<code>COPY</code> 和 <code>VACUUM</code> 等关键字。</p>
+<p>SQL 守卫是执行前的文本校验。实际查询仍使用当前 ChartAsset 项目配置的数据库实例。</p>
+<h2 id="仪表盘">仪表盘</h2>
+<p><code>ChartDashboardDefinition</code> 包含：</p>
+<ul>
+<li><code>columns</code>：网格列数，范围为 1 至 4；</li>
+<li><code>widgets</code>：按声明顺序排列的组件集合，至少需要一个组件。</li>
+</ul>
+<p>每个 <code>ChartWidgetDefinition</code> 包含：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>widget 唯一标识</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>chart</code> 或 <code>summaryCard</code></td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>可选标题</td>
+</tr>
+<tr>
+<td><code>dataSourceId</code></td>
+<td>引用的数据源 ID</td>
+</tr>
+<tr>
+<td><code>columnSpan</code></td>
+<td>横向占用列数，不能超过仪表盘列数</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>像素高度；小于等于 0 时图表默认 320，摘要卡片自适应</td>
+</tr>
+<tr>
+<td><code>option</code></td>
+<td>ECharts JSON option</td>
+</tr>
+<tr>
+<td><code>optionJs</code></td>
+<td>生成 ECharts option 的 JavaScript 源码</td>
+</tr>
+<tr>
+<td><code>card</code></td>
+<td>摘要卡片配置</td>
+</tr>
+</tbody>
+</table>
+<p>图表 widget 的 <code>option</code> 与 <code>optionJs</code> 必须二选一。图表可以不引用数据源，此时作为静态图表渲染；摘要卡片必须引用数据源。</p>
+<h2 id="echarts-option-模式">ECharts option 模式</h2>
+<h3 id="option-json">option JSON</h3>
+<p><code>option</code> 保存普通 ECharts option JSON。数据源执行成功后，后端将查询结果转换为 ECharts dataset 格式，并注入 <code>option.dataset.source</code>。</p>
+<p>数据源结果：</p>
+<pre><code class="lang-json">{
+  &quot;columns&quot;: [&quot;production_date&quot;, &quot;quantity&quot;],
+  &quot;rows&quot;: [
+    [&quot;2026-07-01&quot;, 120],
+    [&quot;2026-07-02&quot;, 135]
+  ]
+}
+</code></pre>
+<p>注入后的 dataset source：</p>
+<pre><code class="lang-json">[
+  [&quot;production_date&quot;, &quot;quantity&quot;],
+  [&quot;2026-07-01&quot;, 120],
+  [&quot;2026-07-02&quot;, 135]
+]
+</code></pre>
+<p>option 中可使用 <code>encode</code> 和 <code>seriesLayoutBy</code> 按列引用数据。</p>
+<p>option JSON 内需要 ECharts 回调函数时，字符串使用 <code>@js:</code> 前缀：</p>
+<pre><code class="lang-json">{
+  &quot;tooltip&quot;: {
+    &quot;formatter&quot;: &quot;@js:function (params) { return params[0].name; }&quot;
+  }
+}
+</code></pre>
+<p>前端会递归查找 <code>@js:</code> 字符串，通过 <code>new Function</code> 编译为函数。<code>dataset</code> 子树不会参与函数恢复，防止查询数据被当作代码执行。</p>
+<h3 id="optionjs">optionJs</h3>
+<p><code>optionJs</code> 是一段由统一前端执行的 JavaScript 语句，必须给预声明的 <code>option</code> 变量赋值：</p>
+<pre><code class="lang-json">{
+  &quot;optionJs&quot;: [
+    &quot;const labels = data.rows.map(row =&gt; row[0]);&quot;,
+    &quot;const values = data.rows.map(row =&gt; row[1]);&quot;,
+    &quot;option = {&quot;,
+    &quot;  xAxis: { type: 'category', data: labels },&quot;,
+    &quot;  yAxis: { type: 'value' },&quot;,
+    &quot;  series: [{ type: 'line', data: values }]&quot;,
+    &quot;};&quot;
+  ]
+}
+</code></pre>
+<p>前端通过 <code>new Function('data', ...)</code> 执行源码。<code>data</code> 结构为：</p>
+<pre><code class="lang-js">{
+  columns: [&quot;production_date&quot;, &quot;quantity&quot;],
+  rows: [[&quot;2026-07-01&quot;, 120]],
+  source: [[&quot;production_date&quot;, &quot;quantity&quot;], [&quot;2026-07-01&quot;, 120]]
+}
+</code></pre>
+<p>没有数据源时 <code>data</code> 为 <code>null</code>。如果脚本没有设置 <code>option.dataset</code> 且存在数据，前端自动注入 <code>dataset.source</code>。</p>
+<p>后端只检查 <code>optionJs</code> 是否满足资产结构要求，不执行 JavaScript；语法错误和运行错误在 WebView2 渲染时显示为 widget 错误。</p>
+<h2 id="摘要卡片">摘要卡片</h2>
+<p><code>summaryCard</code> 从数据源结果的第一行提取显示值，不创建 ECharts 实例。</p>
+<p><code>ChartSummaryCardDefinition</code> 的主要字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>valueColumn</code></td>
+<td>主数值列名；为空时使用第一列</td>
+</tr>
+<tr>
+<td><code>unit</code></td>
+<td>数值后的单位</td>
+</tr>
+<tr>
+<td><code>precision</code></td>
+<td>小数位数，范围 0 至 6；为空时保留原值</td>
+</tr>
+<tr>
+<td><code>trendText</code></td>
+<td>静态趋势文字</td>
+</tr>
+<tr>
+<td><code>trendTextColumn</code></td>
+<td>从结果列读取趋势文字</td>
+</tr>
+<tr>
+<td><code>trendDirection</code></td>
+<td>静态方向：<code>flat</code>、<code>up</code>、<code>down</code></td>
+</tr>
+<tr>
+<td><code>trendDirectionColumn</code></td>
+<td>从结果列读取方向</td>
+</tr>
+<tr>
+<td><code>tone</code></td>
+<td><code>default</code>、<code>success</code>、<code>warning</code>、<code>danger</code> 或 <code>info</code></td>
+</tr>
+</tbody>
+</table>
+<p>趋势文字的静态值与结果列配置二选一；趋势方向也采用相同规则。方向列可以返回 <code>up</code>、<code>down</code>、<code>flat</code>，也可以返回数值并按正负号判断方向。</p>
+<h2 id="运行时执行流程">运行时执行流程</h2>
+<p><code>ChartAssetRuntime.ExecuteAsync</code> 的执行顺序如下：</p>
+<ol>
+<li>根据资产 ID 从当前项目查找资产；</li>
+<li>调用 <code>ChartAssetValidator</code> 重新校验资产；</li>
+<li>合并调用参数与参数默认值并校验；</li>
+<li>当资产包含数据源时，读取项目数据库配置并设置查询执行器；</li>
+<li>按资产声明顺序逐个执行数据源；</li>
+<li>SQL 数据源构建参数化命令并查询数据库；</li>
+<li>Script 数据源编译并在超时限制内执行；</li>
+<li>每个数据源结果保存为 <code>ChartDataResult</code>，异常保存为该数据源的错误字符串；</li>
+<li>遍历 dashboard widgets，将数据源结果转换为 option、optionJs 数据或摘要卡片；</li>
+<li>组装并返回 <code>ChartRenderPayload</code>。</li>
+</ol>
+<p>某个数据源执行失败时，运行时不会终止其他数据源。引用该数据源的 widget 在 Payload 中带有 <code>error</code>，其他 widget 仍可正常显示。调用取消会终止整个执行过程。</p>
+<h2 id="查询结果转换">查询结果转换</h2>
+<p>数据库查询结果从 <code>DataTable</code> 转换为 <code>ChartDataResult</code>：</p>
+<pre><code class="lang-json">{
+  &quot;columns&quot;: [&quot;name&quot;, &quot;quantity&quot;],
+  &quot;rows&quot;: [[&quot;A&quot;, 10], [&quot;B&quot;, 20]],
+  &quot;rowCount&quot;: 2,
+  &quot;elapsedMilliseconds&quot;: 12
+}
+</code></pre>
+<p>单元格转换规则：</p>
+<ul>
+<li><code>null</code> 和 <code>DBNull</code> 转换为 <code>null</code>；</li>
+<li><code>DateTime</code> 格式化为 <code>yyyy-MM-dd HH:mm:ss</code>；</li>
+<li><code>TimeSpan</code> 转换为字符串；</li>
+<li><code>byte[]</code> 转换为 <code>null</code>；</li>
+<li>其他类型保留原值。</li>
+</ul>
+<h2 id="渲染-payload">渲染 Payload</h2>
+<p>运行时返回 <code>ChartRenderPayload</code>：</p>
+<pre><code class="lang-json">{
+  &quot;assetId&quot;: &quot;production-overview&quot;,
+  &quot;name&quot;: &quot;生产概览&quot;,
+  &quot;description&quot;: &quot;按日期查看产量趋势&quot;,
+  &quot;columns&quot;: 2,
+  &quot;widgets&quot;: [
+    {
+      &quot;widgetId&quot;: &quot;trend&quot;,
+      &quot;type&quot;: &quot;chart&quot;,
+      &quot;title&quot;: &quot;产量趋势&quot;,
+      &quot;columnSpan&quot;: 2,
+      &quot;height&quot;: 320,
+      &quot;option&quot;: {},
+      &quot;optionJs&quot;: null,
+      &quot;datasetSource&quot;: null,
+      &quot;card&quot;: null,
+      &quot;rowCount&quot;: 31,
+      &quot;elapsedMilliseconds&quot;: 16,
+      &quot;error&quot;: null
+    }
+  ],
+  &quot;generatedAt&quot;: &quot;2026-07-11T10:00:00&quot;
+}
+</code></pre>
+<p><code>ChartAssetWebViewService</code> 将 Payload 包装为 WebView2 消息：</p>
+<pre><code class="lang-json">{
+  &quot;type&quot;: &quot;chart-asset-render&quot;,
+  &quot;payload&quot;: {}
+}
+</code></pre>
+<p>其他宿主消息包括：</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chart-asset-theme</code></td>
+<td>切换页面明暗主题</td>
+</tr>
+<tr>
+<td><code>chart-asset-chart-theme</code></td>
+<td>切换 ECharts 主题</td>
+</tr>
+<tr>
+<td><code>chart-asset-loading</code></td>
+<td>显示加载状态</td>
+</tr>
+<tr>
+<td><code>chart-asset-error</code></td>
+<td>显示页面级错误</td>
+</tr>
+<tr>
+<td><code>chart-asset-reset</code></td>
+<td>清空当前渲染内容</td>
+</tr>
+</tbody>
+</table>
+<p>前端收到新 Payload 时释放旧的 ECharts 实例，重新创建 widget DOM，并为 chart widget 调用 <code>echarts.init</code> 和 <code>setOption</code>。</p>
+<h2 id="主题与布局处理">主题与布局处理</h2>
+<p>ChartAsset 前端使用 CSS 网格根据 <code>columns</code> 和 <code>columnSpan</code> 排列组件。对于直角坐标系图表，如果 option 没有显式设置 <code>grid</code>，前端自动添加带 <code>containLabel</code> 的默认网格，避免坐标文字被裁剪。</p>
+<p>前端从当前页面 CSS 变量读取文字、弱化文字、边框和背景色，并为 option 中未显式配置的标题、图例、坐标轴、提示框等补充主题默认值。资产显式设置的 option 值优先，不会被主题默认值覆盖。</p>
+<h2 id="刷新策略">刷新策略</h2>
+<p>刷新模型为：</p>
+<pre><code class="lang-json">{
+  &quot;mode&quot;: &quot;interval&quot;,
+  &quot;intervalSeconds&quot;: 10
+}
+</code></pre>
+<ul>
+<li><code>manual</code>：只在用户选择资产、修改参数或主动刷新时执行；</li>
+<li><code>interval</code>：首次执行成功后由 <code>ChartAssetViewModel</code> 创建定时器重复执行；</li>
+<li>定时刷新间隔最小为 5 秒；</li>
+<li>切换资产、离开页面或释放 ViewModel 时停止原定时器。</li>
+</ul>
+<h2 id="资产校验">资产校验</h2>
+<p><code>ChartAssetValidator</code> 在保存和执行前检查：</p>
+<ul>
+<li>资产 ID 和名称；</li>
+<li>ID、名称及参数重复；</li>
+<li>参数名称、类型、默认值与枚举选项；</li>
+<li>数据源 ID、模式和内容；</li>
+<li>SQL 只读性及占位符声明；</li>
+<li>Script 是否声明实现 <code>IChartAssetScript</code>；</li>
+<li>dashboard 列数和 widget 数量；</li>
+<li>widget ID、跨度和数据源引用；</li>
+<li>chart 的 <code>option</code> / <code>optionJs</code> 二选一；</li>
+<li>summaryCard 的字段组合；</li>
+<li><code>@js:</code> 函数字符串格式；</li>
+<li>刷新模式和最小间隔。</li>
+</ul>
+<p>校验结果包含 <code>errors</code> 和 <code>warnings</code>。存在错误时资产不能保存或执行；警告不会阻止保存。</p>
+<h2 id="ipc-工具">IPC 工具</h2>
+<h3 id="chartassetlist">chartAsset.list</h3>
+<p>列出当前项目资产，支持 <code>search</code>、<code>offset</code> 和 <code>limit</code>。返回资产 ID、名称、说明、参数数量、数据源数量、widget 数量和刷新模式。</p>
+<h3 id="chartassetget">chartAsset.get</h3>
+<p>按 ID 或名称返回完整资产 JSON。<code>maxJsonChars</code> 控制返回文本截断长度。</p>
+<h3 id="chartassetvalidate">chartAsset.validate</h3>
+<p>校验未保存或已存在资产。输入可使用：</p>
+<ul>
+<li><code>draftId</code>：草稿存储中的资产 JSON；</li>
+<li><code>assetJson</code>：直接传入完整定义；</li>
+<li><code>assetIdOrName</code>：校验项目中已有资产。</li>
+</ul>
+<p>三种来源只能选择一种。</p>
+<h3 id="chartassetupsert">chartAsset.upsert</h3>
+<p>使用 <code>draftId</code> 或 <code>assetJson</code> 创建或替换资产。资产按 ID 匹配；<code>allowReplace</code> 默认为 <code>true</code>。写入前执行完整校验，成功后触发资产变更事件。</p>
+<h3 id="chartassetpatch">chartAsset.patch</h3>
+<p>对已有资产执行局部 JSON 修改。支持：</p>
+<ul>
+<li><code>replace</code></li>
+<li><code>remove</code></li>
+<li><code>append</code></li>
+<li><code>insertAfter</code></li>
+</ul>
+<p>路径使用 JSON Pointer，并支持数组的 <code>byId/{id}</code> 定位。补丁不能修改资产 ID；合并后的完整资产通过校验后才会保存。</p>
+<h3 id="chartassetdelete">chartAsset.delete</h3>
+<p>按资产 ID 或名称从项目中删除资产。ChartAsset 删除不是 ViewAsset 的软注销，不提供 restore 工具。</p>
+<h3 id="chartassetpreview">chartAsset.preview</h3>
+<p>执行资产并返回 widget 渲染摘要：</p>
+<pre><code class="lang-json">{
+  &quot;assetIdOrName&quot;: &quot;production-overview&quot;,
+  &quot;parameters&quot;: [
+    { &quot;name&quot;: &quot;StartDate&quot;, &quot;value&quot;: &quot;2026-07-01&quot; },
+    { &quot;name&quot;: &quot;EndDate&quot;, &quot;value&quot;: &quot;2026-08-01&quot; }
+  ],
+  &quot;includePayload&quot;: true,
+  &quot;maxJsonChars&quot;: 60000
+}
+</code></pre>
+<ul>
+<li><code>parameters</code> 由名称和值组成，工具层转换为不区分大小写的字典；</li>
+<li><code>includePayload=false</code> 时主要返回每个 widget 的行数、耗时和错误摘要；</li>
+<li><code>includePayload=true</code> 时同时返回完整 <code>ChartRenderPayload</code>；</li>
+<li><code>maxJsonChars</code> 控制完整 Payload JSON 的最大返回长度。</li>
+</ul>
+<h2 id="当前能力边界">当前能力边界</h2>
+<ul>
+<li>一个资产支持多个参数、多个数据源和多个 widget；</li>
+<li>SQL 数据源按声明顺序逐个执行，不并行执行；</li>
+<li>支持只读 SQL 与受控 C# Script 两种数据源；</li>
+<li>SQL 参数必须先在资产参数集合中声明；</li>
+<li>支持 text、number、date、dateTime 和 enum 参数；</li>
+<li>支持 ECharts option JSON、<code>@js:</code> 回调函数和完整 <code>optionJs</code>；</li>
+<li>支持 chart 与 summaryCard 两种 widget；</li>
+<li>支持 1 至 4 列仪表盘和 widget 跨列；</li>
+<li>支持手动刷新及最小 5 秒的定时刷新；</li>
+<li>单个数据源失败只影响引用它的 widget；</li>
+<li>ChartAsset 使用统一 WebView2 页面渲染，不提供每个资产独立的 HTML/CSS 页面；</li>
+<li>ChartAsset 工具用于管理项目内的 JSON 定义，不操作 ViewAsset 文件目录。</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/DataBase/ChartAsset/ChartAsset.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IConversationDriver | DataMaster ">
       
-      <meta name="description" content="对话驱动器接口">
+      <meta name="description" content="对话驱动器接口。持有当前会话标识，对话历史存于会话存储，调用方每轮只需提交新的用户输入">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_PrismaTalk_Agent_IConversationDriver" data-uid="MAS.PrismaTalk.Agent.IConversationDriver" class="text-break">
-Interface IConversationDriver  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IConversationDriver.cs/#L17"><i class="bi bi-code-slash"></i></a>
+Interface IConversationDriver  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IConversationDriver.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Interface IConversationDriver  <a class="header-action link-secondary" title="Vi
   <dl><dt>Assembly</dt><dd>MAS.PrismaTalk.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>对话驱动器接口</p>
+  <div class="markdown summary"><p>对话驱动器接口。持有当前会话标识，对话历史存于会话存储，调用方每轮只需提交新的用户输入</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -121,50 +121,14 @@ Interface IConversationDriver  <a class="header-action link-secondary" title="Vi
 </h2>
 
 
-  <a id="MAS_PrismaTalk_Agent_IConversationDriver_Attach_" data-uid="MAS.PrismaTalk.Agent.IConversationDriver.Attach*"></a>
-
-  <h3 id="MAS_PrismaTalk_Agent_IConversationDriver_Attach_System_Collections_Generic_List_MAS_PrismaTalk_Models_ChatMessage__" data-uid="MAS.PrismaTalk.Agent.IConversationDriver.Attach(System.Collections.Generic.List{MAS.PrismaTalk.Models.ChatMessage})">
-  Attach(List&lt;ChatMessage&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IConversationDriver.cs/#L25"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>绑定当前会话的消息列表</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void Attach(List&lt;ChatMessage&gt; messages)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>messages</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.PrismaTalk.Models.ChatMessage.html">ChatMessage</a>&gt;</dt>
-    <dd><p>当前会话的消息集合</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section" id="MAS_PrismaTalk_Agent_IConversationDriver_Attach_System_Collections_Generic_List_MAS_PrismaTalk_Models_ChatMessage___remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>Driver 持有该列表用于读取历史与写入助手最终消息</p>
-</div>
-
-
-
-
   <a id="MAS_PrismaTalk_Agent_IConversationDriver_ResetSession_" data-uid="MAS.PrismaTalk.Agent.IConversationDriver.ResetSession*"></a>
 
   <h3 id="MAS_PrismaTalk_Agent_IConversationDriver_ResetSession" data-uid="MAS.PrismaTalk.Agent.IConversationDriver.ResetSession">
   ResetSession()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IConversationDriver.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IConversationDriver.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>重置会话：清空已绑定的消息与会话级工具激活状态，用于开启新会话</p>
+  <div class="markdown level1 summary"><p>重置会话：丢弃当前会话记忆（对话历史、已激活工具、已执行 callId），用于开启新会话</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -186,21 +150,24 @@ Interface IConversationDriver  <a class="header-action link-secondary" title="Vi
 
   <a id="MAS_PrismaTalk_Agent_IConversationDriver_RunOnceAsync_" data-uid="MAS.PrismaTalk.Agent.IConversationDriver.RunOnceAsync*"></a>
 
-  <h3 id="MAS_PrismaTalk_Agent_IConversationDriver_RunOnceAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.PrismaTalk.Agent.IConversationDriver.RunOnceAsync(System.String,System.Threading.CancellationToken)">
-  RunOnceAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IConversationDriver.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_PrismaTalk_Agent_IConversationDriver_RunOnceAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="MAS.PrismaTalk.Agent.IConversationDriver.RunOnceAsync(System.String,System.String,System.Threading.CancellationToken)">
+  RunOnceAsync(string, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IConversationDriver.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步驱动一次完整的响应过程</p>
+  <div class="markdown level1 summary"><p>异步驱动一次完整的响应过程：把用户输入追加进当前会话历史并运行 Agent 循环</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ConversationTurnResult&gt; RunOnceAsync(string streamId, CancellationToken token)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ConversationTurnResult&gt; RunOnceAsync(string userInput, string streamId, CancellationToken token)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>userInput</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>本轮用户输入文本</p>
+</dd>
     <dt><code>streamId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>当前对话流的唯一标识，用于关联 UI 的流式输出</p>
 </dd>
@@ -230,7 +197,7 @@ Interface IConversationDriver  <a class="header-action link-secondary" title="Vi
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IConversationDriver.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IConversationDriver.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -112,8 +112,9 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.PrismaTalk.Models.MessageModel.html">MessageModel</a></dt>
-      <dd><p>表示一条对话消息的数据模型</p>
+      <dt><a class="xref" href="MAS.PrismaTalk.Models.ModelCallOptions.html">ModelCallOptions</a></dt>
+      <dd><p>一次模型调用的采样参数覆盖。由调用方（领域 <code>ModelRequest</code>）显式携带，
+传输层优先使用这里的值，缺省字段回退到配置默认</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -127,8 +128,21 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Models.ResponsesStreamResult.html">ResponsesStreamResult</a></dt>
+      <dd><p>一次 Responses 通道流式响应结果（一次 turn）。
+字段语义与 <a class="xref" href="MAS.PrismaTalk.Models.AssistantStreamResult.html">AssistantStreamResult</a> 对齐，另携带服务端响应标识</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PrismaTalk.Models.StreamingChunk.html">StreamingChunk</a></dt>
       <dd><p>流式响应中的一个数据模型</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Models.TokenUsage.html">TokenUsage</a></dt>
+      <dd><p>一次模型请求的真实 token 用量（由 API 返回，非估算）。
+两条通道归一化到同一形态：Chat Completions 的 prompt/completion/total_tokens、
+Responses 的 input/output/total_tokens 及缓存/推理细分</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -156,6 +170,12 @@ Enums
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.PrismaTalk.Models.FinishReason.html">FinishReason</a></dt>
       <dd><p>表示聊天或文本生成任务完成的原因</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PrismaTalk.Models.ModelApiChannel.html">ModelApiChannel</a></dt>
+      <dd><p>模型 API 通道。决定请求体形态与流式协议；<a class="xref" href="MAS.PrismaTalk.IPrismaTalkConfig.html#MAS_PrismaTalk_IPrismaTalkConfig_ServiceUrl">ServiceUrl</a>
+应配置为与所选通道匹配的端点（如 <code>/v1/chat/completions</code> 或 <code>/v1/responses</code>）</p>
 </dd>
     </dl>
     <dl class="jumplist">

@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ConversationTurnResult | DataMaster ">
       
-      <meta name="description" content="表示一次对话的结果，包括内部内存更新和工具使用信息">
+      <meta name="description" content="表示一次对话调用的结构化执行结果">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,12 +97,12 @@ Class ConversationTurnResult  <a class="header-action link-secondary" title="Vie
   <dl><dt>Assembly</dt><dd>MAS.PrismaTalk.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>表示一次对话的结果，包括内部内存更新和工具使用信息</p>
+  <div class="markdown summary"><p>表示一次对话调用的结构化执行结果</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class ConversationTurnResult</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed record ConversationTurnResult : IEquatable&lt;ConversationTurnResult&gt;</code></pre>
   </div>
 
 
@@ -116,6 +116,12 @@ Class ConversationTurnResult  <a class="header-action link-secondary" title="Vie
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="MAS.PrismaTalk.Agent.ConversationTurnResult.html">ConversationTurnResult</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -154,7 +160,7 @@ Class ConversationTurnResult  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaTalk_Agent_ConversationTurnResult_AssistantReply" data-uid="MAS.PrismaTalk.Agent.ConversationTurnResult.AssistantReply">
   AssistantReply
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Models/ConversationTurnResult.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Models/ConversationTurnResult.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取助理回复</p>
@@ -182,46 +188,11 @@ Class ConversationTurnResult  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="MAS_PrismaTalk_Agent_ConversationTurnResult_InternalMemory_" data-uid="MAS.PrismaTalk.Agent.ConversationTurnResult.InternalMemory*"></a>
-
-  <h3 id="MAS_PrismaTalk_Agent_ConversationTurnResult_InternalMemory" data-uid="MAS.PrismaTalk.Agent.ConversationTurnResult.InternalMemory">
-  InternalMemory
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Models/ConversationTurnResult.cs/#L20"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取写回到会话历史的内部摘要</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? InternalMemory { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-  <h4 class="section" id="MAS_PrismaTalk_Agent_ConversationTurnResult_InternalMemory_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>用于替代本次任务期间的工具/脚本/技能全文等上下文</p>
-</div>
-
-
-
-
   <a id="MAS_PrismaTalk_Agent_ConversationTurnResult_IsToolUsed_" data-uid="MAS.PrismaTalk.Agent.ConversationTurnResult.IsToolUsed*"></a>
 
   <h3 id="MAS_PrismaTalk_Agent_ConversationTurnResult_IsToolUsed" data-uid="MAS.PrismaTalk.Agent.ConversationTurnResult.IsToolUsed">
   IsToolUsed
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Models/ConversationTurnResult.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Models/ConversationTurnResult.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本次是否发生过工具执行</p>
