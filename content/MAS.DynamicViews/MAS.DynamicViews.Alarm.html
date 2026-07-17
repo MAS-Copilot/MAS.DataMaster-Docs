@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>报警系统 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="报警系统 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.Alarm.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="报警系统">报警系统</h1>
+
+<p>报警系统用于把 PLC 或离线模拟产生的 Bool 状态转换为当前报警和历史报警记录。报警点以专用结构体管理，报警列表控件按结构体整体绑定，不进行字段级绑定。</p>
+<h2 id="功能组成">功能组成</h2>
+<p>报警链路由以下部分组成：</p>
+<pre><code class="lang-text">报警结构体
+    ↓
+设备通道整体轮询 / 离线变量写入
+    ↓
+变量中心 ValueChanged
+    ↓
+报警状态跟踪器
+    ├── false → true：触发报警
+    └── true → false：恢复报警
+    ↓
+当前报警列表 + AlarmRecords 历史记录
+</code></pre>
+<h2 id="创建报警结构体">创建报警结构体</h2>
+<p>在数据中心的“添加结构体”菜单中选择“报警结构体”，输入报警点数量后确认。报警点数量范围为 1 到 1000，默认值为 100</p>
+<p>系统生成的结构体具有以下规则：</p>
+<ul>
+<li><code>Usage</code> 为 <code>Alarm</code></li>
+<li>访问模式默认为 <code>ReadOnly</code></li>
+<li>字段名依次为 <code>Alarm001</code>、<code>Alarm002</code>……<code>AlarmN</code></li>
+<li>所有字段必须为 <code>Bool</code>，默认值为 <code>false</code></li>
+<li>字段描述作为报警信息；描述为空时使用字段名</li>
+<li>字段报警等级默认为“警告”</li>
+<li>报警等级支持“提示”“警告”“错误”</li>
+</ul>
+<p>数据中心只在报警结构体的字段编辑区显示报警等级。执行检查时，如果报警结构体包含非 Bool 字段，检查不会通过</p>
+<h2 id="配置通讯通道">配置通讯通道</h2>
+<p>报警结构体可以像普通结构体一样在设备中心关联通道。由于字段全部为 Bool，Modbus TCP 通道应使用 <code>Coils</code> 或 <code>DiscreteInputs</code> 地址区，并保证起始地址和字段顺序与设备数据布局一致</p>
+<p>在线运行时，轮询线程读取整个报警结构体并提交变量中心。报警结构体是只读结构体，不参与设备写回</p>
+<h2 id="添加并绑定报警列表">添加并绑定报警列表</h2>
+<ol>
+<li>在设计器工具箱的“报警”分类中拖入报警列表控件</li>
+<li>在绑定检查器的“报警绑定”区域启用绑定</li>
+<li>选择一个报警结构体。选择器只显示 <code>Usage=Alarm</code> 的结构体</li>
+<li>检查并同步工程数据，然后打开运行视图</li>
+</ol>
+<p>报警列表包含两个页签：</p>
+<ul>
+<li>当前报警：显示触发时间、带颜色区分的报警等级和报警信息</li>
+<li>历史记录：显示触发时间、恢复时间、报警等级和报警信息</li>
+</ul>
+<p>历史记录只查询最近 3 个月的数据，并使用分页控件按触发时间倒序显示</p>
+<h2 id="触发与恢复语义">触发与恢复语义</h2>
+<p>报警状态跟踪器只记录有效跳变：</p>
+<table>
+<thead>
+<tr>
+<th>旧值</th>
+<th>新值</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>新增当前报警，并写入一条未恢复的历史记录</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>不重复触发</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>从当前报警移除，并更新历史记录的恢复时间</td>
+</tr>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>无操作</td>
+</tr>
+</tbody>
+</table>
+<p>通讯整体读取和变量监控的本地写入都通过变量中心的同一变化事件进入报警检测。数据库操作串行执行，以保证同一个实时跳变序列中先插入触发记录、再更新恢复记录</p>
+<h2 id="离线模拟">离线模拟</h2>
+<p>报警结构体默认只读。为了便于无设备调试，离线模式对报警结构体提供一个受限特例：可以在变量监控中把报警点写为 <code>true</code> 或 <code>false</code>，写入只提交到本地变量中心</p>
+<p>在线模式仍严格遵守只读限制，不允许通过变量写入服务向报警结构体写值</p>
+<p>推荐的离线验证步骤：</p>
+<ol>
+<li>打开运行视图并确认当前为离线模式</li>
+<li>在变量监控中把某个报警点从 <code>false</code> 改为 <code>true</code></li>
+<li>确认当前报警页出现对应记录和等级颜色</li>
+<li>把该报警点改回 <code>false</code>，确认它从当前报警页消失</li>
+<li>数据库可用时，切换到历史页确认触发时间和恢复时间</li>
+</ol>
+<h2 id="数据库记录">数据库记录</h2>
+<p>报警历史保存在自动创建的 <code>AlarmRecords</code> 表中，主要字段如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StructureId / StructureName</td>
+<td>报警结构体标识和触发时的名称</td>
+</tr>
+<tr>
+<td>FieldId / FieldName</td>
+<td>报警点标识和触发时的名称</td>
+</tr>
+<tr>
+<td>Level</td>
+<td>触发时的报警等级</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>触发时的报警信息</td>
+</tr>
+<tr>
+<td>ActivatedAt</td>
+<td>触发时间</td>
+</tr>
+<tr>
+<td>ResolvedAt</td>
+<td>恢复时间；为空表示尚未恢复</td>
+</tr>
+</tbody>
+</table>
+<p>表上为结构体标识和触发时间建立索引。历史页以 <code>StructureId</code> 过滤，因此结构体改名不会丢失已有历史；删除并重建结构体会产生新的标识，不会自动关联旧记录</p>
+<h2 id="绑定限制">绑定限制</h2>
+<p>报警结构体与配方结构体都属于特殊用途结构体，不能在文本、状态、数值等普通控件的数据绑定选择器中选择。报警列表使用专用的结构体整体绑定</p>
+<p>事件系统的“变量操作”仍保留原有的特殊结构体选择行为，以兼容配方字段操作；报警结构体因为访问模式为只读，不会出现在变量操作的字段选择结果中</p>
+<h2 id="当前边界">当前边界</h2>
+<p>报警服务启动或结构体定义变化时，会根据变量中心的当前值重建“当前报警”列表。这个重建过程不会补写历史记录。因此，如果报警点在服务启动前已经是 <code>true</code>，运行视图会显示当前报警，但历史表不会新增一次触发记录；历史记录只记录服务运行期间观察到的实时跳变</p>
+<p>重建时无法得知报警的真实触发时刻，当前报警页会把本次扫描时间作为显示时间。如果上一运行周期留下了未恢复的历史记录，而报警在程序停止期间已经恢复，本次启动只观察到初始 <code>false</code>，不会自动补写该历史记录的恢复时间</p>
+<p>历史查询的取消令牌只在查询开始前检查，底层仓储查询开始后不会中断。快速翻页时，控件通过查询版本号丢弃过期结果，避免旧页面覆盖新页面</p>
+<h2 id="排查清单">排查清单</h2>
+<p>当前报警未出现时，依次检查：</p>
+<ul>
+<li>结构体 <code>Usage</code> 是否为 <code>Alarm</code></li>
+<li>报警字段是否为 <code>Bool</code>，结构体是否已启用</li>
+<li>报警列表是否已启用绑定并选择了正确的结构体</li>
+<li>在线模式下设备、通道、地址和结构体绑定是否有效</li>
+<li>修改后是否执行了检查并同步工程数据</li>
+<li>测试值是否确实发生了 <code>false → true</code> 跳变</li>
+</ul>
+<p>历史记录未出现时，继续检查数据库连接和 <code>AlarmRecords</code> 表是否可用，并确认触发时间处于最近 3 个月内</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.Alarm.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

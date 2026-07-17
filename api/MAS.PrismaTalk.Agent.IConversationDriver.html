@@ -193,6 +193,40 @@ Interface IConversationDriver  <a class="header-action link-secondary" title="Vi
 
 
 
+  <a id="MAS_PrismaTalk_Agent_IConversationDriver_TruncateLastUserTurn_" data-uid="MAS.PrismaTalk.Agent.IConversationDriver.TruncateLastUserTurn*"></a>
+
+  <h3 id="MAS_PrismaTalk_Agent_IConversationDriver_TruncateLastUserTurn" data-uid="MAS.PrismaTalk.Agent.IConversationDriver.TruncateLastUserTurn">
+  TruncateLastUserTurn()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Agent/Interfaces/IConversationDriver.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>截断“最后一轮用户消息”：从会话历史中最后一条用户消息起（含）删除到末尾，
+连同其后的助手回复与工具调用一并移除，供“编辑最后一条消息并重发”覆盖该轮使用。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TruncateLastUserTurn()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true 表示存在用户消息并已截断；false 表示历史中没有用户消息</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 

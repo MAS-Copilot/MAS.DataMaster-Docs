@@ -287,7 +287,7 @@ VariableValueCommitter
 <li>按设备创建独立后台任务</li>
 <li>在每个设备任务中，依次处理该设备下所有可轮询通道</li>
 <li>普通变量调用 <code>DynamicViewCommService.ReadStructureAsync</code>，从设备读取整个结构体</li>
-<li>特殊用途变量按 <code>DynamicViewVariableUsage</code> 分派给任务处理器，例如配方任务</li>
+<li>特殊用途变量按 <code>DynamicViewVariableUsage</code> 分派给任务处理器，例如配方任务和报警读取任务</li>
 <li>根据本次处理结果 <code>DynamicViewCommOutcome</code> 更新设备状态：
 <ul>
 <li><code>Read</code>：记录最近读取时间与在线状态</li>
@@ -297,6 +297,7 @@ VariableValueCommitter
 </ul>
 </li>
 </ol>
+<p>报警任务处理器与普通读取一样调用整体结构体读取，但只处理 <code>Usage=Alarm</code> 的只读 Bool 结构体。读取结果提交变量中心后，由报警运行时服务检测触发与恢复；通讯线程本身不直接更新报警列表或数据库。详细规则参见<a href="MAS.DynamicViews.Alarm.html">报警系统</a>。</p>
 <blockquote>
 <p><code>ReadStructureAsync</code> 在上下文不可通信时返回 <code>Skipped</code>，读取到空数据时返回 <code>NoData</code>。跳过读取不会再被误记为读取成功</p>
 </blockquote>
@@ -434,6 +435,7 @@ VariableWriteService
 <li>ReadOnly 和 ReadWrite 结构体可绑定到只读或可写地址区</li>
 <li>WriteOnly 结构体只能绑定到 Coils 或 HoldingRegisters</li>
 <li>配方结构体当前只支持 HoldingRegisters</li>
+<li>报警结构体字段必须为 Bool，因此应使用 Coils 或 DiscreteInputs</li>
 </ul>
 <h2 id="结构体通讯">结构体通讯</h2>
 <p>通讯系统采用<code>结构体变量</code>作为核心通讯模型</p>

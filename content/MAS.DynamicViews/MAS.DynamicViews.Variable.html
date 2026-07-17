@@ -159,7 +159,7 @@
 </tr>
 <tr>
 <td>Usage</td>
-<td>变量用途，例如普通结构体或配方结构体</td>
+<td>变量用途，例如普通结构体、配方结构体或报警结构体</td>
 </tr>
 <tr>
 <td>Fields</td>
@@ -191,6 +191,9 @@
 <li>配方数据区字段</li>
 </ul>
 <p>配方数据长度实际有效范围为 100 到 1000。配方任务当前只支持 Modbus TCP 保持寄存器</p>
+<h3 id="报警结构体">报警结构体</h3>
+<p>报警结构体用于组织 Bool 报警点。创建时可指定 1 到 1000 个报警点，默认生成 100 个 <code>Alarm001</code> 到 <code>Alarm100</code> 字段。结构体默认为只读，每个字段使用描述作为报警信息，并保存“提示、警告、错误”三级报警等级</p>
+<p>报警结构体按整体关联通讯通道和报警列表控件，不用于普通控件的字段级数据绑定。完整配置、运行和历史记录规则参见<a href="MAS.DynamicViews.Alarm.html">报警系统</a></p>
 <h2 id="为什么使用结构体变量">为什么使用结构体变量</h2>
 <p>传统动态组态通常采用<code>全局变量列表</code>模式</p>
 <p>例如：</p>
@@ -232,6 +235,7 @@ Motor1Alarm
 ├── DefaultValue
 ├── FixedString
 ├── Description
+├── AlarmLevel
 └── Properties
 </code></pre>
 <p>其中：</p>
@@ -262,6 +266,10 @@ Motor1Alarm
 <tr>
 <td>Description</td>
 <td>字段描述</td>
+</tr>
+<tr>
+<td>AlarmLevel</td>
+<td>报警等级，仅报警结构体使用，默认为 Warning</td>
 </tr>
 <tr>
 <td>FixedString</td>
