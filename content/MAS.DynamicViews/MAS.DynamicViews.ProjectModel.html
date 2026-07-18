@@ -406,9 +406,11 @@ DisplayName
 ├── AddressArea
 ├── Address
 ├── StructureId
+├── PollingIntervalOverride
 ├── DisplayName
 └── Description
 </code></pre>
+<p><code>PollingIntervalOverride</code> 为可空毫秒值：null 表示继承设备的 <code>PollingInterval</code>，有值时仅用于延长该通道的轮询周期。设备周期是最快周期，配置值短于设备周期时仍按设备周期执行</p>
 <p>通道绑定结构体变量时保存<code>StructureId</code>，而不是直接保存变量对象，这样可以：</p>
 <ul>
 <li>降低序列化复杂度</li>

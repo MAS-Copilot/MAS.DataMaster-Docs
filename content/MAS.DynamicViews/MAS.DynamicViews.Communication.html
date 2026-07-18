@@ -239,23 +239,34 @@ Runtime 保持 Stopped
 </code></pre>
 <h2 id="变量轮询">变量轮询</h2>
 <h3 id="任务模型">任务模型</h3>
-<p>轮询器按 <code>DeviceId</code> 分组，每台设备创建一个 <code>Task.Run</code>：</p>
-<pre><code class="lang-text">设备 A -&gt; Task A -&gt; Channel A1 -&gt; Channel A2 -&gt; Delay
-设备 B -&gt; Task B -&gt; Channel B1 -&gt; Channel B2 -&gt; Delay
+<p>轮询器按 <code>DeviceId</code> 分组，每台设备创建一个调度循环（<code>Task.Run</code>）。每个通信上下文（设备 + 通道 + 结构体）维护独立的计划时刻：</p>
+<pre><code class="lang-text">设备 A -&gt; Task A -&gt; 找出到期上下文 -&gt; 按优先级串行执行 -&gt; 推进各自计划时刻 -&gt; 等到最近的计划时刻
+设备 B -&gt; Task B -&gt; ...
 </code></pre>
 <p>其并发策略是：</p>
 <ul>
 <li>不同设备之间并行</li>
-<li>同一设备的通道之间串行</li>
+<li>同一设备内始终只有一个请求执行序列（到期的上下文串行执行）</li>
 </ul>
 <p>这个设计避免同一协议设备被多个轮询任务同时访问，同时允许不同设备并发通信</p>
-<p>轮询间隔：</p>
-<pre><code class="lang-csharp">Math.Max(device.PollingInterval, 10)
+<h3 id="分级轮询">分级轮询</h3>
+<p>每个通道的有效周期：</p>
+<pre><code class="lang-csharp">var deviceInterval = Math.Max(device.PollingInterval, 10);
+Math.Max(channel.PollingIntervalOverride ?? deviceInterval, deviceInterval)
 </code></pre>
-<p>实际相邻两轮开始时间约为：</p>
-<pre><code class="lang-text">本轮所有通道执行耗时 + PollingInterval
-</code></pre>
-<p>它不是固定频率定时器。如果读取耗时增加，实际轮询周期也会变长</p>
+<ul>
+<li><code>PollingIntervalOverride</code> 为 null 时继承设备的 <code>PollingInterval</code></li>
+<li>有值时仅可延长该通道的周期，可在设备中心的通道编辑面板选择预设周期或自定义毫秒值</li>
+<li>设备周期是该设备允许的最快周期；通道配置短于设备周期时仍按设备周期执行</li>
+</ul>
+<p>调度规则：</p>
+<ul>
+<li>首次执行按 <code>ChannelId</code> 稳定哈希在各自周期内错峰，避免同周期通道同时到期形成批量串行读取</li>
+<li>多个上下文同时到期时，先按优先级（报警 &gt; 普通 &gt; 配方），再按计划时刻排序</li>
+<li>超期处理为“跳过已错过的计划时刻”：本次执行结束后，计划时刻推进到第一个晚于当前时间的节拍，不连续追赶，避免连接被占满</li>
+<li>每次执行后至少让出 1ms，写请求有机会插入</li>
+</ul>
+<p>每台设备每分钟输出一次轮询统计日志（结构体级请求数、失败数、超时数、平均/最大/P95 耗时、跳过的计划时刻数），用于评估实际刷新周期。注意统计的是结构体级请求，一个结构体在协议层可能拆成多次 Modbus 请求</p>
 <h3 id="轮询流程">轮询流程</h3>
 <pre><code class="lang-txt">PollingUpdater
     ↓
@@ -288,12 +299,12 @@ VariableValueCommitter
 <li>在每个设备任务中，依次处理该设备下所有可轮询通道</li>
 <li>普通变量调用 <code>DynamicViewCommService.ReadStructureAsync</code>，从设备读取整个结构体</li>
 <li>特殊用途变量按 <code>DynamicViewVariableUsage</code> 分派给任务处理器，例如配方任务和报警读取任务</li>
-<li>根据本次处理结果 <code>DynamicViewCommOutcome</code> 更新设备状态：
+<li>根据处理结果 <code>DynamicViewCommOutcome</code> 更新设备状态（成功状态按时间节流，每设备每秒最多一次，不再每个通道成功都发布状态事件）：
 <ul>
 <li><code>Read</code>：记录最近读取时间与在线状态</li>
 <li><code>Written</code>：记录最近写入时间与在线状态（配方等会回写设备的任务）</li>
 <li><code>Skipped</code> / <code>NoData</code>：不可通信而跳过，或未读到数据，不计为成功</li>
-<li>异常：记录错误状态</li>
+<li>异常：立即记录错误状态；之后需连续成功达到阈值（3 次）才恢复成功状态，避免设备状态随通道执行顺序抖动</li>
 </ul>
 </li>
 </ol>
@@ -349,7 +360,7 @@ VariableValueCommitter
 <li>独立异常处理</li>
 </ul>
 <p>设备之间互不影响</p>
-<p>轮询按设备分组执行。同一设备内的通道按顺序读取，不同设备之间可以并行轮询。设备轮询间隔来自设备配置，实际运行时最小不会低于 10 ms</p>
+<p>轮询按设备分组执行。同一设备内到期的通道串行读取，不同设备之间可以并行轮询。通道默认继承设备周期，并且只能配置为更长周期以降低读取频率；实际有效周期不会短于设备周期和 10 ms</p>
 <h2 id="通讯状态系统">通讯状态系统</h2>
 <p>通讯状态系统仅负责：</p>
 <ul>
