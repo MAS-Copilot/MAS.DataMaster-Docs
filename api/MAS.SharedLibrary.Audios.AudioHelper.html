@@ -157,7 +157,7 @@ Class AudioHelper  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_SharedLibrary_Audios_AudioHelper_GetActivePlayCount_MAS_SharedLibrary_Audios_SoundEffect_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.GetActivePlayCount(MAS.SharedLibrary.Audios.SoundEffect)">
   GetActivePlayCount(SoundEffect)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L163"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定音效的当前播放实例数</p>
@@ -196,7 +196,7 @@ Class AudioHelper  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_SharedLibrary_Audios_AudioHelper_IsPlaying_MAS_SharedLibrary_Audios_SoundEffect_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.IsPlaying(MAS.SharedLibrary.Audios.SoundEffect)">
   IsPlaying(SoundEffect)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L154"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查指定音效是否正在播放</p>
@@ -235,7 +235,7 @@ Class AudioHelper  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_SharedLibrary_Audios_AudioHelper_Play_MAS_SharedLibrary_Audios_SoundEffect_System_Boolean_System_Boolean_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.Play(MAS.SharedLibrary.Audios.SoundEffect,System.Boolean,System.Boolean)">
   Play(SoundEffect, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>播放音效</p>
@@ -274,7 +274,7 @@ Class AudioHelper  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_SharedLibrary_Audios_AudioHelper_PlayAsync_MAS_SharedLibrary_Audios_SoundEffect_System_Boolean_System_Boolean_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.PlayAsync(MAS.SharedLibrary.Audios.SoundEffect,System.Boolean,System.Boolean)">
   PlayAsync(SoundEffect, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步播放指定音效</p>
@@ -315,11 +315,99 @@ Class AudioHelper  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <a id="MAS_SharedLibrary_Audios_AudioHelper_PlayFile_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.PlayFile*"></a>
+
+  <h3 id="MAS_SharedLibrary_Audios_AudioHelper_PlayFile_System_String_System_Boolean_System_Double_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.PlayFile(System.String,System.Boolean,System.Double)">
+  PlayFile(string, bool, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>播放指定路径的音频文件（支持从&quot;复制文件地址&quot;粘贴得到的绝对路径），无需修改程序、可通过动态脚本直接调用。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AudioPlayback? PlayFile(string filePath, bool isLoop = false, double volume = 1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>音频文件的绝对路径，例如 &quot;G:\Cache\...\alarm.mp3&quot;</p>
+</dd>
+    <dt><code>isLoop</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否循环播放，默认为 false</p>
+</dd>
+    <dt><code>volume</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>音量，取值 0.0 ~ 1.0，默认为 1.0</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Audios.AudioPlayback.html">AudioPlayback</a></dt>
+    <dd><p>播放句柄，可用于随时停止；文件不存在时返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Audios_AudioHelper_PlayFileLoop_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.PlayFileLoop*"></a>
+
+  <h3 id="MAS_SharedLibrary_Audios_AudioHelper_PlayFileLoop_System_String_System_Double_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.PlayFileLoop(System.String,System.Double)">
+  PlayFileLoop(string, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>循环播放指定路径的音频文件，返回播放句柄。
+典型场景：报警触发时循环播放，报警消除时调用句柄的 <a class="xref" href="MAS.SharedLibrary.Audios.AudioPlayback.html#MAS_SharedLibrary_Audios_AudioPlayback_Stop">Stop()</a> 手动停止。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AudioPlayback? PlayFileLoop(string filePath, double volume = 1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>音频文件的绝对路径</p>
+</dd>
+    <dt><code>volume</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>音量，取值 0.0 ~ 1.0，默认为 1.0</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Audios.AudioPlayback.html">AudioPlayback</a></dt>
+    <dd><p>播放句柄，可用于随时停止；文件不存在时返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_SharedLibrary_Audios_AudioHelper_Stop_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.Stop*"></a>
 
   <h3 id="MAS_SharedLibrary_Audios_AudioHelper_Stop_MAS_SharedLibrary_Audios_SoundEffect_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.Stop(MAS.SharedLibrary.Audios.SoundEffect)">
   Stop(SoundEffect)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止指定音效</p>
@@ -352,7 +440,7 @@ Class AudioHelper  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_SharedLibrary_Audios_AudioHelper_StopAll" data-uid="MAS.SharedLibrary.Audios.AudioHelper.StopAll">
   StopAll()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L124"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止所有音效</p>
@@ -375,6 +463,33 @@ Class AudioHelper  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <a id="MAS_SharedLibrary_Audios_AudioHelper_StopAllFiles_" data-uid="MAS.SharedLibrary.Audios.AudioHelper.StopAllFiles*"></a>
+
+  <h3 id="MAS_SharedLibrary_Audios_AudioHelper_StopAllFiles" data-uid="MAS.SharedLibrary.Audios.AudioHelper.StopAllFiles">
+  StopAllFiles()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>停止所有通过文件路径播放的音频（不影响枚举音效）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void StopAllFiles()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="events">Events
 </h2>
 
@@ -382,7 +497,7 @@ Class AudioHelper  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_SharedLibrary_Audios_AudioHelper_SoundPlayed" data-uid="MAS.SharedLibrary.Audios.AudioHelper.SoundPlayed">
   SoundPlayed
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Helpers/Audios/AudioHelper.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当音效播放完成时触发</p>

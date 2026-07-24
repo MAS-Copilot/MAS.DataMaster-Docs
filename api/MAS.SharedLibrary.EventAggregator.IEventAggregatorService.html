@@ -306,7 +306,7 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>返回一个已完成的异步任务结果，表示事件发布操作已经启动</p>
+    <dd><p>在所有匹配的异步订阅者处理完成后完成的任务</p>
 </dd>
   </dl>
 
@@ -317,7 +317,7 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
 
   <h4 class="section" id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync_System_String_System_Object_System_String_System_String_System_Nullable_System_TimeSpan___remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>Fire-and-Forget 模式。在单独的后台线程中启动所有订阅者的异步处理任务后立即返回，不等待这些任务完成</p>
+  <div class="markdown level1 remarks"><p>处理任务在后台线程中执行，方法本身不阻塞调用方；不 await 返回值即为 Fire-and-Forget</p>
 </div>
 
 
@@ -348,7 +348,7 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>返回一个已完成的异步任务结果，表示事件发布操作已经启动</p>
+    <dd><p>在所有匹配的异步订阅者处理完成后完成的任务</p>
 </dd>
   </dl>
 
@@ -365,7 +365,7 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
 
   <h4 class="section" id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync__1___0__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>Fire-and-Forget 模式。在单独的后台线程中启动所有订阅者的异步处理任务后立即返回，不等待这些任务完成</p>
+  <div class="markdown level1 remarks"><p>处理任务在后台线程中执行，方法本身不阻塞调用方；不 await 返回值即为 Fire-and-Forget</p>
 </div>
 
 
@@ -405,7 +405,7 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>返回一个已完成的异步任务结果，表示事件发布操作已经启动</p>
+    <dd><p>在所有匹配的异步订阅者处理完成后完成的任务</p>
 </dd>
   </dl>
 
@@ -422,7 +422,7 @@ Interface IEventAggregatorService  <a class="header-action link-secondary" title
 
 
   <h4 class="section" id="MAS_SharedLibrary_EventAggregator_IEventAggregatorService_PublishAsync__1___0_System_String_System_String_System_Nullable_System_TimeSpan___remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>Fire-and-Forget 模式。在单独的后台线程中启动所有订阅者的异步处理任务后立即返回，不等待这些任务完成</p>
+  <div class="markdown level1 remarks"><p>处理任务在后台线程中执行，方法本身不阻塞调用方；不 await 返回值即为 Fire-and-Forget</p>
 </div>
 
 
