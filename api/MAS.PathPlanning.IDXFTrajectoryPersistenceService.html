@@ -102,7 +102,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IDXFTrajectoryPersistenceService : IPersistenceService, IRecentFileService, IProjectHeaderProbeService, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IDXFTrajectoryPersistenceService : IPersistenceService, IRecentFileService, IProjectHeaderProbeService, IDisposable, IDXFRecipeRuntimeService</code></pre>
   </div>
 
 
@@ -180,6 +180,51 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
     </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_RecipeActivated">IDXFRecipeRuntimeService.RecipeActivated</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_LayerActivated">IDXFRecipeRuntimeService.LayerActivated</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetRecipes">IDXFRecipeRuntimeService.GetRecipes()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetRecipe_System_String_">IDXFRecipeRuntimeService.GetRecipe(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetCurrentRecipe">IDXFRecipeRuntimeService.GetCurrentRecipe()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_SwitchRecipeAsync_System_String_MAS_PathPlanning_ActivationSource_System_Threading_CancellationToken_">IDXFRecipeRuntimeService.SwitchRecipeAsync(string, ActivationSource, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_ActivateLayer_System_String_MAS_PathPlanning_ActivationSource_">IDXFRecipeRuntimeService.ActivateLayer(string, ActivationSource)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetCurrentLayer">IDXFRecipeRuntimeService.GetCurrentLayer()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetCurrentTrajectory">IDXFRecipeRuntimeService.GetCurrentTrajectory()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetTrajectoryData_System_String_System_String_">IDXFRecipeRuntimeService.GetTrajectoryData(string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetTrajectoriesData_System_String_">IDXFRecipeRuntimeService.GetTrajectoriesData(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetTrajectoryGeneration_System_String_System_String_">IDXFRecipeRuntimeService.GetTrajectoryGeneration(string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetCalibrationItem_System_String_">IDXFRecipeRuntimeService.GetCalibrationItem(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetCalibrationRecipes">IDXFRecipeRuntimeService.GetCalibrationRecipes()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html#MAS_PathPlanning_IDXFRecipeRuntimeService_GetRecipeDirectory_System_String_">IDXFRecipeRuntimeService.GetRecipeDirectory(string)</a>
+    </div>
   </dd></dl>
 
 
@@ -191,14 +236,176 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 </h2>
 
 
+  <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_BindCalibrationRecipe_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.BindCalibrationRecipe*"></a>
+
+  <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_BindCalibrationRecipe_System_String_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.BindCalibrationRecipe(System.String,System.String)">
+  BindCalibrationRecipe(string, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>绑定或解绑配方使用的标定配方</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool BindCalibrationRecipe(string recipeCode, string? calibrationRecipe)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>recipeCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>图纸配方编号</p>
+</dd>
+    <dt><code>calibrationRecipe</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>标定配方名称（<a class="xref" href="MAS.PathPlanning.CalibrationItem.html#MAS_PathPlanning_CalibrationItem_Recipe">Recipe</a>），传 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> 解绑</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否绑定成功</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_CreateRecipeAsync_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.CreateRecipeAsync*"></a>
+
+  <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_CreateRecipeAsync_System_String_System_String_System_String_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.CreateRecipeAsync(System.String,System.String,System.String,System.String)">
+  CreateRecipeAsync(string, string, string, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步创建图纸配方并关联 DXF 文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;DxfRecipeEntry&gt; CreateRecipeAsync(string recipeCode, string recipeName, string dxfFilePath, string? description = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>recipeCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>配方编号（唯一，字母/数字/下划线/连字符，最长 20 字符）</p>
+</dd>
+    <dt><code>recipeName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>配方显示名称</p>
+</dd>
+    <dt><code>dxfFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>DXF 文件路径（只记录路径）</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>一句话描述，可空</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.PathPlanning.DxfRecipeEntry.html">DxfRecipeEntry</a>&gt;</dt>
+    <dd><p>异步操作任务结果，创建的配方索引</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_CreateRecipeAsync_System_String_System_String_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>若当前没有激活配方，创建后自动激活新配方</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectLoadException.html">ProjectLoadException</a></dt>
+    <dd><p>编号非法/重复或 DXF 文件无效</p>
+</dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_DuplicateRecipeAsync_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.DuplicateRecipeAsync*"></a>
+
+  <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_DuplicateRecipeAsync_System_String_System_String_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.DuplicateRecipeAsync(System.String,System.String,System.String)">
+  DuplicateRecipeAsync(string, string, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步克隆图纸配方，新配方沿用同一张图纸并复制原配方已生成的图层轨迹与生成参数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;DxfRecipeEntry&gt; DuplicateRecipeAsync(string sourceRecipeCode, string newRecipeCode, string? newRecipeName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceRecipeCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>源配方编号</p>
+</dd>
+    <dt><code>newRecipeCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>新配方编号（唯一，字母/数字/下划线/连字符，最长 20 字符）</p>
+</dd>
+    <dt><code>newRecipeName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>新配方显示名称，为空时沿用源配方名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.PathPlanning.DxfRecipeEntry.html">DxfRecipeEntry</a>&gt;</dt>
+    <dd><p>异步操作任务结果，克隆出的配方索引</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_DuplicateRecipeAsync_System_String_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>源配方为当前配方时，会先把内存中的未落盘数据写入磁盘再复制</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectLoadException.html">ProjectLoadException</a></dt>
+    <dd><p>源配方不存在或新编号非法/重复</p>
+</dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
   <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetAllTrajectoryParameters_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetAllTrajectoryParameters*"></a>
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetAllTrajectoryParameters" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetAllTrajectoryParameters">
   GetAllTrajectoryParameters()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L195"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取所有的图层轨迹生成参数数据</p>
+  <div class="markdown level1 summary"><p>获取当前配方所有的图层轨迹生成参数数据</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -233,7 +440,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetCalibrationItems" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetCalibrationItems">
   GetCalibrationItems()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L233"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取已有标定列表的深度副本</p>
@@ -258,6 +465,9 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
+  <h4 class="section" id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetCalibrationItems_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>标定数据在工程加载时从标定根目录读入内存，保存工程时统一落盘</p>
+</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
@@ -271,10 +481,10 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetCurrentDxfFilePath" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetCurrentDxfFilePath">
   GetCurrentDxfFilePath()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取当前 DXF 文件路径</p>
+  <div class="markdown level1 summary"><p>获取当前配方关联的 DXF 文件路径</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -286,7 +496,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>当前 DXF 文件路径或 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>（如果未选择 DXF 文件）</p>
+    <dd><p>DXF 文件路径或 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>（未激活配方时）</p>
 </dd>
   </dl>
 
@@ -304,10 +514,10 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetExtendedPoints_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetExtendedPoints(System.String)">
   GetExtendedPoints(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L265"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取指定图层已有扩展点的深度副本列表</p>
+  <div class="markdown level1 summary"><p>获取当前配方指定图层已有扩展点的深度副本列表</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -348,7 +558,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetLastDxfParseResult" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetLastDxfParseResult">
   GetLastDxfParseResult()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L106"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最后一次 dxf 的解析结果</p>
@@ -381,7 +591,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetScriptCode" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetScriptCode">
   GetScriptCode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L221"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取脚本代码</p>
@@ -414,10 +624,10 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoriesData" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoriesData">
   GetTrajectoriesData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取已有的所有运动轨迹数据的深度副本</p>
+  <div class="markdown level1 summary"><p>获取当前配方已有的所有运动轨迹数据的深度副本</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -452,10 +662,10 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoryData_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoryData(System.String)">
   GetTrajectoryData(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L126"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取指定图层运动轨迹数据的深度副本</p>
+  <div class="markdown level1 summary"><p>获取当前配方指定图层运动轨迹数据的深度副本</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -492,14 +702,61 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
+  <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoryGeneration_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoryGeneration*"></a>
+
+  <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoryGeneration_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoryGeneration(System.String)">
+  GetTrajectoryGeneration(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前配方指定图层的生成记录</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TrajectoryGenerationSnapshot? GetTrajectoryGeneration(string layerName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>layerName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>图层名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.PathPlanning.TrajectoryGenerationSnapshot.html">TrajectoryGenerationSnapshot</a></dt>
+    <dd><p>该图层的生成记录，从未生成过返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoryGeneration_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>记录为只读展示数据，请勿修改返回的对象</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
   <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoryParameters_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoryParameters*"></a>
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_GetTrajectoryParameters_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.GetTrajectoryParameters(System.String)">
   GetTrajectoryParameters(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L188"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取指定图层轨迹生成参数数据的深度副本</p>
+  <div class="markdown level1 summary"><p>获取当前配方指定图层轨迹生成参数数据的深度副本</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -535,14 +792,61 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
+  <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_MarkTrajectoryGenerationStale_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.MarkTrajectoryGenerationStale*"></a>
+
+  <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_MarkTrajectoryGenerationStale_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.MarkTrajectoryGenerationStale(System.String)">
+  MarkTrajectoryGenerationStale(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把当前配方指定图层的生成记录标记为已过期</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool MarkTrajectoryGenerationStale(string layerName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>layerName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>图层名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>存在记录且此前未过期返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_MarkTrajectoryGenerationStale_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>轨迹点被手动增删改之后调用。记录描述的是改动之前那条轨迹，统计口径已经对不上</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
   <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_ParseDxfAsync_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.ParseDxfAsync*"></a>
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_ParseDxfAsync" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.ParseDxfAsync">
   ParseDxfAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步解析 DXF 内容</p>
+  <div class="markdown level1 summary"><p>异步解析当前配方的 DXF 内容，并刷新配方的图层数量与实体数量统计</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -579,7 +883,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_RemoveCalibrationItem_MAS_PathPlanning_CalibrationItem_System_Boolean_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.RemoveCalibrationItem(MAS.PathPlanning.CalibrationItem,System.Boolean)">
   RemoveCalibrationItem(CalibrationItem, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L253"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>移除指的的标定项</p>
@@ -614,7 +918,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
   <h4 class="section" id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_RemoveCalibrationItem_MAS_PathPlanning_CalibrationItem_System_Boolean__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>根据 Recipe 筛选移除</p>
+  <div class="markdown level1 remarks"><p>根据 Recipe 筛选移除；对应的数据文件在保存工程时删除</p>
 </div>
 
   <h4 class="section">Exceptions</h4>
@@ -629,10 +933,10 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_RemoveExtendedPoint_System_String_MAS_PathPlanning_ExtendedPoint_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.RemoveExtendedPoint(System.String,MAS.PathPlanning.ExtendedPoint)">
   RemoveExtendedPoint(string, ExtendedPoint)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L161"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L285"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>移除指定图层的扩展点</p>
+  <div class="markdown level1 summary"><p>移除当前配方指定图层的扩展点</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -675,14 +979,113 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
+  <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_RemoveRecipe_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.RemoveRecipe*"></a>
+
+  <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_RemoveRecipe_System_String_System_Boolean_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.RemoveRecipe(System.String,System.Boolean)">
+  RemoveRecipe(string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>移除指定编号的图纸配方</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveRecipe(string recipeCode, bool isDeleteFiles = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>recipeCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>配方编号</p>
+</dd>
+    <dt><code>isDeleteFiles</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否同时删除配方文件夹（图层轨迹与参数文件）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否移除成功</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_ReplaceRecipeDxfAsync_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.ReplaceRecipeDxfAsync*"></a>
+
+  <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_ReplaceRecipeDxfAsync_System_String_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.ReplaceRecipeDxfAsync(System.String,System.String)">
+  ReplaceRecipeDxfAsync(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步更换指定配方关联的 DXF 图纸</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; ReplaceRecipeDxfAsync(string recipeCode, string dxfFilePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>recipeCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>配方编号</p>
+</dd>
+    <dt><code>dxfFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>新的 DXF 文件路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>异步操作任务结果，选择了同一个 DXF 文件且哈希相同则不做更改并返回 false，否则返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_ReplaceRecipeDxfAsync_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>图纸内容哈希发生变化时，该配方已生成的图层轨迹与参数将被清空</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectLoadException.html">ProjectLoadException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
   <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveAllTrajectoryParameters_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SaveAllTrajectoryParameters*"></a>
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveAllTrajectoryParameters_System_Collections_Generic_Dictionary_System_String_MAS_PathPlanning_TrajectoryParameters__" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SaveAllTrajectoryParameters(System.Collections.Generic.Dictionary{System.String,MAS.PathPlanning.TrajectoryParameters})">
   SaveAllTrajectoryParameters(Dictionary&lt;string, TrajectoryParameters&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L203"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>保存所有的轨迹生成参数到当前工程</p>
+  <div class="markdown level1 summary"><p>保存当前配方所有的轨迹生成参数</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -719,7 +1122,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveCalibrationItem_MAS_PathPlanning_CalibrationItem_System_Boolean_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SaveCalibrationItem(MAS.PathPlanning.CalibrationItem,System.Boolean)">
   SaveCalibrationItem(CalibrationItem, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L243"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存指的的标定项</p>
@@ -748,7 +1151,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
   <h4 class="section" id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveCalibrationItem_MAS_PathPlanning_CalibrationItem_System_Boolean__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>如果存在相同的 Recipe，则更新</p>
+  <div class="markdown level1 remarks"><p>如果存在相同的 Recipe，则更新；数据在保存工程时写入标定根目录</p>
 </div>
 
   <h4 class="section">Exceptions</h4>
@@ -765,10 +1168,10 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveExtendedPoint_System_String_MAS_PathPlanning_ExtendedPoint_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SaveExtendedPoint(System.String,MAS.PathPlanning.ExtendedPoint)">
   SaveExtendedPoint(string, ExtendedPoint)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L275"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>保存指定图层的扩展点</p>
+  <div class="markdown level1 summary"><p>保存当前配方指定图层的扩展点</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -811,7 +1214,7 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveScriptCode_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SaveScriptCode(System.String)">
   SaveScriptCode(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L215"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存脚本代码到当前工程</p>
@@ -851,10 +1254,10 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveTrajectoryData_MAS_PathPlanning_TrajectoryPath_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SaveTrajectoryData(MAS.PathPlanning.TrajectoryPath)">
   SaveTrajectoryData(TrajectoryPath)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>保存指定的轨迹数据到当前工程</p>
+  <div class="markdown level1 summary"><p>保存指定的轨迹数据到当前配方</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -887,14 +1290,58 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
+  <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveTrajectoryGeneration_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SaveTrajectoryGeneration*"></a>
+
+  <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveTrajectoryGeneration_MAS_PathPlanning_TrajectoryGenerationSnapshot_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SaveTrajectoryGeneration(MAS.PathPlanning.TrajectoryGenerationSnapshot)">
+  SaveTrajectoryGeneration(TrajectoryGenerationSnapshot)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存指定图层的生成记录到当前配方</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SaveTrajectoryGeneration(TrajectoryGenerationSnapshot snapshot)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="MAS.PathPlanning.TrajectoryGenerationSnapshot.html">TrajectoryGenerationSnapshot</a></dt>
+    <dd><p>要保存的生成记录</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveTrajectoryGeneration_MAS_PathPlanning_TrajectoryGenerationSnapshot__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>只在重新生成轨迹时调用。首次生成时间沿用已有记录，更新时间刷新为当前时间，
+过期标记随之清除</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectSaveException.html">ProjectSaveException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
   <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveTrajectoryParameters_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SaveTrajectoryParameters*"></a>
 
   <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SaveTrajectoryParameters_MAS_PathPlanning_TrajectoryParameters_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SaveTrajectoryParameters(MAS.PathPlanning.TrajectoryParameters)">
   SaveTrajectoryParameters(TrajectoryParameters)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L181"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>保存指定的轨迹生成参数到当前工程</p>
+  <div class="markdown level1 summary"><p>保存指定的轨迹生成参数到当前配方</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -927,32 +1374,38 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
-  <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SelectDxfFileAsync_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SelectDxfFileAsync*"></a>
+  <a id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_UpdateRecipe_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.UpdateRecipe*"></a>
 
-  <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SelectDxfFileAsync_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.SelectDxfFileAsync(System.String)">
-  SelectDxfFileAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_UpdateRecipe_System_String_System_String_System_String_" data-uid="MAS.PathPlanning.IDXFTrajectoryPersistenceService.UpdateRecipe(System.String,System.String,System.String)">
+  UpdateRecipe(string, string, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFTrajectoryPersistenceService.cs/#L62"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步选择 DXF 文件并关联到当前工程</p>
+  <div class="markdown level1 summary"><p>更新配方的名称与描述</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; SelectDxfFileAsync(string dxfFilePath)</code></pre>
+    <pre><code class="lang-csharp hljs">bool UpdateRecipe(string recipeCode, string recipeName, string? description = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>dxfFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>DXF 文件路径</p>
+    <dt><code>recipeCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>配方编号</p>
+</dd>
+    <dt><code>recipeName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>新的显示名称</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>新的描述，可空</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>异步操作任务结果，选择了同一个 DXF 文件且哈希相同，则不做任何更改并返回 false， 否则返回 true</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否更新成功</p>
 </dd>
   </dl>
 
@@ -962,13 +1415,10 @@ Interface IDXFTrajectoryPersistenceService  <a class="header-action link-seconda
 
 
 
-  <h4 class="section" id="MAS_PathPlanning_IDXFTrajectoryPersistenceService_SelectDxfFileAsync_System_String__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>内存中的其它工程数据将被改变或重置</p>
-</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.SharedLibrary.ProjectLoadException.html">ProjectLoadException</a></dt>
+    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
     <dd></dd>
   </dl>
 

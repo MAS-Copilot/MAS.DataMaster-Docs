@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>图纸配方运行时 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="图纸配方运行时 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.PathPlanning/DXFRecipeRuntime.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="图纸配方运行时">图纸配方运行时</h1>
+
+<p>一个工程可关联多个<strong>图纸配方</strong>（一张 DXF 图纸 = 一个配方）。本文说明运行期换产的分层边界、配方激活事件，以及后台脚本与下位机的交互约定</p>
+<h2 id="分层边界">分层边界</h2>
+<p>配方状态只有一个所有者：<code>DXFTrajectoryPersistenceService</code>。它同时实现两个接口，按调用方能力裁剪暴露面</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>能力</th>
+<th>所有者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IDXFRecipeRuntimeService</code></td>
+<td>查配方、激活配方、设置图层、跨配方只读取数、订阅激活事件</td>
+<td>后台脚本（按需）</td>
+</tr>
+<tr>
+<td><code>IDXFTrajectoryPersistenceService</code></td>
+<td>上面的全部，外加配方增删改、更换图纸、写轨迹与参数、落盘、脚本代码</td>
+<td>上位机界面、后台脚本</td>
+</tr>
+</tbody>
+</table>
+<p>两个接口在 DI 中转发到<strong>同一个单例</strong>，配方状态不会分叉：</p>
+<pre><code class="lang-csharp">services.AddSingleton&lt;IDXFTrajectoryPersistenceService, DXFTrajectoryPersistenceService&gt;();
+services.AddSingleton&lt;IDXFRecipeRuntimeService&gt;(provider =&gt; provider.GetRequiredService&lt;IDXFTrajectoryPersistenceService&gt;());
+</code></pre>
+<h2 id="配方激活">配方激活</h2>
+<p><code>SwitchRecipeAsync</code> 带来源参数，来源决定两件事：</p>
+<pre><code class="lang-csharp">Task&lt;bool&gt; SwitchRecipeAsync(
+    string recipeCode,
+    ActivationSource source = ActivationSource.Ui,
+    CancellationToken token = default);
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>把工程标脏</th>
+<th>界面报错方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ui</code></td>
+<td>是，切配方是用户对工程的编辑</td>
+<td>模态对话框</td>
+</tr>
+<tr>
+<td><code>Script</code></td>
+<td>否，下位机换产是生产行为，每次都标脏会让工程长期处于未保存状态</td>
+<td>轻提示</td>
+</tr>
+<tr>
+<td><code>Agent</code></td>
+<td>否</td>
+<td>轻提示</td>
+</tr>
+</tbody>
+</table>
+<p>激活成功后触发 <code>RecipeActivated</code>，事件参数带 <code>Entry</code>、<code>RecipeCode</code>、<code>Source</code>、<code>PreviousRecipeCode</code></p>
+<p>界面订阅它实现<strong>自动跟随</strong>：下位机呼叫配方 → 脚本激活目标配方 → 界面换成该配方的图纸与图层。三种来源共用同一套跟随逻辑，界面自己切换时也不再单独刷新，避免两条路径行为漂移</p>
+<pre><code class="lang-csharp">// PathPlanningWorkbenchViewModel
+_dXFTrajectoryPersistence.RecipeActivated += DXFTrajectoryPersistence_RecipeActivated;
+
+private void DXFTrajectoryPersistence_RecipeActivated(object? sender, RecipeActivatedEventArgs e) {
+    _ = DispatchToUiAsync(() =&gt; FollowActivatedRecipeAsync(e));
+}
+</code></pre>
+<blockquote>
+<p>事件可能在任意线程触发，UI 订阅方<strong>必须</strong>自行封送到调度器，且不要在处理程序里同步等界面渲染完成，否则会把脚本响应下位机的节拍一起拖住</p>
+</blockquote>
+<h2 id="图层激活">图层激活</h2>
+<p>换产后轨迹区是空的，下位机接着指定要加工哪个图层，界面把轨迹区切过去，这样从界面上就能看出下位机当前在做哪个配方的哪个图层</p>
+<pre><code class="lang-csharp">bool ActivateLayer(string layerName, ActivationSource source = ActivationSource.Script);
+</code></pre>
+<ul>
+<li>作用域是<strong>当前配方</strong>，换产后上一个配方的图层名会被拒绝</li>
+<li><strong>只认已生成轨迹的图层</strong>：轨迹一律由界面手动生成，这里拿不到就返回 <code>false</code> 且不触发事件，绝不顺手生成</li>
+<li>不写任何持久化数据，纯运行期指定，因此不带 <code>async</code>，也不会把工程标脏</li>
+<li>成功后触发 <code>LayerActivated</code>（带 <code>RecipeCode</code>、<code>LayerName</code>、<code>Source</code>），界面据此把轨迹区切到该图层</li>
+</ul>
+<p>脚本拿到 <code>false</code> 就把该任务判为失败，由业务层定是报警还是跳过该图层</p>
+<blockquote>
+<p>换产刷新与设置图层可能连着来。界面在换产刷新完成前收到图层激活会先挂起，等图层卡片重建完再切过去，避免切到还没渲染出来的图层上</p>
+</blockquote>
+<h2 id="回读当前状态">回读当前状态</h2>
+<p>设置了什么就能读回什么，脚本不必自己再存一份，也方便回写给下位机：</p>
+<table>
+<thead>
+<tr>
+<th>读</th>
+<th>对应的设置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DxfRecipeEntry? GetCurrentRecipe()</code></td>
+<td><code>SwitchRecipeAsync</code></td>
+</tr>
+<tr>
+<td><code>string? GetCurrentLayer()</code></td>
+<td><code>ActivateLayer</code></td>
+</tr>
+<tr>
+<td><code>TrajectoryPath? GetCurrentTrajectory()</code></td>
+<td>当前配方 + 当前图层的轨迹，省掉自己拼编号与图层名</td>
+</tr>
+</tbody>
+</table>
+<p>当前图层挂在配方工作区上，换产时工作区整个换掉，图层随之回到未激活，不存在跨配方残留。它只反映 <code>ActivateLayer</code> 设置的图层，界面手动点开某个图层的轨迹<strong>不会</strong>改变它——这里要回答的是&quot;下位机在做哪个图层&quot;，不是&quot;操作员在看哪个图层&quot;</p>
+<h2 id="点位下发">点位下发</h2>
+<p>轨迹点与扩展点转成下位机可直接整段写入的定点整数：</p>
+<pre><code class="lang-csharp">// 六个位姿分量与点位类型各占一段连续数组
+var buffer = trajectoryPath.ToPointBuffer(capacity: MAX_POINT_COUNT);
+if (buffer.IsTruncated) {
+    // 点数超出下位机点位区，判任务失败，不能只发一半就让设备走
+}
+
+await _mcProtocol.WriteWordsAsync(&quot;D&quot;, BASE_ADDR + 1650, buffer.X, token);
+// ……Y / Z / Rx / Ry / Rz / Types 同理
+
+// 单个扩展点按 X、Y、Z、Rx、Ry、Rz 顺序取六个整数，已叠加各自偏移量
+await _mcProtocol.WriteWordsAsync(&quot;D&quot;, BASE_ADDR + 1616, extendedPoint.ToFixedPointPose(), token);
+</code></pre>
+<ul>
+<li><code>capacity</code> 传下位机点位区的固定点数，多余位置补 0，下位机据此清掉上一层遗留的尾巴；传 0 则按实际点数分配</li>
+<li>默认取相对坐标、缩放 1000（毫米转微米、度转千分之一度），都可以改</li>
+<li>取整是先乘再四舍五入。反过来先按小数位取整再乘会踩二进制小数的坑：<code>1.001</code> 会变成 <code>1000.999…</code>，直接截断就少一个最小单位</li>
+<li>缩放后超出 32 位整数会抛 <code>OverflowException</code>，宁可失败也不能让数值回绕把设备开到错误位置</li>
+</ul>
+<h2 id="数据存储布局">数据存储布局</h2>
+<pre><code class="lang-text">工程根目录/
+├── 工程名.masproj              # 配方索引 + 标定索引 + 脚本（工程级）
+├── Calibrations/               # 标定数据，工程级共用，可被多个图纸配方绑定
+└── Recipes/
+    ├── R001/                   # 文件夹名 = 配方编号
+    │   ├── layers/
+    │   │   ├── 图层A.json      # 单图层完整 TrajectoryPath（含扩展点）
+    │   │   └── 图层B.json
+    │   ├── generations/        # 各图层的生成记录，供生产追溯
+    │   └── parameters.json     # 该配方各图层的轨迹生成参数
+    └── R002/
+        └── ...
+</code></pre>
+<blockquote>
+<p>图层轨迹 JSON 以图层名命名（非法文件名字符替换为 <code>_</code> 并追加 8 位哈希），文件内容的 <code>Name</code> 字段才是权威图层名</p>
+</blockquote>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.PathPlanning/DXFRecipeRuntime.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

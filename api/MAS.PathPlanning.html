@@ -105,6 +105,12 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.CalibrationEntry.html">CalibrationEntry</a></dt>
+      <dd><p>标定配方索引项。持久化在 <code>.masproj</code> 中，仅记录概要；
+标定点位等数据存放于标定根目录下的独立 JSON 文件</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.CalibrationItem.html">CalibrationItem</a></dt>
       <dd><p>表示一个完整的标定的数据项</p>
 </dd>
@@ -150,11 +156,6 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.PathPlanning.DXFTrajectoryServiceModel.html">DXFTrajectoryServiceModel</a></dt>
-      <dd><p>表示 DXF 运动轨迹服务数据模型，用于存储和管理轨迹相关的持久化信息</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.DxfEntityItem.html">DxfEntityItem</a></dt>
       <dd><p>表示 DXF 中一个实体数据模型</p>
 </dd>
@@ -185,8 +186,19 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.DxfRecipeEntry.html">DxfRecipeEntry</a></dt>
+      <dd><p>图纸配方索引项。持久化在 <code>.masproj</code> 中，一个配方对应一张 DXF 图纸；
+图层轨迹等重量级数据存放于配方文件夹内的独立 JSON 文件</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.DxfRenderAnalysis.html">DxfRenderAnalysis</a></dt>
       <dd><p>DXF 实体渲染分析信息：模型加载显示时按实体类型统计的渲染情况</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.EntityTrace.html">EntityTrace</a></dt>
+      <dd><p>单个 DXF 实体在本次轨迹生成中的处理记录</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -202,6 +214,16 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.GCodeParameters.html">GCodeParameters</a></dt>
       <dd><p>G 代码生成参数</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.GenerationStats.html">GenerationStats</a></dt>
+      <dd><p>本次生成的整体统计</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.LayerActivatedEventArgs.html">LayerActivatedEventArgs</a></dt>
+      <dd><p>图层激活完成事件</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -230,6 +252,11 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.LocatePointEventArgs.html">LocatePointEventArgs</a></dt>
+      <dd><p>轨迹点定位请求的事件参数</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.MatrixHealthAnalyzer.html">MatrixHealthAnalyzer</a></dt>
       <dd><p>矩阵健康度分析辅助类</p>
 </dd>
@@ -242,6 +269,11 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.OrientationTransformer.html">OrientationTransformer</a></dt>
       <dd><p>姿态旋转表达的变换工具（基于 4x4/3x3 旋转部分，左乘：R' = R_t * R）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.PathPlanningProjectModel.html">PathPlanningProjectModel</a></dt>
+      <dd><p>路径规划工程持久化模型</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -270,6 +302,16 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.RecipeActivatedEventArgs.html">RecipeActivatedEventArgs</a></dt>
+      <dd><p>图纸配方激活完成事件</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.RecipePaths.html">RecipePaths</a></dt>
+      <dd><p>图纸配方与标定的目录路径解析与安全校验</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.RigidTransform.html">RigidTransform</a></dt>
       <dd><p>刚体偏移工具类</p>
 </dd>
@@ -290,8 +332,43 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.SegmentTrace.html">SegmentTrace</a></dt>
+      <dd><p>一个轨迹段在最终轨迹中的加工记录</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.ServiceCollectionExtensions.html">ServiceCollectionExtensions</a></dt>
       <dd><p>提供扩展方法，用于在 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a> 中注册与实用工具相关的服务</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.StageTiming.html">StageTiming</a></dt>
+      <dd><p>单个生成阶段的耗时与吞吐记录</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectoryAnalysisExtensions.html">TrajectoryAnalysisExtensions</a></dt>
+      <dd><p>轨迹分析扩展方法</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectoryAnalysisResult.html">TrajectoryAnalysisResult</a></dt>
+      <dd><p>轨迹分析结果，包含概览统计与诊断列表</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectoryDiagnostic.html">TrajectoryDiagnostic</a></dt>
+      <dd><p>表示一条轨迹诊断记录</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectoryGenerationResult.html">TrajectoryGenerationResult</a></dt>
+      <dd><p>一次轨迹生成的完整产物：业务轨迹加上生成过程记录</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectoryGenerationSnapshot.html">TrajectoryGenerationSnapshot</a></dt>
+      <dd><p>一次轨迹生成留下的过程记录，随配方落盘</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -320,13 +397,38 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectoryPhaseStat.html">TrajectoryPhaseStat</a></dt>
+      <dd><p>按运动阶段汇总的轨迹统计项</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.TrajectoryPoint.html">TrajectoryPoint</a></dt>
       <dd><p>表示轨迹中的一个点</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectoryPointBuffer.html">TrajectoryPointBuffer</a></dt>
+      <dd><p>定点整数点位缓冲，六个位姿分量与点位类型各占一段连续数组</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.TrajectoryPointExtensions.html">TrajectoryPointExtensions</a></dt>
       <dd><p>TrajectoryPoint 扩展方法</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectorySummary.html">TrajectorySummary</a></dt>
+      <dd><p>轨迹概览统计</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectoryTransferExtensions.html">TrajectoryTransferExtensions</a></dt>
+      <dd><p>点位下发相关的扩展方法，把轨迹点与扩展点转成下位机可直接整段写入的定点整数</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectoryTypeStat.html">TrajectoryTypeStat</a></dt>
+      <dd><p>按几何类型汇总的轨迹统计项</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -357,12 +459,22 @@ Structs
       <dd><p>表示刚体姿态偏移（6DOF：位置差值 + 旋转增量）</p>
 </dd>
     </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.TrajectorySummaryEntry.html">TrajectorySummaryEntry</a></dt>
+      <dd><p>概览中的一条键值展示项</p>
+</dd>
+    </dl>
     <h3 id="interfaces">
 Interfaces
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.IDXFEntityParserService.html">IDXFEntityParserService</a></dt>
       <dd><p>DXF 几何实体解析接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.IDXFRecipeRuntimeService.html">IDXFRecipeRuntimeService</a></dt>
+      <dd><p>DXF 图纸配方运行时服务接口，提供运行期换产所需的最小能力</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -389,13 +501,33 @@ Interfaces
 Enums
 </h3>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.ActivationSource.html">ActivationSource</a></dt>
+      <dd><p>激活来源</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.CurveSamplingMode.html">CurveSamplingMode</a></dt>
       <dd><p>曲线采样模式</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.DiagnosticSeverity.html">DiagnosticSeverity</a></dt>
+      <dd><p>轨迹诊断级别</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.EntityTraceStatus.html">EntityTraceStatus</a></dt>
+      <dd><p>DXF 实体在轨迹生成中的处理结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PathPlanning.ExtendedPointType.html">ExtendedPointType</a></dt>
       <dd><p>表示扩展点类型</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.PathPlanning.GenerationStage.html">GenerationStage</a></dt>
+      <dd><p>轨迹生成的阶段</p>
 </dd>
     </dl>
     <dl class="jumplist">

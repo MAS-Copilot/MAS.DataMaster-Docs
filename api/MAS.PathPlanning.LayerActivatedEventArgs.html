@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class DXFTrajectoryServiceModel | DataMaster </title>
+      <title>Class LayerActivatedEventArgs | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class DXFTrajectoryServiceModel | DataMaster ">
+      <meta name="title" content="Class LayerActivatedEventArgs | DataMaster ">
       
-      <meta name="description" content="表示 DXF 运动轨迹服务数据模型，用于存储和管理轨迹相关的持久化信息">
+      <meta name="description" content="图层激活完成事件">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PathPlanning_DXFTrajectoryServiceModel.md&amp;value=---%0Auid%3A%20MAS.PathPlanning.DXFTrajectoryServiceModel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PathPlanning_LayerActivatedEventArgs.md&amp;value=---%0Auid%3A%20MAS.PathPlanning.LayerActivatedEventArgs%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.PathPlanning.DXFTrajectoryServiceModel">
+        <article data-uid="MAS.PathPlanning.LayerActivatedEventArgs">
 
 
 
-  <h1 id="MAS_PathPlanning_DXFTrajectoryServiceModel" data-uid="MAS.PathPlanning.DXFTrajectoryServiceModel" class="text-break">
-Class DXFTrajectoryServiceModel  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Models/DxfModels/DXFTrajectoryServiceModel.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_PathPlanning_LayerActivatedEventArgs" data-uid="MAS.PathPlanning.LayerActivatedEventArgs" class="text-break">
+Class LayerActivatedEventArgs  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/EventArgs/LayerActivatedEventArgs.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class DXFTrajectoryServiceModel  <a class="header-action link-secondary" title="
   <dl><dt>Assembly</dt><dd>MAS.PathPlanning.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>表示 DXF 运动轨迹服务数据模型，用于存储和管理轨迹相关的持久化信息</p>
+  <div class="markdown summary"><p>图层激活完成事件</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class DXFTrajectoryServiceModel</code></pre>
+    <pre><code class="lang-csharp hljs">public class LayerActivatedEventArgs : EventArgs</code></pre>
   </div>
 
 
@@ -112,7 +112,8 @@ Class DXFTrajectoryServiceModel  <a class="header-action link-secondary" title="
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">DXFTrajectoryServiceModel</span></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs">EventArgs</a></div>
+      <div><span class="xref">LayerActivatedEventArgs</span></div>
     </dd>
   </dl>
 
@@ -121,6 +122,9 @@ Class DXFTrajectoryServiceModel  <a class="header-action link-secondary" title="
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs.empty">EventArgs.Empty</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -147,89 +151,71 @@ Class DXFTrajectoryServiceModel  <a class="header-action link-secondary" title="
 
 
 
+  <h2 id="MAS_PathPlanning_LayerActivatedEventArgs_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>该图层的轨迹在事件触发前已确认存在</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MAS_PathPlanning_LayerActivatedEventArgs__ctor_" data-uid="MAS.PathPlanning.LayerActivatedEventArgs.#ctor*"></a>
+
+  <h3 id="MAS_PathPlanning_LayerActivatedEventArgs__ctor_System_String_System_String_MAS_PathPlanning_ActivationSource_" data-uid="MAS.PathPlanning.LayerActivatedEventArgs.#ctor(System.String,System.String,MAS.PathPlanning.ActivationSource)">
+  LayerActivatedEventArgs(string, string, ActivationSource)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/EventArgs/LayerActivatedEventArgs.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>图层激活完成事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayerActivatedEventArgs(string recipeCode, string layerName, ActivationSource source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>recipeCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>layerName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>source</code> <a class="xref" href="MAS.PathPlanning.ActivationSource.html">ActivationSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_LayerActivatedEventArgs__ctor_System_String_System_String_MAS_PathPlanning_ActivationSource__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>该图层的轨迹在事件触发前已确认存在</p>
+</div>
+
+
 
 
   <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="MAS_PathPlanning_DXFTrajectoryServiceModel_CalibrationItems_" data-uid="MAS.PathPlanning.DXFTrajectoryServiceModel.CalibrationItems*"></a>
+  <a id="MAS_PathPlanning_LayerActivatedEventArgs_LayerName_" data-uid="MAS.PathPlanning.LayerActivatedEventArgs.LayerName*"></a>
 
-  <h3 id="MAS_PathPlanning_DXFTrajectoryServiceModel_CalibrationItems" data-uid="MAS.PathPlanning.DXFTrajectoryServiceModel.CalibrationItems">
-  CalibrationItems
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Models/DxfModels/DXFTrajectoryServiceModel.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_PathPlanning_LayerActivatedEventArgs_LayerName" data-uid="MAS.PathPlanning.LayerActivatedEventArgs.LayerName">
+  LayerName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/EventArgs/LayerActivatedEventArgs.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置标定列表</p>
+  <div class="markdown level1 summary"><p>获取已激活的图层名称</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;CalibrationItem&gt; CalibrationItems { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.PathPlanning.CalibrationItem.html">CalibrationItem</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_PathPlanning_DXFTrajectoryServiceModel_Parameters_" data-uid="MAS.PathPlanning.DXFTrajectoryServiceModel.Parameters*"></a>
-
-  <h3 id="MAS_PathPlanning_DXFTrajectoryServiceModel_Parameters" data-uid="MAS.PathPlanning.DXFTrajectoryServiceModel.Parameters">
-  Parameters
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Models/DxfModels/DXFTrajectoryServiceModel.cs/#L24"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置轨迹生成参数，其中键是图层名称，值是该图层的轨迹生成参数</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, TrajectoryParameters&gt; Parameters { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="MAS.PathPlanning.TrajectoryParameters.html">TrajectoryParameters</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_PathPlanning_DXFTrajectoryServiceModel_ScriptCode_" data-uid="MAS.PathPlanning.DXFTrajectoryServiceModel.ScriptCode*"></a>
-
-  <h3 id="MAS_PathPlanning_DXFTrajectoryServiceModel_ScriptCode" data-uid="MAS.PathPlanning.DXFTrajectoryServiceModel.ScriptCode">
-  ScriptCode
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Models/DxfModels/DXFTrajectoryServiceModel.cs/#L29"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置脚本代码</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ScriptCode { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string LayerName { get; }</code></pre>
   </div>
 
 
@@ -249,19 +235,19 @@ Class DXFTrajectoryServiceModel  <a class="header-action link-secondary" title="
 
 
 
-  <a id="MAS_PathPlanning_DXFTrajectoryServiceModel_TrajectoryPath_" data-uid="MAS.PathPlanning.DXFTrajectoryServiceModel.TrajectoryPath*"></a>
+  <a id="MAS_PathPlanning_LayerActivatedEventArgs_RecipeCode_" data-uid="MAS.PathPlanning.LayerActivatedEventArgs.RecipeCode*"></a>
 
-  <h3 id="MAS_PathPlanning_DXFTrajectoryServiceModel_TrajectoryPath" data-uid="MAS.PathPlanning.DXFTrajectoryServiceModel.TrajectoryPath">
-  TrajectoryPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Models/DxfModels/DXFTrajectoryServiceModel.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_PathPlanning_LayerActivatedEventArgs_RecipeCode" data-uid="MAS.PathPlanning.LayerActivatedEventArgs.RecipeCode">
+  RecipeCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/EventArgs/LayerActivatedEventArgs.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置轨迹路径，其中键是图层名称，值是该图层的轨迹路径数据</p>
+  <div class="markdown level1 summary"><p>获取该图层所属的配方编号</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, TrajectoryPath&gt; TrajectoryPath { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string RecipeCode { get; }</code></pre>
   </div>
 
 
@@ -270,7 +256,39 @@ Class DXFTrajectoryServiceModel  <a class="header-action link-secondary" title="
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="MAS.PathPlanning.TrajectoryPath.html">TrajectoryPath</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_LayerActivatedEventArgs_Source_" data-uid="MAS.PathPlanning.LayerActivatedEventArgs.Source*"></a>
+
+  <h3 id="MAS_PathPlanning_LayerActivatedEventArgs_Source" data-uid="MAS.PathPlanning.LayerActivatedEventArgs.Source">
+  Source
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/EventArgs/LayerActivatedEventArgs.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取激活来源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ActivationSource Source { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.PathPlanning.ActivationSource.html">ActivationSource</a></dt>
     <dd></dd>
   </dl>
 
@@ -285,7 +303,7 @@ Class DXFTrajectoryServiceModel  <a class="header-action link-secondary" title="
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Models/DxfModels/DXFTrajectoryServiceModel.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/EventArgs/LayerActivatedEventArgs.cs/#L16" class="edit-link">Edit this page</a>
         </div>
 
 

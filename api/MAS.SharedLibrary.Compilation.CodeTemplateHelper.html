@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper" class="text-break">
-Class CodeTemplateHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L17"><i class="bi bi-code-slash"></i></a>
+Class CodeTemplateHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,8 +102,7 @@ Class CodeTemplateHelper  <a class="header-action link-secondary" title="View so
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS101:类长度超出推荐行数&quot;, Justification = &quot;&lt;挂起&gt;&quot;)]
-public static class CodeTemplateHelper</code></pre>
+    <pre><code class="lang-csharp hljs">public static class CodeTemplateHelper</code></pre>
   </div>
 
 
@@ -148,6 +147,11 @@ public static class CodeTemplateHelper</code></pre>
 
 
 
+  <h2 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>模板正文位于输出目录 <code>CodeTemplates</code> 文件夹下的 <code>*.cs</code> 文件中（源码位于
+<code>Compilation\Templates&lt;/code&gt;，已通过 <code>Compile Remove</code> 排除编译）；
+模板中的 <code><strong>XXX</strong></code> 占位符由此处的方法在运行时替换</code></p>
+</div>
 
 
   <h2 class="section" id="methods">Methods
@@ -158,7 +162,7 @@ public static class CodeTemplateHelper</code></pre>
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetDataExportScript_System_String_System_String_System_String_" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetDataExportScript(System.String,System.String,System.String)">
   GetDataExportScript(string, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L230"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L121"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取数据导出脚本的代码模板</p>
@@ -166,8 +170,7 @@ public static class CodeTemplateHelper</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS100:方法长度超出推荐行数&quot;, Justification = &quot;代码模板&quot;)]
-public static string GetDataExportScript(string @namespace, string scriptName, string structType)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string GetDataExportScript(string @namespace, string scriptName, string structType)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -204,7 +207,7 @@ public static string GetDataExportScript(string @namespace, string scriptName, s
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetDynamicViewGlobalScriptCode" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetDynamicViewGlobalScriptCode">
   GetDynamicViewGlobalScriptCode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L1019"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L190"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取动态视图全局脚本代码模板</p>
@@ -212,8 +215,7 @@ public static string GetDataExportScript(string @namespace, string scriptName, s
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS100:方法长度超出推荐行数&quot;, Justification = &quot;代码模板&quot;)]
-public static string GetDynamicViewGlobalScriptCode()</code></pre>
+    <pre><code class="lang-csharp hljs">public static string GetDynamicViewGlobalScriptCode()</code></pre>
   </div>
 
 
@@ -238,7 +240,7 @@ public static string GetDynamicViewGlobalScriptCode()</code></pre>
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetEntity_System_String_System_String_" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetEntity(System.String,System.String)">
   GetEntity(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取实体类的代码模板</p>
@@ -280,7 +282,7 @@ public static string GetDynamicViewGlobalScriptCode()</code></pre>
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetMapper_System_String_System_String_System_String_System_String_" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetMapper(System.String,System.String,System.String,System.String)">
   GetMapper(string, string, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L170"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L106"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取映射器类的代码模板</p>
@@ -328,7 +330,7 @@ public static string GetDynamicViewGlobalScriptCode()</code></pre>
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetPathPlanningCode_System_String_" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetPathPlanningCode(System.String)">
   GetPathPlanningCode(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L524"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L161"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取路径规划脚本代码</p>
@@ -336,8 +338,7 @@ public static string GetDynamicViewGlobalScriptCode()</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS100:方法长度超出推荐行数&quot;, Justification = &quot;代码模板&quot;)]
-public static string GetPathPlanningCode(string @namespace = &quot;MAS.SharedLibrary.PathPlanning&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string GetPathPlanningCode(string @namespace = &quot;MAS.SharedLibrary.PathPlanning&quot;)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -368,7 +369,7 @@ public static string GetPathPlanningCode(string @namespace = &quot;MAS.SharedLib
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetPipeline_System_Guid_System_String_System_String_System_String_" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetPipeline(System.Guid,System.String,System.String,System.String)">
   GetPipeline(Guid, string, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L345"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L148"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取管道代码模板</p>
@@ -376,8 +377,7 @@ public static string GetPathPlanningCode(string @namespace = &quot;MAS.SharedLib
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS100:方法长度超出推荐行数&quot;, Justification = &quot;代码模板&quot;)]
-public static string GetPipeline(Guid pipelineId, string pipelineName, string className, string @namespace = &quot;MAS.SharedLibrary.Controls.ImageProceFlow&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string GetPipeline(Guid pipelineId, string pipelineName, string className, string @namespace = &quot;MAS.SharedLibrary.Controls.ImageProceFlow&quot;)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -417,7 +417,7 @@ public static string GetPipeline(Guid pipelineId, string pipelineName, string cl
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetReadTaskHandlerType_System_String_System_String_" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetReadTaskHandlerType(System.String,System.String)">
   GetReadTaskHandlerType(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L309"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L134"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取读取任务类型代码模板</p>
@@ -425,8 +425,7 @@ public static string GetPipeline(Guid pipelineId, string pipelineName, string cl
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS100:方法长度超出推荐行数&quot;, Justification = &quot;代码模板&quot;)]
-public static string GetReadTaskHandlerType(string @namespace, string structName)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string GetReadTaskHandlerType(string @namespace, string structName)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -460,7 +459,7 @@ public static string GetReadTaskHandlerType(string @namespace, string structName
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetRepository_System_String_System_String_System_String_" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetRepository(System.String,System.String,System.String)">
   GetRepository(string, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L91"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取仓储类的代码模板</p>
@@ -505,7 +504,7 @@ public static string GetReadTaskHandlerType(string @namespace, string structName
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetStruct_System_String_System_String_" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetStruct(System.String,System.String)">
   GetStruct(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取结构体的代码模板</p>
@@ -547,7 +546,7 @@ public static string GetReadTaskHandlerType(string @namespace, string structName
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetVisionToolCode_System_String_" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetVisionToolCode(System.String)">
   GetVisionToolCode(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L846"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L181"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取视觉工具模块脚本代码模板</p>
@@ -555,8 +554,7 @@ public static string GetReadTaskHandlerType(string @namespace, string structName
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS100:方法长度超出推荐行数&quot;, Justification = &quot;代码模板&quot;)]
-public static string GetVisionToolCode(string @namespace = &quot;MAS.Vision.ToolScriptHandler&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string GetVisionToolCode(string @namespace = &quot;MAS.Vision.ToolScriptHandler&quot;)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -587,7 +585,7 @@ public static string GetVisionToolCode(string @namespace = &quot;MAS.Vision.Tool
 
   <h3 id="MAS_SharedLibrary_Compilation_CodeTemplateHelper_GetWordPrinterCode_System_String_" data-uid="MAS.SharedLibrary.Compilation.CodeTemplateHelper.GetWordPrinterCode(System.String)">
   GetWordPrinterCode(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L686"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L171"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取 Word 打印脚本代码模板</p>
@@ -595,8 +593,7 @@ public static string GetVisionToolCode(string @namespace = &quot;MAS.Vision.Tool
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;可维护性&quot;, &quot;MAS100:方法长度超出推荐行数&quot;, Justification = &quot;代码模板&quot;)]
-public static string GetWordPrinterCode(string @namespace = &quot;MAS.SharedLibrary.Utilities.WordPrinter&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string GetWordPrinterCode(string @namespace = &quot;MAS.SharedLibrary.Utilities.WordPrinter&quot;)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -627,7 +624,7 @@ public static string GetWordPrinterCode(string @namespace = &quot;MAS.SharedLibr
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Helpers/CodeTemplateHelper.cs/#L24" class="edit-link">Edit this page</a>
         </div>
 
 

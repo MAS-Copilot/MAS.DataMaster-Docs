@@ -273,6 +273,114 @@ Class ExcelExporterHelper
 
 
 
+  <a id="MAS_DataExport_ExcelExporterHelper_CreateItemSection_" data-uid="MAS.DataExport.ExcelExporterHelper.CreateItemSection*"></a>
+
+  <h3 id="MAS_DataExport_ExcelExporterHelper_CreateItemSection__1___0_System_String_System_String_System_String_" data-uid="MAS.DataExport.ExcelExporterHelper.CreateItemSection``1(``0,System.String,System.String,System.String)">
+  CreateItemSection&lt;T&gt;(T, string, string, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DataExport/Helpers/ExcelExporterHelper.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>由单个数据对象创建两列区块，可导出成员纵向逐行排列</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ExcelSheetSection CreateItemSection&lt;T&gt;(T item, string labelHeader, string valueHeader, string? title = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">T</span></dt>
+    <dd><p>数据对象</p>
+</dd>
+    <dt><code>labelHeader</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>名称列的表头</p>
+</dd>
+    <dt><code>valueHeader</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>取值列的表头</p>
+</dd>
+    <dt><code>title</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>区块标题</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DataExport.ExcelSheetSection.html">ExcelSheetSection</a></dt>
+    <dd><p>创建好的区块</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>数据对象类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DataExport_ExcelExporterHelper_CreateItemSection__1___0_System_String_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>成员较多的对象横排会很难看，因此转置成键值行；集合类型的成员会被跳过</p>
+</div>
+
+
+
+
+  <a id="MAS_DataExport_ExcelExporterHelper_CreateItemsSection_" data-uid="MAS.DataExport.ExcelExporterHelper.CreateItemsSection*"></a>
+
+  <h3 id="MAS_DataExport_ExcelExporterHelper_CreateItemsSection__1_System_Collections_Generic_IEnumerable___0__System_String_" data-uid="MAS.DataExport.ExcelExporterHelper.CreateItemsSection``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+  CreateItemsSection&lt;T&gt;(IEnumerable&lt;T&gt;, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DataExport/Helpers/ExcelExporterHelper.cs/#L279"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>由数据对象集合创建区块，列由可导出成员反射得到</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ExcelSheetSection CreateItemsSection&lt;T&gt;(IEnumerable&lt;T&gt; items, string? title = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>数据集合，为空时得到不含数据行的区块</p>
+</dd>
+    <dt><code>title</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>区块标题</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DataExport.ExcelSheetSection.html">ExcelSheetSection</a></dt>
+    <dd><p>创建好的区块</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>数据对象类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DataExport_ExcelExporterHelper_CreateItemsSection__1_System_Collections_Generic_IEnumerable___0__System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>集合类型的成员（字符串除外）无法平铺成一列，会被跳过</p>
+</div>
+
+
+
+
   <a id="MAS_DataExport_ExcelExporterHelper_ExportDataTableToExcel_" data-uid="MAS.DataExport.ExcelExporterHelper.ExportDataTableToExcel*"></a>
 
   <h3 id="MAS_DataExport_ExcelExporterHelper_ExportDataTableToExcel_System_Data_DataTable_System_String_System_String_" data-uid="MAS.DataExport.ExcelExporterHelper.ExportDataTableToExcel(System.Data.DataTable,System.String,System.String)">
@@ -443,6 +551,42 @@ Item2：对应工作表的数据集合
     <dd><p>数据对象类型</p>
 </dd>
   </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DataExport_ExcelExporterHelper_ExportSheetsToExcel_" data-uid="MAS.DataExport.ExcelExporterHelper.ExportSheetsToExcel*"></a>
+
+  <h3 id="MAS_DataExport_ExcelExporterHelper_ExportSheetsToExcel_System_Collections_Generic_IEnumerable_MAS_DataExport_ExcelSheet__System_String_" data-uid="MAS.DataExport.ExcelExporterHelper.ExportSheetsToExcel(System.Collections.Generic.IEnumerable{MAS.DataExport.ExcelSheet},System.String)">
+  ExportSheetsToExcel(IEnumerable&lt;ExcelSheet&gt;, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DataExport/Helpers/ExcelExporterHelper.cs/#L247"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>导出多个自定义排版的工作表到同一个 Excel 文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ExportSheetsToExcel(IEnumerable&lt;ExcelSheet&gt; sheets, string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sheets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.DataExport.ExcelSheet.html">ExcelSheet</a>&gt;</dt>
+    <dd><p>要导出的工作表集合，每个工作表可以包含多个区块</p>
+</dd>
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Excel 文件保存路径</p>
+</dd>
+  </dl>
+
+
 
 
 

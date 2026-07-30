@@ -125,7 +125,7 @@ Interface ITrajectoryGenerator  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PathPlanning_ITrajectoryGenerator_GenerateGCode_MAS_PathPlanning_TrajectoryPath_MAS_PathPlanning_GCodeParameters_" data-uid="MAS.PathPlanning.ITrajectoryGenerator.GenerateGCode(MAS.PathPlanning.TrajectoryPath,MAS.PathPlanning.GCodeParameters)">
   GenerateGCode(TrajectoryPath, GCodeParameters)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/ITrajectoryGenerator.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/ITrajectoryGenerator.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据已生成的轨迹路径以及 G 代码输出参数</p>
@@ -176,7 +176,7 @@ Interface ITrajectoryGenerator  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PathPlanning_ITrajectoryGenerator_GenerateTrajectory_MAS_PathPlanning_DxfLayerEntities_MAS_PathPlanning_TrajectoryParameters_" data-uid="MAS.PathPlanning.ITrajectoryGenerator.GenerateTrajectory(MAS.PathPlanning.DxfLayerEntities,MAS.PathPlanning.TrajectoryParameters)">
   GenerateTrajectory(DxfLayerEntities, TrajectoryParameters)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/ITrajectoryGenerator.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/ITrajectoryGenerator.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据指定的图层几何实体数据生成轨迹路径</p>
@@ -184,7 +184,7 @@ Interface ITrajectoryGenerator  <a class="header-action link-secondary" title="V
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">TrajectoryPath GenerateTrajectory(DxfLayerEntities entities, TrajectoryParameters parameters)</code></pre>
+    <pre><code class="lang-csharp hljs">TrajectoryGenerationResult GenerateTrajectory(DxfLayerEntities entities, TrajectoryParameters parameters)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -199,8 +199,9 @@ Interface ITrajectoryGenerator  <a class="header-action link-secondary" title="V
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.PathPlanning.TrajectoryPath.html">TrajectoryPath</a></dt>
-    <dd><p>生成的轨迹路径 <a class="xref" href="MAS.PathPlanning.TrajectoryPath.html">TrajectoryPath</a> 对象</p>
+    <dt><a class="xref" href="MAS.PathPlanning.TrajectoryGenerationResult.html">TrajectoryGenerationResult</a></dt>
+    <dd><p>生成结果 <a class="xref" href="MAS.PathPlanning.TrajectoryGenerationResult.html">TrajectoryGenerationResult</a>，其中 <code>Path</code> 是业务轨迹，
+<code>Snapshot</code> 是只在生成过程中产生的实体、段与阶段耗时记录</p>
 </dd>
   </dl>
 
@@ -214,7 +215,7 @@ Interface ITrajectoryGenerator  <a class="header-action link-secondary" title="V
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
-    <dd><p>生成的轨迹点数过于庞大时</p>
+    <dd><p>参与生成的实体数超过上限时</p>
 </dd>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
     <dd><p>不包含可处理的几何图形类型时</p>
