@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs" class="text-break">
-Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -148,6 +148,21 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
 
 
+  <h2 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>事件有两种载荷形态：</p>
+<ul><li>
+    结构体级：由通讯轮询等批量提交产生，<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldId">FieldId</a> 与 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldName">FieldName</a> 为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>，
+    <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_OldValue">OldValue</a> 与 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_NewValue">NewValue</a> 是“字段标识 → 值”的字典
+    </li><li>
+    字段级：由单字段提交产生，<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldId">FieldId</a> 与 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldName">FieldName</a> 指向该字段，
+    <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_OldValue">OldValue</a> 与 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_NewValue">NewValue</a> 是该字段的标量值
+    </li></ul>
+<p>
+因此 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldId">FieldId</a> 描述的是载荷形态而不是“哪个字段变了”，
+脚本中请优先使用 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewValue__1_System_String_">GetNewValue&lt;T&gt;(string)</a>、<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsRisingEdge_System_String_">IsRisingEdge(string)</a> 等方法读取字段，
+它们对两种形态一致工作，且支持直接使用字段名称
+</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -156,9 +171,9 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs__ctor_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.#ctor*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs__ctor_System_String_System_String_System_String_System_String_System_Object_System_Object_MAS_DynamicViews_DynamicViewVariableValueSource_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.#ctor(System.String,System.String,System.String,System.String,System.Object,System.Object,MAS.DynamicViews.DynamicViewVariableValueSource)">
-  DynamicViewStructureValueChangedEventArgs(string, string, string?, string?, object?, object?, DynamicViewVariableValueSource)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs__ctor_System_String_System_String_System_String_System_String_System_Object_System_Object_MAS_DynamicViews_DynamicViewVariableValueSource_MAS_DynamicViews_DynamicViewVariableModel_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.#ctor(System.String,System.String,System.String,System.String,System.Object,System.Object,MAS.DynamicViews.DynamicViewVariableValueSource,MAS.DynamicViews.DynamicViewVariableModel)">
+  DynamicViewStructureValueChangedEventArgs(string, string, string?, string?, object?, object?, DynamicViewVariableValueSource, DynamicViewVariableModel?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>动态视图结构体值变化事件参数</p>
@@ -166,7 +181,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DynamicViewStructureValueChangedEventArgs(string structureId, string structureName, string? fieldId, string? fieldName, object? oldValue, object? newValue, DynamicViewVariableValueSource source)</code></pre>
+    <pre><code class="lang-csharp hljs">public DynamicViewStructureValueChangedEventArgs(string structureId, string structureName, string? fieldId, string? fieldName, object? oldValue, object? newValue, DynamicViewVariableValueSource source, DynamicViewVariableModel? structure = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -185,6 +200,8 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
     <dd></dd>
     <dt><code>source</code> <a class="xref" href="MAS.DynamicViews.DynamicViewVariableValueSource.html">DynamicViewVariableValueSource</a></dt>
     <dd></dd>
+    <dt><code>structure</code> <a class="xref" href="MAS.DynamicViews.DynamicViewVariableModel.html">DynamicViewVariableModel</a></dt>
+    <dd></dd>
   </dl>
 
 
@@ -194,6 +211,21 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs__ctor_System_String_System_String_System_String_System_String_System_Object_System_Object_MAS_DynamicViews_DynamicViewVariableValueSource_MAS_DynamicViews_DynamicViewVariableModel__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>事件有两种载荷形态：</p>
+<ul><li>
+    结构体级：由通讯轮询等批量提交产生，<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldId">FieldId</a> 与 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldName">FieldName</a> 为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>，
+    <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_OldValue">OldValue</a> 与 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_NewValue">NewValue</a> 是“字段标识 → 值”的字典
+    </li><li>
+    字段级：由单字段提交产生，<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldId">FieldId</a> 与 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldName">FieldName</a> 指向该字段，
+    <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_OldValue">OldValue</a> 与 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_NewValue">NewValue</a> 是该字段的标量值
+    </li></ul>
+<p>
+因此 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldId">FieldId</a> 描述的是载荷形态而不是“哪个字段变了”，
+脚本中请优先使用 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewValue__1_System_String_">GetNewValue&lt;T&gt;(string)</a>、<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsRisingEdge_System_String_">IsRisingEdge(string)</a> 等方法读取字段，
+它们对两种形态一致工作，且支持直接使用字段名称
+</p>
+</div>
 
 
 
@@ -206,10 +238,10 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldId" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.FieldId">
   FieldId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取字段标识；为空表示整个结构体更新</p>
+  <div class="markdown level1 summary"><p>获取字段标识；为空表示本次为结构体级更新（<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_NewValue">NewValue</a> 为字段值字典）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -230,6 +262,10 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldId_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>通讯轮询按整个结构体提交，因此该属性通常为空；
+判断具体字段请使用 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_HasChanged_System_String_">HasChanged(string)</a> 或 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewValue__1_System_String_">GetNewValue&lt;T&gt;(string)</a></p>
+</div>
 
 
 
@@ -238,10 +274,10 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldName" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.FieldName">
   FieldName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L77"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取字段名称；为空表示整个结构体更新</p>
+  <div class="markdown level1 summary"><p>获取字段名称；为空表示本次为结构体级更新（<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_NewValue">NewValue</a> 为字段值字典）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -262,6 +298,10 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldName_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>通讯轮询按整个结构体提交，因此该属性通常为空；
+判断具体字段请使用 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_HasChanged_System_String_">HasChanged(string)</a> 或 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewValue__1_System_String_">GetNewValue&lt;T&gt;(string)</a></p>
+</div>
 
 
 
@@ -270,7 +310,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_NewValue" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.NewValue">
   NewValue
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取新值</p>
@@ -302,7 +342,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_OldValue" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.OldValue">
   OldValue
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L82"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取旧值</p>
@@ -334,7 +374,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_Source" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.Source">
   Source
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取变量更新源</p>
@@ -366,7 +406,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_StructureId" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.StructureId">
   StructureId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取结构体标识</p>
@@ -398,7 +438,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_StructureName" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.StructureName">
   StructureName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取结构体名称</p>
@@ -426,11 +466,489 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
 
 
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_Contains_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.Contains*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_Contains_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.Contains(System.String)">
+  Contains(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断本次事件是否携带指定字段</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(string fieldNameOrId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段名称或字段标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>携带返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；否则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetChangedFieldNames_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetChangedFieldNames*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetChangedFieldNames" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetChangedFieldNames">
+  GetChangedFieldNames()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L210"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取本次事件中实际发生变化的字段名称集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; GetChangedFieldNames()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>字段名称集合；结构体定义缺失时回退为字段标识</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewText_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetNewText*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewText_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetNewText(System.String)">
+  GetNewText(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定字段的新值文本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? GetNewText(string fieldNameOrId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段名称或字段标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段新值文本；字段不属于本次事件时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewValue_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetNewValue*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewValue_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetNewValue(System.String)">
+  GetNewValue(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定字段的新值原始对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object? GetNewValue(string fieldNameOrId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段名称或字段标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>字段新值；字段不属于本次事件时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewValue_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetNewValue*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewValue__1_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetNewValue``1(System.String)">
+  GetNewValue&lt;T&gt;(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定字段的新值并转换为目标类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T? GetNewValue&lt;T&gt;(string fieldNameOrId) where T : struct</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段名称或字段标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>T?</dt>
+    <dd><p>转换后的新值；字段不属于本次事件或无法转换时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>目标值类型，如 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>、<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a>、<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a> 或枚举</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetOldText_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetOldText*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetOldText_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetOldText(System.String)">
+  GetOldText(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L202"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定字段的旧值文本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? GetOldText(string fieldNameOrId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段名称或字段标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段旧值文本；字段不属于本次事件时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetOldValue_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetOldValue*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetOldValue_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetOldValue(System.String)">
+  GetOldValue(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定字段的旧值原始对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object? GetOldValue(string fieldNameOrId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段名称或字段标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>字段旧值；字段不属于本次事件时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetOldValue_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetOldValue*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetOldValue__1_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetOldValue``1(System.String)">
+  GetOldValue&lt;T&gt;(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定字段的旧值并转换为目标类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T? GetOldValue&lt;T&gt;(string fieldNameOrId) where T : struct</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段名称或字段标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>T?</dt>
+    <dd><p>转换后的旧值；字段不属于本次事件或无法转换时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>目标值类型，如 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>、<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a>、<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a> 或枚举</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_HasChanged_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.HasChanged*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_HasChanged_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.HasChanged(System.String)">
+  HasChanged(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断指定字段本次是否发生变化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasChanged(string fieldNameOrId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段名称或字段标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>发生变化返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；字段未变化或不属于本次事件返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsFallingEdge_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.IsFallingEdge*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsFallingEdge_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.IsFallingEdge(System.String)">
+  IsFallingEdge(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断指定布尔字段本次是否出现下降沿（由非 false 变为 false）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFallingEdge(string fieldNameOrId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段名称或字段标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>出现下降沿返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；否则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsRisingEdge_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.IsRisingEdge*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsRisingEdge_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.IsRisingEdge(System.String)">
+  IsRisingEdge(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断指定布尔字段本次是否出现上升沿（由非 true 变为 true）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRisingEdge(string fieldNameOrId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fieldNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字段名称或字段标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>出现上升沿返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；否则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsStructure_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.IsStructure*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsStructure_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.IsStructure(System.String)">
+  IsStructure(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断事件是否来自指定结构体</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsStructure(string structureNameOrId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>structureNameOrId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>结构体名称或结构体标识，均不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>匹配返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；否则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L39" class="edit-link">Edit this page</a>
         </div>
 
 

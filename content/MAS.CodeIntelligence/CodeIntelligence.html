@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>C# 代码智能 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="C# 代码智能 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.CodeIntelligence/CodeIntelligence.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="c-代码智能">C# 代码智能</h1>
+
+<p>代码编辑器中的 C# 补全、诊断、悬停与 XML 文档注释统称为「C# 代码智能」，由一个基于 Roslyn 的独立后台进程 <code>MAS.CSharpWorker</code> 提供，主程序通过命名管道与其通讯。</p>
+<p>在应用程序设置的「高级」页有 <strong>C# 语言服务</strong> 开关（<code>IsCSharpLanguageServiceEnabled</code>）。开关关闭时不启动 Worker 进程，编辑器页面也不会发出任何请求。</p>
+<h2 id="为什么是独立进程">为什么是独立进程</h2>
+<p>Roslyn 分析内存代码需要把数百个元数据引用读进内存，全局作用域一次补全会产生上万条候选，编辑器连续输入时还会不断产生新的编译快照。这些内存放在主程序进程里既无法及时归还操作系统，也会把主程序的 GC 压力抬高。</p>
+<p>放进独立进程后：</p>
+<ul>
+<li>主程序进程的内存占用不受 Roslyn 影响；</li>
+<li>编辑器全部关闭时可以让 Worker 做一次压缩式回收，把内存还给操作系统；</li>
+<li>Worker 崩溃只会让补全失效，不会影响主程序。</li>
+</ul>
+<h2 id="参与的项目">参与的项目</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MAS.Monaco</code></td>
+<td>编辑器页面与 <code>MonacoService</code>。前端判断&quot;何时请求&quot;，后端负责转发与回传</td>
+</tr>
+<tr>
+<td><code>MAS.SharedLibrary</code></td>
+<td><code>ICodeCompletionService</code> 服务接口与 <code>ICodeCompletionOptions</code> 开关接口</td>
+</tr>
+<tr>
+<td><code>MAS.Compilation</code></td>
+<td><code>CodeCompletionProxyService</code>（作用域服务）与 <code>CSharpWorkerHost</code>（进程级单例），负责拉起进程与转发请求</td>
+</tr>
+<tr>
+<td><code>MAS.CompilationContracts</code></td>
+<td>主程序与 Worker 共用的请求/结果模型和 IPC 方法名常量</td>
+</tr>
+<tr>
+<td><code>MAS.CSharpWorker</code></td>
+<td>Worker 进程：<code>CSharpLanguageService</code> 承载 Roslyn 工作区，<code>DocumentationCommentGenerator</code> 生成注释骨架</td>
+</tr>
+<tr>
+<td><code>MAS.NamedPipeIpc</code></td>
+<td>命名管道 IPC 的服务端与客户端</td>
+</tr>
+</tbody>
+</table>
+<h2 id="调用链路">调用链路</h2>
+<pre><code class="lang-text">Monaco 编辑器页面 (editorFunctions.js)
+  │  postMessage: CompletionRequest / DiagnosticsRequest
+  │               HoverRequest / DocumentationCommentRequest
+  ▼
+MonacoService                      每类请求各持一个 CancellationTokenSource
+  │                                新请求取消旧请求，只回传最新请求的结果
+  ▼
+ICodeCompletionService
+  └─ CodeCompletionProxyService    编辑器窗口级作用域，Attach/Detach 计数
+       ▼
+     ICSharpWorkerHost
+       └─ CSharpWorkerHost         进程级单例：按需拉起 Worker、维护可用性
+            │  命名管道 MAS.CSharpWorker.{主程序进程号}
+            ▼
+          CSharpWorkerHostedService
+            └─ CSharpLanguageService (Roslyn AdhocWorkspace)
+</code></pre>
+<p>主程序侧对每类请求只保留最后一次；Worker 侧的补全、诊断、悬停各有一个抢占队列（<code>SupersedingRequestQueue</code>），新请求到达即取消正在执行的旧请求，避免连续输入时堆积数十个并发的 Roslyn 分析。</p>
+<h2 id="进程生命周期">进程生命周期</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启动</td>
+<td>首个编辑器窗口打开时 <code>CSharpWorkerHost</code> 先 ping 管道，无响应才启动 <code>MAS.CSharpWorker.exe</code>，等待就绪最长 30 秒</td>
+</tr>
+<tr>
+<td>启动参数</td>
+<td><code>--pipe &lt;管道名&gt; --parent-pid &lt;主程序进程号&gt; --log &lt;日志目录&gt;</code>，日志写入默认日志路径下的 <code>CSharpWorker</code> 子目录</td>
+</tr>
+<tr>
+<td>初始化</td>
+<td>收集元数据引用、创建 Roslyn 工作区，并执行一次补全预热，随后状态置为 <code>Ready</code></td>
+</tr>
+<tr>
+<td>空闲</td>
+<td>每 5 秒检查一次，超过 10 秒没有请求就回收一次临时内存</td>
+</tr>
+<tr>
+<td>编辑器全部关闭</td>
+<td><code>DetachClient</code> 计数归零时发送 <code>csharp.trim</code>，Worker 清空文档内容并做一次压缩式 GC；基础引用保留，无需重新初始化</td>
+</tr>
+<tr>
+<td>主程序退出</td>
+<td><code>OnExit</code> 中发送 <code>csharp.shutdown</code>，1.5 秒内未退出则强制结束；此外 Worker 自身也监视父进程，父进程消失即退出</td>
+</tr>
+</tbody>
+</table>
+<h2 id="可用性状态">可用性状态</h2>
+<p><code>CodeCompletionAvailability</code> 同时用于 Worker 内部、<code>CSharpWorkerHost</code> 与代理服务，状态变化通过 <code>AvailabilityChanged</code> 事件通知界面（编辑器状态栏显示&quot;补全未启用&quot;等文案）。</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Initializing</code></td>
+<td>正在收集引用、创建工作区与预热</td>
+</tr>
+<tr>
+<td><code>Ready</code></td>
+<td>可用；只有该状态下才会真正转发请求</td>
+</tr>
+<tr>
+<td><code>Unavailable</code></td>
+<td>初始化失败、Worker 进程已退出或服务已释放</td>
+</tr>
+<tr>
+<td><code>Disabled</code></td>
+<td>设置中的开关未启用，不会启动进程</td>
+</tr>
+</tbody>
+</table>
+<h2 id="元数据引用">元数据引用</h2>
+<p>Worker 的编译引用由三部分合并去重（按文件路径）后交给 Roslyn：</p>
+<ol>
+<li><strong>基础引用</strong>：主程序部署目录下的托管 <code>*.dll</code>，加上主程序传来的可信平台程序集（TPA）列表。仅在初始化时收集一次；</li>
+<li><strong>动态程序集</strong>：主程序内存编译产物，随请求同步（见下）；</li>
+<li><strong>请求级引用</strong>：请求携带的 <code>ReferencePaths</code> 与 <code>ReferenceDirectories</code>（目录会递归扫描 <code>*.dll</code>）。</li>
+</ol>
+<p>创建引用时若同目录存在同名 <code>.xml</code> 文档文件，会一并加载为 <code>XmlDocumentationProvider</code>，因此补全与悬停能显示 XML 文档说明。</p>
+<h2 id="动态程序集同步">动态程序集同步</h2>
+<p>主程序内存中编译出来的程序集没有磁盘文件，Worker 拿不到，需要按请求把字节传过去。</p>
+<ul>
+<li>主程序侧 <code>DynamicAssemblySynchronizer</code> 以字节数组的引用标识判断版本，<strong>只在程序集实际变化时才传字节</strong>；同步状态在 Worker 确认（请求成功返回）后才提交，请求失败或被取消时下次重传。</li>
+<li>Worker 侧 <code>DynamicAssemblyCache</code> 按版本合并字节，并依据请求携带的单调递增序号淘汰已卸载的程序集。乱序到达时：<strong>字节始终按版本合并</strong>，<strong>淘汰只认最新序号的快照</strong>，避免旧快照误删刚同步进来的程序集。</li>
+</ul>
+<h2 id="编译选项">编译选项</h2>
+<p>Worker 的工作区使用 <code>LanguageVersion.Latest</code> 解析，并启用可空引用类型上下文（<code>NullableContextOptions.Enable</code>）。启用可空上下文是为了让编辑器诊断与主程序工程保持一致，否则代码里的 <code>?</code> 注解会报 CS8632。</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.CodeIntelligence/CodeIntelligence.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

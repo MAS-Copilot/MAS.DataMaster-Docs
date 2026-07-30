@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>语言能力 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="语言能力 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.CodeIntelligence/LanguageFeatures.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="语言能力">语言能力</h1>
+
+<p>本文说明补全、XML 文档注释、诊断与悬停四项能力的具体行为。四者共同遵循一条边界：</p>
+<blockquote>
+<p><strong>前端只判断&quot;什么时候请求&quot;，候选内容与声明结构一律由 Roslyn 给出。</strong></p>
+</blockquote>
+<p>编辑器页面里不出现任何硬编码的类型名、枚举值或标签名，语言知识全部留在 Worker 侧。</p>
+<h2 id="代码补全">代码补全</h2>
+<h3 id="触发时机">触发时机</h3>
+<table>
+<thead>
+<tr>
+<th>触发方式</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>triggerCharacters: ['.', '&lt;', '=']</code></td>
+<td><code>.</code> 成员访问；<code>&lt;</code> 泛型实参与文档注释标签；<code>=</code> 赋值与比较</td>
+</tr>
+<tr>
+<td><code>onDidType</code> 检测运算符后的空格</td>
+<td><code>==</code>、<code>!=</code>、<code>&lt;=</code>、<code>&gt;=</code>、<code>+=</code>、<code>&amp;&amp;</code>、<code>\|\|</code>、<code>??</code>、<code>=&gt;</code>、<code>=</code> 等之后输入空格，主动调用 <code>editor.action.triggerSuggest</code></td>
+</tr>
+<tr>
+<td>普通输入</td>
+<td>Monaco 的 quick suggestions，延迟 300 毫秒，避免连续输入时每个字符都发一次请求</td>
+</tr>
+</tbody>
+</table>
+<p>整行以 <code>//</code> 开头时不触发运算符补全。运算符补全只负责&quot;弹出列表&quot;，候选仍走同一个 <code>csharp.completion</code> 请求。</p>
+<p>Worker 侧一律以 <code>CompletionTrigger.Invoke</code> 调用 Roslyn，<strong>不传入插入触发字符</strong>。Roslyn 在 Insertion 触发下会先用 <code>ShouldTriggerCompletion</code> 过滤 provider，<code>=</code> 这类字符可能把 provider 全部筛掉从而返回空列表；Invoke 等价于手动按 <kbd>Ctrl</kbd>+<kbd>Space</kbd>，各 provider 都会参与。</p>
+<h3 id="候选过滤与相关性排序">候选过滤与相关性排序</h3>
+<p>全局作用域一次补全 Roslyn 会返回一万条以上候选，全部回传会导致每次按键传输数 MB JSON。服务端按以下顺序处理：</p>
+<ol>
+<li><strong>按已输入前缀过滤</strong>：前缀匹配优先，其次首字母缩写匹配（<code>dto</code> → <code>DateTimeOffset</code>）。成员访问等前缀为空的场景不过滤；</li>
+<li><strong>按相关性排序</strong>：依据 Roslyn 的 <code>MatchPriority</code> 降序稳定排序；</li>
+<li><strong>截断到 300 条</strong>，被截断时结果标记 <code>IsIncomplete</code>，编辑器在后续输入时重新请求；</li>
+<li><strong>改写 <code>SortText</code> 为名次</strong>（<code>&quot;0000&quot;</code>、<code>&quot;0001&quot;</code>……），编辑器按它排序即可原样保留服务端排好的顺序。</li>
+</ol>
+<p><code>MatchPriority</code> 就是 Roslyn 表达类型推断的方式：它不减少候选，而是给<strong>目标类型匹配的符号</strong>加权。以 <code>void M(bool flag, int count)</code> 中的 <code>if (flag == )</code> 为例：</p>
+<table>
+<thead>
+<tr>
+<th>候选</th>
+<th>MatchPriority</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td>600</td>
+<td>类型匹配的局部变量/参数</td>
+</tr>
+<tr>
+<td><code>Enabled</code></td>
+<td>500</td>
+<td>类型匹配的字段/属性</td>
+</tr>
+<tr>
+<td><code>Equals</code>、<code>ReferenceEquals</code></td>
+<td>400</td>
+<td>返回类型匹配的方法</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>200</td>
+<td>类型匹配的关键字</td>
+</tr>
+<tr>
+<td>枚举比较处的枚举类型</td>
+<td><code>MatchPriority.Preselect</code></td>
+<td>另见下节</td>
+</tr>
+<tr>
+<td><code>count</code> 及其余候选</td>
+<td>0</td>
+<td>与目标类型无关</td>
+</tr>
+<tr>
+<td><code>nuint</code> 等</td>
+<td>-1</td>
+<td>Roslyn 主动降权</td>
+</tr>
+</tbody>
+</table>
+<p>如果跳过第 2、4 步而沿用 Roslyn 的字母序 <code>SortText</code>，<code>flag</code>、<code>Enabled</code> 会淹没在 <code>Accessibility</code>、<code>async</code>、<code>await</code>、<code>base</code>…… 之中，甚至被截断到 300 条之外——表现就是&quot;运算符补全给一堆没用的候选&quot;。</p>
+<p><code>true</code> / <code>false</code> 不被 Roslyn 加权，会落在字母序位置，这与 Visual Studio 的行为一致，不做额外的人工置顶。</p>
+<h3 id="预选候选">预选候选</h3>
+<p><code>MatchPriority</code> 达到 <code>MatchPriority.Preselect</code> 的候选（例如 <code>if (day == )</code> 处的 <code>System.DayOfWeek</code>）会带上 <code>IsPreselect</code>，编辑器映射为 Monaco 的 <code>preselect</code>，列表弹出时默认高亮该项。</p>
+<h2 id="xml-文档注释">XML 文档注释</h2>
+<h3 id="输入--生成骨架">输入 <code>///</code> 生成骨架</h3>
+<p>编辑器在 <code>onDidType</code> 中判断：本行光标前只有缩进加三个斜杠、光标后全是空白，才发起 <code>csharp.documentationComment</code> 请求。四个斜杠属于普通注释，不触发。</p>
+<p>Worker 侧 <code>DocumentationCommentGenerator</code> <strong>只做语法分析</strong>，不需要语义模型与元数据引用，也不占用补全队列。流程是：取光标右侧第一个记号，向上回溯到起点不早于光标的声明节点，再按声明类型产出标签。</p>
+<table>
+<thead>
+<tr>
+<th>声明</th>
+<th>生成的标签</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方法、局部函数、委托</td>
+<td><code>summary</code> + <code>typeparam</code> + <code>param</code> + <code>returns</code>（返回 <code>void</code> 时省略 <code>returns</code>）</td>
+</tr>
+<tr>
+<td>构造函数</td>
+<td><code>summary</code> + <code>param</code></td>
+</tr>
+<tr>
+<td>运算符、转换运算符</td>
+<td><code>summary</code> + <code>param</code> + <code>returns</code></td>
+</tr>
+<tr>
+<td>索引器</td>
+<td><code>summary</code> + <code>param</code></td>
+</tr>
+<tr>
+<td>类型声明（含记录与主构造函数）</td>
+<td><code>summary</code> + <code>typeparam</code> + <code>param</code></td>
+</tr>
+<tr>
+<td>其余声明，或光标后没有声明</td>
+<td>仅 <code>summary</code></td>
+</tr>
+</tbody>
+</table>
+<p>不生成的情况：目标声明已经有文档注释（本行刚输入的 <code>///</code> 不计入）、光标后仍有文本、四个斜杠。方法体内部输入 <code>///</code> 只会得到 <code>summary</code>，不会误把外层方法的参数带进来。</p>
+<p>返回结果里换行统一为 <code>\n</code>、续行不含缩进，由编辑器按模型自身的换行符与当前行缩进落地：优先使用 Monaco 的片段控制器 <code>snippetController2</code>（自动处理换行与缩进），不可用时退化为直接编辑并手工计算光标位置。</p>
+<p>生成结果形如：</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// |                                  ← 光标停在这里
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;a&quot;&gt;&lt;/param&gt;
+/// &lt;param name=&quot;b&quot;&gt;&lt;/param&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+public int Add(int a, int b) =&gt; a + b;
+</code></pre>
+<h3 id="文档注释内输入-">文档注释内输入 <code>&lt;</code></h3>
+<p><code>&lt;</code> 属于补全触发字符，在文档注释中会走普通的补全请求，Roslyn 返回 <code>summary</code>、<code>see</code>、<code>param name=&quot;a&quot;</code>、<code>inheritdoc</code> 等标签候选（<code>param</code> 候选带的是当前方法的真实参数名）。</p>
+<p>Roslyn 给出的是光标前后两段文本（<code>BeforeCaretText</code> / <code>AfterCaretText</code>），服务端把它转成 LSP 片段，<code>$0</code> 标记插入后的光标位置，并用 <code>IsSnippet</code> 告知编辑器按片段插入：</p>
+<table>
+<thead>
+<tr>
+<th>候选</th>
+<th>插入文本</th>
+<th>落地效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summary</code></td>
+<td><code>summary&gt;$0&lt;/summary&gt;</code></td>
+<td><code>&lt;summary&gt;❘&lt;/summary&gt;</code></td>
+</tr>
+<tr>
+<td><code>see</code></td>
+<td><code>see cref=&quot;$0&quot;/&gt;</code></td>
+<td><code>&lt;see cref=&quot;❘&quot;/&gt;</code></td>
+</tr>
+<tr>
+<td><code>param name=&quot;a&quot;</code></td>
+<td><code>param name=&quot;a&quot;&gt;$0&lt;/param&gt;</code></td>
+<td><code>&lt;param name=&quot;a&quot;&gt;❘&lt;/param&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>只给元素名的候选由服务端补出 <code>&gt;</code> 与配对的结束标签；已经带 <code>&lt;</code> 的候选，若光标前已有 <code>&lt;</code> 则去掉重复的尖括号。字面量中的 <code>$</code>、<code>\</code>、<code>}</code> 会被转义，保证原样插入。</p>
+<h2 id="代码诊断">代码诊断</h2>
+<p>编辑器内容变化后防抖 600 毫秒发起一次 <code>csharp.diagnostics</code>，结果以 Monaco Marker 呈现，owner 为 <code>csharp-roslyn</code>。</p>
+<p>只回传 <code>Error</code> 与 <code>Warning</code> 两级、且未被抑制的诊断。切换语言或切换 C# 语言服务开关时会先清除旧标记再重新调度一次：启用时补上标记，停用时只清除。</p>
+<h2 id="悬停信息">悬停信息</h2>
+<p>悬停由 Roslyn 的 <code>QuickInfoService</code> 提供，请求超时 3 秒。返回的内容块中，签名部分包装为 <code>csharp</code> 代码围栏，文档说明作为普通文本，编辑器按 Markdown 渲染。该位置没有符号时返回空结果，编辑器不显示悬停框。</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.CodeIntelligence/LanguageFeatures.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

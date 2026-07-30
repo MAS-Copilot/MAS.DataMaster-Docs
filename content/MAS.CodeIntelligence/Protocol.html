@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>协议与契约 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="协议与契约 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.CodeIntelligence/Protocol.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="协议与契约">协议与契约</h1>
+
+<p>代码智能有两段协议：编辑器页面与 <code>MonacoService</code> 之间的 WebView 消息，以及主程序与 Worker 之间的命名管道 IPC。</p>
+<h2 id="webview-消息">WebView 消息</h2>
+<h3 id="前端发往后端">前端发往后端</h3>
+<p>前端通过 <code>window.chrome.webview.postMessage</code> 发送，<code>MonacoService.OnWebMessageReceived</code> 按 <code>type</code> 分发。所有请求都带 <code>requestId</code>，后端只回传最新一次请求的结果。</p>
+<table>
+<thead>
+<tr>
+<th>消息类型</th>
+<th>数据模型</th>
+<th>触发时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CompletionRequest</code></td>
+<td><code>CompletionRequestMessage</code></td>
+<td>触发字符、运算符后空格或 quick suggestions</td>
+</tr>
+<tr>
+<td><code>DiagnosticsRequest</code></td>
+<td><code>DiagnosticsRequestMessage</code></td>
+<td>内容变化后防抖 600 毫秒</td>
+</tr>
+<tr>
+<td><code>HoverRequest</code></td>
+<td><code>HoverRequestMessage</code></td>
+<td>鼠标悬停</td>
+</tr>
+<tr>
+<td><code>DocumentationCommentRequest</code></td>
+<td><code>DocumentationCommentRequestMessage</code></td>
+<td>输入 <code>///</code></td>
+</tr>
+</tbody>
+</table>
+<p>除诊断请求只带 <code>code</code> 外，其余都带 <code>code</code> 与 <code>position</code>（字符偏移，从 0 开始）。</p>
+<h3 id="后端回传前端">后端回传前端</h3>
+<p>后端通过 <code>ExecuteScriptAsync</code> 调用页面上的全局函数。</p>
+<table>
+<thead>
+<tr>
+<th>前端函数</th>
+<th>载荷字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deliverCompletions</code></td>
+<td><code>requestId</code>、<code>replaceStart</code>、<code>replaceLength</code>、<code>items[]</code></td>
+</tr>
+<tr>
+<td><code>deliverDiagnostics</code></td>
+<td><code>requestId</code>、<code>diagnostics[]</code>（<code>id</code>、<code>message</code>、<code>severity</code>、<code>start</code>、<code>length</code>）</td>
+</tr>
+<tr>
+<td><code>deliverHover</code></td>
+<td><code>requestId</code>、<code>found</code>、<code>start</code>、<code>length</code>、<code>contents[]</code></td>
+</tr>
+<tr>
+<td><code>deliverDocumentationComment</code></td>
+<td><code>requestId</code>、<code>found</code>、<code>text</code>、<code>caretOffset</code></td>
+</tr>
+<tr>
+<td><code>refreshCsharpDiagnostics</code></td>
+<td>无。切换开关后清除并重新调度一次诊断</td>
+</tr>
+</tbody>
+</table>
+<p>另有一个全局开关变量 <code>window.__masCodeIntelligenceEnabled</code>，由 <code>SetCodeCompletionEnabled</code> 写入。为 <code>false</code> 时前端不发出任何代码智能请求。</p>
+<p>前端收到回包后仍会做一次校验：请求号必须是最新的、模型语言仍是 <code>csharp</code>；文档注释还会额外确认光标依旧停在 <code>///</code> 之后，否则丢弃，避免用户已经继续输入时被插入内容。</p>
+<h2 id="worker-ipc-方法">Worker IPC 方法</h2>
+<p>方法名常量定义在 <code>CSharpWorkerMethods</code>，管道名为 <code>MAS.CSharpWorker.{主程序进程号}</code>，多开主程序互不干扰。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>请求</th>
+<th>响应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ipc.ping</code></td>
+<td>—</td>
+<td><code>&quot;pong&quot;</code></td>
+</tr>
+<tr>
+<td><code>csharp.initialize</code></td>
+<td><code>CSharpWorkerInitializeRequest</code></td>
+<td><code>CSharpWorkerStatusResponse</code></td>
+</tr>
+<tr>
+<td><code>csharp.status</code></td>
+<td>—</td>
+<td><code>CSharpWorkerStatusResponse</code></td>
+</tr>
+<tr>
+<td><code>csharp.completion</code></td>
+<td><code>CSharpWorkerCompletionRequest</code></td>
+<td><code>CodeCompletionResult</code></td>
+</tr>
+<tr>
+<td><code>csharp.diagnostics</code></td>
+<td><code>CSharpWorkerDiagnosticsRequest</code></td>
+<td><code>CodeDiagnosticsResult</code></td>
+</tr>
+<tr>
+<td><code>csharp.hover</code></td>
+<td><code>CSharpWorkerHoverRequest</code></td>
+<td><code>CSharpWorkerHoverResponse</code></td>
+</tr>
+<tr>
+<td><code>csharp.documentationComment</code></td>
+<td><code>CSharpWorkerDocumentationCommentRequest</code></td>
+<td><code>CSharpWorkerDocumentationCommentResponse</code></td>
+</tr>
+<tr>
+<td><code>csharp.trim</code></td>
+<td>—</td>
+<td><code>bool</code>。最后一个编辑器窗口关闭时回收临时内存</td>
+</tr>
+<tr>
+<td><code>csharp.shutdown</code></td>
+<td>—</td>
+<td><code>bool</code>。主程序退出时请求 Worker 结束</td>
+</tr>
+</tbody>
+</table>
+<p>四个语言请求的外层类型都继承 <code>CSharpWorkerRequestBase</code>，携带动态程序集同步信息：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SyncSequence</code></td>
+<td>主程序单调递增的同步序号，Worker 只依据最新序号执行淘汰</td>
+</tr>
+<tr>
+<td><code>Assemblies</code></td>
+<td>本次需要传输的程序集字节，仅包含 Worker 尚未确认收到的版本</td>
+</tr>
+<tr>
+<td><code>AssemblyNames</code></td>
+<td>当前全部动态程序集名称，Worker 据此淘汰已卸载的缓存</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据模型">数据模型</h2>
+<p>模型都在 <code>MAS.CompilationContracts</code>，主程序与 Worker 共用。</p>
+<h3 id="codecompletionresult">CodeCompletionResult</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Items</code></td>
+<td>候选集合，最多 300 条</td>
+</tr>
+<tr>
+<td><code>ReplaceStart</code> / <code>ReplaceLength</code></td>
+<td>替换范围，编辑器据此计算插入区间</td>
+</tr>
+<tr>
+<td><code>IsIncomplete</code></td>
+<td>候选被截断，编辑器需在后续输入时重新请求（Monaco 的 incomplete 语义）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="codecompletionitem">CodeCompletionItem</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Label</code></td>
+<td>显示文本</td>
+</tr>
+<tr>
+<td><code>InsertText</code></td>
+<td>实际插入文本；<code>IsSnippet</code> 为 true 时是含 <code>$0</code> 的 LSP 片段</td>
+</tr>
+<tr>
+<td><code>Kind</code></td>
+<td>类别标签，取自 Roslyn 的首个 Tag，前端映射为 Monaco 的图标类型</td>
+</tr>
+<tr>
+<td><code>SortText</code></td>
+<td>服务端排好的相关性名次，编辑器直接按它排序</td>
+</tr>
+<tr>
+<td><code>FilterText</code></td>
+<td>过滤文本</td>
+</tr>
+<tr>
+<td><code>IsSnippet</code></td>
+<td>按片段插入，字面量中的 <code>$</code>、<code>\</code>、<code>}</code> 已转义</td>
+</tr>
+<tr>
+<td><code>IsPreselect</code></td>
+<td>预选候选，编辑器默认高亮</td>
+</tr>
+</tbody>
+</table>
+<h3 id="documentationcommentrequest--documentationcommentresult">DocumentationCommentRequest / DocumentationCommentResult</h3>
+<p>请求只有 <code>Code</code> 与 <code>Position</code>：骨架生成只依赖语法树，不需要程序集引用。</p>
+<p>结果中 <code>Text</code> 为要在光标处插入的文本，换行一律 <code>\n</code> 且续行不含缩进；<code>CaretOffset</code> 是插入后光标相对文本起点的偏移。该位置不应生成注释时整个结果为 <code>null</code>（回包中 <code>found</code> 为 <code>false</code>）。</p>
+<h3 id="其余模型">其余模型</h3>
+<p><code>CodeCompletionRequest</code>、<code>CodeDiagnosticsRequest</code>、<code>CodeHoverRequest</code> 都带 <code>Code</code>、<code>ReferencePaths</code>、<code>ReferenceDirectories</code>，除诊断外还带 <code>Position</code>。<code>CodeDiagnosticsResult</code> 与 <code>CodeHoverResult</code> 分别承载诊断列表与悬停内容块。</p>
+<h2 id="扩展一项新能力">扩展一项新能力</h2>
+<p>新增一项语言能力需要按顺序改动六处：</p>
+<ol>
+<li><code>MAS.CompilationContracts</code>：请求/结果模型、Worker 请求与响应模型、<code>CSharpWorkerMethods</code> 方法名；</li>
+<li><code>MAS.CSharpWorker</code>：在 <code>CSharpLanguageService</code> 上实现，并在 <code>CSharpWorkerHostedService.RegisterLanguageHandlers</code> 注册处理器；</li>
+<li><code>MAS.Compilation</code>：<code>ICSharpWorkerHost</code> 与 <code>CSharpWorkerHost</code> 增加转发方法；</li>
+<li><code>MAS.SharedLibrary</code>：<code>ICodeCompletionService</code> 增加接口方法；</li>
+<li><code>MAS.Compilation</code>：<code>CodeCompletionProxyService</code> 实现代理；</li>
+<li><code>MAS.Monaco</code>：消息模型、<code>MonacoService</code> 的分发与回传，以及 <code>editorFunctions.js</code> 的触发与落地。</li>
+</ol>
+<p>单元测试位于 <code>tests/MAS.CSharpWorkerUnitTest</code>，通过 <code>LanguageServiceFactory</code> 以测试进程自身的部署目录与 TPA 构造已初始化的语言服务，等价于 Worker 收到主程序的初始化参数。</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.CodeIntelligence/Protocol.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

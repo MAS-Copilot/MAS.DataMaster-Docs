@@ -121,6 +121,55 @@ Interface IWindowsProviderService  <a class="header-action link-secondary" title
 </h2>
 
 
+  <a id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_CreateScoped_" data-uid="MAS.SharedLibrary.Interfaces.IWindowsProviderService.CreateScoped*"></a>
+
+  <h3 id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_CreateScoped__1" data-uid="MAS.SharedLibrary.Interfaces.IWindowsProviderService.CreateScoped``1">
+  CreateScoped&lt;T&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IWindowsProviderService.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在新建的依赖注入 Scope 中创建并返回指定类型的窗口实例；
+窗口关闭（Closed）时自动释放该 Scope 及其中的所有服务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T CreateScoped&lt;T&gt;() where T : class</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>窗口实例</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>要创建的窗口类型，必须是Window的派生类</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_CreateScoped__1_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>窗口及其视图模型依赖的 Scoped/Transient 可释放服务生命周期与窗口一致；创建后必须显示窗口，否则 Scope 要到应用退出才释放</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>如果T不是窗口的派生类或未注册为服务，则抛出此异常</p>
+</dd>
+  </dl>
+
+
+
   <a id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_Create_" data-uid="MAS.SharedLibrary.Interfaces.IWindowsProviderService.Create*"></a>
 
   <h3 id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_Create__1" data-uid="MAS.SharedLibrary.Interfaces.IWindowsProviderService.Create``1">
@@ -170,7 +219,7 @@ Interface IWindowsProviderService  <a class="header-action link-secondary" title
 
   <h3 id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_IsWindowExists__1" data-uid="MAS.SharedLibrary.Interfaces.IWindowsProviderService.IsWindowExists``1">
   IsWindowExists&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IWindowsProviderService.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IWindowsProviderService.cs/#L131"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查指定类型的单例窗口是否已存在且当前可见</p>

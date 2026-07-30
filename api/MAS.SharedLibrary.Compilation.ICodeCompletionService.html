@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface ICodeCompletionService | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface ICodeCompletionService | DataMaster ">
+      
+      <meta name="description" content="C# 语言智能服务接口，为编辑器提供补全、诊断、悬停和文档注释功能">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_SharedLibrary_Compilation_ICodeCompletionService.md&amp;value=---%0Auid%3A%20MAS.SharedLibrary.Compilation.ICodeCompletionService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService">
+
+
+
+  <h1 id="MAS_SharedLibrary_Compilation_ICodeCompletionService" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService" class="text-break">
+Interface ICodeCompletionService  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICodeCompletionService.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.SharedLibrary.html">SharedLibrary</a>.<a class="xref" href="MAS.SharedLibrary.Compilation.html">Compilation</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>C# 语言智能服务接口，为编辑器提供补全、诊断、悬停和文档注释功能</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ICodeCompletionService : IDisposable</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Compilation_ICodeCompletionService_Availability_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.Availability*"></a>
+
+  <h3 id="MAS_SharedLibrary_Compilation_ICodeCompletionService_Availability" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.Availability">
+  Availability
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICodeCompletionService.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前可用性状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">CodeCompletionAvailability Availability { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.CompilationContracts.CodeCompletionAvailability.html">CodeCompletionAvailability</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Compilation_ICodeCompletionService_UnavailableReason_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.UnavailableReason*"></a>
+
+  <h3 id="MAS_SharedLibrary_Compilation_ICodeCompletionService_UnavailableReason" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.UnavailableReason">
+  UnavailableReason
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICodeCompletionService.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取不可用原因；仅在 <a class="xref" href="MAS.SharedLibrary.Compilation.ICodeCompletionService.html#MAS_SharedLibrary_Compilation_ICodeCompletionService_Availability">Availability</a> 为
+<a class="xref" href="MAS.CompilationContracts.CodeCompletionAvailability.html#MAS_CompilationContracts_CodeCompletionAvailability_Unavailable">Unavailable</a> 时有值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? UnavailableReason { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_SharedLibrary_Compilation_ICodeCompletionService_GetCompletionsAsync_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.GetCompletionsAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Compilation_ICodeCompletionService_GetCompletionsAsync_MAS_CompilationContracts_CodeCompletionRequest_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.GetCompletionsAsync(MAS.CompilationContracts.CodeCompletionRequest,System.Threading.CancellationToken)">
+  GetCompletionsAsync(CodeCompletionRequest, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICodeCompletionService.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步获取指定代码位置的补全候选列表；服务未就绪时返回空列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;CodeCompletionResult&gt; GetCompletionsAsync(CodeCompletionRequest request, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>request</code> <a class="xref" href="MAS.CompilationContracts.CodeCompletionRequest.html">CodeCompletionRequest</a></dt>
+    <dd><p>补全请求，包含完整代码、光标偏移与额外引用</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.CompilationContracts.CodeCompletionResult.html">CodeCompletionResult</a>&gt;</dt>
+    <dd><p>补全结果；该位置无候选时返回空列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Compilation_ICodeCompletionService_GetDiagnosticsAsync_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.GetDiagnosticsAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Compilation_ICodeCompletionService_GetDiagnosticsAsync_MAS_CompilationContracts_CodeDiagnosticsRequest_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.GetDiagnosticsAsync(MAS.CompilationContracts.CodeDiagnosticsRequest,System.Threading.CancellationToken)">
+  GetDiagnosticsAsync(CodeDiagnosticsRequest, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICodeCompletionService.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步获取代码的错误与警告诊断；服务未就绪时返回空列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;CodeDiagnosticsResult&gt; GetDiagnosticsAsync(CodeDiagnosticsRequest request, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>request</code> <a class="xref" href="MAS.CompilationContracts.CodeDiagnosticsRequest.html">CodeDiagnosticsRequest</a></dt>
+    <dd><p>诊断请求，包含完整代码与额外引用</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.CompilationContracts.CodeDiagnosticsResult.html">CodeDiagnosticsResult</a>&gt;</dt>
+    <dd><p>诊断结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Compilation_ICodeCompletionService_GetDocumentationCommentAsync_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.GetDocumentationCommentAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Compilation_ICodeCompletionService_GetDocumentationCommentAsync_MAS_CompilationContracts_DocumentationCommentRequest_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.GetDocumentationCommentAsync(MAS.CompilationContracts.DocumentationCommentRequest,System.Threading.CancellationToken)">
+  GetDocumentationCommentAsync(DocumentationCommentRequest, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICodeCompletionService.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步生成 XML 文档注释骨架：编辑器输入 <code>///</code> 后，依据紧随其后的声明
+生成 summary、typeparam、param、returns 标签；
+该位置不应生成注释或服务未就绪时返回 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;DocumentationCommentResult?&gt; GetDocumentationCommentAsync(DocumentationCommentRequest request, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>request</code> <a class="xref" href="MAS.CompilationContracts.DocumentationCommentRequest.html">DocumentationCommentRequest</a></dt>
+    <dd><p>文档注释生成请求，包含完整代码与光标偏移</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.CompilationContracts.DocumentationCommentResult.html">DocumentationCommentResult</a>&gt;</dt>
+    <dd><p>生成结果；无内容时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Compilation_ICodeCompletionService_GetHoverAsync_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.GetHoverAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Compilation_ICodeCompletionService_GetHoverAsync_MAS_CompilationContracts_CodeHoverRequest_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.GetHoverAsync(MAS.CompilationContracts.CodeHoverRequest,System.Threading.CancellationToken)">
+  GetHoverAsync(CodeHoverRequest, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICodeCompletionService.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步获取指定代码位置的悬停信息（类型/方法签名与 XML 文档说明）；
+该位置无符号或服务未就绪时返回 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;CodeHoverResult?&gt; GetHoverAsync(CodeHoverRequest request, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>request</code> <a class="xref" href="MAS.CompilationContracts.CodeHoverRequest.html">CodeHoverRequest</a></dt>
+    <dd><p>悬停请求，包含完整代码、光标偏移与额外引用</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.CompilationContracts.CodeHoverResult.html">CodeHoverResult</a>&gt;</dt>
+    <dd><p>悬停结果；无内容时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_SharedLibrary_Compilation_ICodeCompletionService_InitializeAsync_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.InitializeAsync*"></a>
+
+  <h3 id="MAS_SharedLibrary_Compilation_ICodeCompletionService_InitializeAsync_System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.InitializeAsync(System.Threading.CancellationToken)">
+  InitializeAsync(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICodeCompletionService.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步初始化服务：收集元数据引用、创建 Roslyn 工作区并执行一次补全预热。
+重复调用返回同一个初始化任务；初始化失败不抛出异常，而是将
+<a class="xref" href="MAS.SharedLibrary.Compilation.ICodeCompletionService.html#MAS_SharedLibrary_Compilation_ICodeCompletionService_Availability">Availability</a> 置为 <a class="xref" href="MAS.CompilationContracts.CodeCompletionAvailability.html#MAS_CompilationContracts_CodeCompletionAvailability_Unavailable">Unavailable</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task InitializeAsync(CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌，仅取消调用方的等待，不中止内部初始化</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>初始化任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_SharedLibrary_Compilation_ICodeCompletionService_AvailabilityChanged" data-uid="MAS.SharedLibrary.Compilation.ICodeCompletionService.AvailabilityChanged">
+  AvailabilityChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICodeCompletionService.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>可用性状态变化事件；可能在后台线程触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;CodeCompletionAvailability&gt;? AvailabilityChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.CompilationContracts.CodeCompletionAvailability.html">CodeCompletionAvailability</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Compilation/Interfaces/ICodeCompletionService.cs/#L17" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
