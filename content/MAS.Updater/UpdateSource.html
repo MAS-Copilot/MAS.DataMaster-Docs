@@ -223,38 +223,72 @@ ossutil cp manifest.json oss://mas-cloud/stable/ --meta=Cache-Control:no-cache
 <p>通道由标签自动判定：带 <code>-</code> 的预发布标签（如 <code>v3.23.0-beta</code>）进 <code>beta</code>，其余进 <code>stable</code>。
 推送顺序是<strong>先传包体再传清单</strong>，避免现场读到指向尚未上传包体的清单；包体上传时带
 <code>Cache-Control: max-age=2592000</code>，清单带 <code>Cache-Control: no-cache</code>，不需要事后手工改元数据。</p>
+<p>四个包合计约 500MB，从 GitHub 的海外 Runner 跨境传 OSS 的单连接只有 100~200KB/s，
+所以上传开了文件级与分片级并发（<code>--jobs</code> / <code>--parallel</code>），任务超时设为 60 分钟。
+串行整传必然超过超时，会看到任务在传第二个包时被 cancel。</p>
 <p>上传完成后 CI 会匿名回读一次 <code>manifest.json</code> 并与本地产物比对，Bucket 权限不是公共读时当场失败。</p>
-<p>给 CI 用的 RAM 用户按最小权限授权即可，自定义策略示例（把 <code>mas-cloud</code> 换成实际 Bucket）：</p>
+<p>给 CI 用的 RAM 用户按最小权限授权即可。<strong>新建的 RAM 用户默认没有任何权限，必须显式挂上策略</strong>，
+否则上传会以 <code>403 AccessDenied / You have no right to access this object</code> 失败。
+自定义策略示例（把 <code>mas-cloud</code> 换成实际 Bucket）：</p>
 <pre><code class="lang-json">{
   &quot;Version&quot;: &quot;1&quot;,
   &quot;Statement&quot;: [
     {
       &quot;Effect&quot;: &quot;Allow&quot;,
-      &quot;Action&quot;: [&quot;oss:PutObject&quot;, &quot;oss:GetObject&quot;],
-      &quot;Resource&quot;: [&quot;acs:oss:*:*:mas-cloud/stable/*&quot;, &quot;acs:oss:*:*:mas-cloud/beta/*&quot;]
+      &quot;Action&quot;: [&quot;oss:PutObject&quot;, &quot;oss:GetObject&quot;, &quot;oss:ListParts&quot;, &quot;oss:AbortMultipartUpload&quot;],
+      &quot;Resource&quot;: [
+        &quot;acs:oss:*:*:mas-cloud/mas-data-master/stable/*&quot;,
+        &quot;acs:oss:*:*:mas-cloud/mas-data-master/beta/*&quot;
+      ]
     }
   ]
 }
 </code></pre>
+<p>两处容易踩空的地方：</p>
+<ul>
+<li><strong><code>Resource</code> 必须包含 <code>UPDATE_OSS_PREFIX</code> 那一层</strong>。上例对应 <code>UPDATE_OSS_PREFIX=mas-data-master</code>；
+该变量留空时才是 <code>acs:oss:*:*:mas-cloud/stable/*</code>。路径对不上就是 403，与文件大小无关。</li>
+<li><strong><code>ListParts</code> 与 <code>AbortMultipartUpload</code> 不能省</strong>。为了跑满带宽，CI 把 ossutil 的分片阈值调到了
+10MB，四个包都走分片上传，查分片与失败清理是独立于 <code>oss:PutObject</code> 的 Action。</li>
+</ul>
 <h2 id="发布手工上传">发布：手工上传</h2>
-<p>没有配置 CI 推送，或者需要临时发一个版本时：</p>
-<pre><code class="lang-powershell"># 1. 发布并打包（四种组合按需执行）
-pwsh scripts/Update/New-UpdatePackage.ps1 -Version v3.22.0 -Rid win-x64
-pwsh scripts/Update/New-UpdatePackage.ps1 -Version v3.22.0 -Rid win-x86
-pwsh scripts/Update/New-UpdatePackage.ps1 -Version v3.22.0 -Rid win-x64 -SelfContained
-pwsh scripts/Update/New-UpdatePackage.ps1 -Version v3.22.0 -Rid win-x86 -SelfContained
+<p>没有配置 CI 推送，或者需要临时发一个版本时，双击 <code>scripts/Update/生成OSS更新包.bat</code>
+（也可以带参数运行，如 <code>生成OSS更新包.bat v3.22.0</code>）。它做的事和 CI 完全一致：</p>
+<ol>
+<li>依次发布打包 win-x64 / win-x86 × 框架依赖 / 自包含四个组合；</li>
+<li>汇总 <code>*.package.json</code> 生成 <code>manifest.json</code>（带上 <code>update-policy.json</code> 与 Release 说明地址）；</li>
+<li>把四个包与清单集中到一个上传目录。</li>
+</ol>
+<p>交互模式会依次询问版本号、通道与压缩格式，直接回车用默认值。通道留空时按版本号自动判定：
+带 <code>-</code> 的预发布版本（如 <code>v3.23.0-beta.1</code>）进 <code>beta</code>，其余进 <code>stable</code>，与 CI 的规则相同。</p>
+<p>产物目录：</p>
+<pre><code class="lang-text">build/update-dist/
+├─ staging/&lt;版本&gt;/          中间产物，只留 *.package.json 备查
+└─ upload/&lt;版本&gt;/&lt;通道&gt;/    直接上传这个目录里的全部文件
+    ├─ manifest.json
+    ├─ MasDataMaster-win-x64-v3.22.0.7z
+    ├─ MasDataMaster-win-x86-v3.22.0.7z
+    ├─ MasDataMaster-win-x64-self-contained-v3.22.0.7z
+    └─ MasDataMaster-win-x86-self-contained-v3.22.0.7z
+</code></pre>
+<p>把 <code>upload/&lt;版本&gt;/&lt;通道&gt;/</code> 下的文件传到 <code>&lt;更新源&gt;/&lt;通道&gt;/</code>，<strong>先传包体再传清单</strong>，
+并把 <code>manifest.json</code> 的 <code>Cache-Control</code> 设为 <code>no-cache</code>。</p>
+<p>脚本会依次从 PATH、7-Zip 安装目录、NuGet 缓存里寻找 7-Zip 命令行，找不到时自动退回 zip
+（更新器两种格式都支持，只是包体更大）。</p>
+<p>需要单独跑某一步时再直接调脚本：</p>
+<pre><code class="lang-powershell"># 注意用 powershell 而不是 pwsh：Windows 自带的是 Windows PowerShell，
+# 没装 PowerShell 7 时 pwsh 会报&quot;无法将 pwsh 项识别为 cmdlet&quot;
+powershell -File scripts/Update/New-UpdatePackage.ps1 -Version v3.22.0 -Rid win-x64
+powershell -File scripts/Update/New-UpdatePackage.ps1 -Version v3.22.0 -Rid win-x64 -SelfContained
 
-# 2. 汇总生成清单
-pwsh scripts/Update/New-UpdateManifest.ps1 `
+powershell -File scripts/Update/New-UpdateManifest.ps1 `
     -PackageDirectory build/update-dist `
     -Tag v3.22.0 `
     -PolicyPath scripts/Update/update-policy.json `
     -OutputPath build/update-dist/manifest.json
 </code></pre>
-<p>产物在 <code>build/update-dist/</code>：<code>*.7z</code>、<code>*.package.json</code>（哈希与体积元数据）与 <code>manifest.json</code>。
-把 <code>*.7z</code> 与 <code>manifest.json</code> 上传到 <code>&lt;更新源&gt;/stable/</code> 即可，<strong>先传包体再传清单</strong>。</p>
-<p>打包脚本会依次从 PATH、7-Zip 安装目录、NuGet 缓存里寻找 7-Zip 命令行；
-本机没有 7-Zip 时可以加 <code>-Format zip</code>（更新器两种格式都支持，只是包体更大）。</p>
+<p><code>New-UpdateManifest.ps1</code> 会把目录下<strong>所有</strong> <code>*.package.json</code> 都写进清单，
+所以手工分步执行时务必先清空产出目录，否则上个版本的包会混进这次的清单。</p>
 <h2 id="上线前检查">上线前检查</h2>
 <p>发布正式通道之前，建议按顺序验证：</p>
 <ol>
@@ -267,13 +301,15 @@ pwsh scripts/Update/New-UpdateManifest.ps1 `
 </ol>
 <p>本地联调：</p>
 <pre><code class="lang-powershell"># 版本号要高于当前运行的版本，否则不会提示更新
-pwsh scripts/Update/New-UpdatePackage.ps1 -Version v9.99.0
+powershell -File scripts/Update/New-UpdatePackage.ps1 -Version v9.99.0
 
 # 按通道整理：build/update-dist/stable/{manifest.json, *.7z}
-pwsh scripts/Update/Start-UpdateServer.ps1 -Root build/update-dist -Port 8099
+powershell -File scripts/Update/Start-UpdateServer.ps1 -Root build/update-dist -Port 8099
 
 # 主程序设置页：更新源 http://127.0.0.1:8099，通道 stable
 </code></pre>
+<p>起本地更新源也可以直接双击 <code>scripts/Update/启动本地更新源.bat</code>，它会建好
+<code>build/local-update-source/{stable,beta}</code> 两个目录并带限速启动，把包与清单丢进去即可。</p>
 <h2 id="现场部署注意">现场部署注意</h2>
 <ul>
 <li><strong>应用目录必须可写</strong>。装在 <code>C:\Program Files</code> 下时普通用户没有写权限，更新会失败并回滚；
