@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>在线更新 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="在线更新 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.Updater/OnlineUpdate.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="在线更新">在线更新</h1>
+
+<p>MAS.DataMaster 支持从自建服务器或对象存储（OSS/COS）在线更新。检查与下载由主程序完成，
+覆盖主程序目录由独立进程 <code>MAS.Updater</code> 完成，整个过程带完整性校验与失败回滚。</p>
+<p>更新粒度是<strong>整个发布包</strong>，不做单文件增量。原因是单独替换某个 DLL 时，只要程序集版本或依赖关系
+发生变化就会牵出一连串加载错误；整包覆盖的结果与人工解压新版本到现场目录完全一致，
+是最稳妥也最容易验证的方式。</p>
+<h2 id="为什么需要独立进程">为什么需要独立进程</h2>
+<p>覆盖目录时不能有任何文件被占用，而运行中的可执行文件会锁住自身。因此更新器：</p>
+<ul>
+<li>以<strong>自包含单文件</strong>（约 11 MB）随发布包放在 <code>Updater/MAS.Updater.exe</code>；</li>
+<li>由主程序在启动前复制到应用目录<strong>之外</strong>（<code>%ProgramData%\MAS.DataMaster\Update\Runner\&lt;时间戳&gt;\</code>）再执行；</li>
+<li>不引用任何工程，第三方包只有解压用的 SharpCompress —— 复制出去后没有任何运行时依赖，
+主程序无论是框架依赖还是自包含部署都能正常唤起它。</li>
+</ul>
+<h2 id="更新流程">更新流程</h2>
+<pre><code class="lang-text">主程序 MAS.DataMaster                      更新器 MAS.Updater（独立进程）
+  │ 设置页「检查更新」→ 读取 manifest.json
+  │ 比对版本 / 校验最低版本闸门
+  │ 下载更新包 → 校验 SHA256
+  │ 写入待安装状态 pending.json
+  │ …现场继续运行，不打断业务…
+  │ 用户正常退出应用
+  ├─ 保存配置、释放资源
+  ├─ 复制更新器到工作目录并启动 ─────────▶ 等待主程序进程完全退出
+  └─ 进程退出                              再次校验更新包 SHA256
+                                           解压到 &lt;应用目录&gt;\.mas-update-&lt;时间戳&gt;\new
+                                           校验包内含主程序可执行文件
+                                           逐个文件覆盖：旧文件移入 backup，新文件移入应用目录
+                                           包外的文件原样不动
+                                           校验主程序存在 → 清理暂存
+                                           写结果回执 → 启动主程序 → 自身退出
+                                           任一步失败 → 回滚到 backup 的旧版本
+</code></pre>
+<p><strong>下载完成不会立即安装</strong>，只登记&quot;待安装&quot;。安装发生在应用正常退出之后，产线运行期间不会被打断。
+应用被强制结束时待安装状态也不会丢失，下一次正常退出仍会完成安装。</p>
+<h2 id="覆盖与回滚">覆盖与回滚</h2>
+<p>覆盖按&quot;文件重命名&quot;实现，而不是流式复制，且只处理发布包里有的文件：</p>
+<ol>
+<li>该文件在应用目录已存在 → 旧文件移入 <code>.mas-update-&lt;时间戳&gt;\backup\</code> 的同名相对路径；</li>
+<li>解压出的新文件移入应用目录；</li>
+<li>全部文件处理完后，校验主程序可执行文件存在。</li>
+</ol>
+<p>同卷移动是文件系统的原子重命名，与文件体积无关 —— 实测 285 MB / 791 个文件耗时约 3 秒。
+备份目录记录了本次动过的每一项，任一步失败都会把旧文件原样搬回，不会留下新旧混合的目录。</p>
+<p>暂存目录放在<strong>应用目录内部</strong>，一是保证与应用目录同卷（跨卷移动会退化成复制，失去原子性），
+二是不需要对应用目录的父级有写权限。</p>
+<table>
+<thead>
+<tr>
+<th>结果</th>
+<th>退出码</th>
+<th>现场状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>成功</td>
+<td>0</td>
+<td>新版本已就位，暂存目录已清理</td>
+</tr>
+<tr>
+<td>失败已回滚</td>
+<td>1</td>
+<td>旧版本原样运行，暂存目录已清理，日志留有原因</td>
+</tr>
+<tr>
+<td>参数不合法</td>
+<td>2</td>
+<td>未做任何改动</td>
+</tr>
+<tr>
+<td>回滚未完成</td>
+<td>3</td>
+<td><strong>需人工处理</strong>，备份目录保留在回执的 <code>backup</code> 字段</td>
+</tr>
+</tbody>
+</table>
+<h2 id="现场数据保留">现场数据保留</h2>
+<p>更新只覆盖发布包里有的文件，<strong>包外的一切原样保留</strong>，不需要维护任何保留清单：现场的
+<code>appsettings.json</code>、人工放置的 <code>runtimes\python</code>、运行产物等都不会被动到。
+工程、日志、数据库等现场数据默认位于 <code>%ProgramData%\MAS.DataMaster</code>，不在应用目录内，同样不受更新影响。</p>
+<p>代价是旧版本里被新版本删掉的文件会残留在应用目录中：不影响运行，只占空间；需要彻底清干净时人工重新部署。</p>
+<h2 id="版本闸门">版本闸门</h2>
+<p>清单里的 <code>minimumVersion</code> 是<strong>允许在线更新的最低当前版本</strong>。填 <code>3.20.0</code> 表示只有 3.20.0 及以上的
+现场可以在线更新到该版本，更早的现场会显示&quot;在线更新要求当前版本不低于 3.20.0，请人工部署&quot;，
+不提供下载入口。</p>
+<p>用途是拦截跨破坏性变更的升级：当某个版本改了工程文件格式、数据库结构或配置结构时，
+把 <code>minimumVersion</code> 抬到该版本，老现场就只能走人工部署流程，避免自动更新造成停机。</p>
+<p>该值维护在仓库的 <code>scripts/Update/update-policy.json</code>，发布流程会写进清单。</p>
+<h2 id="界面用法">界面用法</h2>
+<p>设置页 →「在线更新」：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>检查更新</td>
+<td>手动向更新源查询；卡片标题显示当前版本与部署形态（如 <code>win-x64 / framework-dependent</code>）</td>
+</tr>
+<tr>
+<td>下载更新</td>
+<td>下载并校验，完成后提示&quot;更新已就绪，将在应用程序退出后自动安装&quot;</td>
+</tr>
+<tr>
+<td>立即安装并重启</td>
+<td>走完整关闭流程（未保存的工程会拦截），随后由更新器覆盖并重启</td>
+</tr>
+<tr>
+<td>放弃更新</td>
+<td>删除已下载的更新包，取消待安装状态</td>
+</tr>
+<tr>
+<td>更新源</td>
+<td>更新服务器或对象存储的根地址</td>
+</tr>
+<tr>
+<td>加入内测</td>
+<td>开启后同时看 <code>stable</code> 与 <code>beta</code> 两个通道，版本高的一方胜出；关闭则只看 <code>stable</code>。默认开启</td>
+</tr>
+<tr>
+<td>自动检查更新</td>
+<td>打开设置页时自动查询</td>
+</tr>
+<tr>
+<td>更新后询问再启动</td>
+<td>开启后更新器会弹窗询问是否启动主程序</td>
+</tr>
+</tbody>
+</table>
+<h2 id="日志">日志</h2>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%ProgramData%\MAS.DataMaster\Log\Updater\Updater.log</code></td>
+<td>更新器的每一步操作、重试与失败堆栈</td>
+</tr>
+<tr>
+<td><code>%ProgramData%\MAS.DataMaster\Log\Network.log</code></td>
+<td>主程序侧的清单读取与下载</td>
+</tr>
+<tr>
+<td><code>%ProgramData%\MAS.DataMaster\Log\System.log</code></td>
+<td>待安装状态、更新器启动与结果回执</td>
+</tr>
+</tbody>
+</table>
+<p>更新完成后主程序启动时会弹出提示，显示上一次更新是成功还是已回滚。</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.Updater/OnlineUpdate.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Enum ModelApiChannel | DataMaster </title>
+      <title>Enum DxfEditRejectCode | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Enum ModelApiChannel | DataMaster ">
+      <meta name="title" content="Enum DxfEditRejectCode | DataMaster ">
       
-      <meta name="description" content="模型 API 通道。决定请求体形态与流式协议；由  的端点路径推断得出，参见">
+      <meta name="description" content="协作写入被拒绝的原因，供调用方按机器可读的码分支处理">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PrismaTalk_Models_ModelApiChannel.md&amp;value=---%0Auid%3A%20MAS.PrismaTalk.Models.ModelApiChannel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PathPlanning_Agent_DxfEditRejectCode.md&amp;value=---%0Auid%3A%20MAS.PathPlanning.Agent.DxfEditRejectCode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,27 +84,26 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.PrismaTalk.Models.ModelApiChannel">
+        <article data-uid="MAS.PathPlanning.Agent.DxfEditRejectCode">
 
 
 
 
-  <h1 id="MAS_PrismaTalk_Models_ModelApiChannel" data-uid="MAS.PrismaTalk.Models.ModelApiChannel" class="text-break">
-Enum ModelApiChannel  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ModelApiChannel.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_PathPlanning_Agent_DxfEditRejectCode" data-uid="MAS.PathPlanning.Agent.DxfEditRejectCode" class="text-break">
+Enum DxfEditRejectCode  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Agent/DxfEditRejectCode.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.PrismaTalk.html">PrismaTalk</a>.<a class="xref" href="MAS.PrismaTalk.Models.html">Models</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>MAS.PrismaTalk.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.PathPlanning.html">PathPlanning</a>.<a class="xref" href="MAS.PathPlanning.Agent.html">Agent</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.PathPlanning.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>模型 API 通道。决定请求体形态与流式协议；由 <a class="xref" href="MAS.PrismaTalk.IPrismaTalkConfig.html#MAS_PrismaTalk_IPrismaTalkConfig_ServiceUrl">ServiceUrl</a>
-的端点路径推断得出，参见 <a class="xref" href="MAS.PrismaTalk.Models.ModelApiChannelResolver.html">ModelApiChannelResolver</a></p>
+  <div class="markdown summary"><p>协作写入被拒绝的原因，供调用方按机器可读的码分支处理</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum ModelApiChannel</code></pre>
+    <pre><code class="lang-csharp hljs">public enum DxfEditRejectCode</code></pre>
   </div>
 
 
@@ -125,13 +124,57 @@ Enum ModelApiChannel  <a class="header-action link-secondary" title="View source
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
-    <dt id="MAS_PrismaTalk_Models_ModelApiChannel_ChatCompletions"><code>ChatCompletions = 0</code></dt>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_InvalidOperation"><code>InvalidOperation = 8</code></dt>
   
-  <dd><p>OpenAI 兼容 Chat Completions（messages / tool_calls / SSE choices.delta），默认通道</p>
+  <dd><p>操作本身不合法（索引越界、坐标非法、删空轨迹等）</p>
 </dd>
-    <dt id="MAS_PrismaTalk_Models_ModelApiChannel_Responses"><code>Responses = 1</code></dt>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_LayerNotGenerated"><code>LayerNotGenerated = 7</code></dt>
   
-  <dd><p>OpenAI 兼容 Responses（input items / function_call / 语义化 SSE 事件流）</p>
+  <dd><p>目标图层不存在或尚未生成轨迹</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_LayerNotSpecified"><code>LayerNotSpecified = 6</code></dt>
+  
+  <dd><p>未指定图层且当前没有激活图层</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_NoCurrentRecipe"><code>NoCurrentRecipe = 3</code></dt>
+  
+  <dd><p>工程里没有激活任何图纸配方</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_None"><code>None = 0</code></dt>
+  
+  <dd><p>未被拒绝</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_ProjectClosed"><code>ProjectClosed = 1</code></dt>
+  
+  <dd><p>没有打开路径规划工程</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_RecipeNotCurrent"><code>RecipeNotCurrent = 5</code></dt>
+  
+  <dd><p>目标配方不是当前配方，写入只允许落在当前配方</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_RecipeNotFound"><code>RecipeNotFound = 4</code></dt>
+  
+  <dd><p>目标配方不存在</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_RecipeSwitched"><code>RecipeSwitched = 10</code></dt>
+  
+  <dd><p>提交期间配方被切换，改动已放弃</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_SaveFailed"><code>SaveFailed = 12</code></dt>
+  
+  <dd><p>写入过程出错</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_TaskRunning"><code>TaskRunning = 2</code></dt>
+  
+  <dd><p>脚本任务不处于停止状态，运行期禁止任何写入</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_TooManyOperations"><code>TooManyOperations = 9</code></dt>
+  
+  <dd><p>单次提交的操作条数超出上限</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditRejectCode_ValidationFailed"><code>ValidationFailed = 11</code></dt>
+  
+  <dd><p>数据校验未通过</p>
 </dd>
   </dl>
 
@@ -140,7 +183,7 @@ Enum ModelApiChannel  <a class="header-action link-secondary" title="View source
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ModelApiChannel.cs/#L16" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Agent/DxfEditRejectCode.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

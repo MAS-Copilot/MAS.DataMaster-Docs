@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Enum ModelApiChannel | DataMaster </title>
+      <title>Enum DxfEditScope | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Enum ModelApiChannel | DataMaster ">
+      <meta name="title" content="Enum DxfEditScope | DataMaster ">
       
-      <meta name="description" content="模型 API 通道。决定请求体形态与流式协议；由  的端点路径推断得出，参见">
+      <meta name="description" content="协作写入影响到的数据范围，界面按范围决定刷新哪一块">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PrismaTalk_Models_ModelApiChannel.md&amp;value=---%0Auid%3A%20MAS.PrismaTalk.Models.ModelApiChannel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PathPlanning_Agent_DxfEditScope.md&amp;value=---%0Auid%3A%20MAS.PathPlanning.Agent.DxfEditScope%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,27 +84,26 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.PrismaTalk.Models.ModelApiChannel">
+        <article data-uid="MAS.PathPlanning.Agent.DxfEditScope">
 
 
 
 
-  <h1 id="MAS_PrismaTalk_Models_ModelApiChannel" data-uid="MAS.PrismaTalk.Models.ModelApiChannel" class="text-break">
-Enum ModelApiChannel  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ModelApiChannel.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_PathPlanning_Agent_DxfEditScope" data-uid="MAS.PathPlanning.Agent.DxfEditScope" class="text-break">
+Enum DxfEditScope  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Agent/DxfEditScope.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.PrismaTalk.html">PrismaTalk</a>.<a class="xref" href="MAS.PrismaTalk.Models.html">Models</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>MAS.PrismaTalk.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.PathPlanning.html">PathPlanning</a>.<a class="xref" href="MAS.PathPlanning.Agent.html">Agent</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.PathPlanning.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>模型 API 通道。决定请求体形态与流式协议；由 <a class="xref" href="MAS.PrismaTalk.IPrismaTalkConfig.html#MAS_PrismaTalk_IPrismaTalkConfig_ServiceUrl">ServiceUrl</a>
-的端点路径推断得出，参见 <a class="xref" href="MAS.PrismaTalk.Models.ModelApiChannelResolver.html">ModelApiChannelResolver</a></p>
+  <div class="markdown summary"><p>协作写入影响到的数据范围，界面按范围决定刷新哪一块</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum ModelApiChannel</code></pre>
+    <pre><code class="lang-csharp hljs">public enum DxfEditScope</code></pre>
   </div>
 
 
@@ -125,13 +124,21 @@ Enum ModelApiChannel  <a class="header-action link-secondary" title="View source
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
-    <dt id="MAS_PrismaTalk_Models_ModelApiChannel_ChatCompletions"><code>ChatCompletions = 0</code></dt>
+    <dt id="MAS_PathPlanning_Agent_DxfEditScope_Calibration"><code>Calibration = 3</code></dt>
   
-  <dd><p>OpenAI 兼容 Chat Completions（messages / tool_calls / SSE choices.delta），默认通道</p>
+  <dd><p>工程级标定配方</p>
 </dd>
-    <dt id="MAS_PrismaTalk_Models_ModelApiChannel_Responses"><code>Responses = 1</code></dt>
+    <dt id="MAS_PathPlanning_Agent_DxfEditScope_ExtendedPoints"><code>ExtendedPoints = 1</code></dt>
   
-  <dd><p>OpenAI 兼容 Responses（input items / function_call / 语义化 SSE 事件流）</p>
+  <dd><p>某个图层的扩展点</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditScope_ScriptCode"><code>ScriptCode = 2</code></dt>
+  
+  <dd><p>工程级路径规划脚本</p>
+</dd>
+    <dt id="MAS_PathPlanning_Agent_DxfEditScope_TrajectoryPoints"><code>TrajectoryPoints = 0</code></dt>
+  
+  <dd><p>某个图层的轨迹点</p>
 </dd>
   </dl>
 
@@ -140,7 +147,7 @@ Enum ModelApiChannel  <a class="header-action link-secondary" title="View source
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ModelApiChannel.cs/#L16" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Agent/DxfEditScope.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

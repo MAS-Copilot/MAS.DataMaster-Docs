@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>清单格式与命令行 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="清单格式与命令行 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.Updater/Protocol.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="清单格式与命令行">清单格式与命令行</h1>
+
+<h2 id="manifestjson">manifest.json</h2>
+<p>清单地址：<code>{更新源根地址}/{通道}/manifest.json</code>，通道固定为 <code>stable</code> 与 <code>beta</code> 两个。</p>
+<p>客户端由设置页的「加入内测」开关决定读哪些通道：关闭时只读 <code>stable</code>；
+开启时先读 <code>stable</code> 再读 <code>beta</code>，两份清单的 <code>version</code> 谁高就用谁，相同则 <code>stable</code> 胜出
+（SemVer 规定同号正式版本高于预发布版本，因此内测用户在正式版发布后会自动切回正式包）。
+<code>beta/manifest.json</code> 取不到时静默沿用 <code>stable</code> 的结果，内测通道未发过版本不影响正常检查。</p>
+<pre><code class="lang-json">{
+  &quot;schemaVersion&quot;: 1,
+  &quot;product&quot;: &quot;MAS.DataMaster&quot;,
+  &quot;version&quot;: &quot;3.22.0&quot;,
+  &quot;releaseDate&quot;: &quot;2026-08-01&quot;,
+  &quot;minimumVersion&quot;: &quot;3.21.0&quot;,
+  &quot;mandatory&quot;: false,
+  &quot;notes&quot;: &quot;修复 DXF 多配方切换的轨迹越界问题&quot;,
+  &quot;notesUrl&quot;: &quot;https://github.com/MAS-Copilot/MAS.DataMaster/releases/tag/v3.22.0&quot;,
+  &quot;packages&quot;: [
+    {
+      &quot;rid&quot;: &quot;win-x64&quot;,
+      &quot;selfContained&quot;: false,
+      &quot;url&quot;: &quot;MasDataMaster-win-x64-v3.22.0.7z&quot;,
+      &quot;size&quot;: 139985920,
+      &quot;sha256&quot;: &quot;3f786850e387550fdab836ed7e6dc881de23001b&quot;
+    }
+  ]
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>schemaVersion</code></td>
+<td>否</td>
+<td>清单格式版本，当前为 <code>1</code></td>
+</tr>
+<tr>
+<td><code>product</code></td>
+<td>否</td>
+<td>产品标识，避免误用其它产品的更新源</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><strong>是</strong></td>
+<td>该通道的最新版本号，遵循 SemVer</td>
+</tr>
+<tr>
+<td><code>releaseDate</code></td>
+<td>否</td>
+<td>发布日期，仅用于展示</td>
+</tr>
+<tr>
+<td><code>minimumVersion</code></td>
+<td>否</td>
+<td>允许在线更新的最低当前版本，低于该版本的现场只能人工部署</td>
+</tr>
+<tr>
+<td><code>mandatory</code></td>
+<td>否</td>
+<td>预留的强制更新标记</td>
+</tr>
+<tr>
+<td><code>notes</code></td>
+<td>否</td>
+<td>更新说明，显示在设置页</td>
+</tr>
+<tr>
+<td><code>notesUrl</code></td>
+<td>否</td>
+<td>更新说明网页地址</td>
+</tr>
+<tr>
+<td><code>packages</code></td>
+<td><strong>是</strong></td>
+<td>各部署形态对应的更新包</td>
+</tr>
+</tbody>
+</table>
+<p>包字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rid</code></td>
+<td><strong>是</strong></td>
+<td>运行时标识，<code>win-x64</code> 或 <code>win-x86</code></td>
+</tr>
+<tr>
+<td><code>selfContained</code></td>
+<td>否</td>
+<td>是否自包含部署包，默认 <code>false</code></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><strong>是</strong></td>
+<td>包地址，相对清单所在目录的相对路径或绝对地址</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>否</td>
+<td>字节数，仅用于展示</td>
+</tr>
+<tr>
+<td><code>sha256</code></td>
+<td>否</td>
+<td>小写十六进制校验值。<strong>强烈建议填写</strong>，留空会跳过完整性校验</td>
+</tr>
+</tbody>
+</table>
+<h3 id="版本比较规则">版本比较规则</h3>
+<p>遵循 SemVer 2.0：</p>
+<ul>
+<li>主次修订号按数值比较，<code>3.22.0</code> &gt; <code>3.21.9</code>；</li>
+<li>预发布版本低于同号正式版本，<code>3.22.0-beta</code> &lt; <code>3.22.0</code>；</li>
+<li>预发布标识按点分段比较，数值段按数值比较：<code>3.22.0-beta.2</code> &lt; <code>3.22.0-beta.10</code>；</li>
+<li>构建元数据（<code>+</code> 之后）不参与比较；</li>
+<li>允许 <code>v</code> 前缀，允许省略修订号（<code>3.22</code> 等价于 <code>3.22.0</code>）。</li>
+</ul>
+<p>只有清单版本<strong>严格高于</strong>当前版本时才提示更新。</p>
+<h3 id="包的匹配规则">包的匹配规则</h3>
+<p>客户端按当前部署的运行时标识（<code>win-x64</code> / <code>win-x86</code>）与部署形态（框架依赖 / 自包含）匹配：</p>
+<ol>
+<li>先找 <code>rid</code> 与 <code>selfContained</code> 都相同的包；</li>
+<li>找不到则退而取 <code>rid</code> 相同的任意一个；</li>
+<li>仍找不到则提示&quot;更新源没有提供匹配当前部署的更新包&quot;，不下载。</li>
+</ol>
+<p>部署形态由应用目录下是否存在 <code>hostpolicy.dll</code> 判定。</p>
+<h3 id="更新包内容">更新包内容</h3>
+<p>包内既可以是固定文件夹包住的发布产物（<code>MAS.DataMaster-win-x64/…</code>，与人工分发时的结构一致），
+也可以是直接把发布产物放在根目录。压缩包名带版本号，包内文件夹<strong>不带版本号</strong>，
+现场安装目录因此可以在首次部署时固定下来，后续更新只覆盖目录内的文件。
+更新器会自动向下钻取：只含单个目录且没有文件时视为外层包装，最多钻 3 层。</p>
+<p>包内必须含有主程序可执行文件、且文件总数不少于 8 个，否则判定为内容异常并终止更新。</p>
+<p>格式支持 <strong>7z</strong>（LZMA2，CI 默认）与 <strong>zip</strong>，按文件内容自动识别，与扩展名无关。</p>
+<h2 id="更新器命令行">更新器命令行</h2>
+<p>正常情况下由主程序自动唤起，参数无需人工拼装。人工排障时可以直接运行：</p>
+<pre><code class="lang-powershell">MAS.Updater.exe `
+    --package &quot;D:\pkg\MasDataMaster-win-x64-v3.22.0.7z&quot; `
+    --target  &quot;D:\MasDataMaster&quot; `
+    --relaunch &quot;MAS.DataMaster.exe&quot; `
+    --sha256 &quot;3f786850e387550fdab836ed7e6dc881de23001b&quot; `
+    --version &quot;3.22.0&quot; `
+    --relaunch-mode never `
+    --log &quot;D:\updater-log&quot; `
+    --result &quot;D:\updater-log\result.txt&quot;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--package &lt;path&gt;</code></td>
+<td><strong>是</strong></td>
+<td>更新包（7z 或 zip）完整路径</td>
+</tr>
+<tr>
+<td><code>--target &lt;dir&gt;</code></td>
+<td><strong>是</strong></td>
+<td>待覆盖的主程序安装目录</td>
+</tr>
+<tr>
+<td><code>--relaunch &lt;file&gt;</code></td>
+<td><strong>是</strong></td>
+<td>更新完成后启动的可执行文件名，同时用作包内容的校验依据</td>
+</tr>
+<tr>
+<td><code>--parent-pid &lt;id&gt;</code></td>
+<td>否</td>
+<td>主程序进程标识，更新器先等它退出，最长 60 秒</td>
+</tr>
+<tr>
+<td><code>--sha256 &lt;hex&gt;</code></td>
+<td>否</td>
+<td>更新包校验值，省略则跳过校验</td>
+</tr>
+<tr>
+<td><code>--version &lt;ver&gt;</code></td>
+<td>否</td>
+<td>目标版本号，用于日志与结果回执</td>
+</tr>
+<tr>
+<td><code>--relaunch-mode &lt;mode&gt;</code></td>
+<td>否</td>
+<td><code>auto</code>（默认，直接启动）/ <code>ask</code>（弹窗询问）/ <code>never</code>（不启动）</td>
+</tr>
+<tr>
+<td><code>--no-relaunch</code></td>
+<td>否</td>
+<td>等价于 <code>--relaunch-mode never</code></td>
+</tr>
+<tr>
+<td><code>--keep-package</code></td>
+<td>否</td>
+<td>更新后保留更新包，默认删除</td>
+</tr>
+<tr>
+<td><code>--log &lt;dir&gt;</code></td>
+<td>否</td>
+<td>日志目录，默认 <code>%TEMP%\Updater\&lt;目标目录名&gt;</code></td>
+</tr>
+<tr>
+<td><code>--result &lt;path&gt;</code></td>
+<td>否</td>
+<td>结果回执文件路径</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>直接运行时<strong>务必确认主程序已退出</strong>，否则更新器会等待超时并取消更新。</p>
+</blockquote>
+<h2 id="结果回执">结果回执</h2>
+<p>更新器在退出前把结果写入 <code>--result</code> 指定的文件（主程序传入的是
+<code>%ProgramData%\MAS.DataMaster\Update\last-install.txt</code>），主程序下次启动时读取并提示：</p>
+<pre><code class="lang-ini">status=Success
+version=3.22.0
+timestamp=2026-08-01T09:15:32
+backup=
+message=已更新到 3.22.0
+</code></pre>
+<table>
+<thead>
+<tr>
+<th><code>status</code></th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Success</code></td>
+<td>更新成功</td>
+</tr>
+<tr>
+<td><code>RolledBack</code></td>
+<td>更新失败，已回滚到更新前的版本，现场可正常运行</td>
+</tr>
+<tr>
+<td><code>RollbackFailed</code></td>
+<td>更新失败且回滚未完成，需人工处理，<code>backup</code> 字段指向保留的备份目录</td>
+</tr>
+<tr>
+<td><code>InvalidArguments</code></td>
+<td>启动参数不合法，未做任何改动</td>
+</tr>
+</tbody>
+</table>
+<h2 id="工作目录">工作目录</h2>
+<p>主程序侧的更新文件都在应用目录之外，不受目录覆盖影响：</p>
+<pre><code class="lang-text">%ProgramData%\MAS.DataMaster\Update\
+├─ Packages\                 已下载的更新包
+├─ Runner\&lt;时间戳&gt;\           更新器副本（更新器无法删除运行中的自身，由主程序下次启动时清理）
+├─ pending.json              待安装状态
+└─ last-install.txt          上一次更新的结果回执
+</code></pre>
+<p>应用目录内只在更新期间存在 <code>.mas-update-&lt;时间戳&gt;\</code>（暂存与备份），成功或回滚后都会被清理，
+只有回滚未完成时才会保留。</p>
+<h2 id="排错">排错</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>排查方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>提示&quot;尚未配置更新源&quot;</td>
+<td>设置页的更新源为空</td>
+</tr>
+<tr>
+<td>提示&quot;更新源没有提供匹配当前部署的更新包&quot;</td>
+<td>清单的 <code>rid</code> / <code>selfContained</code> 与现场部署不符</td>
+</tr>
+<tr>
+<td>提示&quot;在线更新要求当前版本不低于 X&quot;</td>
+<td>版本闸门拦截，需人工部署</td>
+</tr>
+<tr>
+<td>检查更新报网络错误</td>
+<td><code>curl -I &lt;清单地址&gt;</code> 确认可达；检查证书、防火墙与代理</td>
+</tr>
+<tr>
+<td>下载后提示校验失败</td>
+<td>清单里的 <code>sha256</code> 与包体不一致，多为重新打包后忘记更新清单，或包体上传不完整</td>
+</tr>
+<tr>
+<td>发布后现场仍提示已是最新</td>
+<td>清单被缓存：检查 <code>Cache-Control</code>，CDN 需刷新 <code>manifest.json</code></td>
+</tr>
+<tr>
+<td>更新后回滚，日志显示文件被占用</td>
+<td>有进程仍占用应用目录（杀毒软件、残留子进程），把应用目录加入白名单后重试</td>
+</tr>
+<tr>
+<td>更新后回滚，日志显示拒绝访问</td>
+<td>应用目录不可写，换安装位置或以管理员运行</td>
+</tr>
+<tr>
+<td><code>status=RollbackFailed</code></td>
+<td>从回执的 <code>backup</code> 目录人工把内容搬回应用目录，并保留日志排查</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.Updater/Protocol.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
