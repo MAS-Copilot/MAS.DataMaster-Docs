@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ServiceCollectionExtensions | DataMaster </title>
+      <title>Class DynamicViewContentReferenceHelper | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ServiceCollectionExtensions | DataMaster ">
+      <meta name="title" content="Class DynamicViewContentReferenceHelper | DataMaster ">
       
-      <meta name="description" content="提供扩展方法，用于在  中注册与动态视图相关的服务">
+      <meta name="description" content="动态视图内容引用辅助类">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_ServiceCollectionExtensions.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.ServiceCollectionExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_DynamicViewContentReferenceHelper.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.DynamicViewContentReferenceHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.DynamicViews.ServiceCollectionExtensions">
+        <article data-uid="MAS.DynamicViews.DynamicViewContentReferenceHelper">
 
 
 
-  <h1 id="MAS_DynamicViews_ServiceCollectionExtensions" data-uid="MAS.DynamicViews.ServiceCollectionExtensions" class="text-break">
-Class ServiceCollectionExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/ServiceCollectionExtensions.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_DynamicViews_DynamicViewContentReferenceHelper" data-uid="MAS.DynamicViews.DynamicViewContentReferenceHelper" class="text-break">
+Class DynamicViewContentReferenceHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewContentReferenceHelper.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>提供扩展方法，用于在 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a> 中注册与动态视图相关的服务</p>
+  <div class="markdown summary"><p>动态视图内容引用辅助类</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class ServiceCollectionExtensions</code></pre>
+    <pre><code class="lang-csharp hljs">public static class DynamicViewContentReferenceHelper</code></pre>
   </div>
 
 
@@ -112,7 +112,7 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">ServiceCollectionExtensions</span></div>
+      <div><span class="xref">DynamicViewContentReferenceHelper</span></div>
     </dd>
   </dl>
 
@@ -147,38 +147,45 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 
 
 
+  <h2 id="MAS_DynamicViews_DynamicViewContentReferenceHelper_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>控件事件里的切换页面、打开窗口动作按标识引用内容，
+内容被删除后这些标识就会悬空，运行期点下去找不到目标</p>
+</div>
 
 
   <h2 class="section" id="methods">Methods
 </h2>
 
 
-  <a id="MAS_DynamicViews_ServiceCollectionExtensions_AddDynamicViewService_" data-uid="MAS.DynamicViews.ServiceCollectionExtensions.AddDynamicViewService*"></a>
+  <a id="MAS_DynamicViews_DynamicViewContentReferenceHelper_FindContentReferences_" data-uid="MAS.DynamicViews.DynamicViewContentReferenceHelper.FindContentReferences*"></a>
 
-  <h3 id="MAS_DynamicViews_ServiceCollectionExtensions_AddDynamicViewService_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="MAS.DynamicViews.ServiceCollectionExtensions.AddDynamicViewService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-  AddDynamicViewService(IServiceCollection)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/ServiceCollectionExtensions.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_DynamicViews_DynamicViewContentReferenceHelper_FindContentReferences_MAS_DynamicViews_DynamicViewProjectModel_System_String_" data-uid="MAS.DynamicViews.DynamicViewContentReferenceHelper.FindContentReferences(MAS.DynamicViews.DynamicViewProjectModel,System.String)">
+  FindContentReferences(DynamicViewProjectModel, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewContentReferenceHelper.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>在指定的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a> 中注册与动态视图相关的服务</p>
+  <div class="markdown level1 summary"><p>查找引用指定内容的控件动作</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IServiceCollection AddDynamicViewService(this IServiceCollection services)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;string&gt; FindContentReferences(DynamicViewProjectModel project, string? contentId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
-    <dd><p>要添加服务的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a> 实例</p>
+    <dt><code>project</code> <a class="xref" href="MAS.DynamicViews.DynamicViewProjectModel.html">DynamicViewProjectModel</a></dt>
+    <dd><p>动态视图工程</p>
+</dd>
+    <dt><code>contentId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>被引用内容的唯一标识</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
-    <dd><p>已注册的服务集合</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>引用位置描述集合</p>
 </dd>
   </dl>
 
@@ -188,8 +195,50 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 
 
 
-  <h4 class="section" id="MAS_DynamicViews_ServiceCollectionExtensions_AddDynamicViewService_Microsoft_Extensions_DependencyInjection_IServiceCollection__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>以下为本方法注册的公开服务接口：</p>
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewContentReferenceHelper_FindContentReferences_MAS_DynamicViews_DynamicViewProjectModel_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>只统计其它内容里的控件：内容自身的控件会随内容一起删除，不会留下悬空引用</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewContentReferenceHelper_GetDisplayName_" data-uid="MAS.DynamicViews.DynamicViewContentReferenceHelper.GetDisplayName*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewContentReferenceHelper_GetDisplayName_MAS_DynamicViews_IDynamicViewContentModel_" data-uid="MAS.DynamicViews.DynamicViewContentReferenceHelper.GetDisplayName(MAS.DynamicViews.IDynamicViewContentModel)">
+  GetDisplayName(IDynamicViewContentModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewContentReferenceHelper.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取内容在提示里的显示名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetDisplayName(IDynamicViewContentModel content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>content</code> <a class="xref" href="MAS.DynamicViews.IDynamicViewContentModel.html">IDynamicViewContentModel</a></dt>
+    <dd><p>动态视图内容</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>显示名</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewContentReferenceHelper_GetDisplayName_MAS_DynamicViews_IDynamicViewContentModel__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>以设计器里看到的名称为准，名称为空才退到标题，最后退到标识</p>
 </div>
 
 
@@ -199,7 +248,7 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/ServiceCollectionExtensions.cs/#L22" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewContentReferenceHelper.cs/#L19" class="edit-link">Edit this page</a>
         </div>
 
 
