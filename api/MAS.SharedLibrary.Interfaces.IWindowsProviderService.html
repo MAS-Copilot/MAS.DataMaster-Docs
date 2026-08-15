@@ -125,7 +125,7 @@ Interface IWindowsProviderService  <a class="header-action link-secondary" title
 
   <h3 id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_CreateScoped__1" data-uid="MAS.SharedLibrary.Interfaces.IWindowsProviderService.CreateScoped``1">
   CreateScoped&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IWindowsProviderService.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IWindowsProviderService.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>在新建的依赖注入 Scope 中创建并返回指定类型的窗口实例；
@@ -174,7 +174,7 @@ Interface IWindowsProviderService  <a class="header-action link-secondary" title
 
   <h3 id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_Create__1" data-uid="MAS.SharedLibrary.Interfaces.IWindowsProviderService.Create``1">
   Create&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IWindowsProviderService.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IWindowsProviderService.cs/#L120"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>创建并返回指定类型的窗口实例</p>
@@ -219,7 +219,7 @@ Interface IWindowsProviderService  <a class="header-action link-secondary" title
 
   <h3 id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_IsWindowExists__1" data-uid="MAS.SharedLibrary.Interfaces.IWindowsProviderService.IsWindowExists``1">
   IsWindowExists&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IWindowsProviderService.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IWindowsProviderService.cs/#L140"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查指定类型的单例窗口是否已存在且当前可见</p>
@@ -470,6 +470,42 @@ Interface IWindowsProviderService  <a class="header-action link-secondary" title
     <dd><p>如果 T 不是 Window 的派生类或服务未注册相应类型的窗口，则抛出此异常</p>
 </dd>
   </dl>
+
+
+
+  <a id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_ShowSingle_" data-uid="MAS.SharedLibrary.Interfaces.IWindowsProviderService.ShowSingle*"></a>
+
+  <h3 id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_ShowSingle_System_Windows_Window_" data-uid="MAS.SharedLibrary.Interfaces.IWindowsProviderService.ShowSingle(System.Windows.Window)">
+  ShowSingle(Window)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Interfaces/IWindowsProviderService.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>显示已创建的窗口实例，并且该类型窗口只能存在一个</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ShowSingle(Window windowInstance)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>windowInstance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.window">Window</a></dt>
+    <dd><p>已创建的窗口实例</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Interfaces_IWindowsProviderService_ShowSingle_System_Windows_Window__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>如果该类型的窗口已存在，则把已有窗口带到前台</p>
+</div>
+
 
 
 
