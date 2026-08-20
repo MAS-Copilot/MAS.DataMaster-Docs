@@ -225,6 +225,55 @@
 <li>32 位浮点数：使用 2 个连续寄存器，按照 <a href="https://zh.wikipedia.org/wiki/IEEE_754">IEEE 754</a> 格式存储​</li>
 <li>64 位数据：使用 4 个连续寄存器</li>
 </ul>
+<h3 id="结构体地址布局">结构体地址布局</h3>
+<p><strong>结构体按字段声明顺序映射到寄存器，连续的布尔字段归为一个「布尔段」：</strong></p>
+<ul>
+<li>连续声明的布尔字段共用同一个布尔段，每个布尔占 1 位</li>
+<li>遇到非布尔字段结束当前布尔段，之后再出现的布尔字段另起新段</li>
+<li>布尔段按字对齐，大小按 16 位整块计算，不足 16 位仍按完整 2 字节计算</li>
+<li>非布尔字段紧随其后排列，嵌套结构体按字对齐，结构体总长向上取偶</li>
+</ul>
+<p><strong>示例：</strong></p>
+<pre><code class="lang-csharp">public struct Sample {
+    public bool Ready;      // 段 1：字节 0 的 bit0（整段占 2 字节）
+    public short Speed;     // 字节 2 ~ 3
+    public bool Running;    // 段 2：字节 4 的 bit0
+    public bool Fault;      // 段 2：字节 4 的 bit1（整段占 2 字节）
+}                           // 共 6 字节 = 3 个寄存器
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>结构体字段</th>
+<th>布局</th>
+<th>占用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 个 Bool + Int16 + 2 个 Bool</td>
+<td>段(2) + 数值(2) + 段(2)</td>
+<td>6 字节 / 3 寄存器</td>
+</tr>
+<tr>
+<td>16 个 Bool + Int16</td>
+<td>段(2) + 数值(2)</td>
+<td>4 字节 / 2 寄存器</td>
+</tr>
+<tr>
+<td>17 个 Bool + 2 个 Int16 + 1 个 Bool</td>
+<td>段(4) + 数值(4) + 段(2)</td>
+<td>10 字节 / 5 寄存器</td>
+</tr>
+</tbody>
+</table>
+<p>第 17 个布尔进入布尔段的第二个 16 位块，即使该块只有 1 个布尔，仍按完整 2 字节计算</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>布尔位落在寄存器的高字节还是低字节由设备的字节序配置决定；
+整包写入时布尔段内未使用的补齐位会被写 0</p>
+</div>
+<p>线圈区与离散输入区按位寻址，一个布尔字段直接对应一个线圈，不做 16 位补齐，因此绑定到位区的结构体只能包含布尔字段，出现其它类型会在通讯前报错</p>
 <h2 id="使用示例">使用示例</h2>
 <pre><code class="lang-csharp">IModbusProtocol protocol = new ModbusProtocolTcp(config);
 

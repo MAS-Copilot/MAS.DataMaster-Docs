@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ServiceCollectionExtensions | DataMaster </title>
+      <title>Class DynamicViewContentDuplicator | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ServiceCollectionExtensions | DataMaster ">
+      <meta name="title" content="Class DynamicViewContentDuplicator | DataMaster ">
       
-      <meta name="description" content="提供扩展方法，用于在  中注册与动态视图相关的服务">
+      <meta name="description" content="动态视图内容复制">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_ServiceCollectionExtensions.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.ServiceCollectionExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_DynamicViewContentDuplicator.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.DynamicViewContentDuplicator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.DynamicViews.ServiceCollectionExtensions">
+        <article data-uid="MAS.DynamicViews.DynamicViewContentDuplicator">
 
 
 
-  <h1 id="MAS_DynamicViews_ServiceCollectionExtensions" data-uid="MAS.DynamicViews.ServiceCollectionExtensions" class="text-break">
-Class ServiceCollectionExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/ServiceCollectionExtensions.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_DynamicViews_DynamicViewContentDuplicator" data-uid="MAS.DynamicViews.DynamicViewContentDuplicator" class="text-break">
+Class DynamicViewContentDuplicator  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewContentDuplicator.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>提供扩展方法，用于在 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a> 中注册与动态视图相关的服务</p>
+  <div class="markdown summary"><p>动态视图内容复制</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class ServiceCollectionExtensions</code></pre>
+    <pre><code class="lang-csharp hljs">public static class DynamicViewContentDuplicator</code></pre>
   </div>
 
 
@@ -112,7 +112,7 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">ServiceCollectionExtensions</span></div>
+      <div><span class="xref">DynamicViewContentDuplicator</span></div>
     </dd>
   </dl>
 
@@ -147,38 +147,54 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 
 
 
+  <h2 id="MAS_DynamicViews_DynamicViewContentDuplicator_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>整份深拷贝内容与其控件，内容标识、控件标识、控件组标识全部重新生成，
+复制出来的内容与源内容之间不共享任何标识</p>
+</div>
 
 
   <h2 class="section" id="methods">Methods
 </h2>
 
 
-  <a id="MAS_DynamicViews_ServiceCollectionExtensions_AddDynamicViewService_" data-uid="MAS.DynamicViews.ServiceCollectionExtensions.AddDynamicViewService*"></a>
+  <a id="MAS_DynamicViews_DynamicViewContentDuplicator_CreateCopy_" data-uid="MAS.DynamicViews.DynamicViewContentDuplicator.CreateCopy*"></a>
 
-  <h3 id="MAS_DynamicViews_ServiceCollectionExtensions_AddDynamicViewService_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="MAS.DynamicViews.ServiceCollectionExtensions.AddDynamicViewService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-  AddDynamicViewService(IServiceCollection)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/ServiceCollectionExtensions.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_DynamicViews_DynamicViewContentDuplicator_CreateCopy_MAS_DynamicViews_IDynamicViewContentModel_System_String_System_String_System_String_System_Int32_" data-uid="MAS.DynamicViews.DynamicViewContentDuplicator.CreateCopy(MAS.DynamicViews.IDynamicViewContentModel,System.String,System.String,System.String,System.Int32)">
+  CreateCopy(IDynamicViewContentModel, string, string, string, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewContentDuplicator.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>在指定的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a> 中注册与动态视图相关的服务</p>
+  <div class="markdown level1 summary"><p>复制动态内容</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IServiceCollection AddDynamicViewService(this IServiceCollection services)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IDynamicViewContentModel CreateCopy(IDynamicViewContentModel source, string name, string screenCode, string groupId, int order)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
-    <dd><p>要添加服务的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a> 实例</p>
+    <dt><code>source</code> <a class="xref" href="MAS.DynamicViews.IDynamicViewContentModel.html">IDynamicViewContentModel</a></dt>
+    <dd><p>被复制的内容</p>
+</dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>副本名称</p>
+</dd>
+    <dt><code>screenCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>副本画面号</p>
+</dd>
+    <dt><code>groupId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>副本所属分组标识</p>
+</dd>
+    <dt><code>order</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>副本排序序号</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
-    <dd><p>已注册的服务集合</p>
+    <dt><a class="xref" href="MAS.DynamicViews.IDynamicViewContentModel.html">IDynamicViewContentModel</a></dt>
+    <dd><p>复制出来的内容</p>
 </dd>
   </dl>
 
@@ -188,10 +204,13 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 
 
 
-  <h4 class="section" id="MAS_DynamicViews_ServiceCollectionExtensions_AddDynamicViewService_Microsoft_Extensions_DependencyInjection_IServiceCollection__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>以下为本方法注册的公开服务接口：</p>
-</div>
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>内容类型不支持复制</p>
+</dd>
+  </dl>
 
 
 
@@ -199,7 +218,7 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/ServiceCollectionExtensions.cs/#L22" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewContentDuplicator.cs/#L19" class="edit-link">Edit this page</a>
         </div>
 
 

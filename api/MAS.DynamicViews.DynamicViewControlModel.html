@@ -102,7 +102,7 @@ Class DynamicViewControlModel
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class DynamicViewControlModel : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging, ICloneable</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class DynamicViewControlModel : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging, ICloneable, IDynamicViewPropertyTarget</code></pre>
   </div>
 
 
@@ -123,6 +123,7 @@ Class DynamicViewControlModel
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icloneable">ICloneable</a></div>
+      <div><a class="xref" href="MAS.DynamicViews.IDynamicViewPropertyTarget.html">IDynamicViewPropertyTarget</a></div>
     </dd>
   </dl>
 
@@ -343,7 +344,7 @@ public string? GroupId { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_IsComboBox" data-uid="MAS.DynamicViews.DynamicViewControlModel.IsComboBox">
   IsComboBox
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L116"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否为下拉选择框</p>
@@ -372,11 +373,44 @@ public bool IsComboBox { get; }</code></pre>
 
 
 
+  <a id="MAS_DynamicViews_DynamicViewControlModel_IsMultiSelection_" data-uid="MAS.DynamicViews.DynamicViewControlModel.IsMultiSelection*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewControlModel_IsMultiSelection" data-uid="MAS.DynamicViews.DynamicViewControlModel.IsMultiSelection">
+  IsMultiSelection
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否为多选目标</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public bool IsMultiSelection { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_DynamicViews_DynamicViewControlModel_IsNumberBox_" data-uid="MAS.DynamicViews.DynamicViewControlModel.IsNumberBox*"></a>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_IsNumberBox" data-uid="MAS.DynamicViews.DynamicViewControlModel.IsNumberBox">
   IsNumberBox
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L110"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否为数值框（数值框复用文本绑定，但仅绑定数值变量且不提供显示小数位数）</p>
@@ -409,7 +443,7 @@ public bool IsNumberBox { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_IsTextBlock" data-uid="MAS.DynamicViews.DynamicViewControlModel.IsTextBlock">
   IsTextBlock
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L104"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否为文本块（用于文本内容对齐能力门控）</p>
@@ -541,7 +575,7 @@ public DynamicViewControlSecurityModel? Security { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_SupportsBackground" data-uid="MAS.DynamicViews.DynamicViewControlModel.SupportsBackground">
   SupportsBackground
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否支持背景色（Image / Icon 不支持）</p>
@@ -574,7 +608,7 @@ public bool SupportsBackground { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_SupportsBorderBrush" data-uid="MAS.DynamicViews.DynamicViewControlModel.SupportsBorderBrush">
   SupportsBorderBrush
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否支持边框画刷（仅边框可视控件）</p>
@@ -607,7 +641,7 @@ public bool SupportsBorderBrush { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_SupportsCornerRadius" data-uid="MAS.DynamicViews.DynamicViewControlModel.SupportsCornerRadius">
   SupportsCornerRadius
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否支持圆角（仅 Border，其它控件圆角由主题模板决定、无法逐实例设置）</p>
@@ -640,7 +674,7 @@ public bool SupportsCornerRadius { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_TextBindingKey" data-uid="MAS.DynamicViews.DynamicViewControlModel.TextBindingKey">
   TextBindingKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取文本/数值绑定的变量选择键</p>
@@ -713,7 +747,7 @@ public string? ToolTip { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_Clone" data-uid="MAS.DynamicViews.DynamicViewControlModel.Clone">
   Clone()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new object that is a copy of the current instance.</p>
