@@ -189,6 +189,53 @@ Interface IDynamicViewPropertyTarget  <a class="header-action link-secondary" ti
 
 
 
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_DynamicViews_IDynamicViewPropertyTarget_ApplyPropertyPath_" data-uid="MAS.DynamicViews.IDynamicViewPropertyTarget.ApplyPropertyPath*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewPropertyTarget_ApplyPropertyPath_System_String_" data-uid="MAS.DynamicViews.IDynamicViewPropertyTarget.ApplyPropertyPath(System.String)">
+  ApplyPropertyPath(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewPropertyTarget.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把 <a class="xref" href="MAS.DynamicViews.IDynamicViewPropertyTarget.html#MAS_DynamicViews_IDynamicViewPropertyTarget_Properties">Properties</a> 中指定属性的当前值强制下发到编辑目标</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool ApplyPropertyPath(string? propertyPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertyPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>属性面板的绑定路径，形如 <code>Properties.Appearance.Foreground</code></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否完成下发</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_IDynamicViewPropertyTarget_ApplyPropertyPath_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>单选时属性面板直接绑定控件本身，赋值即生效，无需强制下发，故默认实现恒为 <code>false</code>；
+多选代理靠属性变更通知下发，赋入与缓冲区现值相同的值不会触发，需要编辑控件显式调用本方法</p>
+</div>
+
+
+
+
 
 </article>
 

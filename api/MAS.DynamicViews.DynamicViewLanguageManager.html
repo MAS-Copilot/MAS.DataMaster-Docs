@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DynamicViewLanguageManager | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DynamicViewLanguageManager | DataMaster ">
+      
+      <meta name="description" content="动态视图工程多语言管理器">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_DynamicViewLanguageManager.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.DynamicViewLanguageManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.DynamicViews.DynamicViewLanguageManager">
+
+
+
+  <h1 id="MAS_DynamicViews_DynamicViewLanguageManager" data-uid="MAS.DynamicViews.DynamicViewLanguageManager" class="text-break">
+Class DynamicViewLanguageManager  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>动态视图工程多语言管理器</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class DynamicViewLanguageManager : INotifyPropertyChanged</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">DynamicViewLanguageManager</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="MAS_DynamicViews_DynamicViewLanguageManager_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+由用户维护的多语言词条，词条按分类（资源目录）划分，运行与设计时共用同一份数据
+</p>
+<p>
+控件文本通过 <a class="xref" href="MAS.DynamicViews.DynamicViewTextModel.html#MAS_DynamicViews_DynamicViewTextModel_LanguageKey">LanguageKey</a> 引用词条，
+切换语种后触发 <code>Item[]</code> 属性通知，已建立的绑定自动刷新
+</p>
+</div>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_CATALOG_SEPARATOR" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.CATALOG_SEPARATOR">
+  CATALOG_SEPARATOR
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>分类与键名的分隔符</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const char CATALOG_SEPARATOR = &#39;/&#39;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_CATALOG_SEPARATOR_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>引用键的完整形式为 <code>分类/键名</code>，省略分类时按默认分类查找</p>
+</div>
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_Catalogs_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.Catalogs*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_Catalogs" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.Catalogs">
+  Catalogs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取工程的多语言分类集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;DynamicViewLanguageCatalogModel&gt; Catalogs { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.DynamicViews.DynamicViewLanguageCatalogModel.html">DynamicViewLanguageCatalogModel</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_Cultures_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.Cultures*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_Cultures" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.Cultures">
+  Cultures
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取工程支持的语种集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;DynamicViewLanguageCultureModel&gt; Cultures { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.DynamicViews.DynamicViewLanguageCultureModel.html">DynamicViewLanguageCultureModel</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_CurrentCulture_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.CurrentCulture*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_CurrentCulture" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.CurrentCulture">
+  CurrentCulture
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前区域性名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CurrentCulture { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_DefaultCulture_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.DefaultCulture*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_DefaultCulture" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.DefaultCulture">
+  DefaultCulture
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取默认区域性名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DefaultCulture { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_DefaultCulture_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>当前语种缺译文时回退到该语种</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_Instance_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.Instance*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_Instance" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.Instance">
+  Instance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 <a class="xref" href="MAS.DynamicViews.DynamicViewLanguageManager.html">DynamicViewLanguageManager</a> 类的单一实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DynamicViewLanguageManager Instance { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewLanguageManager.html">DynamicViewLanguageManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_IsFollowApplicationLanguage_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.IsFollowApplicationLanguage*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_IsFollowApplicationLanguage" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.IsFollowApplicationLanguage">
+  IsFollowApplicationLanguage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否跟随应用程序语言切换</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFollowApplicationLanguage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_Item_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.Item*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_Item_System_String_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.Item(System.String)">
+  this[string]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通过引用键获取当前语种下的文本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string this[string key] { get; }</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>引用键，形如 <code>分类/键名</code></p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前语种下的文本，未找到返回引用键本身</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_Revision_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.Revision*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_Revision" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.Revision">
+  Revision
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取数据修订号</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Revision { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_Revision_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>语种切换或词条内容变更时自增，仅供绑定作为刷新触发器使用，不参与取值</p>
+</div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_ContainsCulture_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.ContainsCulture*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_ContainsCulture_System_String_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.ContainsCulture(System.String)">
+  ContainsCulture(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断工程是否支持指定语种</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ContainsCulture(string? culture)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>culture</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>区域性名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>支持返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_CreateQualifiedKey_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.CreateQualifiedKey*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_CreateQualifiedKey_System_String_System_String_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.CreateQualifiedKey(System.String,System.String)">
+  CreateQualifiedKey(string?, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>拼接分类与键名为完整引用键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string CreateQualifiedKey(string? catalogName, string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>catalogName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>分类名称</p>
+</dd>
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>词条键名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>形如 <code>分类/键名</code> 的引用键</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_GetKeys_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.GetKeys*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_GetKeys" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.GetKeys">
+  GetKeys()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L222"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取全部引用键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; GetKeys()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>形如 <code>分类/键名</code> 的引用键集合</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_GetKeys_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>按分类与词条的存储顺序返回，供属性面板选择</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_GetMissingCultures_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.GetMissingCultures*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_GetMissingCultures_System_String_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.GetMissingCultures(System.String)">
+  GetMissingCultures(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定引用键缺少译文的语种</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; GetMissingCultures(string? key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>引用键，形如 <code>分类/键名</code></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>未填写译文的区域性名称集合</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_GetMissingCultures_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>词条不存在时返回空集合，调用方应先用 <a class="xref" href="MAS.DynamicViews.DynamicViewLanguageManager.html#MAS_DynamicViews_DynamicViewLanguageManager_IsKeyDefined_System_String_">IsKeyDefined(string?)</a> 区分</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_GetString_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.GetString*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_GetString_System_String_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.GetString(System.String)">
+  GetString(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通过引用键获取当前语种下的文本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetString(string? key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>引用键，形如 <code>分类/键名</code></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前语种下的文本，未找到返回引用键本身</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_IsKeyDefined_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.IsKeyDefined*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_IsKeyDefined_System_String_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.IsKeyDefined(System.String)">
+  IsKeyDefined(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断工程中是否存在指定引用键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsKeyDefined(string? key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>引用键，形如 <code>分类/键名</code></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>存在返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_IsKeyDefined_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>只看词条本身是否存在，与各语种是否填了译文无关</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_LoadProject_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.LoadProject*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_LoadProject_MAS_DynamicViews_DynamicViewProjectModel_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.LoadProject(MAS.DynamicViews.DynamicViewProjectModel)">
+  LoadProject(DynamicViewProjectModel?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>加载工程的多语言数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LoadProject(DynamicViewProjectModel? project)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>project</code> <a class="xref" href="MAS.DynamicViews.DynamicViewProjectModel.html">DynamicViewProjectModel</a></dt>
+    <dd><p>工程模型，传 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> 表示卸载</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_LoadProject_MAS_DynamicViews_DynamicViewProjectModel__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>当前语种在新工程中不受支持时回落到默认语种</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_ReplaceSettings_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.ReplaceSettings*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_ReplaceSettings_MAS_DynamicViews_DynamicViewLanguageSettingsModel_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.ReplaceSettings(MAS.DynamicViews.DynamicViewLanguageSettingsModel)">
+  ReplaceSettings(DynamicViewLanguageSettingsModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用指定配置整体替换当前工程的多语言数据并刷新绑定</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReplaceSettings(DynamicViewLanguageSettingsModel settings)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>settings</code> <a class="xref" href="MAS.DynamicViews.DynamicViewLanguageSettingsModel.html">DynamicViewLanguageSettingsModel</a></dt>
+    <dd><p>多语言配置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_ReplaceSettings_MAS_DynamicViews_DynamicViewLanguageSettingsModel__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>供多语言管理窗口同步时调用</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_TryChangeCulture_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.TryChangeCulture*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_TryChangeCulture_System_String_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.TryChangeCulture(System.String)">
+  TryChangeCulture(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L168"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试切换到指定语种</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryChangeCulture(string? culture)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>culture</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>区域性名称，例如 zh-CN</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>切换成功返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_TryChangeCulture_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>工程不支持该语种时保持原语种不变并返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>，
+宿主应用可据此决定是否联动切换</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageManager_TryGetString_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.TryGetString*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_TryGetString_System_String_" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.TryGetString(System.String)">
+  TryGetString(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L205"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试通过引用键获取当前语种下的文本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? TryGetString(string? key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>引用键，形如 <code>分类/键名</code></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>命中的文本，未找到返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_TryGetString_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>查找顺序：当前语种 → 上级区域性（如 zh-CN 回退 zh）→ 默认语种 → 任意非空译文</p>
+</div>
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_CatalogsChanged" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.CatalogsChanged">
+  CatalogsChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>语种清单或词条内容变化后触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler? CatalogsChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_CatalogsChanged_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>供多语言管理窗口编辑后刷新引用该词条的界面</p>
+</div>
+
+
+
+
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_CultureChanged" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.CultureChanged">
+  CultureChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>语种切换后触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;DynamicViewLanguageChangedEventArgs&gt;? CultureChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.DynamicViews.DynamicViewLanguageChangedEventArgs.html">DynamicViewLanguageChangedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageManager_CultureChanged_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>宿主应用可订阅该事件与自身语言联动；若宿主语言不在
+<a class="xref" href="MAS.DynamicViews.DynamicViewLanguageManager.html#MAS_DynamicViews_DynamicViewLanguageManager_Cultures">Cultures</a> 内，<a class="xref" href="MAS.DynamicViews.DynamicViewLanguageManager.html#MAS_DynamicViews_DynamicViewLanguageManager_TryChangeCulture_System_String_">TryChangeCulture(string?)</a> 会返回
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> 且不触发本事件</p>
+</div>
+
+
+
+
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageManager_PropertyChanged" data-uid="MAS.DynamicViews.DynamicViewLanguageManager.PropertyChanged">
+  PropertyChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when a property value changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event PropertyChangedEventHandler? PropertyChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.propertychangedeventhandler">PropertyChangedEventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Managers/DynamicViewLanguageManager.cs/#L28" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

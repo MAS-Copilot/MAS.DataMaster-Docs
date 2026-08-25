@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>动态视图设计器 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="动态视图设计器 | DataMaster ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/help/DynamicViewDesigner.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="动态视图设计器">动态视图设计器</h1>
+
+<ul>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%A7%86%E5%9B%BE%E8%AE%BE%E8%AE%A1%E5%99%A8">动态视图设计器</a>
+<ul>
+<li><a href="#%E7%94%BB%E5%B8%83%E9%80%89%E6%8B%A9">画布选择</a></li>
+<li><a href="#%E7%84%A6%E7%82%B9%E6%8E%A7%E4%BB%B6">焦点控件</a></li>
+<li><a href="#%E7%A7%BB%E5%8A%A8%E4%B8%8E%E5%90%B8%E9%99%84">移动与吸附</a></li>
+<li><a href="#%E7%BC%96%E8%BE%91%E4%B8%8E%E5%89%AA%E8%B4%B4%E6%9D%BF">编辑与剪贴板</a></li>
+<li><a href="#%E7%BC%A9%E6%94%BE%E4%B8%8E%E5%B9%B3%E7%A7%BB">缩放与平移</a></li>
+<li><a href="#%E7%BB%98%E5%9B%BE%E5%9B%BE%E5%85%83">绘图（图元）</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="画布选择">画布选择</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左键单击控件</td>
+<td>选中该控件；若控件属于组合，则整组一起被选中</td>
+</tr>
+<tr>
+<td><code>Shift</code> + 左键单击</td>
+<td>加选 / 减选（已选中的再点一次即取消）</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + 左键单击</td>
+<td>在多选或组合中指定<strong>焦点控件</strong></td>
+</tr>
+<tr>
+<td>空白处从<strong>左往右</strong>拖拽</td>
+<td>框选（完全包含）：只有整体落在框内的控件才会被选中</td>
+</tr>
+<tr>
+<td>空白处从<strong>右往左</strong>拖拽</td>
+<td>框选（相交）：只要与选框有重叠就会被选中</td>
+</tr>
+<tr>
+<td><code>Shift</code> + 框选</td>
+<td>在现有选区基础上追加</td>
+</tr>
+<tr>
+<td>空白处单击</td>
+<td>清空选区（按住 <code>Shift</code> 单击则保留原选区）</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>第一次取消焦点控件，第二次清空选区</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>框选沿用 CAD 的经典规则：<strong>从左往右</strong>要求完全包含，<strong>从右往左</strong>只要相交。密集区域里精细挑选时，从左往右拖可以避免蹭到旁边的控件；想快速捞一片时，从右往左拖即可</p>
+</blockquote>
+<blockquote>
+<p>组合（Group）在设计器里是一个整体：选中任一成员即选中整组，移动、对齐、分布都按整组计算；框选也按整组判定——完全包含模式下要整组都在框内才会命中，组内单个成员被框住不算</p>
+</blockquote>
+<h2 id="焦点控件">焦点控件</h2>
+<p>多选或组合中，按住 <code>Ctrl</code> 单击其中某一个控件，即可把它设为<strong>焦点控件</strong>，选区本身保持不变。焦点控件带<strong>橙色高亮边框</strong>，作用有：</p>
+<ol>
+<li><strong>单独查看属性</strong>：右侧属性面板从&quot;多选批量编辑&quot;切换为只显示这一个控件的属性，方便查看组合内某个成员的设置</li>
+<li><strong>作为对齐参考</strong>：对齐、统一宽 / 高时以焦点控件（所在单元）为基准。未指定焦点时，基准是<strong>最先选中</strong>的那个</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ctrl</code> + 左键单击选区内控件</td>
+<td>设为焦点控件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + 左键单击未选中的组合成员</td>
+<td>先整体选中该组合，再定位到该成员</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>取消焦点，属性面板回到整体选区视图</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>拖动过程中按住 <code>Ctrl</code> 仍然是&quot;临时免吸附&quot;，两者不冲突：焦点只在按下鼠标那一刻确定</p>
+</blockquote>
+<h2 id="移动与吸附">移动与吸附</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左键拖动控件</td>
+<td>移动；多选 / 组合按整体移动</td>
+</tr>
+<tr>
+<td>拖动中按住 <code>Ctrl</code></td>
+<td>临时关闭吸附，自由移动</td>
+</tr>
+<tr>
+<td><code>↑</code> <code>↓</code> <code>←</code> <code>→</code></td>
+<td>按网格步长移动（默认 10 px）</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + 方向键</td>
+<td>精调，每次 1 px</td>
+</tr>
+<tr>
+<td>拖动八个控制点</td>
+<td>调整大小（仅单选且未锁定时显示控制点）</td>
+</tr>
+</tbody>
+</table>
+<p>吸附行为：</p>
+<ul>
+<li>默认开启，参考对象为<strong>页面边界 / 页面中心</strong>与<strong>其他控件的边和中心</strong></li>
+<li>采用迟滞手感：距离小于 5 px 吸住，拉开超过 9 px 才脱开</li>
+<li>网格吸附默认关闭，网格大小 10 px</li>
+<li>已锁定的控件不能移动、不能调整大小，选中时显示锁定角标</li>
+</ul>
+<blockquote>
+<p>选中控件超过 10 个时，拖动与方向键微调改用&quot;虚拟框&quot;预览，松开鼠标（或停止按键片刻）后一次性写回真实位置，避免大批量控件卡顿</p>
+</blockquote>
+<h2 id="编辑与剪贴板">编辑与剪贴板</h2>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ctrl</code> + <code>C</code></td>
+<td>复制选中控件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>X</code></td>
+<td>剪切选中控件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>V</code></td>
+<td>粘贴（带偏移，粘贴后自动选中新控件）</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Z</code></td>
+<td>撤销</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Y</code></td>
+<td>重做</td>
+</tr>
+<tr>
+<td><code>Delete</code></td>
+<td>删除选中控件（锁定的控件不会被删除）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="缩放与平移">缩放与平移</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>鼠标滚轮</td>
+<td>以光标位置为中心缩放</td>
+</tr>
+<tr>
+<td>按住鼠标中键拖动</td>
+<td>平移画布</td>
+</tr>
+<tr>
+<td>顶部缩放条 / <code>+</code> <code>-</code> 按钮 / 比例下拉框</td>
+<td>设置缩放比例</td>
+</tr>
+<tr>
+<td>顶部&quot;恢复视图&quot;按钮</td>
+<td>缩放复位并居中</td>
+</tr>
+</tbody>
+</table>
+<h2 id="绘图图元">绘图（图元）</h2>
+<p>在页面空白处右键 → <strong>绘图</strong>，选择要画的图元；画完自动切回选择模式</p>
+<table>
+<thead>
+<tr>
+<th>图元</th>
+<th>画法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>矩形、圆角矩形、椭圆、圆弧</td>
+<td>按住左键拖出包围框</td>
+</tr>
+<tr>
+<td>直线、箭头</td>
+<td>按住左键从起点拖到终点</td>
+</tr>
+<tr>
+<td>折线、多边形</td>
+<td>左键逐点单击，<strong>双击</strong> 或 <code>Enter</code> 或 <strong>右键</strong>结束</td>
+</tr>
+<tr>
+<td>贝塞尔曲线</td>
+<td>左键依次落 4 个点，落满自动结束</td>
+</tr>
+<tr>
+<td>取消绘制</td>
+<td><code>Esc</code></td>
+</tr>
+</tbody>
+</table>
+<p>图元选中后拖动顶点即可改形状</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/help/DynamicViewDesigner.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

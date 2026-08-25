@@ -190,7 +190,7 @@ Class WebViewHelpers  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_WebView_WebViewHelpers_DisposeWebView_Microsoft_Web_WebView2_Wpf_WebView2_" data-uid="MAS.WebView.WebViewHelpers.DisposeWebView(Microsoft.Web.WebView2.Wpf.WebView2)">
   DisposeWebView(WebView2?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Helpers/WebViewHelper.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Helpers/WebViewHelper.cs/#L131"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>清理并关闭 WebView2 控件的资源</p>
@@ -350,11 +350,63 @@ Class WebViewHelpers  <a class="header-action link-secondary" title="View source
 
 
 
+  <a id="MAS_WebView_WebViewHelpers_InitializeVirtualHostAsync_" data-uid="MAS.WebView.WebViewHelpers.InitializeVirtualHostAsync*"></a>
+
+  <h3 id="MAS_WebView_WebViewHelpers_InitializeVirtualHostAsync_Microsoft_Web_WebView2_Wpf_WebView2_System_String_System_String_System_String_" data-uid="MAS.WebView.WebViewHelpers.InitializeVirtualHostAsync(Microsoft.Web.WebView2.Wpf.WebView2,System.String,System.String,System.String)">
+  InitializeVirtualHostAsync(WebView2, string, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Helpers/WebViewHelper.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步初始化 WebView2 控件，将本地文件夹映射为虚拟主机后导航到其中的页面</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;bool&gt; InitializeVirtualHostAsync(WebView2 webView, string hostName, string folderPath, string relativeUrl)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>webView</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.web.webview2.wpf.webview2">WebView2</a></dt>
+    <dd><p>要初始化的 WebView2 控件</p>
+</dd>
+    <dt><code>hostName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>虚拟主机名，例如 help.masdatamaster</p>
+</dd>
+    <dt><code>folderPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>映射到虚拟主机的本地文件夹</p>
+</dd>
+    <dt><code>relativeUrl</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>相对于虚拟主机根的地址，例如 index.html?doc=A.md</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>初始化是否成功的布尔值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_WebView_WebViewHelpers_InitializeVirtualHostAsync_Microsoft_Web_WebView2_Wpf_WebView2_System_String_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>相比 file:// 方式，虚拟主机下页面可以正常使用 fetch 读取同目录资源，
+相对路径的图片、脚本、样式也能按站点方式解析</p>
+</div>
+
+
+
+
   <a id="MAS_WebView_WebViewHelpers_IsWebView2RuntimeInstalledAsync_" data-uid="MAS.WebView.WebViewHelpers.IsWebView2RuntimeInstalledAsync*"></a>
 
   <h3 id="MAS_WebView_WebViewHelpers_IsWebView2RuntimeInstalledAsync" data-uid="MAS.WebView.WebViewHelpers.IsWebView2RuntimeInstalledAsync">
   IsWebView2RuntimeInstalledAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Helpers/WebViewHelper.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Helpers/WebViewHelper.cs/#L145"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>尝试创建 WebView2 环境</p>

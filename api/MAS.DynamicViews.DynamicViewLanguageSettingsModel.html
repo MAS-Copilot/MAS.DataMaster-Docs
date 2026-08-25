@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class DynamicViewTextModel | DataMaster </title>
+      <title>Class DynamicViewLanguageSettingsModel | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class DynamicViewTextModel | DataMaster ">
+      <meta name="title" content="Class DynamicViewLanguageSettingsModel | DataMaster ">
       
-      <meta name="description" content="动态视图文本模型">
+      <meta name="description" content="动态视图多语言配置模型">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.DynamicViews.DynamicViewTextModel">
+        <article data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel">
 
 
 
-  <h1 id="MAS_DynamicViews_DynamicViewTextModel" data-uid="MAS.DynamicViews.DynamicViewTextModel" class="text-break">
-Class DynamicViewTextModel  
+  <h1 id="MAS_DynamicViews_DynamicViewLanguageSettingsModel" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel" class="text-break">
+Class DynamicViewLanguageSettingsModel  
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class DynamicViewTextModel
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>动态视图文本模型</p>
+  <div class="markdown summary"><p>动态视图多语言配置模型</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class DynamicViewTextModel : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class DynamicViewLanguageSettingsModel : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
 
@@ -113,7 +113,7 @@ Class DynamicViewTextModel
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
-      <div><span class="xref">DynamicViewTextModel</span></div>
+      <div><span class="xref">DynamicViewLanguageSettingsModel</span></div>
     </dd>
   </dl>
 
@@ -158,29 +158,129 @@ Class DynamicViewTextModel
 
 
 
-  <h2 id="MAS_DynamicViews_DynamicViewTextModel_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>属性支持 MVVM 绑定</p>
+  <h2 id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>语种清单与分类清单随工程保存；词条正文落盘为 resx，
+语种顺序、默认语种等 resx 表达不了的元数据落盘为 <code>Languages.json</code></p>
 </div>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_DEFAULT_CULTURE" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.DEFAULT_CULTURE">
+  DEFAULT_CULTURE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewLanguageSettingsModel.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>默认语种的区域性名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string DEFAULT_CULTURE = &quot;zh-CN&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
 
 
   <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="MAS_DynamicViews_DynamicViewTextModel_Content_" data-uid="MAS.DynamicViews.DynamicViewTextModel.Content*"></a>
+  <a id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_Catalogs_" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.Catalogs*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewTextModel_Content" data-uid="MAS.DynamicViews.DynamicViewTextModel.Content">
-  Content
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_Catalogs" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.Catalogs">
+  Catalogs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewLanguageSettingsModel.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置分类集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;DynamicViewLanguageCatalogModel&gt; Catalogs { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.DynamicViews.DynamicViewLanguageCatalogModel.html">DynamicViewLanguageCatalogModel</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_Cultures_" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.Cultures*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_Cultures" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.Cultures">
+  Cultures
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewLanguageSettingsModel.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置语种集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;DynamicViewLanguageCultureModel&gt; Cultures { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.DynamicViews.DynamicViewLanguageCultureModel.html">DynamicViewLanguageCultureModel</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_DefaultCulture_" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.DefaultCulture*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_DefaultCulture" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.DefaultCulture">
+  DefaultCulture
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置显示文本</p>
+  <div class="markdown level1 summary"><p>获取或设置默认语种的区域性名称</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public string? Content { get; set; }</code></pre>
+public string DefaultCulture { get; set; }</code></pre>
   </div>
 
 
@@ -196,126 +296,27 @@ public string? Content { get; set; }</code></pre>
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_DefaultCulture_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>当前语种缺译文时回退到该语种；其内容同时写出为中性资源文件 <code>Resources.resx</code></p>
+</div>
 
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewTextModel_FontSize_" data-uid="MAS.DynamicViews.DynamicViewTextModel.FontSize*"></a>
+  <a id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_IsFollowApplicationLanguage_" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.IsFollowApplicationLanguage*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewTextModel_FontSize" data-uid="MAS.DynamicViews.DynamicViewTextModel.FontSize">
-  FontSize
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_IsFollowApplicationLanguage" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.IsFollowApplicationLanguage">
+  IsFollowApplicationLanguage
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置字体大小</p>
+  <div class="markdown level1 summary"><p>获取或设置是否跟随应用程序语言切换</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public double FontSize { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_DynamicViews_DynamicViewTextModel_FontWeight_" data-uid="MAS.DynamicViews.DynamicViewTextModel.FontWeight*"></a>
-
-  <h3 id="MAS_DynamicViews_DynamicViewTextModel_FontWeight" data-uid="MAS.DynamicViews.DynamicViewTextModel.FontWeight">
-  FontWeight
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置字体粗细</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public string FontWeight { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_DynamicViews_DynamicViewTextModel_HorizontalAlignment_" data-uid="MAS.DynamicViews.DynamicViewTextModel.HorizontalAlignment*"></a>
-
-  <h3 id="MAS_DynamicViews_DynamicViewTextModel_HorizontalAlignment" data-uid="MAS.DynamicViews.DynamicViewTextModel.HorizontalAlignment">
-  HorizontalAlignment
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置文本水平对齐（文本内容对齐，仅 TextBlock 生效）</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public HorizontalAlignment HorizontalAlignment { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.horizontalalignment">HorizontalAlignment</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-  <h4 class="section" id="MAS_DynamicViews_DynamicViewTextModel_HorizontalAlignment_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>默认值：Left</p>
-</div>
-
-
-
-
-  <a id="MAS_DynamicViews_DynamicViewTextModel_IsLanguageBound_" data-uid="MAS.DynamicViews.DynamicViewTextModel.IsLanguageBound*"></a>
-
-  <h3 id="MAS_DynamicViews_DynamicViewTextModel_IsLanguageBound" data-uid="MAS.DynamicViews.DynamicViewTextModel.IsLanguageBound">
-  IsLanguageBound
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置是否绑定多语言</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public bool IsLanguageBound { get; set; }</code></pre>
+public bool IsFollowApplicationLanguage { get; set; }</code></pre>
   </div>
 
 
@@ -331,45 +332,83 @@ public bool IsLanguageBound { get; set; }</code></pre>
 
 
 
-  <h4 class="section" id="MAS_DynamicViews_DynamicViewTextModel_IsLanguageBound_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>开启后显示文本取自工程多语言词条，<a class="xref" href="MAS.DynamicViews.DynamicViewTextModel.html#MAS_DynamicViews_DynamicViewTextModel_Content">Content</a> 退化为词条缺失时的兜底文本</p>
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_IsFollowApplicationLanguage_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>开启后应用程序切换语言时，动态视图在自身支持该语种的前提下同步切换；
+不支持则保持当前语种不变</p>
 </div>
 
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewTextModel_LanguageKey_" data-uid="MAS.DynamicViews.DynamicViewTextModel.LanguageKey*"></a>
+  <h2 class="section" id="methods">Methods
+</h2>
 
-  <h3 id="MAS_DynamicViews_DynamicViewTextModel_LanguageKey" data-uid="MAS.DynamicViews.DynamicViewTextModel.LanguageKey">
-  LanguageKey
-  
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_Clone_" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.Clone*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_Clone" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.Clone">
+  Clone()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewLanguageSettingsModel.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置多语言引用键</p>
+  <div class="markdown level1 summary"><p>创建当前多语言配置的深拷贝</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public string? LanguageKey { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public DynamicViewLanguageSettingsModel Clone()</code></pre>
   </div>
 
 
-
-
-
-  <h4 class="section">Property Value</h4>
+  <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewLanguageSettingsModel.html">DynamicViewLanguageSettingsModel</a></dt>
+    <dd><p>与当前配置内容相同的新实例</p>
+</dd>
   </dl>
 
 
 
 
-  <h4 class="section" id="MAS_DynamicViews_DynamicViewTextModel_LanguageKey_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>形如 <code>分类/键名</code>，省略分类时按首个命中的同名词条解析</p>
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_Clone_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>供管理窗口在副本上编辑，确认后再整体替换</p>
 </div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_CreateDefault_" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.CreateDefault*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewLanguageSettingsModel_CreateDefault" data-uid="MAS.DynamicViews.DynamicViewLanguageSettingsModel.CreateDefault">
+  CreateDefault()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewLanguageSettingsModel.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建包含默认语种与默认分类的多语言配置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DynamicViewLanguageSettingsModel CreateDefault()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewLanguageSettingsModel.html">DynamicViewLanguageSettingsModel</a></dt>
+    <dd><p>默认多语言配置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
 
 
 
