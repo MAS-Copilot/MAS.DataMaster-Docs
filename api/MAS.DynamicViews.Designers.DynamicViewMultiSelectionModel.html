@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel" class="text-break">
-Class DynamicViewMultiSelectionModel  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L29"><i class="bi bi-code-slash"></i></a>
+Class DynamicViewMultiSelectionModel  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -161,9 +161,7 @@ Class DynamicViewMultiSelectionModel  <a class="header-action link-secondary" ti
 
 
   <h2 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>对属性面板伪装成一个控件：<code>Properties</code> 是一份独立的属性缓冲区，构造时逐属性比对全部选中控件，
-取值一致的回填共有值、取值不一致的保留类型默认值（与 VS 属性面板一致）；
-用户改动缓冲区中的任意属性时按属性名反射下发到全部选中控件。
+  <div class="markdown level0 remarks"><p>用户改动缓冲区中的任意属性时按属性名反射下发到全部选中控件。
 属性分节（Layout / Appearance / Text / Icon…）与节内属性都靠反射发现，
 新增属性无需改动本类；个别不该批量下发的属性用 <a class="xref" href="MAS.DynamicViews.DynamicViewNoBatchEditAttribute.html">DynamicViewNoBatchEditAttribute</a> 排除</p>
 </div>
@@ -177,7 +175,7 @@ Class DynamicViewMultiSelectionModel  <a class="header-action link-secondary" ti
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel__ctor_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewControlModel__" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.#ctor(System.Collections.Generic.IEnumerable{MAS.DynamicViews.DynamicViewControlModel})">
   DynamicViewMultiSelectionModel(IEnumerable&lt;DynamicViewControlModel&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.html">DynamicViewMultiSelectionModel</a> 新实例</p>
@@ -214,7 +212,7 @@ Class DynamicViewMultiSelectionModel  <a class="header-action link-secondary" ti
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_ControlId" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.ControlId">
   ControlId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取标识列显示文本（多选时无唯一标识，恒为空）</p>
@@ -247,7 +245,7 @@ public string ControlId { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_ControlType" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.ControlType">
   ControlType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取类型列显示文本（同类型显示类型名，混选显示类型数量摘要）</p>
@@ -275,43 +273,11 @@ public string ControlId { get; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_IsComboBox_" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.IsComboBox*"></a>
-
-  <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_IsComboBox" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.IsComboBox">
-  IsComboBox
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L146"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取选中控件是否都是下拉选择框</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsComboBox { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_IsMultiSelection_" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.IsMultiSelection*"></a>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_IsMultiSelection" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.IsMultiSelection">
   IsMultiSelection
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否为多选目标</p>
@@ -339,75 +305,11 @@ public string ControlId { get; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_IsNumberBox_" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.IsNumberBox*"></a>
-
-  <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_IsNumberBox" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.IsNumberBox">
-  IsNumberBox
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L141"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取选中控件是否都是数值框</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsNumberBox { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_IsTextBlock_" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.IsTextBlock*"></a>
-
-  <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_IsTextBlock" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.IsTextBlock">
-  IsTextBlock
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L136"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取选中控件是否都是文本块</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsTextBlock { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_Name_" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.Name*"></a>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_Name" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.Name">
   Name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L94"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取控件名称显示文本（多选不支持批量改名，显示选中数量摘要）</p>
@@ -442,7 +344,7 @@ public string ControlId { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_Properties" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.Properties">
   Properties
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取控件属性</p>
@@ -474,7 +376,7 @@ public string ControlId { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_SelectionCount" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.SelectionCount">
   SelectionCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L69"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取选中控件数量</p>
@@ -506,7 +408,7 @@ public string ControlId { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_SupportsBackground" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.SupportsBackground">
   SupportsBackground
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L119"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取选中控件是否都支持背景色</p>
@@ -538,7 +440,7 @@ public string ControlId { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_SupportsBorderBrush" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.SupportsBorderBrush">
   SupportsBorderBrush
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L124"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取选中控件是否都支持边框画刷</p>
@@ -570,7 +472,7 @@ public string ControlId { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_SupportsCornerRadius" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.SupportsCornerRadius">
   SupportsCornerRadius
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L129"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取选中控件是否都支持圆角</p>
@@ -598,11 +500,75 @@ public string ControlId { get; }</code></pre>
 
 
 
+  <a id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_SupportsNumericTextChannel_" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.SupportsNumericTextChannel*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_SupportsNumericTextChannel" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.SupportsNumericTextChannel">
+  SupportsNumericTextChannel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取选中控件的文本通道是否都承载数值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SupportsNumericTextChannel { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_SupportsTextContentAlignment_" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.SupportsTextContentAlignment*"></a>
+
+  <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_SupportsTextContentAlignment" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.SupportsTextContentAlignment">
+  SupportsTextContentAlignment
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取选中控件的文本是否都可自行排版对齐</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SupportsTextContentAlignment { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_ToolTip_" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.ToolTip*"></a>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_ToolTip" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.ToolTip">
   ToolTip
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L103"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置提示信息（批量下发到全部选中控件）</p>
@@ -638,7 +604,7 @@ public string ControlId { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_ApplyPropertyPath_System_String_" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.ApplyPropertyPath(System.String)">
   ApplyPropertyPath(string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L146"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>把 <a class="xref" href="MAS.DynamicViews.IDynamicViewPropertyTarget.html#MAS_DynamicViews_IDynamicViewPropertyTarget_Properties">Properties</a> 中指定属性的当前值强制下发到编辑目标</p>
@@ -681,7 +647,7 @@ public string ControlId { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_Designers_DynamicViewMultiSelectionModel_Dispose" data-uid="MAS.DynamicViews.Designers.DynamicViewMultiSelectionModel.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L167"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
@@ -708,7 +674,7 @@ public string ControlId { get; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L29" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Designers/Models/DynamicViewMultiSelectionModel.cs/#L27" class="edit-link">Edit this page</a>
         </div>
 
 

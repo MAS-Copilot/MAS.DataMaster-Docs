@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class DynamicViewNumberStatusColorModel | DataMaster </title>
+      <title>Class DynamicViewStateItemModel | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class DynamicViewNumberStatusColorModel | DataMaster ">
+      <meta name="title" content="Class DynamicViewStateItemModel | DataMaster ">
       
-      <meta name="description" content="数值状态指示灯颜色映射项">
+      <meta name="description" content="多状态绑定的单个状态项">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.DynamicViews.DynamicViewNumberStatusColorModel">
+        <article data-uid="MAS.DynamicViews.DynamicViewStateItemModel">
 
 
 
-  <h1 id="MAS_DynamicViews_DynamicViewNumberStatusColorModel" data-uid="MAS.DynamicViews.DynamicViewNumberStatusColorModel" class="text-break">
-Class DynamicViewNumberStatusColorModel  
+  <h1 id="MAS_DynamicViews_DynamicViewStateItemModel" data-uid="MAS.DynamicViews.DynamicViewStateItemModel" class="text-break">
+Class DynamicViewStateItemModel  
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class DynamicViewNumberStatusColorModel
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>数值状态指示灯颜色映射项</p>
+  <div class="markdown summary"><p>多状态绑定的单个状态项</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class DynamicViewNumberStatusColorModel : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class DynamicViewStateItemModel : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
 
@@ -113,7 +113,7 @@ Class DynamicViewNumberStatusColorModel
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
-      <div><span class="xref">DynamicViewNumberStatusColorModel</span></div>
+      <div><span class="xref">DynamicViewStateItemModel</span></div>
     </dd>
   </dl>
 
@@ -158,26 +158,29 @@ Class DynamicViewNumberStatusColorModel
 
 
 
+  <h2 id="MAS_DynamicViews_DynamicViewStateItemModel_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>属性支持 MVVM 绑定</p>
+</div>
 
 
   <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="MAS_DynamicViews_DynamicViewNumberStatusColorModel_Color_" data-uid="MAS.DynamicViews.DynamicViewNumberStatusColorModel.Color*"></a>
+  <a id="MAS_DynamicViews_DynamicViewStateItemModel_Background_" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Background*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewNumberStatusColorModel_Color" data-uid="MAS.DynamicViews.DynamicViewNumberStatusColorModel.Color">
-  Color
+  <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_Background" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Background">
+  Background
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置指示灯的画刷资源 Key</p>
+  <div class="markdown level1 summary"><p>获取或设置该状态下的背景画刷资源 Key</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public string Color { get; set; }</code></pre>
+public string Background { get; set; }</code></pre>
   </div>
 
 
@@ -197,9 +200,149 @@ public string Color { get; set; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewNumberStatusColorModel_Value_" data-uid="MAS.DynamicViews.DynamicViewNumberStatusColorModel.Value*"></a>
+  <a id="MAS_DynamicViews_DynamicViewStateItemModel_Expression_" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Expression*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewNumberStatusColorModel_Value" data-uid="MAS.DynamicViews.DynamicViewNumberStatusColorModel.Value">
+  <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_Expression" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Expression">
+  Expression
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置&quot;值 = 文本&quot;映射表达式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public string Expression { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewStateItemModel_Expression_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>仅是属性面板的编辑面，不参与持久化：解析成功即写回 <a class="xref" href="MAS.DynamicViews.DynamicViewStateItemModel.html#MAS_DynamicViews_DynamicViewStateItemModel_Value">Value</a> 与 <a class="xref" href="MAS.DynamicViews.DynamicViewStateItemModel.html#MAS_DynamicViews_DynamicViewStateItemModel_Text">Text</a>；
+解析失败时保留用户原始输入并给出错误说明，已保存的值不受影响，非法输入不会进入运行期</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStateItemModel_ExpressionError_" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.ExpressionError*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_ExpressionError" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.ExpressionError">
+  ExpressionError
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置解析失败时的错误说明</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonIgnore]
+public string? ExpressionError { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStateItemModel_IsExpressionValid_" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.IsExpressionValid*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_IsExpressionValid" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.IsExpressionValid">
+  IsExpressionValid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取表达式当前是否可解析</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public bool IsExpressionValid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStateItemModel_Text_" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Text*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_Text" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Text">
+  Text
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置该状态下的显示文本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string? Text { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewStateItemModel_Text_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>为空时保留控件自身的文本内容不变</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStateItemModel_Value_" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Value*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_Value" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Value">
   Value
   
   </h3>
@@ -226,6 +369,9 @@ public short Value { get; set; }</code></pre>
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewStateItemModel_Value_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>布尔变量按 1/0 参与匹配，无需单独建模</p>
+</div>
 
 
 
