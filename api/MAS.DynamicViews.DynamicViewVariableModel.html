@@ -293,7 +293,7 @@ public string? Description { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableModel_Fields" data-uid="MAS.DynamicViews.DynamicViewVariableModel.Fields">
   Fields
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取字段列表</p>
@@ -427,7 +427,7 @@ public string Name { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableModel_Properties" data-uid="MAS.DynamicViews.DynamicViewVariableModel.Properties">
   Properties
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取扩展属性</p>
@@ -459,7 +459,7 @@ public string Name { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableModel_RecipeReferences" data-uid="MAS.DynamicViews.DynamicViewVariableModel.RecipeReferences">
   RecipeReferences
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取配方引用结构体列表</p>
@@ -503,6 +503,7 @@ public string Name { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[DynamicViewAgentReadOnly(&quot;The structure usage is fixed at creation. Create a new structure to select a different usage.&quot;, true)]
 public DynamicViewVariableUsage Usage { get; set; }</code></pre>
   </div>
 
@@ -520,7 +521,7 @@ public DynamicViewVariableUsage Usage { get; set; }</code></pre>
 
 
   <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableModel_Usage_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>默认值：Normal</p>
+  <div class="markdown level1 remarks"><p>默认值为 Normal。用途在创建时确定，配方和报警结构体的字段布局由该值决定；变更用途需要重新创建结构体。</p>
 </div>
 
 
@@ -566,7 +567,7 @@ public DynamicViewVariableUsage Usage { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableModel_Clone" data-uid="MAS.DynamicViews.DynamicViewVariableModel.Clone">
   Clone()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new object that is a copy of the current instance.</p>
@@ -599,7 +600,7 @@ public DynamicViewVariableUsage Usage { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableModel_CreateAlarm_System_String_System_String_System_Int32_" data-uid="MAS.DynamicViews.DynamicViewVariableModel.CreateAlarm(System.String,System.String,System.Int32)">
   CreateAlarm(string, string, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L170"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L171"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>创建报警结构体变量</p>
@@ -653,7 +654,7 @@ public DynamicViewVariableUsage Usage { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableModel_CreateNormal_System_String_System_String_" data-uid="MAS.DynamicViews.DynamicViewVariableModel.CreateNormal(System.String,System.String)">
   CreateNormal(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L108"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>创建一个普通结构体</p>
@@ -695,7 +696,7 @@ public DynamicViewVariableUsage Usage { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableModel_CreateRecipe_System_String_System_String_" data-uid="MAS.DynamicViews.DynamicViewVariableModel.CreateRecipe(System.String,System.String)">
   CreateRecipe(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L141"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>创建配方结构体变量</p>

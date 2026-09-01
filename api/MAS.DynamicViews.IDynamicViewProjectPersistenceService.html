@@ -201,11 +201,51 @@ Interface IDynamicViewProjectPersistenceService  <a class="header-action link-se
 </h2>
 
 
+  <a id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_ApplyRegions_" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.ApplyRegions*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_ApplyRegions_MAS_DynamicViews_DynamicViewProjectModel_MAS_DynamicViews_DynamicViewProjectRegion_" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.ApplyRegions(MAS.DynamicViews.DynamicViewProjectModel,MAS.DynamicViews.DynamicViewProjectRegion)">
+  ApplyRegions(DynamicViewProjectModel, DynamicViewProjectRegion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从源工程原子提交多个区域的变更</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ApplyRegions(DynamicViewProjectModel source, DynamicViewProjectRegion regions)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="MAS.DynamicViews.DynamicViewProjectModel.html">DynamicViewProjectModel</a></dt>
+    <dd><p>包含待提交变更的源工程，通常为当前工程的副本</p>
+</dd>
+    <dt><code>regions</code> <a class="xref" href="MAS.DynamicViews.DynamicViewProjectRegion.html">DynamicViewProjectRegion</a></dt>
+    <dd><p>需要提交的区域组合</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_ApplyRegions_MAS_DynamicViews_DynamicViewProjectModel_MAS_DynamicViews_DynamicViewProjectRegion__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>本方法在一次操作中完成所有指定区域的赋值，并仅执行一次脏状态标记和变更通知，
+以避免逐项调用 <code>Set*</code> 时因中途异常而产生部分提交。跨区域批量变更应使用此方法。</p>
+</div>
+
+
+
+
   <a id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_GetCurrentDynamicViewProject_" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.GetCurrentDynamicViewProject*"></a>
 
   <h3 id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_GetCurrentDynamicViewProject" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.GetCurrentDynamicViewProject">
   GetCurrentDynamicViewProject()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前动态视图工程</p>
@@ -245,7 +285,7 @@ Interface IDynamicViewProjectPersistenceService  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_SetBrushResources_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewBrushResourceModel__" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.SetBrushResources(System.Collections.Generic.IEnumerable{MAS.DynamicViews.DynamicViewBrushResourceModel})">
   SetBrushResources(IEnumerable&lt;DynamicViewBrushResourceModel&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存当前动态视图自定义画刷集合到内存上下文</p>
@@ -281,7 +321,7 @@ Interface IDynamicViewProjectPersistenceService  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_SetCommunicationDevices_System_Collections_Generic_IEnumerable_MAS_DynamicViews_Communication_DynamicViewCommunicationDeviceModel__" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.SetCommunicationDevices(System.Collections.Generic.IEnumerable{MAS.DynamicViews.Communication.DynamicViewCommunicationDeviceModel})">
   SetCommunicationDevices(IEnumerable&lt;DynamicViewCommunicationDeviceModel&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存当前动态视图通讯设备集合到内存上下文</p>
@@ -317,7 +357,7 @@ Interface IDynamicViewProjectPersistenceService  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_SetCurrentDynamicViewProject_MAS_DynamicViews_DynamicViewProjectModel_" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.SetCurrentDynamicViewProject(MAS.DynamicViews.DynamicViewProjectModel)">
   SetCurrentDynamicViewProject(DynamicViewProjectModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置当前动态视图工程到内存上下文</p>
@@ -358,7 +398,7 @@ Interface IDynamicViewProjectPersistenceService  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_SetDesignerProject_MAS_DynamicViews_DynamicViewProjectModel_" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.SetDesignerProject(MAS.DynamicViews.DynamicViewProjectModel)">
   SetDesignerProject(DynamicViewProjectModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L93"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存动态视图设计器内容到当前工程</p>
@@ -395,7 +435,7 @@ Interface IDynamicViewProjectPersistenceService  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_SetGlobalScriptCode_System_String_" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.SetGlobalScriptCode(System.String)">
   SetGlobalScriptCode(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L106"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存当前动态视图全局脚本代码到内存上下文</p>
@@ -428,7 +468,7 @@ Interface IDynamicViewProjectPersistenceService  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_SetLanguageSettings_MAS_DynamicViews_DynamicViewLanguageSettingsModel_" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.SetLanguageSettings(MAS.DynamicViews.DynamicViewLanguageSettingsModel)">
   SetLanguageSettings(DynamicViewLanguageSettingsModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存当前动态视图多语言配置到内存上下文</p>
@@ -464,7 +504,7 @@ Interface IDynamicViewProjectPersistenceService  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_SetStructures_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewVariableModel__" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.SetStructures(System.Collections.Generic.IEnumerable{MAS.DynamicViews.DynamicViewVariableModel})">
   SetStructures(IEnumerable&lt;DynamicViewVariableModel&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存当前动态视图结构体集合到内存上下文</p>
@@ -500,7 +540,7 @@ Interface IDynamicViewProjectPersistenceService  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_IDynamicViewProjectPersistenceService_StructuresChanged" data-uid="MAS.DynamicViews.IDynamicViewProjectPersistenceService.StructuresChanged">
   StructuresChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewProjectPersistenceService.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当动态界面结构体集合发生变化时触发</p>

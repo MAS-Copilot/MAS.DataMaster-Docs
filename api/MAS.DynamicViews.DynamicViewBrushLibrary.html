@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_DynamicViews_DynamicViewBrushLibrary" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary" class="text-break">
-Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L24"><i class="bi bi-code-slash"></i></a>
+Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -162,7 +162,7 @@ Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_DynamicViews_DynamicViewBrushLibrary_CurrentProject" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.CurrentProject">
   CurrentProject
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前加载的工程</p>
@@ -198,7 +198,7 @@ Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_DynamicViews_DynamicViewBrushLibrary_GetProjectOptions" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.GetProjectOptions">
   GetProjectOptions()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取工程自定义画刷选择项</p>
@@ -227,11 +227,48 @@ Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="Vi
 
 
 
+  <a id="MAS_DynamicViews_DynamicViewBrushLibrary_GetSystemKeys_" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.GetSystemKeys*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewBrushLibrary_GetSystemKeys" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.GetSystemKeys">
+  GetSystemKeys()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取系统主题画刷 Key 集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlySet&lt;string&gt; GetSystemKeys()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1">IReadOnlySet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>系统主题画刷 Key 集合</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewBrushLibrary_GetSystemKeys_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>供画刷 Key 的存在性校验使用。主题资源字典不可用时返回空集合，
+调用方应据此跳过校验，而不是把全部 Key 判为无效</p>
+</div>
+
+
+
+
   <a id="MAS_DynamicViews_DynamicViewBrushLibrary_GetSystemOptions_" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.GetSystemOptions*"></a>
 
   <h3 id="MAS_DynamicViews_DynamicViewBrushLibrary_GetSystemOptions" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.GetSystemOptions">
   GetSystemOptions()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取系统主题画刷选择项（MAS 主题字典中的纯色画刷）</p>
@@ -264,7 +301,7 @@ Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_DynamicViews_DynamicViewBrushLibrary_LoadProject_MAS_DynamicViews_DynamicViewProjectModel_" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.LoadProject(MAS.DynamicViews.DynamicViewProjectModel)">
   LoadProject(DynamicViewProjectModel?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>加载工程并注入自定义画刷资源</p>
@@ -297,7 +334,7 @@ Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_DynamicViews_DynamicViewBrushLibrary_RefreshProjectBrushes" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.RefreshProjectBrushes">
   RefreshProjectBrushes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>自定义画刷编辑后重新注入并通知变更</p>
@@ -324,7 +361,7 @@ Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_DynamicViews_DynamicViewBrushLibrary_ReplaceProjectBrushes_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewBrushResourceModel__" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.ReplaceProjectBrushes(System.Collections.Generic.IEnumerable{MAS.DynamicViews.DynamicViewBrushResourceModel})">
   ReplaceProjectBrushes(IEnumerable&lt;DynamicViewBrushResourceModel&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L113"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>使用指定集合整体替换当前工程的自定义画刷并重新注入</p>
@@ -360,7 +397,7 @@ Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_DynamicViews_DynamicViewBrushLibrary_TryCreateBrush_System_String_" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.TryCreateBrush(System.String)">
   TryCreateBrush(string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L140"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>尝试将颜色字符串解析为冻结的纯色画刷</p>
@@ -402,7 +439,7 @@ Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_DynamicViews_DynamicViewBrushLibrary_ProjectBrushesChanged" data-uid="MAS.DynamicViews.DynamicViewBrushLibrary.ProjectBrushesChanged">
   ProjectBrushesChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>工程自定义画刷集合发生变化时触发</p>
@@ -434,7 +471,7 @@ Class DynamicViewBrushLibrary  <a class="header-action link-secondary" title="Vi
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L24" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewBrushLibrary.cs/#L25" class="edit-link">Edit this page</a>
         </div>
 
 

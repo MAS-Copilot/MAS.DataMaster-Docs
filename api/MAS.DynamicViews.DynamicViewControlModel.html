@@ -254,6 +254,7 @@ public DynamicViewControlBindingsModel? Bindings { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[DynamicViewAgentReadOnly(&quot;The control type is fixed at creation. Create a new control to use a different type.&quot;, false)]
 public DynamicViewControlType ControlType { get; set; }</code></pre>
   </div>
 
@@ -270,6 +271,9 @@ public DynamicViewControlType ControlType { get; set; }</code></pre>
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewControlModel_ControlType_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>控件类型在创建时确定。变更类型需要重新创建控件、渲染器及属性分组。</p>
+</div>
 
 
 
@@ -344,7 +348,7 @@ public string? GroupId { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_IsMultiSelection" data-uid="MAS.DynamicViews.DynamicViewControlModel.IsMultiSelection">
   IsMultiSelection
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否为多选目标</p>
@@ -476,7 +480,7 @@ public DynamicViewControlSecurityModel? Security { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_SupportsBackground" data-uid="MAS.DynamicViews.DynamicViewControlModel.SupportsBackground">
   SupportsBackground
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否支持背景色（Image / Icon 不支持）</p>
@@ -509,7 +513,7 @@ public bool SupportsBackground { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_SupportsBorderBrush" data-uid="MAS.DynamicViews.DynamicViewControlModel.SupportsBorderBrush">
   SupportsBorderBrush
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L91"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否支持边框画刷（仅边框可视控件）</p>
@@ -542,7 +546,7 @@ public bool SupportsBorderBrush { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_SupportsCornerRadius" data-uid="MAS.DynamicViews.DynamicViewControlModel.SupportsCornerRadius">
   SupportsCornerRadius
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否支持圆角（仅 Border，其它控件圆角由主题模板决定、无法逐实例设置）</p>
@@ -575,7 +579,7 @@ public bool SupportsCornerRadius { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_SupportsNumericTextChannel" data-uid="MAS.DynamicViews.DynamicViewControlModel.SupportsNumericTextChannel">
   SupportsNumericTextChannel
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L119"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取文本通道承载的是否为数值（数值框复用文本绑定，但只接受数值变量且不提供显示小数位与格式化）</p>
@@ -608,7 +612,7 @@ public bool SupportsNumericTextChannel { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_SupportsStateText" data-uid="MAS.DynamicViews.DynamicViewControlModel.SupportsStateText">
   SupportsStateText
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L105"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取多状态映射是否同时驱动显示文本（数值状态灯只映射画刷）</p>
@@ -641,7 +645,7 @@ public bool SupportsStateText { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_SupportsTextContentAlignment" data-uid="MAS.DynamicViews.DynamicViewControlModel.SupportsTextContentAlignment">
   SupportsTextContentAlignment
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取文本是否可在控件内自行排版对齐</p>
@@ -674,7 +678,7 @@ public bool SupportsTextContentAlignment { get; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_TextBindingKey" data-uid="MAS.DynamicViews.DynamicViewControlModel.TextBindingKey">
   TextBindingKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取文本/数值绑定的变量选择键</p>
@@ -747,7 +751,7 @@ public string? ToolTip { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewControlModel_Clone" data-uid="MAS.DynamicViews.DynamicViewControlModel.Clone">
   Clone()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewControlModel.cs/#L131"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new object that is a copy of the current instance.</p>

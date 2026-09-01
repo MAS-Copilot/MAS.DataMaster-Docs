@@ -378,6 +378,7 @@ public string? Description { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[DynamicViewAgentReadOnly(&quot;This value is derived from the bound structure. Use the bind operation to select a structure.&quot;, false)]
 public string? DisplayName { get; set; }</code></pre>
   </div>
 
@@ -394,6 +395,9 @@ public string? DisplayName { get; set; }</code></pre>
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_Communication_DynamicViewCommunicationChannelModel_DisplayName_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>该属性与 <a class="xref" href="MAS.DynamicViews.Communication.DynamicViewCommunicationChannelModel.html#MAS_DynamicViews_Communication_DynamicViewCommunicationChannelModel_StructureId">StructureId</a> 统一维护；有关更新要求，请参见该属性的说明。</p>
+</div>
 
 
 
@@ -514,6 +518,7 @@ public int? PollingIntervalOverride { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[DynamicViewAgentReadOnly(&quot;This value is maintained together with displayName. Use bind to select a structure or unbind to clear the association.&quot;, false)]
 public string? StructureId { get; set; }</code></pre>
   </div>
 
@@ -530,6 +535,10 @@ public string? StructureId { get; set; }</code></pre>
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_Communication_DynamicViewCommunicationChannelModel_StructureId_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>该属性与 <a class="xref" href="MAS.DynamicViews.Communication.DynamicViewCommunicationChannelModel.html#MAS_DynamicViews_Communication_DynamicViewCommunicationChannelModel_DisplayName">DisplayName</a> 由 <a class="xref" href="MAS.DynamicViews.Communication.DynamicViewCommunicationChannelModel.html#MAS_DynamicViews_Communication_DynamicViewCommunicationChannelModel_UpdateTarget_MAS_DynamicViews_DynamicViewVariableModel_">UpdateTarget(DynamicViewVariableModel)</a> 和
+<a class="xref" href="MAS.DynamicViews.Communication.DynamicViewCommunicationChannelModel.html#MAS_DynamicViews_Communication_DynamicViewCommunicationChannelModel_ClearTarget">ClearTarget()</a> 统一维护，不应单独修改，以确保两者始终引用同一结构体</p>
+</div>
 
 
 
@@ -542,7 +551,7 @@ public string? StructureId { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_Communication_DynamicViewCommunicationChannelModel_ClearTarget" data-uid="MAS.DynamicViews.Communication.DynamicViewCommunicationChannelModel.ClearTarget">
   ClearTarget()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Communication/Models/DynamicViewCommunicationChannelModel.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Communication/Models/DynamicViewCommunicationChannelModel.cs/#L120"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>清除通道绑定目标</p>
@@ -569,7 +578,7 @@ public string? StructureId { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_Communication_DynamicViewCommunicationChannelModel_UpdateTarget_MAS_DynamicViews_DynamicViewVariableModel_" data-uid="MAS.DynamicViews.Communication.DynamicViewCommunicationChannelModel.UpdateTarget(MAS.DynamicViews.DynamicViewVariableModel)">
   UpdateTarget(DynamicViewVariableModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Communication/Models/DynamicViewCommunicationChannelModel.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Communication/Models/DynamicViewCommunicationChannelModel.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>更新通道绑定目标</p>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>MAS.DynamicViews.AgentTools | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="MAS.DynamicViews.AgentTools | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.AgentTools.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="masdynamicviewsagenttools">MAS.DynamicViews.AgentTools</h1>
+
+<p>MAS.DynamicViews 向 Agent 提供统一的通用模型工具集，不按单项功能分别定义工具。</p>
+<p>动态视图包含大量属性且模型更新频繁。若按功能定义类型化工具，每次属性变更均需同步修改工具、工具说明和 Skill 文档，容易产生信息不一致。通用模型工具通过反射生成属性架构，并通过精简的人工注册表维护资源种类、提交目标和业务约束。</p>
+<p>本文说明动态视图发生变更时，Agent 层是否需要同步调整，以及需要调整的具体位置。</p>
+<h2 id="工具清单">工具清单</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>风险</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dynamicViews.model.describe</code></td>
+<td>Low</td>
+<td>返回资源种类清单及各资源种类的属性架构</td>
+</tr>
+<tr>
+<td><code>dynamicViews.model.get</code></td>
+<td>Low</td>
+<td>按种类列出实例，或读取单个实例在架构路径上的取值</td>
+</tr>
+<tr>
+<td><code>dynamicViews.model.apply</code></td>
+<td>Medium</td>
+<td>原子提交一组 create / update / bind / unbind 操作</td>
+</tr>
+<tr>
+<td><code>dynamicViews.model.delete</code></td>
+<td>High</td>
+<td>删除单个资源，并在删除前执行独立审批和引用检查</td>
+</tr>
+<tr>
+<td><code>dynamicViews.query</code></td>
+<td>Low</td>
+<td>返回工程概览和运行时变量值快照，以补充模型工具未覆盖的查询能力</td>
+</tr>
+<tr>
+<td><code>dynamicViews.view.refresh</code></td>
+<td>Low</td>
+<td>用内存工程重新渲染动态视图页面当前显示的画面</td>
+</tr>
+<tr>
+<td><code>dynamicViews.view.navigate</code></td>
+<td>Medium</td>
+<td>切换动态视图页面显示的画面</td>
+</tr>
+</tbody>
+</table>
+<p>模型属性使用扁平化点分路径，每条路径对应一次赋值，例如 <code>layout.left</code>、<code>text.content</code>、<code>modbusTcpConfig.ip</code> 和 <code>binding.color.trueBackground</code>。写入接口不接受嵌套 JSON，因此可以将校验错误定位到具体字段。</p>
+<h2 id="分层与职责">分层与职责</h2>
+<pre><code class="lang-text">MAS.DynamicViews/Schema                     架构层，不依赖宿主
+├── DynamicViewModelKind                    资源种类枚举
+├── DynamicViewModelKindDescriptor          种类描述符：定位、操作、提交去向、校验器
+├── DynamicViewModelKindRegistry            资源种类注册表（显式维护）
+├── DynamicViewModelSchemaFactory           反射生成属性架构 + 架构指纹
+├── DynamicViewModelAccessor                按路径读写实例
+├── DynamicViewModelSchema                  一种资源的完整架构
+├── DynamicViewModelPropertyDescriptor      一条属性描述
+├── DynamicViewModelChannelDescriptor       一条绑定通道描述
+├── DynamicViewModelValueKind               CLR 类型到 JSON 取值形态
+├── DynamicViewModelOperations              种类支持的操作
+└── DynamicViewModelCommitTarget            改动的提交去向
+
+MAS.DataMaster/NamedPipeIpc/DynamicViews    宿主层，接 IPC 与持久化
+├── DynamicViewsToolProvider                工具分发
+├── ...Definitions                          工具定义与参数解析
+├── ...ModelDescribe / ...ModelGet          只读工具
+├── ...ModelApply                           批量事务：克隆、执行、按区域提交
+├── ...ModelOps                             单条操作：定位、写值、绑定、校验
+├── ...ModelCreate                          新建实例构造注册表
+├── ...ModelDelete                          删除与引用守卫
+├── ...ModelBindings                        控件绑定通道的写入与校验
+├── ...ModelEvents                          控件事件的变量操作维护
+├── ...ModelPresets                         控件预设目录
+├── ...ModelShared                          实例定位与序列化
+├── ...ModelBrushKeys                       画刷 Key 存在性校验
+├── ...ModelContext                         运行状态与引用计数
+├── ...View                                 画面刷新与页面导航（UI 线程封送）
+└── ...Guards                               工程状态、运行状态、编辑器窗口占用
+</code></pre>
+<p>架构层位于 <code>MAS.DynamicViews</code>，不依赖宿主实现。该层仅依赖模型和描述符，可直接进行单元测试，也可在更换宿主时保持复用。</p>
+<h2 id="核心分界线">核心分界线</h2>
+<p>以下边界用于区分自动生成内容与需要人工维护的内容。实施变更前，应先确定变更所属类别</p>
+<p><strong>由反射自动生成：</strong></p>
+<ul>
+<li>属性名、类型、允许值、默认值，来自模型反射</li>
+<li>自动排除带 <code>[JsonIgnore]</code> 的派生属性，例如控件上的 <code>SupportsBackground</code> 等能力标志</li>
+<li>控件有哪些属性分节，来自 <code>DynamicViewControlDescriptorRegistry</code> 的属性分组与能力位</li>
+<li>控件支持的绑定通道及各通道允许的变量类型，来自描述符与 <code>DynamicViewBindingChannelRules</code></li>
+<li>控件预设目录，来自 <code>DynamicViewPresetRegistry</code></li>
+</ul>
+<p><strong>需要人工同步维护：</strong></p>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>维护内容</th>
+<th>变动频率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DynamicViewModelKindRegistry</code></td>
+<td>资源种类、定位方式、支持的操作、提交目标、校验器和引用锁定路径</td>
+<td>新增资源种类时</td>
+</tr>
+<tr>
+<td><code>DynamicViewModelSchemaFactory.ValueKinds</code></td>
+<td>CLR 类型到 JSON 取值形态的映射表</td>
+<td>引入新的标量类型时</td>
+</tr>
+<tr>
+<td><code>DynamicViewContentFactory</code></td>
+<td>页面、窗口、背景的新建口径（名称、画面号、尺寸、分组）</td>
+<td>新建规则变化时</td>
+</tr>
+<tr>
+<td><code>DynamicViewModelSchemaFactory.CompositeStructTypes</code></td>
+<td>有标量替身的 WPF 复合结构体</td>
+<td>极少</td>
+</tr>
+<tr>
+<td><code>DynamicViewsToolProvider.ModelCreate</code></td>
+<td>各资源的构造方式及所属位置</td>
+<td>新增支持创建的资源时</td>
+</tr>
+<tr>
+<td><code>DynamicViewsToolProvider.ModelDelete</code></td>
+<td>删除前的引用与业务守卫</td>
+<td>新增可删除的资源时</td>
+</tr>
+<tr>
+<td><code>DynamicViewsToolProvider.Guards.EditorWindows</code></td>
+<td>哪个编辑器窗口持有哪些区域的工程副本</td>
+<td>新增编辑器窗口时</td>
+</tr>
+</tbody>
+</table>
+<p>提交路径需要显式维护：结构体使用 <code>SetStructures</code>，设备使用 <code>SetCommunicationDevices</code>，设计器内容使用 <code>SetDesignerProject</code>，画刷还需要重新注入画刷库。此类对应关系无法通过模型反射可靠推导。</p>
+<h2 id="改动对照表">改动对照表</h2>
+<p>常见变更可分为以下类别，各类别对应不同的 Agent 层维护要求。</p>
+<h3 id="为控件新增属性">为控件新增属性</h3>
+<p>无需修改 Agent 工具。将属性添加到对应的分节模型（如 <code>DynamicViewLayoutModel</code>、<code>DynamicViewTextModel</code>）后，<code>describe</code> 与 <code>apply</code> 将自动识别该属性。</p>
+<p>只在两种情况下需要额外动作：</p>
+<ul>
+<li>不应向 Agent 公开的属性，应添加 <code>[property: DynamicViewAgentHidden]</code></li>
+<li>仅允许在创建时设置的属性，应添加 <code>[property: DynamicViewAgentReadOnly(&quot;原因&quot;, isSettableAtCreation: true)]</code></li>
+</ul>
+<p>若属性类型未在 <code>ValueKinds</code> 表中注册，架构会将其标记为 <code>Unsupported</code> 并设置为只读，同时 <code>NoPropertyFallsBackToUnsupported</code> 测试会失败。此时应补充类型映射，不应修改该测试断言。</p>
+<h3 id="新增一个控件类型">新增一个控件类型</h3>
+<p>无需修改 Agent 工具。在 <code>DynamicViewControlDescriptorRegistry</code> 中注册描述符，并声明属性分组、绑定通道、外观能力和附加能力。</p>
+<p>若该类型需要支持工具创建，还应在 <code>DynamicViewPresetRegistry</code> 中注册预设。<strong>未注册预设的控件类型不能通过工具创建</strong>；图形类控件属于此类，仅支持在设计器中绘制。</p>
+<h3 id="新增一个属性分组">新增一个属性分组</h3>
+<p>在 <code>DynamicViewPropertyGroups</code> 中新增枚举值，并在 <code>DynamicViewControlPropertiesModel</code> 中新增同名的可空子模型。两处名称必须保持一致；名称不一致时，相应分节不会进入生成结果，<code>EveryControlTypeProducesSchemaWithResolvableSections</code> 测试用于检测此类问题。</p>
+<h3 id="新增一个绑定通道">新增一个绑定通道</h3>
+<p>在 <code>DynamicViewBindingChannels</code> 中新增枚举值，在 <code>DynamicViewControlBindingsModel</code> 中新增同名属性，并在 <code>DynamicViewBindingChannelRules</code> 中声明允许的变量类型。通道配置将自动显示在 <code>binding.&lt;通道&gt;.*</code> 路径下。</p>
+<h3 id="新增资源种类例如画布图层或模板">新增资源种类（例如画布、图层或模板）</h3>
+<p>该场景需要按以下顺序完成配套变更：</p>
+<ol>
+<li><code>DynamicViewModelKind</code> 加一个枚举值</li>
+<li><code>DynamicViewModelKindRegistry</code> 登记描述符：模型类型、标识与名称属性、父级种类、支持的操作、<strong>提交去向</strong>、必要的校验器与引用锁定路径</li>
+<li><code>ModelShared.TryGetEntries</code> 加一条定位分支</li>
+<li>如果支持新建，<code>ModelCreate.TryBuildInstance</code> 加一条构造分支</li>
+<li>如果支持删除，<code>ModelDelete</code> 加守卫与移除分支</li>
+<li>如果它由某个新窗口编辑，<code>Guards.EditorWindows</code> 加一行</li>
+<li>如果它落在新的持久化区域，<code>DynamicViewProjectRegion</code> 与 <code>DynamicViewModelCommitTarget</code> 各加一位，并在 <code>ApplyRegions</code> 里补赋值</li>
+</ol>
+<p><code>EveryKindDeclaresCommitTarget</code> 用于验证第 2 步是否已声明提交目标。若遗漏第 3 至第 5 步，运行时将报告“尚未接入模型工具”或“声明了可删除但没有移除实现”。</p>
+<h3 id="新增一个编辑器窗口">新增一个编辑器窗口</h3>
+<p>在 <code>Guards.EditorWindows</code> 中新增配置，声明该窗口持有的工程区域。占用检查根据本次变更的提交区域执行，仅阻止存在冲突的窗口，不影响其他已打开窗口。</p>
+<h2 id="必须遵循的五项约束">必须遵循的五项约束</h2>
+<p>以下约束用于补充反射无法识别的业务语义，避免产生部分更新或数据不一致。</p>
+<h3 id="成对维护的属性不得暴露为可写路径">成对维护的属性不得暴露为可写路径</h3>
+<p>对于通过 <code>UpdateTarget</code> / <code>ClearTarget</code> 等方法成对维护的属性，必须标记 <code>[DynamicViewAgentReadOnly]</code>，并将写入操作引导至专用操作。</p>
+<p>当前包括两类属性：通讯通道的 <code>StructureId</code> / <code>DisplayName</code>，以及控件字段绑定的 <code>VariableId</code> / <code>FieldId</code> / <code>DisplayName</code>。分别写入这些属性可能导致标识与显示名称不一致，使界面显示的关联对象与实际轮询对象不一致。</p>
+<p>守卫：<code>PairedTargetPropertiesAreNotWritable</code></p>
+<h3 id="可写集合的元素投影必须无损">可写集合的元素投影必须无损</h3>
+<p>集合能整体替换写入的条件有四条，缺一不可：</p>
+<ul>
+<li>集合本身有公开 setter</li>
+<li>元素是本程序集的模型且有无参构造</li>
+<li>元素类型没有被任何种类接管（有种类的走那个种类，否则绕过它的校验与引用检查）</li>
+<li><strong>元素的全部公开字段都是可写标量</strong></li>
+</ul>
+<p>第四项是保证无损写入的必要条件。整体替换数组时会根据元素字段重新构造每个元素；若元素还包含子集合或不可写字段，读取后再次写入将导致相关数据丢失。</p>
+<p>多语言分类与词条同时命中第三、四两项：它们各自登记为资源种类，因此 <code>catalogs</code> 与 <code>entries</code> 保持只读，只读原因直接指向应当使用的种类。</p>
+<p>当前全库可整体写入的集合只有两条：<code>binding.state.states</code> 与 <code>binding.comboBox.items</code></p>
+<p>守卫：<code>WritableListItemsAreLosslesslyProjected</code>、<code>ReplaceableListsAreWritableAndChildListsAreNot</code>、<code>CatalogListStaysReadOnly</code></p>
+<h3 id="名称仅在父级内唯一定位结果必须唯一">名称仅在父级内唯一，定位结果必须唯一</h3>
+<p>字段名在结构体内唯一、通道名在设备内唯一、控件名在页面内唯一，跨父级都可能重名；页面、窗口、背景之间也可以重名</p>
+<p>因此，定位操作仅在唯一匹配时继续执行。出现多个匹配项时，应拒绝操作并提示提供 <code>parentId</code> 或唯一标识。所有定位路径均不得使用 <code>FirstOrDefault</code> 直接选取首个结果。</p>
+<h3 id="画刷-key-属性必须显式标注">画刷 Key 属性必须显式标注</h3>
+<p>外观前景、背景、边框，图形填充与描边，图标前景，颜色绑定的四个色值，多状态的回退背景与各状态背景，存的都是<strong>画刷资源 Key</strong>，不是颜色值。这些属性在 CLR 层面就是 <code>string</code>，反射无法与普通文本区分，因此必须用 <code>[property: DynamicViewBrushKey]</code> 标注。</p>
+<p>标注后架构会输出 <code>isBrushKey</code>，写入前按&quot;工程画刷 + 主题画刷&quot;校验 Key 是否存在。缺少标注时，模型会把 <code>#FFE8E8E8</code> 这类颜色值直接写进去：控件回退默认外观，属性面板显示红色删除线，且不会有任何报错。</p>
+<p>新增画刷 Key 属性时，除标注特性外无需改动工具。主题资源字典不可用时（脱离 WPF 资源环境）校验自动跳过，不会把全部 Key 判为无效。</p>
+<p>守卫：宿主层的 <code>外观颜色值被拒绝并提示先建画刷</code>、<code>主题画刷与同批次新建画刷都可引用</code></p>
+<h3 id="跨区域改动一次事务提交">跨区域改动一次事务提交</h3>
+<p>一组操作可能同时修改画刷与设计器内容。若逐项调用 <code>Set*</code>，中途发生异常时可能仅提交部分区域，不符合失败时不产生任何变更的原子性要求。</p>
+<p>因此，跨区域提交统一使用 <code>IDynamicViewProjectPersistenceService.ApplyRegions</code>：一次完成所有区域赋值，并仅执行一次脏状态标记和变更通知。画刷重新注入属于界面刷新，不属于事务，应在提交完成后调度至 UI 线程执行。</p>
+<p>守卫：宿主层的 <code>跨区域批量改动一次提交</code></p>
+<h2 id="写入的执行链路">写入的执行链路</h2>
+<pre><code class="lang-text">model.apply
+  ├─ 门禁：工程是否打开、通讯是否停机
+  ├─ 创建工程副本
+  ├─ 在副本上依次执行操作
+  │    ├─ 定位（唯一性检查）
+  │    ├─ 引用锁定路径检查（禁止修改已引用结构体的访问模式和字段类型）
+  │    ├─ 画刷 Key 存在性检查（工程画刷 + 主题画刷）
+  │    ├─ 按架构路径写值（类型、允许值、可写性）
+  │    └─ 种类校验器（重名、取值范围、访问模式兼容…）
+  ├─ 任一操作失败 → 放弃整批操作，不修改内存工程
+  ├─ 按本次提交区域检查编辑器窗口占用
+  ├─ ApplyRegions 一次事务提交
+  ├─ 画刷重注入（UI 线程，事务之外）
+  └─ 当前画面重新渲染（UI 线程，事务之外）
+</code></pre>
+<p>执行过程遵循<strong>先在副本中完成操作，再统一提交</strong>的原则。该机制既保证原子性，也允许同一批次中的后续操作引用先前创建的对象。例如，创建结构体、设备和通道，并将通道绑定至结构体，可在一次调用中通过名称完成，无需预先获取实际标识。</p>
+<h2 id="画面刷新">画面刷新</h2>
+<p>模型工具只改内存工程，动态视图页面已经渲染出来的可视树不会自行更新。因此 <code>model.apply</code> 与 <code>model.delete</code> 在提交成功后会顺带刷新当前画面，与设计器关闭后调用 <code>RefreshCurrentPage</code> 的行为一致，结果中的 <code>isViewRefreshed</code> 说明本次是否刷新成功。</p>
+<p>刷新依赖 <code>IDynamicViewNavigationService.CurrentHost</code>：内容宿主由动态视图页面创建，导航服务在每次导航时记录它，工具层据此在不引用界面的前提下刷新页面。宿主的生命周期与导航状态无关，<code>Reset</code> 不清空该引用。尚未打开工程时 <code>CurrentHost</code> 为空，此时写入照常提交，<code>isViewRefreshed</code> 返回 <code>false</code>。</p>
+<p>工具在 IPC 线程执行，刷新与导航必须封送至 UI 线程，统一走 <code>...View</code> 中的 <code>InvokeOnUi</code>。</p>
+<h2 id="架构指纹">架构指纹</h2>
+<p><code>DynamicViewModelSchemaFactory.SchemaVersion</code> 根据全部资源种类和控件类型的属性路径、值类型及可写性计算，并使用 SHA-256 哈希值的前 12 位。模型属性发生增删改时，架构指纹将同步变化。</p>
+<p>每个 <code>describe</code> 和 <code>get</code> 响应均包含该指纹，调用方可据此判断缓存架构是否失效。因此，模型变更后无需额外通知调用方，后续调用可自动检测架构变化。</p>
+<h2 id="两类不走属性路径的写入">两类不走属性路径的写入</h2>
+<p>以下两项无法表达为固定的扁平属性，各自由一种专门机制承载。它们是架构引擎的扩展点，新增同类资源时应沿用现有机制，不要另加工具。</p>
+<h3 id="合成标识控件事件">合成标识：控件事件</h3>
+<p>控件的三个鼠标事件在模型上没有标识属性，实例由所在位置决定。描述符通过 <code>SyntheticIds</code> 声明全部合法标识（<code>Click</code>、<code>MouseDown</code>、<code>MouseUp</code>），定位层用 <code>ModelEntry.Key</code> 承载该标识，<code>describe</code> 把它作为 <code>ids</code> 返回给调用方。</p>
+<p>事件下的变量操作是一个有序列表，元素为成对维护的字段绑定，不满足无损投影条件，因此标注为只读并引导至 <code>bind</code> / <code>unbind</code>：<code>bind</code> 追加一条（<code>structure</code> + <code>field</code> + <code>operationType</code>），<code>unbind</code> 按 <code>index</code> 移除或整体清空。切换页面与打开窗口则是普通属性路径 <code>navigate.*</code> 与 <code>openWindow.*</code>，按内容标识引用目标，由 <code>DynamicViewControlEventValidator</code> 校验引用存在性。</p>
+<p>事件模型在控件上可空，首次配置时才创建。因此 <code>TryGetEntries</code> 区分读写意图：写入路径按需补齐事件模型，读取路径返回默认值而不写回工程。</p>
+<h3 id="动态键映射多语言词条">动态键映射：多语言词条</h3>
+<p>词条正文的键是已配置的语言，随工程变化，无法由静态反射展开成固定路径。因此引入 <code>DynamicViewModelValueKind.Map</code>：<code>Dictionary&lt;string, string?&gt;</code> 属性整体作为一条路径公开，写入时<strong>按键合并</strong>——请求中出现的语言覆盖原值，未出现的语言保留原文，合并在原字典实例上进行以保留模型指定的键比较器。</p>
+<p>分类与词条各自登记为资源种类（<code>LanguageCatalog</code>、<code>LanguageEntry</code>），提交去向为 <code>Languages</code> 区域，由 <code>DynamicViewLanguageStore</code> 整目录重写 resx。分类名同时是 resx 目录名、词条键名同时是引用键的后半段，两者的格式与重名规则由 <code>DynamicViewLanguageValidator</code> 校验；被控件文本引用的分类与词条禁止删除。</p>
+<h2 id="排查清单">排查清单</h2>
+<p>写入被拒绝时，依次检查：</p>
+<ul>
+<li>通讯运行状态是否为 <code>Stopped</code></li>
+<li>与变更区域对应的编辑器窗口是否已关闭（结构体对应数据中心、控件对应设计器、画刷对应画刷中心、语言对应语言中心）</li>
+<li>路径是否由 <code>describe</code> 返回，而非自行构造</li>
+<li>该路径是否被标为不可写，<code>readOnlyReason</code> 会说明原因与替代入口</li>
+<li>子资源是否给了 <code>parentId</code></li>
+</ul>
+<p>当架构与实际模型不一致时，应首先运行 <code>MAS.DynamicViewsUnitTest</code> 中的 <code>DynamicViewModelSchemaFactoryTests</code>。该测试集覆盖分节解析、类型映射、标识只读、成对属性、集合无损投影和能力覆盖，可用于识别大多数模型漂移问题。</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.AgentTools.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
