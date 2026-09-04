@@ -102,7 +102,7 @@
 </ul>
 <h2 id="更新流程">更新流程</h2>
 <pre><code class="lang-text">主程序 MAS.DataMaster                      更新器 MAS.Updater（独立进程）
-  │ 设置页「检查更新」→ 读取 manifest.json
+  │ 后台静默检查或设置页「检查更新」→ 读取 manifest.json
   │ 比对版本 / 校验最低版本闸门
   │ 下载更新包 → 校验 SHA256
   │ 写入待安装状态 pending.json
@@ -211,7 +211,7 @@
 </tr>
 <tr>
 <td>自动检查更新</td>
-<td>打开设置页时自动查询</td>
+<td>后台静默检查，发现新版本自动下载，但不自动安装。默认开启</td>
 </tr>
 <tr>
 <td>更新后询问再启动</td>
@@ -219,6 +219,16 @@
 </tr>
 </tbody>
 </table>
+<h2 id="后台静默检查与下载">后台静默检查与下载</h2>
+<ul>
+<li>主窗口加载完成时调用 <code>StartAutoCheck()</code>，方法<strong>立即返回</strong>，检查跑在线程池线程上</li>
+<li>首次检查延迟 10 秒，避开启动阶段的加载工作，之后按 <code>AutoCheckIntervalHours</code> 循环</li>
+<li>单次检查最多 20 秒（<code>CHECK_TIMEOUT_SECONDS</code>）就放弃，现场断网只会在日志里留一条 <code>Network.log</code> 警告，界面没有任何等待或弹窗</li>
+<li>发现新版本后立刻静默下载并校验，写入 <code>pending.json</code>；下载失败同样只记日志，下一轮再来</li>
+<li>设置页正在手动下载时后台让开，同一个包不会下两遍</li>
+<li>自动安装：安装只发生在用户自己退出应用时，和手动下载完全一样的路径</li>
+</ul>
+<p>检查完成后广播 <code>IUpdateService.CheckCompleted</code>，下载完成或放弃更新时广播 <code>PendingUpdateChanged</code></p>
 <h2 id="日志">日志</h2>
 <table>
 <thead>

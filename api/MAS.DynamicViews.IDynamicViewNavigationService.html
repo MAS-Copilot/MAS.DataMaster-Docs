@@ -193,7 +193,7 @@ Interface IDynamicViewNavigationService  <a class="header-action link-secondary"
 
   <h3 id="MAS_DynamicViews_IDynamicViewNavigationService_RefreshCurrentPage_MAS_DynamicViews_IDynamicViewContentHost_" data-uid="MAS.DynamicViews.IDynamicViewNavigationService.RefreshCurrentPage(MAS.DynamicViews.IDynamicViewContentHost)">
   RefreshCurrentPage(IDynamicViewContentHost)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewNavigationService.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewNavigationService.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>刷新当前页面</p>
@@ -231,7 +231,7 @@ Interface IDynamicViewNavigationService  <a class="header-action link-secondary"
 
   <h3 id="MAS_DynamicViews_IDynamicViewNavigationService_Reset" data-uid="MAS.DynamicViews.IDynamicViewNavigationService.Reset">
   Reset()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewNavigationService.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewNavigationService.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>重置导航状态</p>
@@ -331,6 +331,48 @@ Interface IDynamicViewNavigationService  <a class="header-action link-secondary"
 
 
 
+
+
+
+
+  <a id="MAS_DynamicViews_IDynamicViewNavigationService_SwitchContent_" data-uid="MAS.DynamicViews.IDynamicViewNavigationService.SwitchContent*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewNavigationService_SwitchContent_System_String_" data-uid="MAS.DynamicViews.IDynamicViewNavigationService.SwitchContent(System.String)">
+  SwitchContent(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewNavigationService.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>按画面号切换内容</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool SwitchContent(string screenCode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>screenCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>画面号，如 P1、W1</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>找到目标内容并已发起切换返回 true；画面号不存在、指向背景或尚无内容宿主返回 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_IDynamicViewNavigationService_SwitchContent_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>不在 UI 线程调用时切换会被封送到 UI 线程执行，此时返回值只表示已发起切换</p>
+</div>
 
 
 
