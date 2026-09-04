@@ -259,6 +259,7 @@ Project.PageHeight → 默认页面高度
 <pre><code class="lang-txt">Properties
 ├── Layout
 ├── Appearance
+├── Transform
 ├── Text
 └── Common
 </code></pre>
@@ -283,6 +284,20 @@ BorderThickness
 CornerRadius
 Opacity
 </code></pre>
+<h3 id="transform">Transform</h3>
+<p>转换属性用于描述控件的呈现变换，对应 WPF 的<code>RenderTransform</code>，只改呈现效果，不改变布局占位</p>
+<p>常见字段：</p>
+<pre><code class="lang-txt">Angle
+ScaleX
+ScaleY
+SkewX
+SkewY
+TranslateX
+TranslateY
+OriginX
+OriginY
+</code></pre>
+<p>转换是所有控件共有的必备分节，默认为恒等转换（缩放为 1、中心在正中、其余为 0）</p>
 <h3 id="text">Text</h3>
 <p>文本属性用于描述控件显示内容</p>
 <p>常见字段：</p>

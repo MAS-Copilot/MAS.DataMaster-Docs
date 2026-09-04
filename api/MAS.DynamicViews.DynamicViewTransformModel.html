@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class DynamicViewControlPropertiesModel | DataMaster </title>
+      <title>Class DynamicViewTransformModel | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class DynamicViewControlPropertiesModel | DataMaster ">
+      <meta name="title" content="Class DynamicViewTransformModel | DataMaster ">
       
-      <meta name="description" content="动态界面控件属性聚合模型">
+      <meta name="description" content="动态视图转换模型">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel">
+        <article data-uid="MAS.DynamicViews.DynamicViewTransformModel">
 
 
 
-  <h1 id="MAS_DynamicViews_DynamicViewControlPropertiesModel" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel" class="text-break">
-Class DynamicViewControlPropertiesModel  
+  <h1 id="MAS_DynamicViews_DynamicViewTransformModel" data-uid="MAS.DynamicViews.DynamicViewTransformModel" class="text-break">
+Class DynamicViewTransformModel  
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class DynamicViewControlPropertiesModel
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>动态界面控件属性聚合模型</p>
+  <div class="markdown summary"><p>动态视图转换模型</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class DynamicViewControlPropertiesModel : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class DynamicViewTransformModel : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
 
@@ -113,7 +113,7 @@ Class DynamicViewControlPropertiesModel
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
-      <div><span class="xref">DynamicViewControlPropertiesModel</span></div>
+      <div><span class="xref">DynamicViewTransformModel</span></div>
     </dd>
   </dl>
 
@@ -158,8 +158,9 @@ Class DynamicViewControlPropertiesModel
 
 
 
-  <h2 id="MAS_DynamicViews_DynamicViewControlPropertiesModel_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>属性支持 MVVM 绑定</p>
+  <h2 id="MAS_DynamicViews_DynamicViewTransformModel_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>对应 WPF 的 <code>RenderTransform</code>：只改控件的呈现效果，不改变布局占位
+属性支持 MVVM 绑定</p>
 </div>
 
 
@@ -167,20 +168,20 @@ Class DynamicViewControlPropertiesModel
 </h2>
 
 
-  <a id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Appearance_" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Appearance*"></a>
+  <a id="MAS_DynamicViews_DynamicViewTransformModel_Angle_" data-uid="MAS.DynamicViews.DynamicViewTransformModel.Angle*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Appearance" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Appearance">
-  Appearance
+  <h3 id="MAS_DynamicViews_DynamicViewTransformModel_Angle" data-uid="MAS.DynamicViews.DynamicViewTransformModel.Angle">
+  Angle
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置外观信息</p>
+  <div class="markdown level1 summary"><p>获取或设置旋转角度（顺时针为正，单位：度）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public DynamicViewAppearanceModel Appearance { get; set; }</code></pre>
+public double Angle { get; set; }</code></pre>
   </div>
 
 
@@ -189,7 +190,7 @@ public DynamicViewAppearanceModel Appearance { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewAppearanceModel.html">DynamicViewAppearanceModel</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
     <dd></dd>
   </dl>
 
@@ -200,20 +201,20 @@ public DynamicViewAppearanceModel Appearance { get; set; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Icon_" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Icon*"></a>
+  <a id="MAS_DynamicViews_DynamicViewTransformModel_IsIdentity_" data-uid="MAS.DynamicViews.DynamicViewTransformModel.IsIdentity*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Icon" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Icon">
-  Icon
-  
+  <h3 id="MAS_DynamicViews_DynamicViewTransformModel_IsIdentity" data-uid="MAS.DynamicViews.DynamicViewTransformModel.IsIdentity">
+  IsIdentity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewTransformModel.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置图标属性</p>
+  <div class="markdown level1 summary"><p>获取是否为恒等转换（各项都是默认值，渲染时不施加任何转换）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public DynamicViewIconModel? Icon { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public bool IsIdentity { get; }</code></pre>
   </div>
 
 
@@ -222,7 +223,7 @@ public DynamicViewIconModel? Icon { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewIconModel.html">DynamicViewIconModel</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
@@ -233,20 +234,20 @@ public DynamicViewIconModel? Icon { get; set; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Image_" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Image*"></a>
+  <a id="MAS_DynamicViews_DynamicViewTransformModel_OriginX_" data-uid="MAS.DynamicViews.DynamicViewTransformModel.OriginX*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Image" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Image">
-  Image
+  <h3 id="MAS_DynamicViews_DynamicViewTransformModel_OriginX" data-uid="MAS.DynamicViews.DynamicViewTransformModel.OriginX">
+  OriginX
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置图片属性</p>
+  <div class="markdown level1 summary"><p>获取或设置转换中心的水平相对位置（0 为左边，1 为右边）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public DynamicViewImageModel? Image { get; set; }</code></pre>
+public double OriginX { get; set; }</code></pre>
   </div>
 
 
@@ -255,7 +256,7 @@ public DynamicViewImageModel? Image { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewImageModel.html">DynamicViewImageModel</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
     <dd></dd>
   </dl>
 
@@ -266,20 +267,20 @@ public DynamicViewImageModel? Image { get; set; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Layout_" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Layout*"></a>
+  <a id="MAS_DynamicViews_DynamicViewTransformModel_OriginY_" data-uid="MAS.DynamicViews.DynamicViewTransformModel.OriginY*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Layout" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Layout">
-  Layout
+  <h3 id="MAS_DynamicViews_DynamicViewTransformModel_OriginY" data-uid="MAS.DynamicViews.DynamicViewTransformModel.OriginY">
+  OriginY
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置布局信息</p>
+  <div class="markdown level1 summary"><p>获取或设置转换中心的垂直相对位置（0 为顶边，1 为底边）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public DynamicViewLayoutModel Layout { get; set; }</code></pre>
+public double OriginY { get; set; }</code></pre>
   </div>
 
 
@@ -288,7 +289,7 @@ public DynamicViewLayoutModel Layout { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewLayoutModel.html">DynamicViewLayoutModel</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
     <dd></dd>
   </dl>
 
@@ -299,20 +300,20 @@ public DynamicViewLayoutModel Layout { get; set; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewControlPropertiesModel_NumberBox_" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.NumberBox*"></a>
+  <a id="MAS_DynamicViews_DynamicViewTransformModel_ScaleX_" data-uid="MAS.DynamicViews.DynamicViewTransformModel.ScaleX*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewControlPropertiesModel_NumberBox" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.NumberBox">
-  NumberBox
+  <h3 id="MAS_DynamicViews_DynamicViewTransformModel_ScaleX" data-uid="MAS.DynamicViews.DynamicViewTransformModel.ScaleX">
+  ScaleX
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置数值框属性</p>
+  <div class="markdown level1 summary"><p>获取或设置水平缩放倍数（负值即水平翻转）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public DynamicViewNumberBoxModel? NumberBox { get; set; }</code></pre>
+public double ScaleX { get; set; }</code></pre>
   </div>
 
 
@@ -321,7 +322,7 @@ public DynamicViewNumberBoxModel? NumberBox { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewNumberBoxModel.html">DynamicViewNumberBoxModel</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
     <dd></dd>
   </dl>
 
@@ -332,20 +333,20 @@ public DynamicViewNumberBoxModel? NumberBox { get; set; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewControlPropertiesModel_ProgressBar_" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.ProgressBar*"></a>
+  <a id="MAS_DynamicViews_DynamicViewTransformModel_ScaleY_" data-uid="MAS.DynamicViews.DynamicViewTransformModel.ScaleY*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewControlPropertiesModel_ProgressBar" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.ProgressBar">
-  ProgressBar
+  <h3 id="MAS_DynamicViews_DynamicViewTransformModel_ScaleY" data-uid="MAS.DynamicViews.DynamicViewTransformModel.ScaleY">
+  ScaleY
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置进度条属性</p>
+  <div class="markdown level1 summary"><p>获取或设置垂直缩放倍数（负值即垂直翻转）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public DynamicViewProgressBarModel? ProgressBar { get; set; }</code></pre>
+public double ScaleY { get; set; }</code></pre>
   </div>
 
 
@@ -354,7 +355,7 @@ public DynamicViewProgressBarModel? ProgressBar { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewProgressBarModel.html">DynamicViewProgressBarModel</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
     <dd></dd>
   </dl>
 
@@ -365,20 +366,20 @@ public DynamicViewProgressBarModel? ProgressBar { get; set; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Shape_" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Shape*"></a>
+  <a id="MAS_DynamicViews_DynamicViewTransformModel_SkewX_" data-uid="MAS.DynamicViews.DynamicViewTransformModel.SkewX*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Shape" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Shape">
-  Shape
+  <h3 id="MAS_DynamicViews_DynamicViewTransformModel_SkewX" data-uid="MAS.DynamicViews.DynamicViewTransformModel.SkewX">
+  SkewX
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置图形属性</p>
+  <div class="markdown level1 summary"><p>获取或设置水平倾斜角度（单位：度）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public DynamicViewShapeModel? Shape { get; set; }</code></pre>
+public double SkewX { get; set; }</code></pre>
   </div>
 
 
@@ -387,7 +388,7 @@ public DynamicViewShapeModel? Shape { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewShapeModel.html">DynamicViewShapeModel</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
     <dd></dd>
   </dl>
 
@@ -398,20 +399,20 @@ public DynamicViewShapeModel? Shape { get; set; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Text_" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Text*"></a>
+  <a id="MAS_DynamicViews_DynamicViewTransformModel_SkewY_" data-uid="MAS.DynamicViews.DynamicViewTransformModel.SkewY*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Text" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Text">
-  Text
+  <h3 id="MAS_DynamicViews_DynamicViewTransformModel_SkewY" data-uid="MAS.DynamicViews.DynamicViewTransformModel.SkewY">
+  SkewY
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置文本信息</p>
+  <div class="markdown level1 summary"><p>获取或设置垂直倾斜角度（单位：度）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public DynamicViewTextModel? Text { get; set; }</code></pre>
+public double SkewY { get; set; }</code></pre>
   </div>
 
 
@@ -420,7 +421,7 @@ public DynamicViewTextModel? Text { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewTextModel.html">DynamicViewTextModel</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
     <dd></dd>
   </dl>
 
@@ -431,20 +432,20 @@ public DynamicViewTextModel? Text { get; set; }</code></pre>
 
 
 
-  <a id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Transform_" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Transform*"></a>
+  <a id="MAS_DynamicViews_DynamicViewTransformModel_TranslateX_" data-uid="MAS.DynamicViews.DynamicViewTransformModel.TranslateX*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewControlPropertiesModel_Transform" data-uid="MAS.DynamicViews.DynamicViewControlPropertiesModel.Transform">
-  Transform
+  <h3 id="MAS_DynamicViews_DynamicViewTransformModel_TranslateX" data-uid="MAS.DynamicViews.DynamicViewTransformModel.TranslateX">
+  TranslateX
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置转换信息</p>
+  <div class="markdown level1 summary"><p>获取或设置水平偏移量（单位：像素）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public DynamicViewTransformModel Transform { get; set; }</code></pre>
+public double TranslateX { get; set; }</code></pre>
   </div>
 
 
@@ -453,7 +454,40 @@ public DynamicViewTransformModel Transform { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewTransformModel.html">DynamicViewTransformModel</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewTransformModel_TranslateY_" data-uid="MAS.DynamicViews.DynamicViewTransformModel.TranslateY*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewTransformModel_TranslateY" data-uid="MAS.DynamicViews.DynamicViewTransformModel.TranslateY">
+  TranslateY
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置垂直偏移量（单位：像素）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double TranslateY { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
     <dd></dd>
   </dl>
 

@@ -142,6 +142,7 @@ CreateContentElement
 <pre><code class="lang-txt">Control
 ├── Layout
 ├── Appearance
+├── Transform
 ├── Text
 ├── Bindings
 └── Events
@@ -237,6 +238,21 @@ Panel.ZIndex
 <li>字体</li>
 </ul>
 <p>等属性，来源<code>Properties.Appearance</code></p>
+<h2 id="转换系统">转换系统</h2>
+<p>转换绑定负责<code>Properties.Transform</code>，对应 WPF 的<code>RenderTransform</code>：</p>
+<pre><code class="lang-txt">ScaleTransform     水平/垂直缩放
+SkewTransform      水平/垂直倾斜
+RotateTransform    旋转角度
+TranslateTransform 水平/垂直偏移
+</code></pre>
+<p>四项按<code>缩放 → 倾斜 → 旋转 → 偏移</code>的固定顺序组合，转换中心来自<code>OriginX</code>与<code>OriginY</code></p>
+<p>转换只作用于呈现层，不参与布局：控件的<code>Canvas.Left/Top</code>与宽高仍是布局矩形，吸附对齐、框选与模型坐标都按布局矩形计算</p>
+<p>转换挂在画布的直接子级上，整棵子树只挂一次，否则会叠加成双重变换：</p>
+<ul>
+<li>设计态挂在选择框（chrome）上，选中边框与控制点跟着控件一起变换</li>
+<li>运行态挂在内容控件上</li>
+</ul>
+<p>恒等转换直接清除依赖属性，没有使用转换的控件不额外挂转换对象</p>
 <h2 id="文本系统">文本系统</h2>
 <p>文本绑定负责：</p>
 <ul>

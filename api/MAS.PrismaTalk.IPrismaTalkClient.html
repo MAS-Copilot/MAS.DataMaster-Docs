@@ -191,7 +191,7 @@ Interface IPrismaTalkClient  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_IPrismaTalkClient_ClearConversationAsync" data-uid="MAS.PrismaTalk.IPrismaTalkClient.ClearConversationAsync">
   ClearConversationAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L147"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步通知前端清空对话内容，表示新一轮对话开始</p>
@@ -261,9 +261,9 @@ Interface IPrismaTalkClient  <a class="header-action link-secondary" title="View
 
   <a id="MAS_PrismaTalk_IPrismaTalkClient_EndAssistantStreamAsync_" data-uid="MAS.PrismaTalk.IPrismaTalkClient.EndAssistantStreamAsync*"></a>
 
-  <h3 id="MAS_PrismaTalk_IPrismaTalkClient_EndAssistantStreamAsync_System_String_" data-uid="MAS.PrismaTalk.IPrismaTalkClient.EndAssistantStreamAsync(System.String)">
-  EndAssistantStreamAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_PrismaTalk_IPrismaTalkClient_EndAssistantStreamAsync_System_String_System_Boolean_" data-uid="MAS.PrismaTalk.IPrismaTalkClient.EndAssistantStreamAsync(System.String,System.Boolean)">
+  EndAssistantStreamAsync(string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L121"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步通知前端结束流式助手消息</p>
@@ -271,13 +271,16 @@ Interface IPrismaTalkClient  <a class="header-action link-secondary" title="View
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task EndAssistantStreamAsync(string streamId)</code></pre>
+    <pre><code class="lang-csharp hljs">Task EndAssistantStreamAsync(string streamId, bool isCanceled = false)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>streamId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>流式消息的唯一标识符</p>
+</dd>
+    <dt><code>isCanceled</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否因用户取消而结束（true 显示&quot;已取消&quot;，false 为正常收尾）</p>
 </dd>
   </dl>
 
@@ -302,7 +305,7 @@ Interface IPrismaTalkClient  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_IPrismaTalkClient_HideReconnectStatusAsync_System_String_" data-uid="MAS.PrismaTalk.IPrismaTalkClient.HideReconnectStatusAsync(System.String)">
   HideReconnectStatusAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L141"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>隐藏流式消息的重连状态提示</p>
@@ -340,7 +343,7 @@ Interface IPrismaTalkClient  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_IPrismaTalkClient_ResetAssistantStreamOutputAsync_System_String_" data-uid="MAS.PrismaTalk.IPrismaTalkClient.ResetAssistantStreamOutputAsync(System.String)">
   ResetAssistantStreamOutputAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>撤回当前模型请求未完成的流式输出内容</p>
@@ -434,7 +437,7 @@ Interface IPrismaTalkClient  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_IPrismaTalkClient_SetSendingStateAsync_System_Boolean_" data-uid="MAS.PrismaTalk.IPrismaTalkClient.SetSendingStateAsync(System.Boolean)">
   SetSendingStateAsync(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L154"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步通知前端当前发送状态，用于切换发送/停止按钮与输入框可用性</p>
@@ -473,7 +476,7 @@ Interface IPrismaTalkClient  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_IPrismaTalkClient_SetThemeAsync_System_String_" data-uid="MAS.PrismaTalk.IPrismaTalkClient.SetThemeAsync(System.String)">
   SetThemeAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L172"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步设置主题</p>
@@ -512,7 +515,7 @@ Interface IPrismaTalkClient  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_IPrismaTalkClient_ShowReconnectStatusAsync_System_String_System_Int32_System_Int32_" data-uid="MAS.PrismaTalk.IPrismaTalkClient.ShowReconnectStatusAsync(System.String,System.Int32,System.Int32)">
   ShowReconnectStatusAsync(string, int, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L135"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>展示流式消息的重连状态提示</p>
@@ -556,7 +559,7 @@ Interface IPrismaTalkClient  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_IPrismaTalkClient_ShowToastMessageAsync_System_String_MAS_SharedLibrary_InstantMessage_InfoLevel_" data-uid="MAS.PrismaTalk.IPrismaTalkClient.ShowToastMessageAsync(System.String,MAS.SharedLibrary.InstantMessage.InfoLevel)">
   ShowToastMessageAsync(string, InfoLevel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Interfaces/IPrismaTalkClient.cs/#L165"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步通知前端显示 Toast 提示消息</p>

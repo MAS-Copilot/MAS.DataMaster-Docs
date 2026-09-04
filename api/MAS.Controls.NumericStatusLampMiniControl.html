@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class NumericStatusLampMiniControl | DataMaster ">
       
-      <meta name="description" content="NumericStatusLampMiniControl.xaml 的交互逻辑">
+      <meta name="description" content="数值状态灯">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Controls_NumericStatusLampMiniControl.md&amp;value=---%0Auid%3A%20MAS.Controls.NumericStatusLampMiniControl%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Controls_NumericStatusLampMiniControl" data-uid="MAS.Controls.NumericStatusLampMiniControl" class="text-break">
-Class NumericStatusLampMiniControl  
+Class NumericStatusLampMiniControl  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/StatusBadge/NumericStatusLampMiniControl.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class NumericStatusLampMiniControl
   <dl><dt>Assembly</dt><dd>MAS.Controls.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>NumericStatusLampMiniControl.xaml 的交互逻辑</p>
+  <div class="markdown summary"><p>数值状态灯</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class NumericStatusLampMiniControl : UserControl, IAnimatable, ISupportInitialize, IFrameworkInputElement, IInputElement, IQueryAmbient, IAddChild, IComponentConnector</code></pre>
+    <pre><code class="lang-csharp hljs">public class NumericStatusLampMiniControl : StatusLampElementBase, IAnimatable, ISupportInitialize, IFrameworkInputElement, IInputElement, IQueryAmbient</code></pre>
   </div>
 
 
@@ -117,9 +117,7 @@ Class NumericStatusLampMiniControl
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.visual">Visual</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.uielement">UIElement</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement">FrameworkElement</a></div>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control">Control</a></div>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol">ContentControl</a></div>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.usercontrol">UserControl</a></div>
+      <div><a class="xref" href="MAS.Controls.StatusLampElementBase.html">StatusLampElementBase</a></div>
       <div><span class="xref">NumericStatusLampMiniControl</span></div>
     </dd>
   </dl>
@@ -132,8 +130,6 @@ Class NumericStatusLampMiniControl
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.iframeworkinputelement">IFrameworkInputElement</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.iinputelement">IInputElement</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.markup.iqueryambient">IQueryAmbient</a></div>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.markup.iaddchild">IAddChild</a></div>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.markup.icomponentconnector">IComponentConnector</a></div>
     </dd>
   </dl>
 
@@ -142,181 +138,46 @@ Class NumericStatusLampMiniControl
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.usercontrol.oncreateautomationpeer">UserControl.OnCreateAutomationPeer()</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_LampInsetProperty">StatusLampElementBase.LampInsetProperty</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.contentproperty">ContentControl.ContentProperty</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_BackgroundProperty">StatusLampElementBase.BackgroundProperty</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.contentstringformatproperty">ContentControl.ContentStringFormatProperty</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_LampBrushProperty">StatusLampElementBase.LampBrushProperty</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.contenttemplateproperty">ContentControl.ContentTemplateProperty</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_GlowColorProperty">StatusLampElementBase.GlowColorProperty</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.contenttemplateselectorproperty">ContentControl.ContentTemplateSelectorProperty</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_GlowOpacityProperty">StatusLampElementBase.GlowOpacityProperty</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.hascontentproperty">ContentControl.HasContentProperty</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_GlowSpreadProperty">StatusLampElementBase.GlowSpreadProperty</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.addchild">ContentControl.AddChild(object)</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_LampInset">StatusLampElementBase.LampInset</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.addtext">ContentControl.AddText(string)</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_Background">StatusLampElementBase.Background</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.oncontentchanged">ContentControl.OnContentChanged(object, object)</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_LampBrush">StatusLampElementBase.LampBrush</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.oncontentstringformatchanged">ContentControl.OnContentStringFormatChanged(string, string)</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_GlowColor">StatusLampElementBase.GlowColor</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.oncontenttemplatechanged">ContentControl.OnContentTemplateChanged(DataTemplate, DataTemplate)</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_GlowOpacity">StatusLampElementBase.GlowOpacity</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.oncontenttemplateselectorchanged">ContentControl.OnContentTemplateSelectorChanged(DataTemplateSelector, DataTemplateSelector)</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_GlowSpread">StatusLampElementBase.GlowSpread</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.content">ContentControl.Content</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_MeasureOverride_System_Windows_Size_">StatusLampElementBase.MeasureOverride(Size)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.contentstringformat">ContentControl.ContentStringFormat</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.contenttemplate">ContentControl.ContentTemplate</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.contenttemplateselector">ContentControl.ContentTemplateSelector</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.hascontent">ContentControl.HasContent</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol.logicalchildren">ContentControl.LogicalChildren</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.backgroundproperty">Control.BackgroundProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.borderbrushproperty">Control.BorderBrushProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.borderthicknessproperty">Control.BorderThicknessProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.fontfamilyproperty">Control.FontFamilyProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.fontsizeproperty">Control.FontSizeProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.fontstretchproperty">Control.FontStretchProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.fontstyleproperty">Control.FontStyleProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.fontweightproperty">Control.FontWeightProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.foregroundproperty">Control.ForegroundProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.horizontalcontentalignmentproperty">Control.HorizontalContentAlignmentProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.istabstopproperty">Control.IsTabStopProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.mousedoubleclickevent">Control.MouseDoubleClickEvent</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.paddingproperty">Control.PaddingProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.previewmousedoubleclickevent">Control.PreviewMouseDoubleClickEvent</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.tabindexproperty">Control.TabIndexProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.templateproperty">Control.TemplateProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.verticalcontentalignmentproperty">Control.VerticalContentAlignmentProperty</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.arrangeoverride">Control.ArrangeOverride(Size)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.measureoverride">Control.MeasureOverride(Size)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.onmousedoubleclick">Control.OnMouseDoubleClick(MouseButtonEventArgs)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.onpreviewmousedoubleclick">Control.OnPreviewMouseDoubleClick(MouseButtonEventArgs)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.ontemplatechanged">Control.OnTemplateChanged(ControlTemplate, ControlTemplate)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.tostring">Control.ToString()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.background">Control.Background</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.borderbrush">Control.BorderBrush</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.borderthickness">Control.BorderThickness</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.fontfamily">Control.FontFamily</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.fontsize">Control.FontSize</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.fontstretch">Control.FontStretch</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.fontstyle">Control.FontStyle</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.fontweight">Control.FontWeight</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.foreground">Control.Foreground</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.handlesscrolling">Control.HandlesScrolling</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.horizontalcontentalignment">Control.HorizontalContentAlignment</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.istabstop">Control.IsTabStop</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.padding">Control.Padding</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.tabindex">Control.TabIndex</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.template">Control.Template</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.verticalcontentalignment">Control.VerticalContentAlignment</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.mousedoubleclick">Control.MouseDoubleClick</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.controls.control.previewmousedoubleclick">Control.PreviewMouseDoubleClick</a>
+      <a class="xref" href="MAS.Controls.StatusLampElementBase.html#MAS_Controls_StatusLampElementBase_OnRender_System_Windows_Media_DrawingContext_">StatusLampElementBase.OnRender(DrawingContext)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.actualheightproperty">FrameworkElement.ActualHeightProperty</a>
@@ -434,6 +295,9 @@ Class NumericStatusLampMiniControl
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.arrangecore">FrameworkElement.ArrangeCore(Rect)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.arrangeoverride">FrameworkElement.ArrangeOverride(Size)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.begininit">FrameworkElement.BeginInit()</a>
@@ -605,6 +469,9 @@ Class NumericStatusLampMiniControl
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.layouttransform">FrameworkElement.LayoutTransform</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.logicalchildren">FrameworkElement.LogicalChildren</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.margin">FrameworkElement.Margin</a>
@@ -1114,6 +981,9 @@ Class NumericStatusLampMiniControl
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.uielement.onchilddesiredsizechanged">UIElement.OnChildDesiredSizeChanged(UIElement)</a>
     </div>
     <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.uielement.oncreateautomationpeer">UIElement.OnCreateAutomationPeer()</a>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.uielement.ondragenter">UIElement.OnDragEnter(DragEventArgs)</a>
     </div>
     <div>
@@ -1331,9 +1201,6 @@ Class NumericStatusLampMiniControl
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.uielement.onquerycursor">UIElement.OnQueryCursor(QueryCursorEventArgs)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.uielement.onrender">UIElement.OnRender(DrawingContext)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.uielement.onstylusbuttondown">UIElement.OnStylusButtonDown(StylusButtonEventArgs)</a>
@@ -2001,6 +1868,9 @@ Class NumericStatusLampMiniControl
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
   </dd></dl>
 
   <dl class="typelist extensionMethods">
@@ -2015,269 +1885,11 @@ Class NumericStatusLampMiniControl
 
 
 
-  <h2 class="section" id="constructors">Constructors
-</h2>
-
-
-  <a id="MAS_Controls_NumericStatusLampMiniControl__ctor_" data-uid="MAS.Controls.NumericStatusLampMiniControl.#ctor*"></a>
-
-  <h3 id="MAS_Controls_NumericStatusLampMiniControl__ctor" data-uid="MAS.Controls.NumericStatusLampMiniControl.#ctor">
-  NumericStatusLampMiniControl()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/StatusBadge/NumericStatusLampMiniControl.xaml.cs/#L24"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.Controls.NumericStatusLampMiniControl.html">NumericStatusLampMiniControl</a> 新实例</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NumericStatusLampMiniControl()</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <h2 class="section" id="fields">Fields
-</h2>
-
-
-
-  <h3 id="MAS_Controls_NumericStatusLampMiniControl_GlowColorProperty" data-uid="MAS.Controls.NumericStatusLampMiniControl.GlowColorProperty">
-  GlowColorProperty
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/StatusBadge/NumericStatusLampMiniControl.xaml.cs/#L41"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>标识 <a class="xref" href="MAS.Controls.NumericStatusLampMiniControl.html#MAS_Controls_NumericStatusLampMiniControl_GlowColor">GlowColor</a> 依赖项属性</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly DependencyProperty GlowColorProperty</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.dependencyproperty">DependencyProperty</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-  <h3 id="MAS_Controls_NumericStatusLampMiniControl_GlowOpacityProperty" data-uid="MAS.Controls.NumericStatusLampMiniControl.GlowOpacityProperty">
-  GlowOpacityProperty
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/StatusBadge/NumericStatusLampMiniControl.xaml.cs/#L50"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>标识 <a class="xref" href="MAS.Controls.NumericStatusLampMiniControl.html#MAS_Controls_NumericStatusLampMiniControl_GlowOpacity">GlowOpacity</a> 依赖项属性</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly DependencyProperty GlowOpacityProperty</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.dependencyproperty">DependencyProperty</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-  <h3 id="MAS_Controls_NumericStatusLampMiniControl_LampBrushProperty" data-uid="MAS.Controls.NumericStatusLampMiniControl.LampBrushProperty">
-  LampBrushProperty
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/StatusBadge/NumericStatusLampMiniControl.xaml.cs/#L32"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>标识 <a class="xref" href="MAS.Controls.NumericStatusLampMiniControl.html#MAS_Controls_NumericStatusLampMiniControl_LampBrush">LampBrush</a> 依赖项属性</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly DependencyProperty LampBrushProperty</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.dependencyproperty">DependencyProperty</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-  <h2 class="section" id="properties">Properties
-</h2>
-
-
-  <a id="MAS_Controls_NumericStatusLampMiniControl_GlowColor_" data-uid="MAS.Controls.NumericStatusLampMiniControl.GlowColor*"></a>
-
-  <h3 id="MAS_Controls_NumericStatusLampMiniControl_GlowColor" data-uid="MAS.Controls.NumericStatusLampMiniControl.GlowColor">
-  GlowColor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/StatusBadge/NumericStatusLampMiniControl.xaml.cs/#L67"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置指示灯的辉光颜色</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Color GlowColor { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.color">Color</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_Controls_NumericStatusLampMiniControl_GlowOpacity_" data-uid="MAS.Controls.NumericStatusLampMiniControl.GlowOpacity*"></a>
-
-  <h3 id="MAS_Controls_NumericStatusLampMiniControl_GlowOpacity" data-uid="MAS.Controls.NumericStatusLampMiniControl.GlowOpacity">
-  GlowOpacity
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/StatusBadge/NumericStatusLampMiniControl.xaml.cs/#L75"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置辉光的不透明度</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double GlowOpacity { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_Controls_NumericStatusLampMiniControl_LampBrush_" data-uid="MAS.Controls.NumericStatusLampMiniControl.LampBrush*"></a>
-
-  <h3 id="MAS_Controls_NumericStatusLampMiniControl_LampBrush" data-uid="MAS.Controls.NumericStatusLampMiniControl.LampBrush">
-  LampBrush
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/StatusBadge/NumericStatusLampMiniControl.xaml.cs/#L59"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置指示灯的填充画刷</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Brush LampBrush { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.brush">Brush</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
-  <a id="MAS_Controls_NumericStatusLampMiniControl_InitializeComponent_" data-uid="MAS.Controls.NumericStatusLampMiniControl.InitializeComponent*"></a>
-
-  <h3 id="MAS_Controls_NumericStatusLampMiniControl_InitializeComponent" data-uid="MAS.Controls.NumericStatusLampMiniControl.InitializeComponent">
-  InitializeComponent()
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>InitializeComponent</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void InitializeComponent()</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Controls/StatusBadge/NumericStatusLampMiniControl.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
 
