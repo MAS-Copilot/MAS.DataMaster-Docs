@@ -204,7 +204,7 @@ public string Background { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_Expression" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Expression">
   Expression
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L151"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置&quot;值 = 文本&quot;映射表达式</p>
@@ -275,7 +275,7 @@ public string? ExpressionError { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_IsExpressionValid" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.IsExpressionValid">
   IsExpressionValid
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L176"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取表达式当前是否可解析</p>
@@ -300,6 +300,78 @@ public bool IsExpressionValid { get; }</code></pre>
 
 
 
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStateItemModel_LanguageKey_" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.LanguageKey*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_LanguageKey" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.LanguageKey">
+  LanguageKey
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置该状态下显示文本的多语言引用键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string? LanguageKey { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewStateItemModel_LanguageKey_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>形如 <code>分类/键名</code>，非空表示显示文本取自工程多语言词条，与 <a class="xref" href="MAS.DynamicViews.DynamicViewStateItemModel.html#MAS_DynamicViews_DynamicViewStateItemModel_Text">Text</a> 互斥，表达式里写作 <code>1 = #&quot;状态/运行中&quot;</code></p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewStateItemModel_Symbol_" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Symbol*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_Symbol" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.Symbol">
+  Symbol
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置该状态下显示的图标</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public SymbolRegular Symbol { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/SymbolRegular.cs">SymbolRegular</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewStateItemModel_Symbol_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认 <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/SymbolRegular.cs">Empty</a>，表示该状态不显示图标</p>
+</div>
 
 
 
@@ -334,7 +406,7 @@ public string? Text { get; set; }</code></pre>
 
 
   <h4 class="section" id="MAS_DynamicViews_DynamicViewStateItemModel_Text_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>为空时保留控件自身的文本内容不变</p>
+  <div class="markdown level1 remarks"><p>为空时保留控件自身的文本内容不变；配置了 <a class="xref" href="MAS.DynamicViews.DynamicViewStateItemModel.html#MAS_DynamicViews_DynamicViewStateItemModel_LanguageKey">LanguageKey</a> 时不参与显示</p>
 </div>
 
 
@@ -372,6 +444,43 @@ public short Value { get; set; }</code></pre>
   <h4 class="section" id="MAS_DynamicViews_DynamicViewStateItemModel_Value_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>布尔变量按 1/0 参与匹配，无需单独建模</p>
 </div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_DynamicViews_DynamicViewStateItemModel_ResolveText_" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.ResolveText*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStateItemModel_ResolveText" data-uid="MAS.DynamicViews.DynamicViewStateItemModel.ResolveText">
+  ResolveText()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>解析该状态当前语种下的显示文本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ResolveText()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>引用了词条时返回译文，否则返回字面文本；均未配置时返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
 
 
 

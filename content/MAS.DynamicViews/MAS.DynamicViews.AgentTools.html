@@ -123,7 +123,7 @@
 <tr>
 <td><code>dynamicViews.query</code></td>
 <td>Low</td>
-<td>返回工程概览和运行时变量值快照，以补充模型工具未覆盖的查询能力</td>
+<td>返回工程概览、运行时变量值快照和大词表检索结果，以补充模型工具未覆盖的查询能力</td>
 </tr>
 <tr>
 <td><code>dynamicViews.view.refresh</code></td>
@@ -145,6 +145,7 @@
 ├── DynamicViewModelKindRegistry            资源种类注册表（显式维护）
 ├── DynamicViewModelSchemaFactory           反射生成属性架构 + 架构指纹
 ├── DynamicViewModelAccessor                按路径读写实例
+├── DynamicViewModelVocabulary              大词表取样与检索
 ├── DynamicViewModelSchema                  一种资源的完整架构
 ├── DynamicViewModelPropertyDescriptor      一条属性描述
 ├── DynamicViewModelChannelDescriptor       一条绑定通道描述
@@ -165,6 +166,7 @@ MAS.DataMaster/NamedPipeIpc/DynamicViews    宿主层，接 IPC 与持久化
 ├── ...ModelPresets                         控件预设目录
 ├── ...ModelShared                          实例定位与序列化
 ├── ...ModelBrushKeys                       画刷 Key 存在性校验
+├── ...QueryVocabulary                      大词表按关键词检索
 ├── ...ModelContext                         运行状态与引用计数
 ├── ...View                                 画面刷新与页面导航（UI 线程封送）
 └── ...Guards                               工程状态、运行状态、编辑器窗口占用
@@ -311,8 +313,20 @@ MAS.DataMaster/NamedPipeIpc/DynamicViews    宿主层，接 IPC 与持久化
 <p>刷新依赖 <code>IDynamicViewNavigationService.CurrentHost</code>：内容宿主由动态视图页面创建，导航服务在每次导航时记录它，工具层据此在不引用界面的前提下刷新页面。宿主的生命周期与导航状态无关，<code>Reset</code> 不清空该引用。尚未打开工程时 <code>CurrentHost</code> 为空，此时写入照常提交，<code>isViewRefreshed</code> 返回 <code>false</code>。</p>
 <p>工具在 IPC 线程执行，刷新与导航必须封送至 UI 线程，统一走 <code>...View</code> 中的 <code>InvokeOnUi</code>。</p>
 <h2 id="架构指纹">架构指纹</h2>
-<p><code>DynamicViewModelSchemaFactory.SchemaVersion</code> 根据全部资源种类和控件类型的属性路径、值类型及可写性计算，并使用 SHA-256 哈希值的前 12 位。模型属性发生增删改时，架构指纹将同步变化。</p>
+<p><code>DynamicViewModelSchemaFactory.SchemaVersion</code> 根据全部资源种类和控件类型的属性路径、值类型、可写性和允许值计算，可整体替换的集合还递归包含其元素字段，最终使用 SHA-256 哈希值的前 12 位。模型属性发生增删改时，架构指纹将同步变化。</p>
+<p>允许值以<strong>词表指纹</strong>参与计算，而非仅计数，因此枚举取值重命名或等量替换同样会改变架构指纹。词表指纹按允许值集合实例缓存，大词表不会在每次计算时被反复拼接。</p>
 <p>每个 <code>describe</code> 和 <code>get</code> 响应均包含该指纹，调用方可据此判断缓存架构是否失效。因此，模型变更后无需额外通知调用方，后续调用可自动检测架构变化。</p>
+<h2 id="大词表按需检索">大词表：按需检索</h2>
+<p>枚举允许值随架构返回，但 <code>SymbolRegular</code> 含 9235 个取值，完整输出约 165 KB。为避免占用大量上下文，取值数量超过 <code>DynamicViewModelVocabulary.INLINE_LIMIT</code>（40）的属性视为<strong>大词表</strong>，不再内联全部取值。</p>
+<ul>
+<li><code>describe</code> 返回 <code>allowedValuesCount</code>、<code>allowedValuesSample</code>、<code>allowedValuesNote</code> 和 <code>allowedValuesLookup</code>，不返回完整 <code>allowedValues</code></li>
+<li>可整体替换的集合，其元素字段以 <code>itemProperties</code> 递归投影，按同样规则处理，因此 <code>binding.state.states[].symbol</code> 这类元素上的大词表也能在架构中拿到检索调用</li>
+<li><code>dynamicViews.query queryType='allowedValues'</code> 可按 <code>kind</code>、<code>controlType</code>、<code>path</code> 定位属性，并通过 <code>keyword</code> 检索。匹配忽略大小写、忽略尾部尺寸数字，并合并同名尺寸变体，通过 <code>sizes</code> 返回全部尺寸</li>
+<li>非法取值仅返回近似候选和检索方式；无子串命中时，按语义名前缀编辑距离推荐候选</li>
+</ul>
+<p>该机制仅按取值数量判定，新增长枚举自动适用。<code>Hints</code> 仅用于补充命名约定和常用值，未配置时按序均匀采样。</p>
+<p>完整词表仍保留在 <code>AllowedValues</code> 中用于写入校验，仅在架构序列化时省略；允许值以词表指纹参与架构指纹，枚举变化会自动使缓存失效。</p>
+<p><code>Hints</code> 的常用取值以字符串登记，取样时会过滤掉词表中已不存在的条目，因此登记条目是否失效必须直接与词表比对——<code>RegisteredCommonValuesExistInVocabulary</code> 用 <code>GetCommonValues</code> 校验登记表本身，只校验取样结果会让失效条目被静默过滤掉。</p>
 <h2 id="两类不走属性路径的写入">两类不走属性路径的写入</h2>
 <p>以下两项无法表达为固定的扁平属性，各自由一种专门机制承载。它们是架构引擎的扩展点，新增同类资源时应沿用现有机制，不要另加工具。</p>
 <h3 id="合成标识控件事件">合成标识：控件事件</h3>
@@ -321,7 +335,7 @@ MAS.DataMaster/NamedPipeIpc/DynamicViews    宿主层，接 IPC 与持久化
 <p>事件模型在控件上可空，首次配置时才创建。因此 <code>TryGetEntries</code> 区分读写意图：写入路径按需补齐事件模型，读取路径返回默认值而不写回工程。</p>
 <h3 id="动态键映射多语言词条">动态键映射：多语言词条</h3>
 <p>词条正文的键是已配置的语言，随工程变化，无法由静态反射展开成固定路径。因此引入 <code>DynamicViewModelValueKind.Map</code>：<code>Dictionary&lt;string, string?&gt;</code> 属性整体作为一条路径公开，写入时<strong>按键合并</strong>——请求中出现的语言覆盖原值，未出现的语言保留原文，合并在原字典实例上进行以保留模型指定的键比较器。</p>
-<p>分类与词条各自登记为资源种类（<code>LanguageCatalog</code>、<code>LanguageEntry</code>），提交去向为 <code>Languages</code> 区域，由 <code>DynamicViewLanguageStore</code> 整目录重写 resx。分类名同时是 resx 目录名、词条键名同时是引用键的后半段，两者的格式与重名规则由 <code>DynamicViewLanguageValidator</code> 校验；被控件文本引用的分类与词条禁止删除。</p>
+<p>分类与词条各自登记为资源种类（<code>LanguageCatalog</code>、<code>LanguageEntry</code>），提交去向为 <code>Languages</code> 区域，由 <code>DynamicViewLanguageStore</code> 整目录重写 resx。分类名同时是 resx 目录名、词条键名同时是引用键的后半段，两者的格式与重名规则由 <code>DynamicViewLanguageValidator</code> 校验；被引用的分类与词条禁止删除。引用来自两处：控件文本的 <code>text.languageKey</code>，以及多状态映射中每个状态的 <code>binding.state.states[].languageKey</code>。新增可引用词条的位置时，须同步扩充 <code>ModelDelete.EnumerateControlLanguageKeys</code>，否则删除词条会留下悬空引用。</p>
 <h2 id="排查清单">排查清单</h2>
 <p>写入被拒绝时，依次检查：</p>
 <ul>
@@ -329,6 +343,7 @@ MAS.DataMaster/NamedPipeIpc/DynamicViews    宿主层，接 IPC 与持久化
 <li>与变更区域对应的编辑器窗口是否已关闭（结构体对应数据中心、控件对应设计器、画刷对应画刷中心、语言对应语言中心）</li>
 <li>路径是否由 <code>describe</code> 返回，而非自行构造</li>
 <li>该路径是否被标为不可写，<code>readOnlyReason</code> 会说明原因与替代入口</li>
+<li>枚举取值是否来自架构的 <code>allowedValues</code>，大词表则须由 <code>allowedValuesLookup</code> 检索后再写入</li>
 <li>子资源是否给了 <code>parentId</code></li>
 </ul>
 <p>当架构与实际模型不一致时，应首先运行 <code>MAS.DynamicViewsUnitTest</code> 中的 <code>DynamicViewModelSchemaFactoryTests</code>。该测试集覆盖分节解析、类型映射、标识只读、成对属性、集合无损投影和能力覆盖，可用于识别大多数模型漂移问题。</p>

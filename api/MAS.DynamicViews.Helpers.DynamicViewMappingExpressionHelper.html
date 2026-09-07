@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_DynamicViews_Helpers_DynamicViewMappingExpressionHelper" data-uid="MAS.DynamicViews.Helpers.DynamicViewMappingExpressionHelper" class="text-break">
-Class DynamicViewMappingExpressionHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewMappingExpressionHelper.cs/#L22"><i class="bi bi-code-slash"></i></a>
+Class DynamicViewMappingExpressionHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewMappingExpressionHelper.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -149,7 +149,9 @@ Class DynamicViewMappingExpressionHelper  <a class="header-action link-secondary
 
   <h2 id="MAS_DynamicViews_Helpers_DynamicViewMappingExpressionHelper_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>语法：<code>&lt;数值|true|false&gt; = &lt;文本&gt;</code>，例如 <code>1 = &quot;运行中&quot;</code>、<code>true = 已连接</code>。
-文本两侧的双引号可省略，省略时按去除首尾空白处理；<code>true</code>/<code>false</code> 是 <code>1</code>/<code>0</code> 的语法糖</p>
+文本两侧的双引号可省略，省略时按去除首尾空白处理；<code>true</code>/<code>false</code> 是 <code>1</code>/<code>0</code> 的语法糖。
+文本以 <code>#</code> 开头表示引用多语言词条，例如 <code>1 = #&quot;状态/运行中&quot;</code>；
+以 <code>#</code> 开头的普通文本加引号即可消歧（<code>1 = &quot;#1 号工位&quot;</code>），不需要额外转义符</p>
 </div>
 
 
@@ -159,9 +161,9 @@ Class DynamicViewMappingExpressionHelper  <a class="header-action link-secondary
 
   <a id="MAS_DynamicViews_Helpers_DynamicViewMappingExpressionHelper_Format_" data-uid="MAS.DynamicViews.Helpers.DynamicViewMappingExpressionHelper.Format*"></a>
 
-  <h3 id="MAS_DynamicViews_Helpers_DynamicViewMappingExpressionHelper_Format_System_Int16_System_String_" data-uid="MAS.DynamicViews.Helpers.DynamicViewMappingExpressionHelper.Format(System.Int16,System.String)">
-  Format(short, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewMappingExpressionHelper.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_DynamicViews_Helpers_DynamicViewMappingExpressionHelper_Format_System_Int16_System_String_System_String_" data-uid="MAS.DynamicViews.Helpers.DynamicViewMappingExpressionHelper.Format(System.Int16,System.String,System.String)">
+  Format(short, string?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewMappingExpressionHelper.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>把匹配数值与文本格式化为规范表达式</p>
@@ -169,7 +171,7 @@ Class DynamicViewMappingExpressionHelper  <a class="header-action link-secondary
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string Format(short value, string? text)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string Format(short value, string? text, string? languageKey = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -178,14 +180,17 @@ Class DynamicViewMappingExpressionHelper  <a class="header-action link-secondary
     <dd><p>匹配数值</p>
 </dd>
     <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>文本</p>
+    <dd><p>字面文本</p>
+</dd>
+    <dt><code>languageKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>多语言引用键；非空时优先于 <code class="paramref">text</code></p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>形如 <code>1 = &quot;运行中&quot;</code> 的表达式</p>
+    <dd><p>形如 <code>1 = &quot;运行中&quot;</code> 或 <code>1 = #&quot;状态/运行中&quot;</code> 的表达式</p>
 </dd>
   </dl>
 
@@ -201,9 +206,9 @@ Class DynamicViewMappingExpressionHelper  <a class="header-action link-secondary
 
   <a id="MAS_DynamicViews_Helpers_DynamicViewMappingExpressionHelper_TryParse_" data-uid="MAS.DynamicViews.Helpers.DynamicViewMappingExpressionHelper.TryParse*"></a>
 
-  <h3 id="MAS_DynamicViews_Helpers_DynamicViewMappingExpressionHelper_TryParse_System_String_System_Int16__System_String__System_String__" data-uid="MAS.DynamicViews.Helpers.DynamicViewMappingExpressionHelper.TryParse(System.String,System.Int16@,System.String@,System.String@)">
-  TryParse(string?, out short, out string?, out string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewMappingExpressionHelper.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_DynamicViews_Helpers_DynamicViewMappingExpressionHelper_TryParse_System_String_System_Int16__System_String__System_Boolean__System_String__" data-uid="MAS.DynamicViews.Helpers.DynamicViewMappingExpressionHelper.TryParse(System.String,System.Int16@,System.String@,System.Boolean@,System.String@)">
+  TryParse(string?, out short, out string?, out bool, out string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewMappingExpressionHelper.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>解析映射表达式</p>
@@ -211,7 +216,7 @@ Class DynamicViewMappingExpressionHelper  <a class="header-action link-secondary
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryParse(string? expression, out short value, out string? text, out string? error)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool TryParse(string? expression, out short value, out string? text, out bool isLanguageKey, out string? error)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -223,7 +228,10 @@ Class DynamicViewMappingExpressionHelper  <a class="header-action link-secondary
     <dd><p>解析出的匹配数值</p>
 </dd>
     <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>解析出的文本，空文本返回 null</p>
+    <dd><p>解析出的文本或多语言引用键，空文本返回 null</p>
+</dd>
+    <dt><code>isLanguageKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code class="paramref">text</code> 是否为多语言引用键，false 表示字面文本</p>
 </dd>
     <dt><code>error</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>解析失败时的错误说明</p>
@@ -251,7 +259,7 @@ Class DynamicViewMappingExpressionHelper  <a class="header-action link-secondary
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewMappingExpressionHelper.cs/#L22" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Helpers/DynamicViewMappingExpressionHelper.cs/#L24" class="edit-link">Edit this page</a>
         </div>
 
 

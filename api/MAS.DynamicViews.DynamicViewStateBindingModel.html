@@ -273,7 +273,7 @@ public string? FallbackText { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewStateBindingModel_States" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.States">
   States
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置数值到状态的映射集合</p>
@@ -310,7 +310,7 @@ public ObservableCollection&lt;DynamicViewStateItemModel&gt; States { get; set; 
 
   <h3 id="MAS_DynamicViews_DynamicViewStateBindingModel_FindState_System_Nullable_System_Int16__" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.FindState(System.Nullable{System.Int16})">
   FindState(short?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>查找与指定数值匹配的状态</p>
@@ -352,7 +352,7 @@ public ObservableCollection&lt;DynamicViewStateItemModel&gt; States { get; set; 
 
   <h3 id="MAS_DynamicViews_DynamicViewStateBindingModel_ResolveBackground_System_Nullable_System_Int16__" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.ResolveBackground(System.Nullable{System.Int16})">
   ResolveBackground(short?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L67"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>解析指定数值对应的背景画刷资源 Key</p>
@@ -387,11 +387,50 @@ public ObservableCollection&lt;DynamicViewStateItemModel&gt; States { get; set; 
 
 
 
+  <a id="MAS_DynamicViews_DynamicViewStateBindingModel_ResolveSymbol_" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.ResolveSymbol*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStateBindingModel_ResolveSymbol_System_Nullable_System_Int16__" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.ResolveSymbol(System.Nullable{System.Int16})">
+  ResolveSymbol(short?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>解析指定数值对应的图标</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SymbolRegular ResolveSymbol(short? value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a>?</dt>
+    <dd><p>待匹配的数值，为空表示变量值无法转换为数值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/SymbolRegular.cs">SymbolRegular</a></dt>
+    <dd><p>命中状态的图标；未命中或未配置图标时返回 <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/SymbolRegular.cs">Empty</a> 表示不显示图标</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_DynamicViews_DynamicViewStateBindingModel_ResolveText_" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.ResolveText*"></a>
 
   <h3 id="MAS_DynamicViews_DynamicViewStateBindingModel_ResolveText_System_Nullable_System_Int16__" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.ResolveText(System.Nullable{System.Int16})">
   ResolveText(short?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L77"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>解析指定数值对应的显示文本</p>
@@ -422,6 +461,9 @@ public ObservableCollection&lt;DynamicViewStateItemModel&gt; States { get; set; 
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewStateBindingModel_ResolveText_System_Nullable_System_Int16___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>命中状态引用了多语言词条时，返回当前语种下的译文</p>
+</div>
 
 
 

@@ -207,25 +207,25 @@ Interface IDbInitializer  <a class="header-action link-secondary" title="View so
 
 
 
-  <a id="MAS_SharedLibrary_Database_IDbInitializer_CreateIndexesIfNotExistsAsync_" data-uid="MAS.SharedLibrary.Database.IDbInitializer.CreateIndexesIfNotExistsAsync*"></a>
+  <a id="MAS_SharedLibrary_Database_IDbInitializer_InitializeSchemaAsync_" data-uid="MAS.SharedLibrary.Database.IDbInitializer.InitializeSchemaAsync*"></a>
 
-  <h3 id="MAS_SharedLibrary_Database_IDbInitializer_CreateIndexesIfNotExistsAsync_System_String_System_IProgress_MAS_SharedLibrary_Models_StepInfo__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbInitializer.CreateIndexesIfNotExistsAsync(System.String,System.IProgress{MAS.SharedLibrary.Models.StepInfo},System.Threading.CancellationToken)">
-  CreateIndexesIfNotExistsAsync(string, IProgress&lt;StepInfo&gt;?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbInitializer.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_SharedLibrary_Database_IDbInitializer_InitializeSchemaAsync_System_Collections_Generic_IEnumerable_System_Type__System_IProgress_MAS_SharedLibrary_Models_StepInfo__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbInitializer.InitializeSchemaAsync(System.Collections.Generic.IEnumerable{System.Type},System.IProgress{MAS.SharedLibrary.Models.StepInfo},System.Threading.CancellationToken)">
+  InitializeSchemaAsync(IEnumerable&lt;Type&gt;?, IProgress&lt;StepInfo&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbInitializer.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步收集指定命名空间下的所有实体并创建对应索引</p>
+  <div class="markdown level1 summary"><p>异步在同一个数据库迁移锁内创建缺失表、执行或盖章迁移，并创建缺失索引</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task CreateIndexesIfNotExistsAsync(string entityNamespaceName = &quot;MAS.SharedLibrary.Database.DataAccess&quot;, IProgress&lt;StepInfo&gt;? progress = null, CancellationToken cts = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task InitializeSchemaAsync(IEnumerable&lt;Type&gt;? entityTypes = null, IProgress&lt;StepInfo&gt;? progress = null, CancellationToken cts = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>entityNamespaceName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>实体命名空间</p>
+    <dt><code>entityTypes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
+    <dd><p>要维护的实体类型；为空时使用内置共享实体</p>
 </dd>
     <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="MAS.SharedLibrary.Models.StepInfo.html">StepInfo</a>&gt;</dt>
     <dd><p>用于报告每一步状态的回调</p>
@@ -238,8 +238,7 @@ Interface IDbInitializer  <a class="header-action link-secondary" title="View so
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>表示异步操作任务</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -248,70 +247,7 @@ Interface IDbInitializer  <a class="header-action link-secondary" title="View so
 
 
 
-  <h4 class="section" id="MAS_SharedLibrary_Database_IDbInitializer_CreateIndexesIfNotExistsAsync_System_String_System_IProgress_MAS_SharedLibrary_Models_StepInfo__System_Threading_CancellationToken__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>如果索引不存在则创建，存在则跳过</p>
-</div>
 
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
-    <dd><p>未加载包含命名空间的程序集时抛出</p>
-</dd>
-  </dl>
-
-
-
-  <a id="MAS_SharedLibrary_Database_IDbInitializer_CreateTablesIfNotExistsAsync_" data-uid="MAS.SharedLibrary.Database.IDbInitializer.CreateTablesIfNotExistsAsync*"></a>
-
-  <h3 id="MAS_SharedLibrary_Database_IDbInitializer_CreateTablesIfNotExistsAsync_System_String_System_IProgress_MAS_SharedLibrary_Models_StepInfo__System_Threading_CancellationToken_" data-uid="MAS.SharedLibrary.Database.IDbInitializer.CreateTablesIfNotExistsAsync(System.String,System.IProgress{MAS.SharedLibrary.Models.StepInfo},System.Threading.CancellationToken)">
-  CreateTablesIfNotExistsAsync(string, IProgress&lt;StepInfo&gt;?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/Interfaces/IDbInitializer.cs/#L43"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步收集指定命名空间下的所有实体并创建对应表</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task CreateTablesIfNotExistsAsync(string entityNamespaceName = &quot;MAS.SharedLibrary.Database.DataAccess&quot;, IProgress&lt;StepInfo&gt;? progress = null, CancellationToken cts = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>entityNamespaceName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>实体命名空间</p>
-</dd>
-    <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="MAS.SharedLibrary.Models.StepInfo.html">StepInfo</a>&gt;</dt>
-    <dd><p>用于报告每一步状态的回调</p>
-</dd>
-    <dt><code>cts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd><p>取消令牌</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>表示异步操作任务</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="MAS_SharedLibrary_Database_IDbInitializer_CreateTablesIfNotExistsAsync_System_String_System_IProgress_MAS_SharedLibrary_Models_StepInfo__System_Threading_CancellationToken__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>如果表不存在则创建，存在则跳过</p>
-</div>
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
-    <dd><p>未加载包含命名空间的程序集时抛出</p>
-</dd>
-  </dl>
 
 
 

@@ -189,7 +189,8 @@ Class DynamicViewVisibilityBindingModel
 
 
   <h2 id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>属性支持 MVVM 绑定</p>
+  <div class="markdown level0 remarks"><p>按数值条件控制可见性：变量值等于显示条件时显示、等于隐藏条件时隐藏，
+两个条件都不满足时按回退状态处理；布尔变量按 1/0 参与匹配。属性支持 MVVM 绑定</p>
 </div>
 
 
@@ -197,20 +198,20 @@ Class DynamicViewVisibilityBindingModel
 </h2>
 
 
-  <a id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_TrueVisibility_" data-uid="MAS.DynamicViews.DynamicViewVisibilityBindingModel.TrueVisibility*"></a>
+  <a id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_Fallback_" data-uid="MAS.DynamicViews.DynamicViewVisibilityBindingModel.Fallback*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_TrueVisibility" data-uid="MAS.DynamicViews.DynamicViewVisibilityBindingModel.TrueVisibility">
-  TrueVisibility
+  <h3 id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_Fallback" data-uid="MAS.DynamicViews.DynamicViewVisibilityBindingModel.Fallback">
+  Fallback
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置为 True 时的可见性</p>
+  <div class="markdown level1 summary"><p>获取或设置两个条件都不满足时的回退状态</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public Visibility TrueVisibility { get; set; }</code></pre>
+public DynamicViewVisibilityFallback Fallback { get; set; }</code></pre>
   </div>
 
 
@@ -219,16 +220,132 @@ public Visibility TrueVisibility { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.visibility">Visibility</a></dt>
+    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewVisibilityFallback.html">DynamicViewVisibilityFallback</a></dt>
     <dd></dd>
   </dl>
 
 
 
 
-  <h4 class="section" id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_TrueVisibility_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>False 时自动取相反结果；默认值：Visible</p>
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_Fallback_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认值：保持当前状态</p>
 </div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_HiddenValue_" data-uid="MAS.DynamicViews.DynamicViewVisibilityBindingModel.HiddenValue*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_HiddenValue" data-uid="MAS.DynamicViews.DynamicViewVisibilityBindingModel.HiddenValue">
+  HiddenValue
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置隐藏控件的变量值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double HiddenValue { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_HiddenValue_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认值：0</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_VisibleValue_" data-uid="MAS.DynamicViews.DynamicViewVisibilityBindingModel.VisibleValue*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_VisibleValue" data-uid="MAS.DynamicViews.DynamicViewVisibilityBindingModel.VisibleValue">
+  VisibleValue
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置显示控件的变量值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double VisibleValue { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_VisibleValue_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认值：1</p>
+</div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_ResolveIsVisible_" data-uid="MAS.DynamicViews.DynamicViewVisibilityBindingModel.ResolveIsVisible*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewVisibilityBindingModel_ResolveIsVisible_System_Object_" data-uid="MAS.DynamicViews.DynamicViewVisibilityBindingModel.ResolveIsVisible(System.Object)">
+  ResolveIsVisible(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVisibilityBindingModel.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>解析变量值对应的可见状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool? ResolveIsVisible(object? value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>变量值，布尔值按 1/0 参与匹配</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</dt>
+    <dd><p>应显示返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；应隐藏返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>；
+两个条件都不满足且回退状态为保持当前时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
 
 
 

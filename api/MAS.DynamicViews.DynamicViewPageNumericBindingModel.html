@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class DynamicViewIsEnabledBindingModel | DataMaster </title>
+      <title>Class DynamicViewPageNumericBindingModel | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class DynamicViewIsEnabledBindingModel | DataMaster ">
+      <meta name="title" content="Class DynamicViewPageNumericBindingModel | DataMaster ">
       
-      <meta name="description" content="启用状态绑定模型">
+      <meta name="description" content="动态界面页面数值绑定模型">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.DynamicViews.DynamicViewIsEnabledBindingModel">
+        <article data-uid="MAS.DynamicViews.DynamicViewPageNumericBindingModel">
 
 
 
-  <h1 id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel" data-uid="MAS.DynamicViews.DynamicViewIsEnabledBindingModel" class="text-break">
-Class DynamicViewIsEnabledBindingModel  
+  <h1 id="MAS_DynamicViews_DynamicViewPageNumericBindingModel" data-uid="MAS.DynamicViews.DynamicViewPageNumericBindingModel" class="text-break">
+Class DynamicViewPageNumericBindingModel  
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class DynamicViewIsEnabledBindingModel
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>启用状态绑定模型</p>
+  <div class="markdown summary"><p>动态界面页面数值绑定模型</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class DynamicViewIsEnabledBindingModel : DynamicViewFieldBindingModel, INotifyPropertyChanged, INotifyPropertyChanging, IDynamicViewFieldBindingModel</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class DynamicViewPageNumericBindingModel : DynamicViewFieldBindingModel, INotifyPropertyChanged, INotifyPropertyChanging, IDynamicViewFieldBindingModel</code></pre>
   </div>
 
 
@@ -114,7 +114,7 @@ Class DynamicViewIsEnabledBindingModel
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
       <div><a class="xref" href="MAS.DynamicViews.DynamicViewFieldBindingModel.html">DynamicViewFieldBindingModel</a></div>
-      <div><span class="xref">DynamicViewIsEnabledBindingModel</span></div>
+      <div><span class="xref">DynamicViewPageNumericBindingModel</span></div>
     </dd>
   </dl>
 
@@ -188,9 +188,8 @@ Class DynamicViewIsEnabledBindingModel
 
 
 
-  <h2 id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>按数值条件控制启用状态：变量值等于启用条件时启用、等于禁用条件时禁用，
-两个条件都不满足时按回退状态处理；布尔变量按 1/0 参与匹配。属性支持 MVVM 绑定</p>
+  <h2 id="MAS_DynamicViews_DynamicViewPageNumericBindingModel_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>用于页面的数值控制：变量跳变到切换条件时切换到该页面。只在跳变这一刻触发一次导航</p>
 </div>
 
 
@@ -198,20 +197,20 @@ Class DynamicViewIsEnabledBindingModel
 </h2>
 
 
-  <a id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_DisabledValue_" data-uid="MAS.DynamicViews.DynamicViewIsEnabledBindingModel.DisabledValue*"></a>
+  <a id="MAS_DynamicViews_DynamicViewPageNumericBindingModel_SwitchValue_" data-uid="MAS.DynamicViews.DynamicViewPageNumericBindingModel.SwitchValue*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_DisabledValue" data-uid="MAS.DynamicViews.DynamicViewIsEnabledBindingModel.DisabledValue">
-  DisabledValue
+  <h3 id="MAS_DynamicViews_DynamicViewPageNumericBindingModel_SwitchValue" data-uid="MAS.DynamicViews.DynamicViewPageNumericBindingModel.SwitchValue">
+  SwitchValue
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置禁用控件的变量值</p>
+  <div class="markdown level1 summary"><p>获取或设置切换到该页面的变量值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public double DisabledValue { get; set; }</code></pre>
+public double SwitchValue { get; set; }</code></pre>
   </div>
 
 
@@ -227,125 +226,9 @@ public double DisabledValue { get; set; }</code></pre>
 
 
 
-  <h4 class="section" id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_DisabledValue_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>默认值：0</p>
-</div>
-
-
-
-
-  <a id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_EnabledValue_" data-uid="MAS.DynamicViews.DynamicViewIsEnabledBindingModel.EnabledValue*"></a>
-
-  <h3 id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_EnabledValue" data-uid="MAS.DynamicViews.DynamicViewIsEnabledBindingModel.EnabledValue">
-  EnabledValue
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置启用控件的变量值</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public double EnabledValue { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-  <h4 class="section" id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_EnabledValue_remarks">Remarks</h4>
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewPageNumericBindingModel_SwitchValue_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>默认值：1</p>
 </div>
-
-
-
-
-  <a id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_Fallback_" data-uid="MAS.DynamicViews.DynamicViewIsEnabledBindingModel.Fallback*"></a>
-
-  <h3 id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_Fallback" data-uid="MAS.DynamicViews.DynamicViewIsEnabledBindingModel.Fallback">
-  Fallback
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置两个条件都不满足时的回退状态</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public DynamicViewIsEnabledFallback Fallback { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewIsEnabledFallback.html">DynamicViewIsEnabledFallback</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-  <h4 class="section" id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_Fallback_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>默认值：保持当前状态</p>
-</div>
-
-
-
-
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
-  <a id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_ResolveIsEnabled_" data-uid="MAS.DynamicViews.DynamicViewIsEnabledBindingModel.ResolveIsEnabled*"></a>
-
-  <h3 id="MAS_DynamicViews_DynamicViewIsEnabledBindingModel_ResolveIsEnabled_System_Object_" data-uid="MAS.DynamicViews.DynamicViewIsEnabledBindingModel.ResolveIsEnabled(System.Object)">
-  ResolveIsEnabled(object?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewIsEnabledBindingModel.cs/#L51"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>解析变量值对应的启用状态</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool? ResolveIsEnabled(object? value)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
-    <dd><p>变量值，布尔值按 1/0 参与匹配</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</dt>
-    <dd><p>应启用返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；应禁用返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>；
-两个条件都不满足且回退状态为保持当前时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
 
 
 

@@ -436,8 +436,8 @@ Temperature → TextBlock
 <ul>
 <li>文本绑定可作用于 TextBlock、TextBox 和 ContentControl</li>
 <li>文本框在失去焦点时写回变量；按 Enter 会移出焦点并触发写回</li>
-<li>可见性绑定使用布尔值，True 时采用配置值，False 时自动取相反可见性</li>
-<li>启用状态绑定会同时受控件外观启用状态和变量绑定结果影响</li>
+<li>可见性绑定按数值条件生效：变量值等于显示条件时显示、等于隐藏条件时折叠，都不满足时按回退状态处理（保持当前、显示或隐藏）；布尔值按 1/0 参与匹配</li>
+<li>启用状态绑定同样按启用、禁用两个数值条件加回退状态生效，并会同时受控件外观启用状态影响</li>
 <li>颜色绑定使用布尔值切换前景色和背景色</li>
 <li>选中状态绑定只作用于 ToggleButton、ToggleSwitch、RadioButton、CheckBox 等具备选中状态的控件</li>
 <li>状态绑定作用于布尔状态灯</li>

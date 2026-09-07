@@ -153,11 +153,56 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 </h2>
 
 
+  <a id="MAS_Database_DataAccess_GenerateSqlHelper_GenerateAddColumnSql_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GenerateAddColumnSql*"></a>
+
+  <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GenerateAddColumnSql_System_String_MAS_SharedLibrary_Database_ColumnAttribute_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GenerateAddColumnSql(System.String,MAS.SharedLibrary.Database.ColumnAttribute)">
+  GenerateAddColumnSql(string, ColumnAttribute)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L340"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>为已存在的表生成 ALTER TABLE ADD COLUMN SQL 语句</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GenerateAddColumnSql(string tableName, ColumnAttribute column)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tableName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>表名</p>
+</dd>
+    <dt><code>column</code> <a class="xref" href="MAS.SharedLibrary.Database.ColumnAttribute.html">ColumnAttribute</a></dt>
+    <dd><p>列特性</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>生成的 ALTER TABLE ADD COLUMN SQL 语句</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Database_DataAccess_GenerateSqlHelper_GenerateAddColumnSql_System_String_MAS_SharedLibrary_Database_ColumnAttribute__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>列定义与建表语句复用同一份构建逻辑，避免补出来的列和新库建出来的列不一致</p>
+</div>
+
+
+
+
   <a id="MAS_Database_DataAccess_GenerateSqlHelper_GenerateCreateIndexSql_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GenerateCreateIndexSql*"></a>
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GenerateCreateIndexSql_System_Type_MAS_SharedLibrary_Database_IndexAttribute_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GenerateCreateIndexSql(System.Type,MAS.SharedLibrary.Database.IndexAttribute)">
   GenerateCreateIndexSql(Type, IndexAttribute)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L305"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L301"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>为指定的实体类型生成 CREATE INDEX SQL 语句</p>
@@ -205,7 +250,7 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GenerateCreateIndexSql__1_MAS_SharedLibrary_Database_IndexAttribute_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GenerateCreateIndexSql``1(MAS.SharedLibrary.Database.IndexAttribute)">
   GenerateCreateIndexSql&lt;T&gt;(IndexAttribute)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L323"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L319"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>为指定的泛型实体类型生成 CREATE INDEX SQL 语句</p>
@@ -295,7 +340,7 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GenerateCreateTableSqlForEntities_System_Type___" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GenerateCreateTableSqlForEntities(System.Type[])">
   GenerateCreateTableSqlForEntities(params Type[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>为多个实体类型生成 CREATE TABLE IF NOT EXISTS SQL 语句</p>
@@ -373,7 +418,7 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GetDeleteStatement__1_System_String_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetDeleteStatement``1(System.String)">
   GetDeleteStatement&lt;T&gt;(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L235"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L231"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>为指定的实体生成动态的 SQL DELETE 语句</p>
@@ -420,7 +465,7 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GetDeleteStatement__1_System_String___" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetDeleteStatement``1(System.String[])">
   GetDeleteStatement&lt;T&gt;(string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L254"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L250"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>为指定的实体生成动态的 SQL DELETE 语句，基于多个条件字段（组合唯一键）</p>
@@ -467,7 +512,7 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GetInsertOnDuplicateKeyUpdateStatement__1" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetInsertOnDuplicateKeyUpdateStatement``1">
   GetInsertOnDuplicateKeyUpdateStatement&lt;TEntity&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L143"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>生成 MySQL 的 INSERT ... ON DUPLICATE KEY UPDATE 语句（支持所有唯一约束）</p>
@@ -506,7 +551,7 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GetInsertOnDuplicateKeyUpdateStatement__1_System_String_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetInsertOnDuplicateKeyUpdateStatement``1(System.String)">
   GetInsertOnDuplicateKeyUpdateStatement&lt;TEntity&gt;(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L122"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>生成 MySQL 的 INSERT ... ON DUPLICATE KEY UPDATE 语句（基于单列唯一键）</p>
@@ -551,7 +596,7 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GetInsertStatement__1___0_System_String_System_Boolean_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetInsertStatement``1(``0,System.String,System.Boolean)">
   GetInsertStatement&lt;T&gt;(T, string, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>为指定的实体生成动态的SQL INSERT语句</p>
@@ -605,7 +650,7 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GetSelectAllStatement__1" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetSelectAllStatement``1">
   GetSelectAllStatement&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L291"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L287"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>为指定的实体生成动态的 SQL SELECT 语句，检索所有记录</p>
@@ -646,7 +691,7 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GetSelectByUniqueFieldStatement__1_System_String_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetSelectByUniqueFieldStatement``1(System.String)">
   GetSelectByUniqueFieldStatement&lt;T&gt;(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L269"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L265"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>为指定的实体生成动态 SQL SELECT 语句，通过某个具有唯一性的字段筛选单条记录</p>
@@ -692,11 +737,53 @@ Class GenerateSqlHelper  <a class="header-action link-secondary" title="View sou
 
 
 
+  <a id="MAS_Database_DataAccess_GenerateSqlHelper_GetTableColumns_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetTableColumns*"></a>
+
+  <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GetTableColumns_System_Type_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetTableColumns(System.Type)">
+  GetTableColumns(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L329"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取实体类型参与建表的列特性集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;ColumnAttribute&gt; GetTableColumns(Type type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>实体类型</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.SharedLibrary.Database.ColumnAttribute.html">ColumnAttribute</a>&gt;</dt>
+    <dd><p>按属性声明顺序排列的列特性集合</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Database_DataAccess_GenerateSqlHelper_GetTableColumns_System_Type__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>架构比对的期望结构以此为准，必须与 <a class="xref" href="MAS.Database.DataAccess.GenerateSqlHelper.html#MAS_Database_DataAccess_GenerateSqlHelper_GenerateCreateTableSql_System_Type_">GenerateCreateTableSql(Type)</a> 使用同一份列集合</p>
+</div>
+
+
+
+
   <a id="MAS_Database_DataAccess_GenerateSqlHelper_GetUpdateStatement_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetUpdateStatement*"></a>
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GetUpdateStatement__1___0_System_String_" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetUpdateStatement``1(``0,System.String)">
   GetUpdateStatement&lt;T&gt;(T, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L189"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>为指定的实体生成动态的 SQL UPDATE 语句</p>
@@ -747,7 +834,7 @@ WHERE ConditionField = @ConditionField;</code></pre>
 
   <h3 id="MAS_Database_DataAccess_GenerateSqlHelper_GetUpdateStatement__1___0_System_String___" data-uid="MAS.Database.DataAccess.GenerateSqlHelper.GetUpdateStatement``1(``0,System.String[])">
   GetUpdateStatement&lt;T&gt;(T, string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L215"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/DataAccess/Helpers/GenerateSqlHelper.cs/#L211"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>为指定的实体生成动态的 SQL UPDATE 语句，基于多个条件字段（组合唯一键）</p>
