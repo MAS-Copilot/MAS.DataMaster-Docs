@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class TokenUsage | DataMaster ">
       
-      <meta name="description" content="一次模型请求的真实 token 用量（由 API 返回，非估算）。 两条通道归一化到同一形态：Chat Completions 的 prompt/completion/total_tokens、 Responses 的 input/output/total_tokens 及缓存/推理细分">
+      <meta name="description" content="一次模型请求的真实 token 用量（由 API 返回，非估算）。 取自 Responses 的 input/output/total_tokens 及缓存/推理细分">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_PrismaTalk_Models_TokenUsage" data-uid="MAS.PrismaTalk.Models.TokenUsage" class="text-break">
-Class TokenUsage  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L22"><i class="bi bi-code-slash"></i></a>
+Class TokenUsage  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -98,8 +98,7 @@ Class TokenUsage  <a class="header-action link-secondary" title="View source" hr
   </div>
 
   <div class="markdown summary"><p>一次模型请求的真实 token 用量（由 API 返回，非估算）。
-两条通道归一化到同一形态：Chat Completions 的 prompt/completion/total_tokens、
-Responses 的 input/output/total_tokens 及缓存/推理细分</p>
+取自 Responses 的 input/output/total_tokens 及缓存/推理细分</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -162,12 +161,11 @@ Responses 的 input/output/total_tokens 及缓存/推理细分</p>
 
   <h3 id="MAS_PrismaTalk_Models_TokenUsage__ctor_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__" data-uid="MAS.PrismaTalk.Models.TokenUsage.#ctor(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
   TokenUsage(int?, int?, int?, int?, int?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>一次模型请求的真实 token 用量（由 API 返回，非估算）。
-两条通道归一化到同一形态：Chat Completions 的 prompt/completion/total_tokens、
-Responses 的 input/output/total_tokens 及缓存/推理细分</p>
+取自 Responses 的 input/output/total_tokens 及缓存/推理细分</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -178,10 +176,10 @@ Responses 的 input/output/total_tokens 及缓存/推理细分</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>InputTokens</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
-    <dd><p>输入 token 数（prompt_tokens / input_tokens）</p>
+    <dd><p>输入 token 数（input_tokens）</p>
 </dd>
     <dt><code>OutputTokens</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
-    <dd><p>输出 token 数（completion_tokens / output_tokens）</p>
+    <dd><p>输出 token 数（output_tokens）</p>
 </dd>
     <dt><code>TotalTokens</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
     <dd><p>总 token 数</p>
@@ -213,7 +211,7 @@ Responses 的 input/output/total_tokens 及缓存/推理细分</p>
 
   <h3 id="MAS_PrismaTalk_Models_TokenUsage_CachedInputTokens" data-uid="MAS.PrismaTalk.Models.TokenUsage.CachedInputTokens">
   CachedInputTokens
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>输入中命中缓存的 token 数（Responses input_tokens_details.cached_tokens；协议未提供为 null）</p>
@@ -245,10 +243,10 @@ Responses 的 input/output/total_tokens 及缓存/推理细分</p>
 
   <h3 id="MAS_PrismaTalk_Models_TokenUsage_InputTokens" data-uid="MAS.PrismaTalk.Models.TokenUsage.InputTokens">
   InputTokens
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>输入 token 数（prompt_tokens / input_tokens）</p>
+  <div class="markdown level1 summary"><p>输入 token 数（input_tokens）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -277,10 +275,10 @@ Responses 的 input/output/total_tokens 及缓存/推理细分</p>
 
   <h3 id="MAS_PrismaTalk_Models_TokenUsage_OutputTokens" data-uid="MAS.PrismaTalk.Models.TokenUsage.OutputTokens">
   OutputTokens
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>输出 token 数（completion_tokens / output_tokens）</p>
+  <div class="markdown level1 summary"><p>输出 token 数（output_tokens）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -309,7 +307,7 @@ Responses 的 input/output/total_tokens 及缓存/推理细分</p>
 
   <h3 id="MAS_PrismaTalk_Models_TokenUsage_ReasoningOutputTokens" data-uid="MAS.PrismaTalk.Models.TokenUsage.ReasoningOutputTokens">
   ReasoningOutputTokens
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>输出中的推理 token 数（Responses output_tokens_details.reasoning_tokens；协议未提供为 null）</p>
@@ -341,7 +339,7 @@ Responses 的 input/output/total_tokens 及缓存/推理细分</p>
 
   <h3 id="MAS_PrismaTalk_Models_TokenUsage_TotalTokens" data-uid="MAS.PrismaTalk.Models.TokenUsage.TotalTokens">
   TotalTokens
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>总 token 数</p>
@@ -373,7 +371,7 @@ Responses 的 input/output/total_tokens 及缓存/推理细分</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L22" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/TokenUsage.cs/#L21" class="edit-link">Edit this page</a>
         </div>
 
 

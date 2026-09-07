@@ -200,7 +200,7 @@ Class WebView2ServiceBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_WebView_WebView2ServiceBase_AfterInitialize" data-uid="MAS.WebView.WebView2ServiceBase.AfterInitialize">
   AfterInitialize()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>进行额外的初始化</p>
@@ -254,7 +254,7 @@ Class WebView2ServiceBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_WebView_WebView2ServiceBase_Dispose_System_Boolean_" data-uid="MAS.WebView.WebView2ServiceBase.Dispose(System.Boolean)">
   Dispose(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>处理资源释放</p>
@@ -287,7 +287,7 @@ Class WebView2ServiceBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_WebView_WebView2ServiceBase_EscapeJavaScriptString_System_String_" data-uid="MAS.WebView.WebView2ServiceBase.EscapeJavaScriptString(System.String)">
   EscapeJavaScriptString(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L162"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>转义 JavaScript 字符串</p>
@@ -374,7 +374,7 @@ Class WebView2ServiceBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_WebView_WebView2ServiceBase_HandleWebMessage_System_String_" data-uid="MAS.WebView.WebView2ServiceBase.HandleWebMessage(System.String)">
   HandleWebMessage(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>处理来自 web 的消息</p>
@@ -389,6 +389,42 @@ Class WebView2ServiceBase  <a class="header-action link-secondary" title="View s
   <dl class="parameters">
     <dt><code>jsonMessage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>json 格式内容</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_WebView_WebView2ServiceBase_HandleWebMessageFiles_" data-uid="MAS.WebView.WebView2ServiceBase.HandleWebMessageFiles*"></a>
+
+  <h3 id="MAS_WebView_WebView2ServiceBase_HandleWebMessageFiles_System_String_System_Collections_Generic_IReadOnlyList_System_String__" data-uid="MAS.WebView.WebView2ServiceBase.HandleWebMessageFiles(System.String,System.Collections.Generic.IReadOnlyList{System.String})">
+  HandleWebMessageFiles(string, IReadOnlyList&lt;string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>处理随 web 消息一并送达的文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void HandleWebMessageFiles(string jsonMessage, IReadOnlyList&lt;string&gt; filePaths)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>jsonMessage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>json 格式内容</p>
+</dd>
+    <dt><code>filePaths</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>文件的本地完整路径</p>
 </dd>
   </dl>
 
@@ -440,7 +476,7 @@ Class WebView2ServiceBase  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_WebView_WebView2ServiceBase_PostMessageAsync_System_Object_" data-uid="MAS.WebView.WebView2ServiceBase.PostMessageAsync(System.Object)">
   PostMessageAsync(object)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.WebView/Abstracts/WebView2ServiceBase.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步向 WebView 发送 JSON 消息</p>

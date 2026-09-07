@@ -131,21 +131,21 @@
 </tr>
 </tbody>
 </table>
-<p>编排层不会直接操作 <code>messages</code>、<code>tool_calls</code>、<code>function_call_output</code> 等 wire 对象。协议映射只发生在模型适配边界。</p>
+<p>编排层不会直接操作 <code>input</code>、<code>function_call</code>、<code>function_call_output</code> 等 wire 对象。协议映射只发生在模型适配边界。</p>
 <h2 id="统一模型请求与响应">统一模型请求与响应</h2>
 <p>一次模型调用使用统一领域请求：</p>
 <pre><code class="lang-text">ModelRequest
 ├─ Items                 当前完整领域上下文
 ├─ Tools                 本次允许模型调用的工具
 ├─ Model?                可按请求覆盖模型
-├─ PreviousResponseId?   可选的 Responses 关联标识
+├─ PreviousResponseId?   可选的服务端会话关联标识
 ├─ MaxOutputTokens?      最大输出 token
 └─ Temperature?          采样温度
 </code></pre>
 <p>一次模型响应使用统一领域结果：</p>
 <pre><code class="lang-text">ModelTurn
 ├─ Items          助手文本和零到多个工具调用
-├─ ResponseId?    Responses 通道可返回
+├─ ResponseId?    服务端返回的响应标识
 ├─ FinishReason   结束原因
 └─ Usage?         模型报告的 token 用量
 </code></pre>
@@ -215,49 +215,8 @@
 </tbody>
 </table>
 <p>高风险审批支持“本次允许”和“本轮始终允许”。轮级允许状态只在当前用户请求内有效，下一次用户请求开始时重置。用户拒绝不会抛弃调用历史，而是生成失败工具结果，让模型能够解释取消原因或选择其他方案。</p>
-<h2 id="chat-completions-映射">Chat Completions 映射</h2>
-<p>领域请求映射为 OpenAI 兼容 Chat Completions 请求：</p>
-<pre><code class="lang-json">{
-  &quot;model&quot;: &quot;model-name&quot;,
-  &quot;messages&quot;: [
-    { &quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;...&quot; },
-    { &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;...&quot; },
-    {
-      &quot;role&quot;: &quot;assistant&quot;,
-      &quot;content&quot;: &quot;我先检查当前状态。&quot;,
-      &quot;tool_calls&quot;: [
-        {
-          &quot;id&quot;: &quot;call_1&quot;,
-          &quot;type&quot;: &quot;function&quot;,
-          &quot;function&quot;: {
-            &quot;name&quot;: &quot;runtime_workspace&quot;,
-            &quot;arguments&quot;: &quot;{}&quot;
-          }
-        }
-      ]
-    },
-    {
-      &quot;role&quot;: &quot;tool&quot;,
-      &quot;tool_call_id&quot;: &quot;call_1&quot;,
-      &quot;content&quot;: &quot;{\&quot;isSuccess\&quot;:true,\&quot;summary\&quot;:\&quot;已获取工作区\&quot;,\&quot;data\&quot;:\&quot;...\&quot;}&quot;
-    }
-  ],
-  &quot;tools&quot;: [
-    {
-      &quot;type&quot;: &quot;function&quot;,
-      &quot;function&quot;: {
-        &quot;name&quot;: &quot;runtime_workspace&quot;,
-        &quot;description&quot;: &quot;Get current workspace information&quot;,
-        &quot;parameters&quot;: { &quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: {} }
-      }
-    }
-  ],
-  &quot;stream&quot;: true
-}
-</code></pre>
-<p>SSE 中的 <code>choices[].delta.content</code> 作为自然语言增量；<code>choices[].delta.tool_calls</code> 按索引累计名称和参数，完成后转换为领域工具调用。</p>
-<h2 id="responses-映射">Responses 映射</h2>
-<p>Responses 通道把同一批领域 item 映射为 <code>input</code>：</p>
+<h2 id="模型协议映射">模型协议映射</h2>
+<p>唯一支持的模型协议是 OpenAI 兼容的 Responses API（服务端点须指向 <code>/responses</code>）。领域 item 映射为 <code>input</code>：</p>
 <pre><code class="lang-json">{
   &quot;model&quot;: &quot;model-name&quot;,
   &quot;input&quot;: [

@@ -451,8 +451,8 @@ Interface IPrismaTalkConfig  <a class="header-action link-secondary" title="View
 
 
   <h4 class="section" id="MAS_PrismaTalk_IPrismaTalkConfig_ServiceUrl_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>端点路径同时决定模型 API 通道：以 <code>/responses</code> 结尾走 Responses，
-其余按 Chat Completions 处理，参见 <a class="xref" href="MAS.PrismaTalk.Models.ModelApiChannelResolver.html">ModelApiChannelResolver</a></p>
+  <div class="markdown level1 remarks"><p>唯一支持的模型协议是 OpenAI 兼容的 Responses API，端点路径须指向 <code>/responses</code>；
+指向 Chat Completions 等其他端点时服务端会直接拒绝请求</p>
 </div>
 
 

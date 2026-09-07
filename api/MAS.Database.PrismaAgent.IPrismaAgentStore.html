@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IPrismaAgentStore | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IPrismaAgentStore | DataMaster ">
+      
+      <meta name="description" content="棱镜对话历史仓储接口">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Database_PrismaAgent_IPrismaAgentStore.md&amp;value=---%0Auid%3A%20MAS.Database.PrismaAgent.IPrismaAgentStore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore">
+
+
+
+  <h1 id="MAS_Database_PrismaAgent_IPrismaAgentStore" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore" class="text-break">
+Interface IPrismaAgentStore  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.Database.html">Database</a>.<a class="xref" href="MAS.Database.PrismaAgent.html">PrismaAgent</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.Database.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>棱镜对话历史仓储接口</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IPrismaAgentStore</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="MAS_Database_PrismaAgent_IPrismaAgentStore_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>独立于业务库运行在自己的数据库实例上（默认 mas_prisma_agent），
+与 <a class="xref" href="MAS.SharedLibrary.Database.IDatabaseManager.html">IDatabaseManager</a> 管理的业务库互不影响</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_IsAvailable_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.IsAvailable*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_IsAvailable" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.IsAvailable">
+  IsAvailable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取仓储当前是否可用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsAvailable { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_IPrismaAgentStore_IsAvailable_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p><a class="xref" href="MAS.Database.PrismaAgent.IPrismaAgentStore.html#MAS_Database_PrismaAgent_IPrismaAgentStore_InitializeAsync_MAS_SharedLibrary_Database_IDbConfig_System_Threading_CancellationToken_">InitializeAsync(IDbConfig, CancellationToken)</a> 成功后为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a></p>
+</div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_AppendEventsAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.AppendEventsAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_AppendEventsAsync_System_Collections_Generic_IReadOnlyList_MAS_Database_PrismaAgent_PrismaConversationEventRecord__System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.AppendEventsAsync(System.Collections.Generic.IReadOnlyList{MAS.Database.PrismaAgent.PrismaConversationEventRecord},System.Threading.CancellationToken)">
+  AppendEventsAsync(IReadOnlyList&lt;PrismaConversationEventRecord&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步批量追加展示事件，并同步推进会话的最大序号</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; AppendEventsAsync(IReadOnlyList&lt;PrismaConversationEventRecord&gt; events, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>events</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Database.PrismaAgent.PrismaConversationEventRecord.html">PrismaConversationEventRecord</a>&gt;</dt>
+    <dd><p>按序号升序排列的事件</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否确实写入；仓储不可用或写入失败时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_IPrismaAgentStore_AppendEventsAsync_System_Collections_Generic_IReadOnlyList_MAS_Database_PrismaAgent_PrismaConversationEventRecord__System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>整批在同一事务内写入，避免加载时读到半批事件。
+返回值必须被调用方检查：写失败却当成功会在历史里留下无法补偿的缺口</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_AttachToMessageAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.AttachToMessageAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_AttachToMessageAsync_System_String_System_String_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.AttachToMessageAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+  AttachToMessageAsync(string, string, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步把一条附件挂到某条用户消息上</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; AttachToMessageAsync(string conversationId, string attachmentId, string messageId, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>attachmentId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>附件标识</p>
+</dd>
+    <dt><code>messageId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>用户消息标识</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否确实写入；附件不存在或仓储不可用时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_IPrismaAgentStore_AttachToMessageAsync_System_String_System_String_System_String_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>附件在用户选中时就已导入并登记，此时还没有归属消息；
+挂载推迟到点发送的那一刻，用户才能在发送前撤掉某个附件</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_DeleteAttachmentAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.DeleteAttachmentAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_DeleteAttachmentAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.DeleteAttachmentAsync(System.String,System.Threading.CancellationToken)">
+  DeleteAttachmentAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步删除单条附件引用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; DeleteAttachmentAsync(string attachmentId, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attachmentId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>附件标识</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否确实删除；仓储不可用或删除失败时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_DeleteConversationAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.DeleteConversationAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_DeleteConversationAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.DeleteConversationAsync(System.String,System.Threading.CancellationToken)">
+  DeleteConversationAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步删除一条会话及其全部事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task DeleteConversationAsync(string conversationId, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_GetAttachmentAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.GetAttachmentAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_GetAttachmentAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.GetAttachmentAsync(System.String,System.Threading.CancellationToken)">
+  GetAttachmentAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步读取单条附件引用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;PrismaAttachmentRecord?&gt; GetAttachmentAsync(string attachmentId, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attachmentId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>附件标识</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.Database.PrismaAgent.PrismaAttachmentRecord.html">PrismaAttachmentRecord</a>&gt;</dt>
+    <dd><p>附件引用；不存在或仓储不可用时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_GetCheckpointAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.GetCheckpointAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_GetCheckpointAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.GetCheckpointAsync(System.String,System.Threading.CancellationToken)">
+  GetCheckpointAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L229"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步读取某会话的推理上下文检查点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;PrismaAgentCheckpointRecord?&gt; GetCheckpointAsync(string conversationId, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.Database.PrismaAgent.PrismaAgentCheckpointRecord.html">PrismaAgentCheckpointRecord</a>&gt;</dt>
+    <dd><p>检查点；不存在或仓储不可用时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_GetConversationAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.GetConversationAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_GetConversationAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.GetConversationAsync(System.String,System.Threading.CancellationToken)">
+  GetConversationAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步取单条会话元数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;PrismaConversationRecord?&gt; GetConversationAsync(string conversationId, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.Database.PrismaAgent.PrismaConversationRecord.html">PrismaConversationRecord</a>&gt;</dt>
+    <dd><p>会话元数据；不存在或仓储不可用时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_GetMaxSequenceAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.GetMaxSequenceAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_GetMaxSequenceAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.GetMaxSequenceAsync(System.String,System.Threading.CancellationToken)">
+  GetMaxSequenceAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步读取某会话已写入的最大事件序号</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;long&gt; GetMaxSequenceAsync(string conversationId, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd><p>最大序号；无事件或仓储不可用时为 0</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_InitializeAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.InitializeAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_InitializeAsync_MAS_SharedLibrary_Database_IDbConfig_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.InitializeAsync(MAS.SharedLibrary.Database.IDbConfig,System.Threading.CancellationToken)">
+  InitializeAsync(IDbConfig, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步初始化仓储：连通性检查、按需建库、建表与建索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; InitializeAsync(IDbConfig config, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>config</code> <a class="xref" href="MAS.SharedLibrary.Database.IDbConfig.html">IDbConfig</a></dt>
+    <dd><p>目标数据库配置</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>仓储是否可用；连接失败时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> 而不抛出</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_ListAttachmentsAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.ListAttachmentsAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_ListAttachmentsAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.ListAttachmentsAsync(System.String,System.Threading.CancellationToken)">
+  ListAttachmentsAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步按导入时间升序读取某会话的全部附件引用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IReadOnlyList&lt;PrismaAttachmentRecord&gt;&gt; ListAttachmentsAsync(string conversationId, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Database.PrismaAgent.PrismaAttachmentRecord.html">PrismaAttachmentRecord</a>&gt;&gt;</dt>
+    <dd><p>附件引用列表；仓储不可用时为空列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_ListConversationsAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.ListConversationsAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_ListConversationsAsync_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.ListConversationsAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+  ListConversationsAsync(int, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步按最近活动时间倒序读取会话列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IReadOnlyList&lt;PrismaConversationRecord&gt;&gt; ListConversationsAsync(int limit, int offset = 0, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>limit</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>最多返回的条数</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>跳过的条数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Database.PrismaAgent.PrismaConversationRecord.html">PrismaConversationRecord</a>&gt;&gt;</dt>
+    <dd><p>会话元数据列表；仓储不可用时为空列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_ListOrphanAttachmentsAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.ListOrphanAttachmentsAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_ListOrphanAttachmentsAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.ListOrphanAttachmentsAsync(System.String,System.Threading.CancellationToken)">
+  ListOrphanAttachmentsAsync(string?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L202"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步读取尚未关联消息的附件。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IReadOnlyList&lt;PrismaAttachmentRecord&gt;&gt; ListOrphanAttachmentsAsync(string? conversationId = null, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识；为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> 时查询全部会话</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Database.PrismaAgent.PrismaAttachmentRecord.html">PrismaAttachmentRecord</a>&gt;&gt;</dt>
+    <dd><p>附件记录列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_ReadEventsAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.ReadEventsAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_ReadEventsAsync_System_String_System_Int64_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.ReadEventsAsync(System.String,System.Int64,System.Int32,System.Threading.CancellationToken)">
+  ReadEventsAsync(string, long, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步按序号升序读取某会话的事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IReadOnlyList&lt;PrismaConversationEventRecord&gt;&gt; ReadEventsAsync(string conversationId, long fromSequence = 0, int limit = 5000, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>fromSequence</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>起始序号（不含），从头读取时传 0</p>
+</dd>
+    <dt><code>limit</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>最多返回的条数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Database.PrismaAgent.PrismaConversationEventRecord.html">PrismaConversationEventRecord</a>&gt;&gt;</dt>
+    <dd><p>事件列表；仓储不可用时为空列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_SaveCheckpointAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.SaveCheckpointAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_SaveCheckpointAsync_MAS_Database_PrismaAgent_PrismaAgentCheckpointRecord_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.SaveCheckpointAsync(MAS.Database.PrismaAgent.PrismaAgentCheckpointRecord,System.Threading.CancellationToken)">
+  SaveCheckpointAsync(PrismaAgentCheckpointRecord, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L221"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步写入或覆盖某会话的推理上下文检查点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; SaveCheckpointAsync(PrismaAgentCheckpointRecord checkpoint, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>checkpoint</code> <a class="xref" href="MAS.Database.PrismaAgent.PrismaAgentCheckpointRecord.html">PrismaAgentCheckpointRecord</a></dt>
+    <dd><p>检查点</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否确实写入；仓储不可用或写入失败时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_IPrismaAgentStore_SaveCheckpointAsync_MAS_Database_PrismaAgent_PrismaAgentCheckpointRecord_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>每个会话只保留最新一份，整体覆盖而不是追加版本</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpdateStatusAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.UpdateStatusAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpdateStatusAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.UpdateStatusAsync(System.String,System.String,System.Threading.CancellationToken)">
+  UpdateStatusAsync(string, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步只更新一条会话的运行状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; UpdateStatusAsync(string conversationId, string status, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>status</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话状态，取值语义由调用方定义</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否确实写入；仓储不可用、写入失败或会话不存在时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpdateStatusAsync_System_String_System_String_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>与 <a class="xref" href="MAS.Database.PrismaAgent.IPrismaAgentStore.html#MAS_Database_PrismaAgent_IPrismaAgentStore_UpsertConversationAsync_MAS_Database_PrismaAgent_PrismaConversationRecord_System_Threading_CancellationToken_">UpsertConversationAsync(PrismaConversationRecord, CancellationToken)</a> 分开的理由同标题：状态由会话管理者在轮次起止时写，
+事件日志手里只有一个恒为 Idle 的占位值。状态变化也不是对话活动，不得推进 <code>LastActiveAt</code></p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpdateTitleAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.UpdateTitleAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpdateTitleAsync_System_String_System_String_System_String_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.UpdateTitleAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+  UpdateTitleAsync(string, string?, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步只更新一条会话的标题与标题状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; UpdateTitleAsync(string conversationId, string? title, string titleStatus, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>title</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>标题；仅记录失败状态时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+    <dt><code>titleStatus</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>标题生成状态</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否确实写入；仓储不可用、写入失败或会话不存在时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpdateTitleAsync_System_String_System_String_System_String_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>与 <a class="xref" href="MAS.Database.PrismaAgent.IPrismaAgentStore.html#MAS_Database_PrismaAgent_IPrismaAgentStore_UpsertConversationAsync_MAS_Database_PrismaAgent_PrismaConversationRecord_System_Threading_CancellationToken_">UpsertConversationAsync(PrismaConversationRecord, CancellationToken)</a> 分开是必须的，两个方向都不能混：
+标题落地不是一次对话活动，不得顺带推进 <code>LastActiveAt</code>；
+而事件日志手里没有标题，让它整体覆盖会把刚生成好的标题抹回空</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpdateUnreadAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.UpdateUnreadAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpdateUnreadAsync_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.UpdateUnreadAsync(System.String,System.Boolean,System.Threading.CancellationToken)">
+  UpdateUnreadAsync(string, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步只更新一条会话的未读标记</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; UpdateUnreadAsync(string conversationId, bool hasUnread, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>hasUnread</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否有未读的完成通知</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否确实写入；仓储不可用、写入失败或会话不存在时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpdateUnreadAsync_System_String_System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>与 <a class="xref" href="MAS.Database.PrismaAgent.IPrismaAgentStore.html#MAS_Database_PrismaAgent_IPrismaAgentStore_UpsertConversationAsync_MAS_Database_PrismaAgent_PrismaConversationRecord_System_Threading_CancellationToken_">UpsertConversationAsync(PrismaConversationRecord, CancellationToken)</a> 分开的理由同标题：置位发生在后台轮次收尾、
+清除发生在用户切过去，两者都不是对话活动，不得推进 <code>LastActiveAt</code></p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpsertAttachmentAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.UpsertAttachmentAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpsertAttachmentAsync_MAS_Database_PrismaAgent_PrismaAttachmentRecord_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.UpsertAttachmentAsync(MAS.Database.PrismaAgent.PrismaAttachmentRecord,System.Threading.CancellationToken)">
+  UpsertAttachmentAsync(PrismaAttachmentRecord, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步新增或更新一条附件引用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; UpsertAttachmentAsync(PrismaAttachmentRecord attachment, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attachment</code> <a class="xref" href="MAS.Database.PrismaAgent.PrismaAttachmentRecord.html">PrismaAttachmentRecord</a></dt>
+    <dd><p>附件引用</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否确实写入；仓储不可用或写入失败时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpsertConversationAsync_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.UpsertConversationAsync*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_IPrismaAgentStore_UpsertConversationAsync_MAS_Database_PrismaAgent_PrismaConversationRecord_System_Threading_CancellationToken_" data-uid="MAS.Database.PrismaAgent.IPrismaAgentStore.UpsertConversationAsync(MAS.Database.PrismaAgent.PrismaConversationRecord,System.Threading.CancellationToken)">
+  UpsertConversationAsync(PrismaConversationRecord, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步新增或更新一条会话元数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; UpsertConversationAsync(PrismaConversationRecord conversation, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversation</code> <a class="xref" href="MAS.Database.PrismaAgent.PrismaConversationRecord.html">PrismaConversationRecord</a></dt>
+    <dd><p>会话元数据</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否确实写入；仓储不可用或写入失败时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/Interfaces/IPrismaAgentStore.cs/#L21" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

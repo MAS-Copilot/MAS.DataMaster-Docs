@@ -246,9 +246,9 @@ Class MainViewModel
 
   <a id="MAS_PrismaTalk_ViewModels_Windows_MainViewModel__ctor_" data-uid="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.#ctor*"></a>
 
-  <h3 id="MAS_PrismaTalk_ViewModels_Windows_MainViewModel__ctor_MAS_PrismaTalk_IPrismaTalkClient_MAS_SharedLibrary_Interfaces_IWindowsProviderService_MAS_PrismaTalk_IPrismaTalkConfigHistoryManager_MAS_PrismaTalk_Agent_IConversationDriver_MAS_NamedPipeIpc_IIpcClient_" data-uid="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.#ctor(MAS.PrismaTalk.IPrismaTalkClient,MAS.SharedLibrary.Interfaces.IWindowsProviderService,MAS.PrismaTalk.IPrismaTalkConfigHistoryManager,MAS.PrismaTalk.Agent.IConversationDriver,MAS.NamedPipeIpc.IIpcClient)">
-  MainViewModel(IPrismaTalkClient, IWindowsProviderService, IPrismaTalkConfigHistoryManager, IConversationDriver, IIpcClient)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_PrismaTalk_ViewModels_Windows_MainViewModel__ctor_MAS_PrismaTalk_IPrismaTalkClient_MAS_SharedLibrary_Interfaces_IWindowsProviderService_MAS_PrismaTalk_IPrismaTalkConfigHistoryManager_MAS_NamedPipeIpc_IIpcClient_MAS_Database_PrismaAgent_IPrismaAgentStore_MAS_PrismaTalk_Conversations_IConversationJournal_MAS_PrismaTalk_Conversations_IConversationManager_MAS_PrismaTalk_Conversations_IConversationReplayService_MAS_PrismaTalk_Agent_IToolApprovalPolicy_MAS_PrismaTalk_Attachments_IAttachmentService_MAS_PrismaTalk_Attachments_IAttachmentPicker_" data-uid="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.#ctor(MAS.PrismaTalk.IPrismaTalkClient,MAS.SharedLibrary.Interfaces.IWindowsProviderService,MAS.PrismaTalk.IPrismaTalkConfigHistoryManager,MAS.NamedPipeIpc.IIpcClient,MAS.Database.PrismaAgent.IPrismaAgentStore,MAS.PrismaTalk.Conversations.IConversationJournal,MAS.PrismaTalk.Conversations.IConversationManager,MAS.PrismaTalk.Conversations.IConversationReplayService,MAS.PrismaTalk.Agent.IToolApprovalPolicy,MAS.PrismaTalk.Attachments.IAttachmentService,MAS.PrismaTalk.Attachments.IAttachmentPicker)">
+  MainViewModel(IPrismaTalkClient, IWindowsProviderService, IPrismaTalkConfigHistoryManager, IIpcClient, IPrismaAgentStore, IConversationJournal, IConversationManager, IConversationReplayService, IToolApprovalPolicy, IAttachmentService, IAttachmentPicker)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.html">MainViewModel</a> 新实例</p>
@@ -256,7 +256,7 @@ Class MainViewModel
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MainViewModel(IPrismaTalkClient prismaTalkClient, IWindowsProviderService windowsProvider, IPrismaTalkConfigHistoryManager configHistoryManager, IConversationDriver conversationDriver, IIpcClient ipcClient)</code></pre>
+    <pre><code class="lang-csharp hljs">public MainViewModel(IPrismaTalkClient prismaTalkClient, IWindowsProviderService windowsProvider, IPrismaTalkConfigHistoryManager configHistoryManager, IIpcClient ipcClient, IPrismaAgentStore conversationStore, IConversationJournal journal, IConversationManager conversationManager, IConversationReplayService replayService, IToolApprovalPolicy approvalPolicy, IAttachmentService attachments, IAttachmentPicker attachmentPicker)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -267,9 +267,21 @@ Class MainViewModel
     <dd></dd>
     <dt><code>configHistoryManager</code> <a class="xref" href="MAS.PrismaTalk.IPrismaTalkConfigHistoryManager.html">IPrismaTalkConfigHistoryManager</a></dt>
     <dd></dd>
-    <dt><code>conversationDriver</code> <a class="xref" href="MAS.PrismaTalk.Agent.IConversationDriver.html">IConversationDriver</a></dt>
-    <dd></dd>
     <dt><code>ipcClient</code> <a class="xref" href="MAS.NamedPipeIpc.IIpcClient.html">IIpcClient</a></dt>
+    <dd></dd>
+    <dt><code>conversationStore</code> <a class="xref" href="MAS.Database.PrismaAgent.IPrismaAgentStore.html">IPrismaAgentStore</a></dt>
+    <dd></dd>
+    <dt><code>journal</code> <a class="xref" href="MAS.PrismaTalk.Conversations.IConversationJournal.html">IConversationJournal</a></dt>
+    <dd></dd>
+    <dt><code>conversationManager</code> <a class="xref" href="MAS.PrismaTalk.Conversations.IConversationManager.html">IConversationManager</a></dt>
+    <dd></dd>
+    <dt><code>replayService</code> <a class="xref" href="MAS.PrismaTalk.Conversations.IConversationReplayService.html">IConversationReplayService</a></dt>
+    <dd></dd>
+    <dt><code>approvalPolicy</code> <a class="xref" href="MAS.PrismaTalk.Agent.IToolApprovalPolicy.html">IToolApprovalPolicy</a></dt>
+    <dd></dd>
+    <dt><code>attachments</code> <a class="xref" href="MAS.PrismaTalk.Attachments.IAttachmentService.html">IAttachmentService</a></dt>
+    <dd></dd>
+    <dt><code>attachmentPicker</code> <a class="xref" href="MAS.PrismaTalk.Attachments.IAttachmentPicker.html">IAttachmentPicker</a></dt>
     <dd></dd>
   </dl>
 
@@ -292,7 +304,7 @@ Class MainViewModel
 
   <h3 id="MAS_PrismaTalk_ViewModels_Windows_MainViewModel_CloseWindowCommand" data-uid="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.CloseWindowCommand">
   CloseWindowCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L67"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取关闭窗口命令</p>
@@ -388,7 +400,7 @@ public bool IsTopmost { get; set; }</code></pre>
 
   <h3 id="MAS_PrismaTalk_ViewModels_Windows_MainViewModel_SettingCommand" data-uid="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.SettingCommand">
   SettingCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取设置命令</p>
@@ -456,7 +468,7 @@ public string WindowTitle { get; set; }</code></pre>
 
   <h3 id="MAS_PrismaTalk_ViewModels_Windows_MainViewModel_Dispose" data-uid="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L211"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
@@ -483,7 +495,7 @@ public string WindowTitle { get; set; }</code></pre>
 
   <h3 id="MAS_PrismaTalk_ViewModels_Windows_MainViewModel_Dispose_System_Boolean_" data-uid="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.Dispose(System.Boolean)">
   Dispose(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L219"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>释放资源</p>
@@ -518,7 +530,7 @@ public string WindowTitle { get; set; }</code></pre>
 
   <h3 id="MAS_PrismaTalk_ViewModels_Windows_MainViewModel_InitializationCompleted" data-uid="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.InitializationCompleted">
   InitializationCompleted
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>初始化对话客户端事件</p>
@@ -549,7 +561,7 @@ public string WindowTitle { get; set; }</code></pre>
 
   <h3 id="MAS_PrismaTalk_ViewModels_Windows_MainViewModel_RequestClose" data-uid="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.RequestClose">
   RequestClose
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L86"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>请求关闭窗口事件</p>
@@ -580,7 +592,7 @@ public string WindowTitle { get; set; }</code></pre>
 
   <h3 id="MAS_PrismaTalk_ViewModels_Windows_MainViewModel_TopmostChanged" data-uid="MAS.PrismaTalk.ViewModels.Windows.MainViewModel.TopmostChanged">
   TopmostChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/ViewModels/Windows/MainViewModel.cs/#L91"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当置顶状态属性发生更改时触发的事件</p>

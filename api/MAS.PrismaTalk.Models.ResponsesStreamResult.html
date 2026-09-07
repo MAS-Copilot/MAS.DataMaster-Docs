@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ResponsesStreamResult | DataMaster ">
       
-      <meta name="description" content="一次 Responses 通道流式响应结果（一次 turn）。 字段语义与  对齐，另携带服务端响应标识">
+      <meta name="description" content="一次 Responses 流式响应结果（一次 turn），携带助手正文、函数调用、终态与服务端响应标识">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_PrismaTalk_Models_ResponsesStreamResult" data-uid="MAS.PrismaTalk.Models.ResponsesStreamResult" class="text-break">
-Class ResponsesStreamResult  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L16"><i class="bi bi-code-slash"></i></a>
+Class ResponsesStreamResult  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,8 +97,7 @@ Class ResponsesStreamResult  <a class="header-action link-secondary" title="View
   <dl><dt>Assembly</dt><dd>MAS.PrismaTalk.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>一次 Responses 通道流式响应结果（一次 turn）。
-字段语义与 <a class="xref" href="MAS.PrismaTalk.Models.AssistantStreamResult.html">AssistantStreamResult</a> 对齐，另携带服务端响应标识</p>
+  <div class="markdown summary"><p>一次 Responses 流式响应结果（一次 turn），携带助手正文、函数调用、终态与服务端响应标识</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -155,7 +154,7 @@ Class ResponsesStreamResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_Models_ResponsesStreamResult_Content" data-uid="MAS.PrismaTalk.Models.ResponsesStreamResult.Content">
   Content
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置助手输出的自然语言内容</p>
@@ -187,7 +186,7 @@ Class ResponsesStreamResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_Models_ResponsesStreamResult_FinishReason" data-uid="MAS.PrismaTalk.Models.ResponsesStreamResult.FinishReason">
   FinishReason
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置本轮结束原因（由响应终态与 incomplete_details 归一化而来）</p>
@@ -219,7 +218,7 @@ Class ResponsesStreamResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_Models_ResponsesStreamResult_IncompleteReason" data-uid="MAS.PrismaTalk.Models.ResponsesStreamResult.IncompleteReason">
   IncompleteReason
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置服务端下发的未完成原因（incomplete_details.reason，正常完成时为 null）</p>
@@ -254,7 +253,7 @@ Class ResponsesStreamResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_Models_ResponsesStreamResult_ReasoningDeltaCount" data-uid="MAS.PrismaTalk.Models.ResponsesStreamResult.ReasoningDeltaCount">
   ReasoningDeltaCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置本轮收到的推理增量事件数（诊断用；不进入正文）</p>
@@ -286,7 +285,7 @@ Class ResponsesStreamResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_Models_ResponsesStreamResult_ReasoningTraces" data-uid="MAS.PrismaTalk.Models.ResponsesStreamResult.ReasoningTraces">
   ReasoningTraces
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置本轮携带加密推理内容的 reasoning item（按输出顺序），供下一步请求原样回传</p>
@@ -321,7 +320,7 @@ Class ResponsesStreamResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_Models_ResponsesStreamResult_ResponseId" data-uid="MAS.PrismaTalk.Models.ResponsesStreamResult.ResponseId">
   ResponseId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置服务端响应标识（response.id，供 previous_response_id 续接使用）</p>
@@ -353,7 +352,7 @@ Class ResponsesStreamResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_Models_ResponsesStreamResult_ToolCalls" data-uid="MAS.PrismaTalk.Models.ResponsesStreamResult.ToolCalls">
   ToolCalls
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置本轮生成的结构化工具调用列表（Id 为 Responses 的 call_id）</p>
@@ -385,7 +384,7 @@ Class ResponsesStreamResult  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PrismaTalk_Models_ResponsesStreamResult_Usage" data-uid="MAS.PrismaTalk.Models.ResponsesStreamResult.Usage">
   Usage
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置本次请求的真实 token 用量（服务端未下发时为 null）</p>
@@ -417,7 +416,7 @@ Class ResponsesStreamResult  <a class="header-action link-secondary" title="View
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L16" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ResponsesStreamResult.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

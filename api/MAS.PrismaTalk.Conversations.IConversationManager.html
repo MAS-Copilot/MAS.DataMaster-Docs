@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IConversationManager | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IConversationManager | DataMaster ">
+      
+      <meta name="description" content="会话运行的统一管理者">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PrismaTalk_Conversations_IConversationManager.md&amp;value=---%0Auid%3A%20MAS.PrismaTalk.Conversations.IConversationManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.PrismaTalk.Conversations.IConversationManager">
+
+
+
+  <h1 id="MAS_PrismaTalk_Conversations_IConversationManager" data-uid="MAS.PrismaTalk.Conversations.IConversationManager" class="text-break">
+Interface IConversationManager  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.PrismaTalk.html">PrismaTalk</a>.<a class="xref" href="MAS.PrismaTalk.Conversations.html">Conversations</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.PrismaTalk.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>会话运行的统一管理者</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IConversationManager</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="MAS_PrismaTalk_Conversations_IConversationManager_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>长期运行的任务由它持有，而不是由当前页面持有：这是后台运行与多会话并发的前提</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_ActiveConversationId_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.ActiveConversationId*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_ActiveConversationId" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.ActiveConversationId">
+  ActiveConversationId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前激活的会话标识</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string ActiveConversationId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_ActivateConversation_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.ActivateConversation*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_ActivateConversation_System_String_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.ActivateConversation(System.String)">
+  ActivateConversation(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>激活一个已有会话</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ActivateConversation(string conversationId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaTalk_Conversations_IConversationManager_ActivateConversation_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>只改变激活标识与页面订阅，不干预任何会话的执行</p>
+</div>
+
+
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_CancelTurn_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.CancelTurn*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_CancelTurn_System_String_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.CancelTurn(System.String)">
+  CancelTurn(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取消指定会话的当前轮次</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CancelTurn(string conversationId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaTalk_Conversations_IConversationManager_CancelTurn_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>只影响该会话；其他会话正在跑的轮次不受牵连</p>
+</div>
+
+
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_CreateConversationAsync_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.CreateConversationAsync*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_CreateConversationAsync_System_Threading_CancellationToken_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.CreateConversationAsync(System.Threading.CancellationToken)">
+  CreateConversationAsync(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步新建一个会话并将其激活</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; CreateConversationAsync(CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>新会话标识</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaTalk_Conversations_IConversationManager_CreateConversationAsync_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>新建不影响其他会话：正在跑的轮次继续跑，不会被取消</p>
+</div>
+
+
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_DeleteConversationAsync_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.DeleteConversationAsync*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_DeleteConversationAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.DeleteConversationAsync(System.String,System.Threading.CancellationToken)">
+  DeleteConversationAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步删除一个会话及其全部历史</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; DeleteConversationAsync(string conversationId, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否已删除；会话正在跑或仓储不可用时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaTalk_Conversations_IConversationManager_DeleteConversationAsync_System_String_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>正在跑的会话一律拒绝删除：那一轮还会继续写事件，
+删掉的记录会被随后的写入原地复活，留下一条没有开头的会话</p>
+</div>
+
+
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_EditLastTurnAsync_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.EditLastTurnAsync*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_EditLastTurnAsync_System_String_MAS_PrismaTalk_Conversations_UserTurnInput_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.EditLastTurnAsync(System.String,MAS.PrismaTalk.Conversations.UserTurnInput)">
+  EditLastTurnAsync(string, UserTurnInput)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步回退指定会话的最后一轮并以新内容重发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string?&gt; EditLastTurnAsync(string conversationId, UserTurnInput input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>input</code> <a class="xref" href="MAS.PrismaTalk.Conversations.UserTurnInput.html">UserTurnInput</a></dt>
+    <dd><p>修改后的用户输入</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>本轮标识；该会话已有轮次在跑时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_IsRunning_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.IsRunning*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_IsRunning_System_String_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.IsRunning(System.String)">
+  IsRunning(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断某个会话是否正在执行轮次</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsRunning(string conversationId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_ListConversationsAsync_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.ListConversationsAsync*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_ListConversationsAsync_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.ListConversationsAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+  ListConversationsAsync(int, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步按最近活动时间倒序读取会话列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IReadOnlyList&lt;ConversationSummary&gt;&gt; ListConversationsAsync(int limit = 200, int offset = 0, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>limit</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>最多返回的条数</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>跳过的条数</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.PrismaTalk.Conversations.ConversationSummary.html">ConversationSummary</a>&gt;&gt;</dt>
+    <dd><p>会话摘要列表；仓储不可用时为空列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaTalk_Conversations_IConversationManager_ListConversationsAsync_System_Int32_System_Int32_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>返回的是存储元数据与运行时状态的合成结果。<strong>只列已经产生过内容的会话</strong></p>
+</div>
+
+
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_RenameConversationAsync_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.RenameConversationAsync*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_RenameConversationAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.RenameConversationAsync(System.String,System.String,System.Threading.CancellationToken)">
+  RenameConversationAsync(string, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步把一个会话改名为用户指定的标题</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; RenameConversationAsync(string conversationId, string title, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>title</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>新标题；两端空白会被裁掉</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否已改名；标题为空、会话不在库里或仓储不可用时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaTalk_Conversations_IConversationManager_RenameConversationAsync_System_String_System_String_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>改名不是一次对话活动，不推进 <code>LastActiveAt</code>，侧栏排序因此不会跳动</p>
+</div>
+
+
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_ShutdownAsync_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.ShutdownAsync*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_ShutdownAsync_System_TimeSpan_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.ShutdownAsync(System.TimeSpan)">
+  ShutdownAsync(TimeSpan)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步取消全部正在执行的轮次并等待它们收尾</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; ShutdownAsync(TimeSpan timeout)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd><p>等待收尾的上限</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>是否所有轮次都在上限内收完尾</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaTalk_Conversations_IConversationManager_StartTurnAsync_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.StartTurnAsync*"></a>
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_StartTurnAsync_System_String_MAS_PrismaTalk_Conversations_UserTurnInput_" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.StartTurnAsync(System.String,MAS.PrismaTalk.Conversations.UserTurnInput)">
+  StartTurnAsync(string, UserTurnInput)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步在指定会话上启动一轮对话</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string?&gt; StartTurnAsync(string conversationId, UserTurnInput input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>input</code> <a class="xref" href="MAS.PrismaTalk.Conversations.UserTurnInput.html">UserTurnInput</a></dt>
+    <dd><p>用户输入（文本与附件）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>本轮标识；该会话已有轮次在跑时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaTalk_Conversations_IConversationManager_StartTurnAsync_System_String_MAS_PrismaTalk_Conversations_UserTurnInput__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>立即返回，不等待轮次结束</p>
+</div>
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_ConversationListChanged" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.ConversationListChanged">
+  ConversationListChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当会话列表的内容发生变化时触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler? ConversationListChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_PrismaTalk_Conversations_IConversationManager_TurnStateChanged" data-uid="MAS.PrismaTalk.Conversations.IConversationManager.TurnStateChanged">
+  TurnStateChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当某个会话的运行状态发生变化时触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;ConversationTurnStateEventArgs&gt;? TurnStateChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.PrismaTalk.Conversations.ConversationTurnStateEventArgs.html">ConversationTurnStateEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Conversations/Interfaces/IConversationManager.cs/#L18" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -87,169 +87,118 @@
         <article data-uid="">
 <h1 id="webview-事件与审批">WebView 事件与审批</h1>
 
-<p>MAS.PrismaTalk 的对话 UI 由 WPF 后端通过 WebView 执行 JavaScript 驱动。普通文本回复、Agent timeline、工具审批都在同一个 WebView 对话流中呈现</p>
+<p>MAS.PrismaTalk 的对话 UI 由 WPF 后端通过 WebView 驱动，普通回复、Agent timeline、审批与计划交互统一在同一个对话界面中呈现</p>
 <h2 id="后端调用前端">后端调用前端</h2>
-<p>WebView 传输层通过脚本桥接调用前端函数</p>
-<table>
-<thead>
-<tr>
-<th>后端操作</th>
-<th>前端函数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>DisplayUserMessageAsync</code></td>
-<td><code>addUserMessage(content)</code></td>
-<td>添加用户消息</td>
-</tr>
-<tr>
-<td><code>StartAssistantStreamAsync</code></td>
-<td><code>startAssistantStream(streamId)</code></td>
-<td>创建助手流式消息容器</td>
-</tr>
-<tr>
-<td><code>UpdateAssistantStreamAsync</code></td>
-<td><code>updateAssistantStream(streamId, chunk)</code></td>
-<td>追加助手自然语言内容</td>
-</tr>
-<tr>
-<td><code>EndAssistantStreamAsync</code></td>
-<td><code>endAssistantStream(streamId)</code></td>
-<td>结束流式消息</td>
-</tr>
-<tr>
-<td><code>ClearConversationAsync</code></td>
-<td><code>clearAllMessages()</code></td>
-<td>清空对话，输入区回到初始居中态</td>
-</tr>
-<tr>
-<td><code>SetSendingStateAsync</code></td>
-<td><code>setSendingState(isSending)</code></td>
-<td>同步发送状态，前端切换发送/停止按钮</td>
-</tr>
-<tr>
-<td><code>ShowToastMessageAsync</code></td>
-<td><code>showToastMessage(content, level)</code></td>
-<td>显示 toast</td>
-</tr>
-<tr>
-<td><code>SetThemeAsync</code></td>
-<td><code>setTheme(theme)</code></td>
-<td>切换 WebView 主题</td>
-</tr>
-</tbody>
-</table>
-<p>Agent Runtime 额外使用以下前端函数：</p>
-<table>
-<thead>
-<tr>
-<th>后端调用</th>
-<th>前端函数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>EmitThinkingAsync</code></td>
-<td><code>showPlainThinking(streamId, message)</code></td>
-<td>普通轻量思考状态，不创建 timeline</td>
-</tr>
-<tr>
-<td><code>EmitAsync</code></td>
-<td><code>renderAgentEvent(streamId, evt)</code></td>
-<td>渲染 Agent timeline 事件</td>
-</tr>
-<tr>
-<td><code>WebViewToolApprovalService</code></td>
-<td><code>renderAgentApprovalRequest(payload)</code></td>
-<td>渲染工具审批卡片</td>
-</tr>
-</tbody>
-</table>
+<h3 id="会话事件">会话事件</h3>
+<p>聊天内容统一通过 <code>IConversationJournal</code> 下发，前端只保留：</p>
+<ul>
+<li><code>applyConversationEvent(evt)</code></li>
+</ul>
+<p>作为聊天内容唯一入口。</p>
+<p>负责：</p>
+<ul>
+<li>实时消息展示</li>
+<li>历史事件重放</li>
+<li>Agent timeline 更新</li>
+<li>文本流更新</li>
+<li>工具执行状态展示</li>
+</ul>
+<p>实时事件和历史重放必须走同一套处理逻辑</p>
+<h3 id="直接-ui-桥接">直接 UI 桥接</h3>
+<p>非聊天历史内容仍通过 WebView 直接调用前端</p>
+<p>主要包括：</p>
+<ul>
+<li>会话重放开始与结束</li>
+<li>清空会话</li>
+<li>恢复输入草稿（连同随之退回的附件）</li>
+<li>新导入附件的回推</li>
+<li>临时聊天状态</li>
+<li>发送状态</li>
+<li>Toast</li>
+<li>主题切换</li>
+<li>会话侧栏</li>
+<li>审批卡片</li>
+<li>计划卡片</li>
+</ul>
+<p>这些状态不进入会话事件日志</p>
+<h2 id="会话事件日志">会话事件日志</h2>
+<p><code>IAgentEventSink</code> 和 <code>IConversationStreamView</code> 不直接执行 JavaScript，而是将展示事件写入 <code>IConversationJournal</code>。</p>
+<p><code>IConversationJournal</code> 负责：</p>
+<ul>
+<li>实时派发事件</li>
+<li>持久化展示历史</li>
+<li>保证事件顺序</li>
+<li>为历史重放提供数据</li>
+</ul>
+<p>核心约束：</p>
+<ul>
+<li>实时与重放使用同一个 <code>applyConversationEvent</code></li>
+<li>重放使用事件原始时间</li>
+<li>重放只恢复展示，不重新执行模型或工具</li>
+<li>编辑历史通过追加截断事件表达，不直接删除原事件</li>
+</ul>
 <h2 id="前端调用后端">前端调用后端</h2>
-<p>输入框与会话操作按钮位于 WebView 前端（初始与描述文案垂直居中，首次发送后吸底）。
-用户动作通过 <code>window.chrome.webview.postMessage</code> 回传，<code>MainViewModel</code> 订阅 <code>MessageReceived</code> 统一分发：</p>
-<table>
-<thead>
-<tr>
-<th>前端消息 <code>type</code></th>
-<th>载荷</th>
-<th>后端行为</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>sendMessage</code></td>
-<td><code>content</code>：用户输入文本</td>
-<td>启动一轮对话（等价于旧发送命令）</td>
-</tr>
-<tr>
-<td><code>cancelSend</code></td>
-<td>无</td>
-<td>取消当前正在进行的发送</td>
-</tr>
-<tr>
-<td><code>newConversation</code></td>
-<td>无</td>
-<td>取消进行中的发送并清空会话，前端布局回到居中态</td>
-</tr>
-</tbody>
-</table>
-<h2 id="agent-timeline-事件">Agent timeline 事件</h2>
-<p>后端当前下发的事件主要有：</p>
-<pre><code class="lang-json">{
-  &quot;kind&quot;: &quot;tool_call&quot;,
-  &quot;id&quot;: &quot;call_0&quot;,
-  &quot;toolName&quot;: &quot;cli.run&quot;,
-  &quot;provider&quot;: &quot;cli&quot;,
-  &quot;risk&quot;: &quot;high&quot;,
-  &quot;argsPreview&quot;: &quot;{\&quot;command\&quot;:\&quot;dotnet build\&quot;}&quot;,
-  &quot;status&quot;: &quot;awaiting_approval&quot;,
-  &quot;elapsedMs&quot;: 123
-}
-</code></pre>
-<pre><code class="lang-json">{
-  &quot;kind&quot;: &quot;tool_call&quot;,
-  &quot;id&quot;: &quot;call_0&quot;,
-  &quot;status&quot;: &quot;success&quot;,
-  &quot;summary&quot;: &quot;命令执行成功&quot;,
-  &quot;elapsedMs&quot;: 2345
-}
-</code></pre>
-<pre><code class="lang-json">{
-  &quot;kind&quot;: &quot;complete&quot;,
-  &quot;toolCount&quot;: 1,
-  &quot;elapsedMs&quot;: 3000
-}
-</code></pre>
-<p>前端 <code>renderAgentEvent</code> 会懒创建 timeline。普通问答只显示 <code>showPlainThinking</code> 和最终流式文本；只有真实工具调用、资源读取、审批或观察结果才出现可折叠的 Agent 过程</p>
-<h2 id="审批卡片">审批卡片</h2>
-<p>高风险工具执行前，工具执行管线会调用统一审批服务。WebView 审批通道会渲染如下 payload：</p>
-<pre><code class="lang-json">{
-  &quot;streamId&quot;: &quot;...&quot;,
-  &quot;id&quot;: &quot;call_0&quot;,
-  &quot;approvalId&quot;: &quot;...&quot;,
-  &quot;toolName&quot;: &quot;entity.delete&quot;,
-  &quot;provider&quot;: &quot;database&quot;,
-  &quot;risk&quot;: &quot;high&quot;,
-  &quot;argsPreview&quot;: &quot;{\&quot;instanceId\&quot;:\&quot;...\&quot;,\&quot;sql\&quot;:\&quot;DELETE ...\&quot;}&quot;,
-  &quot;title&quot;: &quot;需要确认&quot;,
-  &quot;message&quot;: &quot;该工具属于高风险操作。请确认参数无误后再允许执行。&quot;
-}
-</code></pre>
-<p>前端用户点击允许或拒绝后，通过 WebView postMessage 回传：</p>
-<pre><code class="lang-json">{
-  &quot;type&quot;: &quot;toolApprovalResponse&quot;,
-  &quot;approvalId&quot;: &quot;...&quot;,
-  &quot;approved&quot;: true
-}
-</code></pre>
-<p>后端用 <code>approvalId</code> 匹配等待中的审批请求。拒绝时不会执行工具，而是把取消结果作为 <code>ToolResult</code> 回填给模型</p>
+<p>前端通过 <code>window.chrome.webview.postMessage</code> 将用户操作回传给 WPF 后端。</p>
+<p>主要操作包括：</p>
+<ul>
+<li>发送消息</li>
+<li>停止生成</li>
+<li>新建会话</li>
+<li>编辑最后一条消息</li>
+<li>切换或重放会话</li>
+<li>切换临时聊天</li>
+<li>获取会话列表</li>
+<li>删除会话</li>
+<li>重命名会话</li>
+<li>切换高风险工具的审批策略</li>
+<li>上传文件</li>
+<li>提交审批结果</li>
+<li>提交计划交互结果</li>
+</ul>
+<p><code>MainViewModel</code> 统一接收并分发这些消息</p>
+<h2 id="agent-timeline">Agent Timeline</h2>
+<p>Agent timeline 用于展示实际发生的 Agent 行为，例如：</p>
+<ul>
+<li>工具调用</li>
+<li>工具执行结果</li>
+<li>资源读取</li>
+<li>审批</li>
+<li>观察结果</li>
+<li>轮次完成</li>
+</ul>
+<p>普通文本问答不显示完整 timeline。</p>
+<p>Timeline 本质上仍属于会话展示事件，由 <code>applyConversationEvent</code> 统一处理</p>
+<h2 id="审批">审批</h2>
+<p>高风险工具执行前由后端审批服务发起审批请求。</p>
+<p>流程：</p>
+<ul>
+<li>后端判断工具风险</li>
+<li>后端生成审批请求</li>
+<li>WebView 展示审批卡片</li>
+<li>用户选择允许或拒绝</li>
+<li>前端回传审批结果</li>
+<li>后端决定是否继续执行工具</li>
+</ul>
+<p>审批状态属于临时交互状态，不进入会话事件日志</p>
 <h2 id="前端职责边界">前端职责边界</h2>
-<p>前端只负责展示和回传用户审批选择，不决定工具是否可执行。风险等级、参数校验、工具路由和执行都在后端完成。</p>
-<p>这使得安全逻辑集中在 Agent Runtime 和各 Tool Provider 内，WebView 只承担可视化与交互职责。</p>
+<p>WebView 只负责：</p>
+<ul>
+<li>展示</li>
+<li>用户输入</li>
+<li>用户审批选择</li>
+<li>用户交互结果回传</li>
+</ul>
+<p>后端负责：</p>
+<ul>
+<li>风险判断</li>
+<li>参数校验</li>
+<li>工具路由</li>
+<li>工具执行</li>
+<li>会话状态</li>
+<li>历史记录</li>
+<li>模型上下文</li>
+</ul>
+<p>安全与执行逻辑始终保留在后端，WebView 只承担展示和交互职责</p>
 
 </article>
 

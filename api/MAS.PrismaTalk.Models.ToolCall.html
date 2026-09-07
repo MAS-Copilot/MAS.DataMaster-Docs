@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ToolCall | DataMaster ">
       
-      <meta name="description" content="表示一次已组装完成的原生工具调用（native tool_calls）。 由  的增量分片按 index 拼装而成">
+      <meta name="description" content="表示一次已组装完成的原生工具调用（native tool_calls）。 由传输层的流式分片按输出顺序拼装而成">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -98,7 +98,7 @@ Class ToolCall  <a class="header-action link-secondary" title="View source" href
   </div>
 
   <div class="markdown summary"><p>表示一次已组装完成的原生工具调用（native tool_calls）。
-由 <span class="xref">MAS.PrismaTalk.Models.MessageDelta.ToolCalls</span> 的增量分片按 index 拼装而成</p>
+由传输层的流式分片按输出顺序拼装而成</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -190,7 +190,7 @@ Class ToolCall  <a class="header-action link-secondary" title="View source" href
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaTalk/Models/ToolCall.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置模型分配的调用标识（用于回填 role=tool 结果时的 tool_call_id 关联）</p>
+  <div class="markdown level1 summary"><p>获取或设置模型分配的调用标识（回填 function_call_output 时的 call_id 关联）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
