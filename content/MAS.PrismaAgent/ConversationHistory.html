@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>会话历史架构 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="会话历史架构 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.PrismaAgent/ConversationHistory.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="会话历史架构">会话历史架构</h1>
+
+<h2 id="架构目标">架构目标</h2>
+<ul>
+<li>完整聊天历史持久化</li>
+<li>模型推理上下文恢复</li>
+<li>多会话独立运行</li>
+<li>会话切换与历史重放</li>
+<li>临时对话</li>
+<li>后台会话持续执行</li>
+<li>中断后的安全恢复</li>
+</ul>
+<p>系统将以下三类状态明确分离：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>展示历史</td>
+<td>保存用户可见的完整会话过程</td>
+</tr>
+<tr>
+<td>推理上下文</td>
+<td>保存模型继续对话所需的上下文</td>
+</tr>
+<tr>
+<td>会话运行时</td>
+<td>保存当前进程内的执行状态</td>
+</tr>
+</tbody>
+</table>
+<p>三者生命周期不同，不相互替代</p>
+<h2 id="展示历史">展示历史</h2>
+<p>展示历史采用<strong>事件日志模型</strong></p>
+<p><code>IConversationJournal</code> 是会话展示事件的统一入口，负责：</p>
+<ul>
+<li>接收会话事件</li>
+<li>实时派发给界面</li>
+<li>持久化事件</li>
+<li>保证事件顺序</li>
+</ul>
+<p>历史记录保存的是用户实际看到的过程，而不是模型上下文</p>
+<p>典型事件包括：</p>
+<pre><code class="lang-text">user.message
+assistant.text
+tool.call
+tool.done
+system.notice
+turn.started
+turn.ended
+turn.truncated
+</code></pre>
+<p>完整取值见 <code>ConversationEventTypes</code>。其中 <code>system.notice</code> 用于本轮压根没有发给模型的情形，由系统给出的提示占掉模型回复的位置</p>
+<p>事件在单个会话内保持严格顺序</p>
+<h2 id="历史重放">历史重放</h2>
+<p><code>IConversationReplayService</code> 负责根据事件日志重建会话界面</p>
+<p>核心原则：</p>
+<pre><code class="lang-text">实时事件 ──┐
+           ├──&gt; applyConversationEvent ──&gt; UI
+历史事件 ──┘
+</code></pre>
+<p>实时显示和历史恢复使用同一套事件处理逻辑。</p>
+<p>历史重放只恢复展示状态，不重新执行：</p>
+<ul>
+<li>模型请求</li>
+<li>工具调用</li>
+<li>审批</li>
+<li>计划</li>
+<li>其他具有副作用的操作</li>
+</ul>
+<p>因此：</p>
+<blockquote>
+<p>Event Log 是展示状态的事实来源</p>
+</blockquote>
+<h2 id="推理上下文">推理上下文</h2>
+<p>展示历史不能替代模型推理上下文</p>
+<p>模型上下文由 <code>AgentSession</code> 维护，并通过 <code>IAgentCheckpointService</code> 进行持久化和恢复</p>
+<p>Checkpoint 保存继续对话所需要的模型状态，例如：</p>
+<ul>
+<li>Conversation Items</li>
+<li>已激活工具状态</li>
+<li>已执行工具调用标识</li>
+<li>Usage</li>
+<li>上下文压缩状态</li>
+</ul>
+<p>Checkpoint 与展示事件日志相互独立：</p>
+<pre><code class="lang-text">Conversation Events
+    ↓
+恢复用户看到的内容
+
+Agent Checkpoint
+    ↓
+恢复模型继续思考所需状态
+</code></pre>
+<p>Checkpoint 无法恢复时，只影响继续原对话，不影响历史查看</p>
+<h2 id="会话运行时">会话运行时</h2>
+<p>长期运行中的会话由 <code>IConversationManager</code> 统一管理。</p>
+<p>每个会话对应独立 <code>ConversationRuntime</code>，Runtime 保存当前进程内的执行状态，例如：</p>
+<ul>
+<li>当前轮次</li>
+<li>CancellationToken</li>
+<li>执行任务</li>
+<li>会话状态</li>
+<li>未读状态</li>
+</ul>
+<p>基本规则：</p>
+<ul>
+<li>同一会话同时只执行一个轮次</li>
+<li>不同会话可以并发运行</li>
+<li>切换会话不会停止原会话</li>
+<li>停止操作只影响目标会话</li>
+</ul>
+<p>因此会话生命周期不与当前 UI 页面绑定</p>
+<h2 id="轮级状态隔离">轮级状态隔离</h2>
+<p>具有轮次状态的组件不能跨轮次长期共享。</p>
+<p>逻辑结构：</p>
+<pre><code class="lang-text">ConversationRuntime
+       │
+       ├── Turn 1
+       │    └── AgentLoop
+       │
+       ├── Turn 2
+       │    └── AgentLoop
+       │
+       └── Turn N
+            └── AgentLoop
+</code></pre>
+<p>每轮执行拥有独立的：</p>
+<ul>
+<li>Agent Loop</li>
+<li>Tool Pipeline</li>
+<li>Channel State</li>
+<li>Tool Mapping</li>
+<li>Approval State</li>
+</ul>
+<p>避免并发会话之间发生状态污染</p>
+<h2 id="待回答交互">待回答交互</h2>
+<p>审批、计划等需要等待用户响应的交互属于 <code>Pending Interaction</code> 它们不是长期历史的一部分，而是运行时交互状态。由：</p>
+<pre><code class="lang-text">ConversationInteractionPresenter
+IPendingInteractionStore
+</code></pre>
+<p>负责管理。</p>
+<p>每个 Pending Interaction 必须绑定：</p>
+<pre><code class="lang-text">Conversation
+    └── Turn
+         └── Interaction
+</code></pre>
+<p>后台会话产生交互时不能直接覆盖当前会话界面。用户重新进入对应会话后，再恢复其未完成交互</p>
+<h2 id="会话切换">会话切换</h2>
+<p>会话切换分为：</p>
+<pre><code class="lang-text">激活目标会话
+      ↓
+重放目标历史
+      ↓
+恢复运行时状态
+      ↓
+恢复 Pending Interaction
+      ↓
+继续接收实时事件
+</code></pre>
+<p>切换只改变当前正在查看的会话。</p>
+<p>后台会话：</p>
+<ul>
+<li>可以继续生成</li>
+<li>可以继续执行工具</li>
+<li>可以继续记录事件</li>
+<li>不向当前页面派发展示事件</li>
+</ul>
+<p>重新切回后，通过历史重放补齐期间产生的内容</p>
+<h2 id="激活会话">激活会话</h2>
+<p>当前界面只允许显示一个激活会话。由 <code>IActiveConversationTracker</code> 维护当前激活状态。</p>
+<p>事件流：</p>
+<pre><code class="lang-text">Conversation Event
+       │
+       ▼
+Event Dispatcher
+       │
+       ├── Active Conversation
+       │       ↓
+       │      UI
+       │
+       └── Background Conversation
+               ↓
+            只持久化
+</code></pre>
+<p>从而实现后台生成与前台展示解耦</p>
+<h2 id="临时对话">临时对话</h2>
+<p>临时对话是<strong>会话级属性</strong></p>
+<pre><code class="lang-text">Conversation
+├── Persistent
+└── Temporary
+</code></pre>
+<p>临时会话：</p>
+<ul>
+<li>正常进入运行时</li>
+<li>正常调用模型</li>
+<li>正常执行工具</li>
+<li>正常显示事件</li>
+</ul>
+<p>但不进入持久化历史。临时状态必须在会话正式产生内容前确定</p>
+<h2 id="编辑与截断">编辑与截断</h2>
+<p>编辑最后一条消息属于会话历史分叉。模型上下文和展示历史分别处理：</p>
+<pre><code class="lang-text">Agent Context
+    ↓
+移除旧轮次上下文
+
+Event Log
+    ↓
+追加 turn.truncated
+</code></pre>
+<p>历史事件仍保持 Append Only。Replay 根据截断事件计算最终展示状态。这样既保留事件完整性，又允许修改最后一轮对话。</p>
+<h2 id="会话元数据">会话元数据</h2>
+<p>会话列表使用独立的 Conversation Metadata。主要包含：</p>
+<pre><code class="lang-text">Conversation
+├── Id
+├── Title
+├── CreatedAt
+├── LastActiveAt
+├── Status
+└── HasUnread
+</code></pre>
+<p>Conversation Metadata 与 Conversation Events 分离：</p>
+<pre><code class="lang-text">Conversation
+    │
+    ├── Metadata
+    │
+    ├── Events
+    │
+    └── Checkpoint
+</code></pre>
+<p>侧栏负责展示和切换会话，而不是承载运行时状态本身</p>
+<h3 id="元数据分工写入">元数据分工写入</h3>
+<p><code>Title</code>、<code>Status</code>、<code>HasUnread</code> 均由专用语句更新，事件日志的 upsert 只维护活动信息：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>写入者</th>
+<th>时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LastSequence</code> / <code>LastActiveAt</code></td>
+<td>事件日志</td>
+<td>用户消息、轮次收尾</td>
+</tr>
+<tr>
+<td><code>Title</code> / <code>TitleStatus</code></td>
+<td>标题服务</td>
+<td>首条用户消息落库后异步生成</td>
+</tr>
+<tr>
+<td><code>Status</code></td>
+<td>会话管理者</td>
+<td>开始写 <code>Running</code>，收尾写 <code>Idle</code> / <code>Failed</code></td>
+</tr>
+<tr>
+<td><code>HasUnread</code></td>
+<td>会话管理者</td>
+<td>后台轮次收尾置位，用户进入后清除</td>
+</tr>
+</tbody>
+</table>
+<p>日志中的标题和状态只是占位值，整体覆盖会把真实标题抹成 <code>NULL</code>，或将 <code>Running</code> 错写为 <code>Idle</code>。</p>
+<p>除事件活动外，其他元数据更新都不推进 <code>LastActiveAt</code>，避免侧栏排序无故变化。</p>
+<p>读取 <code>Status</code> 时，如果数据库仍为 <code>Running</code>，但进程内已无对应运行时，说明上一进程中途退出，应显示为「已中断」。无需启动时回写，直到该会话再次运行。</p>
+<h3 id="序号游标先与数据库对齐">序号游标先与数据库对齐</h3>
+<p>事件表 <code>(ConversationId, Sequence)</code> 唯一，写入使用 <code>INSERT IGNORE</code> 以支持队列安全重试。因此，<strong>分配新序号前必须先对齐数据库最大序号</strong>，否则冲突事件会被静默丢弃。</p>
+<p>典型场景是首次打开历史会话：内存游标仍为 <code>0</code>，若直接续写，新事件会从 <code>1</code> 开始，与历史数据冲突</p>
+<p><code>ConversationJournal</code> 因此在首次分配序号时惰性对齐：</p>
+<ul>
+<li>仅仓储成功返回最大序号后标记已对齐</li>
+<li>若待写队列已有序号，则整体重排到最新游标之后</li>
+</ul>
+<h2 id="会话标题">会话标题</h2>
+<p>会话标题属于会话元数据。由独立的 <code>IConversationTitleService</code> 负责生成和更新。</p>
+<p>标题生成与主 Agent Loop 解耦：</p>
+<pre><code class="lang-text">User Message
+     │
+     ├── Main Agent
+     │
+     └── Title Service
+</code></pre>
+<p>标题生成失败不影响主对话</p>
+<h2 id="持久化模型">持久化模型</h2>
+<p>持久化层包含以下四类逻辑实体：</p>
+<pre><code class="lang-text">Conversation
+│
+├── Conversation Events
+├── Agent Checkpoint
+└── Attachments
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>实体</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conversation</td>
+<td>保存会话元数据</td>
+</tr>
+<tr>
+<td>Conversation Events</td>
+<td>保存用户可见的完整会话历史</td>
+</tr>
+<tr>
+<td>Agent Checkpoint</td>
+<td>保存模型继续会话所需的上下文</td>
+</tr>
+<tr>
+<td>Attachments</td>
+<td>保存附件引用与元数据，文件内容存储于磁盘</td>
+</tr>
+</tbody>
+</table>
+<p>各实体职责独立，不交叉承担持久化责任。</p>
+<h2 id="附件">附件</h2>
+<p>用户消息由有序内容分段组成，包括文本、图片和文件。分段顺序即模型接收顺序，持久化和映射过程中不得重排。</p>
+<p>核心约束：</p>
+<ul>
+<li><strong>仅保存引用，不保存 Base64</strong>。事件、检查点和附件记录仅保存 <code>attachmentId / fileName / mediaType / byteSize / relativePath</code>，文件内容仅在构造模型请求时读取并编码</li>
+<li><strong>仅保存相对路径</strong>。避免全局存储目录变更后导致历史附件路径失效</li>
+<li><strong>附件存储于全局数据目录</strong>，不得写入可能被应用更新覆盖的安装目录</li>
+<li><strong>附件不按文本估算 Token</strong>。图片按视觉 Token 估算，文件按字节数估算；上下文压缩仅保留附件说明，不读取正文</li>
+<li><strong>导入阶段执行体积校验</strong>：单文件 &lt; 50 MB，同一会话累计附件总量 ≤ 50 MB。当前使用 <code>store: false</code>，每轮请求都会重新发送完整上下文，因此累计上限作用于整个会话</li>
+</ul>
+<h3 id="承载方式">承载方式</h3>
+<p>附件根据扩展名划分为三种承载方式。分类结果不单独持久化，历史附件在需要发送时按照相同规则重新判定。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>覆盖范围</th>
+<th>模型输入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>图片</td>
+<td><code>.png</code> <code>.jpg</code> <code>.jpeg</code> <code>.gif</code> <code>.webp</code></td>
+<td><code>input_image</code></td>
+</tr>
+<tr>
+<td>文档</td>
+<td><code>.pdf</code> 及 Office 文档格式</td>
+<td><code>input_file</code></td>
+</tr>
+<tr>
+<td>文本</td>
+<td>通用文本、数据文件、标记文件、源码与配置文件</td>
+<td>读取正文并以内联 <code>input_text</code> 发送</td>
+</tr>
+</tbody>
+</table>
+<p>源码和配置文件通常不适合作为 <code>input_file</code> 交由服务端文档解析器处理，因此优先在本地读取正文并以内联文本发送。</p>
+<p>内联文本会包含原始文件名。内容超过允许长度时进行截断，并在文本中明确标记截断状态，避免模型将不完整内容误认为完整文件。</p>
+<p>当文件无法按 UTF-8 或 UTF-16 正常解码时，不以内联文本发送，而是回退为 <code>input_file</code>。</p>
+<h3 id="不支持的附件">不支持的附件</h3>
+<p>无法映射到上述三种承载方式的附件，例如压缩包、可执行文件、音频和视频文件，不发送给模型。</p>
+<p>处理规则如下：</p>
+<ul>
+<li>用户消息仍正常写入会话事件流，并追加一条 <code>system.notice</code> 事件作为提示</li>
+<li>当前轮次不进入 Agent 编排，该消息不会加入模型上下文</li>
+<li>提示内容在事件创建时确定并持久化；重新打开会话时直接重放该事件，不重新生成提示</li>
+</ul>
+<h2 id="核心架构原则">核心架构原则</h2>
+<ul>
+<li><p>展示与推理解耦：<code>Event Log != Agent Context</code>，一个负责“用户看到了什么”，一个负责“模型接下来需要知道什么”</p>
+</li>
+<li><p>UI 与运行时解耦：<code>Conversation Runtime != Current Page</code>，切换页面不会终止后台会话</p>
+</li>
+<li><p>实时与重放统一</p>
+<pre><code class="lang-text">Realtime Event
+Replay Event
+      ↓
+Same Reducer
+</code></pre>
+<ul>
+<li>避免维护两套界面逻辑</li>
+</ul>
+</li>
+<li><p>会话之间完全隔离</p>
+<pre><code class="lang-text">Conversation A Runtime
+Conversation B Runtime
+Conversation C Runtime
+</code></pre>
+<ul>
+<li>运行任务、取消、工具状态、Pending Interaction 均不得相互污染</li>
+</ul>
+</li>
+<li><p>历史事件只追加：<code>Append Only Event Log</code>，修改历史通过追加状态事件表达，而不是直接修改已有事件</p>
+</li>
+<li><p>展示历史优先保证完整：即使模型上下文无法恢复，也应该能够完整查看已有聊天历史</p>
+</li>
+</ul>
+<h2 id="模块关系">模块关系</h2>
+<pre><code class="lang-text">ConversationManager
+│
+├── ConversationRuntime
+│
+├── ConversationJournal
+│      └── ConversationStore
+│
+├── ConversationReplayService
+│      └── ConversationStore
+│
+├── AgentCheckpointService
+│      └── ConversationStore
+│
+├── ConversationInteractionPresenter
+│      └── PendingInteractionStore
+│
+├── ActiveConversationTracker
+│
+├── ConversationTitleService
+│
+└── AttachmentService
+       ├── ConversationStore（引用与元数据）
+       └── 会话附件目录（正文）
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.PrismaAgent/ConversationHistory.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
