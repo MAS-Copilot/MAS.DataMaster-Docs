@@ -205,6 +205,12 @@ Class DynamicViewVariableModel
     <dt>Extension Methods</dt>
     <dd>
   <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableAccessModeExtensions.html#MAS_DynamicViews_DynamicViewVariableAccessModeExtensions_CanBind_MAS_DynamicViews_DynamicViewVariableModel_">DynamicViewVariableAccessModeExtensions.CanBind(DynamicViewVariableModel?)</a>
+  </div>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableAccessModeExtensions.html#MAS_DynamicViews_DynamicViewVariableAccessModeExtensions_CanWriteBack_MAS_DynamicViews_DynamicViewVariableModel_">DynamicViewVariableAccessModeExtensions.CanWriteBack(DynamicViewVariableModel?)</a>
+  </div>
+  <div>
       <a class="xref" href="MAS.DynamicViews.DynamicViewVariableDisplayExtensions.html#MAS_DynamicViews_DynamicViewVariableDisplayExtensions_GetFieldDisplayName_MAS_DynamicViews_DynamicViewVariableModel_MAS_DynamicViews_DynamicViewVariableFieldModel_">DynamicViewVariableDisplayExtensions.GetFieldDisplayName(DynamicViewVariableModel, DynamicViewVariableFieldModel)</a>
   </div>
   </dd></dl>
@@ -779,6 +785,52 @@ public DynamicViewVariableUsage Usage { get; set; }</code></pre>
   <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableModel_CreateRecipe_System_String_System_String__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>配方结构体只承载信令，固定 <a class="xref" href="MAS.DynamicViews.DynamicViewRecipeFields.html#MAS_DynamicViews_DynamicViewRecipeFields_HEADER_REGISTER_LENGTH">HEADER_REGISTER_LENGTH</a> 个寄存器；
 配方数据本体由 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableModel.html#MAS_DynamicViews_DynamicViewVariableModel_RecipeReferences">RecipeReferences</a> 引用的普通结构体承载，不占用下位机地址</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewVariableModel_CreateSystem_" data-uid="MAS.DynamicViews.DynamicViewVariableModel.CreateSystem*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewVariableModel_CreateSystem_System_String_System_String_" data-uid="MAS.DynamicViews.DynamicViewVariableModel.CreateSystem(System.String,System.String)">
+  CreateSystem(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableModel.cs/#L239"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建系统结构体变量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DynamicViewVariableModel CreateSystem(string name, string groupName = &quot;Default&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>结构体名称</p>
+</dd>
+    <dt><code>groupName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>分组名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewVariableModel.html">DynamicViewVariableModel</a></dt>
+    <dd><p>系统结构体变量模型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableModel_CreateSystem_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>系统结构体固定占用 <a class="xref" href="MAS.DynamicViews.DynamicViewSystemFields.html#MAS_DynamicViews_DynamicViewSystemFields_REGISTER_LENGTH">REGISTER_LENGTH</a> 个寄存器，
+由系统单向维护，控件与脚本只读；每个工程仅允许一个系统结构体</p>
 </div>
 
 

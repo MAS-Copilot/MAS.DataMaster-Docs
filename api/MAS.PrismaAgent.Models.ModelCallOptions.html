@@ -158,7 +158,7 @@ Class ModelCallOptions  <a class="header-action link-secondary" title="View sour
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ModelCallOptions.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取最大输出 token 数（null 回退配置 MaxTokens）</p>
+  <div class="markdown level1 summary"><p>获取最大输出 token 数（null 表示不下发该参数，由模型按自身上限决定）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -196,6 +196,38 @@ Class ModelCallOptions  <a class="header-action link-secondary" title="View sour
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string? Model { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaAgent_Models_ModelCallOptions_ReasoningEffort_" data-uid="MAS.PrismaAgent.Models.ModelCallOptions.ReasoningEffort*"></a>
+
+  <h3 id="MAS_PrismaAgent_Models_ModelCallOptions_ReasoningEffort" data-uid="MAS.PrismaAgent.Models.ModelCallOptions.ReasoningEffort">
+  ReasoningEffort
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ModelCallOptions.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取推理等级（null 表示不下发 <code>reasoning.effort</code>，由端点决定推理强度）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ReasoningEffort { get; init; }</code></pre>
   </div>
 
 

@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Enum FinishReason | DataMaster </title>
+      <title>Enum DynamicViewSystemRecipeState | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Enum FinishReason | DataMaster ">
+      <meta name="title" content="Enum DynamicViewSystemRecipeState | DataMaster ">
       
-      <meta name="description" content="表示聊天或文本生成任务完成的原因">
+      <meta name="description" content="系统结构体的当前配方状态">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PrismaAgent_Models_FinishReason.md&amp;value=---%0Auid%3A%20MAS.PrismaAgent.Models.FinishReason%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_DynamicViewSystemRecipeState.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.DynamicViewSystemRecipeState%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,27 +84,26 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.PrismaAgent.Models.FinishReason">
+        <article data-uid="MAS.DynamicViews.DynamicViewSystemRecipeState">
 
 
 
 
-  <h1 id="MAS_PrismaAgent_Models_FinishReason" data-uid="MAS.PrismaAgent.Models.FinishReason" class="text-break">
-Enum FinishReason  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/FinishReason.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_DynamicViews_DynamicViewSystemRecipeState" data-uid="MAS.DynamicViews.DynamicViewSystemRecipeState" class="text-break">
+Enum DynamicViewSystemRecipeState  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/Systems/DynamicViewSystemRecipeState.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.PrismaAgent.html">PrismaAgent</a>.<a class="xref" href="MAS.PrismaAgent.Models.html">Models</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>MAS.PrismaAgent.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>表示聊天或文本生成任务完成的原因</p>
+  <div class="markdown summary"><p>系统结构体的当前配方状态</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[JsonConverter(typeof(FinishReasonConverter))]
-public enum FinishReason</code></pre>
+    <pre><code class="lang-csharp hljs">public enum DynamicViewSystemRecipeState</code></pre>
   </div>
 
 
@@ -125,26 +124,22 @@ public enum FinishReason</code></pre>
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
-    <dt id="MAS_PrismaAgent_Models_FinishReason_ContentFilter"><code>ContentFilter = 2</code></dt>
-  <dd><p>由于内容过滤器触发而停止
-通常表示模型检测到可能违反内容政策的内容</p>
-<p>如果用户输入包含敏感词汇，模型可能会触发内容过滤器并停止生成</p>
-</dd>
+    <dt id="MAS_DynamicViews_DynamicViewSystemRecipeState_Failed"><code>Failed = 3</code></dt>
   
-    <dt id="MAS_PrismaAgent_Models_FinishReason_Length"><code>Length = 1</code></dt>
-  
-  <dd><p>由于达到最大生成长度限制而停止</p>
+  <dd><p>装载失败</p>
 </dd>
-    <dt id="MAS_PrismaAgent_Models_FinishReason_Stop"><code>Stop = 0</code></dt>
-  <dd><p>模型自然停止生成文本</p>
-<p>通常表示模型认为已经输出了完整的回答</p>
-</dd>
+    <dt id="MAS_DynamicViews_DynamicViewSystemRecipeState_Loaded"><code>Loaded = 1</code></dt>
   
-    <dt id="MAS_PrismaAgent_Models_FinishReason_ToolCalls"><code>ToolCalls = 3</code></dt>
-  <dd><p>模型决定发起原生工具调用而停止（finish_reason = &quot;tool_calls&quot;）</p>
-<p>此时助手消息携带 tool_calls，需要执行工具并回填结果后继续推理</p>
+  <dd><p>已装载配方</p>
 </dd>
+    <dt id="MAS_DynamicViews_DynamicViewSystemRecipeState_Loading"><code>Loading = 2</code></dt>
   
+  <dd><p>装载中</p>
+</dd>
+    <dt id="MAS_DynamicViews_DynamicViewSystemRecipeState_None"><code>None = 0</code></dt>
+  
+  <dd><p>未装载配方</p>
+</dd>
   </dl>
 
 
@@ -152,7 +147,7 @@ public enum FinishReason</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/FinishReason.cs/#L18" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Models/Systems/DynamicViewSystemRecipeState.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

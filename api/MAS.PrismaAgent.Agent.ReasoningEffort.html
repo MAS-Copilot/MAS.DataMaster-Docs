@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Enum FinishReason | DataMaster </title>
+      <title>Enum ReasoningEffort | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Enum FinishReason | DataMaster ">
+      <meta name="title" content="Enum ReasoningEffort | DataMaster ">
       
-      <meta name="description" content="表示聊天或文本生成任务完成的原因">
+      <meta name="description" content="模型推理等级">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PrismaAgent_Models_FinishReason.md&amp;value=---%0Auid%3A%20MAS.PrismaAgent.Models.FinishReason%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_PrismaAgent_Agent_ReasoningEffort.md&amp;value=---%0Auid%3A%20MAS.PrismaAgent.Agent.ReasoningEffort%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,27 +84,26 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.PrismaAgent.Models.FinishReason">
+        <article data-uid="MAS.PrismaAgent.Agent.ReasoningEffort">
 
 
 
 
-  <h1 id="MAS_PrismaAgent_Models_FinishReason" data-uid="MAS.PrismaAgent.Models.FinishReason" class="text-break">
-Enum FinishReason  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/FinishReason.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_PrismaAgent_Agent_ReasoningEffort" data-uid="MAS.PrismaAgent.Agent.ReasoningEffort" class="text-break">
+Enum ReasoningEffort  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ReasoningEffort.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.PrismaAgent.html">PrismaAgent</a>.<a class="xref" href="MAS.PrismaAgent.Models.html">Models</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.PrismaAgent.html">PrismaAgent</a>.<a class="xref" href="MAS.PrismaAgent.Agent.html">Agent</a></dd></dl>
   <dl><dt>Assembly</dt><dd>MAS.PrismaAgent.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>表示聊天或文本生成任务完成的原因</p>
+  <div class="markdown summary"><p>模型推理等级</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[JsonConverter(typeof(FinishReasonConverter))]
-public enum FinishReason</code></pre>
+    <pre><code class="lang-csharp hljs">public enum ReasoningEffort</code></pre>
   </div>
 
 
@@ -125,34 +124,37 @@ public enum FinishReason</code></pre>
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
-    <dt id="MAS_PrismaAgent_Models_FinishReason_ContentFilter"><code>ContentFilter = 2</code></dt>
-  <dd><p>由于内容过滤器触发而停止
-通常表示模型检测到可能违反内容政策的内容</p>
-<p>如果用户输入包含敏感词汇，模型可能会触发内容过滤器并停止生成</p>
-</dd>
+    <dt id="MAS_PrismaAgent_Agent_ReasoningEffort_High"><code>High = 2</code></dt>
   
-    <dt id="MAS_PrismaAgent_Models_FinishReason_Length"><code>Length = 1</code></dt>
-  
-  <dd><p>由于达到最大生成长度限制而停止</p>
+  <dd><p>深入推理，适合跨多个工具的复杂编排</p>
 </dd>
-    <dt id="MAS_PrismaAgent_Models_FinishReason_Stop"><code>Stop = 0</code></dt>
-  <dd><p>模型自然停止生成文本</p>
-<p>通常表示模型认为已经输出了完整的回答</p>
-</dd>
+    <dt id="MAS_PrismaAgent_Agent_ReasoningEffort_Low"><code>Low = 0</code></dt>
   
-    <dt id="MAS_PrismaAgent_Models_FinishReason_ToolCalls"><code>ToolCalls = 3</code></dt>
-  <dd><p>模型决定发起原生工具调用而停止（finish_reason = &quot;tool_calls&quot;）</p>
-<p>此时助手消息携带 tool_calls，需要执行工具并回填结果后继续推理</p>
+  <dd><p>尽量少推理，响应最快，适合改文案、调布局这类步骤明确的任务</p>
 </dd>
+    <dt id="MAS_PrismaAgent_Agent_ReasoningEffort_Medium"><code>Medium = 1</code></dt>
   
+  <dd><p>默认等级，速度与推理深度平衡</p>
+</dd>
+    <dt id="MAS_PrismaAgent_Agent_ReasoningEffort_XHigh"><code>XHigh = 3</code></dt>
+  
+  <dd><p>最深推理，仅部分模型支持，耗时与费用显著上升</p>
+</dd>
   </dl>
 
 
+  <h2 id="MAS_PrismaAgent_Agent_ReasoningEffort_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>对应 Responses 请求体的 <code>reasoning.effort</code>。
+推理等级越高，通常耗时和费用越高，也会占用更多输出预算。
+全局生效，所有会话继承。
+若端点不支持某个取值（如部分网关不支持 <a class="xref" href="MAS.PrismaAgent.Agent.ReasoningEffort.html#MAS_PrismaAgent_Agent_ReasoningEffort_XHigh">XHigh</a>），
+传输层会在收到 400 后于当前进程内停发该参数，并回退为模型默认行为。</p>
+</div>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/FinishReason.cs/#L18" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ReasoningEffort.cs/#L22" class="edit-link">Edit this page</a>
         </div>
 
 

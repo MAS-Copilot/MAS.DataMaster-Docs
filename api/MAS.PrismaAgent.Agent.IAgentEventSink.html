@@ -163,7 +163,7 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_CompleteAsync_System_String_System_Int32_System_Int64_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.CompleteAsync(System.String,System.Int32,System.Int64)">
   CompleteAsync(string, int, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发布本轮收尾事件</p>
@@ -203,29 +203,79 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
 
 
 
-  <a id="MAS_PrismaAgent_Agent_IAgentEventSink_ContextUsageAsync_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ContextUsageAsync*"></a>
+  <a id="MAS_PrismaAgent_Agent_IAgentEventSink_ContextTrimmedAsync_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ContextTrimmedAsync*"></a>
 
-  <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_ContextUsageAsync_System_String_System_Int32_System_Int32_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ContextUsageAsync(System.String,System.Int32,System.Int32)">
-  ContextUsageAsync(string, int, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_ContextTrimmedAsync_System_String_System_Int32_System_Int32_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ContextTrimmedAsync(System.String,System.Int32,System.Int32)">
+  ContextTrimmedAsync(string, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>发布最近一次模型请求的上下文 token 使用情况。</p>
+  <div class="markdown level1 summary"><p>发布「已回收推理轨迹」提示</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task ContextUsageAsync(string streamId, int usedTokens, int contextWindow)</code></pre>
+    <pre><code class="lang-csharp hljs">Task ContextTrimmedAsync(string streamId, int droppedItems, int freedTokens)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>streamId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前对话流标识</p>
+</dd>
+    <dt><code>droppedItems</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>被回收的推理轨迹条数</p>
+</dd>
+    <dt><code>freedTokens</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>因此释放的估算 token 数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
     <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaAgent_Agent_IAgentEventSink_ContextUsageAsync_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ContextUsageAsync*"></a>
+
+  <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_ContextUsageAsync_System_String_System_Int32_System_Int32_System_Int32_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ContextUsageAsync(System.String,System.Int32,System.Int32,System.Int32)">
+  ContextUsageAsync(string, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步发布上下文用量及压缩预算</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ContextUsageAsync(string streamId, int usedTokens, int contextWindow, int budgetTokens)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>streamId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>对话流标识</p>
+</dd>
     <dt><code>usedTokens</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>当前上下文占用</p>
+</dd>
     <dt><code>contextWindow</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>模型上下文窗口</p>
+</dd>
+    <dt><code>budgetTokens</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>可用输入预算，用于计算压缩警戒线</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>

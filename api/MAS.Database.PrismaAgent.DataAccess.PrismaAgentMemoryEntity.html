@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PrismaAgentMemoryEntity | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PrismaAgentMemoryEntity | DataMaster ">
+      
+      <meta name="description" content="棱镜智能体长期记忆实体">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity.md&amp;value=---%0Auid%3A%20MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity">
+
+
+
+  <h1 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity" class="text-break">
+Class PrismaAgentMemoryEntity  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.Database.html">Database</a>.<a class="xref" href="MAS.Database.PrismaAgent.html">PrismaAgent</a>.<a class="xref" href="MAS.Database.PrismaAgent.DataAccess.html">DataAccess</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.Database.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>棱镜智能体长期记忆实体</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Table(&quot;Prisma_Agent_Memories&quot;)]
+[DbHandler(true, null)]
+[Index(&quot;UX_PrismaAgentMemory_Scope_Key&quot;, new string[] { &quot;Scope&quot;, &quot;MemoryKey&quot; }, IsUnique = true)]
+[Index(&quot;IX_PrismaAgentMemory_Retrieval&quot;, new string[] { &quot;Scope&quot;, &quot;IsActive&quot;, &quot;Kind&quot;, &quot;Importance&quot; })]
+[Index(&quot;IX_PrismaAgentMemory_Recency&quot;, new string[] { &quot;IsActive&quot;, &quot;UpdatedAt&quot; })]
+[Index(&quot;IX_PrismaAgentMemory_Expiry&quot;, new string[] { &quot;ExpiresAt&quot; })]
+[CreationPriority(PriorityLevel.LevelB)]
+public class PrismaAgentMemoryEntity</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">PrismaAgentMemoryEntity</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>单机场景不区分用户，全部记忆统一存储，并通过 <a class="xref" href="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.html#MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Kind">Kind</a> 区分类型。
+可覆盖记忆必须设置 <a class="xref" href="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.html#MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_MemoryKey">MemoryKey</a>，相同键只保留最新版本；
+流水记忆不设置键，仅追加保存</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Content_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Content*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Content" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Content">
+  Content
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置记忆正文</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;正文&quot;)]
+[Column(&quot;Content&quot;, &quot;TEXT&quot;, IsNullable = false, Comment = &quot;记忆正文&quot;)]
+public string Content { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Content_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>纯文本陈述句，不存放工具原始输出与可再查的数据</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_ConversationId_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.ConversationId*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_ConversationId" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.ConversationId">
+  ConversationId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置写入时所在的会话标识</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;来源会话&quot;)]
+[Column(&quot;ConversationId&quot;, &quot;VARCHAR(64)&quot;, IsNullable = true, Comment = &quot;写入时所在的会话标识&quot;)]
+public string? ConversationId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_ConversationId_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>由运行时自动填写而不是让模型给出，保证追溯链条不被编造</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_CreatedAt_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.CreatedAt*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_CreatedAt" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.CreatedAt">
+  CreatedAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置创建时间（UTC）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;创建时间&quot;)]
+[Column(&quot;CreatedAt&quot;, &quot;DATETIME(3)&quot;, IsNullable = false, Comment = &quot;创建时间（UTC）&quot;)]
+public DateTime CreatedAt { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_ExpiresAt_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.ExpiresAt*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_ExpiresAt" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.ExpiresAt">
+  ExpiresAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置过期时间（UTC）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;过期时间&quot;)]
+[Column(&quot;ExpiresAt&quot;, &quot;DATETIME(3)&quot;, IsNullable = true, Comment = &quot;过期时间（UTC）&quot;)]
+public DateTime? ExpiresAt { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_ExpiresAt_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>已知有时效的记忆必须带过期时间，到期后自动退出检索并被清理</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Id_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Id*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Id" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置主键标识符，自增</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;主键&quot;)]
+[Column(&quot;Id&quot;, &quot;BIGINT&quot;, IsPrimaryKey = true, IsAutoIncrement = true, IsNullable = false, Comment = &quot;唯一标识符，主键&quot;)]
+public long Id { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Importance_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Importance*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Importance" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Importance">
+  Importance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置重要度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;重要度&quot;)]
+[Column(&quot;Importance&quot;, &quot;TINYINT UNSIGNED&quot;, IsNullable = false, Default = &quot;50&quot;, Comment = &quot;重要度 1-100&quot;)]
+public byte Importance { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Importance_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>1-100，参与检索排序与容量淘汰</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_IsActive_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.IsActive*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_IsActive" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.IsActive">
+  IsActive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否有效</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;是否有效&quot;)]
+[Column(&quot;IsActive&quot;, &quot;TINYINT(1)&quot;, IsNullable = false, Default = &quot;1&quot;, Comment = &quot;是否有效&quot;)]
+public bool IsActive { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_IsActive_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>遗忘默认是软失效，保留纠错与追溯的余地</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Kind_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Kind*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Kind" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Kind">
+  Kind
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置记忆类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;记忆类型&quot;)]
+[Column(&quot;Kind&quot;, &quot;VARCHAR(24)&quot;, IsNullable = false, Default = &quot;&#39;fact&#39;&quot;, Comment = &quot;记忆类型&quot;)]
+public string Kind { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Kind_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>取值范围由写入方约束在固定词表内，避免同义类型无限分裂</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_LastUsedAt_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.LastUsedAt*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_LastUsedAt" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.LastUsedAt">
+  LastUsedAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最近一次被检索命中的时间（UTC）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;最近使用&quot;)]
+[Column(&quot;LastUsedAt&quot;, &quot;DATETIME(3)&quot;, IsNullable = true, Comment = &quot;最近一次被检索命中的时间（UTC）&quot;)]
+public DateTime? LastUsedAt { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_MemoryKey_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.MemoryKey*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_MemoryKey" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.MemoryKey">
+  MemoryKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置记忆的稳定键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;记忆键&quot;)]
+[Column(&quot;MemoryKey&quot;, &quot;VARCHAR(160)&quot;, IsNullable = true, Comment = &quot;同一作用域内唯一的稳定键&quot;)]
+public string? MemoryKey { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_MemoryKey_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>同一作用域内唯一。为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> 表示这是一条只追加的流水记录，
+不参与唯一性约束</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Scope_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Scope*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Scope" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Scope">
+  Scope
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置记忆作用域</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;作用域&quot;)]
+[Column(&quot;Scope&quot;, &quot;VARCHAR(64)&quot;, IsNullable = false, Default = &quot;&#39;global&#39;&quot;, Comment = &quot;记忆作用域&quot;)]
+public string Scope { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Scope_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认 <code>global</code>；需要按产线、设备或工程隔离时才另开作用域</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_SourceRef_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.SourceRef*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_SourceRef" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.SourceRef">
+  SourceRef
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置来源引用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;来源引用&quot;)]
+[Column(&quot;SourceRef&quot;, &quot;VARCHAR(300)&quot;, IsNullable = true, Comment = &quot;来源引用&quot;)]
+public string? SourceRef { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_SourceRef_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>日志文件名、工单号、资产名等可回溯的线索，由写入方填写</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Tags_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Tags*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Tags" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Tags">
+  Tags
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置检索标签</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;标签&quot;)]
+[Column(&quot;Tags&quot;, &quot;VARCHAR(255)&quot;, IsNullable = false, Default = &quot;&#39;&#39;&quot;, Comment = &quot;归一化标签串&quot;)]
+public string Tags { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Tags_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>归一化为 <code>,tag1,tag2,</code> 形式，便于用 <code>LIKE '%,tag,%'</code> 精确匹配单个标签</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Title_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Title*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Title" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.Title">
+  Title
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置一句话标题</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;标题&quot;)]
+[Column(&quot;Title&quot;, &quot;VARCHAR(200)&quot;, IsNullable = false, Default = &quot;&#39;&#39;&quot;, Comment = &quot;一句话标题&quot;)]
+public string Title { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_Title_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>检索结果与提示词注入都只带标题，正文按需再取，这是控制上下文开销的主要手段</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_UpdatedAt_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.UpdatedAt*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_UpdatedAt" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.UpdatedAt">
+  UpdatedAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最近一次内容变更时间（UTC）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;更新时间&quot;)]
+[Column(&quot;UpdatedAt&quot;, &quot;DATETIME(3)&quot;, IsNullable = false, Comment = &quot;最近一次内容变更时间（UTC）&quot;)]
+public DateTime UpdatedAt { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_UpdatedAt_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>只在正文真正变化时推进，检索命中不算变更</p>
+</div>
+
+
+
+
+  <a id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_UseCount_" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.UseCount*"></a>
+
+  <h3 id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_UseCount" data-uid="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.UseCount">
+  UseCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置被检索命中的累计次数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;使用次数&quot;)]
+[Column(&quot;UseCount&quot;, &quot;INT&quot;, IsNullable = false, Default = &quot;0&quot;, Comment = &quot;被检索命中的累计次数&quot;)]
+public int UseCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_UseCount_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>与 <a class="xref" href="MAS.Database.PrismaAgent.DataAccess.PrismaAgentMemoryEntity.html#MAS_Database_PrismaAgent_DataAccess_PrismaAgentMemoryEntity_LastUsedAt">LastUsedAt</a> 一起回答「这条记忆到底有没有用」，是定期清理的依据</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/PrismaAgent/DataAccess/PrismaAgentMemoryEntity.cs/#L22" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

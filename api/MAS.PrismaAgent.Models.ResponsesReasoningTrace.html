@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ResponsesReasoningTrace | DataMaster ">
       
-      <meta name="description" content="Responses 通道的一条推理轨迹（reasoning output item）的原样载荷。">
+      <meta name="description" content="Responses 通道的推理轨迹原始载荷">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_PrismaAgent_Models_ResponsesReasoningTrace" data-uid="MAS.PrismaAgent.Models.ResponsesReasoningTrace" class="text-break">
-Class ResponsesReasoningTrace  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ResponsesReasoningTrace.cs/#L27"><i class="bi bi-code-slash"></i></a>
+Class ResponsesReasoningTrace  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ResponsesReasoningTrace.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class ResponsesReasoningTrace  <a class="header-action link-secondary" title="Vi
   <dl><dt>Assembly</dt><dd>MAS.PrismaAgent.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Responses 通道的一条推理轨迹（<code>reasoning</code> output item）的原样载荷。</p>
+  <div class="markdown summary"><p>Responses 通道的推理轨迹原始载荷</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -151,14 +151,8 @@ Class ResponsesReasoningTrace  <a class="header-action link-secondary" title="Vi
 
 
   <h2 id="MAS_PrismaAgent_Models_ResponsesReasoningTrace_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>
-推理内容对客户端不可读（<code>encrypted_content</code> 为服务端加密串），协议要求原样回传：
-在同一轮的多步工具编排中把它随 <code>input</code> 发回，模型才能接续上一步的思路，
-而不是每调用一次工具就从零重新推理。因此这里只保存原始 JSON，不做任何解析或改写。
-</p>
-<p>
-同一类型同时用于两个方向：解析 SSE 时产出，构造下一次请求的 <code>input</code> 时消费
-</p>
+  <div class="markdown level0 remarks"><p>推理内容不可读，需原样随后续 input 回传以接续推理；因此仅保存原始 JSON，不做解析或改写。
+同一类型用于 SSE 解析输出和后续请求输入</p>
 </div>
 
 
@@ -170,10 +164,10 @@ Class ResponsesReasoningTrace  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_PrismaAgent_Models_ResponsesReasoningTrace__ctor_System_String_System_String_" data-uid="MAS.PrismaAgent.Models.ResponsesReasoningTrace.#ctor(System.String,System.String)">
   ResponsesReasoningTrace(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ResponsesReasoningTrace.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ResponsesReasoningTrace.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Responses 通道的一条推理轨迹（<code>reasoning</code> output item）的原样载荷。</p>
+  <div class="markdown level1 summary"><p>Responses 通道的推理轨迹原始载荷</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -184,10 +178,10 @@ Class ResponsesReasoningTrace  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>Id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>服务端下发的 item 标识（rs_...，仅用于日志与去重）</p>
+    <dd><p>服务端 item 标识</p>
 </dd>
     <dt><code>RawJson</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>该 reasoning item 的完整原始 JSON</p>
+    <dd><p>reasoning item 的完整原始 JSON</p>
 </dd>
   </dl>
 
@@ -199,14 +193,8 @@ Class ResponsesReasoningTrace  <a class="header-action link-secondary" title="Vi
 
 
   <h4 class="section" id="MAS_PrismaAgent_Models_ResponsesReasoningTrace__ctor_System_String_System_String__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>
-推理内容对客户端不可读（<code>encrypted_content</code> 为服务端加密串），协议要求原样回传：
-在同一轮的多步工具编排中把它随 <code>input</code> 发回，模型才能接续上一步的思路，
-而不是每调用一次工具就从零重新推理。因此这里只保存原始 JSON，不做任何解析或改写。
-</p>
-<p>
-同一类型同时用于两个方向：解析 SSE 时产出，构造下一次请求的 <code>input</code> 时消费
-</p>
+  <div class="markdown level1 remarks"><p>推理内容不可读，需原样随后续 input 回传以接续推理；因此仅保存原始 JSON，不做解析或改写。
+同一类型用于 SSE 解析输出和后续请求输入</p>
 </div>
 
 
@@ -220,10 +208,10 @@ Class ResponsesReasoningTrace  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_PrismaAgent_Models_ResponsesReasoningTrace_Id" data-uid="MAS.PrismaAgent.Models.ResponsesReasoningTrace.Id">
   Id
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ResponsesReasoningTrace.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ResponsesReasoningTrace.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>服务端下发的 item 标识（rs_...，仅用于日志与去重）</p>
+  <div class="markdown level1 summary"><p>服务端 item 标识</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -252,10 +240,10 @@ Class ResponsesReasoningTrace  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_PrismaAgent_Models_ResponsesReasoningTrace_RawJson" data-uid="MAS.PrismaAgent.Models.ResponsesReasoningTrace.RawJson">
   RawJson
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ResponsesReasoningTrace.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ResponsesReasoningTrace.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>该 reasoning item 的完整原始 JSON</p>
+  <div class="markdown level1 summary"><p>reasoning item 的完整原始 JSON</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -284,7 +272,7 @@ Class ResponsesReasoningTrace  <a class="header-action link-secondary" title="Vi
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ResponsesReasoningTrace.cs/#L27" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Models/ResponsesReasoningTrace.cs/#L21" class="edit-link">Edit this page</a>
         </div>
 
 

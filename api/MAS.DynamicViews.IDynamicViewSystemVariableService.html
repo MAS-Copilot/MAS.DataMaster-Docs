@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IDynamicViewSystemVariableService | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IDynamicViewSystemVariableService | DataMaster ">
+      
+      <meta name="description" content="动态视图系统变量服务接口">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_IDynamicViewSystemVariableService.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.IDynamicViewSystemVariableService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService">
+
+
+
+  <h1 id="MAS_DynamicViews_IDynamicViewSystemVariableService" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService" class="text-break">
+Interface IDynamicViewSystemVariableService  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>动态视图系统变量服务接口</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IDynamicViewSystemVariableService</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="MAS_DynamicViews_IDynamicViewSystemVariableService_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><ul><li>系统结构体的唯一写入口：控件与下位机都不能写入这些字段</li><li>时间、心跳、运行时长、设备计数等字段由本服务在每次下发前自行刷新</li><li>画面、运行状态、错误码等字段由各业务模块调用本服务的方法上报</li><li>工程中不存在系统结构体时，所有更新方法静默返回，不产生副作用</li></ul>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_IsAvailable_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.IsAvailable*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_IsAvailable" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.IsAvailable">
+  IsAvailable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前工程是否存在系统结构体</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsAvailable { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_FlushAsync_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.FlushAsync*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_FlushAsync_System_Threading_CancellationToken_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.FlushAsync(System.Threading.CancellationToken)">
+  FlushAsync(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步将当前系统变量立即下发到所有绑定通道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task FlushAsync(CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_IDynamicViewSystemVariableService_FlushAsync_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>用于轮询停止但连接尚未关闭时执行最终下发。
+离线模式或无系统结构体时直接返回；单个设备失败不影响其余设备</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_GetSystemStructureId_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.GetSystemStructureId*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_GetSystemStructureId" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.GetSystemStructureId">
+  GetSystemStructureId()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前工程中系统结构体的唯一标识</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? GetSystemStructureId()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>系统结构体标识；不存在时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_Refresh_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.Refresh*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_Refresh" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.Refresh">
+  Refresh()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>刷新系统自维护字段并提交到变量中心</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Refresh()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_IDynamicViewSystemVariableService_Refresh_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>每次系统结构体下发前调用，用于更新心跳、时间、运行时长、设备状态及用户上下文</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_Reset_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.Reset*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_Reset" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.Reset">
+  Reset()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>重置系统结构体的运行值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Reset()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_IDynamicViewSystemVariableService_Reset_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>切换工程或停止运行时调用，心跳与画面切换计数一并归零</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_Update_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.Update*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_Update_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Object__" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.Update(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object})">
+  Update(IReadOnlyDictionary&lt;string, object?&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>批量更新系统结构体字段</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Update(IReadOnlyDictionary&lt;string, object?&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>字段标识与值的集合</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_IDynamicViewSystemVariableService_Update_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Object___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>字段标识见 <a class="xref" href="MAS.DynamicViews.DynamicViewSystemFields.html">DynamicViewSystemFields</a>；
+未知字段与类型不匹配的值会被忽略，不影响同批次的其它字段</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateAlarmSummary_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.UpdateAlarmSummary*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateAlarmSummary_System_Int32_MAS_DynamicViews_DynamicViewSystemErrorLevel_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.UpdateAlarmSummary(System.Int32,MAS.DynamicViews.DynamicViewSystemErrorLevel)">
+  UpdateAlarmSummary(int, DynamicViewSystemErrorLevel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新活跃报警汇总</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UpdateAlarmSummary(int activeCount, DynamicViewSystemErrorLevel highestLevel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>activeCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>活跃报警数量</p>
+</dd>
+    <dt><code>highestLevel</code> <a class="xref" href="MAS.DynamicViews.DynamicViewSystemErrorLevel.html">DynamicViewSystemErrorLevel</a></dt>
+    <dd><p>活跃报警中的最高等级</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateError_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.UpdateError*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateError_System_Int32_MAS_DynamicViews_DynamicViewSystemErrorLevel_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.UpdateError(System.Int32,MAS.DynamicViews.DynamicViewSystemErrorLevel)">
+  UpdateError(int, DynamicViewSystemErrorLevel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新系统错误码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UpdateError(int errorCode, DynamicViewSystemErrorLevel errorLevel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>errorCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>错误码，0 表示无错误</p>
+</dd>
+    <dt><code>errorLevel</code> <a class="xref" href="MAS.DynamicViews.DynamicViewSystemErrorLevel.html">DynamicViewSystemErrorLevel</a></dt>
+    <dd><p>错误等级</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateRecipe_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.UpdateRecipe*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateRecipe_System_String_MAS_DynamicViews_DynamicViewSystemRecipeState_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.UpdateRecipe(System.String,MAS.DynamicViews.DynamicViewSystemRecipeState)">
+  UpdateRecipe(string?, DynamicViewSystemRecipeState)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新当前配方信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UpdateRecipe(string? recipeCode, DynamicViewSystemRecipeState recipeState)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>recipeCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前配方编号，未装载时传 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+    <dt><code>recipeState</code> <a class="xref" href="MAS.DynamicViews.DynamicViewSystemRecipeState.html">DynamicViewSystemRecipeState</a></dt>
+    <dd><p>当前配方状态</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateScreen_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.UpdateScreen*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateScreen_System_String_MAS_DynamicViews_DynamicViewSystemScreenType_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.UpdateScreen(System.String,MAS.DynamicViews.DynamicViewSystemScreenType)">
+  UpdateScreen(string?, DynamicViewSystemScreenType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新当前画面</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UpdateScreen(string? screenCode, DynamicViewSystemScreenType screenType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>screenCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前画面号，如 P1、W1</p>
+</dd>
+    <dt><code>screenType</code> <a class="xref" href="MAS.DynamicViews.DynamicViewSystemScreenType.html">DynamicViewSystemScreenType</a></dt>
+    <dd><p>当前画面类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateScreen_System_String_MAS_DynamicViews_DynamicViewSystemScreenType__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>画面号与上一画面号发生变化时，画面切换计数自增一次</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateSystemState_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.UpdateSystemState*"></a>
+
+  <h3 id="MAS_DynamicViews_IDynamicViewSystemVariableService_UpdateSystemState_MAS_DynamicViews_DynamicViewSystemState_" data-uid="MAS.DynamicViews.IDynamicViewSystemVariableService.UpdateSystemState(MAS.DynamicViews.DynamicViewSystemState)">
+  UpdateSystemState(DynamicViewSystemState)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新系统运行状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UpdateSystemState(DynamicViewSystemState state)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>state</code> <a class="xref" href="MAS.DynamicViews.DynamicViewSystemState.html">DynamicViewSystemState</a></dt>
+    <dd><p>系统运行状态</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/IDynamicViewSystemVariableService.cs/#L23" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

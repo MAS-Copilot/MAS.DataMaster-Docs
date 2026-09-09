@@ -159,7 +159,7 @@
 </tr>
 <tr>
 <td>Usage</td>
-<td>变量用途，例如普通结构体、配方结构体或报警结构体</td>
+<td>变量用途</td>
 </tr>
 <tr>
 <td>Fields</td>
@@ -311,6 +311,138 @@
 <h3 id="报警结构体">报警结构体</h3>
 <p>报警结构体用于组织 Bool 报警点。创建时可指定 1 到 1000 个报警点，默认生成 100 个 <code>Alarm001</code> 到 <code>Alarm100</code> 字段。结构体默认为只读，每个字段使用描述作为报警信息，并保存“提示、警告、错误”三级报警等级</p>
 <p>报警结构体按整体关联通讯通道和报警列表控件，不用于普通控件的字段级数据绑定。完整配置、运行和历史记录规则参见<a href="MAS.DynamicViews.Alarm.html">报警系统</a></p>
+<h3 id="系统结构体">系统结构体</h3>
+<p>系统结构体用于将上位机自身状态单向下发给下位机，例如当前画面、本地时间、运行状态与错误码。它有三条与其它结构体不同的规则：</p>
+<ul>
+<li><strong>全工程唯一</strong>：每个工程只能创建一个</li>
+<li><strong>单向下发</strong>：控件与脚本只读，通讯链路只写不读，下位机写入的值不会被采纳</li>
+<li><strong>布局固定</strong>：固定占用 64 个保持寄存器，字段不允许新增、删除、改名或改类型</li>
+</ul>
+<p>字段按功能分区排列，末尾预留 13 个寄存器用于后续扩展，不会影响既有字段的下位机地址：</p>
+<table>
+<thead>
+<tr>
+<th>分区</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>心跳与运行状态</td>
+<td>Heartbeat</td>
+<td>每次下发自增并自然回绕，下位机据此判断上位机是否存活</td>
+</tr>
+<tr>
+<td></td>
+<td>SystemState</td>
+<td>0=初始化 1=就绪 2=运行 3=暂停 4=停止 5=故障</td>
+</tr>
+<tr>
+<td></td>
+<td>RunMode</td>
+<td>0=离线仿真 1=在线</td>
+</tr>
+<tr>
+<td></td>
+<td>CommState</td>
+<td>0=未启动 1=全部在线 2=部分离线 3=全部离线</td>
+</tr>
+<tr>
+<td></td>
+<td>DeviceOnlineCount / DeviceTotalCount</td>
+<td>在线设备数与设备总数</td>
+</tr>
+<tr>
+<td></td>
+<td>UptimeSeconds</td>
+<td>上位机已运行秒数</td>
+</tr>
+<tr>
+<td>本地时间</td>
+<td>Year / Month / Day / Hour / Minute / Second</td>
+<td>分字下发，下位机可直接使用</td>
+</tr>
+<tr>
+<td></td>
+<td>Weekday</td>
+<td>1=周一 … 7=周日</td>
+</tr>
+<tr>
+<td></td>
+<td>UnixTimestamp</td>
+<td>UTC 秒级时间戳</td>
+</tr>
+<tr>
+<td>当前画面</td>
+<td>CurrentScreenCode</td>
+<td>当前画面号，定长 8 字节 ASCII</td>
+</tr>
+<tr>
+<td></td>
+<td>CurrentScreenType</td>
+<td>0=无 1=页面；运行期可同时打开多个窗口，画面号只跟随页面</td>
+</tr>
+<tr>
+<td></td>
+<td>PreviousScreenCode</td>
+<td>上一画面号，定长 8 字节 ASCII</td>
+</tr>
+<tr>
+<td></td>
+<td>ScreenChangeCounter</td>
+<td>每次切换自增，便于下位机检测画面切换事件</td>
+</tr>
+<tr>
+<td>错误与报警汇总</td>
+<td>ErrorCode / ErrorLevel</td>
+<td>错误码与等级，0 表示无错误</td>
+</tr>
+<tr>
+<td></td>
+<td>ActiveAlarmCount / HighestAlarmLevel / HasActiveAlarm</td>
+<td>活跃报警数量、最高等级与报警状态</td>
+</tr>
+<tr>
+<td>业务上下文</td>
+<td>CurrentRecipeCode</td>
+<td>当前配方编号，定长 20 字节 ASCII</td>
+</tr>
+<tr>
+<td></td>
+<td>RecipeState</td>
+<td>0=未装载 1=已装载 2=装载中 3=装载失败</td>
+</tr>
+<tr>
+<td></td>
+<td>UserLevel</td>
+<td>当前登录用户权限等级，取 <code>UserRoles</code> 枚举数值：0=无 1=游客 2=操作员 3=工程师 4=管理员 5=开发者</td>
+</tr>
+<tr>
+<td></td>
+<td>LanguageId</td>
+<td>当前语种在工程语种清单中的位置，从 0 开始；不在清单内时为 255</td>
+</tr>
+<tr>
+<td>预留</td>
+<td>Reserved01 ~ Reserved18</td>
+<td>预留字段</td>
+</tr>
+</tbody>
+</table>
+<p>布尔量统一使用 <code>UInt16</code> 的 0/1 表示，避免与寄存器区混排；字符串字段使用定长 ASCII</p>
+<h4 id="下发节拍">下发节拍</h4>
+<p>系统结构体不使用独立计时器。绑定通道每次轮询到期时，会先刷新心跳、本地时间、运行时长与设备计数等字段，再将整个结构体写入下位机。</p>
+<p>因此心跳节拍与通道轮询周期一致，通常设置为 500 毫秒即可。同一个系统结构体可以绑定多个设备通道，各通道按自身轮询周期独立下发。</p>
+<p>通讯运行时启动时会先重置运行值并生成初始状态，因此即使未绑定通道，界面绑定的系统变量也不会为空。</p>
+<p>停止运行时，会在轮询停止后、连接关闭前执行一次最终下发，使下位机收到 <code>SystemState=4</code>（停止），避免状态停留在运行态。</p>
+<h4 id="更新方式">更新方式</h4>
+<p>字段分为两类维护：</p>
+<ul>
+<li><strong>自动维护</strong>：心跳、本地时间、运行时长、设备计数、通讯状态、系统运行状态、当前画面、报警汇总、当前配方、登录权限等级、界面语言序号，由运行时各模块上报或在下发前拉取</li>
+<li><strong>业务上报</strong>：错误码与错误等级，由业务代码调用系统变量服务写入</li>
+</ul>
+<p>脚本可以通过脚本服务集合中的 <code>SystemVariables</code> 更新系统变量。自动维护字段即使被脚本写入，也会在下一次下发前被系统刷新覆盖</p>
 <h2 id="为什么使用结构体变量">为什么使用结构体变量</h2>
 <p>传统动态组态通常采用<code>全局变量列表</code>模式</p>
 <p>例如：</p>

@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_DynamicViews_Controls_DynamicViewNumberBox" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox" class="text-break">
-Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L22"><i class="bi bi-code-slash"></i></a>
+Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -180,9 +180,6 @@ Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View 
     </div>
     <div>
       <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/NumberBox/NumberBox.cs">NumberBox.OnApplyTemplate()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/NumberBox/NumberBox.cs">NumberBox.OnValueChanged(DependencyObject, double?)</a>
     </div>
     <div>
       <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/NumberBox/NumberBox.cs">NumberBox.OnClipboardPaste(object, DataObjectPastingEventArgs)</a>
@@ -969,9 +966,6 @@ Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View 
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.oninitialized">FrameworkElement.OnInitialized(EventArgs)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.onrendersizechanged">FrameworkElement.OnRenderSizeChanged(SizeChangedInfo)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.onstylechanged">FrameworkElement.OnStyleChanged(Style, Style)</a>
@@ -2422,6 +2416,11 @@ Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View 
 
 
 
+  <h2 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>上下限仅约束用户输入，不限制实际值显示。
+输入范围存于 <a class="xref" href="MAS.DynamicViews.Controls.DynamicViewNumberBox.html#MAS_DynamicViews_Controls_DynamicViewNumberBox_InputMinimum">InputMinimum</a> / <a class="xref" href="MAS.DynamicViews.Controls.DynamicViewNumberBox.html#MAS_DynamicViews_Controls_DynamicViewNumberBox_InputMaximum">InputMaximum</a>；
+外部越界值仍原样显示，并通过 <a class="xref" href="MAS.DynamicViews.Controls.DynamicViewNumberBox.html#MAS_DynamicViews_Controls_DynamicViewNumberBox_IsValueOutOfRange">IsValueOutOfRange</a> 标记告警</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -2432,7 +2431,7 @@ Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View 
 
   <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox__ctor" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.#ctor">
   DynamicViewNumberBox()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L120"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>初始化 <a class="xref" href="MAS.DynamicViews.Controls.DynamicViewNumberBox.html">DynamicViewNumberBox</a> 类的新实例</p>
@@ -2455,6 +2454,275 @@ Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View 
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_InputMaximumProperty" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.InputMaximumProperty">
+  InputMaximumProperty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>允许输入的最大值依赖属性</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly DependencyProperty InputMaximumProperty</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.dependencyproperty">DependencyProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_InputMinimumProperty" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.InputMinimumProperty">
+  InputMinimumProperty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>允许输入的最小值依赖属性</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly DependencyProperty InputMinimumProperty</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.dependencyproperty">DependencyProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_IsRangeHighlightEnabledProperty" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.IsRangeHighlightEnabledProperty">
+  IsRangeHighlightEnabledProperty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否启用超范围高亮的依赖属性</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly DependencyProperty IsRangeHighlightEnabledProperty</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.dependencyproperty">DependencyProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_IsValueOutOfRangeProperty" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.IsValueOutOfRangeProperty">
+  IsValueOutOfRangeProperty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前值是否超出允许范围的只读依赖属性</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly DependencyProperty IsValueOutOfRangeProperty</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.dependencyproperty">DependencyProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_DynamicViews_Controls_DynamicViewNumberBox_InputMaximum_" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.InputMaximum*"></a>
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_InputMaximum" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.InputMaximum">
+  InputMaximum
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置允许输入的最大值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double InputMaximum { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Controls_DynamicViewNumberBox_InputMaximum_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>只拦截用户输入与微调，不限制外部写入值的显示</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_Controls_DynamicViewNumberBox_InputMinimum_" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.InputMinimum*"></a>
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_InputMinimum" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.InputMinimum">
+  InputMinimum
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置允许输入的最小值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double InputMinimum { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Controls_DynamicViewNumberBox_InputMinimum_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>只拦截用户输入与微调，不限制外部写入值的显示</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_Controls_DynamicViewNumberBox_IsRangeHighlightEnabled_" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.IsRangeHighlightEnabled*"></a>
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_IsRangeHighlightEnabled" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.IsRangeHighlightEnabled">
+  IsRangeHighlightEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否在值超出允许范围时显示告警高亮</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRangeHighlightEnabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Controls_DynamicViewNumberBox_IsRangeHighlightEnabled_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>设计期默认关闭，避免设计默认值与上下限不一致时满屏红框</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_Controls_DynamicViewNumberBox_IsValueOutOfRange_" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.IsValueOutOfRange*"></a>
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_IsValueOutOfRange" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.IsValueOutOfRange">
+  IsValueOutOfRange
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前值是否超出允许范围</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsValueOutOfRange { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -2463,7 +2731,7 @@ Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View 
 
   <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_OnLostFocus_System_Windows_RoutedEventArgs_" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.OnLostFocus(System.Windows.RoutedEventArgs)">
   OnLostFocus(RoutedEventArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L170"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Raises the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.uielement.lostfocus">LostFocus</a> event (using the provided arguments).</p>
@@ -2496,7 +2764,7 @@ Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View 
 
   <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_OnPreviewKeyUp_System_Windows_Input_KeyEventArgs_" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.OnPreviewKeyUp(System.Windows.Input.KeyEventArgs)">
   OnPreviewKeyUp(KeyEventArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L161"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Invoked when an unhandled <span class="xref">System.Windows.Input.Keyboard.PreviewKeyUp</span> attached event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event.</p>
@@ -2525,14 +2793,151 @@ Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View 
 
 
 
+  <a id="MAS_DynamicViews_Controls_DynamicViewNumberBox_OnRenderSizeChanged_" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.OnRenderSizeChanged*"></a>
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_OnRenderSizeChanged_System_Windows_SizeChangedInfo_" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.OnRenderSizeChanged(System.Windows.SizeChangedInfo)">
+  OnRenderSizeChanged(SizeChangedInfo)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L176"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Raises the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.frameworkelement.sizechanged">SizeChanged</a> event, using the specified information as part of the eventual event data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sizeInfo</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.sizechangedinfo">SizeChangedInfo</a></dt>
+    <dd><p>Details of the old and new size involved in the change.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Controls_DynamicViewNumberBox_OnValueChanged_" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.OnValueChanged*"></a>
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_OnValueChanged_System_Windows_DependencyObject_System_Nullable_System_Double__" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.OnValueChanged(System.Windows.DependencyObject,System.Nullable{System.Double})">
+  OnValueChanged(DependencyObject, double?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Is called when <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/NumberBox/NumberBox.cs">Value</a> in this <a class="xref" href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Controls/NumberBox/NumberBox.cs">NumberBox</a> changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnValueChanged(DependencyObject d, double? oldValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>d</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.dependencyobject">DependencyObject</a></dt>
+    <dd></dd>
+    <dt><code>oldValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Controls_DynamicViewNumberBox_SetExternalValue_" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.SetExternalValue*"></a>
+
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_SetExternalValue_System_Nullable_System_Double__" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.SetExternalValue(System.Nullable{System.Double})">
+  SetExternalValue(double?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>以外部实际值刷新显示</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetExternalValue(double? value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd><p>外部实际值；无值时清空显示</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Controls_DynamicViewNumberBox_SetExternalValue_System_Nullable_System_Double___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>越界值原样显示并标记为超范围，不会被夹回上下限</p>
+</div>
+
+
+
+
   <h2 class="section" id="events">Events
 </h2>
 
 
 
+  <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_OutOfRangeChanged" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.OutOfRangeChanged">
+  OutOfRangeChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在当前值的超范围状态发生变化时发生</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;DynamicViewNumberOutOfRangeEventArgs&gt;? OutOfRangeChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.DynamicViews.DynamicViewNumberOutOfRangeEventArgs.html">DynamicViewNumberOutOfRangeEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Controls_DynamicViewNumberBox_OutOfRangeChanged_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>外部实际值越界时不回退显示，仅由本事件与超范围高亮告知操作者</p>
+</div>
+
+
+
+
+
   <h3 id="MAS_DynamicViews_Controls_DynamicViewNumberBox_RangeRejected" data-uid="MAS.DynamicViews.Controls.DynamicViewNumberBox.RangeRejected">
   RangeRejected
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>在输入被判定越界或非法、已回退到输入前的值时发生</p>
@@ -2564,7 +2969,7 @@ Class DynamicViewNumberBox  <a class="header-action link-secondary" title="View 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L22" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Controls/DynamicViewNumberBox.cs/#L28" class="edit-link">Edit this page</a>
         </div>
 
 

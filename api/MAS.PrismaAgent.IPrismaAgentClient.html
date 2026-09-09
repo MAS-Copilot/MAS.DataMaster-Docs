@@ -150,7 +150,7 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaAgent_IPrismaAgentClient_AddComposerAttachmentsAsync_System_Collections_Generic_IReadOnlyList_MAS_PrismaAgent_Attachments_AttachmentReference__" data-uid="MAS.PrismaAgent.IPrismaAgentClient.AddComposerAttachmentsAsync(System.Collections.Generic.IReadOnlyList{MAS.PrismaAgent.Attachments.AttachmentReference})">
   AddComposerAttachmentsAsync(IReadOnlyList&lt;AttachmentReference&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>把新导入的附件加到输入框的待发送列表</p>
@@ -234,7 +234,7 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaAgent_IPrismaAgentClient_ClearConversationAsync" data-uid="MAS.PrismaAgent.IPrismaAgentClient.ClearConversationAsync">
   ClearConversationAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>清空前端当前显示的对话内容</p>
@@ -267,7 +267,7 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaAgent_IPrismaAgentClient_RenderConversationListAsync_System_Collections_Generic_IReadOnlyList_MAS_PrismaAgent_Conversations_ConversationSummary__System_String_" data-uid="MAS.PrismaAgent.IPrismaAgentClient.RenderConversationListAsync(System.Collections.Generic.IReadOnlyList{MAS.PrismaAgent.Conversations.ConversationSummary},System.String)">
   RenderConversationListAsync(IReadOnlyList&lt;ConversationSummary&gt;, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L145"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>更新前端侧栏中的会话列表</p>
@@ -312,7 +312,7 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaAgent_IPrismaAgentClient_RestoreComposerDraftAsync_System_String_System_Collections_Generic_IReadOnlyList_MAS_PrismaAgent_Attachments_AttachmentReference__" data-uid="MAS.PrismaAgent.IPrismaAgentClient.RestoreComposerDraftAsync(System.String,System.Collections.Generic.IReadOnlyList{MAS.PrismaAgent.Attachments.AttachmentReference})">
   RestoreComposerDraftAsync(string, IReadOnlyList&lt;AttachmentReference&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L73"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将未发送成功的内容恢复到输入框</p>
@@ -358,7 +358,7 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaAgent_IPrismaAgentClient_SetApprovalModeAsync_System_String_" data-uid="MAS.PrismaAgent.IPrismaAgentClient.SetApprovalModeAsync(System.String)">
   SetApprovalModeAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>同步前端显示的高风险工具审批策略</p>
@@ -396,11 +396,53 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_PrismaAgent_IPrismaAgentClient_SetReasoningEffortAsync_" data-uid="MAS.PrismaAgent.IPrismaAgentClient.SetReasoningEffortAsync*"></a>
+
+  <h3 id="MAS_PrismaAgent_IPrismaAgentClient_SetReasoningEffortAsync_System_String_" data-uid="MAS.PrismaAgent.IPrismaAgentClient.SetReasoningEffortAsync(System.String)">
+  SetReasoningEffortAsync(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>同步前端显示的推理等级</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task SetReasoningEffortAsync(string effort)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effort</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>推理等级，取值见 <code>ReasoningEffort</code></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaAgent_IPrismaAgentClient_SetReasoningEffortAsync_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>等级是应用级的，与当前会话无关</p>
+</div>
+
+
+
+
   <a id="MAS_PrismaAgent_IPrismaAgentClient_SetSendingStateAsync_" data-uid="MAS.PrismaAgent.IPrismaAgentClient.SetSendingStateAsync*"></a>
 
   <h3 id="MAS_PrismaAgent_IPrismaAgentClient_SetSendingStateAsync_System_Boolean_" data-uid="MAS.PrismaAgent.IPrismaAgentClient.SetSendingStateAsync(System.Boolean)">
   SetSendingStateAsync(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L116"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置前端当前的发送状态</p>
@@ -439,7 +481,7 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaAgent_IPrismaAgentClient_SetTemporaryModeAsync_System_Boolean_" data-uid="MAS.PrismaAgent.IPrismaAgentClient.SetTemporaryModeAsync(System.Boolean)">
   SetTemporaryModeAsync(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置前端的临时聊天模式</p>
@@ -478,7 +520,7 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaAgent_IPrismaAgentClient_SetThemeAsync_System_String_" data-uid="MAS.PrismaAgent.IPrismaAgentClient.SetThemeAsync(System.String)">
   SetThemeAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L134"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置前端主题</p>
@@ -517,7 +559,7 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaAgent_IPrismaAgentClient_ShowToastMessageAsync_System_String_MAS_SharedLibrary_InstantMessage_InfoLevel_" data-uid="MAS.PrismaAgent.IPrismaAgentClient.ShowToastMessageAsync(System.String,MAS.SharedLibrary.InstantMessage.InfoLevel)">
   ShowToastMessageAsync(string, InfoLevel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>在前端显示 Toast 消息</p>
@@ -562,7 +604,7 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaAgent_IPrismaAgentClient_StreamResponsesAsync_System_Collections_Generic_IReadOnlyList_System_Object__System_Collections_Generic_IReadOnlyList_System_Object__System_String_System_Func_System_String_System_Threading_Tasks_Task__System_Func_System_Threading_Tasks_Task__MAS_PrismaAgent_Models_ModelCallOptions_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.IPrismaAgentClient.StreamResponsesAsync(System.Collections.Generic.IReadOnlyList{System.Object},System.Collections.Generic.IReadOnlyList{System.Object},System.String,System.Func{System.String,System.Threading.Tasks.Task},System.Func{System.Threading.Tasks.Task},MAS.PrismaAgent.Models.ModelCallOptions,System.Threading.CancellationToken)">
   StreamResponsesAsync(IReadOnlyList&lt;object&gt;, IReadOnlyList&lt;object&gt;, string?, Func&lt;string, Task&gt;, Func&lt;Task&gt;?, ModelCallOptions?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Interfaces/IPrismaAgentClient.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>通过 OpenAI 兼容的 Responses API 发送一轮请求并接收结构化流式响应</p>
@@ -622,7 +664,10 @@ Interface IPrismaAgentClient  <a class="header-action link-secondary" title="Vie
     <dd><p>操作已取消</p>
 </dd>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></dt>
-    <dd><p>请求超时</p>
+    <dd><p>本地流回调超时（网络侧超时归入连接异常）</p>
+</dd>
+    <dt><span class="xref">PrismaAgentConnectionException</span></dt>
+    <dd><p>连接失败或传输超时，调用方可重连</p>
 </dd>
   </dl>
 
