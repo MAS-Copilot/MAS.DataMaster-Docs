@@ -96,43 +96,92 @@ Classes
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetChangeResult.html">ChartAssetChangeResult</a></dt>
-      <dd><p>图表资产变更（upsert/delete）结果</p>
+      <dd><p>图表资产变更结果（注册 / 删除 / 恢复）</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetDefinition.html">ChartAssetDefinition</a></dt>
-      <dd><p>表示一个图表资产定义，可以是单图（单 widget）或仪表盘（多 widget）</p>
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetEntry.html">ChartAssetEntry</a></dt>
+      <dd><p>图表资产索引项。持久化在 <code>.masproj</code> 中，只描述被软件管理的资产</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetJson.html">ChartAssetJson</a></dt>
-      <dd><p>图表资产 JSON 规范的序列化辅助。对外（Agent/前端）统一使用 camelCase + 小写枚举</p>
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetFileScanner.html">ChartAssetFileScanner</a></dt>
+      <dd><p>图表资产目录文件扫描器：统计 HTML/CSS/JS/SQL 文件并定位入口文档</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatch.html">ChartAssetPatch</a></dt>
-      <dd><p>通用的结构化 JSON 补丁工具，基于 <span class="xref">Newtonsoft.Json.Linq.JToken</span> 对 JSON 树做局部修改。
-只理解 JSON 路径与节点操作，不包含 ChartAsset 业务语义（校验仍由 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetValidator.html">ChartAssetValidator</a> 承担）</p>
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetFileStats.html">ChartAssetFileStats</a></dt>
+      <dd><p>图表资产目录文件统计（实时扫描得到，不持久化）</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetPatchOperation.html">ChartAssetPatchOperation</a></dt>
-      <dd><p>图表资产的单个结构化 JSON 补丁操作</p>
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetInfo.html">ChartAssetInfo</a></dt>
+      <dd><p>图表资产综合信息。合并索引项、清单与目录扫描结果，供卡片列表与工具展示</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetManifest.html">ChartAssetManifest</a></dt>
+      <dd><p>图表资产 <code>manifest.json</code> 模型。只描述资产，不限制前端实现</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetManifestReader.html">ChartAssetManifestReader</a></dt>
+      <dd><p>图表资产 <code>manifest.json</code> 读取与解析</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetPaths.html">ChartAssetPaths</a></dt>
+      <dd><p>图表资产路径解析与安全校验</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetPreviewResult.html">ChartAssetPreviewResult</a></dt>
+      <dd><p>图表资产预览结果（供 Agent 使用）。额外提供 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetPreviewResult.html#MAS_Database_ChartAsset_ChartAssetPreviewResult_Records">Records</a>，默认截断为 50 行</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetProjectModel.html">ChartAssetProjectModel</a></dt>
-      <dd><p>图表资产持久化数据模型</p>
+      <dd><p>图表资产工程持久化模型</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetQueryException.html">ChartAssetQueryException</a></dt>
+      <dd><p>图表资产查询在数据库执行阶段失败时抛出。
+消息包含 SQL 文件名与脱敏后的底层错误（<code>password</code>/<code>pwd</code> 键值会被替换为 <code>***</code>），
+可直接返回给前端；区别于请求或参数不合法时的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetQueryRequest.html">ChartAssetQueryRequest</a></dt>
+      <dd><p>图表资产查询请求。为安全起见只允许指定资产目录内的 <code>.sql</code> 文件，禁止直接传 SQL 文本</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetQueryRequestParser.html">ChartAssetQueryRequestParser</a></dt>
+      <dd><p>图表资产查询请求解析：HTTP 页面查询与 IPC <code>chartAsset.preview</code> 共用的
+<code>parameters</code> 解析与校验实现，保证两条入口行为一致。
+参数值保留 JSON 原生类型（字符串/数字/布尔/null），
+也支持 <code>{&quot;type&quot;:&quot;datetime&quot;,&quot;value&quot;:&quot;2026-07-01T08:30:00+08:00&quot;}</code> 显式类型包装</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetQueryResult.html">ChartAssetQueryResult</a></dt>
+      <dd><p>图表资产查询结果，以 <code>columns + rows</code> 形式返回前端</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetRefreshPolicy.html">ChartAssetRefreshPolicy</a></dt>
+      <dd><p>图表资产刷新策略</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetSqlGuard.html">ChartAssetSqlGuard</a></dt>
-      <dd><p>图表资产只读 SQL 守卫，与 QueryAsset 的只读校验规则保持一致</p>
+      <dd><p>图表资产只读 SQL 守卫，规则与 QueryAsset 保持一致：只允许单条只读语句</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetTemplateFactory.html">ChartAssetTemplateFactory</a></dt>
-      <dd><p>图表资产模板工厂，用于在 UI 中快速创建可直接执行的示例资产</p>
+      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetUpsertRequest.html">ChartAssetUpsertRequest</a></dt>
+      <dd><p>图表资产注册请求。资产文件先由 CLI 创建到资产目录，再通过本请求登记到工程索引</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -142,89 +191,12 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetValidator.html">ChartAssetValidator</a></dt>
-      <dd><p>图表资产结构校验器。只做静态检查</p>
+      <dd><p>图表资产校验：目录结构、入口文档、清单与 SQL 只读性</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetsChangedEventArgs.html">ChartAssetsChangedEventArgs</a></dt>
-      <dd><p>图表资产变更事件参数，包含本次提交中新增、更新、删除的资产快照</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartDashboardDefinition.html">ChartDashboardDefinition</a></dt>
-      <dd><p>仪表盘定义。widget 按声明顺序在网格中依次排布</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartDataResult.html">ChartDataResult</a></dt>
-      <dd><p>数据源执行结果。列名 + 行数据的轻量结构，可直接注入 ECharts dataset</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartDataSourceDefinition.html">ChartDataSourceDefinition</a></dt>
-      <dd><p>图表数据源定义</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartOptionJsGuard.html">ChartOptionJsGuard</a></dt>
-      <dd><p>chart widget option 中 <code>@js:</code> 函数字符串的静态检查。
-option 里以 <a class="xref" href="MAS.Database.ChartAsset.ChartOptionJsGuard.html#MAS_Database_ChartAsset_ChartOptionJsGuard_FUNCTION_PREFIX">FUNCTION_PREFIX</a> 开头的字符串值表示 JS 函数源码
-（如 formatter），由前端在渲染前编译；这里只做形态检查，不执行任何 JS</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartParameter.html">ChartParameter</a></dt>
-      <dd><p>图表资产参数定义</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartParameterValidator.html">ChartParameterValidator</a></dt>
-      <dd><p>图表资产参数值校验器：合并默认值并在执行前检查用户输入</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartRefreshPolicy.html">ChartRefreshPolicy</a></dt>
-      <dd><p>图表资产刷新策略</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartRenderPayload.html">ChartRenderPayload</a></dt>
-      <dd><p>后端返回给前端动态图表页的渲染 payload</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartScriptContext.html">ChartScriptContext</a></dt>
-      <dd><p>图表资产脚本的受控执行上下文</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartSummaryCardDefinition.html">ChartSummaryCardDefinition</a></dt>
-      <dd><p>摘要卡片（KPI Card）定义。是数据摘要组件而非 ECharts 图表：
-顶部标题（widget.title）、中间主数值、底部趋势文本与趋势方向。
-数值取自数据源执行结果的第一行；样式只允许受控枚举字段</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartWidgetDefinition.html">ChartWidgetDefinition</a></dt>
-      <dd><p>仪表盘中的一个组件定义（ECharts 图表或摘要卡片）</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartWidgetRenderPayload.html">ChartWidgetRenderPayload</a></dt>
-      <dd><p>单个组件的渲染 payload</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.StringOrLinesJsonConverter.html">StringOrLinesJsonConverter</a></dt>
-      <dd><p>允许字符串字段以「字符串」或「字符串数组（按行）」两种形式反序列化的转换器。
-数组形式用换行符连接成单个字符串，便于在 JSON 中携带多行源码
-（如 <code>optionJs</code>），避免整段代码挤在一行里做换行转义。
-序列化始终输出普通字符串</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.SummaryCardRenderPayload.html">SummaryCardRenderPayload</a></dt>
-      <dd><p>摘要卡片（KPI Card）的渲染 payload，字段均为已求值的展示内容</p>
+      <dd><p>图表资产集合变更事件参数</p>
 </dd>
     </dl>
     <h3 id="interfaces">
@@ -236,51 +208,13 @@ Interfaces
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetRuntime.html">IChartAssetRuntime</a></dt>
-      <dd><p>图表资产运行时：执行资产的所有数据源并组装前端渲染 payload</p>
+      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetQueryService.html">IChartAssetQueryService</a></dt>
+      <dd><p>图表资产查询服务：执行资产目录内的只读 SQL 文件并返回结果</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetScript.html">IChartAssetScript</a></dt>
-      <dd><p>图表资产 script 数据源必须实现的接口</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetScriptRunner.html">IChartAssetScriptRunner</a></dt>
-      <dd><p>图表资产 script 数据源运行器：编译并在受控上下文中执行脚本</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetToolService.html">IChartAssetToolService</a></dt>
-      <dd><p>图表资产管理服务，供 PrismaAgent IPC 工具与 UI 使用</p>
-</dd>
-    </dl>
-    <h3 id="enums">
-Enums
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartDataSourceMode.html">ChartDataSourceMode</a></dt>
-      <dd><p>数据源模式</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartRefreshMode.html">ChartRefreshMode</a></dt>
-      <dd><p>刷新模式</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.ChartWidgetType.html">ChartWidgetType</a></dt>
-      <dd><p>仪表盘组件类型</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.SummaryCardTone.html">SummaryCardTone</a></dt>
-      <dd><p>摘要卡片色调，受控枚举，不开放任意 CSS</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.Database.ChartAsset.SummaryCardTrendDirection.html">SummaryCardTrendDirection</a></dt>
-      <dd><p>摘要卡片趋势方向</p>
+      <dt><a class="xref" href="MAS.Database.ChartAsset.IChartAssetService.html">IChartAssetService</a></dt>
+      <dd><p>图表资产业务服务：资产索引、清单读取、目录解析、校验、软删除、恢复与永久删除</p>
 </dd>
     </dl>
 

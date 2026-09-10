@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ChartAssetSqlGuard | DataMaster </title>
+      <title>Class ChartAssetManifestReader | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ChartAssetSqlGuard | DataMaster ">
+      <meta name="title" content="Class ChartAssetManifestReader | DataMaster ">
       
-      <meta name="description" content="图表资产只读 SQL 守卫，规则与 QueryAsset 保持一致：只允许单条只读语句">
+      <meta name="description" content="图表资产 manifest.json 读取与解析">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Database_ChartAsset_ChartAssetManifestReader.md&amp;value=---%0Auid%3A%20MAS.Database.ChartAsset.ChartAssetManifestReader%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard">
+        <article data-uid="MAS.Database.ChartAsset.ChartAssetManifestReader">
 
 
 
-  <h1 id="MAS_Database_ChartAsset_ChartAssetSqlGuard" data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard" class="text-break">
-Class ChartAssetSqlGuard  
+  <h1 id="MAS_Database_ChartAsset_ChartAssetManifestReader" data-uid="MAS.Database.ChartAsset.ChartAssetManifestReader" class="text-break">
+Class ChartAssetManifestReader  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Helpers/ChartAssetManifestReader.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class ChartAssetSqlGuard
   <dl><dt>Assembly</dt><dd>MAS.Database.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>图表资产只读 SQL 守卫，规则与 QueryAsset 保持一致：只允许单条只读语句</p>
+  <div class="markdown summary"><p>图表资产 <code>manifest.json</code> 读取与解析</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class ChartAssetSqlGuard</code></pre>
+    <pre><code class="lang-csharp hljs">public static class ChartAssetManifestReader</code></pre>
   </div>
 
 
@@ -112,7 +112,7 @@ Class ChartAssetSqlGuard
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">ChartAssetSqlGuard</span></div>
+      <div><span class="xref">ChartAssetManifestReader</span></div>
     </dd>
   </dl>
 
@@ -149,39 +149,77 @@ Class ChartAssetSqlGuard
 
 
 
-  <h2 class="section" id="methods">Methods
+  <h2 class="section" id="fields">Fields
 </h2>
 
 
-  <a id="MAS_Database_ChartAsset_ChartAssetSqlGuard_TryCheckReadonlySql_" data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard.TryCheckReadonlySql*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_ChartAssetSqlGuard_TryCheckReadonlySql_System_String_System_String__" data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard.TryCheckReadonlySql(System.String,System.String@)">
-  TryCheckReadonlySql(string?, out string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Validation/ChartAssetSqlGuard.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_ChartAssetManifestReader_MANIFEST_FILE" data-uid="MAS.Database.ChartAsset.ChartAssetManifestReader.MANIFEST_FILE">
+  MANIFEST_FILE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Helpers/ChartAssetManifestReader.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>检查 SQL 是否为单条只读语句</p>
+  <div class="markdown level1 summary"><p>清单文件名</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryCheckReadonlySql(string? sql, out string? error)</code></pre>
+    <pre><code class="lang-csharp hljs">public const string MANIFEST_FILE = &quot;manifest.json&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Database_ChartAsset_ChartAssetManifestReader_TryRead_" data-uid="MAS.Database.ChartAsset.ChartAssetManifestReader.TryRead*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartAssetManifestReader_TryRead_System_String_MAS_Database_ChartAsset_ChartAssetManifest__System_String__" data-uid="MAS.Database.ChartAsset.ChartAssetManifestReader.TryRead(System.String,MAS.Database.ChartAsset.ChartAssetManifest@,System.String@)">
+  TryRead(string, out ChartAssetManifest?, out string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Helpers/ChartAssetManifestReader.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试读取并解析资产目录下的 <code>manifest.json</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryRead(string assetDirectory, out ChartAssetManifest? manifest, out string? error)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>SQL 文本</p>
+    <dt><code>assetDirectory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产目录绝对路径</p>
+</dd>
+    <dt><code>manifest</code> <a class="xref" href="MAS.Database.ChartAsset.ChartAssetManifest.html">ChartAssetManifest</a></dt>
+    <dd><p>输出解析后的清单；失败时为 null</p>
 </dd>
     <dt><code>error</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>失败原因；通过时为 null</p>
+    <dd><p>失败原因；成功时为 null</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否通过检查</p>
+    <dd><p>读取并解析成功返回 true</p>
 </dd>
   </dl>
 
@@ -199,6 +237,7 @@ Class ChartAssetSqlGuard
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Helpers/ChartAssetManifestReader.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
 

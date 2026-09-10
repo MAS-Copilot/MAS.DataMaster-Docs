@@ -129,7 +129,7 @@ Interface IConversationJournal  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationJournal_AppendAsync_System_String_System_String_System_String_System_String_System_Object_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.AppendAsync(System.String,System.String,System.String,System.String,System.Object,System.Threading.CancellationToken)">
   AppendAsync(string, string?, string?, string, object?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步记录一条展示事件：立即派发到界面，并按批次持久化</p>
@@ -182,7 +182,7 @@ Interface IConversationJournal  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationJournal_AppendForStreamAsync_System_String_System_String_System_Object_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.AppendForStreamAsync(System.String,System.String,System.Object,System.Threading.CancellationToken)">
   AppendForStreamAsync(string, string, object?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步按流式标识记录一条展示事件</p>
@@ -232,7 +232,7 @@ Interface IConversationJournal  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationJournal_FlushAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.FlushAsync(System.String,System.Threading.CancellationToken)">
   FlushAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步把尚未提交的文本分片立即结算为一条事件并落库</p>
@@ -276,7 +276,7 @@ Interface IConversationJournal  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationJournal_Forget_System_String_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.Forget(System.String)">
   Forget(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L101"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>丢弃某会话在本进程内的全部日志状态</p>
@@ -312,7 +312,7 @@ Interface IConversationJournal  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationJournal_GetSequence_System_String_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.GetSequence(System.String)">
   GetSequence(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步读取某会话当前已分配到的事件序号</p>
@@ -350,50 +350,11 @@ Interface IConversationJournal  <a class="header-action link-secondary" title="V
 
 
 
-  <a id="MAS_PrismaAgent_Conversations_IConversationJournal_IsTemporary_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.IsTemporary*"></a>
-
-  <h3 id="MAS_PrismaAgent_Conversations_IConversationJournal_IsTemporary_System_String_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.IsTemporary(System.String)">
-  IsTemporary(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L39"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>判断某个会话当前是否为临时聊天</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool IsTemporary(string conversationId)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>会话标识</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否临时；未记录过的会话为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="MAS_PrismaAgent_Conversations_IConversationJournal_PrepareAsync_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.PrepareAsync*"></a>
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationJournal_PrepareAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.PrepareAsync(System.String,System.Threading.CancellationToken)">
   PrepareAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步准备一个会话的事件记录，并对齐序号游标</p>
@@ -437,7 +398,7 @@ Interface IConversationJournal  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationJournal_ReadAsync_System_String_System_Int64_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.ReadAsync(System.String,System.Int64,System.Threading.CancellationToken)">
   ReadAsync(string, long, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L110"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步按序号升序读取某会话已提交的事件</p>
@@ -482,7 +443,7 @@ Interface IConversationJournal  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationJournal_TruncateFromLastUserMessageAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.TruncateFromLastUserMessageAsync(System.String,System.Threading.CancellationToken)">
   TruncateFromLastUserMessageAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步记录一次&quot;从最后一条用户消息起截断&quot;</p>
@@ -520,51 +481,6 @@ Interface IConversationJournal  <a class="header-action link-secondary" title="V
   <div class="markdown level1 remarks"><p>以追加截断标记表达，而不是删除已写入的事件：日志保持只追加，
 重放据此重现&quot;内容渲染过又被移除&quot;的同一结果</p>
 </div>
-
-
-
-
-  <a id="MAS_PrismaAgent_Conversations_IConversationJournal_TrySetTemporaryAsync_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.TrySetTemporaryAsync*"></a>
-
-  <h3 id="MAS_PrismaAgent_Conversations_IConversationJournal_TrySetTemporaryAsync_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationJournal.TrySetTemporaryAsync(System.String,System.Boolean,System.Threading.CancellationToken)">
-  TrySetTemporaryAsync(string, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationJournal.cs/#L32"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>异步设置会话是否为临时聊天</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; TrySetTemporaryAsync(string conversationId, bool isTemporary, CancellationToken token = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>会话标识</p>
-</dd>
-    <dt><code>isTemporary</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否临时</p>
-</dd>
-    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd><p>取消令牌</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>是否设置成功；会话已有内容时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
 
 
 

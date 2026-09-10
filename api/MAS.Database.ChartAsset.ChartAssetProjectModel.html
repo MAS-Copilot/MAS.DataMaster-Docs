@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ChartAssetProjectModel | DataMaster ">
       
-      <meta name="description" content="图表资产持久化数据模型">
+      <meta name="description" content="图表资产工程持久化模型">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,7 @@ Class ChartAssetProjectModel  <a class="header-action link-secondary" title="Vie
   <dl><dt>Assembly</dt><dd>MAS.Database.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>图表资产持久化数据模型</p>
+  <div class="markdown summary"><p>图表资产工程持久化模型</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -155,32 +155,30 @@ Class ChartAssetProjectModel  <a class="header-action link-secondary" title="Vie
 
 
 
-  <h2 class="section" id="properties">Properties
+  <h2 class="section" id="fields">Fields
 </h2>
 
 
-  <a id="MAS_Database_ChartAsset_ChartAssetProjectModel_Assets_" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.Assets*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_ChartAssetProjectModel_Assets" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.Assets">
-  Assets
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_ChartAssetProjectModel_DEFAULT_ASSET_ROOT" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.DEFAULT_ASSET_ROOT">
+  DEFAULT_ASSET_ROOT
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置图表资产集合</p>
+  <div class="markdown level1 summary"><p>资产根目录默认名称（相对工程文件所在目录）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;ChartAssetDefinition&gt; Assets { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public const string DEFAULT_ASSET_ROOT = &quot;ChartAssets&quot;</code></pre>
   </div>
 
 
 
 
-
-  <h4 class="section">Property Value</h4>
+  <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetDefinition.html">ChartAssetDefinition</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
@@ -191,19 +189,24 @@ Class ChartAssetProjectModel  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="MAS_Database_ChartAsset_ChartAssetProjectModel_ChartTheme_" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.ChartTheme*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_ChartAssetProjectModel_ChartTheme" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.ChartTheme">
-  ChartTheme
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_Database_ChartAsset_ChartAssetProjectModel_AssetRoot_" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.AssetRoot*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartAssetProjectModel_AssetRoot" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.AssetRoot">
+  AssetRoot
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置当前工程使用的 ECharts 图表主题</p>
+  <div class="markdown level1 summary"><p>获取或设置资产根目录（相对工程文件所在目录），默认 <a class="xref" href="MAS.Database.ChartAsset.ChartAssetProjectModel.html#MAS_Database_ChartAsset_ChartAssetProjectModel_DEFAULT_ASSET_ROOT">DEFAULT_ASSET_ROOT</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ChartTheme { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string AssetRoot { get; set; }</code></pre>
   </div>
 
 
@@ -223,11 +226,43 @@ Class ChartAssetProjectModel  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_Database_ChartAsset_ChartAssetProjectModel_Assets_" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.Assets*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartAssetProjectModel_Assets" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.Assets">
+  Assets
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置资产索引集合（含软删除项）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;ChartAssetEntry&gt; Assets { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetEntry.html">ChartAssetEntry</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_Database_ChartAsset_ChartAssetProjectModel_DatabaseConfig_" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.DatabaseConfig*"></a>
 
   <h3 id="MAS_Database_ChartAsset_ChartAssetProjectModel_DatabaseConfig" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.DatabaseConfig">
   DatabaseConfig
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置当前工程使用的数据库配置</p>
@@ -262,7 +297,7 @@ Class ChartAssetProjectModel  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Database_ChartAsset_ChartAssetProjectModel_Name" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.Name">
   Name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置工程名称</p>
@@ -294,7 +329,7 @@ Class ChartAssetProjectModel  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Database_ChartAsset_ChartAssetProjectModel_Parameters" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.Parameters">
   Parameters
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置工程参数</p>
@@ -326,7 +361,7 @@ Class ChartAssetProjectModel  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Database_ChartAsset_ChartAssetProjectModel_ProjectId" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.ProjectId">
   ProjectId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置工程唯一标识</p>
@@ -362,7 +397,7 @@ Class ChartAssetProjectModel  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Database_ChartAsset_ChartAssetProjectModel_Clone" data-uid="MAS.Database.ChartAsset.ChartAssetProjectModel.Clone">
   Clone()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetProjectModel.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new object that is a copy of the current instance.</p>

@@ -163,7 +163,7 @@ Class ChartAssetValidationResult  <a class="header-action link-secondary" title=
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetValidationResult.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置错误信息，通过时为空集合</p>
+  <div class="markdown level1 summary"><p>获取错误信息集合</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -195,12 +195,12 @@ Class ChartAssetValidationResult  <a class="header-action link-secondary" title=
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetValidationResult.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置校验是否通过</p>
+  <div class="markdown level1 summary"><p>获取一个值，指示是否校验通过</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required bool IsValid { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsValid { get; init; }</code></pre>
   </div>
 
 
@@ -227,7 +227,7 @@ Class ChartAssetValidationResult  <a class="header-action link-secondary" title=
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetValidationResult.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置告警信息，不影响校验结果</p>
+  <div class="markdown level1 summary"><p>获取警告信息集合</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -263,7 +263,7 @@ Class ChartAssetValidationResult  <a class="header-action link-secondary" title=
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetValidationResult.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>创建一个失败结果</p>
+  <div class="markdown level1 summary"><p>创建一个校验失败结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -281,7 +281,46 @@ Class ChartAssetValidationResult  <a class="header-action link-secondary" title=
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetValidationResult.html">ChartAssetValidationResult</a></dt>
-    <dd><p>失败结果</p>
+    <dd><p>校验失败结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_ChartAssetValidationResult_Ok_" data-uid="MAS.Database.ChartAsset.ChartAssetValidationResult.Ok*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartAssetValidationResult_Ok_System_Collections_Generic_IReadOnlyList_System_String__" data-uid="MAS.Database.ChartAsset.ChartAssetValidationResult.Ok(System.Collections.Generic.IReadOnlyList{System.String})">
+  Ok(IReadOnlyList&lt;string&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetValidationResult.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建一个校验通过结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ChartAssetValidationResult Ok(IReadOnlyList&lt;string&gt;? warnings = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>warnings</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>警告信息</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetValidationResult.html">ChartAssetValidationResult</a></dt>
+    <dd><p>校验通过结果</p>
 </dd>
   </dl>
 

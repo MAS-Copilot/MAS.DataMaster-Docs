@@ -88,111 +88,358 @@
 <h1 id="chartasset-图表资产">ChartAsset 图表资产</h1>
 
 <h2 id="模块说明">模块说明</h2>
-<p>ChartAsset 用于把数据库查询、参数定义、仪表盘布局和 ECharts 配置保存为可重复执行的图表资产。一个资产可以表示单个图表，也可以表示由多个图表和摘要卡片组成的仪表盘。</p>
-<p>ChartAsset 使用声明式 JSON 模型。后端负责校验资产、合并参数、执行数据源、组装渲染数据；DataMaster 页面负责生成参数输入控件；<code>MAS.Charts</code> 中的 <code>ChartAsset.html</code> 和 <code>ChartAsset.js</code> 负责最终的 HTML、摘要卡片与 ECharts 渲染。</p>
-<p>ChartAsset 与 ViewAsset 不同。ChartAsset 不托管每个资产独立编写的 HTML 页面，资产的页面结构由统一的 ChartAsset 前端提供；每个资产主要描述参数、数据源、布局和图表配置。</p>
+<p>ChartAsset 用于承载自定义的数据库视图页面。每个图表资产是项目资产根目录下的独立文件夹，由普通 HTML、CSS、JavaScript、图片以及只读 SQL 文件组成。</p>
+<p>DataMaster 启动本地 Web Host，负责：</p>
+<ul>
+<li>托管资产目录中的前端文件；</li>
+<li>提供只读 SQL 查询接口；</li>
+<li>使用当前 ChartAsset 项目配置的数据库执行查询；</li>
+<li>将查询结果转换为 JSON 返回给资产页面。</li>
+</ul>
+<p>前端页面不直接连接数据库。页面只能通过 ChartAsset 查询接口请求后端执行资产目录中的 SQL 文件。</p>
+<p>ChartAsset 不负责生成页面中的查询控件。文本框、日期选择器、查询按钮、数据表格、图表和刷新逻辑都由资产自己的前端代码实现。</p>
 <h2 id="相关模块">相关模块</h2>
 <h3 id="masdatabasechartasset">MAS.Database/ChartAsset</h3>
-<p>该模块实现 ChartAsset 的核心逻辑：</p>
+<p>该模块实现 ChartAsset 的核心业务逻辑：</p>
 <ul>
-<li>图表资产模型及 JSON 序列化；</li>
-<li>资产结构校验；</li>
-<li>SQL 只读校验；</li>
-<li>参数默认值合并和输入校验；</li>
-<li>SQL 参数化命令构建；</li>
-<li>SQL 与 C# 脚本数据源执行；</li>
+<li>资产索引与目录解析；</li>
+<li><code>manifest.json</code> 读取；</li>
+<li>资产文件扫描与校验；</li>
+<li>SQL 文件定位；</li>
+<li>只读 SQL 校验；</li>
+<li>SQL 参数命令构建；</li>
+<li>数据库查询执行；</li>
 <li>查询结果转换；</li>
-<li>ECharts option 数据注入；</li>
-<li>摘要卡片数据计算；</li>
-<li>渲染 Payload 组装；</li>
-<li>资产增删改查与项目持久化。</li>
+<li>ChartAsset 项目持久化。</li>
 </ul>
-<p>主要服务包括：</p>
+<p>查询相关的主要类型如下：</p>
 <ul>
-<li><code>IChartAssetRuntime</code> / <code>ChartAssetRuntime</code>：执行资产并生成渲染 Payload；</li>
-<li><code>IChartAssetToolService</code> / <code>ChartAssetToolService</code>：资产查询、校验、写入、补丁、删除和预览；</li>
-<li><code>IChartAssetProjectPersistenceService</code>：资产与数据库配置持久化；</li>
-<li><code>IChartAssetScriptRunner</code> / <code>ChartAssetScriptRunner</code>：编译并执行脚本数据源；</li>
-<li><code>ChartAssetValidator</code>：完整资产静态校验；</li>
-<li><code>ChartAssetSqlGuard</code>：SQL 数据源只读校验；</li>
-<li><code>ChartAssetSqlBuilder</code>：参数化 SQL 命令和查询结果转换；</li>
-<li><code>ChartOptionComposer</code>：将数据源结果注入 ECharts option；</li>
-<li><code>SummaryCardComposer</code>：计算摘要卡片显示数据。</li>
+<li><code>ChartAssetQueryRequest</code>：查询请求模型；</li>
+<li><code>ChartAssetQueryRequestParser</code>：HTTP 与 IPC 共用的请求与参数解析、类型转换和校验；</li>
+<li><code>IChartAssetQueryService</code>：查询服务接口；</li>
+<li><code>ChartAssetQueryService</code>：SQL 文件读取、校验和执行；</li>
+<li><code>ChartAssetSqlCommandBuilder</code>：占位符转换、缺参检查和参数绑定命令构建；</li>
+<li><code>ChartAssetSqlGuard</code>：单条只读 SQL 校验；</li>
+<li><code>ChartAssetQueryException</code>：数据库执行阶段失败（消息含 SQL 文件名，已脱敏）；</li>
+<li><code>ChartAssetResultConverter</code>：查询结果转换；</li>
+<li><code>ChartAssetQueryResult</code>：页面查询结果；</li>
+<li><code>ChartAssetPreviewResult</code>：工具预览结果。</li>
 </ul>
+<h3 id="masdatamasterserviceschartasset">MAS.DataMaster/Services/ChartAsset</h3>
+<p><code>ChartAssetWebModule</code> 将 ChartAsset 接入本地 Web Host，处理静态文件请求与页面查询请求。</p>
 <h3 id="masdatamasternamedpipeipcchartasset">MAS.DataMaster/NamedPipeIpc/ChartAsset</h3>
-<p><code>ChartAssetToolProvider</code> 通过 IPC 向 PrismaAgent 暴露 <code>chartAsset.*</code> 工具，用于列出、读取、校验、写入、局部修改、删除和预览资产。</p>
-<h3 id="masdatamaster-chartasset-页面">MAS.DataMaster ChartAsset 页面</h3>
-<p><code>ChartAssetViewModel</code> 维护资产列表、当前资产、参数值、执行状态和定时刷新。它调用 <code>IChartAssetRuntime</code> 取得 <code>ChartRenderPayload</code>，再通过 <code>ChartAssetWebViewService</code> 推送到 WebView2。</p>
-<h3 id="maschartshtml">MAS.Charts/HTML</h3>
-<p><code>ChartAsset.html</code> 是统一的图表渲染页面，<code>ChartAsset.js</code> 接收宿主消息，创建仪表盘网格、摘要卡片和 ECharts 实例，并处理主题、加载状态、错误状态及窗口大小变化。</p>
-<h2 id="资产定义">资产定义</h2>
-<p>ChartAsset 的根模型是 <code>ChartAssetDefinition</code>：</p>
+<p><code>ChartAssetToolProvider</code> 向 PrismaAgent/IPC 暴露 <code>chartAsset.*</code> 工具，包括资产查询、校验、注册、注销、恢复、预览、运行验证和封面生成。</p>
+<p>其中 <code>chartAsset.preview</code> 调用的也是 <code>IChartAssetQueryService</code>，并且与页面 HTTP 查询共用同一个 <code>ChartAssetQueryRequestParser</code> 完成请求解析、参数类型转换与校验，两条入口的参数语义完全一致。</p>
+<p><code>chartAsset.verify</code> 除了收集 JS 错误、失败请求与页面统计，还提供两项面向 Agent 的能力：</p>
+<ul>
+<li><code>path</code>：传入本地 <code>.html</code>/<code>.htm</code> 绝对路径即可直接通过 <code>file://</code> 验证独立页面，不需要工程、不需要注册资产、不需要启动 Host；与 <code>assetIdOrName</code> 二选一。</li>
+<li><code>probe</code>：可选 JS 探针，在页面静置后于页面上下文求值，最后一个表达式的值以 JSON 原样回读到结果的 <code>probe</code> 字段。它让没有视觉输入的模型能以文本方式回读渲染结果（几何、计算样式、可见性、溢出、展开态）。探针以 <code>eval</code> 包在 try/catch 中执行，失败原因写入 <code>probeError</code>，不影响 <code>success</code> 判定；结果超过 20000 字符会被拒绝，要求在脚本内先裁剪。</li>
+</ul>
+<h2 id="资产目录">资产目录</h2>
+<p>典型资产结构：</p>
+<pre><code class="lang-text">ChartAssets/
+├─ _shared/
+│  └─ echarts.min.js
+└─ production-query/
+   ├─ index.html
+   ├─ manifest.json
+   ├─ app.js
+   ├─ style.css
+   └─ main.sql
+</code></pre>
+<ul>
+<li><code>index.html</code>：默认入口页面；</li>
+<li><code>manifest.json</code>：资产描述文件；</li>
+<li><code>*.sql</code>：可由页面查询接口执行的只读 SQL；</li>
+<li><code>_shared</code>：所有 ChartAsset 可引用的共享前端资源目录。</li>
+</ul>
+<p><code>manifest.json</code> 当前描述资产入口、标题、说明、标签、样式、组件数量和刷新策略，不包含查询参数定义。</p>
+<h2 id="web-host-路由">Web Host 路由</h2>
+<h3 id="静态页面">静态页面</h3>
+<pre><code class="lang-http">GET /modules/chart-assets/{assetId}/
+GET /modules/chart-assets/{assetId}/{relativePath}
+</code></pre>
+<p>空路径加载 <code>manifest.entry</code> 指定的入口文件；未配置时使用 <code>index.html</code>。其他路径用于加载资产目录内的 CSS、JavaScript、图片等静态文件。</p>
+<p>共享资源通过以下路径访问：</p>
+<pre><code class="lang-http">GET /modules/chart-assets/_shared/{fileName}
+</code></pre>
+<h3 id="查询接口">查询接口</h3>
+<pre><code class="lang-http">POST /api/chart-assets/{assetId}/query
+Content-Type: application/json
+</code></pre>
+<p>查询接口只支持 <code>POST</code>。其他 HTTP 方法返回 405；不支持的 API 动作返回 404。</p>
+<h2 id="页面查询请求">页面查询请求</h2>
+<p>请求结构：</p>
 <pre><code class="lang-json">{
-  &quot;id&quot;: &quot;production-overview&quot;,
-  &quot;name&quot;: &quot;生产概览&quot;,
-  &quot;description&quot;: &quot;按日期查看产量趋势&quot;,
-  &quot;parameters&quot;: [],
-  &quot;dataSources&quot;: [],
-  &quot;dashboard&quot;: {
-    &quot;columns&quot;: 2,
-    &quot;widgets&quot;: []
+  &quot;sqlFile&quot;: &quot;main.sql&quot;,
+  &quot;parameters&quot;: {
+    &quot;Keyword&quot;: &quot;%电机%&quot;,
+    &quot;MinQuantity&quot;: 10,
+    &quot;Enabled&quot;: true,
+    &quot;LineId&quot;: null,
+    &quot;StartTime&quot;: { &quot;type&quot;: &quot;datetime&quot;, &quot;value&quot;: &quot;2026-07-01T00:00:00+08:00&quot; }
   },
-  &quot;refresh&quot;: {
-    &quot;mode&quot;: &quot;manual&quot;,
-    &quot;intervalSeconds&quot;: 0
-  }
+  &quot;rowLimit&quot;: 5000
 }
 </code></pre>
-<p>根字段：</p>
+<p>字段说明：</p>
 <table>
 <thead>
 <tr>
 <th>字段</th>
+<th>类型</th>
+<th>必填</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>id</code></td>
-<td>项目内稳定且唯一的资产标识</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>资产显示名称</td>
-</tr>
-<tr>
-<td><code>description</code></td>
-<td>可选说明</td>
+<td><code>sqlFile</code></td>
+<td>string</td>
+<td>是</td>
+<td>资产目录内 SQL 文件的相对路径，必须以 <code>.sql</code> 结尾</td>
 </tr>
 <tr>
 <td><code>parameters</code></td>
-<td>参数定义集合</td>
+<td>object</td>
+<td>否</td>
+<td>参数名到参数值的映射，键名不区分大小写；值保留 JSON 原生类型，也支持显式类型包装</td>
 </tr>
 <tr>
-<td><code>dataSources</code></td>
-<td>数据源定义集合</td>
-</tr>
-<tr>
-<td><code>dashboard</code></td>
-<td>仪表盘布局与组件集合</td>
-</tr>
-<tr>
-<td><code>refresh</code></td>
-<td>手动或定时刷新策略</td>
+<td><code>rowLimit</code></td>
+<td>number</td>
+<td>否</td>
+<td>返回行数上限；小于等于 0 时使用默认值 5000</td>
 </tr>
 </tbody>
 </table>
-<p>资产保存在当前 ChartAsset 项目的 <code>ChartAssetProjectModel.Assets</code> 中，不是单独的 SQL 或 HTML 文件目录。</p>
-<h2 id="参数定义">参数定义</h2>
-<p>参数模型为 <code>ChartParameter</code>：</p>
+<p>请求体为空、JSON 无效、字段类型错误或缺少 SQL 参数时返回 HTTP 400，错误信息会说明具体原因。</p>
+<p>页面调用示例：</p>
+<pre><code class="lang-js">async function runQuery(parameters) {
+  const response = await fetch(`/api/chart-assets/${assetId}/query`, {
+    method: &quot;POST&quot;,
+    headers: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;
+    },
+    body: JSON.stringify({
+      sqlFile: &quot;main.sql&quot;,
+      parameters,
+      rowLimit: 5000
+    })
+  });
+
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.error || `HTTP ${response.status}`);
+  }
+
+  return result;
+}
+</code></pre>
+<h2 id="sql-参数处理">SQL 参数处理</h2>
+<h3 id="占位符格式">占位符格式</h3>
+<p>当前 SQL 文件使用 <code>{{参数名}}</code> 占位符：</p>
+<pre><code class="lang-sql">SELECT id, product_name, created_at
+FROM production_record
+WHERE product_name LIKE {{Keyword}}
+  AND created_at &gt;= {{StartTime}}
+  AND created_at &lt; {{EndTime}}
+ORDER BY created_at DESC
+</code></pre>
+<p><code>ChartAssetSqlCommandBuilder</code> 从 SQL 中提取占位符，并将其转换为数据库命名参数：</p>
+<pre><code class="lang-sql">SELECT id, product_name, created_at
+FROM production_record
+WHERE product_name LIKE @Keyword
+  AND created_at &gt;= @StartTime
+  AND created_at &lt; @EndTime
+ORDER BY created_at DESC
+</code></pre>
+<p>参数值保存在 <code>PreparedSqlCommand.Parameters</code> 中。<code>QueryExecutor</code> 创建数据库命令后，通过 <code>AddParameter</code> 将每个值绑定到对应的 <code>@参数名</code>。</p>
+<p>因此，当前实现不是把参数值直接替换或拼接到 SQL 文本中。SQL 结构来自资产目录中的 SQL 文件，前端只提交参数值。</p>
+<h3 id="参数语义">参数语义</h3>
+<p>ChartAsset 没有参数定义模型，前端完全自由地决定发送哪些参数。<code>ChartAssetQueryRequestParser</code> 解析请求后，<code>ChartAssetQueryRequest.Parameters</code> 的类型为：</p>
+<pre><code class="lang-csharp">IReadOnlyDictionary&lt;string, object?&gt;
+</code></pre>
+<p>解析与绑定遵循以下规则：</p>
+<ul>
+<li><strong>缺失参数直接报错</strong>：SQL 使用的每个 <code>{{占位符}}</code> 都必须在 <code>parameters</code> 中出现，缺失时返回 HTTP 400 并列出缺失的参数名，例如 <code>SQL 文件「main.sql」缺少参数：StartTime</code>，不再静默绑定空字符串；</li>
+<li><strong>保留 JSON 原生类型</strong>：字符串按文本绑定（不做 <code>Trim</code>，按原样传入数据库）、数字按数字绑定（整数转 <code>long</code>，小数转 <code>decimal</code>）、布尔按布尔绑定；</li>
+<li><strong><code>null</code> 绑定数据库 <code>NULL</code></strong>：显式传 <code>null</code> 时按 <code>DBNull</code> 绑定，可配合 <code>({{LineId}} IS NULL OR line_id = {{LineId}})</code> 实现可选条件；</li>
+<li><strong>空字符串绑定空字符串</strong>：<code>&quot;&quot;</code> 与 <code>null</code> 不再混同；</li>
+<li><strong>多余参数忽略</strong>：请求中存在但 SQL 未使用的参数不会加入数据库命令；</li>
+<li><strong>数组值报错</strong>：<code>parameters</code> 的值不支持数组。</li>
+</ul>
+<p>参数名称通过正则表达式 <code>{{(\w+)}}</code> 提取并不区分大小写去重，同名占位符只生成一个绑定参数；大小写不同的同名占位符（如 <code>{{Start}}</code> 与 <code>{{START}}</code>）会替换为同一个命名参数。</p>
+<h3 id="显式类型参数">显式类型参数</h3>
+<p>普通字符串永远按文本绑定，不做任何自动类型猜测。需要让数据库拿到真正的日期或数字类型时，使用显式类型包装：</p>
 <pre><code class="lang-json">{
-  &quot;name&quot;: &quot;StartTime&quot;,
-  &quot;label&quot;: &quot;开始时间&quot;,
-  &quot;type&quot;: &quot;dateTime&quot;,
-  &quot;required&quot;: true,
-  &quot;defaultValue&quot;: &quot;2026-07-01 00:00:00&quot;,
-  &quot;hint&quot;: &quot;请选择查询开始时间&quot;,
-  &quot;options&quot;: null
+  &quot;parameters&quot;: {
+    &quot;StartTime&quot;: { &quot;type&quot;: &quot;datetime&quot;, &quot;value&quot;: &quot;2026-07-01T00:00:00+08:00&quot; },
+    &quot;MinQuantity&quot;: { &quot;type&quot;: &quot;number&quot;, &quot;value&quot;: &quot;10&quot; }
+  }
+}
+</code></pre>
+<p><code>type</code> 支持以下取值（<code>value</code> 为 <code>null</code> 时一律绑定数据库 <code>NULL</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>value 要求</th>
+<th>绑定结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td>字符串</td>
+<td>文本</td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>数字或数字字符串（不变量文化）</td>
+<td><code>long</code> / <code>decimal</code> / <code>double</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>布尔或 <code>&quot;true&quot;</code>/<code>&quot;false&quot;</code> 字符串</td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>ISO 8601 字符串</td>
+<td><code>DateTime</code>，只保留日期部分</td>
+</tr>
+<tr>
+<td><code>datetime</code></td>
+<td>ISO 8601 字符串</td>
+<td><code>DateTime</code></td>
+</tr>
+<tr>
+<td><code>json</code></td>
+<td>任意 JSON</td>
+<td>原始 JSON 文本（按文本绑定）</td>
+</tr>
+</tbody>
+</table>
+<p>日期时间的时区规则：带时区偏移（含 <code>Z</code>）的值会换算为 DataMaster 所在机器的本机时间后绑定；不带时区的值按本机时间原样绑定。<code>type</code> 拼写错误或 <code>value</code> 无法转换都会返回明确错误。</p>
+<h3 id="可选条件与-null">可选条件与 NULL</h3>
+<p>参数只能代表「值」，不能改变 SQL 结构。动态启用/停用条件推荐用 <code>NULL</code> 判断写在 SQL 里：</p>
+<pre><code class="lang-sql">SELECT id, product_name, created_at
+FROM production_record
+WHERE ({{Keyword}} IS NULL OR product_name LIKE {{Keyword}})
+  AND ({{StartTime}} IS NULL OR created_at &gt;= {{StartTime}})
+</code></pre>
+<p>前端对「不过滤」的条件显式传 <code>null</code>：</p>
+<pre><code class="lang-json">{
+  &quot;sqlFile&quot;: &quot;main.sql&quot;,
+  &quot;parameters&quot;: { &quot;Keyword&quot;: &quot;%电机%&quot;, &quot;StartTime&quot;: null }
+}
+</code></pre>
+<p>查询形态差异较大时（如不同排序、不同聚合），更适合拆成多个 SQL 文件由前端选择，而不是把 SQL 结构做成参数。</p>
+<h2 id="模糊查询">模糊查询</h2>
+<p>模糊查询由 SQL 的 <code>LIKE</code> 条件与前端传入的通配符共同完成：</p>
+<pre><code class="lang-sql">SELECT id, product_name
+FROM production_record
+WHERE product_name LIKE {{Keyword}}
+</code></pre>
+<p>前端包含匹配：</p>
+<pre><code class="lang-js">await runQuery({
+  Keyword: `%${keyword.trim()}%`
+});
+</code></pre>
+<p>前端也可以根据查询需求传入：</p>
+<ul>
+<li><code>%关键字%</code>：包含匹配；</li>
+<li><code>关键字%</code>：前缀匹配；</li>
+<li><code>%关键字</code>：后缀匹配。</li>
+</ul>
+<p>值最终作为 <code>@Keyword</code> 的参数绑定，不会直接拼入 SQL。</p>
+<h2 id="日期时间查询">日期时间查询</h2>
+<p>日期输入同样由资产前端负责。页面可以使用 <code>input[type=date]</code>、<code>input[type=datetime-local]</code> 或其他日期组件产生字符串，然后作为参数提交：</p>
+<pre><code class="lang-js">await runQuery({
+  StartTime: &quot;2026-07-01 00:00:00&quot;,
+  EndTime: &quot;2026-08-01 00:00:00&quot;
+});
+</code></pre>
+<pre><code class="lang-sql">SELECT id, created_at
+FROM production_record
+WHERE created_at &gt;= {{StartTime}}
+  AND created_at &lt; {{EndTime}}
+</code></pre>
+<p>普通字符串仍按文本绑定，不会自动转换为 .NET <code>DateTime</code>；具体数据库是否接受该字符串格式，以及比较时如何进行隐式类型转换，由数据库和驱动决定。需要跨数据库稳定的日期比较时，改用显式类型包装：</p>
+<pre><code class="lang-js">await runQuery({
+  StartTime: { type: &quot;datetime&quot;, value: &quot;2026-07-01T00:00:00+08:00&quot; },
+  EndTime: { type: &quot;datetime&quot;, value: &quot;2026-08-01T00:00:00+08:00&quot; }
+});
+</code></pre>
+<p>推荐使用 ISO 8601 并显式携带时区偏移；不带时区的值按 DataMaster 本机时间处理。</p>
+<p>日期范围通常使用左闭右开条件。例如查询 2026 年 7 月时，开始值为 <code>2026-07-01 00:00:00</code>，结束值为 <code>2026-08-01 00:00:00</code>。</p>
+<h2 id="查询执行流程">查询执行流程</h2>
+<p><code>ChartAssetQueryService.ExecuteAsync</code> 的执行顺序如下：</p>
+<ol>
+<li>使用资产 ID 或名称查找资产；</li>
+<li>拒绝不存在或已注销的资产；</li>
+<li>解析资产实际目录；</li>
+<li>校验 <code>sqlFile</code> 非空并以 <code>.sql</code> 结尾；</li>
+<li>将相对路径解析到资产目录内；</li>
+<li>拒绝路径穿越和不存在的文件；</li>
+<li>异步读取 SQL 文件文本；</li>
+<li>调用 <code>ChartAssetSqlGuard.TryCheckReadonlySql</code>；</li>
+<li>调用 <code>ChartAssetSqlCommandBuilder.Build</code> 构建参数化命令（SQL 使用的占位符缺少参数时在此报错）；</li>
+<li>从当前 ChartAsset 项目取得数据库配置；</li>
+<li>将数据库实例设置到 <code>IQueryExecutor</code>；</li>
+<li>调用 <code>IQueryExecutor.ExecuteAsync</code> 执行查询（执行失败包装为 <code>ChartAssetQueryException</code>，消息含 SQL 文件名并脱敏）；</li>
+<li>将 <code>DataTable</code> 转换为 ChartAsset 查询结果。</li>
+</ol>
+<p>当前查询没有前端 SQL 文本入口。后端执行的 SQL 必须来自资产目录中的实际 <code>.sql</code> 文件。</p>
+<h2 id="sql-文件与路径限制">SQL 文件与路径限制</h2>
+<p><code>sqlFile</code> 只能是资产目录内的 <code>.sql</code> 文件：</p>
+<ul>
+<li>不接受 <code>index.html</code> 等其他扩展名；</li>
+<li>不接受不存在的文件；</li>
+<li>不允许通过 <code>../</code> 离开资产目录；</li>
+<li>不允许请求直接传递 SQL 文本。</li>
+</ul>
+<p>SQL 文件选择可以由前端控制。例如一个资产可以包含 <code>summary.sql</code>、<code>detail.sql</code> 和 <code>trend.sql</code>，页面根据功能调用不同文件，但每个文件都必须已经存在于当前资产目录内。</p>
+<h2 id="只读-sql-校验">只读 SQL 校验</h2>
+<p><code>ChartAssetSqlGuard</code> 在执行前移除行注释与块注释，然后进行以下检查：</p>
+<ol>
+<li>SQL 内容不能为空；</li>
+<li>去掉末尾分号后，内容仍不能为空；</li>
+<li>SQL 中不能存在其他分号，即只能执行一条语句；</li>
+<li>首关键字只能是：
+<ul>
+<li><code>SELECT</code></li>
+<li><code>WITH</code></li>
+<li><code>SHOW</code></li>
+<li><code>DESCRIBE</code></li>
+<li><code>DESC</code></li>
+<li><code>EXPLAIN</code></li>
+</ul>
+</li>
+<li>对 <code>SELECT</code> 和 <code>WITH</code> 检查禁止关键字，包括 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>、<code>DROP</code>、<code>ALTER</code>、<code>CREATE</code>、<code>TRUNCATE</code>、<code>GRANT</code>、<code>REVOKE</code>、<code>REPLACE</code>、<code>MERGE</code>、<code>CALL</code>、<code>EXECUTE</code>、<code>EXEC</code>、<code>INTO</code>、<code>LOAD</code>、<code>HANDLER</code>、<code>COPY</code> 和 <code>VACUUM</code>。</li>
+</ol>
+<p>校验失败时不会创建数据库查询，接口返回 HTTP 400 和具体错误信息。</p>
+<h2 id="行数限制">行数限制</h2>
+<p>页面查询的默认行数限制为 5000：</p>
+<ul>
+<li><code>rowLimit &gt; 0</code>：使用请求值；</li>
+<li><code>rowLimit &lt;= 0</code>：使用默认值 5000。</li>
+</ul>
+<p><code>QueryExecutor</code> 在执行前根据数据库类型调用 <code>DbQueryHelper.ApplyRowLimit</code>，将行数限制应用到 SQL。</p>
+<p><code>chartAsset.preview</code> 还会对返回给工具调用方的 <code>records</code> 再做一次预览截断。默认只返回前 50 条记录，最多允许请求 200 条；数据库查询本身仍使用 <code>rowLimit</code>。</p>
+<h2 id="页面查询响应">页面查询响应</h2>
+<p>成功响应：</p>
+<pre><code class="lang-json">{
+  &quot;sqlFile&quot;: &quot;main.sql&quot;,
+  &quot;columns&quot;: [&quot;id&quot;, &quot;product_name&quot;, &quot;created_at&quot;],
+  &quot;rows&quot;: [
+    [1, &quot;电机 A&quot;, &quot;2026-07-01 08:30:00&quot;],
+    [2, &quot;电机 B&quot;, &quot;2026-07-01 09:10:00&quot;]
+  ],
+  &quot;rowCount&quot;: 2,
+  &quot;elapsedMilliseconds&quot;: 18,
+  &quot;executedAt&quot;: &quot;2026-07-11T10:00:00&quot;
 }
 </code></pre>
 <p>字段说明：</p>
@@ -205,495 +452,117 @@
 </thead>
 <tbody>
 <tr>
-<td><code>name</code></td>
-<td>参数名称，对应 SQL 中的 <code>{{Name}}</code></td>
+<td><code>sqlFile</code></td>
+<td>实际执行的 SQL 文件相对路径</td>
 </tr>
 <tr>
-<td><code>label</code></td>
-<td>页面输入控件的显示标签</td>
+<td><code>columns</code></td>
+<td>按查询结果顺序排列的列名</td>
 </tr>
 <tr>
-<td><code>type</code></td>
-<td><code>text</code>、<code>number</code>、<code>date</code>、<code>dateTime</code> 或 <code>enum</code></td>
+<td><code>rows</code></td>
+<td>二维数组，每行单元格顺序与 <code>columns</code> 一致</td>
 </tr>
 <tr>
-<td><code>required</code></td>
-<td>是否必填，默认 <code>true</code></td>
+<td><code>rowCount</code></td>
+<td>返回结果行数</td>
 </tr>
 <tr>
-<td><code>defaultValue</code></td>
-<td>页面未提供值时使用的默认值</td>
+<td><code>elapsedMilliseconds</code></td>
+<td>数据库查询耗时，单位毫秒</td>
 </tr>
 <tr>
-<td><code>hint</code></td>
-<td>输入提示文本</td>
-</tr>
-<tr>
-<td><code>options</code></td>
-<td><code>enum</code> 参数的候选值集合</td>
+<td><code>executedAt</code></td>
+<td>查询完成时间</td>
 </tr>
 </tbody>
 </table>
-<p>参数名称只允许字母、数字和下划线，在同一资产内不区分大小写且不能重复。枚举参数必须提供候选项；数字、日期、日期时间和枚举的默认值会在资产校验时检查。</p>
-<h2 id="参数合并与类型转换">参数合并与类型转换</h2>
-<p>执行资产时，<code>ChartParameterValidator.MergeAndValidate</code> 根据参数定义合并调用方参数与默认值：</p>
-<ol>
-<li>调用方提供的值优先；</li>
-<li>未提供时使用 <code>defaultValue</code>；</li>
-<li>必填参数没有有效值时产生校验错误；</li>
-<li>枚举值必须属于 <code>options</code>；</li>
-<li>校验通过后生成最终参数字典。</li>
-</ol>
-<p>构建 SQL 命令时，<code>ChartAssetSqlBuilder</code> 根据参数类型调用 <code>QueryAssetParsing.ConvertValue</code>：</p>
-<table>
-<thead>
-<tr>
-<th>参数类型</th>
-<th>绑定值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>text</code></td>
-<td>去除首尾空白后的字符串</td>
-</tr>
-<tr>
-<td><code>enum</code></td>
-<td>按文本绑定</td>
-</tr>
-<tr>
-<td><code>number</code></td>
-<td>优先转换为 <code>long</code>，其次转换为 <code>decimal</code></td>
-</tr>
-<tr>
-<td><code>date</code></td>
-<td>解析为 <code>DateTime.Date</code></td>
-</tr>
-<tr>
-<td><code>dateTime</code></td>
-<td>解析为 <code>DateTime</code></td>
-</tr>
-</tbody>
-</table>
-<p>如果数字或日期文本不能转换，转换函数会保留原始字符串；资产参数校验负责在执行前拦截无效输入。</p>
-<h2 id="数据源">数据源</h2>
-<p>数据源模型为 <code>ChartDataSourceDefinition</code>。每个数据源具有项目内资产范围唯一的 <code>id</code>，并使用 <code>sql</code> 或 <code>script</code> 模式。</p>
-<p>通用字段：</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>数据源标识，供 widget 的 <code>dataSourceId</code> 引用</td>
-</tr>
-<tr>
-<td><code>mode</code></td>
-<td><code>sql</code> 或 <code>script</code></td>
-</tr>
-<tr>
-<td><code>sql</code></td>
-<td>SQL 模式的只读 SQL 模板</td>
-</tr>
-<tr>
-<td><code>script</code></td>
-<td>Script 模式的 C# 源码</td>
-</tr>
-<tr>
-<td><code>rowLimit</code></td>
-<td>行数上限，小于等于 0 时默认 5000</td>
-</tr>
-<tr>
-<td><code>timeoutSeconds</code></td>
-<td>超时秒数，小于等于 0 时默认 30 秒</td>
-</tr>
-</tbody>
-</table>
-<p><code>sql</code>、<code>script</code> 和 <code>optionJs</code> 在 JSON 中既可以写成一个字符串，也可以写成字符串数组；字符串数组反序列化时以换行连接。</p>
-<h3 id="sql-数据源">SQL 数据源</h3>
-<pre><code class="lang-json">{
-  &quot;id&quot;: &quot;trendData&quot;,
-  &quot;mode&quot;: &quot;sql&quot;,
-  &quot;sql&quot;: [
-    &quot;SELECT production_date, quantity&quot;,
-    &quot;FROM production_record&quot;,
-    &quot;WHERE production_date &gt;= {{StartDate}}&quot;,
-    &quot;  AND production_date &lt; {{EndDate}}&quot;,
-    &quot;ORDER BY production_date&quot;
-  ],
-  &quot;rowLimit&quot;: 5000,
-  &quot;timeoutSeconds&quot;: 30
-}
-</code></pre>
-<p>SQL 中的 <code>{{参数名}}</code> 必须在资产的 <code>parameters</code> 中声明。未声明的占位符会导致资产校验失败。</p>
-<p>执行时占位符被转换为命名参数：</p>
-<pre><code class="lang-sql">WHERE production_date &gt;= @StartDate
-  AND production_date &lt; @EndDate
-</code></pre>
-<p>实际值通过数据库命令参数绑定，不直接拼入 SQL 文本。</p>
-<h3 id="script-数据源">Script 数据源</h3>
-<p>Script 模式用于多次查询、聚合或需要 C# 处理的数据源。<code>script</code> 源码必须实现 <code>IChartAssetScript</code>。</p>
-<p>运行时向脚本提供 <code>ChartScriptContext</code>，其中包含：</p>
+<p>结果单元格转换规则：</p>
 <ul>
-<li>已合并的资产参数；</li>
-<li>当前数据源行数限制；</li>
-<li>可供脚本调用的查询函数。</li>
-</ul>
-<p>脚本查询同样通过 <code>PreparedSqlCommand</code> 和 <code>IQueryExecutor</code> 执行。脚本整体受数据源 <code>timeoutSeconds</code> 和调用取消令牌控制。</p>
-<h2 id="sql-只读校验">SQL 只读校验</h2>
-<p>SQL 数据源必须是一条只读语句。允许的首关键字为：</p>
-<ul>
-<li><code>SELECT</code></li>
-<li><code>WITH</code></li>
-<li><code>SHOW</code></li>
-<li><code>DESCRIBE</code></li>
-<li><code>DESC</code></li>
-<li><code>EXPLAIN</code></li>
-</ul>
-<p>SQL 去除末尾分号后不能再包含分号。对于 <code>SELECT</code> 和 <code>WITH</code>，守卫会拦截 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>、<code>DROP</code>、<code>ALTER</code>、<code>CREATE</code>、<code>TRUNCATE</code>、<code>GRANT</code>、<code>REVOKE</code>、<code>REPLACE</code>、<code>MERGE</code>、<code>CALL</code>、<code>EXECUTE</code>、<code>EXEC</code>、<code>INTO</code>、<code>LOAD</code>、<code>HANDLER</code>、<code>COPY</code> 和 <code>VACUUM</code> 等关键字。</p>
-<p>SQL 守卫是执行前的文本校验。实际查询仍使用当前 ChartAsset 项目配置的数据库实例。</p>
-<h2 id="仪表盘">仪表盘</h2>
-<p><code>ChartDashboardDefinition</code> 包含：</p>
-<ul>
-<li><code>columns</code>：网格列数，范围为 1 至 4；</li>
-<li><code>widgets</code>：按声明顺序排列的组件集合，至少需要一个组件。</li>
-</ul>
-<p>每个 <code>ChartWidgetDefinition</code> 包含：</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>widget 唯一标识</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td><code>chart</code> 或 <code>summaryCard</code></td>
-</tr>
-<tr>
-<td><code>title</code></td>
-<td>可选标题</td>
-</tr>
-<tr>
-<td><code>dataSourceId</code></td>
-<td>引用的数据源 ID</td>
-</tr>
-<tr>
-<td><code>columnSpan</code></td>
-<td>横向占用列数，不能超过仪表盘列数</td>
-</tr>
-<tr>
-<td><code>height</code></td>
-<td>像素高度；小于等于 0 时图表默认 320，摘要卡片自适应</td>
-</tr>
-<tr>
-<td><code>option</code></td>
-<td>ECharts JSON option</td>
-</tr>
-<tr>
-<td><code>optionJs</code></td>
-<td>生成 ECharts option 的 JavaScript 源码</td>
-</tr>
-<tr>
-<td><code>card</code></td>
-<td>摘要卡片配置</td>
-</tr>
-</tbody>
-</table>
-<p>图表 widget 的 <code>option</code> 与 <code>optionJs</code> 必须二选一。图表可以不引用数据源，此时作为静态图表渲染；摘要卡片必须引用数据源。</p>
-<h2 id="echarts-option-模式">ECharts option 模式</h2>
-<h3 id="option-json">option JSON</h3>
-<p><code>option</code> 保存普通 ECharts option JSON。数据源执行成功后，后端将查询结果转换为 ECharts dataset 格式，并注入 <code>option.dataset.source</code>。</p>
-<p>数据源结果：</p>
-<pre><code class="lang-json">{
-  &quot;columns&quot;: [&quot;production_date&quot;, &quot;quantity&quot;],
-  &quot;rows&quot;: [
-    [&quot;2026-07-01&quot;, 120],
-    [&quot;2026-07-02&quot;, 135]
-  ]
-}
-</code></pre>
-<p>注入后的 dataset source：</p>
-<pre><code class="lang-json">[
-  [&quot;production_date&quot;, &quot;quantity&quot;],
-  [&quot;2026-07-01&quot;, 120],
-  [&quot;2026-07-02&quot;, 135]
-]
-</code></pre>
-<p>option 中可使用 <code>encode</code> 和 <code>seriesLayoutBy</code> 按列引用数据。</p>
-<p>option JSON 内需要 ECharts 回调函数时，字符串使用 <code>@js:</code> 前缀：</p>
-<pre><code class="lang-json">{
-  &quot;tooltip&quot;: {
-    &quot;formatter&quot;: &quot;@js:function (params) { return params[0].name; }&quot;
-  }
-}
-</code></pre>
-<p>前端会递归查找 <code>@js:</code> 字符串，通过 <code>new Function</code> 编译为函数。<code>dataset</code> 子树不会参与函数恢复，防止查询数据被当作代码执行。</p>
-<h3 id="optionjs">optionJs</h3>
-<p><code>optionJs</code> 是一段由统一前端执行的 JavaScript 语句，必须给预声明的 <code>option</code> 变量赋值：</p>
-<pre><code class="lang-json">{
-  &quot;optionJs&quot;: [
-    &quot;const labels = data.rows.map(row =&gt; row[0]);&quot;,
-    &quot;const values = data.rows.map(row =&gt; row[1]);&quot;,
-    &quot;option = {&quot;,
-    &quot;  xAxis: { type: 'category', data: labels },&quot;,
-    &quot;  yAxis: { type: 'value' },&quot;,
-    &quot;  series: [{ type: 'line', data: values }]&quot;,
-    &quot;};&quot;
-  ]
-}
-</code></pre>
-<p>前端通过 <code>new Function('data', ...)</code> 执行源码。<code>data</code> 结构为：</p>
-<pre><code class="lang-js">{
-  columns: [&quot;production_date&quot;, &quot;quantity&quot;],
-  rows: [[&quot;2026-07-01&quot;, 120]],
-  source: [[&quot;production_date&quot;, &quot;quantity&quot;], [&quot;2026-07-01&quot;, 120]]
-}
-</code></pre>
-<p>没有数据源时 <code>data</code> 为 <code>null</code>。如果脚本没有设置 <code>option.dataset</code> 且存在数据，前端自动注入 <code>dataset.source</code>。</p>
-<p>后端只检查 <code>optionJs</code> 是否满足资产结构要求，不执行 JavaScript；语法错误和运行错误在 WebView2 渲染时显示为 widget 错误。</p>
-<h2 id="摘要卡片">摘要卡片</h2>
-<p><code>summaryCard</code> 从数据源结果的第一行提取显示值，不创建 ECharts 实例。</p>
-<p><code>ChartSummaryCardDefinition</code> 的主要字段：</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>valueColumn</code></td>
-<td>主数值列名；为空时使用第一列</td>
-</tr>
-<tr>
-<td><code>unit</code></td>
-<td>数值后的单位</td>
-</tr>
-<tr>
-<td><code>precision</code></td>
-<td>小数位数，范围 0 至 6；为空时保留原值</td>
-</tr>
-<tr>
-<td><code>trendText</code></td>
-<td>静态趋势文字</td>
-</tr>
-<tr>
-<td><code>trendTextColumn</code></td>
-<td>从结果列读取趋势文字</td>
-</tr>
-<tr>
-<td><code>trendDirection</code></td>
-<td>静态方向：<code>flat</code>、<code>up</code>、<code>down</code></td>
-</tr>
-<tr>
-<td><code>trendDirectionColumn</code></td>
-<td>从结果列读取方向</td>
-</tr>
-<tr>
-<td><code>tone</code></td>
-<td><code>default</code>、<code>success</code>、<code>warning</code>、<code>danger</code> 或 <code>info</code></td>
-</tr>
-</tbody>
-</table>
-<p>趋势文字的静态值与结果列配置二选一；趋势方向也采用相同规则。方向列可以返回 <code>up</code>、<code>down</code>、<code>flat</code>，也可以返回数值并按正负号判断方向。</p>
-<h2 id="运行时执行流程">运行时执行流程</h2>
-<p><code>ChartAssetRuntime.ExecuteAsync</code> 的执行顺序如下：</p>
-<ol>
-<li>根据资产 ID 从当前项目查找资产；</li>
-<li>调用 <code>ChartAssetValidator</code> 重新校验资产；</li>
-<li>合并调用参数与参数默认值并校验；</li>
-<li>当资产包含数据源时，读取项目数据库配置并设置查询执行器；</li>
-<li>按资产声明顺序逐个执行数据源；</li>
-<li>SQL 数据源构建参数化命令并查询数据库；</li>
-<li>Script 数据源编译并在超时限制内执行；</li>
-<li>每个数据源结果保存为 <code>ChartDataResult</code>，异常保存为该数据源的错误字符串；</li>
-<li>遍历 dashboard widgets，将数据源结果转换为 option、optionJs 数据或摘要卡片；</li>
-<li>组装并返回 <code>ChartRenderPayload</code>。</li>
-</ol>
-<p>某个数据源执行失败时，运行时不会终止其他数据源。引用该数据源的 widget 在 Payload 中带有 <code>error</code>，其他 widget 仍可正常显示。调用取消会终止整个执行过程。</p>
-<h2 id="查询结果转换">查询结果转换</h2>
-<p>数据库查询结果从 <code>DataTable</code> 转换为 <code>ChartDataResult</code>：</p>
-<pre><code class="lang-json">{
-  &quot;columns&quot;: [&quot;name&quot;, &quot;quantity&quot;],
-  &quot;rows&quot;: [[&quot;A&quot;, 10], [&quot;B&quot;, 20]],
-  &quot;rowCount&quot;: 2,
-  &quot;elapsedMilliseconds&quot;: 12
-}
-</code></pre>
-<p>单元格转换规则：</p>
-<ul>
-<li><code>null</code> 和 <code>DBNull</code> 转换为 <code>null</code>；</li>
+<li><code>DBNull</code> 转换为 <code>null</code>；</li>
 <li><code>DateTime</code> 格式化为 <code>yyyy-MM-dd HH:mm:ss</code>；</li>
 <li><code>TimeSpan</code> 转换为字符串；</li>
 <li><code>byte[]</code> 转换为 <code>null</code>；</li>
-<li>其他类型保留原值。</li>
+<li>其他值保留原始类型。</li>
 </ul>
-<h2 id="渲染-payload">渲染 Payload</h2>
-<p>运行时返回 <code>ChartRenderPayload</code>：</p>
-<pre><code class="lang-json">{
-  &quot;assetId&quot;: &quot;production-overview&quot;,
-  &quot;name&quot;: &quot;生产概览&quot;,
-  &quot;description&quot;: &quot;按日期查看产量趋势&quot;,
-  &quot;columns&quot;: 2,
-  &quot;widgets&quot;: [
-    {
-      &quot;widgetId&quot;: &quot;trend&quot;,
-      &quot;type&quot;: &quot;chart&quot;,
-      &quot;title&quot;: &quot;产量趋势&quot;,
-      &quot;columnSpan&quot;: 2,
-      &quot;height&quot;: 320,
-      &quot;option&quot;: {},
-      &quot;optionJs&quot;: null,
-      &quot;datasetSource&quot;: null,
-      &quot;card&quot;: null,
-      &quot;rowCount&quot;: 31,
-      &quot;elapsedMilliseconds&quot;: 16,
-      &quot;error&quot;: null
-    }
-  ],
-  &quot;generatedAt&quot;: &quot;2026-07-11T10:00:00&quot;
+<p>前端可将二维数组转换为对象数组：</p>
+<pre><code class="lang-js">function toRecords(result) {
+  return result.rows.map(row =&gt;
+    Object.fromEntries(
+      result.columns.map((column, index) =&gt; [column, row[index]])
+    )
+  );
 }
 </code></pre>
-<p><code>ChartAssetWebViewService</code> 将 Payload 包装为 WebView2 消息：</p>
-<pre><code class="lang-json">{
-  &quot;type&quot;: &quot;chart-asset-render&quot;,
-  &quot;payload&quot;: {}
-}
-</code></pre>
-<p>其他宿主消息包括：</p>
+<h2 id="错误处理">错误处理</h2>
+<p>常见响应状态：</p>
 <table>
 <thead>
 <tr>
-<th>type</th>
-<th>作用</th>
+<th>状态码</th>
+<th>场景</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>chart-asset-theme</code></td>
-<td>切换页面明暗主题</td>
+<td>400</td>
+<td>JSON 无效、缺少 <code>sqlFile</code>、路径无效、文件不存在、SQL 非只读、缺少 SQL 参数、参数值非法、未配置数据库等</td>
 </tr>
 <tr>
-<td><code>chart-asset-chart-theme</code></td>
-<td>切换 ECharts 主题</td>
+<td>404</td>
+<td>资产不存在、资产已注销或 API 动作不存在</td>
 </tr>
 <tr>
-<td><code>chart-asset-loading</code></td>
-<td>显示加载状态</td>
+<td>405</td>
+<td>查询接口使用了非 POST 方法</td>
 </tr>
 <tr>
-<td><code>chart-asset-error</code></td>
-<td>显示页面级错误</td>
-</tr>
-<tr>
-<td><code>chart-asset-reset</code></td>
-<td>清空当前渲染内容</td>
+<td>500</td>
+<td>数据库执行失败或服务内部发生未处理异常</td>
 </tr>
 </tbody>
 </table>
-<p>前端收到新 Payload 时释放旧的 ECharts 实例，重新创建 widget DOM，并为 chart widget 调用 <code>echarts.init</code> 和 <code>setOption</code>。</p>
-<h2 id="主题与布局处理">主题与布局处理</h2>
-<p>ChartAsset 前端使用 CSS 网格根据 <code>columns</code> 和 <code>columnSpan</code> 排列组件。对于直角坐标系图表，如果 option 没有显式设置 <code>grid</code>，前端自动添加带 <code>containLabel</code> 的默认网格，避免坐标文字被裁剪。</p>
-<p>前端从当前页面 CSS 变量读取文字、弱化文字、边框和背景色，并为 option 中未显式配置的标题、图例、坐标轴、提示框等补充主题默认值。资产显式设置的 option 值优先，不会被主题默认值覆盖。</p>
-<h2 id="刷新策略">刷新策略</h2>
-<p>刷新模型为：</p>
-<pre><code class="lang-json">{
-  &quot;mode&quot;: &quot;interval&quot;,
-  &quot;intervalSeconds&quot;: 10
-}
+<p>错误响应包含 <code>error</code> 字段，前端应同时检查 HTTP 状态和响应内容。错误信息会指明失败阶段与相关名称，且不包含数据库密码等机密：</p>
+<pre><code class="lang-json">{ &quot;error&quot;: &quot;SQL 文件「main.sql」缺少参数：StartTime（SQL 使用的每个占位符都必须提供参数；显式传 null 表示绑定数据库 NULL）&quot; }
 </code></pre>
-<ul>
-<li><code>manual</code>：只在用户选择资产、修改参数或主动刷新时执行；</li>
-<li><code>interval</code>：首次执行成功后由 <code>ChartAssetViewModel</code> 创建定时器重复执行；</li>
-<li>定时刷新间隔最小为 5 秒；</li>
-<li>切换资产、离开页面或释放 ViewModel 时停止原定时器。</li>
-</ul>
-<h2 id="资产校验">资产校验</h2>
-<p><code>ChartAssetValidator</code> 在保存和执行前检查：</p>
-<ul>
-<li>资产 ID 和名称；</li>
-<li>ID、名称及参数重复；</li>
-<li>参数名称、类型、默认值与枚举选项；</li>
-<li>数据源 ID、模式和内容；</li>
-<li>SQL 只读性及占位符声明；</li>
-<li>Script 是否声明实现 <code>IChartAssetScript</code>；</li>
-<li>dashboard 列数和 widget 数量；</li>
-<li>widget ID、跨度和数据源引用；</li>
-<li>chart 的 <code>option</code> / <code>optionJs</code> 二选一；</li>
-<li>summaryCard 的字段组合；</li>
-<li><code>@js:</code> 函数字符串格式；</li>
-<li>刷新模式和最小间隔。</li>
-</ul>
-<p>校验结果包含 <code>errors</code> 和 <code>warnings</code>。存在错误时资产不能保存或执行；警告不会阻止保存。</p>
-<h2 id="ipc-工具">IPC 工具</h2>
-<h3 id="chartassetlist">chartAsset.list</h3>
-<p>列出当前项目资产，支持 <code>search</code>、<code>offset</code> 和 <code>limit</code>。返回资产 ID、名称、说明、参数数量、数据源数量、widget 数量和刷新模式。</p>
-<h3 id="chartassetget">chartAsset.get</h3>
-<p>按 ID 或名称返回完整资产 JSON。<code>maxJsonChars</code> 控制返回文本截断长度。</p>
-<h3 id="chartassetvalidate">chartAsset.validate</h3>
-<p>校验未保存或已存在资产。输入可使用：</p>
-<ul>
-<li><code>draftId</code>：草稿存储中的资产 JSON；</li>
-<li><code>assetJson</code>：直接传入完整定义；</li>
-<li><code>assetIdOrName</code>：校验项目中已有资产。</li>
-</ul>
-<p>三种来源只能选择一种。</p>
-<h3 id="chartassetupsert">chartAsset.upsert</h3>
-<p>使用 <code>draftId</code> 或 <code>assetJson</code> 创建或替换资产。资产按 ID 匹配；<code>allowReplace</code> 默认为 <code>true</code>。写入前执行完整校验，成功后触发资产变更事件。</p>
-<h3 id="chartassetpatch">chartAsset.patch</h3>
-<p>对已有资产执行局部 JSON 修改。支持：</p>
-<ul>
-<li><code>replace</code></li>
-<li><code>remove</code></li>
-<li><code>append</code></li>
-<li><code>insertAfter</code></li>
-</ul>
-<p>路径使用 JSON Pointer，并支持数组的 <code>byId/{id}</code> 定位。补丁不能修改资产 ID；合并后的完整资产通过校验后才会保存。</p>
-<h3 id="chartassetdelete">chartAsset.delete</h3>
-<p>按资产 ID 或名称从项目中删除资产。ChartAsset 删除不是 ViewAsset 的软注销，不提供 restore 工具。</p>
-<h3 id="chartassetpreview">chartAsset.preview</h3>
-<p>执行资产并返回 widget 渲染摘要：</p>
+<pre><code class="lang-json">{ &quot;error&quot;: &quot;参数「StartTime」的 datetime 值无效：\&quot;昨天\&quot;（要求 ISO 8601 格式，如 2026-07-01、2026-07-01T08:30:00 或带时区 2026-07-01T08:30:00+08:00）&quot; }
+</code></pre>
+<pre><code class="lang-json">{ &quot;error&quot;: &quot;SQL 文件「main.sql」执行失败：Unknown column 'produce_date' in 'where clause'&quot; }
+</code></pre>
+<p>数据库执行阶段的错误（HTTP 500）以 <code>SQL 文件「...」执行失败：</code> 开头，底层消息中的 <code>password</code>/<code>pwd</code> 键值会被替换为 <code>***</code>。</p>
+<h2 id="ipc-预览请求">IPC 预览请求</h2>
+<p><code>chartAsset.preview</code> 的外层结构与页面 HTTP API 略有不同，<code>parameters</code> 使用数组形式（对象形式也被接受）：</p>
 <pre><code class="lang-json">{
-  &quot;assetIdOrName&quot;: &quot;production-overview&quot;,
+  &quot;assetIdOrName&quot;: &quot;production-query&quot;,
+  &quot;sqlFile&quot;: &quot;main.sql&quot;,
   &quot;parameters&quot;: [
-    { &quot;name&quot;: &quot;StartDate&quot;, &quot;value&quot;: &quot;2026-07-01&quot; },
-    { &quot;name&quot;: &quot;EndDate&quot;, &quot;value&quot;: &quot;2026-08-01&quot; }
+    { &quot;name&quot;: &quot;Keyword&quot;, &quot;value&quot;: &quot;%电机%&quot; },
+    { &quot;name&quot;: &quot;LineId&quot;, &quot;value&quot;: null },
+    { &quot;name&quot;: &quot;StartTime&quot;, &quot;value&quot;: { &quot;type&quot;: &quot;datetime&quot;, &quot;value&quot;: &quot;2026-07-01T00:00:00+08:00&quot; } }
   ],
-  &quot;includePayload&quot;: true,
-  &quot;maxJsonChars&quot;: 60000
+  &quot;rowLimit&quot;: 5000,
+  &quot;maxRecords&quot;: 50
 }
 </code></pre>
+<p>数组元素的 <code>value</code> 与 HTTP 的参数值语义完全相同：保留 JSON 原生类型、<code>null</code> 绑定数据库 <code>NULL</code>、支持显式类型包装。<code>ChartAssetToolProvider</code> 与 <code>ChartAssetWebModule</code> 共用 <code>ChartAssetQueryRequestParser</code> 解析请求，因此缺参报错、类型转换和错误信息在两条入口上保持一致。</p>
+<p>预览结果除列、总行数和耗时外，还包含：</p>
 <ul>
-<li><code>parameters</code> 由名称和值组成，工具层转换为不区分大小写的字典；</li>
-<li><code>includePayload=false</code> 时主要返回每个 widget 的行数、耗时和错误摘要；</li>
-<li><code>includePayload=true</code> 时同时返回完整 <code>ChartRenderPayload</code>；</li>
-<li><code>maxJsonChars</code> 控制完整 Payload JSON 的最大返回长度。</li>
+<li><code>records</code>：对象形式的前若干条记录；</li>
+<li><code>recordsTruncated</code>：是否发生预览截断；</li>
+<li><code>recordsTruncatedMessage</code>：截断说明。</li>
 </ul>
 <h2 id="当前能力边界">当前能力边界</h2>
 <ul>
-<li>一个资产支持多个参数、多个数据源和多个 widget；</li>
-<li>SQL 数据源按声明顺序逐个执行，不并行执行；</li>
-<li>支持只读 SQL 与受控 C# Script 两种数据源；</li>
-<li>SQL 参数必须先在资产参数集合中声明；</li>
-<li>支持 text、number、date、dateTime 和 enum 参数；</li>
-<li>支持 ECharts option JSON、<code>@js:</code> 回调函数和完整 <code>optionJs</code>；</li>
-<li>支持 chart 与 summaryCard 两种 widget；</li>
-<li>支持 1 至 4 列仪表盘和 widget 跨列；</li>
-<li>支持手动刷新及最小 5 秒的定时刷新；</li>
-<li>单个数据源失败只影响引用它的 widget；</li>
-<li>ChartAsset 使用统一 WebView2 页面渲染，不提供每个资产独立的 HTML/CSS 页面；</li>
-<li>ChartAsset 工具用于管理项目内的 JSON 定义，不操作 ViewAsset 文件目录。</li>
+<li>支持一个请求执行一个资产 SQL 文件；</li>
+<li>支持字符串、数字、布尔与 <code>null</code> 的 JSON 原生参数，以及 <code>text</code>/<code>number</code>/<code>boolean</code>/<code>date</code>/<code>datetime</code>/<code>json</code> 显式类型包装；</li>
+<li>支持通过 <code>LIKE</code> 和前端通配符完成模糊查询；</li>
+<li>支持通过 <code>null</code> 参数配合 <code>IS NULL</code> 条件实现可选过滤；</li>
+<li>缺少 SQL 参数、参数值非法时明确报错；</li>
+<li>不支持数组参数（<code>IN (...)</code> 展开暂未提供）；</li>
+<li>不支持请求内联 SQL；</li>
+<li>不支持通过参数动态替换表名、列名、排序方向或其他 SQL 结构；</li>
+<li>不从 <code>manifest.json</code> 自动生成参数控件；</li>
+<li>页面刷新由前端实现，<code>manifest.refresh</code> 仅描述刷新策略，不自动替页面执行查询。</li>
 </ul>
 
 </article>

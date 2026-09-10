@@ -125,27 +125,6 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="MAS.PrismaAgent.Agent.DraftEditOperation.html">DraftEditOperation</a></dt>
-      <dd><p>草稿文本编辑操作：把 <a class="xref" href="MAS.PrismaAgent.Agent.DraftEditOperation.html#MAS_PrismaAgent_Agent_DraftEditOperation_OldText">OldText</a> 的精确匹配替换为 <a class="xref" href="MAS.PrismaAgent.Agent.DraftEditOperation.html#MAS_PrismaAgent_Agent_DraftEditOperation_NewText">NewText</a></p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.PrismaAgent.Agent.DraftInfo.html">DraftInfo</a></dt>
-      <dd><p>单个草稿的元信息</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.PrismaAgent.Agent.DraftResult.html">DraftResult</a></dt>
-      <dd><p>草稿操作结果</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.PrismaAgent.Agent.DraftStore.html">DraftStore</a></dt>
-      <dd><p>基于本机临时目录的 <a class="xref" href="MAS.PrismaAgent.Agent.IDraftStore.html">IDraftStore</a> 默认实现。
-每个草稿是一个 UTF-8 文本文件，文件写入时间即最后更新时间</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
       <dt><a class="xref" href="MAS.PrismaAgent.Agent.ToolCallRequest.html">ToolCallRequest</a></dt>
       <dd><p>表示一次结构化的工具调用请求</p>
 </dd>
@@ -220,12 +199,6 @@ Interfaces
       <dt><a class="xref" href="MAS.PrismaAgent.Agent.IConversationStreamView.html">IConversationStreamView</a></dt>
       <dd><p>助手流式输出的展示通道。<span class="xref">MAS.PrismaAgent.Agent.AgentLoop</span> 通过它增量输出助手文本、
 在重连前回滚未完成输出并展示/隐藏重连状态</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="MAS.PrismaAgent.Agent.IDraftStore.html">IDraftStore</a></dt>
-      <dd><p>通用临时草稿存储，面向&quot;强校验 + 大文本&quot;场景。
-模型先把完整内容存为草稿，之后用 draftId 引用并做小步编辑，避免每轮重传大文本</p>
 </dd>
     </dl>
     <dl class="jumplist">

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IChartAssetService | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IChartAssetService | DataMaster ">
+      
+      <meta name="description" content="图表资产业务服务：资产索引、清单读取、目录解析、校验、软删除、恢复与永久删除">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Database_ChartAsset_IChartAssetService.md&amp;value=---%0Auid%3A%20MAS.Database.ChartAsset.IChartAssetService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Database.ChartAsset.IChartAssetService">
+
+
+
+  <h1 id="MAS_Database_ChartAsset_IChartAssetService" data-uid="MAS.Database.ChartAsset.IChartAssetService" class="text-break">
+Interface IChartAssetService  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.Database.html">Database</a>.<a class="xref" href="MAS.Database.ChartAsset.html">ChartAsset</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.Database.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>图表资产业务服务：资产索引、清单读取、目录解析、校验、软删除、恢复与永久删除</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IChartAssetService</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_FindAsset_" data-uid="MAS.Database.ChartAsset.IChartAssetService.FindAsset*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_FindAsset_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetService.FindAsset(System.String)">
+  FindAsset(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>按 Id 或名称查找资产索引项（忽略大小写）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ChartAssetEntry? FindAsset(string assetIdOrName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assetIdOrName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产 Id 或名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetEntry.html">ChartAssetEntry</a></dt>
+    <dd><p>索引项；未找到时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_GetAssetInfo_" data-uid="MAS.Database.ChartAsset.IChartAssetService.GetAssetInfo*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_GetAssetInfo_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetService.GetAssetInfo(System.String)">
+  GetAssetInfo(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取资产综合信息（索引 + 清单 + 目录扫描）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ChartAssetInfo? GetAssetInfo(string assetIdOrName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assetIdOrName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产 Id 或名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetInfo.html">ChartAssetInfo</a></dt>
+    <dd><p>综合信息；未找到时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_HardDelete_" data-uid="MAS.Database.ChartAsset.IChartAssetService.HardDelete*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_HardDelete_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetService.HardDelete(System.String)">
+  HardDelete(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>永久删除一个资产：删除资产目录及其全部文件，并移除索引项，不可恢复</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ChartAssetChangeResult HardDelete(string assetIdOrName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assetIdOrName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产 Id 或名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetChangeResult.html">ChartAssetChangeResult</a></dt>
+    <dd><p>变更结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_ListAssets_" data-uid="MAS.Database.ChartAsset.IChartAssetService.ListAssets*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_ListAssets_System_Boolean_" data-uid="MAS.Database.ChartAsset.IChartAssetService.ListAssets(System.Boolean)">
+  ListAssets(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>列出资产索引项</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IReadOnlyList&lt;ChartAssetEntry&gt; ListAssets(bool isIncludingDeleted = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>isIncludingDeleted</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否包含软删除项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetEntry.html">ChartAssetEntry</a>&gt;</dt>
+    <dd><p>资产索引项集合</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_ResolveAssetDirectory_" data-uid="MAS.Database.ChartAsset.IChartAssetService.ResolveAssetDirectory*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_ResolveAssetDirectory_MAS_Database_ChartAsset_ChartAssetEntry_" data-uid="MAS.Database.ChartAsset.IChartAssetService.ResolveAssetDirectory(MAS.Database.ChartAsset.ChartAssetEntry)">
+  ResolveAssetDirectory(ChartAssetEntry)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>解析资产目录绝对路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string ResolveAssetDirectory(ChartAssetEntry entry)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entry</code> <a class="xref" href="MAS.Database.ChartAsset.ChartAssetEntry.html">ChartAssetEntry</a></dt>
+    <dd><p>资产索引项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产目录绝对路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>工程未打开时</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_Restore_" data-uid="MAS.Database.ChartAsset.IChartAssetService.Restore*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_Restore_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetService.Restore(System.String)">
+  Restore(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>恢复一个软删除的资产</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ChartAssetChangeResult Restore(string assetIdOrName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assetIdOrName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产 Id 或名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetChangeResult.html">ChartAssetChangeResult</a></dt>
+    <dd><p>变更结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_SetCover_" data-uid="MAS.Database.ChartAsset.IChartAssetService.SetCover*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_SetCover_System_String_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetService.SetCover(System.String,System.String)">
+  SetCover(string, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置资产封面图片并持久化到工程索引；位于工程目录内的路径按相对路径保存以支持工程迁移</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ChartAssetChangeResult SetCover(string assetIdOrName, string? coverAbsolutePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assetIdOrName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产 Id 或名称</p>
+</dd>
+    <dt><code>coverAbsolutePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>封面图片绝对路径；传 null 清除封面</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetChangeResult.html">ChartAssetChangeResult</a></dt>
+    <dd><p>变更结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_SoftDelete_" data-uid="MAS.Database.ChartAsset.IChartAssetService.SoftDelete*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_SoftDelete_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetService.SoftDelete(System.String)">
+  SoftDelete(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>软删除一个资产</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ChartAssetChangeResult SoftDelete(string assetIdOrName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assetIdOrName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产 Id 或名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetChangeResult.html">ChartAssetChangeResult</a></dt>
+    <dd><p>变更结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_Upsert_" data-uid="MAS.Database.ChartAsset.IChartAssetService.Upsert*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_Upsert_MAS_Database_ChartAsset_ChartAssetUpsertRequest_" data-uid="MAS.Database.ChartAsset.IChartAssetService.Upsert(MAS.Database.ChartAsset.ChartAssetUpsertRequest)">
+  Upsert(ChartAssetUpsertRequest)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>注册（或更新）一个资产索引项。资产文件需先创建到资产目录</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ChartAssetChangeResult Upsert(ChartAssetUpsertRequest request)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>request</code> <a class="xref" href="MAS.Database.ChartAsset.ChartAssetUpsertRequest.html">ChartAssetUpsertRequest</a></dt>
+    <dd><p>注册请求</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetChangeResult.html">ChartAssetChangeResult</a></dt>
+    <dd><p>变更结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_ValidateExistingAsset_" data-uid="MAS.Database.ChartAsset.IChartAssetService.ValidateExistingAsset*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_ValidateExistingAsset_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetService.ValidateExistingAsset(System.String)">
+  ValidateExistingAsset(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>校验一个已注册资产</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ChartAssetValidationResult ValidateExistingAsset(string assetIdOrName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assetIdOrName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产 Id 或名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetValidationResult.html">ChartAssetValidationResult</a></dt>
+    <dd><p>校验结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_ValidateFolder_" data-uid="MAS.Database.ChartAsset.IChartAssetService.ValidateFolder*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_ValidateFolder_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetService.ValidateFolder(System.String)">
+  ValidateFolder(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>校验资产文件夹（清单、入口文档、SQL 只读等）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ChartAssetValidationResult ValidateFolder(string folderName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>folderName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产文件夹名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetValidationResult.html">ChartAssetValidationResult</a></dt>
+    <dd><p>校验结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_AssetsChanged" data-uid="MAS.Database.ChartAsset.IChartAssetService.AssetsChanged">
+  AssetsChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>资产集合变更事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;ChartAssetsChangedEventArgs&gt;? AssetsChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetsChangedEventArgs.html">ChartAssetsChangedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L15" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

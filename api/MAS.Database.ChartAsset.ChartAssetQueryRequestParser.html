@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ChartAssetSqlGuard | DataMaster </title>
+      <title>Class ChartAssetQueryRequestParser | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ChartAssetSqlGuard | DataMaster ">
+      <meta name="title" content="Class ChartAssetQueryRequestParser | DataMaster ">
       
-      <meta name="description" content="图表资产只读 SQL 守卫，规则与 QueryAsset 保持一致：只允许单条只读语句">
+      <meta name="description" content="图表资产查询请求解析：HTTP 页面查询与 IPC chartAsset.preview 共用的 parameters 解析与校验实现，保证两条入口行为一致。 参数值保留 JSON 原生类型（字符串/数字/布尔/null）， 也支持 {&amp;quot;type&amp;quot;:&amp;quot;datetime&amp;quot;,&amp;quot;value&amp;quot;:&amp;quot;2026-07-01T08:30:00+08:00&amp;quot;} 显式类型包装">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard">
+        <article data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequestParser">
 
 
 
-  <h1 id="MAS_Database_ChartAsset_ChartAssetSqlGuard" data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard" class="text-break">
-Class ChartAssetSqlGuard  
+  <h1 id="MAS_Database_ChartAsset_ChartAssetQueryRequestParser" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequestParser" class="text-break">
+Class ChartAssetQueryRequestParser  
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,15 @@ Class ChartAssetSqlGuard
   <dl><dt>Assembly</dt><dd>MAS.Database.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>图表资产只读 SQL 守卫，规则与 QueryAsset 保持一致：只允许单条只读语句</p>
+  <div class="markdown summary"><p>图表资产查询请求解析：HTTP 页面查询与 IPC <code>chartAsset.preview</code> 共用的
+<code>parameters</code> 解析与校验实现，保证两条入口行为一致。
+参数值保留 JSON 原生类型（字符串/数字/布尔/null），
+也支持 <code>{&quot;type&quot;:&quot;datetime&quot;,&quot;value&quot;:&quot;2026-07-01T08:30:00+08:00&quot;}</code> 显式类型包装</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class ChartAssetSqlGuard</code></pre>
+    <pre><code class="lang-csharp hljs">public static class ChartAssetQueryRequestParser</code></pre>
   </div>
 
 
@@ -112,7 +115,7 @@ Class ChartAssetSqlGuard
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">ChartAssetSqlGuard</span></div>
+      <div><span class="xref">ChartAssetQueryRequestParser</span></div>
     </dd>
   </dl>
 
@@ -153,35 +156,34 @@ Class ChartAssetSqlGuard
 </h2>
 
 
-  <a id="MAS_Database_ChartAsset_ChartAssetSqlGuard_TryCheckReadonlySql_" data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard.TryCheckReadonlySql*"></a>
+  <a id="MAS_Database_ChartAsset_ChartAssetQueryRequestParser_ParseParameters_" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequestParser.ParseParameters*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_ChartAssetSqlGuard_TryCheckReadonlySql_System_String_System_String__" data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard.TryCheckReadonlySql(System.String,System.String@)">
-  TryCheckReadonlySql(string?, out string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Validation/ChartAssetSqlGuard.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_ChartAssetQueryRequestParser_ParseParameters_System_Text_Json_JsonElement_" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequestParser.ParseParameters(System.Text.Json.JsonElement)">
+  ParseParameters(JsonElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Helpers/ChartAssetQueryRequestParser.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>检查 SQL 是否为单条只读语句</p>
+  <div class="markdown level1 summary"><p>解析根节点中的 <code>parameters</code> 字段。
+同时支持对象形式 <code>{&quot;Name&quot;: 值}</code>（HTTP 标准格式）
+与数组形式 <code>[{&quot;name&quot;:&quot;Name&quot;,&quot;value&quot;:值}]</code>（IPC 兼容格式）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryCheckReadonlySql(string? sql, out string? error)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IReadOnlyDictionary&lt;string, object?&gt; ParseParameters(JsonElement root)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>SQL 文本</p>
-</dd>
-    <dt><code>error</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>失败原因；通过时为 null</p>
+    <dt><code>root</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonelement">JsonElement</a></dt>
+    <dd><p>请求 JSON 根节点</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否通过检查</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>参数名到已转换 CLR 值的映射（键不区分大小写）</p>
 </dd>
   </dl>
 
@@ -192,6 +194,58 @@ Class ChartAssetSqlGuard
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>参数结构或参数值不合法时</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_Database_ChartAsset_ChartAssetQueryRequestParser_ParseRequest_" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequestParser.ParseRequest*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartAssetQueryRequestParser_ParseRequest_System_Text_Json_JsonElement_" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequestParser.ParseRequest(System.Text.Json.JsonElement)">
+  ParseRequest(JsonElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Helpers/ChartAssetQueryRequestParser.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从请求 JSON 根节点解析查询请求：读取 <code>sqlFile</code>、<code>parameters</code>、<code>rowLimit</code>，
+忽略其余字段（如 IPC 请求中的 <code>assetIdOrName</code>）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ChartAssetQueryRequest ParseRequest(JsonElement root)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>root</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonelement">JsonElement</a></dt>
+    <dd><p>请求 JSON 根节点</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetQueryRequest.html">ChartAssetQueryRequest</a></dt>
+    <dd><p>查询请求</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>字段类型不合法或参数值无法转换时</p>
+</dd>
+  </dl>
 
 
 

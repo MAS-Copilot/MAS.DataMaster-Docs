@@ -191,112 +191,26 @@ Interface IChartAssetProjectPersistenceService  <a class="header-action link-sec
 </h2>
 
 
-  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_DeleteAsset_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.DeleteAsset*"></a>
+  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_GetAssetRoot_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.GetAssetRoot*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_DeleteAsset_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.DeleteAsset(System.String)">
-  DeleteAsset(string)
+  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_GetAssetRoot" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.GetAssetRoot">
+  GetAssetRoot()
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>删除单个图表资产（按 Id 匹配，忽略大小写）</p>
+  <div class="markdown level1 summary"><p>获取资产根目录相对名（如 <code>ChartAssets</code>）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ChartAssetDefinition? DeleteAsset(string assetId)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>assetId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>要删除的资产 Id</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetDefinition.html">ChartAssetDefinition</a></dt>
-    <dd><p>被删除的资产；未找到时为 null</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
-    <dd></dd>
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_GetAssets_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.GetAssets*"></a>
-
-  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_GetAssets" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.GetAssets">
-  GetAssets()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L42"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取当前工程中的图表资产集合</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IReadOnlyList&lt;ChartAssetDefinition&gt; GetAssets()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetDefinition.html">ChartAssetDefinition</a>&gt;</dt>
-    <dd><p>图表资产集合</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="MAS.SharedLibrary.ProjectNullException.html">ProjectNullException</a></dt>
-    <dd></dd>
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_GetChartTheme_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.GetChartTheme*"></a>
-
-  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_GetChartTheme" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.GetChartTheme">
-  GetChartTheme()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L84"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取当前工程使用的 ECharts 图表主题</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string GetChartTheme()</code></pre>
+    <pre><code class="lang-csharp hljs">string GetAssetRoot()</code></pre>
   </div>
 
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>ECharts 图表主题名称</p>
+    <dd><p>资产根目录相对名</p>
 </dd>
   </dl>
 
@@ -397,28 +311,28 @@ Interface IChartAssetProjectPersistenceService  <a class="header-action link-sec
 
 
 
-  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_SetAssets_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.SetAssets*"></a>
+  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_GetEntries_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.GetEntries*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_SetAssets_System_Collections_Generic_IEnumerable_MAS_Database_ChartAsset_ChartAssetDefinition__" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.SetAssets(System.Collections.Generic.IEnumerable{MAS.Database.ChartAsset.ChartAssetDefinition})">
-  SetAssets(IEnumerable&lt;ChartAssetDefinition&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_GetEntries" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.GetEntries">
+  GetEntries()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>保存图表资产集合到当前工程内存上下文</p>
+  <div class="markdown level1 summary"><p>获取资产索引集合（含软删除项）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SetAssets(IEnumerable&lt;ChartAssetDefinition&gt; assets)</code></pre>
+    <pre><code class="lang-csharp hljs">IReadOnlyList&lt;ChartAssetEntry&gt; GetEntries()</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
+
+  <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><code>assets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetDefinition.html">ChartAssetDefinition</a>&gt;</dt>
-    <dd><p>要保存的图表资产集合</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetEntry.html">ChartAssetEntry</a>&gt;</dt>
+    <dd><p>资产索引集合</p>
 </dd>
   </dl>
-
 
 
 
@@ -437,28 +351,34 @@ Interface IChartAssetProjectPersistenceService  <a class="header-action link-sec
 
 
 
-  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_SetChartTheme_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.SetChartTheme*"></a>
+  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_GetEntry_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.GetEntry*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_SetChartTheme_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.SetChartTheme(System.String)">
-  SetChartTheme(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_GetEntry_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.GetEntry(System.String)">
+  GetEntry(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>保存当前工程使用的 ECharts 图表主题到内存上下文</p>
+  <div class="markdown level1 summary"><p>按 Id 获取资产索引项（忽略大小写）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SetChartTheme(string chartTheme)</code></pre>
+    <pre><code class="lang-csharp hljs">ChartAssetEntry? GetEntry(string assetId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>chartTheme</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>ECharts 图表主题名称</p>
+    <dt><code>assetId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产 Id</p>
 </dd>
   </dl>
 
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetEntry.html">ChartAssetEntry</a></dt>
+    <dd><p>索引项；不存在时为 null</p>
+</dd>
+  </dl>
 
 
 
@@ -477,25 +397,32 @@ Interface IChartAssetProjectPersistenceService  <a class="header-action link-sec
 
 
 
-  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_SetCurrentChartAssetProjectModel_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.SetCurrentChartAssetProjectModel*"></a>
+  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_RemoveEntry_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.RemoveEntry*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_SetCurrentChartAssetProjectModel_MAS_Database_ChartAsset_ChartAssetProjectModel_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.SetCurrentChartAssetProjectModel(MAS.Database.ChartAsset.ChartAssetProjectModel)">
-  SetCurrentChartAssetProjectModel(ChartAssetProjectModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_RemoveEntry_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.RemoveEntry(System.String)">
+  RemoveEntry(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>设置当前图表资产工程到内存上下文</p>
+  <div class="markdown level1 summary"><p>移除单个资产索引项（按 Id 匹配，忽略大小写）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SetCurrentChartAssetProjectModel(ChartAssetProjectModel project)</code></pre>
+    <pre><code class="lang-csharp hljs">bool RemoveEntry(string assetId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>project</code> <a class="xref" href="MAS.Database.ChartAsset.ChartAssetProjectModel.html">ChartAssetProjectModel</a></dt>
-    <dd><p>当前工程模型</p>
+    <dt><code>assetId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产 Id</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true 表示移除成功；false 表示条目不存在</p>
 </dd>
   </dl>
 
@@ -505,10 +432,6 @@ Interface IChartAssetProjectPersistenceService  <a class="header-action link-sec
 
 
 
-
-  <h4 class="section" id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_SetCurrentChartAssetProjectModel_MAS_Database_ChartAsset_ChartAssetProjectModel__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>该方法会替换现有内存中的数据，谨慎操作</p>
-</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
@@ -524,7 +447,7 @@ Interface IChartAssetProjectPersistenceService  <a class="header-action link-sec
 
   <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_SetDatabaseConfig_MAS_SharedLibrary_Database_IDbConfig_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.SetDatabaseConfig(MAS.SharedLibrary.Database.IDbConfig)">
   SetDatabaseConfig(IDbConfig)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存当前工程使用的数据库配置到内存上下文</p>
@@ -549,9 +472,6 @@ Interface IChartAssetProjectPersistenceService  <a class="header-action link-sec
 
 
 
-  <h4 class="section" id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_SetDatabaseConfig_MAS_SharedLibrary_Database_IDbConfig__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>一个工程对应一个数据库实例，下次打开工程可据此直接创建数据库实例</p>
-</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
@@ -563,32 +483,32 @@ Interface IChartAssetProjectPersistenceService  <a class="header-action link-sec
 
 
 
-  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_UpsertAsset_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.UpsertAsset*"></a>
+  <a id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_UpsertEntry_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.UpsertEntry*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_UpsertAsset_MAS_Database_ChartAsset_ChartAssetDefinition_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.UpsertAsset(MAS.Database.ChartAsset.ChartAssetDefinition)">
-  UpsertAsset(ChartAssetDefinition)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_IChartAssetProjectPersistenceService_UpsertEntry_MAS_Database_ChartAsset_ChartAssetEntry_" data-uid="MAS.Database.ChartAsset.IChartAssetProjectPersistenceService.UpsertEntry(MAS.Database.ChartAsset.ChartAssetEntry)">
+  UpsertEntry(ChartAssetEntry)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetProjectPersistenceService.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>新增或替换单个图表资产（按 Id 匹配，忽略大小写）</p>
+  <div class="markdown level1 summary"><p>新增或替换单个资产索引项（按 Id 匹配，忽略大小写）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool UpsertAsset(ChartAssetDefinition asset)</code></pre>
+    <pre><code class="lang-csharp hljs">bool UpsertEntry(ChartAssetEntry entry)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>asset</code> <a class="xref" href="MAS.Database.ChartAsset.ChartAssetDefinition.html">ChartAssetDefinition</a></dt>
-    <dd><p>要保存的图表资产</p>
+    <dt><code>entry</code> <a class="xref" href="MAS.Database.ChartAsset.ChartAssetEntry.html">ChartAssetEntry</a></dt>
+    <dd><p>资产索引项</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>true 表示替换了已存在资产；false 表示新增</p>
+    <dd><p>true 表示替换了已存在项；false 表示新增</p>
 </dd>
   </dl>
 

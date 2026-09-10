@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ChartAssetChangeResult | DataMaster </title>
+      <title>Class ChartAssetUpsertRequest | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ChartAssetChangeResult | DataMaster ">
+      <meta name="title" content="Class ChartAssetUpsertRequest | DataMaster ">
       
-      <meta name="description" content="图表资产变更结果（注册 / 删除 / 恢复）">
+      <meta name="description" content="图表资产注册请求。资产文件先由 CLI 创建到资产目录，再通过本请求登记到工程索引">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Database_ChartAsset_ChartAssetChangeResult.md&amp;value=---%0Auid%3A%20MAS.Database.ChartAsset.ChartAssetChangeResult%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Database_ChartAsset_ChartAssetUpsertRequest.md&amp;value=---%0Auid%3A%20MAS.Database.ChartAsset.ChartAssetUpsertRequest%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult">
+        <article data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest">
 
 
 
-  <h1 id="MAS_Database_ChartAsset_ChartAssetChangeResult" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult" class="text-break">
-Class ChartAssetChangeResult  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetChangeResult.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_Database_ChartAsset_ChartAssetUpsertRequest" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest" class="text-break">
+Class ChartAssetUpsertRequest  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetUpsertRequest.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class ChartAssetChangeResult  <a class="header-action link-secondary" title="Vie
   <dl><dt>Assembly</dt><dd>MAS.Database.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>图表资产变更结果（注册 / 删除 / 恢复）</p>
+  <div class="markdown summary"><p>图表资产注册请求。资产文件先由 CLI 创建到资产目录，再通过本请求登记到工程索引</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed record ChartAssetChangeResult : IEquatable&lt;ChartAssetChangeResult&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed record ChartAssetUpsertRequest : IEquatable&lt;ChartAssetUpsertRequest&gt;</code></pre>
   </div>
 
 
@@ -112,14 +112,14 @@ Class ChartAssetChangeResult  <a class="header-action link-secondary" title="Vie
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">ChartAssetChangeResult</span></div>
+      <div><span class="xref">ChartAssetUpsertRequest</span></div>
     </dd>
   </dl>
 
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetChangeResult.html">ChartAssetChangeResult</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetUpsertRequest.html">ChartAssetUpsertRequest</a>&gt;</div>
     </dd>
   </dl>
 
@@ -156,83 +156,19 @@ Class ChartAssetChangeResult  <a class="header-action link-secondary" title="Vie
 </h2>
 
 
-  <a id="MAS_Database_ChartAsset_ChartAssetChangeResult_AssetId_" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.AssetId*"></a>
+  <a id="MAS_Database_ChartAsset_ChartAssetUpsertRequest_AllowReplace_" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest.AllowReplace*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_ChartAssetChangeResult_AssetId" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.AssetId">
-  AssetId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetChangeResult.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_ChartAssetUpsertRequest_AllowReplace" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest.AllowReplace">
+  AllowReplace
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetUpsertRequest.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取受影响的资产 Id</p>
+  <div class="markdown level1 summary"><p>获取一个值，指示是否允许替换同 Id 的已存在资产，默认允许</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? AssetId { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_Database_ChartAsset_ChartAssetChangeResult_Error_" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.Error*"></a>
-
-  <h3 id="MAS_Database_ChartAsset_ChartAssetChangeResult_Error" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.Error">
-  Error
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetChangeResult.cs/#L34"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取失败原因；成功时为 null</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? Error { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_Database_ChartAsset_ChartAssetChangeResult_Replaced_" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.Replaced*"></a>
-
-  <h3 id="MAS_Database_ChartAsset_ChartAssetChangeResult_Replaced" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.Replaced">
-  Replaced
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetChangeResult.cs/#L29"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取一个值，指示是否为替换（true）或新增（false）</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Replaced { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool AllowReplace { get; init; }</code></pre>
   </div>
 
 
@@ -252,19 +188,19 @@ Class ChartAssetChangeResult  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="MAS_Database_ChartAsset_ChartAssetChangeResult_Success_" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.Success*"></a>
+  <a id="MAS_Database_ChartAsset_ChartAssetUpsertRequest_Description_" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest.Description*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_ChartAssetChangeResult_Success" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.Success">
-  Success
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetChangeResult.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_ChartAssetUpsertRequest_Description" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest.Description">
+  Description
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetUpsertRequest.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取一个值，指示操作是否成功</p>
+  <div class="markdown level1 summary"><p>获取资产描述；为空时取清单 <code>description</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Success { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? Description { get; init; }</code></pre>
   </div>
 
 
@@ -273,7 +209,7 @@ Class ChartAssetChangeResult  <a class="header-action link-secondary" title="Vie
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
@@ -284,19 +220,19 @@ Class ChartAssetChangeResult  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="MAS_Database_ChartAsset_ChartAssetChangeResult_Warnings_" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.Warnings*"></a>
+  <a id="MAS_Database_ChartAsset_ChartAssetUpsertRequest_FolderName_" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest.FolderName*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_ChartAssetChangeResult_Warnings" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.Warnings">
-  Warnings
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetChangeResult.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_ChartAssetUpsertRequest_FolderName" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest.FolderName">
+  FolderName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetUpsertRequest.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取警告信息集合</p>
+  <div class="markdown level1 summary"><p>获取资产文件夹名称（位于资产根目录下，必填）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; Warnings { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public required string FolderName { get; init; }</code></pre>
   </div>
 
 
@@ -305,7 +241,7 @@ Class ChartAssetChangeResult  <a class="header-action link-secondary" title="Vie
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
@@ -316,41 +252,62 @@ Class ChartAssetChangeResult  <a class="header-action link-secondary" title="Vie
 
 
 
-  <h2 class="section" id="methods">Methods
-</h2>
+  <a id="MAS_Database_ChartAsset_ChartAssetUpsertRequest_Id_" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest.Id*"></a>
 
-
-  <a id="MAS_Database_ChartAsset_ChartAssetChangeResult_Fail_" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.Fail*"></a>
-
-  <h3 id="MAS_Database_ChartAsset_ChartAssetChangeResult_Fail_System_String_" data-uid="MAS.Database.ChartAsset.ChartAssetChangeResult.Fail(System.String)">
-  Fail(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetChangeResult.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_ChartAssetUpsertRequest_Id" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetUpsertRequest.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>创建一个失败结果</p>
+  <div class="markdown level1 summary"><p>获取资产标识；为空时取清单 <code>id</code> 或文件夹名</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ChartAssetChangeResult Fail(string error)</code></pre>
+    <pre><code class="lang-csharp hljs">public string? Id { get; init; }</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>error</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>失败原因</p>
-</dd>
-  </dl>
 
-  <h4 class="section">Returns</h4>
+
+
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetChangeResult.html">ChartAssetChangeResult</a></dt>
-    <dd><p>失败结果</p>
-</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
   </dl>
 
 
 
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_ChartAssetUpsertRequest_Name_" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest.Name*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartAssetUpsertRequest_Name" data-uid="MAS.Database.ChartAsset.ChartAssetUpsertRequest.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetUpsertRequest.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取资产名称；为空时取清单 <code>title</code> 或文件夹名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Name { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
 
 
 
@@ -363,7 +320,7 @@ Class ChartAssetChangeResult  <a class="header-action link-secondary" title="Vie
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetChangeResult.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetUpsertRequest.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

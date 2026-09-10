@@ -148,6 +148,14 @@
 <li>激活结果写回会话，后续轮次自动恢复。</li>
 </ul>
 <p>如果模型跳过激活而直接使用真实工具名，执行管线会在能够唯一解析时自动激活；无法解析时返回引导性错误，让模型重新搜索。</p>
+<p><code>tool.search</code> 的候选排序与过滤规则如下：</p>
+<ul>
+<li>检索前会先对关键词去重，并分别基于工具名称和描述进行匹配评分。匹配优先级依次为：完整工具名精确匹配 &gt; 命名空间后的短名精确匹配 &gt; 工具名称子串匹配 &gt; 仅描述匹配</li>
+<li>搜索结果会按匹配类型分层排序，并为每个候选返回 <code>match</code> 字段：<code>name</code> 表示全部关键词均命中工具名称，<code>partial</code> 表示部分关键词命中工具名称，<code>desc</code> 表示仅命中工具描述。同一匹配层级内再按评分排序。调用方读取到第一条 <code>desc</code> 类型结果后，即可停止继续处理后续候选</li>
+<li>对于工具名称未命中任何关键词的候选，仅当其描述覆盖全部关键词时才予以保留，否则直接过滤。由于工具描述通常为较长的自然语言文本，<code>file</code>、<code>read</code>、<code>write</code> 等常见词容易产生零散命中，因此不采用按部分关键词覆盖率保留的策略，以降低无关结果噪音</li>
+<li>可通过可选参数 <code>namespace</code> 限定检索范围。该参数采用前缀匹配，因此 <code>[&quot;mcp&quot;]</code> 可匹配 <code>mcp.&lt;server&gt;.&lt;tool&gt;</code>。对于目录中不存在的命名空间，将通过 <code>unknownNamespaces</code> 返回，而非静默返回空结果，以便调用方识别无效或拼写错误的命名空间</li>
+<li>当 <code>query</code> 为空时，<code>tool.search</code> 进入命名空间浏览模式并返回命名空间摘要；此时 <code>namespace</code> 参数同样生效</li>
+</ul>
 <h2 id="内置-provider">内置 provider</h2>
 <table>
 <thead>
@@ -169,11 +177,6 @@
 <td>按需加载领域知识</td>
 </tr>
 <tr>
-<td><code>draft</code></td>
-<td>草稿的创建、读取、编辑、删除、清空和列表</td>
-<td>大内容分段生成与修改</td>
-</tr>
-<tr>
 <td><code>plan</code></td>
 <td>向用户展示结构化决策步骤并等待选择</td>
 <td>复杂需求澄清，不是多 Agent 计划器</td>
@@ -185,7 +188,7 @@
 </tr>
 <tr>
 <td><code>cli</code></td>
-<td>命令执行与专用文件操作</td>
+<td>命令执行、专用文件操作、文本检索与文件比较</td>
 <td>开发诊断兜底能力</td>
 </tr>
 <tr>
@@ -201,7 +204,7 @@
 </tbody>
 </table>
 <h2 id="dm-宿主工具">DM 宿主工具</h2>
-<p>PrismaAgent 通过 IPC 获取宿主实时工具目录，而不是在对话进程中静态复制全部 DM 业务能力。宿主侧可以暴露数据库、QueryAsset、ChartAsset、ViewAsset 和其他依赖当前项目或运行环境的 typed tools。</p>
+<p>PrismaAgent 通过 IPC 获取宿主实时工具目录，而不是在对话进程中静态复制全部 DM 业务能力。宿主侧可以暴露数据库、QueryAsset、ChartAsset 和其他依赖当前项目或运行环境的 typed tools。</p>
 <p>IPC 交互遵循三个基础方法：</p>
 <p>IPC 使用长度前缀 JSON 消息。外层请求包含关联标识、方法名和序列化后的负载字符串：</p>
 <pre><code class="lang-json">{
@@ -288,19 +291,16 @@
 }
 </code></pre>
 <p>资源路径只能指向该 Skill 包已索引的说明、参考、示例、资产或模板。读取 Skill 不代表必须执行代码；产生业务副作用仍应优先调用 typed tool。</p>
-<h2 id="草稿工具">草稿工具</h2>
-<p>草稿用于承载不适合一次性放进工具参数的大文本。支持创建/覆盖、读取、精确编辑、删除、清空和列举。草稿属于中间工作区，不等同于已经写入 DM 项目或文件系统。</p>
-<p>典型流程：</p>
-<pre><code class="lang-text">生成较长内容 → draft.put → 多次 draft.edit → draft.get 校验 → 交给 typed tool 正式应用
-</code></pre>
 <h2 id="计划交互工具">计划交互工具</h2>
 <p>计划工具用于一次性提交多个决策步骤，每个步骤包含一个问题和有限候选项。前端逐步收集用户选择，最终把结构化决策结果回填给模型。</p>
 <p>它适合在实施前澄清数据库、资产类型、覆盖策略等关键选项。它不创建子 Agent，也不改变单 Agent Runtime。</p>
 <h2 id="cli-与文件工具">CLI 与文件工具</h2>
-<p>CLI provider 包括通用非交互式 PowerShell 执行，以及读取、写入、复制和精确编辑文件的专用工具。</p>
+<p>CLI provider 包括通用非交互式 PowerShell 执行，以及读取、写入、复制、精确编辑、检索和比较文件的专用工具。</p>
 <ul>
 <li><code>cli.run</code>、写入、复制和编辑属于高风险操作；</li>
-<li><code>cli.read_file</code> 为中风险，只负责读取；</li>
+<li><code>cli.read_file</code>、<code>cli.grep</code> 和 <code>cli.diff</code> 为中风险，只负责读取；</li>
+<li><code>cli.grep</code> 以 typed 参数完成检索：<code>pattern</code>、<code>include</code> 不经过 shell，避免引号与正则转义；支持 <code>matches</code>/<code>count</code>/<code>context</code> 三种模式，命中为零属于成功而非错误；</li>
+<li><code>cli.diff</code> 输出 unified diff，用于评审整文件重写或自查编辑是否越界；两文件 SHA-256 相同时直接返回 <code>unchanged</code>；</li>
 <li>命令具有超时限制；</li>
 <li>stdout 和 stderr 会截断，避免过长结果污染上下文；</li>
 <li>专用文件工具优先于把内容和路径拼接成 shell 命令；</li>

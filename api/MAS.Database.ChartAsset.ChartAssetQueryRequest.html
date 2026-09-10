@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ChartAssetSqlGuard | DataMaster </title>
+      <title>Class ChartAssetQueryRequest | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ChartAssetSqlGuard | DataMaster ">
+      <meta name="title" content="Class ChartAssetQueryRequest | DataMaster ">
       
-      <meta name="description" content="图表资产只读 SQL 守卫，规则与 QueryAsset 保持一致：只允许单条只读语句">
+      <meta name="description" content="图表资产查询请求。为安全起见只允许指定资产目录内的 .sql 文件，禁止直接传 SQL 文本">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_Database_ChartAsset_ChartAssetQueryRequest.md&amp;value=---%0Auid%3A%20MAS.Database.ChartAsset.ChartAssetQueryRequest%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard">
+        <article data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequest">
 
 
 
-  <h1 id="MAS_Database_ChartAsset_ChartAssetSqlGuard" data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard" class="text-break">
-Class ChartAssetSqlGuard  
+  <h1 id="MAS_Database_ChartAsset_ChartAssetQueryRequest" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequest" class="text-break">
+Class ChartAssetQueryRequest  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetQueryRequest.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class ChartAssetSqlGuard
   <dl><dt>Assembly</dt><dd>MAS.Database.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>图表资产只读 SQL 守卫，规则与 QueryAsset 保持一致：只允许单条只读语句</p>
+  <div class="markdown summary"><p>图表资产查询请求。为安全起见只允许指定资产目录内的 <code>.sql</code> 文件，禁止直接传 SQL 文本</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class ChartAssetSqlGuard</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed record ChartAssetQueryRequest : IEquatable&lt;ChartAssetQueryRequest&gt;</code></pre>
   </div>
 
 
@@ -112,10 +112,16 @@ Class ChartAssetSqlGuard
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">ChartAssetSqlGuard</span></div>
+      <div><span class="xref">ChartAssetQueryRequest</span></div>
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetQueryRequest.html">ChartAssetQueryRequest</a>&gt;</div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -134,9 +140,6 @@ Class ChartAssetSqlGuard
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
     <div>
@@ -149,44 +152,101 @@ Class ChartAssetSqlGuard
 
 
 
-  <h2 class="section" id="methods">Methods
+  <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="MAS_Database_ChartAsset_ChartAssetSqlGuard_TryCheckReadonlySql_" data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard.TryCheckReadonlySql*"></a>
+  <a id="MAS_Database_ChartAsset_ChartAssetQueryRequest_Parameters_" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequest.Parameters*"></a>
 
-  <h3 id="MAS_Database_ChartAsset_ChartAssetSqlGuard_TryCheckReadonlySql_System_String_System_String__" data-uid="MAS.Database.ChartAsset.ChartAssetSqlGuard.TryCheckReadonlySql(System.String,System.String@)">
-  TryCheckReadonlySql(string?, out string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Validation/ChartAssetSqlGuard.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Database_ChartAsset_ChartAssetQueryRequest_Parameters" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequest.Parameters">
+  Parameters
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetQueryRequest.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>检查 SQL 是否为单条只读语句</p>
+  <div class="markdown level1 summary"><p>获取查询参数（键为 <code>{{参数名}}</code> 占位符名称，不区分大小写）。
+值为已转换的 CLR 值（string/long/decimal/double/bool/DateTime）；
+键存在且值为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> 表示绑定数据库 <code>NULL</code>，
+键不存在而 SQL 使用了该占位符时查询会明确报错</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryCheckReadonlySql(string? sql, out string? error)</code></pre>
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, object?&gt; Parameters { get; init; }</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>sql</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>SQL 文本</p>
-</dd>
-    <dt><code>error</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>失败原因；通过时为 null</p>
-</dd>
-  </dl>
 
-  <h4 class="section">Returns</h4>
+
+
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否通过检查</p>
-</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd></dd>
   </dl>
 
 
 
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_ChartAssetQueryRequest_RowLimit_" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequest.RowLimit*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartAssetQueryRequest_RowLimit" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequest.RowLimit">
+  RowLimit
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetQueryRequest.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取返回行数上限；小于等于 0 表示使用默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RowLimit { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Database_ChartAsset_ChartAssetQueryRequest_SqlFile_" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequest.SqlFile*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_ChartAssetQueryRequest_SqlFile" data-uid="MAS.Database.ChartAsset.ChartAssetQueryRequest.SqlFile">
+  SqlFile
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetQueryRequest.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取要执行的 SQL 文件（资产目录内的相对路径，如 <code>main.sql</code>）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public required string SqlFile { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
 
 
 
@@ -199,6 +259,7 @@ Class ChartAssetSqlGuard
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Models/ChartAssetQueryRequest.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 
