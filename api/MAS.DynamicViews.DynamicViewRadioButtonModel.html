@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Enum DynamicViewPropertyGroups | DataMaster </title>
+      <title>Class DynamicViewRadioButtonModel | DataMaster </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Enum DynamicViewPropertyGroups | DataMaster ">
+      <meta name="title" content="Class DynamicViewRadioButtonModel | DataMaster ">
       
-      <meta name="description" content="控件属性分组">
+      <meta name="description" content="动态界面单选框属性模型">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.Descriptors.DynamicViewPropertyGroups%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,95 +84,129 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="MAS.DynamicViews.Descriptors.DynamicViewPropertyGroups">
+        <article data-uid="MAS.DynamicViews.DynamicViewRadioButtonModel">
 
 
 
-
-  <h1 id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups" data-uid="MAS.DynamicViews.Descriptors.DynamicViewPropertyGroups" class="text-break">
-Enum DynamicViewPropertyGroups  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Descriptors/DynamicViewPropertyGroups.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <h1 id="MAS_DynamicViews_DynamicViewRadioButtonModel" data-uid="MAS.DynamicViews.DynamicViewRadioButtonModel" class="text-break">
+Class DynamicViewRadioButtonModel  
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a>.<a class="xref" href="MAS.DynamicViews.Descriptors.html">Descriptors</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a></dd></dl>
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>控件属性分组</p>
+  <div class="markdown summary"><p>动态界面单选框属性模型</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Flags]
-public enum DynamicViewPropertyGroups</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class DynamicViewRadioButtonModel : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
 
 
 
-
-
-
-
-  <dl class="typelist extensionMethods">
-    <dt>Extension Methods</dt>
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
     <dd>
-  <div>
-      <a class="xref" href="MAS.SharedLibrary.EnumDisplayNameExtensions.html#MAS_SharedLibrary_EnumDisplayNameExtensions_GetDisplayName_System_Enum_">EnumDisplayNameExtensions.GetDisplayName(Enum)</a>
-  </div>
-  </dd></dl>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><span class="xref">DynamicViewRadioButtonModel</span></div>
+    </dd>
+  </dl>
 
-  <h2 id="fields">Fields
-</h2>
-  <dl class="parameters">
-    <dt id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups_Icon"><code>Icon = 8</code></dt>
-  
-  <dd><p>图标符号与字号</p>
-</dd>
-    <dt id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups_Image"><code>Image = 4</code></dt>
-  
-  <dd><p>图片源与拉伸方式</p>
-</dd>
-    <dt id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups_None"><code>None = 0</code></dt>
-  
-  <dd><p>只有布局与外观两个必备分组</p>
-</dd>
-    <dt id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups_NumberBox"><code>NumberBox = 2</code></dt>
-  
-  <dd><p>数值框的范围与步进</p>
-</dd>
-    <dt id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups_ProgressBar"><code>ProgressBar = 16</code></dt>
-  
-  <dd><p>进度条的范围与进度样式</p>
-</dd>
-    <dt id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups_RadioButton"><code>RadioButton = 64</code></dt>
-  
-  <dd><p>单选框的互斥组</p>
-</dd>
-    <dt id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups_Shape"><code>Shape = 32</code></dt>
-  
-  <dd><p>图形的描边、填充与顶点</p>
-</dd>
-    <dt id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups_Text"><code>Text = 1</code></dt>
-  
-  <dd><p>文本内容与文本样式</p>
-</dd>
-    <dt id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups_ToggleSwitch"><code>ToggleSwitch = 128</code></dt>
-  
-  <dd><p>开关的开启、关闭状态文案</p>
-</dd>
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+    </dd>
   </dl>
 
 
-  <h2 id="MAS_DynamicViews_Descriptors_DynamicViewPropertyGroups_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>每个分组对应 <a class="xref" href="MAS.DynamicViews.DynamicViewControlPropertiesModel.html">DynamicViewControlPropertiesModel</a> 上的一个可空子模型；
-布局、外观与转换是所有控件共有的必备分组，因此不在此枚举</p>
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="MAS_DynamicViews_DynamicViewRadioButtonModel_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>属性支持 MVVM 绑定</p>
 </div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_DynamicViews_DynamicViewRadioButtonModel_GroupName_" data-uid="MAS.DynamicViews.DynamicViewRadioButtonModel.GroupName*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewRadioButtonModel_GroupName" data-uid="MAS.DynamicViews.DynamicViewRadioButtonModel.GroupName">
+  GroupName
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置互斥组名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string GroupName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewRadioButtonModel_GroupName_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>空值保留 WPF 在同一容器内的默认互斥行为</p>
+</div>
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.DynamicViews/Descriptors/DynamicViewPropertyGroups.cs/#L19" class="edit-link">Edit this page</a>
         </div>
 
 

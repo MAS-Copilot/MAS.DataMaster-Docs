@@ -125,10 +125,10 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_CompactingAsync_System_String_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.CompactingAsync(System.String)">
   CompactingAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>发布「正在压缩上下文」提示（会话历史接近模型窗口、开始摘要压缩时）</p>
+  <div class="markdown level1 summary"><p>发布「正在压缩上下文」提示（会话历史达到模型窗口 90%、开始 Responses compaction 时）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -163,7 +163,7 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_CompleteAsync_System_String_System_Int32_System_Int64_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.CompleteAsync(System.String,System.Int32,System.Int64)">
   CompleteAsync(string, int, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发布本轮收尾事件</p>
@@ -203,55 +203,11 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
 
 
 
-  <a id="MAS_PrismaAgent_Agent_IAgentEventSink_ContextTrimmedAsync_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ContextTrimmedAsync*"></a>
-
-  <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_ContextTrimmedAsync_System_String_System_Int32_System_Int32_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ContextTrimmedAsync(System.String,System.Int32,System.Int32)">
-  ContextTrimmedAsync(string, int, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L64"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>发布「已回收推理轨迹」提示</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task ContextTrimmedAsync(string streamId, int droppedItems, int freedTokens)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>streamId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>当前对话流标识</p>
-</dd>
-    <dt><code>droppedItems</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>被回收的推理轨迹条数</p>
-</dd>
-    <dt><code>freedTokens</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>因此释放的估算 token 数</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="MAS_PrismaAgent_Agent_IAgentEventSink_ContextUsageAsync_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ContextUsageAsync*"></a>
 
   <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_ContextUsageAsync_System_String_System_Int32_System_Int32_System_Int32_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ContextUsageAsync(System.String,System.Int32,System.Int32,System.Int32)">
   ContextUsageAsync(string, int, int, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步发布上下文用量及压缩预算</p>
@@ -274,7 +230,7 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
     <dd><p>模型上下文窗口</p>
 </dd>
     <dt><code>budgetTokens</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>可用输入预算，用于计算压缩警戒线</p>
+    <dd><p>压缩阈值所依据的完整上下文窗口</p>
 </dd>
   </dl>
 
@@ -434,9 +390,9 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
 
   <a id="MAS_PrismaAgent_Agent_IAgentEventSink_ToolDoneAsync_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ToolDoneAsync*"></a>
 
-  <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_ToolDoneAsync_System_String_System_String_System_String_System_String_System_Int64_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ToolDoneAsync(System.String,System.String,System.String,System.String,System.Int64)">
-  ToolDoneAsync(string, string, string, string, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_ToolDoneAsync_System_String_System_String_System_String_System_String_System_Int64_MAS_PrismaAgent_Agent_ToolResult_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.ToolDoneAsync(System.String,System.String,System.String,System.String,System.Int64,MAS.PrismaAgent.Agent.ToolResult)">
+  ToolDoneAsync(string, string, string, string, long, ToolResult?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发布工具执行完成事件（成功/失败/取消）</p>
@@ -444,7 +400,7 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task ToolDoneAsync(string streamId, string id, string status, string summary, long elapsedMs)</code></pre>
+    <pre><code class="lang-csharp hljs">Task ToolDoneAsync(string streamId, string id, string status, string summary, long elapsedMs, ToolResult? result = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -463,6 +419,9 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
 </dd>
     <dt><code>elapsedMs</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
     <dd><p>自本轮开始的耗时（毫秒）</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="MAS.PrismaAgent.Agent.ToolResult.html">ToolResult</a></dt>
+    <dd><p>工具返回的完整结果；尚未返回结果的过渡态为空</p>
 </dd>
   </dl>
 

@@ -137,6 +137,15 @@
 <li>重放只恢复展示，不重新执行模型或工具</li>
 <li>编辑历史通过追加截断事件表达，不直接删除原事件</li>
 </ul>
+<h3 id="工具结果审计">工具结果审计</h3>
+<ul>
+<li><code>result</code> 包含 Provider 返回的完整 <code>isSuccess/summary/data/error</code>，与回传模型的工具结果使用同一序列化规则</li>
+<li><code>data</code> 中合法的 JSON 对象或数组保存为节点；普通文本、无效 JSON 保持字符串，null 数据保持 null</li>
+<li>历史层不额外截断结果。工具自身的分页或截断仍以实际返回的数据为准</li>
+<li>工具不存在和审批拒绝保存对应的失败结果；等待计划决策的过渡事件尚无结果，保存 <code>result: null</code></li>
+<li>旧事件没有 <code>result</code> 仍可正常回放，不从摘要推测或补造正文。前端工具卡片继续展示原来的摘要</li>
+<li>结果随事件负载整体存储、派发与回放</li>
+</ul>
 <h2 id="前端调用后端">前端调用后端</h2>
 <p>前端通过 <code>window.chrome.webview.postMessage</code> 将用户操作回传给 WPF 后端。</p>
 <p>主要操作包括：</p>

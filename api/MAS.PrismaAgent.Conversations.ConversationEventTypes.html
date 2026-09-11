@@ -292,40 +292,6 @@ Class ConversationEventTypes  <a class="header-action link-secondary" title="Vie
 
 
 
-  <h3 id="MAS_PrismaAgent_Conversations_ConversationEventTypes_CONTEXT_TRIMMED" data-uid="MAS.PrismaAgent.Conversations.ConversationEventTypes.CONTEXT_TRIMMED">
-  CONTEXT_TRIMMED
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Models/ConversationEventTypes.cs/#L155"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>表示已回收推理轨迹以腾出上下文</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const string CONTEXT_TRIMMED = &quot;context.trimmed&quot;</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-  <h4 class="section" id="MAS_PrismaAgent_Conversations_ConversationEventTypes_CONTEXT_TRIMMED_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>负载：<code>{ droppedItems, freedTokens, message }</code></p>
-</div>
-
-
-
-
-
   <h3 id="MAS_PrismaAgent_Conversations_ConversationEventTypes_CONTEXT_USAGE" data-uid="MAS.PrismaAgent.Conversations.ConversationEventTypes.CONTEXT_USAGE">
   CONTEXT_USAGE
   <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Models/ConversationEventTypes.cs/#L142"><i class="bi bi-code-slash"></i></a>
@@ -354,7 +320,7 @@ Class ConversationEventTypes  <a class="header-action link-secondary" title="Vie
 
   <h4 class="section" id="MAS_PrismaAgent_Conversations_ConversationEventTypes_CONTEXT_USAGE_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>负载：<code>{ usedTokens, contextWindow, budgetTokens }</code>——当前上下文占用、完整窗口，
-以及压缩阈值所依据的可用输入预算（只用于标警戒线，不作分母）</p>
+以及压缩阈值所依据的完整上下文窗口</p>
 </div>
 
 
@@ -586,7 +552,7 @@ Class ConversationEventTypes  <a class="header-action link-secondary" title="Vie
 
 
   <h4 class="section" id="MAS_PrismaAgent_Conversations_ConversationEventTypes_TOOL_DONE_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>负载：<code>{ id, status, summary, elapsedMs }</code></p>
+  <div class="markdown level1 remarks"><p>负载：<code>{ id, status, summary, elapsedMs, result }</code></p>
 </div>
 
 
