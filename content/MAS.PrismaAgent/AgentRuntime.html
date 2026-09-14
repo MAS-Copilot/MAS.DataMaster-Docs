@@ -176,12 +176,14 @@
 <li>必要时自动激活目录中的目标工具；</li>
 <li>解析工具定义、provider 和风险等级；</li>
 <li>找不到工具时返回可供模型修正的结构化错误；</li>
+<li>展开参数中的工件引用，未授权的参数出现引用直接判错；</li>
 <li>高风险工具执行前请求用户审批；</li>
 <li>路由到具体 provider；</li>
 <li>将成功或失败结果标准化为 <code>ToolResult</code>；</li>
 <li>发送开始、等待审批、完成等时间线事件；</li>
 <li>生成与原 <code>CallId</code> 配对的输出 item。</li>
 </ol>
+<p>第 5 步让大块数据不必由模型逐条写成参数。约定见<a href="Artifacts.html">会话工件与参数引用</a>。</p>
 <p>工具结果的领域形态为：</p>
 <pre><code class="lang-json">{
   &quot;isSuccess&quot;: true,

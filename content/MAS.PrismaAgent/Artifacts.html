@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>会话工件与参数引用 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="会话工件与参数引用 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.PrismaAgent/Artifacts.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="会话工件与参数引用">会话工件与参数引用</h1>
+
+<p>会话工件用于将大规模结构化数据保存在磁盘中，避免数据直接进入模型输出和会话上下文，从而降低 Token 消耗并减少长会话中的上下文膨胀</p>
+<h2 id="适用场景">适用场景</h2>
+<p>在典型的组态生成流程中，通常需要经过以下步骤：</p>
+<pre><code class="lang-text">读取图纸/Excel → 解析 IO → 创建结构体 → 创建画面并绑定
+</code></pre>
+<p>当 IO 数量达到数百或数千条时，如果直接通过会话传递数据：</p>
+<ol>
+<li>解析结果需要进入上下文</li>
+<li>后续工具调用又需要将相同数据重新组织为参数</li>
+<li>大规模工具参数还会保留在会话历史中，并持续占用后续上下文</li>
+</ol>
+<p>会话工件通过文件引用代替大规模参数传递，使数据可以在工具之间直接流转，而模型仅保留必要的引用和摘要信息。</p>
+<p>Runtime 的工具目录负责控制工具 Schema 的上下文占用；会话工件进一步控制实际数据产生的上下文开销。</p>
+<h2 id="存储位置">存储位置</h2>
+<p>工件按会话隔离存储：</p>
+<pre><code class="lang-text">&lt;GlobalDefaultPath.BasePath&gt;/PrismaAgent/artifacts/&lt;sessionId&gt;/
+├── io-points.json          脚本产物
+└── io-ops.json             脚本生成的批量操作
+</code></pre>
+<p>模型仅通过当前会话中的工件名称访问文件。</p>
+<p>不同会话之间无法读取或写入彼此的工件。以下工件名均不允许使用：</p>
+<ul>
+<li><code>..</code></li>
+<li>绝对路径</li>
+<li>Windows 盘符路径</li>
+<li>任何一级分量是目录联接或符号链接的路径</li>
+</ul>
+<p>非法路径会直接拒绝，不进行自动修正。</p>
+<p>前三类路径风险可通过字符串规范化直接拦截；junction 与符号链接则不能仅依赖字符串校验。</p>
+<p>即使路径字符串本身合法，会话目录内的 junction 或符号链接仍可能将实际访问目标指向目录之外。由于工件读取属于低风险、免审批操作，解析路径时会逐级检查各级分量，一旦发现重解析点立即拒绝访问。</p>
+<p>会话工件目录本身不存在使用链接的合理场景，因此采用“发现重解析点即拒绝”的策略。相比解析真实路径后再校验边界，这种方式更易审计，也能减少路径解析过程中的竞态窗口。</p>
+<p>会话目录根路径不执行该检查，因为该路径由宿主负责推导，其上级用户目录本身可能处于系统重定向或链接环境中。</p>
+<p>工件默认保留，不自动清理，便于后续排查和复查。</p>
+<h2 id="工件来源">工件来源</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>script.python</code></td>
+<td>默认工作目录为当前会话工件目录，脚本生成的文件可直接作为工件使用</td>
+</tr>
+<tr>
+<td><code>ARTIFACTS.md</code></td>
+<td>模型自己维护的工件索引，说明每个工件是什么、依赖什么、是否还需要</td>
+</tr>
+</tbody>
+</table>
+<h2 id="出参不自动搬运">出参不自动搬运</h2>
+<p>工件机制仅作用于<strong>入参</strong>。工具结果原样进入上下文，执行管线不负责截断、落盘或改写。</p>
+<p>工具结果的规模控制由工具自身负责。目前各类本地工具均已提供对应的限制或分页机制：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>自带限制或分页能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cli.read_file</code></td>
+<td><code>offset</code> / <code>maxChars</code> / <code>totalChars</code> / <code>truncated</code></td>
+</tr>
+<tr>
+<td><code>cli.grep</code></td>
+<td><code>maxMatches</code></td>
+</tr>
+<tr>
+<td><code>cli.diff</code></td>
+<td><code>maxLines</code></td>
+</tr>
+<tr>
+<td><code>cli.run</code>、<code>script.*</code></td>
+<td>stdout / stderr 由进程运行器限制长度</td>
+</tr>
+<tr>
+<td><code>dynamicViews.query</code> / <code>model.get</code></td>
+<td><code>offset</code> / <code>limit</code></td>
+</tr>
+</tbody>
+</table>
+<p>执行管线不再额外包装工具结果，避免同时存在两套语义不同的游标。源工具游标通常指向源文件或源数据，而外层游标只能指向当前结果正文；两者混用容易导致错误读取且难以发现。</p>
+<p>因此，结果规模控制遵循以下原则：</p>
+<p><strong>结果规模的边界由产出结果的工具负责，而不是由执行管线统一兜底。</strong></p>
+<p>如果新工具可能返回大量数据，应在工具协议中直接提供 <code>offset</code>、<code>limit</code>、<code>maxChars</code> 等限制或分页能力，而不是依赖执行管线进行二次搬运。</p>
+<h2 id="参数引用">参数引用</h2>
+<p>支持工件引用的工具参数可以使用：</p>
+<pre><code class="lang-json">{
+  &quot;ops&quot;: {
+    &quot;$artifact&quot;: &quot;io-ops.json&quot;,
+    &quot;offset&quot;: 0,
+    &quot;limit&quot;: 500
+  }
+}
+</code></pre>
+<p>其中：</p>
+<ul>
+<li><code>offset</code>：顶层 JSON 数组的起始位置</li>
+<li><code>limit</code>：本次读取的最大元素数量</li>
+</ul>
+<p><code>offset</code> / <code>limit</code> 是<strong>可选</strong>的。批量写入工具没有条数上限，整批一次提交才是原子的——拆成多段反而会在中途失败时留下半成品工程。分段用于失败后续传或有意分阶段上线，不是常规批量的做法。</p>
+<p>单次展开有一道体量闸：正文超过 16 MB 直接判错并提示分段。展开要经过「读成字符串 → 解析成对象树 → 重新序列化 → 跨 IPC」，峰值内存是文件本身的若干倍，而 IPC 帧上限是 128 MB。这道闸放在展开器而不是某个工具里，因为它保护的是所有开放了工件引用的参数。</p>
+<p>可通过二者对大型工件进行分批处理。</p>
+<p>工件引用仅在工具调用派发时展开。展开后的实际数据不会写回会话历史，因此上下文中始终只保留工件引用。</p>
+<h2 id="参数授权">参数授权</h2>
+<p>工具必须显式声明允许使用工件引用的参数：</p>
+<pre><code class="lang-csharp">var schema = ToolSchema.Object()
+    .ObjectArray(&quot;ops&quot;, BuildModelOpSchema, &quot;Ordered operations.&quot;, isRequired: true)
+    .AllowArtifact(&quot;ops&quot;);
+
+return new ToolDefinition {
+    ParametersJsonSchema = schema.Build(),
+    ArtifactParameters = schema.ArtifactParameters,
+    // ...
+};
+</code></pre>
+<p><code>AllowArtifact</code> 同时负责：</p>
+<ul>
+<li>将参数 Schema 扩展为“原始参数或工件引用”</li>
+<li>将参数加入 <code>ToolDefinition.ArtifactParameters</code> 授权列表</li>
+</ul>
+<p>只有经过授权的参数才能使用 <code>$artifact</code>。</p>
+<p>未授权参数包含 <code>$artifact</code> 时，调用会直接拒绝，不会派发给工具。</p>
+<p><strong>检测到 <code>$artifact</code> 即按工件引用处理。</strong> 若 <code>$artifact</code>、<code>offset</code> 或 <code>limit</code> 的格式无效，则直接返回工件引用格式错误，不再按普通参数继续处理，以避免无效引用绕过校验</p>
+<p>授权信息会随 <code>tool.list</code> 跨 IPC 传递，因此宿主进程注册的工具同样可以支持工件引用。</p>
+<h2 id="工件工具">工件工具</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>artifact.list</code></td>
+<td>查看当前会话的工件及其大小、元素数量和写入时间</td>
+</tr>
+<tr>
+<td><code>artifact.read</code></td>
+<td>分页读取工件；JSON 数组使用 <code>offset</code> / <code>limit</code>，其它内容使用 <code>charOffset</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>artifact.read</code> 主要用于结构检查、抽样和错误排查。结果会返回 <code>hasMore</code> 及下一页游标（<code>nextOffset</code> 或 <code>nextCharOffset</code>），可据此连续读取。</p>
+<p>需要注意：</p>
+<ul>
+<li><code>artifact.read</code> 不在散装工具之列，其结果不会被二次截断——它本来就是一次定量的分页读取</li>
+<li>读取过程采用流式处理，仅保留当前切片所需数据，避免因大型工件产生不必要的内存占用</li>
+<li>目录里存在 <code>ARTIFACTS.md</code> 时，<code>artifact.list</code> 会把它顶到结果最前面，提示模型先读索引</li>
+</ul>
+<p>当完整数据需要传递给其他工具时，应优先使用工件引用，而不是重新加载到会话上下文。</p>
+<h3 id="不提供写入与删除能力">不提供写入与删除能力</h3>
+<p><code>artifact.write</code> 与 <code>artifact.delete</code> 均不提供，这是有意设计。</p>
+<ul>
+<li><strong>写入</strong>：工件内容通常应由 <code>script.python</code> 直接生成，或通过 <code>cli.write_file</code> 写入。由模型直接调用写入工具会额外消耗输出 Token，也容易形成不必要的数据搬运</li>
+<li><strong>删除</strong>：工件用于保留会话执行记录，不应作为低风险、免审批操作提供。删除需求由 <code>cli</code> 处理，并遵循对应的高风险审批流程</li>
+</ul>
+<p><code>artifact.*</code> 与 <code>cli.*</code> 在文件读写能力上存在一定重叠，但寻址范围不同：</p>
+<ul>
+<li><code>$artifact</code> 仅支持引用会话工件目录中的文件</li>
+<li><code>cli</code> 写入其他目录的文件不能通过 <code>$artifact</code> 引用</li>
+<li><code>artifact.read</code> 还提供低风险免审批、数组元素切片读取，以及结果不参与二次截断等能力</li>
+</ul>
+<h2 id="推荐流程">推荐流程</h2>
+<pre><code class="lang-text">script.python
+  解析图纸 / Excel
+  → io-points.json
+
+script.python
+  根据 io-points.json 生成操作
+  → io-ops.json
+
+model.apply
+  validateOnly
+  + ops={&quot;$artifact&quot;:&quot;io-ops.json&quot;}
+
+model.apply
+  校验通过后去掉 validateOnly 整批提交
+</code></pre>
+<p>在该流程中，大规模 IO 数据可以直接在脚本、工件和工具之间流转，无需逐条进入模型上下文。</p>
+<p>对于批量写入类工具，建议同时提供：</p>
+<ul>
+<li>干跑校验能力；</li>
+<li>失败记录原文回显。</li>
+</ul>
+<p>模型可以先完成完整校验，再针对失败记录修正数据生成逻辑，避免在大量操作中逐条排查</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/docs/content/MAS.PrismaAgent/Artifacts.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

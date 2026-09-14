@@ -122,6 +122,10 @@
 <td><code>IsHidden</code></td>
 <td>是否需要先通过工具发现流程激活</td>
 </tr>
+<tr>
+<td><code>ArtifactParameters</code></td>
+<td>允许用工件引用传值的参数名，见<a href="Artifacts.html">会话工件与参数引用</a></td>
+</tr>
 </tbody>
 </table>
 <p>调用请求包含真实工具名、JSON 参数和可选 provider；执行结果统一为 <code>ToolResult</code>：</p>
@@ -135,6 +139,7 @@
 }
 </code></pre>
 <p><code>data</code> 在 provider 内可以是 JSON 文本或普通文本。回填模型时，合法的 JSON 对象和数组会恢复为结构化节点，避免二次转义；其他内容保持字符串。</p>
+<p>工具结果原样进入上下文，执行管线不截断也不落盘：结果规模的闸门属于产出它的工具（<code>offset</code> / <code>limit</code> / <code>maxChars</code>），不属于管线。详见<a href="Artifacts.html">会话工件与参数引用</a>。</p>
 <h2 id="注册与路由">注册与路由</h2>
 <p>工具注册表在首次使用时向所有 provider 请求目录，并按工具名建立路由。模型调用工具时，执行管线先解析 wire-safe 名称，再由注册表路由到目标 provider。</p>
 <p>工具名不区分大小写。不同 provider 不应注册同名工具；外部工具应使用明确命名空间，避免覆盖 DM 内置能力。</p>
@@ -170,6 +175,11 @@
 <td><code>runtime</code></td>
 <td>当前时间、应用信息、工作区信息</td>
 <td>低风险环境上下文</td>
+</tr>
+<tr>
+<td><code>artifact</code></td>
+<td>列举与取样当前会话的工件</td>
+<td>大块数据留在磁盘上的寻址入口；写入与删除交给 script / cli</td>
 </tr>
 <tr>
 <td><code>skill</code></td>

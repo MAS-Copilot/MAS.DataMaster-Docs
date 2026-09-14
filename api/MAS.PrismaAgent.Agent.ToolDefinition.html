@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_PrismaAgent_Agent_ToolDefinition" data-uid="MAS.PrismaAgent.Agent.ToolDefinition" class="text-break">
-Class ToolDefinition  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class ToolDefinition  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -156,11 +156,47 @@ Class ToolDefinition  <a class="header-action link-secondary" title="View source
 </h2>
 
 
+  <a id="MAS_PrismaAgent_Agent_ToolDefinition_ArtifactParameters_" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.ArtifactParameters*"></a>
+
+  <h3 id="MAS_PrismaAgent_Agent_ToolDefinition_ArtifactParameters" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.ArtifactParameters">
+  ArtifactParameters
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取支持工件引用的参数名；为空表示该工具不接受工件引用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; ArtifactParameters { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PrismaAgent_Agent_ToolDefinition_ArtifactParameters_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>参数通过 <a class="xref" href="MAS.PrismaAgent.Agent.ToolSchema.html#MAS_PrismaAgent_Agent_ToolSchema_AllowArtifact_System_String_">AllowArtifact(string)</a> 显式授权，执行管线仅展开已授权参数；
+未授权参数包含 <code>$artifact</code> 时将直接拒绝调用</p>
+</div>
+
+
+
+
   <a id="MAS_PrismaAgent_Agent_ToolDefinition_Description_" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.Description*"></a>
 
   <h3 id="MAS_PrismaAgent_Agent_ToolDefinition_Description" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.Description">
   Description
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取工具用途说明（给模型阅读）</p>
@@ -192,7 +228,7 @@ Class ToolDefinition  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_PrismaAgent_Agent_ToolDefinition_IsCore" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.IsCore">
   IsCore
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取一个值，指示是否为核心工具。核心工具始终进入模型的活跃工具集；
@@ -225,7 +261,7 @@ Class ToolDefinition  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_PrismaAgent_Agent_ToolDefinition_Name" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.Name">
   Name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取工具名称（全局唯一），例如 modbus.readRegisters</p>
@@ -257,7 +293,7 @@ Class ToolDefinition  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_PrismaAgent_Agent_ToolDefinition_ParametersJsonSchema" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.ParametersJsonSchema">
   ParametersJsonSchema
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取工具参数的 JSON Schema；为空表示无参数</p>
@@ -289,7 +325,7 @@ Class ToolDefinition  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_PrismaAgent_Agent_ToolDefinition_ProviderId" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.ProviderId">
   ProviderId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取提供该工具的来源标识</p>
@@ -321,7 +357,7 @@ Class ToolDefinition  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_PrismaAgent_Agent_ToolDefinition_Risk" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.Risk">
   Risk
-  <a class="header-action link-secondary" title="View source" href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取工具风险等级</p>
@@ -353,7 +389,7 @@ Class ToolDefinition  <a class="header-action link-secondary" title="View source
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/MAS-Copilot/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 
