@@ -164,6 +164,7 @@ MAS.DataMaster/NamedPipeIpc/DynamicViews    宿主层，接 IPC 与持久化
 ├── ...ModelBindings                        控件绑定通道的写入与校验
 ├── ...ModelEvents                          控件事件的变量操作维护
 ├── ...ModelPresets                         控件预设目录
+├── ...ModelShapes                          图元几何参数：顶点进出与目录
 ├── ...ModelShared                          实例定位与序列化
 ├── ...ModelBrushKeys                       画刷 Key 存在性校验
 ├── ...QueryVocabulary                      大词表按关键词检索
@@ -240,9 +241,19 @@ MAS.DataMaster/NamedPipeIpc/DynamicViews    宿主层，接 IPC 与持久化
 <li>仅允许在创建时设置的属性，应添加 <code>[property: DynamicViewAgentReadOnly(&quot;原因&quot;, isSettableAtCreation: true)]</code></li>
 </ul>
 <p>若属性类型未在 <code>ValueKinds</code> 表中注册，架构会将其标记为 <code>Unsupported</code> 并设置为只读，同时 <code>NoPropertyFallsBackToUnsupported</code> 测试会失败。此时应补充类型映射，不应修改该测试断言。</p>
-<h3 id="新增一个控件类型">新增一个控件类型</h3>
-<p>无需修改 Agent 工具。在 <code>DynamicViewControlDescriptorRegistry</code> 中注册描述符，并声明属性分组、绑定通道、外观能力和附加能力。</p>
-<p>若该类型需要支持工具创建，还应在 <code>DynamicViewPresetRegistry</code> 中注册预设。<strong>未注册预设的控件类型不能通过工具创建</strong>；图形类控件属于此类，仅支持在设计器中绘制。</p>
+<h3 id="新增控件类型">新增控件类型</h3>
+<p>新增控件类型无需修改 Agent 工具。</p>
+<p>首先在 <code>DynamicViewControlDescriptorRegistry</code> 中注册控件描述符，并声明该控件的属性分组、绑定通道、外观能力及附加能力。</p>
+<p>如需支持通过工具创建，还需在 <code>DynamicViewPresetRegistry</code> 中注册对应预设。<strong>未注册预设的控件类型无法通过 <code>presetId</code> 创建。</strong></p>
+<p>图形类控件采用独立的创建机制，不使用预设，而是通过 <code>controlType</code> 及几何参数创建。其几何构造契约统一注册于 <code>DynamicViewShapeFactory.Catalog</code>。</p>
+<p>新增图元控件类型时，必须同步注册对应的几何构造契约。否则，Agent 工具无法识别该类型，设计器绘图流程也无法获取相应的构造规则。</p>
+<h3 id="图元坐标系约定">图元坐标系约定</h3>
+<p>图元顶点持久化时采用<strong>相对于控件包围盒左上角</strong>的坐标系，控件布局范围必须始终与顶点包围盒保持一致。</p>
+<p>设计器调整顶点后，由 <code>DesignerShapePointHelper.NormalizeBounds</code> 重新计算并规范化布局，以保证该约定持续成立。</p>
+<p>因此，<code>shape.points</code> 不直接开放给 Agent 写入，并通过 <code>[property: DynamicViewAgentReadOnly]</code> 标记为只读。若直接写入持久化坐标，可能产生顶点坐标与控件布局不一致的情况，导致图形超出控件边界后被裁剪，且不会产生显式错误。</p>
+<p>图元顶点统一通过 <code>points</code> 参数进行读写，并采用<strong>页面绝对坐标</strong>。页面坐标与持久化相对坐标之间的转换由 <code>DynamicViewShapeFactory</code> 统一负责。</p>
+<p><code>model.get</code> 返回的 <code>geometry</code> 字段同样使用页面绝对坐标，从而保证读取与写入采用一致的坐标语义，可直接基于读取结果修改后重新提交。</p>
+<p>设计器绘图与 Agent 创建均使用 <code>DynamicViewShapeFactory</code> 完成图元构造，以统一默认描边、填充、箭头尺寸等几何及外观规则，避免不同创建路径产生行为差异。</p>
 <h3 id="新增一个属性分组">新增一个属性分组</h3>
 <p>在 <code>DynamicViewPropertyGroups</code> 中新增枚举值，并在 <code>DynamicViewControlPropertiesModel</code> 中新增同名的可空子模型。两处名称必须保持一致；名称不一致时，相应分节不会进入生成结果，<code>EveryControlTypeProducesSchemaWithResolvableSections</code> 测试用于检测此类问题。</p>
 <h3 id="新增一个绑定通道">新增一个绑定通道</h3>
