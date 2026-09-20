@@ -189,10 +189,8 @@ Class DynamicViewStateBindingModel
 
 
   <h2 id="MAS_DynamicViews_DynamicViewStateBindingModel_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>按数值把控件映射到一组状态，每个状态决定背景画刷，并可同时决定显示文本；
-数值状态灯与多状态指示器共用本模型，前者不具备
-<a class="xref" href="MAS.DynamicViews.Descriptors.DynamicViewRenderTraits.html#MAS_DynamicViews_Descriptors_DynamicViewRenderTraits_StateTextMapping">StateTextMapping</a> 特征、只用到画刷一半。
-前景画刷刻意不参与映射，始终取控件外观中的前景设置，避免状态切换时文字颜色跳变</p>
+  <div class="markdown level0 remarks"><p>按数值映射状态画刷及可选显示文本，供数值状态灯与多状态指示器共用。
+前景画刷始终使用控件外观设置，避免状态切换导致文字颜色变化</p>
 </div>
 
 
@@ -273,7 +271,7 @@ public string? FallbackText { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewStateBindingModel_States" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.States">
   States
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置数值到状态的映射集合</p>
@@ -310,7 +308,7 @@ public ObservableCollection&lt;DynamicViewStateItemModel&gt; States { get; set; 
 
   <h3 id="MAS_DynamicViews_DynamicViewStateBindingModel_FindState_System_Nullable_System_Int16__" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.FindState(System.Nullable{System.Int16})">
   FindState(short?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>查找与指定数值匹配的状态</p>
@@ -352,7 +350,7 @@ public ObservableCollection&lt;DynamicViewStateItemModel&gt; States { get; set; 
 
   <h3 id="MAS_DynamicViews_DynamicViewStateBindingModel_ResolveBackground_System_Nullable_System_Int16__" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.ResolveBackground(System.Nullable{System.Int16})">
   ResolveBackground(short?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>解析指定数值对应的背景画刷资源 Key</p>
@@ -391,7 +389,7 @@ public ObservableCollection&lt;DynamicViewStateItemModel&gt; States { get; set; 
 
   <h3 id="MAS_DynamicViews_DynamicViewStateBindingModel_ResolveSymbol_System_Nullable_System_Int16__" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.ResolveSymbol(System.Nullable{System.Int16})">
   ResolveSymbol(short?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L85"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>解析指定数值对应的图标</p>
@@ -430,7 +428,7 @@ public ObservableCollection&lt;DynamicViewStateItemModel&gt; States { get; set; 
 
   <h3 id="MAS_DynamicViews_DynamicViewStateBindingModel_ResolveText_System_Nullable_System_Int16__" data-uid="MAS.DynamicViews.DynamicViewStateBindingModel.ResolveText(System.Nullable{System.Int16})">
   ResolveText(short?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewStateBindingModel.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>解析指定数值对应的显示文本</p>

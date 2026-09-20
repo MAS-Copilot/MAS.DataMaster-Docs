@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_DynamicViews_ISpeechService" data-uid="MAS.DynamicViews.ISpeechService" class="text-break">
-Interface ISpeechService  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L24"><i class="bi bi-code-slash"></i></a>
+Interface ISpeechService  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -116,7 +116,7 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
 
   <h2 id="MAS_DynamicViews_ISpeechService_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><ul><li>基于 Windows 本机 TTS 引擎（SAPI5），完全离线，不依赖任何云端服务</li><li>播报按“优先级优先、同级先进先播”的顺序串行执行，同一时刻只会有一条语音在播，规则见 <a class="xref" href="MAS.DynamicViews.SpeechPriority.html">SpeechPriority</a></li><li>待播队列有容量上限（<a class="xref" href="MAS.DynamicViews.ISpeechService.html#MAS_DynamicViews_ISpeechService_QueueCapacity">QueueCapacity</a>），队列已满时优先牺牲最低优先级中最晚入队的一条</li><li>发音人、音量、语速均沿用 Windows 的默认设置，不提供逐条指定</li><li>本接口的所有成员都不会阻塞调用线程去等语音播完，可安全地在 UI 线程调用</li></ul>
+  <div class="markdown level0 remarks"><ul><li>基于 Windows 本机 TTS 引擎（SAPI5），完全离线，不依赖任何云端服务</li><li>播报按“优先级优先、同级先进先播”的顺序串行执行，同一时刻只会有一条语音在播，规则见 <a class="xref" href="MAS.DynamicViews.SpeechPriority.html">SpeechPriority</a></li><li>待播队列有容量上限（<a class="xref" href="MAS.DynamicViews.ISpeechService.html#MAS_DynamicViews_ISpeechService_QueueCapacity">QueueCapacity</a>），队列已满时优先牺牲最低优先级中最晚入队的一条</li><li>另有一组循环播报条目（<a class="xref" href="MAS.DynamicViews.ISpeechService.html#MAS_DynamicViews_ISpeechService_StartLoop_System_String_System_String_MAS_DynamicViews_SpeechPriority_">StartLoop(string?, string?, SpeechPriority)</a>），在待播队列空闲时被反复播出，直到显式停止</li><li>发音人、音量、语速均沿用 Windows 的默认设置，不提供逐条指定</li><li>本接口的所有成员都不会阻塞调用线程去等语音播完，可安全地在 UI 线程调用</li></ul>
 </div>
 
 
@@ -128,7 +128,7 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
   <h3 id="MAS_DynamicViews_ISpeechService_IsAvailable" data-uid="MAS.DynamicViews.ISpeechService.IsAvailable">
   IsAvailable
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取语音播报是否可用</p>
@@ -160,11 +160,43 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
 
 
+  <a id="MAS_DynamicViews_ISpeechService_LoopCount_" data-uid="MAS.DynamicViews.ISpeechService.LoopCount*"></a>
+
+  <h3 id="MAS_DynamicViews_ISpeechService_LoopCount" data-uid="MAS.DynamicViews.ISpeechService.LoopCount">
+  LoopCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前循环播报的条目数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int LoopCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_DynamicViews_ISpeechService_PendingCount_" data-uid="MAS.DynamicViews.ISpeechService.PendingCount*"></a>
 
   <h3 id="MAS_DynamicViews_ISpeechService_PendingCount" data-uid="MAS.DynamicViews.ISpeechService.PendingCount">
   PendingCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前待播队列中的条目数</p>
@@ -189,7 +221,7 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
 
   <h4 class="section" id="MAS_DynamicViews_ISpeechService_PendingCount_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>不含正在播报中的那一条</p>
+  <div class="markdown level1 remarks"><p>不含正在播报中的那一条，也不含循环播报条目</p>
 </div>
 
 
@@ -199,7 +231,7 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
   <h3 id="MAS_DynamicViews_ISpeechService_QueueCapacity" data-uid="MAS.DynamicViews.ISpeechService.QueueCapacity">
   QueueCapacity
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取待播队列的容量上限</p>
@@ -235,7 +267,7 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
   <h3 id="MAS_DynamicViews_ISpeechService_Clear" data-uid="MAS.DynamicViews.ISpeechService.Clear">
   Clear()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L119"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>清空待播队列</p>
@@ -255,7 +287,7 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
 
   <h4 class="section" id="MAS_DynamicViews_ISpeechService_Clear_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>不会打断正在播报中的那一条</p>
+  <div class="markdown level1 remarks"><p>不会打断正在播报中的那一条，也不会停掉循环播报</p>
 </div>
 
 
@@ -265,7 +297,7 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
   <h3 id="MAS_DynamicViews_ISpeechService_Enqueue_System_String_MAS_DynamicViews_SpeechPriority_" data-uid="MAS.DynamicViews.ISpeechService.Enqueue(System.String,MAS.DynamicViews.SpeechPriority)">
   Enqueue(string?, SpeechPriority)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将文本加入待播队列</p>
@@ -310,7 +342,7 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
   <h3 id="MAS_DynamicViews_ISpeechService_GetInstalledVoices" data-uid="MAS.DynamicViews.ISpeechService.GetInstalledVoices">
   GetInstalledVoices()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取系统已安装的可用语音</p>
@@ -343,11 +375,130 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
 
 
+  <a id="MAS_DynamicViews_ISpeechService_StartLoop_" data-uid="MAS.DynamicViews.ISpeechService.StartLoop*"></a>
+
+  <h3 id="MAS_DynamicViews_ISpeechService_StartLoop_System_String_System_String_MAS_DynamicViews_SpeechPriority_" data-uid="MAS.DynamicViews.ISpeechService.StartLoop(System.String,System.String,MAS.DynamicViews.SpeechPriority)">
+  StartLoop(string?, string?, SpeechPriority)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>开始循环播报指定文本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool StartLoop(string? key, string? text, SpeechPriority priority = SpeechPriority.Normal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>条目标识，用于更新和停止播报</p>
+</dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>播报文本</p>
+</dd>
+    <dt><code>priority</code> <a class="xref" href="MAS.DynamicViews.SpeechPriority.html">SpeechPriority</a></dt>
+    <dd><p>播报优先级</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>登记成功返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；参数无效、语音不可用或循环条目达到上限时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_ISpeechService_StartLoop_System_String_System_String_MAS_DynamicViews_SpeechPriority__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>条目将重复播报，直到调用 <a class="xref" href="MAS.DynamicViews.ISpeechService.html#MAS_DynamicViews_ISpeechService_StopLoop_System_String_">StopLoop(string?)</a> 或 <a class="xref" href="MAS.DynamicViews.ISpeechService.html#MAS_DynamicViews_ISpeechService_StopAllLoops">StopAllLoops()</a> 停止</p>
+<p>
+调度时优先处理普通播报队列；队列空闲后按优先级和登记顺序依次播报循环条目。
+循环播报可被新的播报请求中断，并在后续调度中继续执行。
+</p>
+<p>重复使用同一 <code class="paramref">key</code> 时，仅更新对应条目的文本和优先级</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_ISpeechService_StopAllLoops_" data-uid="MAS.DynamicViews.ISpeechService.StopAllLoops*"></a>
+
+  <h3 id="MAS_DynamicViews_ISpeechService_StopAllLoops" data-uid="MAS.DynamicViews.ISpeechService.StopAllLoops">
+  StopAllLoops()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>停止全部循环播报</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void StopAllLoops()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_ISpeechService_StopAllLoops_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>运行时停止时应调用此方法，避免停止后仍继续播报</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_ISpeechService_StopLoop_" data-uid="MAS.DynamicViews.ISpeechService.StopLoop*"></a>
+
+  <h3 id="MAS_DynamicViews_ISpeechService_StopLoop_System_String_" data-uid="MAS.DynamicViews.ISpeechService.StopLoop(System.String)">
+  StopLoop(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>停止指定条目的循环播报</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void StopLoop(string? key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>条目标识</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_ISpeechService_StopLoop_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>如果条目正在播报，将同时中断当前播报；条目不存在时不执行任何操作</p>
+</div>
+
+
+
+
   <a id="MAS_DynamicViews_ISpeechService_TestSpeakAsync_" data-uid="MAS.DynamicViews.ISpeechService.TestSpeakAsync*"></a>
 
   <h3 id="MAS_DynamicViews_ISpeechService_TestSpeakAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.DynamicViews.ISpeechService.TestSpeakAsync(System.String,System.Threading.CancellationToken)">
   TestSpeakAsync(string?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步试播一段文本</p>
@@ -382,8 +533,9 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 
 
   <h4 class="section" id="MAS_DynamicViews_ISpeechService_TestSpeakAsync_System_String_System_Threading_CancellationToken__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>供配置界面的“测试播报”使用：插到队首优先播出，并且只打断上一次未播完的试播，
-不会打断报警播报。连续点击时只有最后一次真正播出，早先的试播视为被取代（同样返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>）</p>
+  <div class="markdown level1 remarks"><p>供“测试播报”使用：插到队首优先播出，并且只打断上一次未播完的试播，
+不会打断队列里的报警播报（正在播的循环条目除外，它会让位并在下一轮补上）。
+连续点击时只有最后一次真正播出，早先的试播视为被取代（同样返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>）</p>
 </div>
 
 
@@ -393,7 +545,7 @@ Interface ISpeechService  <a class="header-action link-secondary" title="View so
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L24" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Interfaces/ISpeechService.cs/#L25" class="edit-link">Edit this page</a>
         </div>
 
 

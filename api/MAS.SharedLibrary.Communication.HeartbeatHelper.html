@@ -153,8 +153,9 @@ Class HeartbeatHelper  <a class="header-action link-secondary" title="View sourc
 _heartbeat = HeartbeatHelper.Start(
     token =&gt; _mcProtocol.WriteBitsAsync("D", BASE_ADDR + 1600, [_heartbeatSignal = !_heartbeatSignal]),
     intervalMilliseconds: 1000);
-<p>// 停止并释放
-await _heartbeat.DisposeAsync();</p></code></pre>
+
+// 停止并释放
+await _heartbeat.DisposeAsync();</code></pre>
 </example>
 </div>
 
