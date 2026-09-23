@@ -1,0 +1,4664 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>命令权限 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="命令权限 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS-Security/CommandPermissions.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="命令权限">命令权限</h1>
+
+<div class="NOTE">
+<h5>Note</h5>
+<p>本文档由 CI 在正式版发布时根据源码自动生成（<code>scripts/Docs/generate_command_permissions.py</code>），请勿手动修改。
+功能描述取自命令属性的 <code>/// &lt;summary&gt;</code> 注释，所需角色取自构造参数 <code>requiredRole</code>，未指定即为 <code>None</code>。</p>
+</div>
+<h2 id="说明">说明</h2>
+<p>角色逐级递增，高等级自动拥有低等级的全部权限；<strong>开发者</strong>不受任何命令权限限制。</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>枚举</th>
+<th style="text-align: center;">等级</th>
+<th>获取方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未登录</td>
+<td>None</td>
+<td style="text-align: center;">0</td>
+<td>默认</td>
+</tr>
+<tr>
+<td>游客</td>
+<td>Visitor</td>
+<td style="text-align: center;">1</td>
+<td>注册时默认</td>
+</tr>
+<tr>
+<td>操作员</td>
+<td>Operator</td>
+<td style="text-align: center;">2</td>
+<td>需分配</td>
+</tr>
+<tr>
+<td>工程师</td>
+<td>Engineer</td>
+<td style="text-align: center;">3</td>
+<td>需分配</td>
+</tr>
+<tr>
+<td>管理员</td>
+<td>Admin</td>
+<td style="text-align: center;">4</td>
+<td>需分配</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>Developer</td>
+<td style="text-align: center;">5</td>
+<td>命令行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="概览">概览</h2>
+<table>
+<thead>
+<tr>
+<th>最低角色</th>
+<th style="text-align: center;">命令数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未登录</td>
+<td style="text-align: center;">53</td>
+</tr>
+<tr>
+<td>游客</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr>
+<td>操作员</td>
+<td style="text-align: center;">158</td>
+</tr>
+<tr>
+<td>工程师</td>
+<td style="text-align: center;">79</td>
+</tr>
+<tr>
+<td>管理员</td>
+<td style="text-align: center;">23</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align: center;"><strong>329</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="abstractions">Abstractions</h2>
+<h3 id="canvasviewmodelbase提供视图模型的画布功能基类">CanvasViewModelBase（提供视图模型的画布功能基类）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>锁定对象，解锁或锁定所有模块交互状态</td>
+<td><code>LockObjectCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开弹出设置</td>
+<td><code>OpenSetPopCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="commprotocolsetviewmodelbase通讯协议设置视图模型基类">CommProtocolSetViewModelBase（通讯协议设置视图模型基类）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建的通讯实例测试连接</td>
+<td><code>TestPlcInstanceConnectCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除实例</td>
+<td><code>RemoveInstanceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>创建 PLC 实例</td>
+<td><code>CreatePlcInstanceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>复制键</td>
+<td><code>CopyKeyCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dialogviewmodelbase对话框视图模型基类">DialogViewModelBase（对话框视图模型基类）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>确认</td>
+<td><code>ConfirmCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>关闭窗口</td>
+<td><code>CloseWindowCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="projectviewmodelbase提供视图模型的工程管理功能基类">ProjectViewModelBase（提供视图模型的工程管理功能基类）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新建</td>
+<td><code>CreateNewCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>从当前模板选择</td>
+<td><code>FromExistingTemplateCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开工程</td>
+<td><code>OpenProjectCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>工程保存</td>
+<td><code>ProjectSavedCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开工程源文件</td>
+<td><code>ProjectSourceFilesCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开当前文件所在文件夹位置</td>
+<td><code>CurrentPositionCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开项目元数据</td>
+<td><code>OpenProjectInfoCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开最近文件</td>
+<td><code>OpenRecentFileCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除最近文件</td>
+<td><code>RemoveRecentFileCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开最近文件所在目录</td>
+<td><code>OpenRecentFileLocationCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>工程另存为</td>
+<td><code>ProjectSaveAsCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setviewmodelbase设置窗口视图模型基类">SetViewModelBase（设置窗口视图模型基类）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>确认</td>
+<td><code>ConfirmCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controlsapplicationinitial">Controls.ApplicationInitial</h2>
+<h3 id="dbsetinitialstepviewmodel数据库设置初始化向导视图模型">DbSetInitialStepViewModel（数据库设置初始化向导视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>连接</td>
+<td><code>ConnectionCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="finishstepviewmodel完成向导控件视图模型">FinishStepViewModel（完成向导控件视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建桌面快捷方式</td>
+<td><code>CreateShortcutCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="globalstoragepathstepviewmodel全局存储路径初始化向导视图模型">GlobalStoragePathStepViewModel（全局存储路径初始化向导视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>浏览</td>
+<td><code>BrowseCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controlsimageproceflow">Controls.ImageProceFlow</h2>
+<h3 id="modulesviewmodelbase模块视图模型基类">ModulesViewModelBase（模块视图模型基类）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>删除控件</td>
+<td><code>DeleteControlCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controlsimageproceflowviewmodelsexecute">Controls.ImageProceFlow.ViewModels.Execute</h2>
+<h3 id="colorrecognitionviewmodel颜色识别控件视图模型">ColorRecognitionViewModel（颜色识别控件视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>从当前缓存输入图像自动提取 HSV 颜色范围的</td>
+<td><code>HsvFromCacheInputCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="posecalculationviewmodel相机姿态解算控件视图模型">PoseCalculationViewModel（相机姿态解算控件视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>重置</td>
+<td><code>ResetCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controlsimageproceflowviewmodelsfinish">Controls.ImageProceFlow.ViewModels.Finish</h2>
+<h3 id="imageviewerviewmodel图像浏览器控件视图模型">ImageViewerViewModel（图像浏览器控件视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择保存路径</td>
+<td><code>SelectedSavePathCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开保存路径</td>
+<td><code>OpenSavePathCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controlsimageproceflowviewmodelsprepare">Controls.ImageProceFlow.ViewModels.Prepare</h2>
+<h3 id="cameraviewmodel相机控件模块视图模型">CameraViewModel（相机控件模块视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>打开或关闭相机</td>
+<td><code>ToggleCameraCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>查找可用的相机设备列表</td>
+<td><code>SearchDeviceListCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="imagesourceviewmodel图像源控件视图模型">ImageSourceViewModel（图像源控件视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择图像文件</td>
+<td><code>SelectedImageFileCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>设置图像源</td>
+<td><code>SetImageSourceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开文件路径</td>
+<td><code>OpenFilePathCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>加载图片</td>
+<td><code>LoadImageCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择图像源文件夹</td>
+<td><code>SelectedImageFolderCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开图像源文件夹路径</td>
+<td><code>OpenFolderPathCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controlsimageproceflowviewmodelsresources">Controls.ImageProceFlow.ViewModels.Resources</h2>
+<h3 id="cameracalibrationviewmodel相机标定控件视图模型">CameraCalibrationViewModel（相机标定控件视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>重置</td>
+<td><code>ResetCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="handeyecalibrationviewmodel手眼标定控件视图模型">HandEyeCalibrationViewModel（手眼标定控件视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>重置</td>
+<td><code>ResetCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controlsimageproceflowviewmodelstools">Controls.ImageProceFlow.ViewModels.Tools</h2>
+<h3 id="posegenerationviewmodel位姿生成控件视图模型">PoseGenerationViewModel（位姿生成控件视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态切换</td>
+<td><code>StateSwitchCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scriptexecutionviewmodel脚本执行控件视图模型">ScriptExecutionViewModel（脚本执行控件视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态切换</td>
+<td><code>StateSwitchCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>代码文本编辑</td>
+<td><code>CodeTextEditCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controlsinteractivedataflow">Controls.InteractiveDataFlow</h2>
+<h3 id="modulesviewmodelbase模块的视图模型基类">ModulesViewModelBase（模块的视图模型基类）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>连接状态切换</td>
+<td><code>StateSwitchCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>停止任务</td>
+<td><code>StopTaskCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除控件</td>
+<td><code>DeleteControlsCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>启动任务</td>
+<td><code>StartTaskCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开 Popup</td>
+<td><code>OpenPopupCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>清除内容</td>
+<td><code>ClearContentCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开数据交换</td>
+<td><code>OpenDataExchangeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelspages">ViewModels.Pages</h2>
+<h3 id="allconfigurationviewmodel所有参数配置页面视图模型">AllConfigurationViewModel（所有参数配置页面视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>打开设置窗口</td>
+<td><code>OpenSettingWindowCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="historynotificationsviewmodel历史通知页面视图模型">HistoryNotificationsViewModel（历史通知页面视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>导出</td>
+<td><code>ExportCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="homeviewmodel首页视图模型">HomeViewModel（首页视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录</td>
+<td><code>LogInCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>棱镜对话</td>
+<td><code>PrismaAgentCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>切换 Ipc 服务状态</td>
+<td><code>ToggleIpcServiceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="settingsviewmodel设置页面视图模型">SettingsViewModel（设置页面视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发送邮件</td>
+<td><code>SendMailCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开日志文件夹</td>
+<td><code>OpenLogFolderCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>刷新组件</td>
+<td><code>RefreshComponentCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="updatesettingsviewmodel在线更新设置视图模型">UpdateSettingsViewModel（在线更新设置视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>检查更新</td>
+<td><code>CheckCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>下载更新</td>
+<td><code>DownloadCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>取消下载</td>
+<td><code>CancelDownloadCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>立即安装并重启</td>
+<td><code>InstallNowCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>放弃本次更新</td>
+<td><code>DiscardCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelspagesdataacquisition">ViewModels.Pages.DataAcquisition</h2>
+<h3 id="dataacquisitionworkbenchviewmodel构建运行工作台页面视图模型">DataAcquisitionWorkbenchViewModel（构建运行工作台页面视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>打开调试信息窗口</td>
+<td><code>OpenDebugInfoCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>卸载程序集</td>
+<td><code>UnloadAssemblyCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>生成程序集的 DLL</td>
+<td><code>GenerateAssemblyCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>刷新程序集加载信息</td>
+<td><code>RefreshLoadedAssemblyInfoCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>启动所有实例</td>
+<td><code>StartAllInstancesCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>停止所有实例</td>
+<td><code>StopAllInstancesCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>热重载</td>
+<td><code>HotReloadCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>刷新数据源</td>
+<td><code>RefreshDataSourceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>卸载所有程序集</td>
+<td><code>UnloadAllAssembliesCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开构建设置</td>
+<td><code>OpenBuildSettingCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开 MAS Code</td>
+<td><code>MASCodeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>程序集</td>
+<td><code>AssemblyCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelspagesdatabase">ViewModels.Pages.Database</h2>
+<h3 id="entityqueryviewmodel实体查询页面视图模型">EntityQueryViewModel（实体查询页面视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择 DLL 文件</td>
+<td><code>SelectDllFilesCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开解析信息</td>
+<td><code>OpenParseInfoCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除关联</td>
+<td><code>RemoveLinkCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>刷新实例</td>
+<td><code>RefreshInstancesCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>添加查询条件</td>
+<td><code>AddConditionCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>清除全部条件</td>
+<td><code>ClearAllConditionsCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除条件</td>
+<td><code>RemoveConditionCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>单表查询</td>
+<td><code>SingleTableQueryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择数据库实例</td>
+<td><code>SelectDbInstanceCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>导出数据</td>
+<td><code>ExportDataCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除数据</td>
+<td><code>DeleteDataCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>SQL 查询</td>
+<td><code>SqlQueryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="queryassetviewmodel查询资产视图模型">QueryAssetViewModel（查询资产视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>导入预设</td>
+<td><code>ImportPresetsCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>导出预设命令（把某个分类还原为 MD 文件）</td>
+<td><code>ExportPresetCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择查询</td>
+<td><code>SelectQueryCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>导出数据</td>
+<td><code>ExportDataCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>SQL 查询</td>
+<td><code>SqlQueryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>更新数据库</td>
+<td><code>UpdateDatabaseCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>编辑预设命令（把某个分类转为 MD 放入编辑器）</td>
+<td><code>EditPresetCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除预设</td>
+<td><code>DeletePresetCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>复制键</td>
+<td><code>CopyKeyCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelspagesdynamicviews">ViewModels.Pages.DynamicViews</h2>
+<h3 id="dynamicviewsworkbenchviewmodel动态视图页面视图模型">DynamicViewsWorkbenchViewModel（动态视图页面视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>设计器模式</td>
+<td><code>DesignPatternsCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开数据中心</td>
+<td><code>OpenDataCenterCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开变量监控</td>
+<td><code>OpenVariableMonitorCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开设备中心</td>
+<td><code>OpenDeviceCenterCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开配方管理</td>
+<td><code>OpenRecipeCenterCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开多语言管理</td>
+<td><code>OpenLanguageCenterCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>切换运行状态</td>
+<td><code>StateSwitchCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开调试信息窗口</td>
+<td><code>OpenDebugInfoCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开脚本代码</td>
+<td><code>OpenScriptCodeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>在窗口中运行的</td>
+<td><code>RunInWindowCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>将动态视图内容从独立运行窗口收回页面的</td>
+<td><code>ReturnFromRunWindowCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelspagesecharts">ViewModels.Pages.ECharts</h2>
+<h3 id="chartassetviewmodel图表资产视图模型">ChartAssetViewModel（图表资产视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host 状态切换</td>
+<td><code>StateSwitchCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>在标准内置窗口打开资产</td>
+<td><code>OpenInWindowCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>无边框全屏打开资产</td>
+<td><code>OpenBorderlessCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>浏览器打开</td>
+<td><code>OpenInBrowserCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>复制局域网链接</td>
+<td><code>CopyLanLinkCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>验证</td>
+<td><code>ValidateCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>用 MAS Code 编辑资产目录</td>
+<td><code>EditAssetCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>注销（软删除）</td>
+<td><code>UnregisterCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>恢复</td>
+<td><code>RestoreCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>永久删除</td>
+<td><code>DeleteCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>刷新资产列表</td>
+<td><code>RefreshCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>扫描并注册</td>
+<td><code>ScanAndRegisterCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>更新数据库</td>
+<td><code>UpdateDatabaseCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>复制数据库实例键</td>
+<td><code>CopyKeyCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="playgroundviewmodel操场页面视图模型">PlaygroundViewModel（操场页面视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建</td>
+<td><code>CreationCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelspagespathplanning">ViewModels.Pages.PathPlanning</h2>
+<h3 id="pathplanningworkbenchviewmodel路径规划工作台视图模型">PathPlanningWorkbenchViewModel（路径规划工作台视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>刷新解析</td>
+<td><code>RefreshParsingCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开脚本代码</td>
+<td><code>OpenScriptCodeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>图层定位</td>
+<td><code>LocationLayerCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>触发</td>
+<td><code>TriggerCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>切换状态</td>
+<td><code>StateSwitchCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>热重载</td>
+<td><code>HotReloadCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开调试信息窗口</td>
+<td><code>OpenDebugInfoCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>标定坐标</td>
+<td><code>CalibrationCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>轨迹查看/生成</td>
+<td><code>TrajectoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>轨迹动画</td>
+<td><code>TrajectoryAnimationCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>切换可见性</td>
+<td><code>ToggleVisibilityCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>性能分析</td>
+<td><code>PerformanceAnalysisCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择新配方图纸</td>
+<td><code>BrowseNewRecipeDxfCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>创建配方</td>
+<td><code>CreateRecipeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>放弃新增配方</td>
+<td><code>CancelRecipeCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>切换配方</td>
+<td><code>SwitchRecipeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>克隆配方</td>
+<td><code>DuplicateRecipeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>更换配方图纸</td>
+<td><code>ReplaceRecipeDrawingCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除配方</td>
+<td><code>DeleteRecipeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>解绑标定配方</td>
+<td><code>UnbindCalibrationCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开配方关联图纸所在位置</td>
+<td><code>OpenRecipeDxfLocationCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开配方文件夹</td>
+<td><code>OpenRecipeFolderCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>轨迹生成参数</td>
+<td><code>TrajectoryParametersCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>轨迹重新生成</td>
+<td><code>RegenerateTrajectoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>另存为表格</td>
+<td><code>SaveAsTableCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>G 代码</td>
+<td><code>GCodeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>关闭轨迹区</td>
+<td><code>CloseTrajectoryCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>点位编辑</td>
+<td><code>PointEditorCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除点位</td>
+<td><code>DeletePointCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>展开扩展点新增表单</td>
+<td><code>AddExtendedPointCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>保存扩展点</td>
+<td><code>SaveExtendedPointCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>放弃扩展点新增</td>
+<td><code>CancelExtendedPointCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除扩展点</td>
+<td><code>DeleteExtendedPointCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>定位</td>
+<td><code>LocateCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>标记</td>
+<td><code>MarkCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelspagesutilities">ViewModels.Pages.Utilities</h2>
+<h3 id="asciiconversionviewmodelascii转换工具页面视图模型">AsciiConversionViewModel（ASCII转换工具页面视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>添加到历史</td>
+<td><code>AddToHistoryCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>复制内容</td>
+<td><code>CopyContentCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="wordprinterviewmodelword-打印视图模型">WordPrinterViewModel（Word 打印视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>刷新打印机列表</td>
+<td><code>RefreshPrintersCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择打印机</td>
+<td><code>SelectPrinterCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择文件</td>
+<td><code>SelectWordFilesCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开文件</td>
+<td><code>OpenFileCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除关联</td>
+<td><code>RemoveLinkCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打印</td>
+<td><code>PrintCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>替换</td>
+<td><code>ReplacementCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>存档打印</td>
+<td><code>DocumentPrintCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>热重载</td>
+<td><code>HotReloadCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开调试信息窗口</td>
+<td><code>OpenDebugInfoCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>切换状态</td>
+<td><code>StateSwitchCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>触发</td>
+<td><code>TriggerCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开脚本代码</td>
+<td><code>OpenScriptCodeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>路径浏览</td>
+<td><code>BrowseCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开路径</td>
+<td><code>OpenCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>刷新打印历史</td>
+<td><code>RefreshPrintHistoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开历史</td>
+<td><code>OpenHistoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打印历史</td>
+<td><code>PrintHistoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除历史</td>
+<td><code>DeleteHistoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelspagesvision">ViewModels.Pages.Vision</h2>
+<h3 id="visionmasterviewmodelvisionmaster-视图模型">VisionMasterViewModel（VisionMaster 视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启动进程</td>
+<td><code>StartProcessCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="visionworkbenchviewmodel视觉工作台视图模型">VisionWorkbenchViewModel（视觉工作台视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>打开调试信息窗口</td>
+<td><code>OpenDebugInfoCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>切换状态</td>
+<td><code>StateSwitchCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>拓扑</td>
+<td><code>TopologyCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>初始化管道</td>
+<td><code>InitializePipelineCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>触发管道</td>
+<td><code>TriggerPipelineCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开管道信息弹出窗口</td>
+<td><code>OpenPipelineInfoPopupCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除管道</td>
+<td><code>DeletePipelineCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>定位模块</td>
+<td><code>LocationModuleCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>初始化管道</td>
+<td><code>InitializationCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开代码编辑弹出窗口</td>
+<td><code>OpenEditCodePopupCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>查看资源</td>
+<td><code>ViewResourcesCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>复制管道 Id</td>
+<td><code>CopyPipelineIdCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelswindows">ViewModels.Windows</h2>
+<h3 id="codeeditorviewmodel代码编辑窗口视图模型">CodeEditorViewModel（代码编辑窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建文件</td>
+<td><code>CreateNewCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开文件</td>
+<td><code>OpenFileCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>文件保存</td>
+<td><code>FileSaveCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>文件另存为</td>
+<td><code>FileSaveAsCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>退出</td>
+<td><code>ExitCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="concisecodeeditorviewmodel代码编辑窗口视图模型">ConciseCodeEditorViewModel（代码编辑窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>检测保存</td>
+<td><code>CheckAndSaveCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="debugoutputviewmodel调试信息输出窗口视图模型">DebugOutputViewModel（调试信息输出窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>清空消息</td>
+<td><code>ClearMessageCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>ExportCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="globalstoragepathsetviewmodel全局存储路径设置窗口视图模型">GlobalStoragePathSetViewModel（全局存储路径设置窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>浏览</td>
+<td><code>BrowseCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开</td>
+<td><code>OpenCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>确认（继承自 SetViewModelBase）</td>
+<td><code>ConfirmCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="initializationviewmodel应用程序初始化向导窗口视图模型">InitializationViewModel（应用程序初始化向导窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关闭窗口</td>
+<td><code>CloseWindowCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td><code>NextCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>上一步</td>
+<td><code>BackCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>跳过当前步骤</td>
+<td><code>SkipCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>完成</td>
+<td><code>CompleteCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>执行步骤中的逻辑</td>
+<td><code>ExecuteStepCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mainviewmodel主页窗口视图模型">MainViewModel（主页窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录</td>
+<td><code>LogInCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="projectclosecheckviewmodel项目关闭检查窗口视图模型">ProjectCloseCheckViewModel（项目关闭检查窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>确认</td>
+<td><code>ConfirmCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>丢弃所有</td>
+<td><code>DiscardAllCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelswindowsbuid">ViewModels.Windows.Buid</h2>
+<h3 id="assemblyviewmodel程序集窗口视图模型">AssemblyViewModel（程序集窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>导出</td>
+<td><code>ExportCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>刷新</td>
+<td><code>RefreshCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelswindowscommunication">ViewModels.Windows.Communication</h2>
+<h3 id="dataexchangeviewmodel定义数据交换窗口的视图模型">DataExchangeViewModel（定义数据交换窗口的视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编辑数据读取任务</td>
+<td><code>EditDataReadTaskCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除数据读取任务</td>
+<td><code>DeleteDataReadTaskCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>刷新数据读取任务</td>
+<td><code>RefreshDataReadCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>添加数据读取任务</td>
+<td><code>AddDataReadsCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开数据读取存放路径</td>
+<td><code>OpenDataReadLocationCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除构建目录</td>
+<td><code>DeleteBuildDirectoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="inputdialogviewmodel输入会话窗口视图模型">InputDialogViewModel（输入会话窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>确认</td>
+<td><code>ConfirmCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelswindowsdataexport">ViewModels.Windows.DataExport</h2>
+<h3 id="dataexchangeviewmodel定义数据导出窗口的视图模型">DataExchangeViewModel（定义数据导出窗口的视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>刷新</td>
+<td><code>RefreshCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>编辑脚本</td>
+<td><code>EditScriptCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开实数据访问目录</td>
+<td><code>OpenDirectoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删目录</td>
+<td><code>DeleteDirectoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dataexportsetviewmodel数据导出设置视图模型">DataExportSetViewModel（数据导出设置视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择数据导出路径文件</td>
+<td><code>SelectExportPathCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开保存数据导出的文件夹</td>
+<td><code>OpenExportFolderCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择数据备份路径文件</td>
+<td><code>SelectBackupPathCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开保存数据备份的文件夹</td>
+<td><code>OpenBackupFolderCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>创建数据导出实例</td>
+<td><code>CreateDataExportInstanceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除实例</td>
+<td><code>RemoveInstanceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开实例导出文件夹</td>
+<td><code>OpenInstancesExprotFolderCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开实例备份文件夹</td>
+<td><code>OpenInstancesBackupFolderCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelswindowsdatabase">ViewModels.Windows.Database</h2>
+<h3 id="dataexchangeviewmodel定义数据交换窗口的视图模型-1">DataExchangeViewModel（定义数据交换窗口的视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编辑实体</td>
+<td><code>EditEntityCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>编辑仓储</td>
+<td><code>EditRepositoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>编辑映射器</td>
+<td><code>EditMapperCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开实数据访问目录</td>
+<td><code>OpenDataAccessDirCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>刷新</td>
+<td><code>RefreshCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删数据访问目录</td>
+<td><code>DeleteDataAccessDirCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="databasesetviewmodel数据库设置窗口视图模型">DatabaseSetViewModel（数据库设置窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建的数据库实例测试连接</td>
+<td><code>TestDbInstanceConnectCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>创建数据库实例</td>
+<td><code>CreateDbInstanceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除实例</td>
+<td><code>RemoveInstanceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>复制键</td>
+<td><code>CopyKeyCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="globaldatabasesetviewmodel全局数据库设置窗口视图模型">GlobalDatabaseSetViewModel（全局数据库设置窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>确认（继承自 SetViewModelBase）</td>
+<td><code>ConfirmCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelswindowsdynamicviews">ViewModels.Windows.DynamicViews</h2>
+<h3 id="dynamicviewbrushcenterviewmodel动态视图画刷中心视图模型">DynamicViewBrushCenterViewModel（动态视图画刷中心视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增画刷弹窗</td>
+<td><code>BrushPopupCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除自定义画刷</td>
+<td><code>RemoveBrushCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>同步画刷数据到内存</td>
+<td><code>SyncProjectToMemoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dynamicviewdatacenterviewmodel动态视图数据中心视图模型">DynamicViewDataCenterViewModel（动态视图数据中心视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>添加结构体</td>
+<td><code>AddStructCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除变量</td>
+<td><code>RemoveCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>添加字段</td>
+<td><code>AddFieldCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除字段</td>
+<td><code>RemoveFieldCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>同步工程数据到内存</td>
+<td><code>SyncProjectToMemoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>检查</td>
+<td><code>CheckCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>ExportCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>用于将当前选中字段向上移动一个位置的</td>
+<td><code>MoveFieldUpCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>用于将当前选中字段向下移动一个位置的</td>
+<td><code>MoveFieldDownCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>用于移动字段的</td>
+<td><code>MoveFieldCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>复制结构体</td>
+<td><code>CopyStructCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>导出所有</td>
+<td><code>ExportAllCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>报警弹窗</td>
+<td><code>AlarmPopupCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>添加配方引用</td>
+<td><code>AddRecipeReferenceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除配方引用</td>
+<td><code>RemoveRecipeReferenceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>跳转到引用结构体</td>
+<td><code>JumpToRecipeReferenceCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>测试语音播报</td>
+<td><code>TestSpeechCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dynamicviewdesignerviewmodel动态视图设计器窗口的视图模型">DynamicViewDesignerViewModel（动态视图设计器窗口的视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同步视图工程数据到内存</td>
+<td><code>SyncProjectToMemoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开数据中心</td>
+<td><code>OpenDataCenterCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开画刷中心</td>
+<td><code>OpenBrushCenterCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开帮助</td>
+<td><code>OpenHelpCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择变量</td>
+<td><code>SelectVariableCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择绑定变量</td>
+<td><code>SelectBindingVariableCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择图标</td>
+<td><code>SelectIconCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>新增变量操作</td>
+<td><code>AddVariableOperationCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>移除变量操作</td>
+<td><code>RemoveVariableOperationCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择窗口控制绑定</td>
+<td><code>SelectWindowBindingCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择窗口数值控制绑定</td>
+<td><code>SelectWindowNumericBindingCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择页面数值控制绑定</td>
+<td><code>SelectPageNumericBindingCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>多语言中心</td>
+<td><code>OpenLanguageCenterCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dynamicviewdevicecenterviewmodel设备中心视图模型">DynamicViewDeviceCenterViewModel（设备中心视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>添加设备</td>
+<td><code>AddDeviceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除设备</td>
+<td><code>RemoveDeviceCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>添加通道</td>
+<td><code>AddChannelCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除通道</td>
+<td><code>RemoveChannelCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>同步工程数据到内存</td>
+<td><code>SyncProjectToMemoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>检查</td>
+<td><code>CheckCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>ExportCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择变量</td>
+<td><code>SelectVariableCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dynamicviewlanguageviewmodel多语言管理面板视图模型">DynamicViewLanguageViewModel（多语言管理面板视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同步工程数据到内存</td>
+<td><code>SyncProjectToMemoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>选择分类</td>
+<td><code>SelectCatalogCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dynamicviewrecipecenterviewmodel动态视图配方管理视图模型">DynamicViewRecipeCenterViewModel（动态视图配方管理视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>刷新配方列表</td>
+<td><code>RefreshCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>保存为新配方</td>
+<td><code>SaveAsCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>覆盖保存选中配方</td>
+<td><code>OverwriteCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>装载配方</td>
+<td><code>LoadRecipeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>复制配方</td>
+<td><code>CopyCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>重命名配方</td>
+<td><code>RenameCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除配方</td>
+<td><code>DeleteCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>编辑弹窗</td>
+<td><code>EditorCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>打开配方值更改弹窗</td>
+<td><code>ChangeValueCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>确认写入新值</td>
+<td><code>ConfirmChangeValueCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>取消配方值更改</td>
+<td><code>CancelChangeValueCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>恢复字段默认值</td>
+<td><code>RestoreDefaultValueCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dynamicviewvariablemonitorviewmodel动态视图结构体变量监视视图模型">DynamicViewVariableMonitorViewModel（动态视图结构体变量监视视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>打开当前值更改弹出框</td>
+<td><code>ChangeCurrentValueCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>确认写入新值</td>
+<td><code>ConfirmChangeValueCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>取消当前值更改</td>
+<td><code>CancelChangeValueCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>恢复默认值</td>
+<td><code>RestoreDefaultValueCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quickloginviewmodel运行窗口快速登录视图模型">QuickLoginViewModel（运行窗口快速登录视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录命令（已登录时即切换用户）</td>
+<td><code>LogInCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>登出</td>
+<td><code>LogOutCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="selecticonviewmodel">SelectIconViewModel</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择图标</td>
+<td><code>IconSelectedCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelswindowspathplanning">ViewModels.Windows.PathPlanning</h2>
+<h3 id="calibrationviewmodel坐标标定窗口视图模型">CalibrationViewModel（坐标标定窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>更新标定可视化</td>
+<td><code>UpdateCalibrationVisuaCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>新增配方</td>
+<td><code>NewRecipeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>保存配方</td>
+<td><code>SaveRecipeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>删除配方</td>
+<td><code>DeleteRecipeCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>确定新配方</td>
+<td><code>ConfirmNewRecipeCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>取消新配方</td>
+<td><code>CancelNewRecipeCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>参数校验</td>
+<td><code>ParameterValidationCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>更新标定验证列表</td>
+<td><code>UpdateCombinedVerifyCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>导出标定轨迹的验证列表</td>
+<td><code>ExportCoordinateTrajectoryCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>世界标定点位定位</td>
+<td><code>WorldPointPositioningCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>目标标定点位定位</td>
+<td><code>TargetPointPositioningCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>更新矩阵健康度</td>
+<td><code>UpdateMatrixHealthCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pointeditorviewmodel点编辑窗口视图模型">PointEditorViewModel（点编辑窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>删除点位</td>
+<td><code>DeletePointCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trajectoryparameterssetviewmodel轨迹生成参数设置窗口视图模型">TrajectoryParametersSetViewModel（轨迹生成参数设置窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>恢复默认参数</td>
+<td><code>RestoreDefaultCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>同步原点到原点参数</td>
+<td><code>SyncMatchOriginCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="viewmodelswindowsprivilege">ViewModels.Windows.Privilege</h2>
+<h3 id="changepasswordviewmodel修改密码窗口视图模型">ChangePasswordViewModel（修改密码窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>修改密码</td>
+<td><code>ChangePasswordCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="createuserviewmodel创建用户窗口视图模型">CreateUserViewModel（创建用户窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建用户</td>
+<td><code>CreateUserCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dashboardviewmodel仪表盘窗口视图模型">DashboardViewModel（仪表盘窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>修改密码</td>
+<td><code>ChangePasswordCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>退出登录</td>
+<td><code>LogOutCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>分配角色</td>
+<td><code>AssignRoleCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>密码操作</td>
+<td><code>PasswordCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>添加用户</td>
+<td><code>AddUserCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="loginviewmodel登录窗口视图模型">LoginViewModel（登录窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录</td>
+<td><code>LoginCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>注册</td>
+<td><code>SignUpCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>随机用户名</td>
+<td><code>RandomUsernameCommand</code></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="roleassignmentviewmodel角色分配窗口视图模型">RoleAssignmentViewModel（角色分配窗口视图模型）</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th style="text-align: center;">未登录</th>
+<th style="text-align: center;">游客</th>
+<th style="text-align: center;">操作员</th>
+<th style="text-align: center;">工程师</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">开发者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>角色分配</td>
+<td><code>AssignRoleCommand</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS-Security/CommandPermissions.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
