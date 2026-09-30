@@ -153,6 +153,51 @@ Class DynamicViewProjectModelExtensions  <a class="header-action link-secondary"
 </h2>
 
 
+  <a id="MAS_DynamicViews_DynamicViewProjectModelExtensions_FindStructure_" data-uid="MAS.DynamicViews.DynamicViewProjectModelExtensions.FindStructure*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewProjectModelExtensions_FindStructure_MAS_DynamicViews_DynamicViewProjectModel_System_String_" data-uid="MAS.DynamicViews.DynamicViewProjectModelExtensions.FindStructure(MAS.DynamicViews.DynamicViewProjectModel,System.String)">
+  FindStructure(DynamicViewProjectModel, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/DynamicViewProjectModelExtensions.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据名称获取结构体变量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DynamicViewVariableModel? FindStructure(this DynamicViewProjectModel project, string? structureName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>project</code> <a class="xref" href="MAS.DynamicViews.DynamicViewProjectModel.html">DynamicViewProjectModel</a></dt>
+    <dd><p>动态界面工程模型</p>
+</dd>
+    <dt><code>structureName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>结构体名称，不区分大小写</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewVariableModel.html">DynamicViewVariableModel</a></dt>
+    <dd><p>匹配的结构体；未找到时返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewProjectModelExtensions_FindStructure_MAS_DynamicViews_DynamicViewProjectModel_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>结构体的唯一标识是创建时生成的 GUID，业务模块无法事先知道；名称由使用者约定，适合作为跨模块的寻址方式</p>
+</div>
+
+
+
+
   <a id="MAS_DynamicViews_DynamicViewProjectModelExtensions_GetContent_" data-uid="MAS.DynamicViews.DynamicViewProjectModelExtensions.GetContent*"></a>
 
   <h3 id="MAS_DynamicViews_DynamicViewProjectModelExtensions_GetContent_MAS_DynamicViews_DynamicViewProjectModel_System_String_" data-uid="MAS.DynamicViews.DynamicViewProjectModelExtensions.GetContent(MAS.DynamicViews.DynamicViewProjectModel,System.String)">

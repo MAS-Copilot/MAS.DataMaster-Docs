@@ -125,6 +125,9 @@ Enum DynamicViewVariableUsage  <a class="header-action link-secondary" title="Vi
   <div>
       <a class="xref" href="MAS.SharedLibrary.EnumDisplayNameExtensions.html#MAS_SharedLibrary_EnumDisplayNameExtensions_GetDisplayName_System_Enum_">EnumDisplayNameExtensions.GetDisplayName(Enum)</a>
   </div>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
   </dd></dl>
 
   <h2 id="fields">Fields
@@ -137,6 +140,12 @@ Enum DynamicViewVariableUsage  <a class="header-action link-secondary" title="Vi
     <dt id="MAS_DynamicViews_DynamicViewVariableUsage_Internal"><code>Internal = 3</code></dt>
   <dd><p>内部结构体</p>
 <p>不参与通讯链路，读写只发生在本机内存，行为其余与 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableUsage.html#MAS_DynamicViews_DynamicViewVariableUsage_Normal">Normal</a> 一致</p>
+</dd>
+  
+    <dt id="MAS_DynamicViews_DynamicViewVariableUsage_Module"><code>Module = 5</code></dt>
+  <dd><p>模块结构体。</p>
+<p>由业务模块通过 <a class="xref" href="MAS.DynamicViews.IDynamicViewModuleProvider.html">IDynamicViewModuleProvider</a> 提供定义，
+不参与通讯，主要用于业务模块向界面提供状态数据</p>
 </dd>
   
     <dt id="MAS_DynamicViews_DynamicViewVariableUsage_Normal"><code>Normal = 0</code></dt>

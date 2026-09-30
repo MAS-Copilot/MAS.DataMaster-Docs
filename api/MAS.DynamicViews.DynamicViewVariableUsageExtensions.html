@@ -157,10 +157,10 @@ Class DynamicViewVariableUsageExtensions  <a class="header-action link-secondary
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableUsageExtensions_IsCommunicated_MAS_DynamicViews_DynamicViewVariableUsage_" data-uid="MAS.DynamicViews.DynamicViewVariableUsageExtensions.IsCommunicated(MAS.DynamicViews.DynamicViewVariableUsage)">
   IsCommunicated(DynamicViewVariableUsage)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/DynamicViewVariableUsageExtensions.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/DynamicViewVariableUsageExtensions.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断该用法的结构体是否参与通讯链路</p>
+  <div class="markdown level1 summary"><p>判断指定用法的结构体是否参与通讯</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -188,10 +188,6 @@ Class DynamicViewVariableUsageExtensions  <a class="header-action link-secondary
 
 
 
-  <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableUsageExtensions_IsCommunicated_MAS_DynamicViews_DynamicViewVariableUsage__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>内部结构体只存在于本机内存，既不被轮询读取，也不写往下位机；
-其余用法都需要挂在通讯通道上才能收发数据</p>
-</div>
 
 
 
@@ -200,10 +196,10 @@ Class DynamicViewVariableUsageExtensions  <a class="header-action link-secondary
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableUsageExtensions_IsDataStructure_MAS_DynamicViews_DynamicViewVariableUsage_" data-uid="MAS.DynamicViews.DynamicViewVariableUsageExtensions.IsDataStructure(MAS.DynamicViews.DynamicViewVariableUsage)">
   IsDataStructure(DynamicViewVariableUsage)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/DynamicViewVariableUsageExtensions.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Extensions/DynamicViewVariableUsageExtensions.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断该用法的结构体是否为自定义数据结构体</p>
+  <div class="markdown level1 summary"><p>判断指定用法的结构体是否为自定义数据结构体</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -221,7 +217,7 @@ Class DynamicViewVariableUsageExtensions  <a class="header-action link-secondary
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是自定义数据结构体返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；否则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+    <dd><p>属于自定义数据结构体返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；否则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
 </dd>
   </dl>
 
@@ -232,8 +228,7 @@ Class DynamicViewVariableUsageExtensions  <a class="header-action link-secondary
 
 
   <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableUsageExtensions_IsDataStructure_MAS_DynamicViews_DynamicViewVariableUsage__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>普通结构体与内部结构体的字段布局都由用户自定义，可用于数据绑定、也可被配方引用；
-配方与报警结构体的字段布局固定，不属于此类</p>
+  <div class="markdown level1 remarks"><p>普通结构体和内部结构体的字段布局由用户自定义</p>
 </div>
 
 

@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DXFStatusSnapshot | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DXFStatusSnapshot | DataMaster ">
+      
+      <meta name="description" content="DXF 模块状态快照">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_PathPlanning_DXFStatusSnapshot.md&amp;value=---%0Auid%3A%20MAS.PathPlanning.DXFStatusSnapshot%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.PathPlanning.DXFStatusSnapshot">
+
+
+
+  <h1 id="MAS_PathPlanning_DXFStatusSnapshot" data-uid="MAS.PathPlanning.DXFStatusSnapshot" class="text-break">
+Class DXFStatusSnapshot  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.PathPlanning.html">PathPlanning</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.PathPlanning.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>DXF 模块状态快照</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed record DXFStatusSnapshot : IEquatable&lt;DXFStatusSnapshot&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">DXFStatusSnapshot</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="MAS.PathPlanning.DXFStatusSnapshot.html">DXFStatusSnapshot</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_PathPlanning_DXFStatusSnapshot_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>成员名称对应动态视图内部结构体的字段名称，按需创建所需字段即可。
+枚举和整数使用 <code>Int16</code>/<code>Int32</code>，布尔值使用 <code>Bool</code>，小数使用 <code>Double</code>，文本使用 <code>String</code></p>
+</div>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_READY_CALIBRATION_MISSING" data-uid="MAS.PathPlanning.DXFStatusSnapshot.READY_CALIBRATION_MISSING">
+  READY_CALIBRATION_MISSING
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配方绑定的标定已不存在</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string READY_CALIBRATION_MISSING = &quot;CalibrationMissing&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_READY_NO_CALIBRATION" data-uid="MAS.PathPlanning.DXFStatusSnapshot.READY_NO_CALIBRATION">
+  READY_NO_CALIBRATION
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配方没有绑定标定</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string READY_NO_CALIBRATION = &quot;NoCalibration&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_READY_NO_RECIPE" data-uid="MAS.PathPlanning.DXFStatusSnapshot.READY_NO_RECIPE">
+  READY_NO_RECIPE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配方尚未激活</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string READY_NO_RECIPE = &quot;NoRecipe&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_READY_NO_TRAJECTORY" data-uid="MAS.PathPlanning.DXFStatusSnapshot.READY_NO_TRAJECTORY">
+  READY_NO_TRAJECTORY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配方还没有任何图层生成过轨迹</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string READY_NO_TRAJECTORY = &quot;NoTrajectory&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_CalibrationRecipe_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.CalibrationRecipe*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_CalibrationRecipe" data-uid="MAS.PathPlanning.DXFStatusSnapshot.CalibrationRecipe">
+  CalibrationRecipe
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前配方绑定的标定配方名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CalibrationRecipe { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_ConsecutiveErrorCount_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.ConsecutiveErrorCount*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_ConsecutiveErrorCount" data-uid="MAS.PathPlanning.DXFStatusSnapshot.ConsecutiveErrorCount">
+  ConsecutiveErrorCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取连续失败次数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ConsecutiveErrorCount { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_GeneratedLayerCount_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.GeneratedLayerCount*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_GeneratedLayerCount" data-uid="MAS.PathPlanning.DXFStatusSnapshot.GeneratedLayerCount">
+  GeneratedLayerCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L161"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前配方已生成轨迹的图层数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GeneratedLayerCount { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_Heartbeat_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.Heartbeat*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_Heartbeat" data-uid="MAS.PathPlanning.DXFStatusSnapshot.Heartbeat">
+  Heartbeat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取心跳计数，每次发布递增；长时间不变表示模块可能已停止或卡死</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Heartbeat { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_IsCalibration3D_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsCalibration3D*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_IsCalibration3D" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsCalibration3D">
+  IsCalibration3D
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取绑定的标定是否为 3D</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCalibration3D { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_IsCalibrationExists_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsCalibrationExists*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_IsCalibrationExists" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsCalibrationExists">
+  IsCalibrationExists
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取绑定的标定是否存在</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCalibrationExists { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_IsFaulted_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsFaulted*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_IsFaulted" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsFaulted">
+  IsFaulted
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取脚本是否处于故障重试中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFaulted { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_IsLayerGenerated_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsLayerGenerated*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_IsLayerGenerated" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsLayerGenerated">
+  IsLayerGenerated
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L185"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前图层是否已生成轨迹</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLayerGenerated { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_IsLayerModified_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsLayerModified*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_IsLayerModified" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsLayerModified">
+  IsLayerModified
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前图层的点位是否存在手动修改、新增或解析得到的点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLayerModified { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_IsLayerSimulated_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsLayerSimulated*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_IsLayerSimulated" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsLayerSimulated">
+  IsLayerSimulated
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前图层的点位是否已模拟确认</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLayerSimulated { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_IsReady_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsReady*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_IsReady" data-uid="MAS.PathPlanning.DXFStatusSnapshot.IsReady">
+  IsReady
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前配方是否具备运行条件：已绑定存在的标定，且至少有一个图层生成过轨迹</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsReady { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_LastError_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastError*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_LastError" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastError">
+  LastError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次失败的异常消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[MaxLength(512)]
+public string LastError { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_LastErrorAt_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastErrorAt*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_LastErrorAt" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastErrorAt">
+  LastErrorAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次失败的时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LastErrorAt { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_LastTask_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastTask*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_LastTask" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastTask">
+  LastTask
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取脚本通过 <a class="xref" href="MAS.PathPlanning.DXFStatusReporter.html#MAS_PathPlanning_DXFStatusReporter_Report_System_String_System_Boolean_System_String_">Report(string, bool, string?)</a> 报告的最近一次任务名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LastTask { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_LastTaskAt_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastTaskAt*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_LastTaskAt" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastTaskAt">
+  LastTaskAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次任务的时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LastTaskAt { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_LastTaskMessage_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastTaskMessage*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_LastTaskMessage" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastTaskMessage">
+  LastTaskMessage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次任务的说明</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[MaxLength(512)]
+public string LastTaskMessage { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_LastTaskOk_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastTaskOk*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_LastTaskOk" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LastTaskOk">
+  LastTaskOk
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次任务是否成功</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool LastTaskOk { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_Layer_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.Layer*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_Layer" data-uid="MAS.PathPlanning.DXFStatusSnapshot.Layer">
+  Layer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取运行期激活的图层名称，未激活为空</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Layer { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_LayerPointCount_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LayerPointCount*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_LayerPointCount" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LayerPointCount">
+  LayerPointCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前图层的点数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LayerPointCount { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_LayerTotalLength_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LayerTotalLength*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_LayerTotalLength" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LayerTotalLength">
+  LayerTotalLength
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前图层轨迹总长度，单位毫米，保留三位小数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double LayerTotalLength { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_LayerUpdatedAt_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LayerUpdatedAt*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_LayerUpdatedAt" data-uid="MAS.PathPlanning.DXFStatusSnapshot.LayerUpdatedAt">
+  LayerUpdatedAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L215"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前图层轨迹的最后更新时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LayerUpdatedAt { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_ReadyReason_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.ReadyReason*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_ReadyReason" data-uid="MAS.PathPlanning.DXFStatusSnapshot.ReadyReason">
+  ReadyReason
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L173"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取不具备运行条件的原因代码（<code>READY_*</code> 常量），具备时为空</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ReadyReason { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_RecipeCode_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeCode*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_RecipeCode" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeCode">
+  RecipeCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前配方编号，未激活为空</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string RecipeCode { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_RecipeCount_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeCount*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_RecipeCount" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeCount">
+  RecipeCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取配方总数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RecipeCount { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_RecipeLayerCount_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeLayerCount*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_RecipeLayerCount" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeLayerCount">
+  RecipeLayerCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前配方的图层总数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RecipeLayerCount { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_RecipeListJson_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeListJson*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_RecipeListJson" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeListJson">
+  RecipeListJson
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L221"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取全部配方的 JSON 数组，元素含 <code>code</code>、<code>name</code>、<code>calibration</code>、<code>layerCount</code>、<code>generatedLayerCount</code>，供前端做配方列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[MaxLength(8192)]
+public string RecipeListJson { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_RecipeName_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeName*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_RecipeName" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeName">
+  RecipeName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前配方名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string RecipeName { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_RunState_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RunState*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_RunState" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RunState">
+  RunState
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取脚本任务运行状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RunState RunState { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Models.RunState.html">RunState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_TotalErrorCount_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.TotalErrorCount*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_TotalErrorCount" data-uid="MAS.PathPlanning.DXFStatusSnapshot.TotalErrorCount">
+  TotalErrorCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取自本次启动以来累计失败次数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TotalErrorCount { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_UpdatedAt_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.UpdatedAt*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_UpdatedAt" data-uid="MAS.PathPlanning.DXFStatusSnapshot.UpdatedAt">
+  UpdatedAt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取本快照的生成时间，格式 <code>yyyy-MM-dd HH:mm:ss</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string UpdatedAt { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L23" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

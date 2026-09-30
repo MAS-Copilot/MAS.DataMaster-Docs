@@ -125,7 +125,53 @@ Interface IDXFScriptService  <a class="header-action link-secondary" title="View
     </div>
   </dd></dl>
 
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
 
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_PathPlanning_IDXFScriptService_Health_" data-uid="MAS.PathPlanning.IDXFScriptService.Health*"></a>
+
+  <h3 id="MAS_PathPlanning_IDXFScriptService_Health" data-uid="MAS.PathPlanning.IDXFScriptService.Health">
+  Health
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFScriptService.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取脚本任务当前的运行健康快照</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DXFScriptHealth Health { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.PathPlanning.DXFScriptHealth.html">DXFScriptHealth</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_IDXFScriptService_Health_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>每次 <a class="xref" href="MAS.PathPlanning.IDXFScriptService.html#MAS_PathPlanning_IDXFScriptService_StartAsync_System_Threading_CancellationToken_">StartAsync(CancellationToken)</a> 都会重置</p>
+</div>
 
 
 
@@ -138,7 +184,7 @@ Interface IDXFScriptService  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PathPlanning_IDXFScriptService_CompileAsync_System_Threading_CancellationToken_" data-uid="MAS.PathPlanning.IDXFScriptService.CompileAsync(System.Threading.CancellationToken)">
   CompileAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFScriptService.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFScriptService.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步编译脚本</p>
@@ -184,7 +230,7 @@ Interface IDXFScriptService  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PathPlanning_IDXFScriptService_ExecuteAsync_System_Threading_CancellationToken_" data-uid="MAS.PathPlanning.IDXFScriptService.ExecuteAsync(System.Threading.CancellationToken)">
   ExecuteAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFScriptService.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFScriptService.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行业务逻辑</p>
@@ -230,7 +276,7 @@ Interface IDXFScriptService  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PathPlanning_IDXFScriptService_StartAsync_System_Threading_CancellationToken_" data-uid="MAS.PathPlanning.IDXFScriptService.StartAsync(System.Threading.CancellationToken)">
   StartAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFScriptService.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFScriptService.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步启动任务运行</p>
@@ -261,11 +307,18 @@ Interface IDXFScriptService  <a class="header-action link-secondary" title="View
 
 
 
+  <h4 class="section" id="MAS_PathPlanning_IDXFScriptService_StartAsync_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>周期任务中单次执行抛出的异常不会终止任务：记入 <a class="xref" href="MAS.PathPlanning.IDXFScriptService.html#MAS_PathPlanning_IDXFScriptService_Health">Health</a> 后按退避间隔重试，
+只有 <a class="xref" href="MAS.PathPlanning.IDXFScriptService.html#MAS_PathPlanning_IDXFScriptService_StopAsync_System_Threading_CancellationToken_">StopAsync(CancellationToken)</a> 才会结束它</p>
+</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.SharedLibrary.NotCompiledException.html">NotCompiledException</a></dt>
     <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>任务不是停止状态（已在运行、正在启动或停止）</p>
+</dd>
   </dl>
 
 
@@ -274,7 +327,7 @@ Interface IDXFScriptService  <a class="header-action link-secondary" title="View
 
   <h3 id="MAS_PathPlanning_IDXFScriptService_StopAsync_System_Threading_CancellationToken_" data-uid="MAS.PathPlanning.IDXFScriptService.StopAsync(System.Threading.CancellationToken)">
   StopAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFScriptService.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFScriptService.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步停止任务运行</p>
@@ -305,6 +358,44 @@ Interface IDXFScriptService  <a class="header-action link-secondary" title="View
 
 
 
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_PathPlanning_IDXFScriptService_OnHealthChanged" data-uid="MAS.PathPlanning.IDXFScriptService.OnHealthChanged">
+  OnHealthChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Interfaces/IDXFScriptService.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>健康状态变化事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;DXFScriptHealthChangedEventArgs&gt;? OnHealthChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.PathPlanning.DXFScriptHealthChangedEventArgs.html">DXFScriptHealthChangedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_IDXFScriptService_OnHealthChanged_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>可能在任意线程触发，UI 订阅方需自行封送到调度器</p>
+</div>
 
 
 

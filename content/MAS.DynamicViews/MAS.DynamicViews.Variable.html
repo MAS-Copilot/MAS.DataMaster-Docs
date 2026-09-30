@@ -443,6 +443,125 @@
 <li><strong>业务上报</strong>：错误码与错误等级，由业务代码调用系统变量服务写入</li>
 </ul>
 <p>脚本可以通过脚本服务集合中的 <code>SystemVariables</code> 更新系统变量。自动维护字段即使被脚本写入，也会在下一次下发前被系统刷新覆盖</p>
+<h2 id="内部结构体">内部结构体</h2>
+<p>内部结构体（<code>Usage = Internal</code>）仅存在于本机运行环境，不参与 PLC 通讯，也不占用 PLC 地址。字段由用户自定义，行为与普通结构体一致，组态视图和 Web 视图均可绑定。</p>
+<p>典型用途是<strong>在界面中显示其他模块的运行状态，或通过界面向其他模块发送命令</strong>，无需为这些数据分配 PLC 地址。</p>
+<h2 id="模块结构体">模块结构体</h2>
+<p>模块结构体（<code>Usage = Module</code>）用于业务模块（如图纸导入、数据采集等）向界面提供运行状态。</p>
+<p>模块结构体与内部结构体一样，仅存在于本机运行环境，不参与 PLC 通讯。不同之处在于，模块结构体由业务模块提供字段定义，用户无需手动创建或编辑字段。</p>
+<p>在数据中心选择「新建 → 从模块创建」，选择对应模块即可创建模块结构体。</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每个模块只能创建一个</td>
+<td>同一模块只能创建一个模块结构体。已创建的模块在创建菜单中不可重复选择，模块结构体也不支持复制。</td>
+</tr>
+<tr>
+<td>名称固定</td>
+<td>结构体名称由模块定义，例如 <code>DXF_Status</code>。模块按照约定名称发布状态，因此结构体名称不可修改。</td>
+</tr>
+<tr>
+<td>字段不可编辑</td>
+<td>字段不能新增、删除、重命名或修改类型，访问模式由模块定义。默认情况下字段为只读，界面和 Web 视图仅可读取，模块负责写入状态。</td>
+</tr>
+<tr>
+<td>可以进行的操作</td>
+<td>可以将模块结构体绑定到控件或 Web 变量声明，也可以停用、修改分组和描述，或删除整个结构体。</td>
+</tr>
+<tr>
+<td>不能被配方引用</td>
+<td>配方只能引用普通结构体和内部结构体，不能引用模块结构体。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="应用升级后的字段同步">应用升级后的字段同步</h3>
+<p>模块新增状态字段后，工程打开时会自动将新增字段同步到已有的模块结构体中</p>
+<p>同步遵循以下规则：</p>
+<ul>
+<li>仅新增字段，不删除已有字段</li>
+<li>已有字段的名称和类型不会改变</li>
+<li>已有字段及其绑定关系保持不变</li>
+<li>如果工程在未安装对应模块的环境中打开，已有模块结构体保持原有状态，不进行字段同步</li>
+</ul>
+<h3 id="模块接入">模块接入</h3>
+<p>业务模块通过实现 <code>IDynamicViewModuleProvider</code> 接入动态视图，并在依赖注入中完成注册。应用启动时，模块定义会统一注册到 <code>DynamicViewModuleRegistry</code>。</p>
+<p>字段定义可以直接从状态类型生成：</p>
+<pre><code class="lang-csharp">DynamicViewModuleField.FromType(typeof(DXFStatusSnapshot))
+</code></pre>
+<p>字段说明从 <code>[Description]</code> 特性获取，字符串长度从 <code>[MaxLength]</code> 特性获取。模块状态类型新增属性后，模块结构体模板会自动包含对应字段，无需维护独立的字段清单。</p>
+<p>模块与动态视图之间保持单向依赖：业务模块依赖动态视图提供的模块注册和状态接口，动态视图不依赖具体业务模块</p>
+<h2 id="状态发布">状态发布</h2>
+<p>其他模块可以将运行状态发布为内部结构体，组态视图或 Web 视图绑定后即可显示。</p>
+<p>状态发布采用单向依赖：发布方依赖 <code>IDynamicViewStatusPublisher</code>，动态视图不依赖具体的发布模块。未加载动态视图工程或找不到对应结构体时，发布返回失败结果，不影响发布方继续运行。</p>
+<h3 id="使用步骤">使用步骤</h3>
+<ol>
+<li>模块提供了模板的，在数据中心「新建 → 从模块创建」一键建出（见上文「模块结构体」）；没有模板的，自己创建内部结构体</li>
+<li>自己创建的结构体，字段名称与发布对象的成员名称对应，名称不区分大小写</li>
+<li>发布方注入 <code>IDynamicViewStatusPublisher</code>，按结构体名称发布状态</li>
+</ol>
+<pre><code class="lang-csharp">public sealed class MyModule(IDynamicViewStatusPublisher publisher) {
+    public Task PublishAsync(CancellationToken token) {
+        return publisher.PublishAsync(
+            &quot;Module_Status&quot;,
+            new {
+                State = MyState.Running,
+                Count = 12,
+                Message = &quot;ok&quot;
+            },
+            token);
+    }
+}
+</code></pre>
+<h3 id="发布约定">发布约定</h3>
+<table>
+<thead>
+<tr>
+<th>约定</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只写入变化</td>
+<td>与当前值相同的字段不会重复写入，适合周期性发布状态。</td>
+</tr>
+<tr>
+<td>类型转换</td>
+<td>枚举写入数值字段时使用枚举值，写入字符串字段时使用枚举名称；布尔值写入数值字段时使用 <code>1/0</code>；时间写入字符串字段时使用 <code>yyyy-MM-dd HH:mm:ss</code>。</td>
+</tr>
+<tr>
+<td>无法转换</td>
+<td>无法转换的成员会被忽略，不影响其他字段。</td>
+</tr>
+<tr>
+<td>找不到结构体</td>
+<td>返回 <code>StructureNotFound</code> 失败结果，不抛出异常。</td>
+</tr>
+<tr>
+<td>不支持数组</td>
+<td>内部结构体支持布尔、整数、浮点和字符串类型。列表数据可使用字符串字段保存 JSON，由前端解析显示。</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>已知结构体标识时，也可以使用 <code>IDynamicViewVariableWriteService.PublishAsync(project, structureName, values)</code> 扩展方法直接发布。
+该方法每次都会写入，不比较当前值，因此更适合一次性写入，不建议用于周期性状态刷新。</p>
+</div>
+<h2 id="命令通道">命令通道</h2>
+<p>内部结构体也可以作为界面向其他模块发送命令的数据通道。</p>
+<p>例如，Web 视图中的按钮可以修改内部结构体变量，业务模块通过 <code>IDynamicViewVariableValueProvider.ValueChanged</code> 订阅变量变化并处理命令。</p>
+<p>命令字段建议包含递增序号，例如：</p>
+<pre><code class="lang-text">CommandId = 1
+</code></pre>
+<p>即使命令内容相同，只要序号递增，也可以产生新的值变化事件。</p>
+<p>处理命令时应避免在值变化事件中执行耗时操作，应将命令快速加入业务队列后异步处理。</p>
 <h2 id="为什么使用结构体变量">为什么使用结构体变量</h2>
 <p>传统动态组态通常采用<code>全局变量列表</code>模式</p>
 <p>例如：</p>
