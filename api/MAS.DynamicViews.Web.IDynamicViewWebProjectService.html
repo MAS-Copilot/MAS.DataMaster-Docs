@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IDynamicViewWebProjectService | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IDynamicViewWebProjectService | DataMaster ">
+      
+      <meta name="description" content="Web 视图工程服务">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_Web_IDynamicViewWebProjectService.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.Web.IDynamicViewWebProjectService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService">
+
+
+
+  <h1 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService" class="text-break">
+Interface IDynamicViewWebProjectService  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a>.<a class="xref" href="MAS.DynamicViews.Web.html">Web</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Web 视图工程服务</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IDynamicViewWebProjectService</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>工程目录 <code>Web/</code> 是一个普通前端工程，由 Agent 直接维护；本服务只读取清单、扫描与校验，
+不维护任何索引，也不改动动态视图工程文件（服务设置 <code>web.json</code> 除外）</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_EnsureSdkCopy_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.EnsureSdkCopy*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_EnsureSdkCopy" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.EnsureSdkCopy">
+  EnsureSdkCopy()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>确保 Web 目录里有前端 SDK</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void EnsureSdkCopy()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_EnsureSdkCopy_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Web 目录存在就放入；已有则不动</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_GetProjectInfo_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.GetProjectInfo*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_GetProjectInfo" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.GetProjectInfo">
+  GetProjectInfo()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 Web 工程信息（含实时校验）；未打开工程时返回 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DynamicViewWebProjectInfo? GetProjectInfo()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebProjectInfo.html">DynamicViewWebProjectInfo</a></dt>
+    <dd><p>Web 工程信息</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_GetSettings_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.GetSettings*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_GetSettings" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.GetSettings">
+  GetSettings()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 Web 服务设置；未打开工程时返回默认设置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DynamicViewWebSettings GetSettings()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebSettings.html">DynamicViewWebSettings</a></dt>
+    <dd><p>服务设置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_GetWebDirectory_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.GetWebDirectory*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_GetWebDirectory" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.GetWebDirectory">
+  GetWebDirectory()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前工程的 Web 目录绝对路径；未打开工程时返回 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? GetWebDirectory()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Web 目录绝对路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_NotifyChanged_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.NotifyChanged*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_NotifyChanged" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.NotifyChanged">
+  NotifyChanged()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通知 Web 工程可能已变化（Agent 写完文件、生成封面等场景），刷新订阅方</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void NotifyChanged()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_ResolveFile_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.ResolveFile*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_ResolveFile_System_String_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.ResolveFile(System.String)">
+  ResolveFile(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把请求路径解析为 Web 目录内的文件（目录取其 index.html）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? ResolveFile(string relativePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relativePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>请求路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件绝对路径；非法、隐藏（按磁盘真实名称判断，含 8.3 短名别名）、保留（manifest.json、web.json）或不存在时返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_ResolveSqlFile_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.ResolveSqlFile*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_ResolveSqlFile_System_String_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.ResolveSqlFile(System.String)">
+  ResolveSqlFile(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把查询声明里的 SQL 文件解析为 Web 目录内的绝对路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? ResolveSqlFile(string relativePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relativePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>SQL 文件相对路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>绝对路径；未打开工程、非法、越界、不是 .sql 或不存在时返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_SaveSettings_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.SaveSettings*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_SaveSettings_MAS_DynamicViews_Web_DynamicViewWebSettings_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.SaveSettings(MAS.DynamicViews.Web.DynamicViewWebSettings)">
+  SaveSettings(DynamicViewWebSettings)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存 Web 服务设置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SaveSettings(DynamicViewWebSettings settings)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>settings</code> <a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebSettings.html">DynamicViewWebSettings</a></dt>
+    <dd><p>服务设置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_TryGetManifest_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.TryGetManifest*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_TryGetManifest_MAS_DynamicViews_Web_DynamicViewWebManifest__System_String__" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.TryGetManifest(MAS.DynamicViews.Web.DynamicViewWebManifest@,System.String@)">
+  TryGetManifest(out DynamicViewWebManifest?, out string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取应用清单（不做校验，供变量网关按连接读取）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryGetManifest(out DynamicViewWebManifest? manifest, out string? error)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>manifest</code> <a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebManifest.html">DynamicViewWebManifest</a></dt>
+    <dd><p>清单</p>
+</dd>
+    <dt><code>error</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>失败原因</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>读取成功返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_ManifestChanged" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.ManifestChanged">
+  ManifestChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>应用清单内容发生变化时发生（按解析后的内容比较，只改格式或注释不触发；在后台线程触发）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler? ManifestChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_ManifestChanged_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>变量网关据此断开现有连接，让客户端重连后按新的变量表与权限重新握手</p>
+</div>
+
+
+
+
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebProjectService_ProjectChanged" data-uid="MAS.DynamicViews.Web.IDynamicViewWebProjectService.ProjectChanged">
+  ProjectChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Web 工程可能发生变化时发生（Web 目录内文件变化、封面更新、设置变更或显式通知；可能在后台线程触发）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler? ProjectChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebProjectService.cs/#L19" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

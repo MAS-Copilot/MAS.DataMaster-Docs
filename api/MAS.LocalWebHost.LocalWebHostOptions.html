@@ -89,11 +89,11 @@
 
 
   <h1 id="MAS_LocalWebHost_LocalWebHostOptions" data-uid="MAS.LocalWebHost.LocalWebHostOptions" class="text-break">
-Class LocalWebHostOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class LocalWebHostOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.LocalWebHost.html">LocalWebHost</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.LocalWebHost.html">LocalWebHost</a></dd></dl>
   <dl><dt>Assembly</dt><dd>MAS.LocalWebHost.dll</dd></dl>
   </div>
 
@@ -160,7 +160,7 @@ Class LocalWebHostOptions  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_LocalWebHost_LocalWebHostOptions_AccessMode" data-uid="MAS.LocalWebHost.LocalWebHostOptions.AccessMode">
   AccessMode
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取访问模式，默认仅本机</p>
@@ -192,7 +192,7 @@ Class LocalWebHostOptions  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_LocalWebHost_LocalWebHostOptions_BindAddress" data-uid="MAS.LocalWebHost.LocalWebHostOptions.BindAddress">
   BindAddress
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取监听地址。null 时按模式取默认值：LocalOnly 为 <code>127.0.0.1</code>，Lan 为 <code>0.0.0.0</code></p>
@@ -224,7 +224,7 @@ Class LocalWebHostOptions  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_LocalWebHost_LocalWebHostOptions_EnableAccessToken" data-uid="MAS.LocalWebHost.LocalWebHostOptions.EnableAccessToken">
   EnableAccessToken
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否启用访问 token。仅 Lan 模式生效：true 时强制生成并校验 token，
@@ -253,11 +253,76 @@ false 时局域网免 token 开放访问；LocalOnly 模式不生成、不校验
 
 
 
+  <a id="MAS_LocalWebHost_LocalWebHostOptions_LanCertificate_" data-uid="MAS.LocalWebHost.LocalWebHostOptions.LanCertificate*"></a>
+
+  <h3 id="MAS_LocalWebHost_LocalWebHostOptions_LanCertificate" data-uid="MAS.LocalWebHost.LocalWebHostOptions.LanCertificate">
+  LanCertificate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取局域网 HTTPS 证书。仅 Lan 模式生效：非 null 时局域网改由 <a class="xref" href="MAS.LocalWebHost.LocalWebHostOptions.html#MAS_LocalWebHost_LocalWebHostOptions_LanHttpsPort">LanHttpsPort</a> 以 HTTPS 提供（不再提供明文 HTTP），
+本机回环地址仍在 <a class="xref" href="MAS.LocalWebHost.LocalWebHostOptions.html#MAS_LocalWebHost_LocalWebHostOptions_PreferredPort">PreferredPort</a> 上以 HTTP 提供</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public X509Certificate2? LanCertificate { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.x509certificate2">X509Certificate2</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_LocalWebHost_LocalWebHostOptions_LanHttpsPort_" data-uid="MAS.LocalWebHost.LocalWebHostOptions.LanHttpsPort*"></a>
+
+  <h3 id="MAS_LocalWebHost_LocalWebHostOptions_LanHttpsPort" data-uid="MAS.LocalWebHost.LocalWebHostOptions.LanHttpsPort">
+  LanHttpsPort
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取局域网 HTTPS 端口；null 表示随机端口。仅 <a class="xref" href="MAS.LocalWebHost.LocalWebHostOptions.html#MAS_LocalWebHost_LocalWebHostOptions_LanCertificate">LanCertificate</a> 非 null 时使用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? LanHttpsPort { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_LocalWebHost_LocalWebHostOptions_PreferredPort_" data-uid="MAS.LocalWebHost.LocalWebHostOptions.PreferredPort*"></a>
 
   <h3 id="MAS_LocalWebHost_LocalWebHostOptions_PreferredPort" data-uid="MAS.LocalWebHost.LocalWebHostOptions.PreferredPort">
   PreferredPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取首选端口；null 表示随机端口</p>
@@ -285,11 +350,44 @@ false 时局域网免 token 开放访问；LocalOnly 模式不生成、不校验
 
 
 
+  <a id="MAS_LocalWebHost_LocalWebHostOptions_RemoteAddressFilter_" data-uid="MAS.LocalWebHost.LocalWebHostOptions.RemoteAddressFilter*"></a>
+
+  <h3 id="MAS_LocalWebHost_LocalWebHostOptions_RemoteAddressFilter" data-uid="MAS.LocalWebHost.LocalWebHostOptions.RemoteAddressFilter">
+  RemoteAddressFilter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取远端地址过滤器，在 TCP 连接建立后、任何协议处理前调用；返回 false 时直接中止连接。
+为 null 时不过滤。回环地址不经过过滤器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;IPAddress, bool&gt;? RemoteAddressFilter { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_LocalWebHost_LocalWebHostOptions_TokenLifetime_" data-uid="MAS.LocalWebHost.LocalWebHostOptions.TokenLifetime*"></a>
 
   <h3 id="MAS_LocalWebHost_LocalWebHostOptions_TokenLifetime" data-uid="MAS.LocalWebHost.LocalWebHostOptions.TokenLifetime">
   TokenLifetime
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取 token 有效期，默认 1 小时；null 表示直到 Host 停止</p>
@@ -321,7 +419,7 @@ false 时局域网免 token 开放访问；LocalOnly 模式不生成、不校验
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.LocalWebHost/Models/LocalWebHostOptions.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
 

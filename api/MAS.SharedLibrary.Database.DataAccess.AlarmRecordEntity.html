@@ -93,7 +93,7 @@ Class AlarmRecordEntity  <a class="header-action link-secondary" title="View sou
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.SharedLibrary.html">SharedLibrary</a>.<a class="xref" href="MAS.SharedLibrary.Database.html">Database</a>.<a class="xref" href="MAS.SharedLibrary.Database.DataAccess.html">DataAccess</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.SharedLibrary.html">SharedLibrary</a>.<a class="xref" href="MAS.SharedLibrary.Database.html">Database</a>.<a class="xref" href="MAS.SharedLibrary.Database.DataAccess.html">DataAccess</a></dd></dl>
   <dl><dt>Assembly</dt><dd>MAS.SharedLibrary.dll</dd></dl>
   </div>
 
@@ -162,7 +162,7 @@ public class AlarmRecordEntity</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_AlarmRecordEntity_ActivatedAt" data-uid="MAS.SharedLibrary.Database.DataAccess.AlarmRecordEntity.ActivatedAt">
   ActivatedAt
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/DataAccess/Models/Entities/AlarmRecordEntity.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/DataAccess/Models/Entities/AlarmRecordEntity.cs/#L83"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置报警触发时间</p>
@@ -223,7 +223,44 @@ public string? Description { get; set; }</code></pre>
 
 
   <h4 class="section" id="MAS_SharedLibrary_Database_DataAccess_AlarmRecordEntity_Description_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>取自报警点字段描述</p>
+  <div class="markdown level1 remarks"><p>触发时刻按当时语种解析出的文本，作为多语言词条缺失时的回退</p>
+</div>
+
+
+
+
+  <a id="MAS_SharedLibrary_Database_DataAccess_AlarmRecordEntity_DescriptionLanguageKey_" data-uid="MAS.SharedLibrary.Database.DataAccess.AlarmRecordEntity.DescriptionLanguageKey*"></a>
+
+  <h3 id="MAS_SharedLibrary_Database_DataAccess_AlarmRecordEntity_DescriptionLanguageKey" data-uid="MAS.SharedLibrary.Database.DataAccess.AlarmRecordEntity.DescriptionLanguageKey">
+  DescriptionLanguageKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/DataAccess/Models/Entities/AlarmRecordEntity.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置报警信息的多语言引用键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DisplayName(&quot;报警信息多语言键&quot;)]
+[Column(&quot;DescriptionLanguageKey&quot;, &quot;VARCHAR(200)&quot;, Comment = &quot;报警信息的多语言引用键（分类/键名），为空表示未引用&quot;)]
+public string? DescriptionLanguageKey { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Database_DataAccess_AlarmRecordEntity_DescriptionLanguageKey_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>形如 <code>分类/键名</code>；为空或词条不存在时显示 <a class="xref" href="MAS.SharedLibrary.Database.DataAccess.AlarmRecordEntity.html#MAS_SharedLibrary_Database_DataAccess_AlarmRecordEntity_Description">Description</a></p>
 </div>
 
 
@@ -372,7 +409,7 @@ public int Level { get; set; }</code></pre>
 
   <h3 id="MAS_SharedLibrary_Database_DataAccess_AlarmRecordEntity_ResolvedAt" data-uid="MAS.SharedLibrary.Database.DataAccess.AlarmRecordEntity.ResolvedAt">
   ResolvedAt
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/DataAccess/Models/Entities/AlarmRecordEntity.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Database/DataAccess/Models/Entities/AlarmRecordEntity.cs/#L91"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置报警恢复时间</p>

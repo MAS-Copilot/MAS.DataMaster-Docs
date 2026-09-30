@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>MAS.DynamicViews.WebView.Sdk | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="MAS.DynamicViews.WebView.Sdk | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.WebView.Sdk.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="masdynamicviewswebviewsdk">MAS.DynamicViews.WebView.Sdk</h1>
+
+<p><code>dynamic-views.js</code> 是 Web 视图页面访问变量中心的唯一方式，由 DataMaster 在 <code>/_sdk/dynamic-views.js</code> 提供。SDK 封装了 WebSocket、握手、断线重连、快照与增量、序号断档恢复、登录令牌和请求回执关联，页面代码只需要使用别名读写变量。</p>
+<blockquote>
+<p>SDK 文件位于工程的 <code>Web/_sdk/dynamic-views.js</code>（Web 目录创建后由 DataMaster 放入，已有则不覆盖），和图标 <code>Web/_shared/icons/</code> 一样是工程里的普通文件，页面按相对路径引用</p>
+</blockquote>
+<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/theme.css&quot;&gt;
+…
+&lt;script src=&quot;/_sdk/dynamic-views.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    (async () =&gt; {
+        const dv = await DynamicViews.connect();
+        await dv.subscribe([&quot;motor.speed&quot;, &quot;motor.running&quot;], values =&gt; {
+            document.querySelector(&quot;#speed&quot;).textContent = values.get(&quot;motor.speed&quot;);
+        });
+    })();
+&lt;/script&gt;
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>服务端广播的值是唯一可信状态。SDK 不做乐观更新：写入成功后，新值由变量中心再次广播到达；写入失败时界面保持服务端的值。</p>
+</div>
+<h2 id="连接">连接</h2>
+<h3 id="dynamicviewsconnectoptions"><code>DynamicViews.connect(options?)</code></h3>
+<p>返回 <code>Promise&lt;client&gt;</code>，收到服务端 <code>welcome</code> 后完成。</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bind</code></td>
+<td><code>true</code></td>
+<td>连接后自动扫描 <code>document.body</code> 的 <code>data-dv-*</code> 声明式绑定</td>
+</tr>
+<tr>
+<td><code>loginUi</code></td>
+<td><code>true</code></td>
+<td>页面或应用需要登录、或写入返回 <code>LOGIN_REQUIRED</code> 时，自动弹出内置登录框</td>
+</tr>
+<tr>
+<td><code>loginScope</code></td>
+<td><code>&quot;browser&quot;</code></td>
+<td>独立登录的保持范围：<code>&quot;browser&quot;</code> 同一浏览器的所有标签页共享登录（其他标签页登录/登出后本页自动重新握手）；<code>&quot;tab&quot;</code> 只在当前标签页有效，适合共用终端</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td><code>0</code></td>
+<td>首次连接超时毫秒数（只约束首次连接，连上后不再生效）；<code>0</code> 表示一直重试直到服务可用，适合常驻终端</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>当前 <code>location.pathname</code></td>
+<td>页面路径，仅用于页面级登录提示与日志</td>
+</tr>
+</tbody>
+</table>
+<p>工程没有 <code>Web/manifest.json</code> 时返回的 Promise 以 <code>PAGE_NOT_FOUND</code> 拒绝。</p>
+<p>断线后按 0.5 秒到 5 秒的退避间隔自动重连，重连后自动恢复订阅并取回快照。15 秒心跳，45 秒收不到任何消息视为半开连接并主动重连。</p>
+<h2 id="客户端-api">客户端 API</h2>
+<h3 id="状态">状态</h3>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>state</code></td>
+<td><code>connecting</code> / <code>open</code> / <code>reconnecting</code> / <code>closed</code></td>
+</tr>
+<tr>
+<td><code>runtime</code></td>
+<td>通讯运行状态 <code>{ state: running/starting/stopping/stopped, mode: online/offline }</code></td>
+</tr>
+<tr>
+<td><code>app</code></td>
+<td><code>{ title, entry }</code></td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>当前页面 <code>{ path, title, icon, viewRole, registered }</code></td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td>登记页面列表，路径为根相对地址，可直接生成导航</td>
+</tr>
+<tr>
+<td><code>auth</code></td>
+<td><code>{ viewRole, writeRole, hostLinked }</code></td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td>当前用户 <code>{ name, role }</code>，未登录为 <code>null</code></td>
+</tr>
+<tr>
+<td><code>variables</code></td>
+<td>可用变量：<code>{ 别名: { access, type, readable, writable, readRole, writeRole, structure, field, description } }</code></td>
+</tr>
+<tr>
+<td><code>unavailable</code></td>
+<td>已声明但不可用的变量：<code>{ 别名: 原因 }</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="变量">变量</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subscribe(aliases \| &quot;*&quot;, callback)</code></td>
+<td>订阅变量，返回 <code>Promise&lt;subscription&gt;</code>。回调 <code>(values, changes)</code> 先以当前值调用一次，之后每次变化调用；无读取权限的变量在登录或提权后自动补订</td>
+</tr>
+<tr>
+<td><code>unsubscribe(subscription)</code></td>
+<td>取消订阅，也可调用 <code>subscription.unsubscribe()</code></td>
+</tr>
+<tr>
+<td><code>get(alias)</code> / <code>get(prefix, field)</code></td>
+<td>读取已订阅变量的当前值；超出 ±(2^53−1) 的 64 位整数以十进制字符串给出（需要精确运算时用 <code>BigInt(value)</code>），写入时也可传字符串</td>
+</tr>
+<tr>
+<td><code>getStructure(prefix)</code></td>
+<td>读取以 <code>prefix.</code> 开头的全部已订阅变量，返回 <code>{ 字段: 值 }</code></td>
+</tr>
+<tr>
+<td><code>write(alias, value)</code> / <code>write(prefix, field, value)</code></td>
+<td>写入单个变量，返回 <code>Promise&lt;{ success: true }&gt;</code>，失败以 <code>DynamicViewsError</code> 拒绝</td>
+</tr>
+<tr>
+<td><code>writeField(prefix, field, value)</code></td>
+<td>同 <code>write(prefix, field, value)</code></td>
+</tr>
+<tr>
+<td><code>writeMany({ 别名: 值 })</code></td>
+<td>一次写入多个变量，同一结构体的字段在服务端合并为一次写入；不同结构体逐个写入、不回滚，失败时 <code>error.written</code> 列出已写入的别名</td>
+</tr>
+<tr>
+<td><code>writeStructure(prefix, { 字段: 值 })</code></td>
+<td>以 <code>prefix.字段</code> 为别名调用 <code>writeMany</code></td>
+</tr>
+<tr>
+<td><code>resync()</code></td>
+<td>取回完整快照</td>
+</tr>
+</tbody>
+</table>
+<h3 id="后端查询">后端查询</h3>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>queries</code></td>
+<td>清单声明的查询：<code>{ 别名: { description, readRole, rowLimit, available, unavailable, parameters: { 名称: { type, required, default, description } } } }</code></td>
+</tr>
+<tr>
+<td><code>query(alias, parameters?, { timeout? })</code></td>
+<td>执行清单 <code>queries</code> 里声明的查询，返回 <code>Promise&lt;QueryResult&gt;</code>；失败时 reject <code>DynamicViewsError</code>。<code>Date</code> 参数按声明的类型格式化（<code>date</code> → 本地 <code>yyyy-MM-dd</code>，其余 → ISO 8601）；参数的转换与校验在服务端按声明进行。默认最多等待 70 秒</td>
+</tr>
+<tr>
+<td><code>canQuery(alias)</code></td>
+<td>前端提示用：已声明、可用且当前用户角色满足；最终以服务端判定为准</td>
+</tr>
+</tbody>
+</table>
+<p><code>QueryResult</code> 包含 <code>query</code>、<code>columns</code>、<code>rows</code>、<code>rowCount</code>、<code>truncated</code>（被 <code>rowLimit</code> 截断）、<code>elapsedMs</code>，以及三个便利成员：</p>
+<ul>
+<li><code>records</code>：每行一个 <code>{ 列名: 值 }</code> 对象，首次访问时生成并缓存</li>
+<li><code>column(name)</code>：取一列的全部值，可直接交给图表；列不存在时抛 <code>BAD_REQUEST</code></li>
+<li><code>scalar()</code>：第一行第一列（如 <code>COUNT(*)</code>），没有数据时为 <code>undefined</code></li>
+</ul>
+<p>超过 ±(2^53−1) 的 64 位整数以十进制字符串返回；日期时间列以 <code>yyyy-MM-dd HH:mm:ss</code>（服务器本地时间）字符串返回；二进制列为 <code>null</code>。查询是一次性的请求，没有实时推送，需要刷新时重新调用。</p>
+<pre><code class="lang-js">const dv = await DynamicViews.connect();
+const result = await dv.query(&quot;alarmHistory&quot;, { from: new Date(Date.now() - 86400000), level: 2 });
+chart.setOption({ xAxis: { data: result.column(&quot;time&quot;) }, series: [{ type: &quot;bar&quot;, data: result.column(&quot;count&quot;) }] });
+if (result.truncated) note.textContent = &quot;结果已达上限，请缩小时间范围&quot;;
+</code></pre>
+<p>订阅后的第一次回调总是带上本订阅当前可读的全部值（即使部分别名已被声明式绑定等其他订阅取到），之后只带变化的部分。回调中的 <code>values</code> 是本订阅的只读视图（不是 Map），提供 <code>get(alias)</code>、<code>has(alias)</code>，以及只列出已收到值的别名的 <code>keys()</code>、<code>size</code>、<code>entries()</code>、<code>forEach((value, alias) =&gt; …)</code>、<code>toObject()</code>；<code>changes</code> 为 <code>[{ variable, value, previous, source }]</code>，<code>variable</code> 即别名，<code>previous</code> 为本客户端此前持有的值（首次为 <code>undefined</code>），<code>source</code> 取值 <code>snapshot</code>、<code>communication</code>、<code>local</code>、<code>binding</code>、<code>action</code>。</p>
+<p>写入值只接受布尔、数字与字符串，服务端按字段类型转换，无法转换时返回 <code>TYPE_MISMATCH</code>。</p>
+<h3 id="账号">账号</h3>
+<p>账号与角色来自 DataMaster 宿主。在 DataMaster 内打开的窗口中，登录与登出直接作用于宿主。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>login(username, password)</code></td>
+<td>登录，返回 <code>Promise&lt;user&gt;</code>；失败为 <code>LOGIN_FAILED</code>、<code>LOGIN_LOCKED</code> 或 <code>AUTH_UNAVAILABLE</code></td>
+</tr>
+<tr>
+<td><code>logout()</code></td>
+<td>登出</td>
+</tr>
+<tr>
+<td><code>showLogin({ title?, required? })</code></td>
+<td>显示内置登录框，返回登录后的用户，取消返回 <code>null</code></td>
+</tr>
+<tr>
+<td><code>hasRole(role)</code></td>
+<td>当前用户是否具备角色</td>
+</tr>
+<tr>
+<td><code>canRead(alias)</code> / <code>canWrite(alias)</code></td>
+<td>当前用户能否读 / 写某个变量，仅用于界面提示，最终以服务端判定为准</td>
+</tr>
+<tr>
+<td><code>onUserChanged(callback)</code></td>
+<td>用户变化回调 <code>(user, reason)</code>，<code>reason</code> 取值 <code>welcome</code>、<code>login</code>、<code>logout</code>、<code>host</code>、<code>roleChanged</code>、<code>expired</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="事件与其他">事件与其他</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onConnectionStateChanged(callback)</code></td>
+<td>连接状态变化，返回取消函数</td>
+</tr>
+<tr>
+<td><code>onRuntimeChanged(callback)</code></td>
+<td>通讯运行状态变化，返回取消函数</td>
+</tr>
+<tr>
+<td><code>bind(root)</code></td>
+<td>扫描动态创建的 DOM 中的声明式绑定，返回 <code>{ unbind() }</code></td>
+</tr>
+<tr>
+<td><code>close()</code></td>
+<td>永久断开</td>
+</tr>
+<tr>
+<td><code>diagnostics()</code></td>
+<td>诊断信息，供 Agent 的页面验证工具读取；<code>bindingErrors</code> 列出声明式绑定的写法错误（按钮缺少 <code>data-dv-write-value</code>、写入未声明的变量、<code>!</code> 用错位置、被拒绝的 <code>data-dv-attr</code> 等），不为空时验证不通过</td>
+</tr>
+</tbody>
+</table>
+<h3 id="静态方法">静态方法</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DynamicViews.hasRole(userRole, requiredRole)</code></td>
+<td>角色比较，规则与宿主一致</td>
+</tr>
+<tr>
+<td><code>DynamicViews.roles</code> / <code>DynamicViews.roleNames</code></td>
+<td>角色级别与中文名称</td>
+</tr>
+<tr>
+<td><code>DynamicViews.loadIcons(names)</code></td>
+<td>按需加载图标，返回 Promise</td>
+</tr>
+<tr>
+<td><code>DynamicViews.icon(name, { size, strokeWidth, className })</code></td>
+<td>返回图标 SVG 字符串（需已加载）</td>
+</tr>
+<tr>
+<td><code>DynamicViews.renderIcons(root?)</code></td>
+<td>渲染 <code>[data-dv-icon]</code>，无需连接</td>
+</tr>
+<tr>
+<td><code>DynamicViews.current()</code></td>
+<td>最近一次 <code>connect()</code> 创建的客户端（无则为 null），供验证探针复用页面自己的连接</td>
+</tr>
+<tr>
+<td><code>DynamicViews.diagnostics()</code></td>
+<td>最近一次连接的诊断信息（<code>subscribed</code> 为别名数组，<code>subscribedCount</code> 为数量；<code>unknownAliases</code> 为清单未声明的别名，<code>accessDeniedAliases</code> 为访问方式不允许的别名；<code>loginPrompt</code> 为内置登录框弹出次数与是否仍打开）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="声明式绑定">声明式绑定</h2>
+<p><code>connect()</code> 默认自动扫描 <code>document.body</code>；之后动态创建的 DOM 调用 <code>dv.bind(element)</code>。声明式绑定只是 SDK 的辅助能力，复杂交互直接使用 API。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-dv-text=&quot;alias&quot;</code></td>
+<td>显示文本；可配合 <code>data-dv-digits=&quot;1&quot;</code>、<code>data-dv-unit=&quot;rpm&quot;</code>、<code>data-dv-map='{&quot;true&quot;:&quot;运行&quot;,&quot;false&quot;:&quot;停止&quot;}'</code>、<code>data-dv-placeholder</code></td>
+</tr>
+<tr>
+<td><code>data-dv-value=&quot;alias&quot;</code> + <code>data-dv-mode=&quot;two-way&quot;</code></td>
+<td>输入框 / 下拉框的值，<code>change</code> 时写入；输入框获得焦点时不被推送覆盖</td>
+</tr>
+<tr>
+<td><code>data-dv-checked=&quot;alias&quot;</code> + <code>data-dv-mode=&quot;two-way&quot;</code></td>
+<td>复选框</td>
+</tr>
+<tr>
+<td><code>data-dv-class=&quot;on:alias alarm:!alias&quot;</code></td>
+<td>按真值切换样式类，<code>!</code> 取反</td>
+</tr>
+<tr>
+<td><code>data-dv-show=&quot;alias&quot;</code> / <code>&quot;!alias&quot;</code></td>
+<td>显示 / 隐藏（同时写内联 <code>display</code>，不会被页面 CSS 覆盖）</td>
+</tr>
+</tbody>
+</table>
+<p><code>!</code> 取反只用于 <code>data-dv-show</code> 与 <code>data-dv-class</code>；<code>data-dv-text</code> / <code>value</code> / <code>checked</code> / <code>write</code> 只接受单个别名，写成 <code>!alias</code> 会在控制台报错且不绑定。
+| <code>data-dv-attr=&quot;value:alias&quot;</code> | 设置属性，适用于 <code>&lt;meter&gt;</code>、<code>&lt;progress&gt;</code> 等；事件属性（<code>on*</code>）、<code>srcdoc</code>，以及 <code>href</code>/<code>src</code> 等 URL 属性上的 <code>javascript:</code>/<code>vbscript:</code>/<code>data:</code> 值会被拒绝 |
+| <code>data-dv-style=&quot;--speed:alias&quot;</code> | 设置 CSS 自定义属性，可驱动动画 |
+| <code>data-dv-write=&quot;alias&quot;</code> + <code>data-dv-write-value=&quot;true&quot;</code> | 点击写入固定值（按 JSON 解析，<code>data-dv-write-value</code> 必填）；<code>data-dv-confirm=&quot;确认？&quot;</code> 先弹确认 |
+| <code>data-dv-role=&quot;operator&quot;</code> | 角色不足时禁用；<code>data-dv-role-mode=&quot;hide&quot;</code> 改为隐藏 |
+| <code>data-dv-login</code> / <code>data-dv-logout</code> | 登录按钮（未登录时显示）/ 退出按钮（已登录时显示） |
+| <code>data-dv-user</code> | 显示当前用户与角色 |
+| <code>data-dv-icon=&quot;gauge&quot;</code> | Lucide 图标，按需加载 |</p>
+<p>SDK 在写入过程中给元素加 <code>dv-pending</code> 类，写入失败加 <code>dv-error</code> 类并回到服务端的值；写入返回 <code>LOGIN_REQUIRED</code> 时自动弹出登录框。</p>
+<p><code>&lt;body&gt;</code> 上的状态类：</p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dv-connected</code> / <code>dv-disconnected</code></td>
+<td>与变量网关的连接状态</td>
+</tr>
+<tr>
+<td><code>dv-runtime-running</code> / <code>dv-runtime-stopped</code></td>
+<td>通讯运行状态</td>
+</tr>
+<tr>
+<td><code>dv-logged-in</code> / <code>dv-logged-out</code></td>
+<td>登录状态</td>
+</tr>
+<tr>
+<td><code>dv-role-{role}</code></td>
+<td>当前用户角色</td>
+</tr>
+</tbody>
+</table>
+<h2 id="错误码">错误码</h2>
+<p><code>DynamicViewsError</code> 包含 <code>code</code>、<code>message</code>、<code>variables</code>（失败涉及的别名）与 <code>written</code>（跨结构体 <code>writeMany</code> 部分失败时，已经写入成功的别名；其余情况为空数组）。</p>
+<table>
+<thead>
+<tr>
+<th>错误码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NOT_DECLARED</code></td>
+<td>变量未在清单中声明</td>
+</tr>
+<tr>
+<td><code>NOT_READABLE</code> / <code>NOT_WRITABLE</code></td>
+<td>清单未声明读取 / 写入</td>
+</tr>
+<tr>
+<td><code>VARIABLE_UNAVAILABLE</code></td>
+<td>已声明但当前不可用（结构体或字段不存在、停用、类型不符）</td>
+</tr>
+<tr>
+<td><code>LOGIN_REQUIRED</code></td>
+<td>需要登录</td>
+</tr>
+<tr>
+<td><code>FORBIDDEN</code></td>
+<td>已登录但角色不足</td>
+</tr>
+<tr>
+<td><code>LOGIN_FAILED</code> / <code>LOGIN_LOCKED</code></td>
+<td>用户名或密码错误 / 失败次数过多暂时锁定</td>
+</tr>
+<tr>
+<td><code>AUTH_UNAVAILABLE</code></td>
+<td>账号服务暂不可用（如宿主数据库无法访问），不计入失败次数，稍后重试</td>
+</tr>
+<tr>
+<td><code>TYPE_MISMATCH</code></td>
+<td>写入值与字段类型不匹配</td>
+</tr>
+<tr>
+<td><code>READ_ONLY</code>、<code>STRUCTURE_NOT_FOUND</code>、<code>STRUCTURE_DISABLED</code>、<code>FIELD_NOT_FOUND</code>、<code>NO_WRITABLE_CHANNEL</code>、<code>DEVICE_WRITE_FAILED</code></td>
+<td>来自变量写入服务</td>
+</tr>
+<tr>
+<td><code>BUSY</code></td>
+<td>单个连接同时进行的写入过多（上限 32）或查询过多（上限 4）</td>
+</tr>
+<tr>
+<td><code>QUERY_UNAVAILABLE</code></td>
+<td>查询已声明但不可用：数据源不存在、SQL 文件缺失、SQL 不是只读语句或用了未声明的参数</td>
+</tr>
+<tr>
+<td><code>QUERY_FAILED</code> / <code>QUERY_TIMEOUT</code></td>
+<td>数据库执行失败（消息已脱敏） / 超过数据源的查询超时时间</td>
+</tr>
+<tr>
+<td><code>RESULT_TOO_LARGE</code></td>
+<td>查询结果超过单条消息的大小上限（约 8 MB），请缩小范围或在 SQL 里先聚合</td>
+</tr>
+<tr>
+<td><code>BAD_REQUEST</code></td>
+<td>请求格式错误；对查询来说是缺少必填参数、传了未声明的参数、参数值无法按声明类型转换</td>
+</tr>
+<tr>
+<td><code>TIMEOUT</code> / <code>DISCONNECTED</code></td>
+<td>请求超时 / 连接已断开（客户端产生）</td>
+</tr>
+<tr>
+<td><code>PAGE_NOT_FOUND</code> / <code>PROTOCOL_ERROR</code></td>
+<td>没有 Web 工程 / 握手协议错误</td>
+</tr>
+<tr>
+<td><code>INTERNAL_ERROR</code></td>
+<td>服务端内部错误</td>
+</tr>
+<tr>
+<td><code>TOO_MANY_CONNECTIONS</code></td>
+<td>连接数超过上限（关闭码 4029），SDK 按退避间隔自动重连</td>
+</tr>
+</tbody>
+</table>
+<h2 id="传输协议">传输协议</h2>
+<p>SDK 已完整实现协议，页面不应自行连接。本节供排查问题与扩展客户端时参考。</p>
+<p>WebSocket 地址：<code>ws://主机:端口/ws/dynamic-views</code>，每条消息为一个 JSON 文本帧，带 <code>type</code> 字段。</p>
+<h3 id="客户端--服务端">客户端 → 服务端</h3>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hello</code></td>
+<td><code>page</code>、<code>token?</code>、<code>hostToken?</code>、<code>protocol</code></td>
+<td>连接后第一条消息，10 秒内必须发送</td>
+</tr>
+<tr>
+<td><code>subscribe</code></td>
+<td><code>requestId</code>、<code>variables</code>（别名数组或 <code>&quot;*&quot;</code>）</td>
+<td>订阅</td>
+</tr>
+<tr>
+<td><code>unsubscribe</code></td>
+<td><code>requestId</code>、<code>variables</code></td>
+<td>取消订阅</td>
+</tr>
+<tr>
+<td><code>write</code></td>
+<td><code>requestId</code>、<code>values</code>（<code>{ 别名: 值 }</code>）</td>
+<td>写入</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td><code>requestId</code>、<code>query</code>（查询别名）、<code>parameters?</code>（<code>{ 名称: 值 }</code>）</td>
+<td>执行清单声明的查询；不占用写入的串行队列</td>
+</tr>
+<tr>
+<td><code>login</code></td>
+<td><code>requestId</code>、<code>username</code>、<code>password</code></td>
+<td>登录</td>
+</tr>
+<tr>
+<td><code>logout</code></td>
+<td><code>requestId</code></td>
+<td>登出</td>
+</tr>
+<tr>
+<td><code>resync</code></td>
+<td><code>requestId?</code></td>
+<td>取回完整快照</td>
+</tr>
+<tr>
+<td><code>ping</code></td>
+<td>—</td>
+<td>心跳</td>
+</tr>
+</tbody>
+</table>
+<h3 id="服务端--客户端">服务端 → 客户端</h3>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>welcome</code></td>
+<td><code>sessionId</code>、<code>app</code>、<code>page</code>、<code>pages</code>、<code>auth</code>、<code>user</code>、<code>variables</code>、<code>queries</code>、<code>unavailable</code>、<code>runtime</code></td>
+<td>握手结果</td>
+</tr>
+<tr>
+<td><code>subscribed</code></td>
+<td><code>requestId</code>、<code>variables</code>、<code>rejected</code>（别名 → 错误码）</td>
+<td>订阅结果，随后发送快照</td>
+</tr>
+<tr>
+<td><code>snapshot</code></td>
+<td><code>requestId?</code>、<code>sequence</code>、<code>values</code></td>
+<td>已订阅变量的完整快照</td>
+</tr>
+<tr>
+<td><code>patch</code></td>
+<td><code>sequence</code>、<code>changes</code></td>
+<td>增量</td>
+</tr>
+<tr>
+<td><code>writeResult</code></td>
+<td><code>requestId</code>、<code>success</code>、<code>code?</code>、<code>message?</code>、<code>variables?</code>、<code>written?</code></td>
+<td>写入回执；<code>written</code> 为失败前已写入的别名</td>
+</tr>
+<tr>
+<td><code>queryResult</code></td>
+<td><code>requestId</code>、<code>query</code>、<code>success</code>、<code>columns?</code>、<code>rows?</code>、<code>rowCount?</code>、<code>truncated?</code>、<code>elapsedMs?</code>、<code>code?</code>、<code>message?</code></td>
+<td>查询回执；<code>rows</code> 每行与 <code>columns</code> 一一对应</td>
+</tr>
+<tr>
+<td><code>loginResult</code></td>
+<td><code>requestId</code>、<code>success</code>、<code>token?</code>、<code>user?</code>、<code>code?</code>、<code>message?</code></td>
+<td>登录回执；宿主联动会话不返回令牌</td>
+</tr>
+<tr>
+<td><code>logoutResult</code></td>
+<td><code>requestId</code>、<code>success</code></td>
+<td>登出回执</td>
+</tr>
+<tr>
+<td><code>auth</code></td>
+<td><code>reason</code>、<code>user</code>、<code>hostLinked</code>、<code>revoked</code></td>
+<td>身份变化；<code>revoked</code> 为因权限不足被撤销的订阅</td>
+</tr>
+<tr>
+<td><code>runtime</code></td>
+<td><code>runtime</code></td>
+<td>通讯运行状态变化</td>
+</tr>
+<tr>
+<td><code>pong</code> / <code>error</code></td>
+<td>— / <code>requestId?</code>、<code>code</code>、<code>message</code></td>
+<td>心跳 / 请求错误</td>
+</tr>
+</tbody>
+</table>
+<p>登录成功时服务端先发 <code>loginResult</code> 再发 <code>auth</code>；写入前刷新身份若发现变化，<code>auth</code> 先于 <code>writeResult</code> 到达。</p>
+<p>示例：</p>
+<pre><code class="lang-json">{ &quot;type&quot;: &quot;snapshot&quot;, &quot;sequence&quot;: 100, &quot;values&quot;: { &quot;motor.speed&quot;: 850, &quot;motor.running&quot;: true } }
+{ &quot;type&quot;: &quot;patch&quot;, &quot;sequence&quot;: 101, &quot;changes&quot;: [ { &quot;variable&quot;: &quot;motor.speed&quot;, &quot;value&quot;: 860, &quot;source&quot;: &quot;communication&quot; } ] }
+{ &quot;type&quot;: &quot;write&quot;, &quot;requestId&quot;: &quot;r5&quot;, &quot;values&quot;: { &quot;motor.target&quot;: 1200 } }
+{ &quot;type&quot;: &quot;writeResult&quot;, &quot;requestId&quot;: &quot;r5&quot;, &quot;success&quot;: false, &quot;code&quot;: &quot;FORBIDDEN&quot;, &quot;message&quot;: &quot;…&quot;, &quot;variables&quot;: [&quot;motor.target&quot;] }
+</code></pre>
+<p>关闭码见 <a href="MAS.DynamicViews.WebView.html#%E9%87%8D%E6%96%B0%E8%BF%9E%E6%8E%A5">Web 视图 · 重新连接</a>。</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.WebView.Sdk.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

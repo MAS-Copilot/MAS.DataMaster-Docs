@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>MAS.DynamicViews.WebView | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="MAS.DynamicViews.WebView | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.WebView.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="masdynamicviewswebview">MAS.DynamicViews.WebView</h1>
+
+<p>Web 视图是 DynamicViews 的第二套前端方案，与 WPF 组态视图并行存在、同时运行、互不替代</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>组态视图</th>
+<th>Web 视图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>技术</td>
+<td>WPF 控件 + 设计器</td>
+<td>HTML / CSS / JavaScript</td>
+</tr>
+<tr>
+<td>维护方式</td>
+<td>设计器拖拽配置</td>
+<td>Agent 直接编写代码，无可视化设计器</td>
+</tr>
+<tr>
+<td>运行位置</td>
+<td>DataMaster 内</td>
+<td>DataMaster 内窗口、本机浏览器、局域网终端（平板、手机、其他电脑）</td>
+</tr>
+<tr>
+<td>变量来源</td>
+<td>变量中心</td>
+<td>同一个变量中心</td>
+</tr>
+<tr>
+<td>写入通道</td>
+<td><code>IDynamicViewVariableWriteService</code></td>
+<td>同一个写入服务</td>
+</tr>
+<tr>
+<td>账号与角色</td>
+<td>DataMaster 用户体系</td>
+<td>同一个用户体系</td>
+</tr>
+</tbody>
+</table>
+<p>两套前端不直接通信，而是共用变量中心：</p>
+<pre><code class="lang-text">PLC / 通讯轮询 ─┐
+组态视图写入 ───┼─→ VariableWriteService ─→ 变量中心(ValueChanged) ─┬─→ 组态视图刷新
+Web 视图写入 ───┘                                                  └─→ 变量网关 ─→ 所有 Web 客户端
+</code></pre>
+<p>因此任意一端写入后，其余各端都会收到更新；多个 Web 页面、多个客户端可以同时订阅不同变量。</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>“跨平台”指同一局域网内任何带浏览器的设备都能访问 Web 视图；服务端仍是 Windows 上的 DataMaster 进程，Web 页面不能脱离 DataMaster 独立运行。</p>
+</div>
+<h2 id="工程结构">工程结构</h2>
+<p>Web 视图属于动态视图工程，位于工程目录下的 <code>Web/</code>。默认工程没有该目录，由 Agent 按需创建。</p>
+<p>整个 <code>Web/</code> 是<strong>一个前端工程</strong>：主题、脚本、布局全站共用，页面可以任意组织，也可以做成单页应用。</p>
+<pre><code class="lang-text">&lt;工程目录&gt;/Web/
+├── manifest.json          应用清单（唯一）：标题、入口、权限、全局变量表、登记页面
+├── index.html             入口页，站点根地址 http://主机:端口/ 打开它
+├── pages/
+│   └── motor.html         任意数量的页面，目录结构不限
+├── assets/
+│   ├── theme.css          全站主题，所有页面共用
+│   ├── common.js          全站脚本：页头导航、登录/退出、连接状态
+│   └── img/ …
+├── _sdk/
+│   └── dynamic-views.js   前端 SDK，DataMaster 在 Web 目录创建后放入
+├── _shared/
+│   ├── echarts.min.js …   共享第三方库（ECharts、Tailwind、daisyUI、Alpine、GSAP 等，见下）
+│   └── icons/             Lucide 全量图标（2000 多个 .svg）
+├── web.json               服务设置，由 DataMaster 维护
+└── .covers/               页面封面截图，由 Agent 工具生成
+</code></pre>
+<ul>
+<li>站点根目录就是 <code>Web/</code>，页面之间用根相对地址引用：<code>/assets/theme.css</code>、<code>/pages/motor.html</code>。</li>
+<li>以 <code>.</code> 开头的目录和文件（如 <code>.covers</code>）不对外提供。</li>
+<li>工程“另存为”时 <code>Web/</code> 随工程一起复制。</li>
+</ul>
+<h2 id="应用清单">应用清单</h2>
+<p><code>Web/manifest.json</code> 是 Web 视图唯一的配置文件，支持注释与尾逗号，枚举使用 camelCase。</p>
+<pre><code class="lang-json">{
+  &quot;title&quot;: &quot;产线监控&quot;,
+  &quot;description&quot;: &quot;电机、温度与报警&quot;,
+  &quot;entry&quot;: &quot;index.html&quot;,
+  &quot;auth&quot;: { &quot;viewRole&quot;: &quot;none&quot;, &quot;writeRole&quot;: &quot;operator&quot; },
+  &quot;variables&quot;: {
+    &quot;motor.speed&quot;:   { &quot;structureId&quot;: &quot;3f2a…&quot;, &quot;fieldId&quot;: &quot;b91c…&quot;, &quot;access&quot;: &quot;read&quot;,      &quot;type&quot;: &quot;int32&quot; },
+    &quot;motor.running&quot;: { &quot;structureId&quot;: &quot;3f2a…&quot;, &quot;fieldId&quot;: &quot;c7d0…&quot;, &quot;access&quot;: &quot;readWrite&quot;, &quot;type&quot;: &quot;bool&quot; },
+    &quot;motor.target&quot;:  { &quot;structureId&quot;: &quot;3f2a…&quot;, &quot;fieldId&quot;: &quot;e41f…&quot;, &quot;access&quot;: &quot;readWrite&quot;, &quot;type&quot;: &quot;int32&quot;, &quot;writeRole&quot;: &quot;engineer&quot; }
+  },
+  &quot;pages&quot;: [
+    { &quot;path&quot;: &quot;index.html&quot;,       &quot;title&quot;: &quot;总览&quot;,     &quot;icon&quot;: &quot;layout-dashboard&quot; },
+    { &quot;path&quot;: &quot;pages/motor.html&quot;, &quot;title&quot;: &quot;电机控制&quot;, &quot;icon&quot;: &quot;fan&quot;, &quot;viewRole&quot;: &quot;operator&quot; }
+  ]
+}
+</code></pre>
+<h3 id="顶层字段">顶层字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code> / <code>description</code></td>
+<td>应用标题与描述，显示在 DataMaster 面板与页面导航</td>
+</tr>
+<tr>
+<td><code>entry</code></td>
+<td>入口页相对路径，默认 <code>index.html</code></td>
+</tr>
+<tr>
+<td><code>auth</code></td>
+<td>应用级权限，见<a href="#%E6%9D%83%E9%99%90%E4%B8%8E%E7%99%BB%E5%BD%95">权限与登录</a></td>
+</tr>
+<tr>
+<td><code>variables</code></td>
+<td>全局变量表：别名 → 变量声明，所有页面共用</td>
+</tr>
+<tr>
+<td><code>queries</code></td>
+<td>查询表：别名 → 数据源上的一条只读 SQL，见<a href="#%E5%90%8E%E7%AB%AF%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93">后端查询</a></td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td>登记页面：出现在 DataMaster 页面卡片、SDK 的 <code>dv.pages</code> 中，并用于页面级登录提示；未登记的 HTML 同样可以访问</td>
+</tr>
+</tbody>
+</table>
+<h3 id="变量声明">变量声明</h3>
+<p>结构体与字段标识是 GUID，页面代码不直接使用它们，而是使用清单中声明的<strong>别名</strong>。按标识绑定，结构体或字段改名不影响页面。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>别名（键）</td>
+<td>点分隔的若干段，每段以字母或下划线开头，只含字母、数字、下划线、连字符，总长不超过 64，区分大小写</td>
+</tr>
+<tr>
+<td><code>structureId</code> / <code>fieldId</code></td>
+<td>结构体与字段标识，必须来自工程，不可编造</td>
+</tr>
+<tr>
+<td><code>access</code></td>
+<td><code>read</code> / <code>write</code> / <code>readWrite</code>，只能在结构体自身访问模式之内收窄</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>可选，期望的字段类型；字段类型被改动后校验失败，而不是让页面静默出错</td>
+</tr>
+<tr>
+<td><code>readRole</code> / <code>writeRole</code></td>
+<td>可选，单个变量的读 / 写角色门槛，与应用级角色取较高者</td>
+</tr>
+</tbody>
+</table>
+<h3 id="登记页面">登记页面</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td>相对 Web 目录的 HTML 路径</td>
+</tr>
+<tr>
+<td><code>title</code> / <code>description</code> / <code>icon</code> / <code>tags</code></td>
+<td>展示信息，<code>icon</code> 为 Lucide 图标名</td>
+</tr>
+<tr>
+<td><code>viewRole</code></td>
+<td>打开页面所需角色，仅用于 SDK 的登录引导与导航显示</td>
+</tr>
+</tbody>
+</table>
+<h3 id="校验规则">校验规则</h3>
+<p><code>DynamicViewWebProjectValidator</code> 由界面、Agent 工具与变量网关共用：</p>
+<ul>
+<li>入口页与登记页面必须是 Web 目录内存在的 <code>.html/.htm</code>，不能越界、不能位于隐藏目录，登记不能重复</li>
+<li>角色取值只能是 <code>none</code>、<code>visitor</code>、<code>operator</code>、<code>engineer</code>、<code>admin</code>、<code>developer</code></li>
+<li>变量：别名合法；结构体存在且启用；字段存在；声明的 <code>type</code> 与字段一致；只写结构体不能声明读取；只读结构体与系统结构体不能声明写入</li>
+<li>警告：<code>writeRole</code> 为 <code>none</code> 且存在可写变量；文件引用了外部主机资源（CDN）；声明了变量但没有页面引用 SDK</li>
+</ul>
+<p>变量网关连接时逐个解析变量：未通过的变量不可订阅、不可写入，但不影响其余变量与页面运行。</p>
+<h2 id="后端查询">后端查询</h2>
+<p>Web 视图支持通过查询声明读取数据库中的历史数据，例如趋势、报警历史和产量统计。</p>
+<p>页面只需要调用已声明的查询并提供参数，SQL、数据库连接信息及访问权限均由服务端管理，页面和 Agent 无法直接访问。</p>
+<h3 id="数据源">数据源</h3>
+<p>数据源是工程中配置的数据库连接。在 Web 视图面板的「数据源」中进行配置，要求工程师及以上权限</p>
+<p>每条查询可指定所使用的数据源。</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标识</td>
+<td>字母开头，仅允许字母、数字和下划线，最多 32 个字符。保存后不可修改</td>
+</tr>
+<tr>
+<td>名称 / 说明</td>
+<td>用于显示和说明</td>
+</tr>
+<tr>
+<td>类型、服务器、端口、数据库名、用户</td>
+<td>数据库连接信息，目前支持 MySQL</td>
+</tr>
+<tr>
+<td>密码</td>
+<td>使用 DataMaster 应用加密服务加密保存，不以明文存储。编辑时留空表示保持原密码</td>
+</tr>
+<tr>
+<td>查询超时</td>
+<td>1～60 秒，默认 30 秒。超时后取消查询并返回 <code>QUERY_TIMEOUT</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>数据源保存在工程 <code>.masproj</code> 清单中，不属于页面文件，也不会作为工程模型的一部分进行序列化或克隆</li>
+<li>Agent 只能查看数据源的标识、名称、数据库名及使用情况，无法查看服务器、账号和密码，也不能创建或修改数据源</li>
+<li>被查询声明引用的数据源无法删除</li>
+</ul>
+<blockquote>
+<p><strong>建议使用数据库只读账号。</strong> SQL 只读校验用于防止误操作，数据库自身的权限控制仍应作为主要安全措施</p>
+</blockquote>
+<h3 id="查询声明">查询声明</h3>
+<p>查询通过工程清单中的 <code>queries</code> 进行声明：</p>
+<pre><code class="lang-json">&quot;queries&quot;: {
+  &quot;alarmHistory&quot;: {
+    &quot;source&quot;: &quot;main&quot;,
+    &quot;sqlFile&quot;: &quot;sql/alarm-history.sql&quot;,
+    &quot;description&quot;: &quot;报警历史，按时间倒序&quot;,
+    &quot;readRole&quot;: &quot;operator&quot;,
+    &quot;rowLimit&quot;: 2000,
+    &quot;parameters&quot;: {
+      &quot;from&quot;: { &quot;type&quot;: &quot;dateTime&quot; },
+      &quot;to&quot;: { &quot;type&quot;: &quot;dateTime&quot; },
+      &quot;level&quot;: { &quot;type&quot;: &quot;number&quot;, &quot;default&quot;: 1 }
+    }
+  }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查询别名</td>
+<td>查询的唯一名称，规则与变量别名一致</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>数据源标识，必须已配置</td>
+</tr>
+<tr>
+<td><code>sql</code> / <code>sqlFile</code></td>
+<td>内联 SQL 或 SQL 文件，二选一。SQL 文件必须位于 Web 目录内且扩展名为 <code>.sql</code>，不会通过 HTTP 提供给浏览器</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>查询参数声明。页面只能传递已声明的参数</td>
+</tr>
+<tr>
+<td><code>readRole</code></td>
+<td>执行查询所需的最低角色，与 <code>auth.viewRole</code> 共同决定实际要求</td>
+</tr>
+<tr>
+<td><code>rowLimit</code></td>
+<td>返回行数上限，默认 5000，最大 50000。超过限制时返回 <code>truncated: true</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>查询说明，会随 Web 视图信息提供给页面</td>
+</tr>
+</tbody>
+</table>
+<h3 id="查询参数">查询参数</h3>
+<p>参数通过 <code>parameters</code> 声明：</p>
+<pre><code class="lang-json">&quot;parameters&quot;: {
+  &quot;from&quot;: {
+    &quot;type&quot;: &quot;dateTime&quot;,
+    &quot;required&quot;: true
+  },
+  &quot;to&quot;: {
+    &quot;type&quot;: &quot;dateTime&quot;,
+    &quot;required&quot;: true
+  },
+  &quot;level&quot;: {
+    &quot;type&quot;: &quot;number&quot;,
+    &quot;required&quot;: false,
+    &quot;default&quot;: 1
+  }
+}
+</code></pre>
+<p>支持以下类型：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td>文本，默认类型</td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>数值</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>布尔值</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>日期，格式为 <code>yyyy-MM-dd</code></td>
+</tr>
+<tr>
+<td><code>dateTime</code></td>
+<td>ISO 8601 日期时间</td>
+</tr>
+</tbody>
+</table>
+<p>参数类型由服务端根据声明进行转换和校验，页面不能自行指定参数类型。</p>
+<p><code>required</code> 默认为 <code>true</code>。配置 <code>default</code> 后，页面可以省略该参数或传入 <code>null</code>。</p>
+<p>SQL 中使用 <code>{{参数名}}</code> 引用参数：</p>
+<pre><code class="lang-sql">SELECT *
+FROM alarm_history
+WHERE alarm_time &gt;= {{from}}
+  AND alarm_time &lt; {{to}}
+  AND level &gt;= {{level}}
+ORDER BY alarm_time DESC;
+</code></pre>
+<p>参数会作为数据库参数绑定，不会直接拼接到 SQL 文本中。</p>
+<blockquote>
+<p>不要在页面中拼接 SQL。查询逻辑应在 SQL 或 SQL 文件中定义，页面只负责调用查询并传递参数。</p>
+</blockquote>
+<h3 id="sql-限制">SQL 限制</h3>
+<p>查询只能执行单条只读 SQL 语句，支持：</p>
+<ul>
+<li><code>SELECT</code></li>
+<li><code>WITH</code></li>
+<li><code>SHOW</code></li>
+<li><code>DESCRIBE</code></li>
+<li><code>EXPLAIN</code></li>
+</ul>
+<p>以下类型的操作会被拒绝：</p>
+<ul>
+<li><code>INSERT</code></li>
+<li><code>UPDATE</code></li>
+<li><code>DELETE</code></li>
+<li><code>DROP</code></li>
+<li><code>ALTER</code></li>
+<li><code>CREATE</code></li>
+<li><code>TRUNCATE</code></li>
+<li><code>EXEC</code></li>
+<li>多条 SQL 语句</li>
+</ul>
+<p>参数必须通过 <code>{{参数名}}</code> 使用。注释和字符串中的 <code>{{参数名}}</code> 不会被识别为查询参数。</p>
+<h3 id="查询权限">查询权限</h3>
+<p>查询可以通过 <code>readRole</code> 限制最低访问角色：</p>
+<pre><code class="lang-json">{
+  &quot;readRole&quot;: &quot;operator&quot;
+}
+</code></pre>
+<p>实际访问权限同时受 Web 视图的 <code>auth.viewRole</code> 和查询自身的 <code>readRole</code> 限制。</p>
+<h3 id="查询结果">查询结果</h3>
+<p>查询返回列信息和数据行。</p>
+<p>当返回数据超过 <code>rowLimit</code> 时，结果会包含：</p>
+<pre><code class="lang-json">{
+  &quot;truncated&quot;: true
+}
+</code></pre>
+<p>单次查询结果还有约 8 MB 的消息大小限制。超过限制时返回 <code>RESULT_TOO_LARGE</code>。</p>
+<h3 id="并发限制">并发限制</h3>
+<p>为避免查询占用过多数据库资源：</p>
+<ul>
+<li>单个 WebSocket 连接最多同时执行 4 个查询</li>
+<li>所有连接合计最多同时执行 6 个数据库查询</li>
+<li>超出限制时返回 <code>BUSY</code></li>
+<li>查询不会阻塞变量写入和订阅数据推送</li>
+</ul>
+<p>查询失败以及执行时间超过 3 秒的查询会记录到 <code>DynamicView.log</code>。</p>
+<p>数据库错误信息中的数据库密码等敏感连接信息会自动隐藏。</p>
+<h3 id="查询验证">查询验证</h3>
+<p>可以使用 <code>dynamicViewWeb.validate</code> 检查查询配置，也可以在 Web 视图面板中进行校验。</p>
+<p>校验包括：</p>
+<ul>
+<li>查询别名是否合法</li>
+<li>数据源是否存在</li>
+<li><code>sql</code> 与 <code>sqlFile</code> 是否正确配置</li>
+<li>SQL 文件是否存在且位于 Web 目录内</li>
+<li>SQL 参数是否全部完成声明</li>
+<li>参数默认值是否符合声明的类型</li>
+<li><code>readRole</code> 是否有效</li>
+<li><code>rowLimit</code> 是否有效</li>
+</ul>
+<p>声明了但未在 SQL 中使用的参数会产生警告。</p>
+<p>只读 SQL 会在实际执行时再次进行安全校验，可使用 <code>dynamicViewWeb.query</code> 预览查询结果。</p>
+<h3 id="与图表资产的区别">与图表资产的区别</h3>
+<p>Web 视图查询与图表资产查询均支持读取数据库，但使用方式不同：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>图表资产</th>
+<th>Web 视图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据库</td>
+<td>工程共用数据库</td>
+<td>支持多个命名数据源</td>
+</tr>
+<tr>
+<td>查询方式</td>
+<td>指定 SQL 文件</td>
+<td>指定已声明的查询</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>页面提供</td>
+<td>必须预先声明</td>
+</tr>
+<tr>
+<td>参数类型</td>
+<td>由请求提供</td>
+<td>由服务端声明并校验</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>无查询级角色限制</td>
+<td>支持查询级角色限制</td>
+</tr>
+<tr>
+<td>SQL 安全</td>
+<td>只读校验</td>
+<td>只读校验</td>
+</tr>
+<tr>
+<td>查询超时</td>
+<td>无</td>
+<td>支持配置</td>
+</tr>
+<tr>
+<td>结果限制</td>
+<td>无统一限制</td>
+<td>支持行数及消息大小限制</td>
+</tr>
+</tbody>
+</table>
+<h2 id="服务宿主">服务宿主</h2>
+<p><code>IDynamicViewWebHostService</code> 使用独立的本地 Web Host 实例（<code>LocalWebHostFactory.Create</code>），与图表资产共享的 Host 互不影响启停。</p>
+<table>
+<thead>
+<tr>
+<th>设置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>端口</td>
+<td>固定端口，默认 <code>18088</code>，便于局域网终端收藏地址；被占用时启动失败并提示更换</td>
+</tr>
+<tr>
+<td>访问模式</td>
+<td>仅本机（<code>127.0.0.1</code>）或局域网（<code>0.0.0.0</code>），默认仅本机</td>
+</tr>
+<tr>
+<td>随工程自动启动</td>
+<td>打开工程后按设置自动启动服务</td>
+</tr>
+<tr>
+<td>局域网 HTTPS 加密</td>
+<td><code>httpsEnabled</code>，默认关闭，仅局域网模式生效；见下文“局域网 HTTPS”</td>
+</tr>
+<tr>
+<td>HTTPS 端口</td>
+<td><code>httpsPort</code>，默认 <code>18443</code>；只在 <code>web.json</code> 里修改，面板不提供入口</td>
+</tr>
+<tr>
+<td>IP 白名单</td>
+<td><code>ipAllowListEnabled</code> 与 <code>allowedAddresses</code>，默认关闭；见下文“IP 白名单”</td>
+</tr>
+</tbody>
+</table>
+<p>设置保存在 <code>Web/web.json</code>，属于工程。切换工程时服务先停止，再按新工程的设置决定是否自动启动。停止服务会断开全部客户端，并使全部独立登录失效。</p>
+<h3 id="局域网-https">局域网 HTTPS</h3>
+<p>在面板“设置”里勾选“局域网 HTTPS 加密”（停止服务时修改，启动后生效；需要管理员）：</p>
+<ul>
+<li>局域网终端改用 <code>https://局域网地址:18443/</code> 访问，<strong>不再提供</strong>局域网明文 HTTP；面板里的局域网地址、二维码、复制链接为 https 地址</li>
+<li>本机（DataMaster 内的窗口、Agent 的 <code>verify</code> / <code>cover</code>）仍走 <code>http://127.0.0.1:18088/</code>，不受证书影响</li>
+<li>证书是自签名的（RSA 2048，有效期约 2 年），保存在 DataMaster 数据目录的 <code>WebCertificates/web-lan.pfx</code>（本机文件，<strong>不随工程复制</strong>），包含本机当前所有局域网 IPv4 与机器名</li>
+<li>当证书里没有的局域网地址、证书临近过期或文件损坏时，下次启动服务会自动重新生成</li>
+<li>局域网 IP 无法申请公共证书，所以终端<strong>首次访问会出现浏览器安全警告</strong>：在浏览器里选择“高级 → 继续访问”即可，同一地址后续不再提示（每台终端、每个浏览器各一次）。证书重新生成后需要再确认一次</li>
+<li>页面地址的证书被接受后，同一地址的 WebSocket（<code>wss://</code>）自动可用，SDK 按页面协议选择 <code>ws</code>/<code>wss</code>，页面无需改动</li>
+<li>自签名证书解决的是<strong>明文传输</strong>（同网段抓包窃取账号密码），不能防止中间人主动冒充；确认警告时请核对地址是本机的局域网地址</li>
+</ul>
+<h3 id="ip-白名单">IP 白名单</h3>
+<p>面板“设置”里勾选“IP 白名单”并在下方文本框填写允许访问的地址（需要管理员），或直接编辑 <code>web.json</code>：</p>
+<ul>
+<li>每项可以是单个 IP（<code>192.168.1.20</code>）或网段（<code>192.168.1.0/24</code>），以逗号、分号、空格或换行分隔；写成 <code>192.168.1.5/24</code> 会规整为 <code>192.168.1.0/24</code>。面板保存前会校验，无法识别的条目会被提示并拒绝</li>
+<li>默认关闭。启用后，名单外的局域网来源在 <strong>TCP 连接建立后立即被中止</strong>（不进入 TLS 握手、不返回任何页面），日志里按地址每分钟最多记一条拒绝记录</li>
+<li>本机（回环地址）始终允许，DataMaster 内的窗口与 Agent 验证不受影响</li>
+<li>启用但名单为空（或全部无法解析）时，局域网来源一律被拒绝</li>
+<li>修改立即生效，无需重启服务：已经在线但不在新名单内的客户端会被立即断开（同“在线客户端”里的断开，客户端不再自动重连）</li>
+<li>白名单只按来源 IP 判断，不能防止 IP 被冒用或经过 NAT / 代理的场景（此时来源是代理的地址）；它是网络隔离之外的补充，不替代登录与变量权限</li>
+</ul>
+<h3 id="路由">路由</h3>
+<p>所有请求由 <code>DynamicViewWebEndpoint</code> 处理：</p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td>清单 <code>entry</code> 指定的入口页；没有 Web 工程时返回占位页</td>
+</tr>
+<tr>
+<td><code>/{相对路径}</code></td>
+<td>Web 目录内的静态文件；目录取其 <code>index.html</code></td>
+</tr>
+<tr>
+<td><code>/_sdk/…</code>、<code>/_shared/…</code></td>
+<td>工程里 <code>Web/_sdk/</code>（SDK）、<code>Web/_shared/</code>（共享库与图标）下的文件，和其他文件一样按静态文件提供（没有内置回退）</td>
+</tr>
+<tr>
+<td><code>/_shared/icons/{name}.svg</code></td>
+<td>工程里的 Lucide 图标</td>
+</tr>
+<tr>
+<td><code>/ws/dynamic-views</code></td>
+<td>变量网关 WebSocket</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>只接受 GET / HEAD，其余方法返回 405；不提供任何 HTTP 数据接口。</li>
+<li>路径中含 <code>..</code>、盘符、空字符或以 <code>.</code> 开头的段一律拒绝，解析结果必须位于 Web 目录内。</li>
+<li>逐段按磁盘上的真实名称核对：8.3 短名（如 <code>COVERS~1</code>）、末尾点等别名不会命中真实文件；真实名称以 <code>.</code> 开头的条目、符号链接 / 目录联接一律不提供。</li>
+<li>根目录的 <code>manifest.json</code>、<code>web.json</code>（及其临时文件）不对外提供，页面所需的清单信息由网关 <code>welcome</code> 下发。</li>
+<li>所有响应带 <code>X-Content-Type-Options: nosniff</code>。</li>
+<li>页面文件带 <code>ETag</code>（长度 + 修改时间）与 <code>Last-Modified</code>，SDK 带按内容哈希的 <code>ETag</code>；均为 <code>no-cache</code>，浏览器每次重新验证，未变化时返回 304。</li>
+<li>WebSocket 握手校验 <code>Origin</code>：浏览器发起的连接必须与请求的 <code>Host</code> 同源，否则返回 403（防跨站 WebSocket 劫持）；不带 <code>Origin</code> 的非浏览器客户端放行。</li>
+<li>连接数上限：全局 256 条，同一远程地址 32 条（本机连接不受单地址限制），超出以 <code>TOO_MANY_CONNECTIONS</code> / 关闭码 4029 拒绝。</li>
+</ul>
+<h2 id="sdk图标与共享库">SDK、图标与共享库</h2>
+<p>Web 页面统一使用工程内的相对路径引用 SDK、图标和共享库：</p>
+<pre><code class="lang-html">&lt;script src=&quot;/_sdk/dynamic-views.js&quot;&gt;&lt;/script&gt;
+&lt;i data-dv-icon=&quot;gauge&quot;&gt;&lt;/i&gt;
+&lt;script src=&quot;/_shared/echarts.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Web 目录为站点根目录，因此上述资源均为工程文件，无需配置额外路由，也不提供内置回退</p>
+<ul>
+<li><strong>默认资源</strong>：Web 目录创建或读取时，DataMaster 会自动提供 SDK、Lucide 图标和 ECharts 资源：
+<ul>
+<li><p><code>/_sdk/dynamic-views.js</code></p>
+</li>
+<li><p><code>/_shared/icons/</code> 下的 Lucide SVG 图标</p>
+</li>
+<li><p><code>/_shared/</code> 下的共享库（全部离线可用，禁止走 CDN）：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>库</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>echarts.min.js</code></td>
+<td>ECharts 5.5</td>
+<td>图表，与图表资产同版本</td>
+</tr>
+<tr>
+<td><code>tailwind.js</code></td>
+<td>Tailwind CSS 4（浏览器版）</td>
+<td>原子类样式，<code>&lt;script src&gt;</code> 引入即生效</td>
+</tr>
+<tr>
+<td><code>daisyui.css</code>、<code>daisyui-themes.css</code></td>
+<td>daisyUI 5</td>
+<td>按钮、卡片、模态框、标签页等现成组件，依赖 <code>tailwind.js</code>；主题需另引 <code>daisyui-themes.css</code></td>
+</tr>
+<tr>
+<td><code>alpine.min.js</code></td>
+<td>Alpine.js 3</td>
+<td>用 <code>x-data</code> / <code>@click</code> 写交互，免手写 DOM 操作（用 <code>defer</code> 引入）</td>
+</tr>
+<tr>
+<td><code>gsap.min.js</code>、<code>ScrollTrigger.min.js</code></td>
+<td>GSAP 3</td>
+<td>时间线、进入/移动/缩放动画，滚动触发</td>
+</tr>
+<tr>
+<td><code>aos.js</code>、<code>aos.css</code></td>
+<td>AOS 2.3</td>
+<td>元素滚动进入时淡入、滑入、缩放（<code>data-aos</code>），需调用 <code>AOS.init()</code></td>
+</tr>
+<tr>
+<td><code>lenis.min.js</code>、<code>lenis.css</code></td>
+<td>Lenis</td>
+<td>平滑滚动</td>
+</tr>
+<tr>
+<td><code>countUp.umd.js</code></td>
+<td>CountUp.js 2</td>
+<td>数字滚动动画</td>
+</tr>
+<tr>
+<td><code>dayjs.min.js</code></td>
+<td>Day.js 1</td>
+<td>日期时间格式化</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/_shared/daisyui.css&quot;&gt;
+&lt;script src=&quot;/_shared/tailwind.js&quot;&gt;&lt;/script&gt;
+&lt;script defer src=&quot;/_shared/alpine.min.js&quot;&gt;&lt;/script&gt;
+&lt;button class=&quot;btn btn-primary&quot;&gt;启动&lt;/button&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><strong>已有文件不覆盖</strong>：目标文件已存在时保持不变。资源未完整写入时，后续再次读取 Web 目录会继续补全</li>
+<li><strong>共享库</strong>：<code>_shared/</code> 用于存放 Web 页面可直接引用的第三方库。默认库随 DataMaster 提供，也可用于存放 Agent 创建页面所需的其他离线依赖，无需通过 CDN 加载</li>
+<li><strong>目录约定</strong>：<code>_sdk/</code> 和 <code>_shared/</code> 为系统资源目录，请勿手动修改 DataMaster 提供的文件</li>
+<li><strong>工程随行</strong>：<code>_sdk/</code> 和 <code>_shared/</code> 会随 Web 工程目录一起复制</li>
+<li><strong>资源检索</strong>：图标仍可通过 <code>dynamicViewWeb.icons</code> 查询名称和标签</li>
+</ul>
+<h2 id="变量网关">变量网关</h2>
+<p><code>IDynamicViewWebGateway</code> 是 Web 前端访问变量的唯一入口：读取来自变量中心，写入一律经过 <code>IDynamicViewVariableWriteService</code>，从不直接修改变量缓存或访问通讯协议。网关与传输层无关（<code>IDynamicViewWebConnection</code>），生产环境由 WebSocket 适配。</p>
+<h3 id="连接生命周期">连接生命周期</h3>
+<pre><code class="lang-text">客户端连接 /ws/dynamic-views
+    ↓
+hello（页面路径、登录令牌、宿主联动令牌）   10 秒内未握手则关闭
+    ↓
+读取清单并逐个解析变量，确定登录身份
+    ↓
+welcome（变量元数据、登记页面、权限、当前用户、运行状态）
+    ↓
+subscribe → snapshot（完整快照）
+    ↓
+patch（增量）… write → writeResult … login / logout → auth …
+</code></pre>
+<h3 id="快照与增量">快照与增量</h3>
+<ul>
+<li>首次订阅返回完整快照；之后只推送变化的字段。</li>
+<li>变量变化按 50 ms 合并，同一字段在一个周期内只推送最新值，避免高频通讯轮询产生大量消息。</li>
+<li><code>snapshot</code> 与 <code>patch</code> 共用按连接递增的序号，客户端发现断档时发送 <code>resync</code> 取回完整快照。</li>
+<li>发送队列有界：客户端消费过慢时丢弃增量，下一周期改发完整快照；控制类消息（回执、错误）无法入队时断开连接（关闭码 4008）。</li>
+<li>运行时尚未写入的字段在变量中心里是文本形式的默认值，网关按字段类型转换后发送；NaN、±∞ 以 <code>null</code> 发送。</li>
+</ul>
+<h3 id="写入流程">写入流程</h3>
+<pre><code class="lang-text">write { 别名: 值 }
+    ↓
+按宿主账号刷新登录身份（角色降级、账号删除立即生效）
+    ↓
+逐个检查：已声明 → 可写 → 值类型（布尔/数字/字符串）→ 角色
+    ↓
+按结构体分组，同一结构体的字段合并为一次 TryWriteStructureAsync
+    ↓
+写入服务：结构体/字段检查 → 类型转换 → 读写权限 → 通讯通道 → PLC 写入 → 提交变量中心
+    ↓
+writeResult（成功或稳定错误码）+ 记入操作日志
+    ↓
+变量中心 ValueChanged → 所有客户端收到新值
+</code></pre>
+<p>客户端以变量中心再次广播的值作为最终可信状态；写入失败时界面回到服务端的值，不会显示未成功写入的值。写入属于用户意图，客户端断开不会取消已发出的写入。</p>
+<h3 id="重新连接">重新连接</h3>
+<table>
+<thead>
+<tr>
+<th>关闭码</th>
+<th>场景</th>
+<th>客户端行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4100</td>
+<td>结构体定义变化、切换或新建工程、<code>manifest.json</code> 内容变化（只改格式或注释不算）</td>
+<td>立即重连，重新读取清单</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>服务停止</td>
+<td>显示断开，按退避间隔重连</td>
+</tr>
+<tr>
+<td>4004</td>
+<td>工程没有 Web 清单</td>
+<td>停止重连并报错</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>协议错误</td>
+<td>停止重连并报错</td>
+</tr>
+<tr>
+<td>4008</td>
+<td>客户端消费过慢</td>
+<td>重连</td>
+</tr>
+<tr>
+<td>4029</td>
+<td>连接数超过上限（全局或同一地址）</td>
+<td>按退避间隔重连</td>
+</tr>
+<tr>
+<td>4401</td>
+<td>被 DataMaster 管理员在面板“在线客户端”中断开（独立登录的令牌同时注销）</td>
+<td>停止重连，<code>lastError</code> 提示刷新页面；刷新后可重新进入（需重新登录）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="变量写入服务">变量写入服务</h2>
+<p>为支持 Web 与组态视图并发写入，<code>IDynamicViewVariableWriteService</code> 做了两项与前端无关的改进，组态视图同样受益：</p>
+<p><strong>带错误码的写入结果</strong>：新增 <code>TryWriteFieldAsync</code> / <code>TryWriteStructureAsync</code>，返回 <code>DynamicViewVariableWriteResult</code>。原有返回 <code>bool</code> 的方法保留，内部改为调用新方法；接口提供默认实现，已有的实现与测试替身无需修改。</p>
+<table>
+<thead>
+<tr>
+<th>错误码</th>
+<th>协议错误码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InvalidArgument</code></td>
+<td><code>INVALID_ARGUMENT</code></td>
+<td>结构体或字段标识为空</td>
+</tr>
+<tr>
+<td><code>StructureNotFound</code></td>
+<td><code>STRUCTURE_NOT_FOUND</code></td>
+<td>结构体不存在</td>
+</tr>
+<tr>
+<td><code>StructureDisabled</code></td>
+<td><code>STRUCTURE_DISABLED</code></td>
+<td>结构体已停用</td>
+</tr>
+<tr>
+<td><code>FieldNotFound</code></td>
+<td><code>FIELD_NOT_FOUND</code></td>
+<td>字段不存在</td>
+</tr>
+<tr>
+<td><code>ReadOnly</code></td>
+<td><code>READ_ONLY</code></td>
+<td>结构体只读或为系统结构体</td>
+</tr>
+<tr>
+<td><code>TypeMismatch</code></td>
+<td><code>TYPE_MISMATCH</code></td>
+<td>写入值与字段类型不匹配</td>
+</tr>
+<tr>
+<td><code>NoWritableChannel</code></td>
+<td><code>NO_WRITABLE_CHANNEL</code></td>
+<td>未关联可写通讯通道</td>
+</tr>
+<tr>
+<td><code>DeviceWriteFailed</code></td>
+<td><code>DEVICE_WRITE_FAILED</code></td>
+<td>通讯设备写入失败</td>
+</tr>
+</tbody>
+</table>
+<p><strong>按结构体串行化</strong>：单字段写入最终是整结构体写入。“读取当前值 → 合并 → 写设备 → 提交”整段在同一把结构体锁内完成，避免多个写入方同时修改同一结构体的不同字段时后写者覆盖先写者；不同结构体之间互不阻塞。</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>变量中心的 <code>ValueChanged</code> 在结构体锁内同步触发。事件处理器中不要同步等待（<code>.Wait()</code>、<code>.Result</code>）对同一结构体的写入，否则会死锁；需要连锁写入时请异步发起。</p>
+</div>
+<h2 id="权限与登录">权限与登录</h2>
+<p>Web 视图不维护独立账号，直接使用 DataMaster 用户与角色（<code>none &lt; visitor &lt; operator &lt; engineer &lt; admin</code>，<code>developer</code> 拥有全部权限），判定规则与组态视图相同（<code>HasRole</code>）。</p>
+<h3 id="权限判定">权限判定</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>所需角色</th>
+<th>默认</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读取（订阅）变量</td>
+<td>max(<code>auth.viewRole</code>, 变量 <code>readRole</code>)</td>
+<td>任何人可读</td>
+</tr>
+<tr>
+<td>写入变量</td>
+<td>max(<code>auth.writeRole</code>, 变量 <code>writeRole</code>)</td>
+<td>操作员及以上</td>
+</tr>
+</tbody>
+</table>
+<p>权限由网关在每次订阅与写入时强制执行。页面级 <code>viewRole</code> 只驱动 SDK 的登录引导与导航显示——客户端可以自行声称所在页面，因此它不是安全边界，敏感数据与危险操作应通过变量或应用级角色保护。</p>
+<p>未登录返回 <code>LOGIN_REQUIRED</code>，已登录但角色不足返回 <code>FORBIDDEN</code>。登出或降级后，已无读取权限的订阅会被撤销并通知客户端。</p>
+<h3 id="登录方式与宿主同步">登录方式与宿主同步</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>宿主联动会话</th>
+<th>独立会话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>场景</td>
+<td>DataMaster 内打开的新窗口 / 无边框窗口</td>
+<td>浏览器、局域网终端</td>
+</tr>
+<tr>
+<td>身份</td>
+<td>始终等于 DataMaster 当前登录用户</td>
+<td>用 DataMaster 账号单独登录</td>
+</tr>
+<tr>
+<td>页面内登录 / 登出</td>
+<td>即 DataMaster 登录 / 登出</td>
+<td>只影响该浏览器标签</td>
+</tr>
+<tr>
+<td>DataMaster 切换用户</td>
+<td>所有联动窗口立即跟随</td>
+<td>不受影响</td>
+</tr>
+<tr>
+<td>角色变更、账号删除</td>
+<td>随宿主</td>
+<td>写入前与每 30 秒同步（同一账号的查询结果复用 2 秒，最多延迟 2 秒生效）</td>
+</tr>
+<tr>
+<td>有效期</td>
+<td>随宿主</td>
+<td>8 小时滑动，服务停止即失效；默认同一浏览器所有标签页共享（localStorage），<code>loginScope: &quot;tab&quot;</code> 时仅当前标签页</td>
+</tr>
+</tbody>
+</table>
+<p>宿主联动通过窗口地址中的一次性令牌（<code>dvHost</code>）建立：令牌只在本机连接时生效，SDK 读取后存入会话存储并从地址栏移除，站内跳转保持联动；局域网客户端即使拿到令牌也按独立会话处理。</p>
+<p>独立会话的登录不会切换 DataMaster 当前用户：认证服务新增了只校验不登录的 <code>VerifyCredentialsAsync</code>，以及用于同步账号数据的 <code>FindUserAsync</code>。</p>
+<h3 id="审计与防护">审计与防护</h3>
+<ul>
+<li>每次 Web 写入记入操作日志：<code>ActionNamespace</code> 为 <code>MAS.DynamicViews.Web</code>，<code>ActionMethod</code> 为页面路径，<code>Description</code> 为写入的别名与值，未登录写入记为 <code>anonymous@地址</code></li>
+<li>Web 登录记入登录日志，备注为 <code>web-login</code> / <code>web-login-failed</code></li>
+<li>同一客户端地址连续 5 次登录失败，或同一用户名（不论来自哪台终端）累计 10 次失败，锁定 1 分钟（<code>LOGIN_LOCKED</code>）；15 分钟内没有再失败的记录作废并清理</li>
+<li>账号库查询失败返回 <code>AUTH_UNAVAILABLE</code>，不计入失败次数</li>
+<li>把访问模式切换为局域网需要宿主当前用户为管理员（<code>DynamicViewWebSettings.LAN_ACCESS_ROLE</code>）：面板上非管理员选择&quot;局域网&quot;会被恢复为已保存的设置；Agent 只能通过需要用户确认的 <code>dynamicViewWeb.host.enableLan</code> 开放局域网</li>
+<li>SDK 在页面离开（<code>pagehide</code>）时主动关闭连接，从前进/后退缓存恢复（<code>pageshow</code>）时重连；预渲染中的页面（<code>document.prerendering</code>）等到真正显示后才连接。否则部分浏览器（如 Edge）会让离开的页面继续占着连接，直到浏览器丢弃缓存</li>
+<li>面板上的“在线客户端 N”可点击，弹出当前连接列表（用户与角色、宿主联动/Agent 验证标记、地址、页面、连接时间）；管理员可逐个“断开”：连接以 4401 关闭，独立登录的会话同时注销令牌（同一浏览器共享该令牌的其他标签页随之失去登录）</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>局域网访问默认使用明文 HTTP / WebSocket，账号密码在局域网内以明文传输。部署在不可信网络时请启用“局域网 HTTPS 加密”，并配合 IP 白名单或网络隔离。</p>
+<p>开启 HTTPS、启用/修改白名单与开放局域网同级，需要宿主当前用户为管理员；Agent 没有修改这两项的工具入口（<code>dynamicViewWeb.current</code> 只读展示当前值）</p>
+</div>
+<h2 id="图标">图标</h2>
+<p>内置 Lucide 完整图标库（lucide-static 1.48.0，ISC 许可，2000+ 个），作为嵌入资源随应用发布，完全离线：</p>
+<ul>
+<li>页面使用 <code>&lt;i data-dv-icon=&quot;gauge&quot;&gt;&lt;/i&gt;</code>，SDK 从工程里的 <code>/_shared/icons/{name}.svg</code> 按需加载并缓存，不会整体下发</li>
+<li>Agent 用 <code>dynamicViewWeb.icons</code> 按英文名称与标签搜索图标</li>
+<li>Lucide 没有的图标，可以在共用文件中自行绘制内联 SVG</li>
+</ul>
+<h2 id="引用检查">引用检查</h2>
+<p>Web 清单通过 <code>IDynamicViewReferenceContributor</code> 纳入 <code>IDynamicViewReferenceService</code>。被 Web 视图引用的结构体不可删除，字段不可修改类型，与组态视图控件绑定保持一致的引用保护。数据中心和 Agent 工具中的引用提示显示为“Web 视图：标题 / 变量：别名”。</p>
+<p>清单存在但无法解析时（如 Agent 尚未完成编辑），改为在 <code>manifest.json</code> 原文中匹配结构体和字段标识，匹配到即视为存在引用，并提示“Web 视图：manifest.json（无法解析）”。宁可误报也不漏报，避免误删仍被页面使用的结构体；修复清单后重新检查即可</p>
+<h2 id="datamaster-界面">DataMaster 界面</h2>
+<p>动态视图页面的工具栏提供「组态视图 | Web 视图」切换。切换只改变页面中显示的内容，两套前端共用变量中心与通讯运行时，运行互不影响。</p>
+<p>在新窗口与无边框窗口中打开的页面是宿主联动会话；在浏览器中打开的页面是独立会话。</p>
+<h2 id="agent-工具">Agent 工具</h2>
+<p>Web 视图使用独立的 <code>dynamicViewWeb.*</code> 工具，与组态视图的 <code>dynamicViews.*</code> 分开；页面文件由 Agent 用 CLI 直接编写。Agent 端技能为 <code>mas-dynamic-views-web</code>。</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>风险</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dynamicViewWeb.current</code></td>
+<td>Low</td>
+<td>Web 目录与清单路径、校验状态、服务设置与地址、运行状态、SDK 地址</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.get</code></td>
+<td>Low</td>
+<td>清单、变量解析结果与有效角色、登记页面、校验结果、文件统计</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.variables</code></td>
+<td>Low</td>
+<td>按结构体分组浏览可声明的字段（结构体级信息每组只出现一次；<code>compact</code> 只返回字段标识、名称、类型）</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.declareVariables</code></td>
+<td>Medium</td>
+<td>按结构体名与规则批量生成清单 <code>variables</code>：工具解析标识与类型、逐项校验、只改 <code>variables</code> 中发生变化的条目，清单其余内容（含注释与缩进）逐字节不变；幂等，支持 <code>dryRun</code>，任一项不合法则整体不写</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.snapshot</code></td>
+<td>Low</td>
+<td>读取清单变量在变量中心的当前值（宿主直读，不经 Web 权限；只写别名单独列在 <code>writeOnly</code>）</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.validate</code></td>
+<td>Low</td>
+<td>校验 Web 工程（含未登记 HTML 警告），给出未被页面引用的别名（启发式），并刷新 DataMaster 面板</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.dataSources</code></td>
+<td>Low</td>
+<td>列出工程已配置的数据源（标识、名称、数据库名、超时、被哪些查询使用；不含服务器、账号、密码），<code>test: true</code> 时逐个测试连接</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.query</code></td>
+<td>Low</td>
+<td>按清单声明预览一条查询的前若干行，走与页面相同的路径（参数转换、只读校验、数据源超时），以宿主身份执行、不判定页面角色</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.icons</code></td>
+<td>Low</td>
+<td>搜索内置 Lucide 图标（多个关键词按“或”匹配，命中多的排前）</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.verify</code></td>
+<td>Low</td>
+<td>在隐藏 WebView2 中加载页面，诊断脚本错误、请求失败及 SDK 问题；导航后等待 SDK 连接并收到首个快照，再留 1 秒渲染（受 <code>settleMilliseconds</code> 限制）后检查；支持 <code>actions</code> 真实输入（CDP 鼠标/键盘）、await/Promise、超时、探针后等待、视口与对话框处理；身份默认跟随宿主，也可匿名或使用不高于宿主权限的验证令牌（仅本机、5 分钟有效、不读写浏览器登录）</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.cover</code></td>
+<td>Low</td>
+<td>为登记页面截取封面，支持批量（<code>pages: [&quot;*&quot;]</code>）与视口尺寸</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.host.start</code></td>
+<td>Medium</td>
+<td>保存服务设置并启动服务；不能开放局域网（只能保持或收回）；端口或访问模式变化才重启，有在线连接时需 <code>force</code></td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.host.enableLan</code></td>
+<td>High</td>
+<td>用户确认且宿主当前用户为管理员时，把服务开放到局域网并（重新）启动</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb.host.stop</code></td>
+<td>Medium</td>
+<td>停止服务，断开全部客户端并使全部登录失效；有在线连接时拒绝并列出连接，需 <code>force</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="代码分层">代码分层</h2>
+<pre><code class="lang-text">MAS.DynamicViews/Web                        业务核心，不依赖 DataMaster
+├── Models                                  清单、变量声明、权限策略、工程/页面信息、设置、用户
+├── Helpers                                 JSON 约定、路径安全、清单与设置读写
+├── Validation                              DynamicViewWebProjectValidator
+├── Services
+│   ├── DynamicViewWebProjectService        工程扫描、清单读取、静态文件解析、设置
+│   ├── DynamicViewWebAuthService           复用宿主账号：独立会话令牌、宿主联动、失败锁定
+│   ├── DynamicViewWebHostService           独立 Host 实例、端口与访问模式、随工程重启
+│   └── DynamicViewWebReferenceContributor  清单变量纳入引用检查
+├── Gateway                                 变量网关：会话、订阅、合并推送、写入、登录与权限
+├── Hosting                                 站点端点、WebSocket 适配、SDK 与图标资源
+└── Sdk                                     dynamic-views.js、lucide-icons.json（全量图标，嵌入资源）
+
+MAS.DataMaster
+├── NamedPipeIpc/DynamicViewWeb             dynamicViewWeb.* 工具
+├── Views/Pages/DynamicViews                DynamicViewWebPanel、工作台视图切换
+└── ViewModels/Pages/DynamicViews           DynamicViewWebPanelViewModel
+
+MAS.PrismaAgent/Models/Skills/DynamicViewWeb  Agent 技能文档与示例
+</code></pre>
+<h2 id="当前能力边界">当前能力边界</h2>
+<ul>
+<li>服务端依赖 DataMaster 进程，不能独立部署</li>
+<li>局域网 HTTPS 使用自签名证书，终端首次访问需手动信任</li>
+<li>不支持导入现场自有证书，也没有 HTTP 到 HTTPS 的自动跳转</li>
+<li>独立登录的令牌保存在内存中，服务停止或 DataMaster 重启后需要重新登录</li>
+<li>页面级 <code>viewRole</code> 不限制静态文件访问，数据保护依赖变量级角色</li>
+<li>没有 Web 可视化设计器，页面由 Agent 或开发者直接编写</li>
+<li>后端查询目前只接入 MySQL 驱动；查询结果一次性返回，没有实时推送、分页游标和流式传输</li>
+<li>数据源密码使用应用内置密钥加密（与现有数据库配置一致），能防止直接看到明文，但不等同于机密管理；对安全要求高的现场请使用权限受限的只读账号</li>
+</ul>
+<p>相关文档：<a href="MAS.DynamicViews.WebView.Sdk.html">前端 SDK 与协议</a>、<a href="MAS.DynamicViews.Variable.html">变量系统</a>、<a href="MAS.DynamicViews.Communication.html">通讯系统</a>、<a href="../MAS-Security/Authentication.html">认证服务</a></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.DynamicViews/MAS.DynamicViews.WebView.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

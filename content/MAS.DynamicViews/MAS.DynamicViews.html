@@ -133,6 +133,7 @@
 <li>控件选择、移动、缩放与对齐辅助</li>
 <li>运行时宿主集成</li>
 <li>后续插件化扩展能力</li>
+<li>Web 视图：Agent 编写的 HTML/CSS/JS 前端，与组态视图共用变量中心，支持局域网浏览器访问</li>
 </ul>
 <h2 id="核心模块">核心模块</h2>
 <h3 id="工程系统">工程系统</h3>
@@ -334,6 +335,7 @@
 <li>查找某个变量被哪些控件绑定</li>
 <li>查找某个字段被哪些设备通道关联</li>
 <li>查找某个变量是否被事件或脚本引用</li>
+<li>查找某个变量是否被 Web 视图清单声明</li>
 <li>删除变量前进行安全检查</li>
 <li>降低后期维护和排查成本</li>
 </ul>
@@ -413,6 +415,16 @@
 <li>监听页面变化</li>
 <li>与主工程系统集成</li>
 </ul>
+<h3 id="web-视图">Web 视图</h3>
+<p>Web 视图是与组态视图并行的第二套前端：工程目录下的 <code>Web/</code> 是一个由 Agent 维护的 HTML/CSS/JS 前端工程，通过变量网关与组态视图共用同一个变量中心、写入服务和用户体系，可在 DataMaster 窗口、本机浏览器和局域网终端中打开</p>
+<p>主要职责：</p>
+<ul>
+<li>以单一清单声明全站变量表、权限与页面</li>
+<li>通过 WebSocket 推送变量快照与增量，按结构体串行写入</li>
+<li>复用 DataMaster 账号，内置窗口与宿主登录双向同步</li>
+<li>提供前端 SDK、声明式绑定与离线图标库</li>
+</ul>
+<p>详见 <a href="MAS.DynamicViews.WebView.html">Web 视图</a> 与 <a href="MAS.DynamicViews.WebView.Sdk.html">Web 视图 SDK 与协议</a></p>
 
 </article>
 

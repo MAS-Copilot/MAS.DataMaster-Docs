@@ -366,6 +366,28 @@ CREATE INDEX `IX_OperationLog_ResourceId_Action` ON `OperationLog` (`ResourceId`
 [Index(&quot;IX_OperationLog_UserId_CreatedAt&quot;, &quot;Username&quot;, &quot;CreatedAt&quot;)]
 [Index(&quot;IX_OperationLog_ResourceId_Action&quot;, &quot;ResourceId&quot;, &quot;Action&quot;)]
 </code></pre>
+<h2 id="宿主之外的登录">宿主之外的登录</h2>
+<p><code>LoginAsync</code> 会切换 DataMaster 当前登录用户并触发 <code>UserRolesChanged</code>。宿主之外的客户端（如 Web 视图的浏览器与局域网终端）需要用同一套账号登录、但不能影响宿主当前用户，因此认证服务提供两个无状态方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VerifyCredentialsAsync(username, password, source)</code></td>
+<td>只校验用户名与密码，返回 <code>UserIdentity</code>（用户标识、用户名、角色），失败返回 <code>null</code>；不改变当前用户、不触发 <code>UserRolesChanged</code></td>
+</tr>
+<tr>
+<td><code>FindUserAsync(username)</code></td>
+<td>按用户名读取最新身份，用于同步角色变更与账号删除；用户不存在返回 <code>null</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>VerifyCredentialsAsync</code> 的成功与失败都会写入登录日志，<code>source</code> 作为备注（如 <code>web-login</code>，失败时为 <code>web-login-failed</code>）。<code>LoginLogs.Notes</code> 列宽为 20，超出部分截断；登录日志写入失败不影响校验结果。</p>
+<p>Web 视图的登录方式、与宿主的同步规则见 <a href="../MAS.DynamicViews/MAS.DynamicViews.WebView.html#%E6%9D%83%E9%99%90%E4%B8%8E%E7%99%BB%E5%BD%95">Web 视图 · 权限与登录</a></p>
 
 </article>
 

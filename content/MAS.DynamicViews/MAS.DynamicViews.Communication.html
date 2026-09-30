@@ -402,6 +402,50 @@ VariableWriteService
 <li>目标结构体已启用，且访问模式不是 ReadOnly</li>
 </ul>
 <p>如果结构体没有关联任何可写通道，写入会被阻止。写入成功后，变量中心才会提交本地值并刷新界面</p>
+<h3 id="并发写入">并发写入</h3>
+<p>单字段写入最终是整结构体写入。写入服务按结构体串行执行“读取当前值 → 合并 → 写入设备 → 提交变量中心”，组态视图、多个 Web 客户端与脚本同时修改同一结构体的不同字段时，不会出现后写者覆盖先写者的情况；不同结构体之间并行写入</p>
+<p>变量中心的 <code>ValueChanged</code> 在结构体锁内同步触发，事件处理器中不要同步等待（<code>.Wait()</code>、<code>.Result</code>）对同一结构体的写入</p>
+<h3 id="写入结果">写入结果</h3>
+<p><code>WriteFieldAsync</code> / <code>WriteStructureAsync</code> 返回 <code>bool</code>。需要向外部报告失败原因时使用 <code>TryWriteFieldAsync</code> / <code>TryWriteStructureAsync</code>，返回带稳定错误码的 <code>DynamicViewVariableWriteResult</code>：</p>
+<table>
+<thead>
+<tr>
+<th>错误码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InvalidArgument</code></td>
+<td>结构体或字段标识为空</td>
+</tr>
+<tr>
+<td><code>StructureNotFound</code> / <code>StructureDisabled</code></td>
+<td>结构体不存在 / 已停用</td>
+</tr>
+<tr>
+<td><code>FieldNotFound</code></td>
+<td>字段不存在</td>
+</tr>
+<tr>
+<td><code>ReadOnly</code></td>
+<td>结构体只读或为系统结构体</td>
+</tr>
+<tr>
+<td><code>TypeMismatch</code></td>
+<td>写入值与字段类型不匹配</td>
+</tr>
+<tr>
+<td><code>NoWritableChannel</code></td>
+<td>未关联可写通讯通道</td>
+</tr>
+<tr>
+<td><code>DeviceWriteFailed</code></td>
+<td>通讯设备写入失败，变量中心未更新</td>
+</tr>
+</tbody>
+</table>
+<p>错误码是对外稳定契约（Web 视图协议直接透出），只能追加，不能改名或复用</p>
 <h2 id="modbus-tcp-通道规则">Modbus TCP 通道规则</h2>
 <p>当前支持的 Modbus 地址区：</p>
 <table>

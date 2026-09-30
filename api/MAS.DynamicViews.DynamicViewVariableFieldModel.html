@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_DynamicViewVariableFieldModel.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.DynamicViewVariableFieldModel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,11 +89,11 @@
 
 
   <h1 id="MAS_DynamicViews_DynamicViewVariableFieldModel" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel" class="text-break">
-Class DynamicViewVariableFieldModel  
+Class DynamicViewVariableFieldModel  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableFieldModel.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a></dd></dl>
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
@@ -349,6 +349,43 @@ public string? Description { get; set; }</code></pre>
 
 
 
+  <a id="MAS_DynamicViews_DynamicViewVariableFieldModel_DescriptionLanguageKey_" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.DescriptionLanguageKey*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewVariableFieldModel_DescriptionLanguageKey" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.DescriptionLanguageKey">
+  DescriptionLanguageKey
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置字段描述的多语言引用键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string? DescriptionLanguageKey { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableFieldModel_DescriptionLanguageKey_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>仅当所属结构体的用法为 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableUsage.html#MAS_DynamicViews_DynamicViewVariableUsage_Alarm">Alarm</a> 时使用，形如 <code>分类/键名</code>；
+报警文本优先取该词条在当前语种下的译文，为空或词条不存在时回退为 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldModel.html#MAS_DynamicViews_DynamicViewVariableFieldModel_Description">Description</a></p>
+</div>
+
+
+
+
   <a id="MAS_DynamicViews_DynamicViewVariableFieldModel_FieldId_" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.FieldId*"></a>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableFieldModel_FieldId" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.FieldId">
@@ -481,7 +518,7 @@ public bool IsSpeechEnabled { get; set; }</code></pre>
 
   <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableFieldModel_IsSpeechEnabled_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>仅当所属结构体的用法为 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableUsage.html#MAS_DynamicViews_DynamicViewVariableUsage_Alarm">Alarm</a> 时使用；
-播报内容为 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldModel.html#MAS_DynamicViews_DynamicViewVariableFieldModel_Description">Description</a>（为空时回退为 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldModel.html#MAS_DynamicViews_DynamicViewVariableFieldModel_Name">Name</a>），触发后循环播报直到报警恢复；
+播报内容为报警文本（多语言译文 → <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldModel.html#MAS_DynamicViews_DynamicViewVariableFieldModel_Description">Description</a> → <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldModel.html#MAS_DynamicViews_DynamicViewVariableFieldModel_Name">Name</a>），触发后循环播报直到报警恢复；
 默认不启用，但 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldModel.html#MAS_DynamicViews_DynamicViewVariableFieldModel_AlarmLevel">AlarmLevel</a> 改为 <a class="xref" href="MAS.DynamicViews.DynamicViewAlarmLevel.html#MAS_DynamicViews_DynamicViewAlarmLevel_Error">Error</a> 时会自动启用</p>
 </div>
 
@@ -563,7 +600,7 @@ public string? OffsetText { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableFieldModel_Properties" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.Properties">
   Properties
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableFieldModel.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableFieldModel.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取扩展属性</p>
@@ -632,7 +669,7 @@ public DynamicViewVariableType VariableType { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableFieldModel_Clone" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.Clone">
   Clone()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableFieldModel.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableFieldModel.cs/#L115"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new object that is a copy of the current instance.</p>
@@ -665,6 +702,7 @@ public DynamicViewVariableType VariableType { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableFieldModel.cs/#L20" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IDynamicViewWebAuthService | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IDynamicViewWebAuthService | DataMaster ">
+      
+      <meta name="description" content="Web 视图认证服务接口">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_DynamicViews_Web_IDynamicViewWebAuthService.md&amp;value=---%0Auid%3A%20MAS.DynamicViews.Web.IDynamicViewWebAuthService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService">
+
+
+
+  <h1 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService" class="text-break">
+Interface IDynamicViewWebAuthService  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a>.<a class="xref" href="MAS.DynamicViews.Web.html">Web</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Web 视图认证服务接口</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IDynamicViewWebAuthService</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>复用宿主 <code>IAuthenticationService</code> 的用户与角色，不维护独立账号。
+宿主联动会话与宿主登录状态双向同步；独立会话使用宿主账号登录并通过令牌维持会话，
+角色变更和账号删除同步到对应会话</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_CreateHostLinkToken_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.CreateHostLinkToken*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_CreateHostLinkToken" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.CreateHostLinkToken">
+  CreateHostLinkToken()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建宿主联动令牌，随 DataMaster 内打开的 Web 窗口地址下发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string CreateHostLinkToken()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>宿主联动令牌</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_CreateVerificationToken_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.CreateVerificationToken*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_CreateVerificationToken_MAS_DynamicViews_Web_DynamicViewWebUser_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.CreateVerificationToken(MAS.DynamicViews.Web.DynamicViewWebUser)">
+  CreateVerificationToken(DynamicViewWebUser?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建供 Agent 页面验证指定身份的令牌</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string CreateVerificationToken(DynamicViewWebUser? user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebUser.html">DynamicViewWebUser</a></dt>
+    <dd><p>验证身份；null 表示匿名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>验证身份令牌</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_CreateVerificationToken_MAS_DynamicViews_Web_DynamicViewWebUser__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>令牌仅限本机连接使用并在短期内过期，身份固定为 <code class="paramref">user</code>，不与宿主同步或持久化。
+调用方需确保指定身份不高于宿主当前用户</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_GetHostUser_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.GetHostUser*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_GetHostUser" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.GetHostUser">
+  GetHostUser()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取宿主当前登录用户；未登录返回 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DynamicViewWebUser? GetHostUser()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebUser.html">DynamicViewWebUser</a></dt>
+    <dd><p>宿主当前用户</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_HostLoginAsync_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.HostLoginAsync*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_HostLoginAsync_System_String_System_String_System_String_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.HostLoginAsync(System.String,System.String,System.String)">
+  HostLoginAsync(string, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>宿主联动登录：切换宿主当前用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;DynamicViewWebLoginResult&gt; HostLoginAsync(string username, string password, string remoteAddress)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>username</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>用户名</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>密码</p>
+</dd>
+    <dt><code>remoteAddress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>客户端地址（用于失败次数限制）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebLoginResult.html">DynamicViewWebLoginResult</a>&gt;</dt>
+    <dd><p>登录结果（不含令牌）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_HostLogout_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.HostLogout*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_HostLogout" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.HostLogout">
+  HostLogout()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>宿主联动登出：宿主当前用户登出</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void HostLogout()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_IsHostLinkToken_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.IsHostLinkToken*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_IsHostLinkToken_System_String_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.IsHostLinkToken(System.String)">
+  IsHostLinkToken(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断是否为有效的宿主联动令牌</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsHostLinkToken(string? token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>有效返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_LoginAsync_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.LoginAsync*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_LoginAsync_System_String_System_String_System_String_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.LoginAsync(System.String,System.String,System.String)">
+  LoginAsync(string, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>独立会话登录：校验宿主账号并签发会话令牌，不影响宿主当前用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;DynamicViewWebLoginResult&gt; LoginAsync(string username, string password, string remoteAddress)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>username</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>用户名</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>密码</p>
+</dd>
+    <dt><code>remoteAddress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>客户端地址（用于失败次数限制与登录日志）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebLoginResult.html">DynamicViewWebLoginResult</a>&gt;</dt>
+    <dd><p>登录结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_RefreshAsync_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.RefreshAsync*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_RefreshAsync_System_String_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.RefreshAsync(System.String)">
+  RefreshAsync(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>按宿主账号数据刷新独立会话用户：账号删除返回 null（并撤销其令牌），角色变更返回新角色</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;DynamicViewWebUser?&gt; RefreshAsync(string token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebUser.html">DynamicViewWebUser</a>&gt;</dt>
+    <dd><p>刷新后的用户</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_RefreshAsync_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>账号数据查询失败（如数据库暂时不可用）时保持令牌当前身份，不当作删号处理</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_ResolveToken_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.ResolveToken*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_ResolveToken_System_String_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.ResolveToken(System.String)">
+  ResolveToken(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>解析独立会话令牌（滑动过期）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DynamicViewWebUser? ResolveToken(string? token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebUser.html">DynamicViewWebUser</a></dt>
+    <dd><p>令牌对应用户；无效或过期返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_RevokeAll_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.RevokeAll*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_RevokeAll" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.RevokeAll">
+  RevokeAll()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>撤销全部令牌（服务停止时调用）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RevokeAll()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_RevokeToken_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.RevokeToken*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_RevokeToken_System_String_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.RevokeToken(System.String)">
+  RevokeToken(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>撤销独立会话令牌</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RevokeToken(string? token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>令牌</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_TryResolveVerificationToken_" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.TryResolveVerificationToken*"></a>
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_TryResolveVerificationToken_System_String_MAS_DynamicViews_Web_DynamicViewWebUser__" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.TryResolveVerificationToken(System.String,MAS.DynamicViews.Web.DynamicViewWebUser@)">
+  TryResolveVerificationToken(string?, out DynamicViewWebUser?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>解析验证身份令牌</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryResolveVerificationToken(string? token, out DynamicViewWebUser? user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>令牌</p>
+</dd>
+    <dt><code>user</code> <a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebUser.html">DynamicViewWebUser</a></dt>
+    <dd><p>令牌对应身份；匿名验证为 null</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>令牌有效返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_DynamicViews_Web_IDynamicViewWebAuthService_HostUserChanged" data-uid="MAS.DynamicViews.Web.IDynamicViewWebAuthService.HostUserChanged">
+  HostUserChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>宿主当前登录用户变化时发生（登录、登出、切换用户）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler? HostUserChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Interfaces/IDynamicViewWebAuthService.cs/#L20" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

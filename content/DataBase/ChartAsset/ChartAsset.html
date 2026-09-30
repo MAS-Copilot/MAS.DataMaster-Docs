@@ -139,7 +139,8 @@
 <p>典型资产结构：</p>
 <pre><code class="lang-text">ChartAssets/
 ├─ _shared/
-│  └─ echarts.min.js
+│  ├─ echarts.min.js
+│  └─ …
 └─ production-query/
    ├─ index.html
    ├─ manifest.json
@@ -151,7 +152,7 @@
 <li><code>index.html</code>：默认入口页面；</li>
 <li><code>manifest.json</code>：资产描述文件；</li>
 <li><code>*.sql</code>：可由页面查询接口执行的只读 SQL；</li>
-<li><code>_shared</code>：所有 ChartAsset 可引用的共享前端资源目录。</li>
+<li><code>_shared</code>：所有 ChartAsset 可引用的共享前端资源目录。DataMaster 默认放入 ECharts、Tailwind、daisyUI、Alpine.js、GSAP、AOS、Lenis、CountUp.js、Day.js（与 Web 视图共用同一份库清单，已有文件不覆盖），页面用 <code>../_shared/xxx</code> 引用</li>
 </ul>
 <p><code>manifest.json</code> 当前描述资产入口、标题、说明、标签、样式、组件数量和刷新策略，不包含查询参数定义。</p>
 <h2 id="web-host-路由">Web Host 路由</h2>

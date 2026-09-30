@@ -89,11 +89,11 @@
 
 
   <h1 id="MAS_DynamicViews_DynamicViewAlarmHistoryItem" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem" class="text-break">
-Class DynamicViewAlarmHistoryItem  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L30"><i class="bi bi-code-slash"></i></a>
+Class DynamicViewAlarmHistoryItem  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.DynamicViews.html">DynamicViews</a></dd></dl>
   <dl><dt>Assembly</dt><dd>MAS.DynamicViews.dll</dd></dl>
   </div>
 
@@ -154,7 +154,7 @@ Class DynamicViewAlarmHistoryItem  <a class="header-action link-secondary" title
 
   <h3 id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_ActivatedAt" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem.ActivatedAt">
   ActivatedAt
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L69"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取报警触发时间</p>
@@ -182,11 +182,46 @@ Class DynamicViewAlarmHistoryItem  <a class="header-action link-secondary" title
 
 
 
+  <a id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_DefaultDescription_" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem.DefaultDescription*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_DefaultDescription" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem.DefaultDescription">
+  DefaultDescription
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取入库时的报警信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? DefaultDescription { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_DefaultDescription_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>触发时刻按当时语种解析出的文本</p>
+</div>
+
+
+
+
   <a id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_Description_" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem.Description*"></a>
 
   <h3 id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_Description" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem.Description">
   Description
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取报警信息</p>
@@ -194,7 +229,43 @@ Class DynamicViewAlarmHistoryItem  <a class="header-action link-secondary" title
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? Description { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? Description { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_Description_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>优先取 <a class="xref" href="MAS.DynamicViews.DynamicViewAlarmHistoryItem.html#MAS_DynamicViews_DynamicViewAlarmHistoryItem_DescriptionLanguageKey">DescriptionLanguageKey</a> 在当前语种下的译文，
+未引用或词条不存在时回退为 <a class="xref" href="MAS.DynamicViews.DynamicViewAlarmHistoryItem.html#MAS_DynamicViews_DynamicViewAlarmHistoryItem_DefaultDescription">DefaultDescription</a></p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_DescriptionLanguageKey_" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem.DescriptionLanguageKey*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_DescriptionLanguageKey" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem.DescriptionLanguageKey">
+  DescriptionLanguageKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取报警信息的多语言引用键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? DescriptionLanguageKey { get; init; }</code></pre>
   </div>
 
 
@@ -218,7 +289,7 @@ Class DynamicViewAlarmHistoryItem  <a class="header-action link-secondary" title
 
   <h3 id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_FieldName" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem.FieldName">
   FieldName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取报警点字段名称</p>
@@ -250,7 +321,7 @@ Class DynamicViewAlarmHistoryItem  <a class="header-action link-secondary" title
 
   <h3 id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_Level" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem.Level">
   Level
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取报警等级</p>
@@ -282,7 +353,7 @@ Class DynamicViewAlarmHistoryItem  <a class="header-action link-secondary" title
 
   <h3 id="MAS_DynamicViews_DynamicViewAlarmHistoryItem_ResolvedAt" data-uid="MAS.DynamicViews.DynamicViewAlarmHistoryItem.ResolvedAt">
   ResolvedAt
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取报警恢复时间，为空表示尚未恢复</p>
@@ -314,7 +385,7 @@ Class DynamicViewAlarmHistoryItem  <a class="header-action link-secondary" title
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L30" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewAlarmHistoryPage.cs/#L32" class="edit-link">Edit this page</a>
         </div>
 
 

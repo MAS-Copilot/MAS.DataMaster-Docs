@@ -93,7 +93,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="MAS.html">MAS</a>.<a class="xref" href="MAS.Security.html">Security</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.Security.html">Security</a></dd></dl>
   <dl><dt>Assembly</dt><dd>MAS.Security.dll</dd></dl>
   </div>
 
@@ -135,7 +135,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_AssignRoleAsync_System_String_MAS_Security_UserRoles_" data-uid="MAS.Security.IAuthenticationService.AssignRoleAsync(System.String,MAS.Security.UserRoles)">
   AssignRoleAsync(string, UserRoles)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L137"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步分配用户角色，仅限 SuperAdmin</p>
@@ -177,7 +177,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_ChangePasswordAsync_System_String_System_String_System_String_" data-uid="MAS.Security.IAuthenticationService.ChangePasswordAsync(System.String,System.String,System.String)">
   ChangePasswordAsync(string, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L99"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步修改密码</p>
@@ -218,11 +218,59 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
 
 
+  <a id="MAS_Security_IAuthenticationService_FindUserAsync_" data-uid="MAS.Security.IAuthenticationService.FindUserAsync*"></a>
+
+  <h3 id="MAS_Security_IAuthenticationService_FindUserAsync_System_String_" data-uid="MAS.Security.IAuthenticationService.FindUserAsync(System.String)">
+  FindUserAsync(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步按用户名查询最新的用户身份</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;UserIdentity?&gt; FindUserAsync(string username)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>username</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>用户名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.Security.UserIdentity.html">UserIdentity</a>&gt;</dt>
+    <dd><p>异步操作任务结果，用户存在返回身份，用户不存在返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Security_IAuthenticationService_FindUserAsync_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>用于在宿主之外登录的会话与宿主账号数据保持同步（角色变更、账号删除立即生效）</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>账号数据查询失败（如数据库不可用）时原样抛出，不视为用户不存在</p>
+</dd>
+  </dl>
+
+
+
   <a id="MAS_Security_IAuthenticationService_GetCurrentUserHistory_" data-uid="MAS.Security.IAuthenticationService.GetCurrentUserHistory*"></a>
 
   <h3 id="MAS_Security_IAuthenticationService_GetCurrentUserHistory" data-uid="MAS.Security.IAuthenticationService.GetCurrentUserHistory">
   GetCurrentUserHistory()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前登录用户的历史凭证数据</p>
@@ -255,7 +303,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_GetCurrentUserRoles" data-uid="MAS.Security.IAuthenticationService.GetCurrentUserRoles">
   GetCurrentUserRoles()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前用户角色</p>
@@ -288,7 +336,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_GetUsernamesAsync" data-uid="MAS.Security.IAuthenticationService.GetUsernamesAsync">
   GetUsernamesAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L129"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步获取所有已登录过的用户历史状态</p>
@@ -321,7 +369,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_LoginAsync_MAS_Security_UserHistoryItem_" data-uid="MAS.Security.IAuthenticationService.LoginAsync(MAS.Security.UserHistoryItem)">
   LoginAsync(UserHistoryItem)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行登录，使用历史凭证</p>
@@ -360,7 +408,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_LoginAsync_System_String_System_String_System_Boolean_System_Boolean_" data-uid="MAS.Security.IAuthenticationService.LoginAsync(System.String,System.String,System.Boolean,System.Boolean)">
   LoginAsync(string, string, bool, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行登录</p>
@@ -408,7 +456,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_Logout" data-uid="MAS.Security.IAuthenticationService.Logout">
   Logout()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L104"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>执行登出</p>
@@ -435,7 +483,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_RegisterAdminAsync_System_String_System_String_System_String_" data-uid="MAS.Security.IAuthenticationService.RegisterAdminAsync(System.String,System.String,System.String)">
   RegisterAdminAsync(string, string, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行管理员注册，仅用于初始化向导</p>
@@ -480,7 +528,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_RegisterAsync_System_String_System_String_MAS_Security_UserRoles_System_String_" data-uid="MAS.Security.IAuthenticationService.RegisterAsync(System.String,System.String,MAS.Security.UserRoles,System.String)">
   RegisterAsync(string, string, UserRoles, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行用户注册</p>
@@ -528,7 +576,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_RegisterAsync_System_String_System_String_System_String_" data-uid="MAS.Security.IAuthenticationService.RegisterAsync(System.String,System.String,System.String)">
   RegisterAsync(string, string, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行用户注册</p>
@@ -573,7 +621,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_SetUserDataFile_System_String_" data-uid="MAS.Security.IAuthenticationService.SetUserDataFile(System.String)">
   SetUserDataFile(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L144"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置指定用户文件到默认路径中</p>
@@ -612,7 +660,7 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Security_IAuthenticationService_TryAutoLoginAsync" data-uid="MAS.Security.IAuthenticationService.TryAutoLoginAsync">
   TryAutoLoginAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L62"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步尝试自动登录</p>
@@ -644,8 +692,90 @@ Interface IAuthenticationService  <a class="header-action link-secondary" title=
 
 
 
+  <a id="MAS_Security_IAuthenticationService_VerifyCredentialsAsync_" data-uid="MAS.Security.IAuthenticationService.VerifyCredentialsAsync*"></a>
+
+  <h3 id="MAS_Security_IAuthenticationService_VerifyCredentialsAsync_System_String_System_String_System_String_" data-uid="MAS.Security.IAuthenticationService.VerifyCredentialsAsync(System.String,System.String,System.String)">
+  VerifyCredentialsAsync(string, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步校验用户名与密码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;UserIdentity?&gt; VerifyCredentialsAsync(string username, string password, string source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>username</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>用户名</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>密码</p>
+</dd>
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>登录来源（写入登录日志备注，如 web-login；列宽 20，超出截断）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.Security.UserIdentity.html">UserIdentity</a>&gt;</dt>
+    <dd><p>异步操作任务结果，校验通过返回用户身份，否则返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>账号数据查询失败（如数据库不可用）时原样抛出，不视为凭据错误</p>
+</dd>
+  </dl>
+
+
+
   <h2 class="section" id="events">Events
 </h2>
+
+
+
+  <h3 id="MAS_Security_IAuthenticationService_PasswordChanged" data-uid="MAS.Security.IAuthenticationService.PasswordChanged">
+  PasswordChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Security/Interfaces/IAuthenticationService.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>密码修改成功事件（任意用户，不限当前登录用户），供其他登录通道（如 Web 视图）使已签发的会话失效</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;UserPasswordChangedEventArgs&gt; PasswordChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.Security.UserPasswordChangedEventArgs.html">UserPasswordChangedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
 
 
 
