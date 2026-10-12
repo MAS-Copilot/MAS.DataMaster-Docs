@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ProjectSettings | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ProjectSettings | DataMaster ">
+      
+      <meta name="description" content="提供项目 appsettings.json 的读取和写入。只修改设备和数据库节点中涉及的键，其余内容原样保留">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_Runtime_Projects_ProjectSettings.md&amp;value=---%0Auid%3A%20MAS.Runtime.Projects.ProjectSettings%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Runtime.Projects.ProjectSettings">
+
+
+
+  <h1 id="MAS_Runtime_Projects_ProjectSettings" data-uid="MAS.Runtime.Projects.ProjectSettings" class="text-break">
+Class ProjectSettings  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.Runtime.html">Runtime</a>.<a class="xref" href="MAS.Runtime.Projects.html">Projects</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.Runtime.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>提供项目 appsettings.json 的读取和写入。只修改设备和数据库节点中涉及的键，其余内容原样保留</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class ProjectSettings</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ProjectSettings</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_Runtime_Projects_ProjectSettings_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>键名不区分大小写，与 <code>IConfiguration</code> 一致。保存时会丢弃 JSON 注释</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_Runtime_Projects_ProjectSettings_FilePath_" data-uid="MAS.Runtime.Projects.ProjectSettings.FilePath*"></a>
+
+  <h3 id="MAS_Runtime_Projects_ProjectSettings_FilePath" data-uid="MAS.Runtime.Projects.ProjectSettings.FilePath">
+  FilePath
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取配置文件完整路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string FilePath { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Runtime_Projects_ProjectSettings_GetDatabases_" data-uid="MAS.Runtime.Projects.ProjectSettings.GetDatabases*"></a>
+
+  <h3 id="MAS_Runtime_Projects_ProjectSettings_GetDatabases" data-uid="MAS.Runtime.Projects.ProjectSettings.GetDatabases">
+  GetDatabases()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取已配置的数据库。密码保持配置文件中的原值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;NamedSettings&lt;DatabaseOptions&gt;&gt; GetDatabases()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Runtime.Projects.NamedSettings-1.html">NamedSettings</a>&lt;<a class="xref" href="MAS.Runtime.DatabaseOptions.html">DatabaseOptions</a>&gt;&gt;</dt>
+    <dd><p>数据库名称及其选项的列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Runtime_Projects_ProjectSettings_GetDevices_" data-uid="MAS.Runtime.Projects.ProjectSettings.GetDevices*"></a>
+
+  <h3 id="MAS_Runtime_Projects_ProjectSettings_GetDevices" data-uid="MAS.Runtime.Projects.ProjectSettings.GetDevices">
+  GetDevices()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取已配置的设备</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;NamedSettings&lt;PlcOptions&gt;&gt; GetDevices()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Runtime.Projects.NamedSettings-1.html">NamedSettings</a>&lt;<a class="xref" href="MAS.Runtime.PlcOptions.html">PlcOptions</a>&gt;&gt;</dt>
+    <dd><p>设备名称及其选项的列表</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Runtime_Projects_ProjectSettings_Load_" data-uid="MAS.Runtime.Projects.ProjectSettings.Load*"></a>
+
+  <h3 id="MAS_Runtime_Projects_ProjectSettings_Load_MAS_Runtime_Projects_MasProject_" data-uid="MAS.Runtime.Projects.ProjectSettings.Load(MAS.Runtime.Projects.MasProject)">
+  Load(MasProject)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取项目配置。文件不存在时返回空配置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ProjectSettings Load(MasProject project)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>project</code> <a class="xref" href="MAS.Runtime.Projects.MasProject.html">MasProject</a></dt>
+    <dd><p>项目</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Runtime.Projects.ProjectSettings.html">ProjectSettings</a></dt>
+    <dd><p>项目配置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>文件不是有效的 JSON 对象</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_Runtime_Projects_ProjectSettings_ProtectPlainTextPasswords_" data-uid="MAS.Runtime.Projects.ProjectSettings.ProtectPlainTextPasswords*"></a>
+
+  <h3 id="MAS_Runtime_Projects_ProjectSettings_ProtectPlainTextPasswords_MAS_Runtime_ISecretProtector_" data-uid="MAS.Runtime.Projects.ProjectSettings.ProtectPlainTextPasswords(MAS.Runtime.ISecretProtector)">
+  ProtectPlainTextPasswords(ISecretProtector)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>加密数据库节点中的明文密码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ProtectPlainTextPasswords(ISecretProtector protector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>protector</code> <a class="xref" href="MAS.Runtime.ISecretProtector.html">ISecretProtector</a></dt>
+    <dd><p>加密实现</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>已加密的密码个数。为 0 时无需保存</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Runtime_Projects_ProjectSettings_RemoveDatabase_" data-uid="MAS.Runtime.Projects.ProjectSettings.RemoveDatabase*"></a>
+
+  <h3 id="MAS_Runtime_Projects_ProjectSettings_RemoveDatabase_System_String_" data-uid="MAS.Runtime.Projects.ProjectSettings.RemoveDatabase(System.String)">
+  RemoveDatabase(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除一个数据库</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveDatabase(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>数据库名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果找到并删除了该数据库，则为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；否则为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Runtime_Projects_ProjectSettings_RemoveDevice_" data-uid="MAS.Runtime.Projects.ProjectSettings.RemoveDevice*"></a>
+
+  <h3 id="MAS_Runtime_Projects_ProjectSettings_RemoveDevice_System_String_" data-uid="MAS.Runtime.Projects.ProjectSettings.RemoveDevice(System.String)">
+  RemoveDevice(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除一个设备</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveDevice(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>设备名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果找到并删除了该设备，则为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；否则为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Runtime_Projects_ProjectSettings_Save_" data-uid="MAS.Runtime.Projects.ProjectSettings.Save*"></a>
+
+  <h3 id="MAS_Runtime_Projects_ProjectSettings_Save" data-uid="MAS.Runtime.Projects.ProjectSettings.Save">
+  Save()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将配置写回文件，编码为带 BOM 的 UTF-8</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Save()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Runtime_Projects_ProjectSettings_SetDatabase_" data-uid="MAS.Runtime.Projects.ProjectSettings.SetDatabase*"></a>
+
+  <h3 id="MAS_Runtime_Projects_ProjectSettings_SetDatabase_System_String_MAS_Runtime_DatabaseOptions_" data-uid="MAS.Runtime.Projects.ProjectSettings.SetDatabase(System.String,MAS.Runtime.DatabaseOptions)">
+  SetDatabase(string, DatabaseOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新一个数据库。密码应已加密（见 <a class="xref" href="MAS.Runtime.ProtectedSecret.html">ProtectedSecret</a>）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetDatabase(string name, DatabaseOptions options)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>数据库名称</p>
+</dd>
+    <dt><code>options</code> <a class="xref" href="MAS.Runtime.DatabaseOptions.html">DatabaseOptions</a></dt>
+    <dd><p>数据库选项</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Runtime_Projects_ProjectSettings_SetDevice_" data-uid="MAS.Runtime.Projects.ProjectSettings.SetDevice*"></a>
+
+  <h3 id="MAS_Runtime_Projects_ProjectSettings_SetDevice_System_String_MAS_Runtime_PlcOptions_" data-uid="MAS.Runtime.Projects.ProjectSettings.SetDevice(System.String,MAS.Runtime.PlcOptions)">
+  SetDevice(string, PlcOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新一个设备。只写入所选协议用到的参数，换协议时清掉旧协议的参数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetDevice(string name, PlcOptions options)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>设备名称</p>
+</dd>
+    <dt><code>options</code> <a class="xref" href="MAS.Runtime.PlcOptions.html">PlcOptions</a></dt>
+    <dd><p>设备选项</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Projects/ProjectSettings.cs/#L22" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

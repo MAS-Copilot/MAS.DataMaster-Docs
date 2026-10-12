@@ -191,6 +191,166 @@ Interface IMASCodeService  <a class="header-action link-secondary" title="View s
 
 
 
+  <a id="MAS_Monaco_IMASCodeService_NotifyFilesChangedAsync_" data-uid="MAS.Monaco.IMASCodeService.NotifyFilesChangedAsync*"></a>
+
+  <h3 id="MAS_Monaco_IMASCodeService_NotifyFilesChangedAsync_System_Collections_Generic_IEnumerable_System_String__" data-uid="MAS.Monaco.IMASCodeService.NotifyFilesChangedAsync(System.Collections.Generic.IEnumerable{System.String})">
+  NotifyFilesChangedAsync(IEnumerable&lt;string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步通知编辑器磁盘上的文件已被外部修改：刷新目录树，并重新加载未修改的标签页</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task NotifyFilesChangedAsync(IEnumerable&lt;string&gt; filePaths)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePaths</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>被修改或新建的文件的完整路径</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Monaco_IMASCodeService_RevealAsync_" data-uid="MAS.Monaco.IMASCodeService.RevealAsync*"></a>
+
+  <h3 id="MAS_Monaco_IMASCodeService_RevealAsync_System_String_System_Int32_System_Int32_" data-uid="MAS.Monaco.IMASCodeService.RevealAsync(System.String,System.Int32,System.Int32)">
+  RevealAsync(string, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>打开文件并定位到指定位置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task RevealAsync(string filePath, int line, int column)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文件完整路径</p>
+</dd>
+    <dt><code>line</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>行号，从 1 开始</p>
+</dd>
+    <dt><code>column</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>列号，从 1 开始</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Monaco_IMASCodeService_SaveAllAsync_" data-uid="MAS.Monaco.IMASCodeService.SaveAllAsync*"></a>
+
+  <h3 id="MAS_Monaco_IMASCodeService_SaveAllAsync_System_TimeSpan_" data-uid="MAS.Monaco.IMASCodeService.SaveAllAsync(System.TimeSpan)">
+  SaveAllAsync(TimeSpan)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存全部未保存的标签页</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; SaveAllAsync(TimeSpan timeout)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd><p>等待前端回执的超时</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>全部保存成功（或无需保存）返回 true；有失败或超时返回 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Monaco_IMASCodeService_SetMarkersAsync_" data-uid="MAS.Monaco.IMASCodeService.SetMarkersAsync*"></a>
+
+  <h3 id="MAS_Monaco_IMASCodeService_SetMarkersAsync_System_Collections_Generic_IEnumerable_MAS_Monaco_CodeMarker__" data-uid="MAS.Monaco.IMASCodeService.SetMarkersAsync(System.Collections.Generic.IEnumerable{MAS.Monaco.CodeMarker})">
+  SetMarkersAsync(IEnumerable&lt;CodeMarker&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Monaco/Interfaces/IMasCodeService.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用整批诊断标记替换编辑器中已有的标记</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task SetMarkersAsync(IEnumerable&lt;CodeMarker&gt; markers)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>markers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.Monaco.CodeMarker.html">CodeMarker</a>&gt;</dt>
+    <dd><p>标记，传空集合即清除</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_Monaco_IMASCodeService_SetThemeAsync_" data-uid="MAS.Monaco.IMASCodeService.SetThemeAsync*"></a>
 
   <h3 id="MAS_Monaco_IMASCodeService_SetThemeAsync_System_String_" data-uid="MAS.Monaco.IMASCodeService.SetThemeAsync(System.String)">

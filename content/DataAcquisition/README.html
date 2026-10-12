@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>数据采集 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="数据采集 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/DataAcquisition/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="数据采集">数据采集</h1>
+
+<p>数据采集以 C# 项目的形式编写：每个项目是一个文件夹，由 DataMaster 工作台编译、运行和热重载</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>自 v3.27.0 起，旧版画布式「构建运行」工程不再受支持</p>
+</div>
+<h2 id="项目结构">项目结构</h2>
+<p>新建项目会生成以下标准框架（示例项目名 <code>LineA</code>，它同时是根命名空间）：</p>
+<pre><code class="lang-bash">LineA/
+├─ LineA.csproj                      # 仅供 Visual Studio / Rider 打开，平台编译不读取它
+├─ appsettings.json                  # 设备、数据库连接参数（新建时是占位值，改好才能运行）
+├─ AGENTS.md                         # 项目架构说明，写给 AI 助手和新同事
+├─ GlobalUsings.cs                   # 各层的全局 using 与命名空间声明
+├─ Startup.cs                        # 唯一的启动入口，也是项目的「任务清单」
+├─ CollectTask/                      # 采集任务（与 PLC 程序块的文件夹对应）
+│  ├─ DataReader/                    # PLC 上报的数据，一个结构体对应一个 DB（标准三件套）
+│  │  ├─ ProductInfoStruct.cs        #   产品信息 DB10100
+│  │  ├─ ProductRouteEventStruct.cs  #   产品流转事件 DB10101
+│  │  └─ InteractionSignalEventStruct.cs # 交互信号事件 DB10102
+│  ├─ DataWriter/SystemStruct.cs     # 上位机写入：系统区 DB10200（心跳、错误码、错误次数等）
+│  └─ TaskExecution/
+│     └─ CollectTaskExecution.cs     # 触发区 DB10000 / 完成区 DB10001 布局与各任务地址 CollectTaskArea
+├─ ReplyTask/                        # 业务任务（示例 Inspect：DB11000/11001、请求 DB11100、应答 DB11200）
+│  ├─ DataReader/InspectRequestStruct.cs
+│  ├─ DataWriter/InspectReplyStruct.cs
+│  ├─ TaskExecution/ReplyTaskExecution.cs
+│  └─ Handlers/InspectTaskHandler.cs # 判定与决策逻辑
+├─ StepTask/                         # 步序控制（示例 Station：状态 DB12100、命令 DB12200）
+│  ├─ DataReader/StationStatusStruct.cs
+│  ├─ DataWriter/StationCommandStruct.cs
+│  └─ Sequences/                     # StationStep 步骤枚举、StationStepWorker 步序服务
+├─ DataAccess/
+│  ├─ Entities/                      # 实体：Product_Info、Product_Route_Event（外键指向产品信息）、Interaction_Signal_Event
+│  ├─ Mappers/                       # 结构体 → 实体（事件时间解析失败时取当前时间并在备注中留痕）
+│  └─ Repositories/                  # （可选）自定义仓储，添加采集任务时生成
+├─ Models/                           # 其它数据模型（枚举、DTO 等）
+├─ Workers/SystemWorker.cs           # 每秒写系统区；定时任务也放这里
+└─ libs/                             # （可选）第三方 dll，放进来即可引用
+</code></pre>
+<p>新建项目自带标准采集任务（产品信息、产品流转事件、交互信号事件）与系统区，地址对应 PLC 程序块 <code>DataMaster/CollectTask</code>，基本每个案子都用得上，现场不上报的任务留着即可；<code>Inspect</code>（业务应答）、<code>Station</code>（步序控制）是示例，照着改名或删除。</p>
+<h2 id="启动入口">启动入口</h2>
+<pre><code class="lang-csharp">public sealed class Startup : IMasStartup {
+    public void ConfigureServices(IServiceCollection services, MasContext context) {
+        services.AddPlc(&quot;Line1&quot;);      // 设备，参数在 appsettings.json 的 Devices:Line1
+        services.AddDatabase(&quot;Main&quot;);  // 数据库，参数在 Databases:Main；采集任务会为自己的实体建表
+        services.AddHostedService&lt;SystemWorker&gt;();    // 系统区：心跳、错误码、错误次数
+
+        // 标准采集任务：产品信息先于流转事件注册（后者的外键指向前者的表）；现场不上报的任务留着即可，不触发就不会执行
+        services.AddCollectTask&lt;ProductInfoStruct, ProductInfoEntity, ProductInfoMapper&gt;(&quot;Line1&quot;, &quot;Main&quot;, CollectTaskArea.ProductInfo);
+        services.AddCollectTask&lt;ProductRouteEventStruct, ProductRouteEventEntity, ProductRouteEventMapper&gt;(&quot;Line1&quot;, &quot;Main&quot;, CollectTaskArea.ProductRouteEvent);
+        services.AddCollectTask&lt;InteractionSignalEventStruct, InteractionSignalEventEntity, InteractionSignalEventMapper&gt;(&quot;Line1&quot;, &quot;Main&quot;, CollectTaskArea.InteractionSignalEvent);
+
+        // 业务应答任务 Inspect：触发 → 读 InspectRequestStruct → InspectTaskHandler 处理 → 写 InspectReplyStruct
+        services.AddReplyTask&lt;InspectRequestStruct, InspectReplyStruct, InspectTaskHandler&gt;(&quot;Line1&quot;, ReplyTaskArea.Inspect);
+
+        // 步序控制 Station：等到位 → 动作并下发命令 → 等完成 → 复位
+        services.AddHostedService&lt;StationStepWorker&gt;();
+
+        // @mas-register：新任务的注册行插在此行之上（工作台「添加任务」与 Agent 使用，请保留）
+    }
+}
+</code></pre>
+<ul>
+<li>所有服务都通过构造函数注入。按名称注册的服务（设备、数据库）使用 <code>[FromKeyedServices(&quot;名称&quot;)]</code> 指定</li>
+<li>后台服务按注册顺序启动，因此依赖数据库表的服务要注册在建表之后</li>
+</ul>
+<h2 id="任务模板">任务模板</h2>
+<p>在工作台中选择「添加任务」（或 Agent 工具 <code>dataAcquisition.scaffold</code>），会按模板生成任务文件，并把注册行插入 <code>Startup.cs</code> 中 <code>// @mas-register</code> 标记之上，热重载后生效</p>
+<ul>
+<li>生成的文件名与类型名都带任务名前缀（<code>Part</code> → <code>PartStruct</code>、<code>PartEntity</code>、<code>PartMapper</code>、<code>PartRepository</code>）</li>
+<li>同类任务共用一个 <code>XxxTaskExecution.cs</code>：第一次添加时按填写的触发区、完成区地址创建，之后只在其中追加该任务的触发字段（<code>ReadPart</code>）和地址方法（<code>CollectTaskArea.Part</code>），填写的触发区、完成区地址不再使用。字段顺序就是 PLC 中的偏移，删任务时记得同步删字段，并与 PLC 数据块核对</li>
+<li>表名由任务名转成 snake_case 再补 <code>_records</code>（<code>Part</code> → <code>part_records</code>）</li>
+<li>地址默认取项目中已用最大地址之后的下一个整百，多个地址依次 +1，<strong>请与 PLC 程序核对</strong></li>
+<li>找不到 <code>// @mas-register</code> 标记时不会自动注册，需要手动把注册行加进 <code>ConfigureServices</code></li>
+<li>生成的文件开头都带一段说明头（<code>GENERATED</code> +「生成说明」+ 版权），标明来自哪个模板、可以直接修改</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模板</th>
+<th>生成的文件</th>
+<th>注册</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>采集任务</td>
+<td><code>CollectTask/DataReader/XxxStruct.cs</code>、<code>DataAccess/Entities/XxxEntity.cs</code>、<code>DataAccess/Mappers/XxxMapper.cs</code>、<code>DataAccess/Repositories/XxxRepository.cs</code>；<code>CollectTask/TaskExecution/CollectTaskExecution.cs</code> 追加 <code>ReadXxx</code> 与 <code>CollectTaskArea.Xxx</code></td>
+<td><code>AddCollectTask&lt;XxxStruct, XxxEntity, XxxMapper, XxxRepository&gt;(设备, 数据库, CollectTaskArea.Xxx)</code></td>
+</tr>
+<tr>
+<td>业务应答任务</td>
+<td><code>ReplyTask/DataReader/XxxRequestStruct.cs</code>、<code>ReplyTask/DataWriter/XxxReplyStruct.cs</code>、<code>ReplyTask/Handlers/XxxTaskHandler.cs</code>；<code>ReplyTask/TaskExecution/ReplyTaskExecution.cs</code> 追加 <code>RequestXxx</code> 与 <code>ReplyTaskArea.Xxx</code></td>
+<td><code>AddReplyTask&lt;XxxRequestStruct, XxxReplyStruct, XxxTaskHandler&gt;(设备, ReplyTaskArea.Xxx)</code></td>
+</tr>
+<tr>
+<td>单向任务</td>
+<td><code>ReplyTask/DataReader/XxxRequestStruct.cs</code>、<code>ReplyTask/Handlers/XxxTaskHandler.cs</code>；与业务应答任务共用 <code>ReplyTaskExecution.cs</code></td>
+<td><code>AddTriggerTask&lt;XxxRequestStruct, XxxTaskHandler&gt;(设备, ReplyTaskArea.Xxx)</code></td>
+</tr>
+<tr>
+<td>步序控制</td>
+<td><code>StepTask/DataReader/XxxStatusStruct.cs</code>、<code>StepTask/DataWriter/XxxCommandStruct.cs</code>、<code>StepTask/Sequences/XxxStep.cs</code>、<code>XxxStepWorker.cs</code></td>
+<td><code>AddHostedService&lt;XxxStepWorker&gt;()</code></td>
+</tr>
+<tr>
+<td>定时任务</td>
+<td><code>Workers/XxxWorker.cs</code></td>
+<td><code>AddHostedService&lt;XxxWorker&gt;()</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>任务模板随平台发布，位于 <code>MAS.Runtime</code> 的 <code>Templates/DataAcquisition/Items/&lt;标识&gt;/</code>：文件夹里的每个文件首行 <code>//#path: 相对路径</code> 指定生成位置，第二行为 <code>//#once</code> 的是同类任务共用的文件（只在不存在时创建）</li>
+<li><code>item.json</code> 描述标题、说明、所需参数（设备、数据库）、要填写的地址、注册行，以及 <code>inserts</code>（插入共用文件中 <code>// @mas-field</code>、<code>// @mas-area</code> 等标记之上的行）。新增一种任务模板只需在这里加一个文件夹（构建时嵌入程序集，不落输出目录，因此删除或改名不会在 <code>bin</code> 里留下旧副本）</li>
+</ul>
+<h2 id="系统区">系统区</h2>
+<p><code>Workers/SystemWorker.cs</code> 每秒把 <code>SystemStruct</code> 整块写入 PLC（地址 <code>SystemWorker.ADDRESS</code>），PLC 据此判断上位机是否在线、有没有出错：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Heartbeat</code></td>
+<td>INT</td>
+<td>每秒加 1，0 ~ 32767 循环</td>
+</tr>
+<tr>
+<td><code>ErrorCode</code></td>
+<td>INT</td>
+<td>0 正常；2 处理失败（如写库失败）；3 超时；4 忙；≥100 业务码。出错的任务恢复后自动清零</td>
+</tr>
+<tr>
+<td><code>RunMode</code></td>
+<td>String[10]</td>
+<td><code>appsettings.json</code> 的 <code>System:RunMode</code></td>
+</tr>
+<tr>
+<td><code>Payload</code></td>
+<td>String[100]</td>
+<td>最近一次错误的摘要，如 <code>PartStruct#123 code=2</code></td>
+</tr>
+<tr>
+<td><code>Timestamp</code></td>
+<td>String[22]</td>
+<td>上位机时间 <code>yyyy-MM-dd HH:mm:ss.ff</code></td>
+</tr>
+<tr>
+<td><code>Version</code></td>
+<td>String[10]</td>
+<td><code>System:Version</code></td>
+</tr>
+<tr>
+<td><code>PcId</code></td>
+<td>String[20]</td>
+<td><code>System:PcId</code>，默认计算机名</td>
+</tr>
+<tr>
+<td><code>ErrorCount</code></td>
+<td>DINT</td>
+<td>自启动以来的错误次数，每次失败都计一次（包括写库失败后的重试）</td>
+</tr>
+<tr>
+<td><code>SuccessCount</code></td>
+<td>DINT</td>
+<td>自启动以来的处理成功次数，采集任务即保存成功的条数</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>错误码和计数来自运行时自动注册的 <code>IAcquisitionStatus</code>：采集、应答、单向任务每次处理后自动上报；应答任务的业务码（≥100）是处理器给出的正常结论，不计为错误。用户代码也可以注入它，调用 <code>ReportError</code> / <code>ReportSuccess</code> 上报自己的错误</li>
+<li>S7 的 <code>String[n]</code> 在 PLC 里占 n + 2 字节（含最大长度、实际长度两个头字节），字段要标 <code>[S7String(S7StringType.S7String, n)]</code>，只能写 ASCII；MC/Modbus 没有字符串头，改用 <code>[FixedString(n)]</code></li>
+<li>字段可以按现场 PLC 的数据块增删，<code>SystemStruct</code> 与 PLC 的布局保持一致即可</li>
+</ul>
+<h2 id="采集任务">采集任务</h2>
+<p>采集任务在一个任务内完成整个采集链路，保存成功后才回写完成值，PLC 看到完成值即可确认数据已保存。采集任务只用触发区、完成区和数据区，没有应答区：</p>
+<pre><code class="lang-text">PLC 写数据 → 触发值 +1 → 读 XxxStruct → XxxMapper.Map → XxxRepository.AddAsync → 插入一行 → 回写完成值
+</code></pre>
+<pre><code class="lang-csharp">// CollectTask/TaskExecution/CollectTaskExecution.cs（添加任务时自动追加）
+public struct CollectTaskExecution { public short ReadPart; }
+
+public static class CollectTaskArea {
+    public const int EXECUTION_ADDRESS = 100;
+    public const int COMPLETED_ADDRESS = 101;
+
+    public static void Part(HandshakeOptions o) =&gt; Configure(o, nameof(CollectTaskExecution.ReadPart), dataAddress: 102);
+}
+
+// CollectTask/DataReader/PartStruct.cs
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
+public struct PartStruct { public int SerialNo; public float Value; public short IsOk; }
+
+[DbHandler(true)]
+[Table(&quot;part_records&quot;, DisplayName = &quot;Part&quot;)]
+public class PartEntity {
+    [Column(&quot;Id&quot;, &quot;INT&quot;, IsPrimaryKey = true, IsAutoIncrement = true, IsNullable = false)]
+    public int Id { get; set; }
+    // ……
+}
+
+public sealed class PartMapper : IDataMapper&lt;PartStruct, PartEntity&gt; {
+    public PartEntity Map(PartStruct source) {
+        if (source.SerialNo &lt;= 0) {
+            throw new ReplyRejectedException(101, &quot;序号无效&quot;); // 丢弃：不入库，照常回写完成值
+        }
+
+        return new PartEntity { SerialNo = source.SerialNo, Value = source.Value, CreatedAt = DateTime.Now };
+    }
+
+    public PartStruct MapBack(PartEntity? destination) =&gt; default;
+}
+</code></pre>
+<ul>
+<li>写库失败、影响行数为 0 或超时：不回写完成值，按 <code>RetryInterval</code> 重试同一触发值，直到保存成功</li>
+<li>映射器抛出 <code>ReplyRejectedException</code>：数据不入库，记录警告，照常回写完成值（表示有意丢弃这条数据）</li>
+<li>全部采集任务共用一个触发 DB 和一个完成 DB，布局由 <code>CollectTaskExecution</code> 的字段顺序决定，偏移用 <code>Marshal.OffsetOf</code> 算出，例如三个任务的触发值都在 DB10000、完成值都在 DB10001，偏移分别为 0、2、4：</li>
+</ul>
+<pre><code class="lang-csharp">[StructLayout(LayoutKind.Sequential, Pack = 1)]
+public struct CollectTaskExecution {
+    public short ReadProductInfo;            // 偏移 0
+    public short ReadProductRouteEvent;      // 偏移 2
+    public short ReadInteractionSignalEvent; // 偏移 4
+}
+
+public static class CollectTaskArea {
+    public const int EXECUTION_ADDRESS = 10000; // CollectTaskExecution
+    public const int COMPLETED_ADDRESS = 10001; // CollectTaskCompleted
+
+    public static void ProductRouteEvent(HandshakeOptions o) =&gt; Configure(o, nameof(CollectTaskExecution.ReadProductRouteEvent), dataAddress: 10101);
+}
+</code></pre>
+<ul>
+<li>MC/Modbus 的偏移按寄存器计，要把 <code>Configure</code> 里的偏移改为 offset / 2</li>
+<li>启动时自动为实体建表并补充缺失的列，因此采集任务的实体不必再在 <code>AddDatabase</code> 里登记一次</li>
+<li>入库默认使用基类仓储；需要去重、修改已有记录或写多张表时，在 <code>DataAccess/Repositories/XxxRepository.cs</code> 中重写 <code>AddAsync</code>（注册的就是该仓储），业务代码用 <code>db.Repository&lt;XxxEntity, XxxRepository&gt;()</code> 取得同一个仓储</li>
+<li>采集任务流程固定；需要把处理结果告诉 PLC，或超出「一行一表」的需求（跨表事务、查重后更新）建议改用业务应答任务，在处理器里注入 <code>IDatabase</code> 自行处理</li>
+</ul>
+<h2 id="设备">设备</h2>
+<p>设备直接写在 <code>appsettings.json</code> 的 <code>Devices:&lt;名称&gt;</code> 下，也可以在工作台的「设备」面板中添加、修改、删除并测试连接（只写入所选协议用到的参数，改名后需同步 <code>Startup.cs</code> 里按字符串引用的名称）：</p>
+<pre><code class="lang-json">{
+  &quot;Devices&quot;: {
+    &quot;Line1&quot;: { &quot;Protocol&quot;: &quot;S7&quot;, &quot;Ip&quot;: &quot;192.168.0.1&quot;, &quot;CpuType&quot;: &quot;S7-1500&quot;, &quot;Rack&quot;: 0, &quot;Slot&quot;: 1 },
+    &quot;Press&quot;: { &quot;Protocol&quot;: &quot;MC&quot;, &quot;Ip&quot;: &quot;192.168.10.2&quot;, &quot;Port&quot;: 3000, &quot;Frame&quot;: &quot;MC3E&quot; },
+    &quot;Robot&quot;: { &quot;Protocol&quot;: &quot;ModbusTcp&quot;, &quot;Ip&quot;: &quot;192.168.10.3&quot;, &quot;Port&quot;: 502, &quot;UnitId&quot;: 1 }
+  }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>地址含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>S7</code></td>
+<td><code>address</code> 是 DB 号，<code>offset</code> 是字节偏移</td>
+</tr>
+<tr>
+<td><code>MC</code> / <code>ModbusTcp</code></td>
+<td><code>address</code> 是起始寄存器，<code>offset</code> 直接叠加到地址上</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong><code>Protocol</code> 必须显式填写</strong>，缺省时启动会报错。</li>
+<li>首次读写时自动连接。读写失败时会断开连接并抛出异常，下一次读写时自动重连。</li>
+<li>同一台设备的读写按顺序执行。</li>
+<li>项目运行期间，设备以设备名登记到平台。视觉模块的「通讯设备」和 Agent 的 PLC 技能通过该名称使用同一条连接。</li>
+</ul>
+<pre><code class="lang-csharp">public sealed class StationStepWorker([FromKeyedServices(&quot;Line1&quot;)] IPlc plc) : BackgroundService {
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
+        while (!stoppingToken.IsCancellationRequested) {
+            // 等 PLC 到位：300 是状态区地址（S7 为 DB 号，MC/Modbus 为起始寄存器）
+            await plc.WaitUntilAsync&lt;StationStatusStruct&gt;(300, s =&gt; s.Ready == 1, token: stoppingToken);
+
+            // 上位机动作完成后允许 PLC 动作：301 是命令区地址
+            await plc.WriteAsync(new StationCommandStruct { Start = 1, Step = 2, Result = 1 }, 301, token: stoppingToken);
+        }
+    }
+}
+</code></pre>
+<h2 id="握手任务">握手任务</h2>
+<p>下位机写好请求后，将<strong>触发值</strong>加 1。上位机处理完成后，将<strong>完成值</strong>写成与触发值相同的值。触发值和完成值均为 16 位整数（INT）。</p>
+<table>
+<thead>
+<tr>
+<th>注册方式</th>
+<th>流程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AddTriggerTask&lt;TRequest, THandler&gt;</code></td>
+<td>触发 → 读请求 → 处理 → 回写完成值</td>
+</tr>
+<tr>
+<td><code>AddReplyTask&lt;TRequest, TReply, THandler&gt;</code></td>
+<td>触发 → 读请求 → 处理 → <strong>写应答</strong> → 回写完成值</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-csharp">public struct InspectRequestStruct { public short RecipeNo; public float Value; }
+public struct InspectReplyStruct { public short ResultCode; public short RequestIndex; public short IsOk; }
+
+public sealed class InspectTaskHandler(ILogger&lt;InspectTaskHandler&gt; logger) : IReplyHandler&lt;InspectRequestStruct, InspectReplyStruct&gt; {
+    public Task&lt;InspectReplyStruct&gt; HandleAsync(HandshakeContext&lt;InspectRequestStruct&gt; context, CancellationToken token) {
+        if (context.Request.RecipeNo &lt;= 0) {
+            throw new ReplyRejectedException(101, &quot;配方编号无效&quot;);
+        }
+
+        return Task.FromResult(new InspectReplyStruct { IsOk = (short)(context.Request.Value &gt;= 85 ? 1 : 0) });
+    }
+}
+</code></pre>
+<ul>
+<li>应答任务<strong>应答先于完成值写入</strong>。下位机看到完成值变化后，即可读取应答</li>
+<li>启动时读取一次完成区。完成值等于触发值，表示该请求已处理，重启后不会重复执行</li>
+<li>触发值为 0 表示复位，之后再出现的 1 按新请求处理</li>
+<li>同一个任务内，处理器不会被并发调用。处理器实现 <code>IDisposable</code> 或 <code>IAsyncDisposable</code> 时，在停止时释放</li>
+<li>可配置的选项：<code>PollInterval</code>（轮询间隔，默认 50 ms）、<code>HandlerTimeout</code>（处理超时，默认 5 s）和 <code>RetryInterval</code>（通讯失败后的重试间隔，默认 1 s）</li>
+</ul>
+<h3 id="应答约定字段">应答约定字段</h3>
+<p>应答结构体中，以下整数字段按名称匹配：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ResultCode</code></td>
+<td>是</td>
+<td>结果码，由框架填写；缺少该字段时启动失败</td>
+</tr>
+<tr>
+<td><code>RequestIndex</code></td>
+<td>否</td>
+<td>框架回填本次的触发值</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>结果码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>成功（处理器返回的结果码为 0 时，框架改为 1）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>处理器抛出异常；或 <code>ReplyRejectedException</code> 给出的结果码 ≤ 1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>处理超时</td>
+</tr>
+<tr>
+<td>4</td>
+<td>上一次处理超时后仍未结束，本次没有交给处理器</td>
+</tr>
+<tr>
+<td>≥ 100</td>
+<td>业务自定义，由处理器自己填写，或通过 <code>ReplyRejectedException</code> 指定</td>
+</tr>
+</tbody>
+</table>
+<p>失败应答中，除约定字段外，业务字段均为默认值。下位机应<strong>先判断结果码，再使用业务字段</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>应答任务</th>
+<th>单向任务</th>
+<th>采集任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>处理器异常 / 超时</td>
+<td>写失败应答，照常回写完成值</td>
+<td>记录错误，照常回写完成值</td>
+<td>不回写完成值，按重试间隔重试</td>
+</tr>
+<tr>
+<td><code>ReplyRejectedException</code></td>
+<td>应答其结果码，照常回写完成值</td>
+<td>记录错误，照常回写完成值</td>
+<td>丢弃本条，照常回写完成值</td>
+</tr>
+<tr>
+<td>上一次仍未结束</td>
+<td>应答「忙」，照常回写完成值</td>
+<td>不回写完成值，等上一次结束后再处理本次</td>
+<td>同单向任务</td>
+</tr>
+<tr>
+<td>读取请求或写入失败</td>
+<td>不回写完成值，按重试间隔重试</td>
+<td>同左</td>
+<td>同左</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据库">数据库</h2>
+<pre><code class="lang-json">{
+  &quot;Databases&quot;: {
+    &quot;Main&quot;: {
+      &quot;Server&quot;: &quot;127.0.0.1&quot;,
+      &quot;Port&quot;: 3306,
+      &quot;Database&quot;: &quot;linea&quot;,
+      &quot;User&quot;: &quot;root&quot;,
+      &quot;Password&quot;: &quot;enc:……&quot;
+    }
+  }
+}
+</code></pre>
+<ul>
+<li>数据采集项目<strong>只支持 MySQL</strong>。启动时自动建库、建表、补列、补索引</li>
+<li>在工作台的「数据库」面板中添加、修改并测试连接。<strong>密码加密后才写入 <code>appsettings.json</code></strong>（以 <code>enc:</code> 开头），也可以让 Agent 用 <code>dataAcquisition.database</code> 工具保存。加密方式与平台自身的数据库密码相同，因此项目文件夹复制到另一台安装了 DataMaster 的电脑后仍可使用</li>
+<li>手工写入配置的明文密码会在打开项目时自动加密。运行时遇到明文密码，也会在输出中给出警告</li>
+<li>运行监视面板显示每个数据库的状态、写入次数和最近一次错误</li>
+</ul>
+<pre><code class="lang-csharp">[Table(&quot;Part_Records&quot;)]
+[DbHandler(true)]
+public class PartEntity {
+    [Column(&quot;Id&quot;, &quot;INT&quot;, IsPrimaryKey = true, IsAutoIncrement = true, IsNullable = false)]
+    public int Id { get; set; }
+
+    [Column(&quot;SerialNo&quot;, &quot;INT&quot;, IsNullable = false)]
+    public int SerialNo { get; set; }
+}
+
+public sealed class SaveHandler([FromKeyedServices(&quot;Main&quot;)] IDatabase db) : ITriggerHandler&lt;UploadRequest&gt; {
+    public async Task HandleAsync(HandshakeContext&lt;UploadRequest&gt; context, CancellationToken token) {
+        // db.Repository&lt;PartEntity&gt;()                  用默认仓储
+        // db.Repository&lt;PartEntity, PartRepository&gt;()  用自定义仓储（重写了入库逻辑时用这个）
+        await db.Repository&lt;PartEntity, PartRepository&gt;().AddAsync(new PartEntity { SerialNo = context.Request.SerialNo });
+    }
+}
+</code></pre>
+<ul>
+<li>向 <code>AddDatabase</code> 传入实体类型时，启动时也会建表；采集任务会自动为自己的实体建表。依赖这些表的服务必须注册在建表之后</li>
+<li>需要执行 SQL 或事务时，使用 <code>db.Operations</code></li>
+<li>列名不要使用 MySQL 保留字</li>
+</ul>
+<h2 id="与-ai-助手协作">与 AI 助手协作</h2>
+<ul>
+<li><p>每个项目根目录都包含 <code>AGENTS.md</code>，说明目录结构、任务类型、握手约定和结构体规则。在 VS Code、Cursor、Claude Code 等工具中打开项目文件夹时，AI 助手会先读取该文件</p>
+</li>
+<li><p>MAS Agent 提供 <code>mas-data-acquisition</code> 技能和 <code>dataAcquisition.*</code> 工具，支持以下操作：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project</code></td>
+<td>查看项目：文件、设备、数据库、可用模板、建议起始地址</td>
+</tr>
+<tr>
+<td><code>open</code></td>
+<td>打开或新建项目</td>
+</tr>
+<tr>
+<td><code>scaffold</code></td>
+<td>按模板添加任务（<code>dryRun</code> 可先看代码）</td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td>编译</td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td>运行、停止或热重载</td>
+</tr>
+<tr>
+<td><code>logs</code></td>
+<td>读取日志</td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td>配置数据库，密码同样会加密</td>
+</tr>
+</tbody>
+</table>
+<p>Agent 所做的修改会同步显示在工作台上</p>
+</li>
+</ul>
+<h2 id="excel-导出">Excel 导出</h2>
+<pre><code class="lang-csharp">services.AddExcelExporter(); // Startup 里注册一次，构造函数注入 IExcelExporter
+
+exporter.AppendRow(new { Time = DateTime.Now, context.Request.Code, IsOk = 1 }, &quot;Reports/inspect.xlsx&quot;);
+</code></pre>
+<ul>
+<li>相对路径相对于项目根目录解析，目录不存在时自动创建</li>
+<li>文件不存在时，先创建工作表并写入表头</li>
+<li>对同一个文件的写入按顺序执行。标注 <code>[IgnoreInExcelExport]</code> 的字段不会导出</li>
+</ul>
+<h2 id="常见问题">常见问题</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>提示「缺少设备配置 Devices:xxx」</td>
+<td><code>AddPlc</code> 的名称必须与 appsettings.json 中的键一致</td>
+</tr>
+<tr>
+<td>提示「必须有且只有一个 IMasStartup 实现」</td>
+<td>检查 <code>Startup.cs</code> 是否被删除，或是否存在多个启动类</td>
+</tr>
+<tr>
+<td>新建项目一运行就连不上</td>
+<td>设备的 IP、数据库参数还是占位值，先改 <code>appsettings.json</code>（或在工作台里改设备、数据库）</td>
+</tr>
+<tr>
+<td>后台服务显示「异常退出」</td>
+<td>在运行监视中查看原因，或在输出面板中查看完整异常。其他服务不受影响</td>
+</tr>
+<tr>
+<td>停止后提示「项目程序集未能完全卸载」</td>
+<td>项目代码中存在静态事件、未退出的线程或计时器。热重载仍可使用，但内存会逐次增长。请在停止时释放这些资源</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/DataAcquisition/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
