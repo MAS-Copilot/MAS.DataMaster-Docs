@@ -90,12 +90,44 @@
 <p>本文介绍如何在一台全新的 Windows 电脑上安装并启动 DataMaster，按顺序完成以下步骤即可</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>适用于 Windows 10 / 11 x64。安装运行时、数据库和配置系统环境变量需要管理员权限</p>
+<p>适用于 Windows 10 / 11，64 位系统选 x64 安装程序，32 位系统选 x86 安装程序。安装 DataMaster、运行时、数据库和配置系统环境变量需要管理员权限</p>
 </div>
 <div class="steps">
 <ol>
+<li><p><strong>下载安装程序</strong></p>
+<p>从 <a href="https://github.com/Weiguang-Automation/mas-data-master/releases">GitHub Release</a> 下载对应版本的安装程序，每个版本提供两种：</p>
+<table>
+<thead>
+<tr>
+<th>安装程序</th>
+<th>大小</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MasDataMaster-Setup-win-x64-self-contained-&lt;版本&gt;.exe</code></td>
+<td>较大</td>
+<td><strong>推荐</strong>。自带 .NET 运行时，下载后直接安装，可跳过第 2 步</td>
+</tr>
+<tr>
+<td><code>MasDataMaster-Setup-win-x64-&lt;版本&gt;.exe</code></td>
+<td>较小</td>
+<td>电脑已安装或准备安装 .NET 8 运行时，需完成第 2 步</td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>不确定选哪个时选自包含版（文件名带 <code>self-contained</code>）</p>
+</div>
+</li>
 <li><p><strong>安装运行时环境</strong></p>
-<p>DataMaster 基于 .NET 8 构建，需要先安装以下两个运行时：</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>使用自包含版安装程序时跳过本步骤</p>
+</div>
+<p>DataMaster 基于 .NET 8 构建，框架依赖版需要先安装以下两个运行时：</p>
 <table>
 <thead>
 <tr>
@@ -123,7 +155,7 @@
 <p>输出中包含 <code>Microsoft.AspNetCore.App 8.0.x</code> 与 <code>Microsoft.WindowsDesktop.App 8.0.x</code> 即表示安装成功</p>
 <div class="TIP">
 <h5>Tip</h5>
-<p>8.0 系列中更新的补丁版本同样可用，所有版本见 <a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0">.NET 8.0 下载页</a></p>
+<p>8.0 系列中更新的补丁版本同样可用，所有版本见 <a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0">.NET 8.0 下载页</a>。x86 安装程序需要对应的 x86 运行时</p>
 </div>
 </li>
 <li><p><strong>安装数据库</strong></p>
@@ -167,16 +199,50 @@
 </div>
 </li>
 <li><p><strong>安装并启动</strong></p>
-<p>以上环境准备完成后，解压 DataMaster 安装包，运行安装向导，按提示完成安装并启动 DataMaster</p>
+<p>双击下载的安装程序，在弹出的用户账户控制窗口中点击 <strong>是</strong>，然后选择安装方式：</p>
+<table>
+<thead>
+<tr>
+<th>安装方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>快速安装</strong></td>
+<td>安装到 <code>C:\Program Files\MAS.DataMaster-win-x64</code>，一键完成</td>
+</tr>
+<tr>
+<td><strong>自定义安装</strong></td>
+<td>选择安装的磁盘与文件夹，所选文件夹不是 <code>MAS.DataMaster-win-x64</code> 时会自动在其下新建该文件夹</td>
+</tr>
+</tbody>
+</table>
+<p>安装完成后，完成页默认勾选 <strong>创建桌面快捷方式</strong> 和 <strong>立即启动</strong>，点击 <strong>完成</strong> 即启动 DataMaster</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>安装只是把程序文件解压到安装目录。工程、配置等现场数据保存在初始化向导设置的全局存储路径下（<code>&lt;所选位置&gt;\MAS.DataMaster</code>），与安装目录相互独立，重新安装或升级不会丢失</p>
+</div>
 </li>
-<li><p><strong>登录系统</strong></p>
-<p>DataMaster 成功启动后，登录到系统即可开始使用</p>
+<li><p><strong>初始化并登录</strong></p>
+<p>首次启动会进入初始化向导，依次完成数据库设置、数据库初始化、创建管理员账号与设置全局存储路径，之后登录到系统即可开始使用</p>
 </li>
 </ol>
 </div>
+<h2 id="升级与卸载">升级与卸载</h2>
+<ul>
+<li><strong>升级</strong>：DataMaster 支持在线更新，也可以下载新版本安装程序，安装到原来的目录覆盖安装。覆盖前请先关闭 DataMaster</li>
+<li><strong>卸载</strong>：关闭 DataMaster 后删除安装目录与桌面快捷方式即可。现场数据位于全局存储路径，不随安装目录删除，确认不再需要后再手动删除</li>
+</ul>
 <h2 id="常见问题">常见问题</h2>
-<p><strong>启动时提示缺少 .NET 运行时</strong></p>
-<p>检查第 1 步的两个运行时是否都已安装，可通过 <code>dotnet --list-runtimes</code> 确认</p>
+<p><strong>双击安装程序或 DataMaster 时提示缺少 .NET 运行时</strong></p>
+<p>使用的是框架依赖版，检查第 2 步的两个运行时是否都已安装，可通过 <code>dotnet --list-runtimes</code> 确认；或改用自包含版安装程序</p>
+<p><strong>Windows 提示&quot;Windows 已保护你的电脑&quot;</strong></p>
+<p>点击 <strong>更多信息 → 仍要运行</strong> 即可继续安装</p>
+<p><strong>安装时提示&quot;以下程序正在运行，请关闭后重试&quot;</strong></p>
+<p>覆盖安装前需关闭安装目录中正在运行的 DataMaster，关闭后在安装程序中重新安装</p>
+<p><strong>自定义安装时提示&quot;该目录不为空且不是已有的安装目录&quot;</strong></p>
+<p>为避免程序文件混入其他文件，安装程序只接受空文件夹或已有的安装目录，请选择或新建一个空文件夹</p>
 <p><strong>无法连接数据库</strong></p>
 <ul>
 <li>确认 MySQL 服务已启动，可在 <strong>服务</strong>（<code>services.msc</code>）中查看 <code>MySQL84</code> 服务状态</li>
