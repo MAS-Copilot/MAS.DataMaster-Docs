@@ -358,6 +358,21 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 <td>Medium</td>
 <td>初始化、启动循环、停止、重命名管道</td>
 </tr>
+<tr>
+<td><code>visionFlow.script.get</code></td>
+<td>Low</td>
+<td>管道脚本（LF 换行）、指纹、处理器类名，以及管道内各节点可读取的结果键（C# 类型、说明、最近值）</td>
+</tr>
+<tr>
+<td><code>visionFlow.script.edit</code></td>
+<td>Medium</td>
+<td>修改管道脚本：<code>edits</code> 精确替换 / <code>code</code> 整体重写 / <code>reset</code> 恢复模板，三选一；写入前编译检查，成功后回显改动处（带行号）</td>
+</tr>
+<tr>
+<td><code>visionFlow.script.test</code></td>
+<td>Medium</td>
+<td>不启动循环试跑脚本一轮：执行管道 → <code>HandleResultAsync</code> → <code>CompleteAsync</code>，返回本次调用的 <code>Debug.Enqueue</code> 输出与脚本异常</td>
+</tr>
 </tbody>
 </table>
 <ul>
@@ -365,6 +380,9 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 <li>画布锁定时拒绝编辑；运行中的管道结构锁定，参数仍可修改；参数改动后所在管道下次执行先重新初始化</li>
 <li>图与参数只在 UI 线程读写（<code>VisionDispatcher</code>），执行在后台线程；附带图像在节点输出锁内编码，避免缓冲被下一次执行复用</li>
 <li>改动只在内存中，由用户保存工程</li>
+<li>管道脚本只在内存里，没有文件可给 CLI 工具编辑，因此按 <code>oldText → newText</code> 局部替换，不必每次传整份脚本：匹配与换行符无关（写回保留原换行风格）；先在后台编译检查（不加载程序集、不替换正在用的处理器），有错误整批不生效，错误给出改后脚本的行号与该行原文；改了命名空间或处理器类名直接拒绝；运行中的管道拒绝修改</li>
+<li>脚本按“节点标题 + 结果键”取值，读取与编辑时按字符串字面量检查引用（跳过整行注释），标题或键对不上的列入 <code>referenceWarnings</code>；<code>graph.apply</code> 改名后仍按旧标题取值的脚本列入 <code>scriptWarnings</code>。只报告不拦截</li>
+<li>试跑与循环共用编译缓存里的处理器，语义同循环一轮（执行失败不调用 <code>CompleteAsync</code>），默认跳过 <code>TriggerSignalAsync</code>。输出靠 <code>Debug.BeginCapture</code>：按 <code>AsyncLocal</code> 只收本调用链的消息，其他管道循环同时输出不会混入，消息照常进输出窗口。脚本的副作用（写 PLC 等）是真实的</li>
 <li>布局按卡片实际尺寸计算（<code>FlowCanvas.MeasureNodeBounds</code>，新卡片先同步布局一次）：add 省略坐标时，整批完成后整组新建的流程按连线从左到右分列排布，接入已有流程的新节点放到上游右侧（或下游左侧）不压住别的卡片；<code>layout</code> 操作排布整个画布或某条流程。移动记入同一步撤销</li>
 </ul>
 <p>新增节点时 Agent 层不用改代码：给要开放的属性加 <code>[VisionParameter]</code>（嵌套配置在类上按路径声明），工具即可描述、校验和读写；端口由节点构造函数声明，工具自动读取。</p>
