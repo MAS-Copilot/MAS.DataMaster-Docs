@@ -211,8 +211,9 @@
 </table>
 <p>单个定位结果可以直接连到列表输入，当作只有一个元素的列表；列表不能直接连到只收单个结果的输入，要用“取元素”明确取第几个。</p>
 <p>管道脚本里按“节点标题 + 结果键”取值，例如：</p>
-<pre><code class="lang-csharp">if (result.TryGetValue&lt;double&gt;(&quot;示教对位&quot;, &quot;DX&quot;, out var dx) &amp;&amp; result.TryGetValue&lt;double&gt;(&quot;示教对位&quot;, &quot;DY&quot;, out var dy)) {
-    // 写回 PLC
+<pre><code class="lang-csharp">var align = result.GetNode(&quot;示教对位&quot;);
+if (align.TryGetValue&lt;double&gt;(&quot;DX&quot;, out var dx) &amp;&amp; align.TryGetValue&lt;double&gt;(&quot;DY&quot;, out var dy)) {
+    // 写回 PLC；节点本次失败时取不到值，不会把上一次的补正量下发
 }
 </code></pre>
 <p>各节点的结果键可在输出查看窗口的“结果数据”页看到。</p>
@@ -225,8 +226,15 @@
 <li>常用参数直接在卡片上改，其余在设置窗口里改；没有属性面板</li>
 </ul>
 <h2 id="管道">管道</h2>
-<p>管道由画布自动划分：每个至少包含两个非工具节点的连通分量就是一条管道，图一变就在后台重建，不需要手动「拓扑」。增删节点后，管道按节点重叠度与原来的管道对应，名称和脚本跟着走。</p>
-<p>管道运行中时，它的节点不能删除、不能连线或断线，参数照常可改。</p>
+<p>管道由画布自动划分：每个至少包含两个非工具节点的连通分量就是一条管道，图一变就在后台重建，不需要手动「拓扑」。增删节点后，管道的标识（脚本类名由它生成）、名称和脚本跟着节点走：</p>
+<ul>
+<li>节点集合与以前某一刻完全相同（撤销、重做、断开又连回）时，还给当时的那条管道</li>
+<li>否则由拥有其中节点最多的原管道认领；改过脚本或名称的管道优先于默认管道</li>
+<li>暂时凑不成管道（删掉唯一的连线、删掉中间节点、被另一条管道合并）的管道不会丢弃，名称与脚本保留，节点重新连上即恢复；改过脚本或名称、且还有节点在画布上的，保存工程时一并保存</li>
+<li>恢复时如果名称已被别的管道占用，自动改名</li>
+<li>节点全部删除并保存工程后，这条管道才真正删除</li>
+</ul>
+<p>管道运行中时，它的节点不能删除、不能连线或断线，参数照常可改。单次触发、运行到节点时不锁结构，执行中途删掉的节点立刻离开画布，相机等资源等这次执行结束再释放；拿着已脱离管道触发、启动、初始化会被拒绝，不会执行旧的节点。</p>
 <h3 id="执行顺序">执行顺序</h3>
 <p>管道内按拓扑排序（Kahn 算法，同层按节点位置排序）确定顺序；执行时入度为 0 的节点先跑，同一批就绪的节点并行执行，某个节点失败则整条管道立即失败，下游不再执行。</p>
 <pre><code>B   A
@@ -249,11 +257,46 @@ D   C
 <li><code>CompleteAsync</code> 结束本轮（例如复位触发位）</li>
 </ol>
 <pre><code class="lang-csharp">public async Task HandleResultAsync(VisionRunResult result, CancellationToken token = default) {
-    if (result.TryGetValue&lt;double&gt;(&quot;颜色识别&quot;, &quot;Score&quot;, out var score)) {
-        // 按节点标题 + 结果键取值，键名不区分大小写
+    if (!result.IsSuccess) {
+        // 回写 NG
+        return;
     }
+
+    var score = result.GetValue&lt;double&gt;(&quot;颜色识别&quot;, &quot;Score&quot;);
 }
 </code></pre>
+<p>按“节点标题 + 结果键”取值，标题与键都不区分大小写：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>取不到时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>result.GetValue&lt;T&gt;(节点, 键)</code></td>
+<td>抛异常，消息里列出本次结果中的节点或该节点的键，便于发现标题写错、节点改名</td>
+</tr>
+<tr>
+<td><code>result.TryGetValue&lt;T&gt;(节点, 键, out value)</code></td>
+<td>返回 <code>false</code></td>
+</tr>
+<tr>
+<td><code>result.GetValueOrDefault(节点, 键, 默认值)</code></td>
+<td>返回默认值</td>
+</tr>
+<tr>
+<td><code>result.GetNode(节点)</code></td>
+<td>抛异常；返回的节点结果同样有 <code>GetValue</code>、<code>TryGetValue</code>、<code>GetValueOrDefault</code>，同一节点取多个值时用</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>节点本次执行失败时取不到它的值（不会拿到上一次残留的结果），<code>node.Status</code>、<code>node.Message</code> 可查失败原因</li>
+<li>数值类型之间无损转换：<code>int</code> 结果可以按 <code>double</code> 读；<code>2.5</code> 不能按 <code>int</code> 读，超出范围也不行</li>
+<li>节点改名后脚本里的标题要跟着改</li>
+</ul>
 <p>脚本类名由运行时生成，不要修改；构造函数可以注入应用中注册的服务，如 <code>IProtocolManager</code>。</p>
 
 </article>
