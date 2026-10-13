@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>ROI 选择器 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="ROI 选择器 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS-Vision/ROISelector.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="roi-选择器">ROI 选择器</h1>
+
+<h2 id="概述">概述</h2>
+<p>ROI 选择器（<code>vision.roiSelector</code>，预处理类）按设定的感兴趣区域裁剪输入图像，用于缩小后续算法的处理范围，提升速度并减少误检。</p>
+<p>支持的形状：矩形、旋转矩形、圆、椭圆、圆环、多边形。</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>Image</td>
+<td>图像</td>
+<td>待裁剪的图像</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>Image</td>
+<td>图像</td>
+<td>裁剪结果</td>
+</tr>
+</tbody>
+</table>
+<h2 id="输出规则">输出规则</h2>
+<table>
+<thead>
+<tr>
+<th>形状</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>矩形</td>
+<td>直接裁剪，超出图像的部分截去</td>
+</tr>
+<tr>
+<td>旋转矩形</td>
+<td>以中心反向旋转摆正，输出尺寸为宽 × 高</td>
+</tr>
+<tr>
+<td>圆、椭圆、圆环、多边形</td>
+<td>裁剪到外接矩形，形状以外的像素置黑</td>
+</tr>
+</tbody>
+</table>
+<p>区域与图像无交集或参数非法（如圆环内半径不小于外半径、多边形不足 3 个顶点）时，节点执行失败。</p>
+<h2 id="参数">参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>适用形状</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X、Y</td>
+<td>矩形</td>
+<td>左上角（像素）</td>
+</tr>
+<tr>
+<td>中心 X、中心 Y</td>
+<td>旋转矩形、圆、椭圆、圆环</td>
+<td>中心（像素）</td>
+</tr>
+<tr>
+<td>宽、高</td>
+<td>矩形、旋转矩形、椭圆</td>
+<td>尺寸（像素）；椭圆为两轴全长</td>
+</tr>
+<tr>
+<td>旋转角度</td>
+<td>旋转矩形、椭圆</td>
+<td>单位为度，顺时针为正</td>
+</tr>
+<tr>
+<td>半径</td>
+<td>圆、圆环</td>
+<td>圆环为外半径</td>
+</tr>
+<tr>
+<td>内半径</td>
+<td>圆环</td>
+<td>须小于外半径</td>
+</tr>
+<tr>
+<td>多边形顶点</td>
+<td>多边形</td>
+<td>格式 <code>x1,y1; x2,y2; x3,y3</code>，至少 3 个顶点</td>
+</tr>
+</tbody>
+</table>
+<h2 id="区域编辑">区域编辑</h2>
+<p>在设置窗口中直接于图像上绘制区域。窗口显示节点最近一次的输入图像，首次使用前需运行一次流程或单独运行该节点。切换形状时，新形状保持原区域的位置与大小；右侧面板可精确输入参数。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>绘制</td>
+<td>在空白处拖动；圆、圆环自圆心向外拖动。多边形逐点单击，双击、按 Enter 或单击首个顶点完成</td>
+</tr>
+<tr>
+<td>调整</td>
+<td>拖动区域内部移动；拖动控制点缩放、旋转或调整半径。按住 Shift 保持比例，角度按 15° 吸附</td>
+</tr>
+<tr>
+<td>多边形顶点</td>
+<td>拖动边中点插入顶点；双击顶点或按 Delete 删除</td>
+</tr>
+<tr>
+<td>视图</td>
+<td>滚轮缩放；右键、中键或空格 + 左键拖动平移；F 适应窗口，1 原始大小</td>
+</tr>
+<tr>
+<td>其它</td>
+<td>方向键微调 1 像素（Shift 为 10 像素）；Ctrl+Z / Ctrl+Y 撤销 / 重做；Esc 取消当前操作</td>
+</tr>
+</tbody>
+</table>
+<h2 id="结果数据">结果数据</h2>
+<table>
+<thead>
+<tr>
+<th>键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OffsetX、OffsetY</td>
+<td>输出图左上角在输入图中的位置。下游定位结果加上该偏移即为输入图坐标（旋转矩形不适用）</td>
+</tr>
+<tr>
+<td>Shape</td>
+<td>当前形状</td>
+</tr>
+<tr>
+<td>Roi</td>
+<td>区域参数文本</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS-Vision/ROISelector.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

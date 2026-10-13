@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CameraNode | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CameraNode | DataMaster ">
+      
+      <meta name="description" content="相机：打开相机并在每次执行时抓取一帧">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_VisionFlow_Nodes_CameraNode.md&amp;value=---%0Auid%3A%20MAS.VisionFlow.Nodes.CameraNode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.VisionFlow.Nodes.CameraNode">
+
+
+
+  <h1 id="MAS_VisionFlow_Nodes_CameraNode" data-uid="MAS.VisionFlow.Nodes.CameraNode" class="text-break">
+Class CameraNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.Device.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.VisionFlow.html">VisionFlow</a>.<a class="xref" href="MAS.VisionFlow.Nodes.html">Nodes</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.VisionFlow.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>相机：打开相机并在每次执行时抓取一帧</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptIn)]
+public sealed class CameraNode : VisionNode, INotifyPropertyChanged, INotifyPropertyChanging, IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html">FlowNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html">VisionNode</a></div>
+      <div><span class="xref">CameraNode</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_LatestElapsedMilliseconds">VisionNode.LatestElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetResultData">VisionNode.GetResultData()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetLastOutput_System_Int32_">VisionNode.GetLastOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ReadLastOutput__1_System_Int32_System_Func_System_Object___0__">VisionNode.ReadLastOutput&lt;T&gt;(int, Func&lt;object, T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Dispose">VisionNode.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_WatchOutput_System_Int32_">VisionNode.WatchOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDebugLogEnabled">VisionNode.IsDebugLogEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Id">FlowNode.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Descriptor">FlowNode.Descriptor</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Graph">FlowNode.Graph</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_X">FlowNode.X</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Y">FlowNode.Y</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Position">FlowNode.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Inputs">FlowNode.Inputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Outputs">FlowNode.Outputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_HasPorts">FlowNode.HasPorts</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CardWidth">FlowNode.CardWidth</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_PositionChanged">FlowNode.PositionChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SettingsChanged">FlowNode.SettingsChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_MoveTo_System_Double_System_Double_">FlowNode.MoveTo(double, double)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_FindPort_MAS_VisionFlow_Designer_FlowPortDirection_System_String_">FlowNode.FindPort(FlowPortDirection, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveSettings">FlowNode.SaveSettings()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_">FlowNode.LoadSettings(JObject)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CreateSnapshot">FlowNode.CreateSnapshot()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ToString">FlowNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Title">FlowNode.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsCollapsed">FlowNode.IsCollapsed</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsSelected">FlowNode.IsSelected</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsStructureLocked">FlowNode.IsStructureLocked</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Status">FlowNode.Status</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_StatusMessage">FlowNode.StatusMessage</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ElapsedMilliseconds">FlowNode.ElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_VisionFlow_Nodes_CameraNode_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>节点在执行线程中运行：<a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_">ExecuteAsync(VisionExecutionContext)</a> 从上下文取输入、写输出，不要直接访问其它节点。
+节点属性可以在执行线程中修改（WPF 绑定会自动封送），但 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imagesource">ImageSource</a> 必须先冻结</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode__ctor_" data-uid="MAS.VisionFlow.Nodes.CameraNode.#ctor*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_MAS_Vision_ICameraFactory_" data-uid="MAS.VisionFlow.Nodes.CameraNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices,MAS.Vision.ICameraFactory)">
+  CameraNode(VisionNodeServices, ICameraFactory)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.CameraNode.html">CameraNode</a> 新实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CameraNode(VisionNodeServices services, ICameraFactory cameraFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionNodeServices.html">VisionNodeServices</a></dt>
+    <dd></dd>
+    <dt><code>cameraFactory</code> <a class="xref" href="MAS.Vision.ICameraFactory.html">ICameraFactory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.CameraNode.TYPE_KEY">
+  TYPE_KEY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>节点类型键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string TYPE_KEY = &quot;vision.camera&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_AvailableCameras_" data-uid="MAS.VisionFlow.Nodes.CameraNode.AvailableCameras*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_AvailableCameras" data-uid="MAS.VisionFlow.Nodes.CameraNode.AvailableCameras">
+  AvailableCameras
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取已发现的相机设备</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObservableCollection&lt;CameraDevice&gt; AvailableCameras { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1">ObservableCollection</a>&lt;<a class="xref" href="MAS.VisionFlow.Nodes.CameraDevice.html">CameraDevice</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_AvailableProviders_" data-uid="MAS.VisionFlow.Nodes.CameraNode.AvailableProviders*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_AvailableProviders" data-uid="MAS.VisionFlow.Nodes.CameraNode.AvailableProviders">
+  AvailableProviders
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取可选的相机驱动</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;CameraProvider&gt; AvailableProviders { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Vision.CameraProvider.html">CameraProvider</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_Brightness_" data-uid="MAS.VisionFlow.Nodes.CameraNode.Brightness*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_Brightness" data-uid="MAS.VisionFlow.Nodes.CameraNode.Brightness">
+  Brightness
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置亮度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;Brightness&quot;)]
+public short Brightness { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_CameraButtonText_" data-uid="MAS.VisionFlow.Nodes.CameraNode.CameraButtonText*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_CameraButtonText" data-uid="MAS.VisionFlow.Nodes.CameraNode.CameraButtonText">
+  CameraButtonText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取开关按钮文字</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CameraButtonText { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_Contrast_" data-uid="MAS.VisionFlow.Nodes.CameraNode.Contrast*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_Contrast" data-uid="MAS.VisionFlow.Nodes.CameraNode.Contrast">
+  Contrast
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置对比度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;Contrast&quot;)]
+public short Contrast { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_Fps_" data-uid="MAS.VisionFlow.Nodes.CameraNode.Fps*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_Fps" data-uid="MAS.VisionFlow.Nodes.CameraNode.Fps">
+  Fps
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置当前帧率</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double Fps { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_IsCameraOpen_" data-uid="MAS.VisionFlow.Nodes.CameraNode.IsCameraOpen*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_IsCameraOpen" data-uid="MAS.VisionFlow.Nodes.CameraNode.IsCameraOpen">
+  IsCameraOpen
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置相机是否已打开</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public bool IsCameraOpen { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_IsShowFrameRate_" data-uid="MAS.VisionFlow.Nodes.CameraNode.IsShowFrameRate*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_IsShowFrameRate" data-uid="MAS.VisionFlow.Nodes.CameraNode.IsShowFrameRate">
+  IsShowFrameRate
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否显示帧率</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public bool IsShowFrameRate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_Rotation_" data-uid="MAS.VisionFlow.Nodes.CameraNode.Rotation*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_Rotation" data-uid="MAS.VisionFlow.Nodes.CameraNode.Rotation">
+  Rotation
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置旋转角度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public short Rotation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_Saturation_" data-uid="MAS.VisionFlow.Nodes.CameraNode.Saturation*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_Saturation" data-uid="MAS.VisionFlow.Nodes.CameraNode.Saturation">
+  Saturation
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置饱和度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;Saturation&quot;)]
+public short Saturation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_SearchDeviceListCommand_" data-uid="MAS.VisionFlow.Nodes.CameraNode.SearchDeviceListCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_SearchDeviceListCommand" data-uid="MAS.VisionFlow.Nodes.CameraNode.SearchDeviceListCommand">
+  SearchDeviceListCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取搜索相机设备命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionCommand SearchDeviceListCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_SelectedCamera_" data-uid="MAS.VisionFlow.Nodes.CameraNode.SelectedCamera*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_SelectedCamera" data-uid="MAS.VisionFlow.Nodes.CameraNode.SelectedCamera">
+  SelectedCamera
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置选中的相机设备</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
+public CameraDevice SelectedCamera { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.CameraDevice.html">CameraDevice</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Nodes_CameraNode_SelectedCamera_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>搜索设备会先清空列表，下拉框的双向绑定随即把选中项回写成 null；
+这里忽略 null，保持上一个设备，直到搜索完重新选中</p>
+</div>
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_SelectedProvider_" data-uid="MAS.VisionFlow.Nodes.CameraNode.SelectedProvider*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_SelectedProvider" data-uid="MAS.VisionFlow.Nodes.CameraNode.SelectedProvider">
+  SelectedProvider
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置相机驱动</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;CameraProviderConfig&quot;)]
+public CameraProvider SelectedProvider { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.CameraProvider.html">CameraProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_Sharpness_" data-uid="MAS.VisionFlow.Nodes.CameraNode.Sharpness*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_Sharpness" data-uid="MAS.VisionFlow.Nodes.CameraNode.Sharpness">
+  Sharpness
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置锐度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;Sharpness&quot;)]
+public short Sharpness { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_ToggleCameraCommand_" data-uid="MAS.VisionFlow.Nodes.CameraNode.ToggleCameraCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_ToggleCameraCommand" data-uid="MAS.VisionFlow.Nodes.CameraNode.ToggleCameraCommand">
+  ToggleCameraCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取打开或关闭相机命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionCommand ToggleCameraCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_TypeKey_" data-uid="MAS.VisionFlow.Nodes.CameraNode.TypeKey*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.CameraNode.TypeKey">
+  TypeKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string TypeKey { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_VideoFrame_" data-uid="MAS.VisionFlow.Nodes.CameraNode.VideoFrame*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_VideoFrame" data-uid="MAS.VisionFlow.Nodes.CameraNode.VideoFrame">
+  VideoFrame
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最新视频帧</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public ImageSource? VideoFrame { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imagesource">ImageSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_ViewfinderGrid_" data-uid="MAS.VisionFlow.Nodes.CameraNode.ViewfinderGrid*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_ViewfinderGrid" data-uid="MAS.VisionFlow.Nodes.CameraNode.ViewfinderGrid">
+  ViewfinderGrid
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置取景辅助线（Off、RuleOfThirds、GoldenRatio、CrossLines、Square）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public string ViewfinderGrid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_ExecuteAsync_" data-uid="MAS.VisionFlow.Nodes.CameraNode.ExecuteAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.CameraNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
+  ExecuteAsync(VisionExecutionContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L207"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task ExecuteAsync(VisionExecutionContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html">VisionExecutionContext</a></dt>
+    <dd><p>执行上下文，提供输入与输出</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
+    <dd><p>执行失败</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_InitializeAsync_" data-uid="MAS.VisionFlow.Nodes.CameraNode.InitializeAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_InitializeAsync_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Nodes.CameraNode.InitializeAsync(System.Threading.CancellationToken)">
+  InitializeAsync(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步初始化（打开相机、加载图片、构建求解器……），运行前由运行时调用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task InitializeAsync(CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.VisionInitializationFailureException.html">VisionInitializationFailureException</a></dt>
+    <dd><p>初始化失败</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_OnSettingsLoaded_" data-uid="MAS.VisionFlow.Nodes.CameraNode.OnSettingsLoaded*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_OnSettingsLoaded" data-uid="MAS.VisionFlow.Nodes.CameraNode.OnSettingsLoaded">
+  OnSettingsLoaded()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L241"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置还原完成后调用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnSettingsLoaded()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CameraNode_ReleaseResources_" data-uid="MAS.VisionFlow.Nodes.CameraNode.ReleaseResources*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CameraNode_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.CameraNode.ReleaseResources">
+  ReleaseResources()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.cs/#L232"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseResources()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/CameraNode.Device.cs/#L17" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

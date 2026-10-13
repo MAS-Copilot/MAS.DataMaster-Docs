@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PlaneCalibrationNode | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PlaneCalibrationNode | DataMaster ">
+      
+      <meta name="description" content="2D 标定（九点 / N 点标定）：采集 Mark 像素与轴位置，求像素 → 机械平面的映射，写入资源">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_VisionFlow_Nodes_PlaneCalibrationNode.md&amp;value=---%0Auid%3A%20MAS.VisionFlow.Nodes.PlaneCalibrationNode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode">
+
+
+
+  <h1 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode" class="text-break">
+Class PlaneCalibrationNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.VisionFlow.html">VisionFlow</a>.<a class="xref" href="MAS.VisionFlow.Nodes.html">Nodes</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.VisionFlow.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>2D 标定（九点 / N 点标定）：采集 Mark 像素与轴位置，求像素 → 机械平面的映射，写入资源</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptIn)]
+public sealed class PlaneCalibrationNode : VisionNode, INotifyPropertyChanged, INotifyPropertyChanging, IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html">FlowNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html">VisionNode</a></div>
+      <div><span class="xref">PlaneCalibrationNode</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_LatestElapsedMilliseconds">VisionNode.LatestElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetLastOutput_System_Int32_">VisionNode.GetLastOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ReadLastOutput__1_System_Int32_System_Func_System_Object___0__">VisionNode.ReadLastOutput&lt;T&gt;(int, Func&lt;object, T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Dispose">VisionNode.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_WatchOutput_System_Int32_">VisionNode.WatchOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDebugLogEnabled">VisionNode.IsDebugLogEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Id">FlowNode.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Descriptor">FlowNode.Descriptor</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Graph">FlowNode.Graph</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_X">FlowNode.X</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Y">FlowNode.Y</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Position">FlowNode.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Inputs">FlowNode.Inputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Outputs">FlowNode.Outputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_HasPorts">FlowNode.HasPorts</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CardWidth">FlowNode.CardWidth</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_PositionChanged">FlowNode.PositionChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SettingsChanged">FlowNode.SettingsChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_MoveTo_System_Double_System_Double_">FlowNode.MoveTo(double, double)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_FindPort_MAS_VisionFlow_Designer_FlowPortDirection_System_String_">FlowNode.FindPort(FlowPortDirection, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveSettings">FlowNode.SaveSettings()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_">FlowNode.LoadSettings(JObject)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CreateSnapshot">FlowNode.CreateSnapshot()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ToString">FlowNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Title">FlowNode.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsCollapsed">FlowNode.IsCollapsed</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsSelected">FlowNode.IsSelected</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsStructureLocked">FlowNode.IsStructureLocked</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Status">FlowNode.Status</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_StatusMessage">FlowNode.StatusMessage</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ElapsedMilliseconds">FlowNode.ElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>采样：打开「采样」后每次执行（Mark 定位 + 轴位置都有效、且轴位置与上一个样本不同）记一个样本，达到目标数自动计算并停止采样；
+轴可以由下位机程序走 3×3 网格并逐点触发，也可以手动点动后单次运行</p>
+<p>针尖偏置（相机随轴时必需）：① 拍到 Mark 后点「记录拍照位」；② 把针尖点动到同一个 Mark 上，运行一次读取轴位置后点「记录针尖位置」</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode__ctor_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.#ctor*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
+  PlaneCalibrationNode(VisionNodeServices)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.PlaneCalibrationNode.html">PlaneCalibrationNode</a> 新实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlaneCalibrationNode(VisionNodeServices services)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionNodeServices.html">VisionNodeServices</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.TYPE_KEY">
+  TYPE_KEY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>节点类型键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string TYPE_KEY = &quot;vision.planeCalibration&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_CalibrateCommand_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.CalibrateCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_CalibrateCommand" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.CalibrateCommand">
+  CalibrateCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取用现有样本立即计算命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;CalibrateNow&quot;, DescriptionKey = &quot;CalibrateNowDescription&quot;)]
+public VisionCommand CalibrateCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_CalibrationResult_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.CalibrationResult*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_CalibrationResult" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.CalibrationResult">
+  CalibrationResult
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置标定结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
+public PlaneCalibrationResult CalibrationResult { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.PlaneCalibrationResult.html">PlaneCalibrationResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_CalibrationState_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.CalibrationState*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_CalibrationState" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.CalibrationState">
+  CalibrationState
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取标定状态说明（未标定为空）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? CalibrationState { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ClearSamplesCommand_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ClearSamplesCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ClearSamplesCommand" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ClearSamplesCommand">
+  ClearSamplesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取清空样本命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;ClearSamples&quot;)]
+public VisionCommand ClearSamplesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_IntrinsicsKey_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.IntrinsicsKey*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_IntrinsicsKey" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.IntrinsicsKey">
+  IntrinsicsKey
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置畸变校正用的相机内参资源键，为空表示不校正</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;UndistortIntrinsics&quot;, DescriptionKey = &quot;UndistortIntrinsicsDescription&quot;, OptionsSource = &quot;GetIntrinsicsKeys&quot;)]
+public string IntrinsicsKey { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_IsCalibrated_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.IsCalibrated*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_IsCalibrated" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.IsCalibrated">
+  IsCalibrated
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否已标定</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCalibrated { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_IsMarkShotRecorded_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.IsMarkShotRecorded*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_IsMarkShotRecorded" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.IsMarkShotRecorded">
+  IsMarkShotRecorded
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否已记录拍照位（示教针尖偏置第 ① 步）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public bool IsMarkShotRecorded { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_IsSampling_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.IsSampling*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_IsSampling" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.IsSampling">
+  IsSampling
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否正在采样</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[VisionParameter(&quot;Sampling&quot;, DescriptionKey = &quot;PlaneSamplingDescription&quot;)]
+public bool IsSampling { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_LastGeneratedKey_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.LastGeneratedKey*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_LastGeneratedKey" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.LastGeneratedKey">
+  LastGeneratedKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取已写入的资源键（未标定为空）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? LastGeneratedKey { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_Model_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.Model*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_Model" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.Model">
+  Model
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置映射模型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;PlaneMappingModel&quot;, DescriptionKey = &quot;PlaneMappingModelDescription&quot;)]
+public PlaneMappingModel Model { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.PlaneMappingModel.html">PlaneMappingModel</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_Mounting_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.Mounting*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_Mounting" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.Mounting">
+  Mounting
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置相机安装方式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;CameraMounting&quot;, DescriptionKey = &quot;CameraMountingDescription&quot;)]
+public CameraMounting Mounting { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.CameraMounting.html">CameraMounting</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_RecordMarkShotCommand_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.RecordMarkShotCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_RecordMarkShotCommand" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.RecordMarkShotCommand">
+  RecordMarkShotCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取记录拍照位命令（示教针尖偏置第 ① 步）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;RecordMarkShot&quot;, DescriptionKey = &quot;ToolOffsetTeachDescription&quot;)]
+public VisionCommand RecordMarkShotCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_RecordToolPositionCommand_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.RecordToolPositionCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_RecordToolPositionCommand" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.RecordToolPositionCommand">
+  RecordToolPositionCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L215"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取记录针尖位置命令（示教针尖偏置第 ② 步）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;RecordToolPosition&quot;, DescriptionKey = &quot;ToolOffsetTeachDescription&quot;)]
+public VisionCommand RecordToolPositionCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_RemoveLastSampleCommand_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.RemoveLastSampleCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_RemoveLastSampleCommand" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.RemoveLastSampleCommand">
+  RemoveLastSampleCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取删除最后一个样本命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;RemoveLastSample&quot;)]
+public VisionCommand RemoveLastSampleCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ResourceKey_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ResourceKey*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ResourceKey" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ResourceKey">
+  ResourceKey
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置写入的资源键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ResourceKey&quot;)]
+public string ResourceKey { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_SampleRows_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.SampleRows*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_SampleRows" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.SampleRows">
+  SampleRows
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取样本表（含残差）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;PlaneCalibrationSampleRow&gt; SampleRows { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.VisionFlow.Nodes.PlaneCalibrationSampleRow.html">PlaneCalibrationSampleRow</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_Samples_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.Samples*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_Samples" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.Samples">
+  Samples
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置样本（随工程保存，可改参数后重新计算）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
+public IReadOnlyList&lt;PlaneCalibrationSample&gt; Samples { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Vision.PlaneCalibrationSample.html">PlaneCalibrationSample</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_TargetSampleCount_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.TargetSampleCount*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_TargetSampleCount" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.TargetSampleCount">
+  TargetSampleCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置目标样本数，达到后自动计算</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;TargetSampleCount&quot;, DescriptionKey = &quot;TargetSampleCountDescription&quot;, Minimum = 3, Maximum = 100)]
+public int TargetSampleCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ToggleSamplingCommand_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ToggleSamplingCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ToggleSamplingCommand" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ToggleSamplingCommand">
+  ToggleSamplingCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取开始/停止采样命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionCommand ToggleSamplingCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ToolOffsetX_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ToolOffsetX*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ToolOffsetX" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ToolOffsetX">
+  ToolOffsetX
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置工具（针尖）偏置 X</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ToolOffsetX&quot;, DescriptionKey = &quot;ToolOffsetDescription&quot;)]
+public double ToolOffsetX { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ToolOffsetY_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ToolOffsetY*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ToolOffsetY" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ToolOffsetY">
+  ToolOffsetY
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置工具（针尖）偏置 Y</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ToolOffsetY&quot;, DescriptionKey = &quot;ToolOffsetDescription&quot;)]
+public double ToolOffsetY { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_TypeKey_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.TypeKey*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.TypeKey">
+  TypeKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string TypeKey { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ExecuteAsync_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ExecuteAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
+  ExecuteAsync(VisionExecutionContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L223"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task ExecuteAsync(VisionExecutionContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html">VisionExecutionContext</a></dt>
+    <dd><p>执行上下文，提供输入与输出</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
+    <dd><p>执行失败</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_GetIntrinsicsKeys_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.GetIntrinsicsKeys*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_GetIntrinsicsKeys" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.GetIntrinsicsKeys">
+  GetIntrinsicsKeys()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L294"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取可选的相机内参资源键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; GetIntrinsicsKeys()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>资源键</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_GetResultData_" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.GetResultData*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PlaneCalibrationNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.PlaneCalibrationNode.GetResultData">
+  GetResultData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L272"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IReadOnlyDictionary&lt;string, VisionResultValue&gt; GetResultData()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="MAS.VisionFlow.Nodes.VisionResultValue.html">VisionResultValue</a>&gt;</dt>
+    <dd><p>键不区分大小写的结果数据</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Resources/PlaneCalibrationNode.cs/#L30" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class VisionLocateNode | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class VisionLocateNode | DataMaster ">
+      
+      <meta name="description" content="定位类节点基类：输出 0 为原图直通，输出 1 为定位结果，最后一个输出为标注图">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_VisionFlow_Nodes_VisionLocateNode.md&amp;value=---%0Auid%3A%20MAS.VisionFlow.Nodes.VisionLocateNode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.VisionFlow.Nodes.VisionLocateNode">
+
+
+
+  <h1 id="MAS_VisionFlow_Nodes_VisionLocateNode" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode" class="text-break">
+Class VisionLocateNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/VisionLocateNode.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.VisionFlow.html">VisionFlow</a>.<a class="xref" href="MAS.VisionFlow.Nodes.html">Nodes</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.VisionFlow.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>定位类节点基类：输出 0 为原图直通，输出 1 为定位结果，最后一个输出为标注图</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptIn)]
+public abstract class VisionLocateNode : VisionNode, INotifyPropertyChanged, INotifyPropertyChanging, IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html">FlowNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html">VisionNode</a></div>
+      <div><span class="xref">VisionLocateNode</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.BlobAnalysisNode.html">BlobAnalysisNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.CaliperNodeBase.html">CaliperNodeBase</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.CharucoCornerLocateNode.html">CharucoCornerLocateNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.CircleLocateNode.html">CircleLocateNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.FeatureMatchNode.html">FeatureMatchNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.LineLocateNode.html">LineLocateNode</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Services">VisionNode.Services</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_LatestElapsedMilliseconds">VisionNode.LatestElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_AnnotatedOutputIndex">VisionNode.AnnotatedOutputIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDisposed">VisionNode.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_">VisionNode.ExecuteAsync(VisionExecutionContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetResultData">VisionNode.GetResultData()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ReleaseResources">VisionNode.ReleaseResources()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Dispose_System_Boolean_">VisionNode.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetLastOutput_System_Int32_">VisionNode.GetLastOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ReadLastOutput__1_System_Int32_System_Func_System_Object___0__">VisionNode.ReadLastOutput&lt;T&gt;(int, Func&lt;object, T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Dispose">VisionNode.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_AddAnnotatedOutput">VisionNode.AddAnnotatedOutput()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_WatchOutput_System_Int32_">VisionNode.WatchOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_OnRemoved">VisionNode.OnRemoved()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_AddDebug_System_String_MAS_Loggers_Level_">VisionNode.AddDebug(string, Level)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_RunOnUi_System_Action_">VisionNode.RunOnUi(Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_SetBusyCursor">VisionNode.SetBusyCursor()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ResetCursor">VisionNode.ResetCursor()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDebugLogEnabled">VisionNode.IsDebugLogEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Id">FlowNode.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_TypeKey">FlowNode.TypeKey</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Descriptor">FlowNode.Descriptor</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Graph">FlowNode.Graph</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_X">FlowNode.X</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Y">FlowNode.Y</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Position">FlowNode.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Inputs">FlowNode.Inputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Outputs">FlowNode.Outputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_HasPorts">FlowNode.HasPorts</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CardWidth">FlowNode.CardWidth</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsRestoring">FlowNode.IsRestoring</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_PositionChanged">FlowNode.PositionChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SettingsChanged">FlowNode.SettingsChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_MoveTo_System_Double_System_Double_">FlowNode.MoveTo(double, double)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_FindPort_MAS_VisionFlow_Designer_FlowPortDirection_System_String_">FlowNode.FindPort(FlowPortDirection, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveSettings">FlowNode.SaveSettings()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_">FlowNode.LoadSettings(JObject)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CreateSnapshot">FlowNode.CreateSnapshot()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_AddInput_System_String_MAS_VisionFlow_Designer_FlowPortType_System_String_System_Boolean_">FlowNode.AddInput(string, FlowPortType, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_AddOutput_System_String_MAS_VisionFlow_Designer_FlowPortType_System_String_">FlowNode.AddOutput(string, FlowPortType, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnLoadSettings_Newtonsoft_Json_Linq_JObject_">FlowNode.OnLoadSettings(JObject)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnSettingsLoaded">FlowNode.OnSettingsLoaded()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnAdded">FlowNode.OnAdded()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_NotifySettingsChanged">FlowNode.NotifySettingsChanged()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnPropertyChanged_System_ComponentModel_PropertyChangedEventArgs_">FlowNode.OnPropertyChanged(PropertyChangedEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ToString">FlowNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Title">FlowNode.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsCollapsed">FlowNode.IsCollapsed</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsSelected">FlowNode.IsSelected</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsStructureLocked">FlowNode.IsStructureLocked</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Status">FlowNode.Status</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_StatusMessage">FlowNode.StatusMessage</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ElapsedMilliseconds">FlowNode.ElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanging#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanging(system-componentmodel-propertychangingeventargs)">ObservableObject.OnPropertyChanging(PropertyChangingEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanged#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanged(system-string)">ObservableObject.OnPropertyChanged(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanging#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanging(system-string)">ObservableObject.OnPropertyChanging(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0@-0-system-string)">ObservableObject.SetProperty&lt;T&gt;(ref T, T, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0@-0-system-collections-generic-iequalitycomparer((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(ref T, T, IEqualityComparer&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0-0-system-action((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(T, T, Action&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0-0-system-collections-generic-iequalitycomparer((-0))-system-action((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(T, T, IEqualityComparer&lt;T&gt;, Action&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-2(-1-1-0-system-action((-0-1))-system-string)">ObservableObject.SetProperty&lt;TModel, T&gt;(T, T, TModel, Action&lt;TModel, T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-2(-1-1-system-collections-generic-iequalitycomparer((-1))-0-system-action((-0-1))-system-string)">ObservableObject.SetProperty&lt;TModel, T&gt;(T, T, IEqualityComparer&lt;T&gt;, TModel, Action&lt;TModel, T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier@-system-threading-tasks-task-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion(ref ObservableObject.TaskNotifier, Task, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier@-system-threading-tasks-task-system-action((system-threading-tasks-task))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion(ref ObservableObject.TaskNotifier, Task, Action&lt;Task&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion-1(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier((-0))@-system-threading-tasks-task((-0))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion&lt;T&gt;(ref ObservableObject.TaskNotifier&lt;T&gt;, Task&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion-1(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier((-0))@-system-threading-tasks-task((-0))-system-action((system-threading-tasks-task((-0))))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion&lt;T&gt;(ref ObservableObject.TaskNotifier&lt;T&gt;, Task&lt;T&gt;, Action&lt;Task&lt;T&gt;&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_VisionFlow_Nodes_VisionLocateNode_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>原图直通不复制，下游算法接它永远拿到干净的图；标注图只供查看。
+派生类须在构造函数末尾调用 <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_AddAnnotatedOutput">AddAnnotatedOutput()</a>。
+没找到目标时不写定位结果（下游取不到输入会报输入无效），本节点报告警告</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_VisionLocateNode__ctor_" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode.#ctor*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_VisionLocateNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
+  VisionLocateNode(VisionNodeServices)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/VisionLocateNode.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.VisionLocateNode.html">VisionLocateNode</a> 新实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected VisionLocateNode(VisionNodeServices services)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionNodeServices.html">VisionNodeServices</a></dt>
+    <dd><p>节点服务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_VisionLocateNode_LastLocation_" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode.LastLocation*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_VisionLocateNode_LastLocation" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode.LastLocation">
+  LastLocation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/VisionLocateNode.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次的定位结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Location2D? LastLocation { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_VisionLocateNode_PublishImage_" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode.PublishImage*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_VisionLocateNode_PublishImage_MAS_VisionFlow_Nodes_VisionExecutionContext_OpenCvSharp_Mat_System_Action_OpenCvSharp_Mat__" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode.PublishImage(MAS.VisionFlow.Nodes.VisionExecutionContext,OpenCvSharp.Mat,System.Action{OpenCvSharp.Mat})">
+  PublishImage(VisionExecutionContext, Mat, Action&lt;Mat&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/VisionLocateNode.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发布图像：输入原样直通到输出 0，需要时在标注图端口上绘制结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void PublishImage(VisionExecutionContext context, Mat input, Action&lt;Mat&gt; annotate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html">VisionExecutionContext</a></dt>
+    <dd><p>执行上下文</p>
+</dd>
+    <dt><code>input</code> <span class="xref">Mat</span></dt>
+    <dd><p>输入图像</p>
+</dd>
+    <dt><code>annotate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<span class="xref">Mat</span>&gt;</dt>
+    <dd><p>在画布上绘制结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>派生类没有添加标注图端口</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_Nodes_VisionLocateNode_PublishLocation_" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode.PublishLocation*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_VisionLocateNode_PublishLocation_MAS_VisionFlow_Nodes_VisionExecutionContext_MAS_Vision_Location2D_" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode.PublishLocation(MAS.VisionFlow.Nodes.VisionExecutionContext,MAS.Vision.Location2D)">
+  PublishLocation(VisionExecutionContext, Location2D?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/VisionLocateNode.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发布定位结果；为空时报告“未找到”</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void PublishLocation(VisionExecutionContext context, Location2D? location)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html">VisionExecutionContext</a></dt>
+    <dd><p>执行上下文</p>
+</dd>
+    <dt><code>location</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>定位结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_VisionLocateNode_PublishLocations_" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode.PublishLocations*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_VisionLocateNode_PublishLocations_MAS_VisionFlow_Nodes_VisionExecutionContext_System_Collections_Generic_IReadOnlyList_MAS_Vision_Location2D__System_Int32_" data-uid="MAS.VisionFlow.Nodes.VisionLocateNode.PublishLocations(MAS.VisionFlow.Nodes.VisionExecutionContext,System.Collections.Generic.IReadOnlyList{MAS.Vision.Location2D},System.Int32)">
+  PublishLocations(VisionExecutionContext, IReadOnlyList&lt;Location2D&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/VisionLocateNode.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发布多目标结果：列表（可以为空）写到列表输出，第一个写到单个定位输出；没有目标时报告“未找到”</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void PublishLocations(VisionExecutionContext context, IReadOnlyList&lt;Location2D&gt; locations, int listIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html">VisionExecutionContext</a></dt>
+    <dd><p>执行上下文</p>
+</dd>
+    <dt><code>locations</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Vision.Location2D.html">Location2D</a>&gt;</dt>
+    <dd><p>全部目标</p>
+</dd>
+    <dt><code>listIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>列表输出端口序号</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/VisionLocateNode.cs/#L26" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

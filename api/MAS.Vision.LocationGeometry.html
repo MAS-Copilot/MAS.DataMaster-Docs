@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class LocationGeometry | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class LocationGeometry | DataMaster ">
+      
+      <meta name="description" content="定位结果的几何计算：把  当点、直线或圆，交给">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_Vision_LocationGeometry.md&amp;value=---%0Auid%3A%20MAS.Vision.LocationGeometry%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Vision.LocationGeometry">
+
+
+
+  <h1 id="MAS_Vision_LocationGeometry" data-uid="MAS.Vision.LocationGeometry" class="text-break">
+Class LocationGeometry  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.Vision.html">Vision</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.Vision.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>定位结果的几何计算：把 <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a> 当点、直线或圆，交给 <a class="xref" href="MAS.Numerics.Geometry2D.html">Geometry2D</a></p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class LocationGeometry</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">LocationGeometry</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="MAS_Vision_LocationGeometry_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>当点用时取 X/Y；当直线用时为“过该点、沿该角度”的无限长直线（直线定位节点的输出即如此）；带半径时当圆。
+数学本身在 MAS.Numerics，这里只做视觉类型的适配</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Vision_LocationGeometry_Apply_" data-uid="MAS.Vision.LocationGeometry.Apply*"></a>
+
+  <h3 id="MAS_Vision_LocationGeometry_Apply_MAS_Numerics_RigidTransform2D_MAS_Vision_Location2D_" data-uid="MAS.Vision.LocationGeometry.Apply(MAS.Numerics.RigidTransform2D,MAS.Vision.Location2D)">
+  Apply(RigidTransform2D, Location2D)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>变换一个定位结果（位置与方向一起转，其余属性不变）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Location2D Apply(this RigidTransform2D transform, Location2D location)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>变换</p>
+</dd>
+    <dt><code>location</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>定位结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>变换后的定位结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_LocationGeometry_Apply_" data-uid="MAS.Vision.LocationGeometry.Apply*"></a>
+
+  <h3 id="MAS_Vision_LocationGeometry_Apply_MAS_Numerics_RigidTransform2D_OpenCvSharp_Point2d_" data-uid="MAS.Vision.LocationGeometry.Apply(MAS.Numerics.RigidTransform2D,OpenCvSharp.Point2d)">
+  Apply(RigidTransform2D, Point2d)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>变换一个 OpenCV 点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point2d Apply(this RigidTransform2D transform, Point2d point)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>变换</p>
+</dd>
+    <dt><code>point</code> <span class="xref">Point2d</span></dt>
+    <dd><p>点</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Point2d</span></dt>
+    <dd><p>变换后的点</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_LocationGeometry_FitRigid_" data-uid="MAS.Vision.LocationGeometry.FitRigid*"></a>
+
+  <h3 id="MAS_Vision_LocationGeometry_FitRigid_System_Collections_Generic_IReadOnlyList_MAS_Vision_Location2D__System_Collections_Generic_IReadOnlyList_MAS_Vision_Location2D__" data-uid="MAS.Vision.LocationGeometry.FitRigid(System.Collections.Generic.IReadOnlyList{MAS.Vision.Location2D},System.Collections.Generic.IReadOnlyList{MAS.Vision.Location2D})">
+  FitRigid(IReadOnlyList&lt;Location2D&gt;, IReadOnlyList&lt;Location2D&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>拟合基准 → 当前的刚体变换（位置补正）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RigidFitResult FitRigid(IReadOnlyList&lt;Location2D&gt; reference, IReadOnlyList&lt;Location2D&gt; current)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reference</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Vision.Location2D.html">Location2D</a>&gt;</dt>
+    <dd><p>基准（示教时）的定位，顺序与 <code class="paramref">current</code> 一一对应</p>
+</dd>
+    <dt><code>current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Vision.Location2D.html">Location2D</a>&gt;</dt>
+    <dd><p>当前的定位</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidFitResult.html">RigidFitResult</a></dt>
+    <dd><p>变换与残差</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Vision_LocationGeometry_FitRigid_System_Collections_Generic_IReadOnlyList_MAS_Vision_Location2D__System_Collections_Generic_IReadOnlyList_MAS_Vision_Location2D___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>单点时角度取两次定位的方向角之差（定位节点要能给出角度）；两点及以上按位置拟合，不使用各点的角度</p>
+</div>
+
+
+
+
+  <a id="MAS_Vision_LocationGeometry_Follow_" data-uid="MAS.Vision.LocationGeometry.Follow*"></a>
+
+  <h3 id="MAS_Vision_LocationGeometry_Follow_MAS_Vision_Location2D_MAS_Vision_Location2D_System_Boolean_" data-uid="MAS.Vision.LocationGeometry.Follow(MAS.Vision.Location2D,MAS.Vision.Location2D,System.Boolean)">
+  Follow(Location2D, Location2D, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>跟随变换：把示教时的位置姿态映射到当前定位（ROI 随动用）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RigidTransform2D Follow(Location2D reference, Location2D current, bool isRotationFollowed)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reference</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>示教时的定位</p>
+</dd>
+    <dt><code>current</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>当前定位</p>
+</dd>
+    <dt><code>isRotationFollowed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否跟随旋转；不跟随时只平移</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p><code>p' = R(Δθ)·(p − 示教点) + 当前点</code></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_LocationGeometry_Lines_" data-uid="MAS.Vision.LocationGeometry.Lines*"></a>
+
+  <h3 id="MAS_Vision_LocationGeometry_Lines_MAS_Vision_Location2D_MAS_Vision_Location2D_System_Double_" data-uid="MAS.Vision.LocationGeometry.Lines(MAS.Vision.Location2D,MAS.Vision.Location2D,System.Double)">
+  Lines(Location2D, Location2D, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>两直线</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LineRelation Lines(Location2D a, Location2D b, double tolerance)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>直线 A</p>
+</dd>
+    <dt><code>b</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>直线 B</p>
+</dd>
+    <dt><code>tolerance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>平行、垂直判定的角度容差（度）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.LineRelation.html">LineRelation</a></dt>
+    <dd><p>夹角、交点、平行/垂直判定</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_LocationGeometry_PointToLine_" data-uid="MAS.Vision.LocationGeometry.PointToLine*"></a>
+
+  <h3 id="MAS_Vision_LocationGeometry_PointToLine_MAS_Vision_Location2D_MAS_Vision_Location2D_" data-uid="MAS.Vision.LocationGeometry.PointToLine(MAS.Vision.Location2D,MAS.Vision.Location2D)">
+  PointToLine(Location2D, Location2D)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>点到直线</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PointLineRelation PointToLine(Location2D point, Location2D line)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>point</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>点</p>
+</dd>
+    <dt><code>line</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>直线（过该点、沿该角度）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.PointLineRelation.html">PointLineRelation</a></dt>
+    <dd><p>距离与垂足</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_LocationGeometry_Points_" data-uid="MAS.Vision.LocationGeometry.Points*"></a>
+
+  <h3 id="MAS_Vision_LocationGeometry_Points_MAS_Vision_Location2D_MAS_Vision_Location2D_" data-uid="MAS.Vision.LocationGeometry.Points(MAS.Vision.Location2D,MAS.Vision.Location2D)">
+  Points(Location2D, Location2D)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>两点（圆）关系</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PointRelation Points(Location2D a, Location2D b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>点 A</p>
+</dd>
+    <dt><code>b</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>点 B</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.PointRelation.html">PointRelation</a></dt>
+    <dd><p>距离、方向、间隙、中点</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_LocationGeometry_ToAffineMat_" data-uid="MAS.Vision.LocationGeometry.ToAffineMat*"></a>
+
+  <h3 id="MAS_Vision_LocationGeometry_ToAffineMat_MAS_Numerics_RigidTransform2D_" data-uid="MAS.Vision.LocationGeometry.ToAffineMat(MAS.Numerics.RigidTransform2D)">
+  ToAffineMat(RigidTransform2D)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转成 <code>Cv2.WarpAffine</code> 用的 2×3 矩阵</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Mat ToAffineMat(this RigidTransform2D transform)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>变换</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Mat</span></dt>
+    <dd><p>CV_64FC1 矩阵（调用方释放）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_LocationGeometry_ToPoint_" data-uid="MAS.Vision.LocationGeometry.ToPoint*"></a>
+
+  <h3 id="MAS_Vision_LocationGeometry_ToPoint_MAS_Vision_Location2D_" data-uid="MAS.Vision.LocationGeometry.ToPoint(MAS.Vision.Location2D)">
+  ToPoint(Location2D)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取定位结果的位置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point ToPoint(this Location2D location)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>location</code> <a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>定位结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
+    <dd><p>位置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocationGeometry.cs/#L23" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -153,6 +153,48 @@ Class CommunicationConfigExtensions  <a class="header-action link-secondary" tit
 </h2>
 
 
+  <a id="MAS_SharedLibrary_Communication_CommunicationConfigExtensions_GetDataFormat_" data-uid="MAS.SharedLibrary.Communication.CommunicationConfigExtensions.GetDataFormat*"></a>
+
+  <h3 id="MAS_SharedLibrary_Communication_CommunicationConfigExtensions_GetDataFormat_MAS_SharedLibrary_Communication_ICommunicationConfig_" data-uid="MAS.SharedLibrary.Communication.CommunicationConfigExtensions.GetDataFormat(MAS.SharedLibrary.Communication.ICommunicationConfig)">
+  GetDataFormat(ICommunicationConfig)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Extensions/CommunicationConfigExtensions.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取数据格式：决定读写结果如何解释的设置（Modbus 的字节序、字序、地址基准）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetDataFormat(this ICommunicationConfig config)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>config</code> <a class="xref" href="MAS.SharedLibrary.Communication.ICommunicationConfig.html">ICommunicationConfig</a></dt>
+    <dd><p>通讯配置</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>数据格式描述；没有这类设置的协议返回空字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_SharedLibrary_Communication_CommunicationConfigExtensions_GetDataFormat_MAS_SharedLibrary_Communication_ICommunicationConfig__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>同一地址共用一个实例时各使用方的数据格式必须一致；超时、重试次数不影响数据，按先创建者的为准</p>
+</div>
+
+
+
+
   <a id="MAS_SharedLibrary_Communication_CommunicationConfigExtensions_GetInstanceKey_" data-uid="MAS.SharedLibrary.Communication.CommunicationConfigExtensions.GetInstanceKey*"></a>
 
   <h3 id="MAS_SharedLibrary_Communication_CommunicationConfigExtensions_GetInstanceKey_MAS_SharedLibrary_Communication_ICommunicationConfig_" data-uid="MAS.SharedLibrary.Communication.CommunicationConfigExtensions.GetInstanceKey(MAS.SharedLibrary.Communication.ICommunicationConfig)">

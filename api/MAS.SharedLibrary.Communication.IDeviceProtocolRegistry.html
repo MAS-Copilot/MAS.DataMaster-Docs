@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_SharedLibrary_Communication_IDeviceProtocolRegistry" data-uid="MAS.SharedLibrary.Communication.IDeviceProtocolRegistry" class="text-break">
-Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L19"><i class="bi bi-code-slash"></i></a>
+Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -124,7 +124,9 @@ Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title
 
   <h2 id="MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>设备名即采集项目 appsettings.json 中 <code>Devices</code> 下的键；项目停止后对应条目被移除。
-取到的协议实例与采集项目共用同一条连接，调用方不应断开或释放它</p>
+目录只记录名称到实例标识（连接地址）的别名，实例由 <a class="xref" href="MAS.SharedLibrary.Communication.IProtocolManager.html">IProtocolManager</a> 唯一持有：
+同一地址在组态通讯与采集项目之间也只有一条连接，实例被管理器移除后按名称取到的是新实例而不是已释放的旧实例。
+取到的协议实例是共用的，调用方不应断开或释放它</p>
 </div>
 
 
@@ -136,7 +138,7 @@ Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title
 
   <h3 id="MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_GetNames" data-uid="MAS.SharedLibrary.Communication.IDeviceProtocolRegistry.GetNames">
   GetNames()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取已登记的设备名称</p>
@@ -168,7 +170,7 @@ Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title
 
   <h3 id="MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_GetProtocol_System_String_" data-uid="MAS.SharedLibrary.Communication.IDeviceProtocolRegistry.GetProtocol(System.String)">
   GetProtocol(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>按设备名称获取协议实例</p>
@@ -189,7 +191,7 @@ Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html">IProtocol</a></dt>
-    <dd><p>未登记时返回 null</p>
+    <dd><p>未登记或实例已被管理器移除时返回 null</p>
 </dd>
   </dl>
 
@@ -207,7 +209,7 @@ Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title
 
   <h3 id="MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_Register_System_String_MAS_SharedLibrary_Communication_IProtocol_" data-uid="MAS.SharedLibrary.Communication.IDeviceProtocolRegistry.Register(System.String,MAS.SharedLibrary.Communication.IProtocol)">
   Register(string, IProtocol)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>登记设备，同名覆盖</p>
@@ -224,7 +226,7 @@ Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title
     <dd><p>设备名称</p>
 </dd>
     <dt><code>protocol</code> <a class="xref" href="MAS.SharedLibrary.Communication.IProtocol.html">IProtocol</a></dt>
-    <dd><p>协议实例</p>
+    <dd><p>由 <a class="xref" href="MAS.SharedLibrary.Communication.IProtocolManager.html">IProtocolManager</a> 管理的协议实例（租约或常驻持有）</p>
 </dd>
   </dl>
 
@@ -236,6 +238,12 @@ Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>实例不由 <a class="xref" href="MAS.SharedLibrary.Communication.IProtocolManager.html">IProtocolManager</a> 管理时抛出</p>
+</dd>
+  </dl>
 
 
 
@@ -243,10 +251,10 @@ Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title
 
   <h3 id="MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_Unregister_System_String_MAS_SharedLibrary_Communication_IProtocol_" data-uid="MAS.SharedLibrary.Communication.IDeviceProtocolRegistry.Unregister(System.String,MAS.SharedLibrary.Communication.IProtocol)">
   Unregister(string, IProtocol)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>移除设备；只有登记的仍是同一实例时才移除，避免误删新运行登记的条目</p>
+  <div class="markdown level1 summary"><p>移除设备；只有登记的仍是同一实例标识时才移除，避免误删新运行登记的其他地址</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -282,7 +290,7 @@ Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title
 
   <h3 id="MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_Changed" data-uid="MAS.SharedLibrary.Communication.IDeviceProtocolRegistry.Changed">
   Changed
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>登记的设备变化时触发</p>
@@ -314,7 +322,7 @@ Interface IDeviceProtocolRegistry  <a class="header-action link-secondary" title
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L19" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.SharedLibrary/Communication/Interfaces/IDeviceProtocolRegistry.cs/#L21" class="edit-link">Edit this page</a>
         </div>
 
 

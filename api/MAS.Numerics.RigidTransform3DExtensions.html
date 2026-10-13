@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Numerics_RigidTransform3DExtensions" data-uid="MAS.Numerics.RigidTransform3DExtensions" class="text-break">
-Class RigidTransform3DExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Extensions/RigidTransform3DExtensions.cs/#L17"><i class="bi bi-code-slash"></i></a>
+Class RigidTransform3DExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Extensions/RigidTransform3DExtensions.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -153,11 +153,57 @@ Class RigidTransform3DExtensions  <a class="header-action link-secondary" title=
 </h2>
 
 
+  <a id="MAS_Numerics_RigidTransform3DExtensions_Compose_" data-uid="MAS.Numerics.RigidTransform3DExtensions.Compose*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform3DExtensions_Compose_MAS_Numerics_RigidTransform3D_MAS_Numerics_RigidTransform3D_" data-uid="MAS.Numerics.RigidTransform3DExtensions.Compose(MAS.Numerics.RigidTransform3D,MAS.Numerics.RigidTransform3D)">
+  Compose(RigidTransform3D, RigidTransform3D)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Extensions/RigidTransform3DExtensions.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>组合两个刚体变换：先做 <code class="paramref">second</code> 再做 <code class="paramref">first</code>（即 first · second）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RigidTransform3D Compose(this RigidTransform3D first, RigidTransform3D second)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>first</code> <a class="xref" href="MAS.Numerics.RigidTransform3D.html">RigidTransform3D</a></dt>
+    <dd><p>外层变换</p>
+</dd>
+    <dt><code>second</code> <a class="xref" href="MAS.Numerics.RigidTransform3D.html">RigidTransform3D</a></dt>
+    <dd><p>内层变换</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidTransform3D.html">RigidTransform3D</a></dt>
+    <dd><p>组合后的变换</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Numerics_RigidTransform3DExtensions_Compose_MAS_Numerics_RigidTransform3D_MAS_Numerics_RigidTransform3D__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>例如相机里的目标位姿 target→camera、手眼 camera→gripper、机器人 gripper→base，
+目标在基座下的位姿为 <code>gripperToBase.Compose(cameraToGripper).Compose(targetToCamera)</code></p>
+</div>
+
+
+
+
   <a id="MAS_Numerics_RigidTransform3DExtensions_ToPose6D_" data-uid="MAS.Numerics.RigidTransform3DExtensions.ToPose6D*"></a>
 
   <h3 id="MAS_Numerics_RigidTransform3DExtensions_ToPose6D_MAS_Numerics_RigidTransform3D_MAS_Numerics_RotationOrder_" data-uid="MAS.Numerics.RigidTransform3DExtensions.ToPose6D(MAS.Numerics.RigidTransform3D,MAS.Numerics.RotationOrder)">
   ToPose6D(RigidTransform3D, RotationOrder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Extensions/RigidTransform3DExtensions.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Extensions/RigidTransform3DExtensions.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将刚体变换转换为 <a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a></p>
@@ -202,7 +248,7 @@ Class RigidTransform3DExtensions  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_Numerics_RigidTransform3DExtensions_ToPoseEuler_MAS_Numerics_RigidTransform3D_MAS_Numerics_RotationOrder_" data-uid="MAS.Numerics.RigidTransform3DExtensions.ToPoseEuler(MAS.Numerics.RigidTransform3D,MAS.Numerics.RotationOrder)">
   ToPoseEuler(RigidTransform3D, RotationOrder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Extensions/RigidTransform3DExtensions.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Extensions/RigidTransform3DExtensions.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将刚体变换的旋转矩阵转换为 PoseEuler</p>
@@ -244,7 +290,7 @@ Class RigidTransform3DExtensions  <a class="header-action link-secondary" title=
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Extensions/RigidTransform3DExtensions.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Extensions/RigidTransform3DExtensions.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
 

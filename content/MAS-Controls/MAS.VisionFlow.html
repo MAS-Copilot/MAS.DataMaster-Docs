@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>MAS.VisionFlow | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="MAS.VisionFlow | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS-Controls/MAS.VisionFlow.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="masvisionflow">MAS.VisionFlow</h1>
+
+<p><code>MAS.VisionFlow</code> 提供视觉流程的图模型、设计器、节点与运行时。<code>MAS.DataMaster</code> 只提供视觉工作台的页面外壳、依赖注入注册与宿主服务 <code>IVisionFlowHost</code>（代码编辑器、调试输出、确认框）的实现；视觉算法保留在 <code>MAS.Vision</code></p>
+<h2 id="分层结构">分层结构</h2>
+<pre><code class="lang-text">MAS.VisionFlow
+├─ Designer/        通用设计器内核
+│  ├─ Graph/        FlowGraph · FlowNode · FlowPort · FlowEdge · FlowPortType
+│  ├─ FlowDesigner  唯一编辑入口：增删节点、连/断线、移动、复制粘贴、撤销重做
+│  ├─ History/      撤销动作（快照式，默认 100 步）
+│  ├─ Canvas/       FlowCanvas · FlowEdgeLayer · FlowNodeCard · FlowPortView · FlowMinimap
+│  ├─ Tools/        平移缩放、框选、拖动、拉线、键盘、拖放
+│  └─ Library/      FlowNodeDescriptor · 模块菜单
+├─ Nodes/           视觉节点、卡片主体、设置视图
+├─ Runtime/         管道划分、执行器、循环运行器、脚本处理器
+├─ Persistence/     VisionFlowDocument
+└─ Views/           工作区（模块菜单 + 画布 + 管道面板）、设置窗口、输出查看窗口
+</code></pre>
+<p>架构约定：</p>
+<ul>
+<li>子系统内部不使用 <code>IEventAggregatorService</code>。编辑统一经过 <code>FlowDesigner</code>，卡片按钮发送路由命令（<code>FlowCommands</code>），画布处理编辑类命令，运行、设置与输出查看交由宿主处理。</li>
+<li>窗口（节点设置、端口输出查看）一律通过宿主注册的 <code>IWindowsProviderService</code> 打开，以复用应用统一的模态遮罩与开关音效。</li>
+</ul>
+<h2 id="节点模型">节点模型</h2>
+<p><code>VisionNode</code> 派生自 <code>FlowNode</code>，同时是图模型与运行时对象，卡片视图只负责呈现。</p>
+<ul>
+<li><strong>端口</strong>：构造函数中通过 <code>AddInput</code> / <code>AddOutput</code> 声明，类型为强类型 <code>FlowPortType</code>；拉线时按类型、方向、重复、环路与锁定状态校验，失败原因见 <code>FlowConnectionError</code></li>
+<li><strong>设置</strong>：带 <code>[JsonProperty]</code> 的属性即节点设置，随工程文件保存，参与撤销重做与复制粘贴，属性变化会将工程标记为已修改</li>
+<li><strong>执行</strong>：逻辑实现于 <code>ExecuteAsync(VisionExecutionContext)</code>，<code>GetInput&lt;T&gt;</code> 取输入、<code>SetOutput</code> 写输出、<code>ReportStatus</code> 上报警告等状态；输入仅在本次执行内有效，需要跨执行保留时必须 <code>Clone</code></li>
+<li><strong>图像预览</strong>：<code>VisionPreview</code> 由执行线程调用 <code>Offer(mat)</code>，仅到点时复制（可见处约 15 帧/秒，不可见处约 1 帧/秒，默认缩小到最长边 1280 像素），界面线程写入复用的 <code>WriteableBitmap</code>；视图通过 <code>nodes:VisionPreviewBinding.Source</code> 绑定，控件不可见时自动降频</li>
+<li><strong>状态与刷新</strong>：节点状态为 <code>FlowNodeStatus</code>，颜色与文本由 <code>FlowNodeStatusToBrushConverter</code>、<code>FlowNodeStatusToTextConverter</code> 统一给出（文本走语言键 <code>FlowNodeStatus*</code>，支持中/繁/英）。连续运行时节点耗时与管道统计每 100 ms 最多推送一次界面，实时值保留在 <code>LatestElapsedMilliseconds</code> 与 <code>VisionRunResult</code>，单次触发与停止时立即刷新；“运行中”指示延迟 200 ms 显示，避免快速节点状态跳动</li>
+<li><strong>资源释放</strong>：相机、后台任务、脚本等资源在 <code>ReleaseResources</code> 中释放，节点被删除时调用</li>
+</ul>
+<p><strong>输出所有权</strong>（视觉性能的关键）：节点写入输出的方式决定释放责任</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>语义</th>
+<th>释放责任</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SetOutput</code></td>
+<td>借出：节点自身持有的值，或直通的上游输入</td>
+<td>框架不释放</td>
+</tr>
+<tr>
+<td><code>SetOwnedOutput</code></td>
+<td>移交：本次新建的 <code>Mat</code> 等可释放对象</td>
+<td>下一次产出时由后台线程释放，执行失败或节点删除时立即释放</td>
+</tr>
+<tr>
+<td><code>GetOutputBuffer</code></td>
+<td>复用缓冲：每个端口两块 <code>Mat</code> 交替，作为 OpenCV 输出参数写入（如 <code>Cv2.CvtColor(src, buffer, code)</code>）</td>
+<td>尺寸不变时不再分配，正在发布的那一块不会被写入</td>
+</tr>
+</tbody>
+</table>
+<p>界面线程读取输出（查看窗口、预览）必须走 <code>ReadLastOutput</code>，在同一把输出锁内完成转换与格式化。</p>
+<h2 id="节点参数">节点参数</h2>
+<pre><code class="lang-csharp">[ObservableProperty]
+[property: JsonProperty]
+[property: VisionParameter(&quot;BlockSize&quot;, DescriptionKey = &quot;BlockSizeDescription&quot;, Minimum = 3, Maximum = 201, IsOddOnly = true, Unit = &quot;px&quot;)]
+private int _blockSize = 31;
+</code></pre>
+<p>嵌套配置对象（类型在 <code>MAS.Vision</code>，不引用本特性）的成员标注在节点类上并给出路径：</p>
+<pre><code class="lang-csharp">[VisionParameter(&quot;FilePath&quot;, Path = &quot;ImageSourceModel.FilePath&quot;)]
+public sealed partial class ImageSourceNode : VisionNode { ... }
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>组成</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VisionParameterAttribute</code></td>
+<td>名称与说明的语言键（与界面标签一致）、范围、单位、奇数约束、候选值来源、成员路径；标在 <code>ICommand</code> 属性上表示可调用的操作</td>
+</tr>
+<tr>
+<td><code>VisionParameterSchema</code></td>
+<td>反射生成 <code>VisionParameterDescriptor</code>（名称、取值形态、范围、枚举值、是否保存、是否只读），<code>Read</code> 读取，<code>TryWrite</code> 按类型转换并校验范围、奇数、枚举名与候选值，<code>InvokeAsync</code> 等待操作执行完成</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>带 <code>OptionsSource</code> 的枚举只接受方法返回的值（如颜色转换只开放列表里的转换码）；文本参数的候选值只作提示（如资源键）</li>
+<li>选择对象型的设置（如模板匹配的 <code>SelectedMatchMode</code>）另加一个枚举代理属性供 Agent 读写，不随工程保存</li>
+<li>单元测试会检查全部节点的参数名称与说明都有词条</li>
+</ul>
+<p>新增节点：算法放在 <code>MAS.Vision</code>（写入调用方给的 <code>dst</code>，可单独测试），节点类声明端口、给 Agent 开放的属性加 <code>[VisionParameter]</code>、实现 <code>ExecuteAsync</code>，手写卡片主体（及需要时的设置页）后在 <code>VisionNodeCatalog</code> 中注册描述符。定位类节点继承 <code>VisionLocateNode</code>：输出 0 原图直通、输出 1 定位结果，构造函数末尾调用 <code>AddAnnotatedOutput()</code> 把标注图端口放在最后一个输出。</p>
+<h3 id="原图与标注图">原图与标注图</h3>
+<ul>
+<li>算法只计算不绘制，标注统一用 <code>MAS.Vision.LocateAnnotator</code>（线宽、字号随图像尺寸自动缩放，不提供样式参数）</li>
+<li>图像输出原样直通输入（不复制），下游算法接它拿到的永远是干净的图；标注图是单独的端口类型 <code>vision.annotatedImage</code>，只能连到图像查看这类 <code>vision.displayImage</code> 输入，不能当算法输入</li>
+<li>标注图按需绘制（<code>VisionExecutionContext.PublishAnnotation</code>）：管道未启动（单次运行、调试）时总是画；管道启动后只在标注图端口有连线、或打开了端口查看窗口（<code>VisionNode.WatchOutput</code>）时才画</li>
+<li>模板匹配、颜色识别、姿态解算同样有标注图端口（在最后）；姿态解算的标注画在参与解算的图上（开启去畸变时为去畸变后的图）</li>
+</ul>
+<h2 id="工作区外观">工作区外观</h2>
+<ul>
+<li>卡片左上角与设置窗口标题使用所属一级分类的图标（双色渐变），模块菜单的二级条目统一使用组件图标</li>
+<li>端口圆点按数据类型使用低饱和类型色，连线统一为中性色（<code>VisionFlowEdgeBrush</code>），选中态使用强调色</li>
+<li>深色主题为近黑色板（画布 <code>#111113</code>，节点与面板 <code>#18181B</code>），画刷集中定义于 <code>MAS.Dark.xaml</code> / <code>MAS.Light.xaml</code> 的 <code>VisionFlow*</code> 资源键；顶部操作栏、模块菜单与状态栏使用 <code>ui:Card</code>，画布外框绘制圆角底色并裁剪内容</li>
+</ul>
+<p>节点状态色：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>含义</th>
+<th>颜色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Idle</td>
+<td>空闲，尚未初始化或运行</td>
+<td>灰 <code>#71717A</code></td>
+</tr>
+<tr>
+<td>Ready</td>
+<td>初始化完成</td>
+<td>青 <code>#14B8A6</code></td>
+</tr>
+<tr>
+<td>Running</td>
+<td>一次执行正在进行</td>
+<td>蓝 <code>#3B82F6</code></td>
+</tr>
+<tr>
+<td>Success</td>
+<td>执行成功</td>
+<td>绿 <code>#22C55E</code></td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>执行完成但有警告</td>
+<td>琥珀 <code>#F59E0B</code></td>
+</tr>
+<tr>
+<td>Collecting</td>
+<td>正在采集样本</td>
+<td>橙 <code>#F97316</code></td>
+</tr>
+<tr>
+<td>InputInvalid / Error</td>
+<td>输入数据无效 / 执行失败</td>
+<td>红 <code>#EF4444</code></td>
+</tr>
+<tr>
+<td>InitFailed</td>
+<td>初始化失败</td>
+<td>紫 <code>#A855F7</code></td>
+</tr>
+<tr>
+<td>Looping</td>
+<td>后台循环运行中（脚本执行、位姿生成）</td>
+<td>绿，主题 <code>OnlineBrush</code>，与管道运行同色</td>
+</tr>
+</tbody>
+</table>
+<h2 id="渲染与性能">渲染与性能</h2>
+<ul>
+<li>节点位置通过 <code>TranslateTransform</code> 变换，拖动过程不触发布局重算</li>
+<li>连线由 <code>FlowEdgeLayer</code> 承载，每条线一个 <code>DrawingVisual</code>，只重绘受影响的连线</li>
+<li>卡片不使用 <code>DropShadowEffect</code> 等位图特效</li>
+<li>视口外（保留一屏余量）的卡片不参与渲染，内容边界由模型计算</li>
+<li>位图缓存默认关闭（“更多”菜单可开关）：缩放小于 1.2 时卡片栅格化，<code>RenderAtScale</code> 跟随缩放，停手后按新比例重新栅格化</li>
+<li><code>FlowMinimap</code> 在 <code>OnRender</code> 中直接绘制节点方块、视口外遮罩与视口框，不创建可视元素；绘制合并到下一帧，拖动时冻结映射，避免小地图自身跳动</li>
+</ul>
+<h2 id="持久化">持久化</h2>
+<p>工程类型为 <code>VisionFlow</code>，文档存放于 <code>ProjectModel.ServiceData[&quot;VisionFlow&quot;]</code>，包含节点快照、连线、管道（标识、名称、脚本、节点集合）、资源与视口；自 <code>v3.27.0</code> 起旧版 <code>ImageProceFlow</code> 工程将不再兼容</p>
+<p>加载时无法识别的节点类型或无法建立的连线不会导致工程加载失败，而是记入 <code>VisionFlowRuntime.LoadErrors</code> 并给出提示。</p>
+<h2 id="对外接口">对外接口</h2>
+<p><code>IVisionFlowRuntime</code> 以单例注册，不依赖工作台页面是否打开，工程加载后即可由动态视图脚本、Agent 等外部触发。</p>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsProjectLoaded</code></td>
+<td>是否已加载视觉工程</td>
+</tr>
+<tr>
+<td><code>Pipelines</code></td>
+<td>当前全部管道</td>
+</tr>
+<tr>
+<td><code>FindPipeline(name)</code></td>
+<td>按名称查找管道（不区分大小写），找不到返回 <code>null</code></td>
+</tr>
+<tr>
+<td><code>TriggerAsync(name, token)</code></td>
+<td>执行一次管道（未初始化时先初始化）；节点失败不抛异常，找不到管道抛 <code>PipelineNotFoundException</code></td>
+</tr>
+<tr>
+<td><code>StartAsync</code> / <code>StopAsync</code> / <code>StopAllAsync</code></td>
+<td>启动与停止管道循环</td>
+</tr>
+<tr>
+<td><code>GetNodeResult(nodeTitle)</code></td>
+<td>节点最近一次执行结果（标题不区分大小写），不存在或尚未执行返回 <code>null</code></td>
+</tr>
+<tr>
+<td><code>RunCompleted</code>、<code>PipelineStateChanged</code></td>
+<td>管道执行完成、运行状态变化事件（可能在任何线程触发）</td>
+</tr>
+</tbody>
+</table>
+<p>管道循环间隔由管道脚本的 <code>FixedIntervalMs</code> 决定，默认 100 ms；取 0 时跑完立即进入下一轮（连续运行，占满一个线程）。受 Windows 计时精度（约 15.6 ms）限制，取值 1~15 的实际间隔约为 16 ms。</p>
+<h2 id="agent-工具">Agent 工具</h2>
+<p>视觉工作台向 Agent 提供 <code>visionFlow.*</code> 工具。逻辑在 <code>MAS.VisionFlow/Agent/VisionFlowAgentService</code>（可单元测试），宿主 <code>MAS.DataMaster/NamedPipeIpc/VisionFlow/VisionFlowToolProvider</code> 只做参数解析与结果序列化；工作流说明在 Skill <code>mas-vision-flow</code>。</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>风险</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>visionFlow.status</code></td>
+<td>Low</td>
+<td>工程是否打开、画布是否锁定、管道与资源键</td>
+</tr>
+<tr>
+<td><code>visionFlow.nodeTypes</code></td>
+<td>Low</td>
+<td>节点类型目录（含端口）；指定类型时返回参数架构</td>
+</tr>
+<tr>
+<td><code>visionFlow.graph.get</code></td>
+<td>Low</td>
+<td>全部节点（含卡片实际尺寸）、连线、管道与重叠的卡片；指定节点时返回端口连接、参数当前值与最近结果</td>
+</tr>
+<tr>
+<td><code>visionFlow.graph.apply</code></td>
+<td>Medium</td>
+<td>按顺序批量执行 add / connect / disconnect / set / rename / move / layout，结果附新节点边界与重叠的卡片</td>
+</tr>
+<tr>
+<td><code>visionFlow.canvas.view</code></td>
+<td>Low</td>
+<td>离屏截取画布（不受用户当前视口影响），附各卡片边界与重叠，供 Agent 检查布局</td>
+</tr>
+<tr>
+<td><code>visionFlow.node.delete</code></td>
+<td>High</td>
+<td>删除节点及其连线</td>
+</tr>
+<tr>
+<td><code>visionFlow.node.invoke</code></td>
+<td>Medium</td>
+<td>调用节点操作（如示教对位的「设为基准」）</td>
+</tr>
+<tr>
+<td><code>visionFlow.run</code></td>
+<td>Medium</td>
+<td>执行管道或运行到节点，返回各节点结果，可附带端口输出图像（JPEG，按长边缩放）</td>
+</tr>
+<tr>
+<td><code>visionFlow.pipeline.control</code></td>
+<td>Medium</td>
+<td>初始化、启动循环、停止、重命名管道</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>编辑走工作区的 <code>FlowDesigner</code>，与界面共用撤销历史：一批操作在设计器历史的批量模式中执行，全部成功合并为一步撤销，任一失败逆序回滚且不留重做记录；参数写入记为 <code>SetParameterHistoryAction</code>，同样可撤销</li>
+<li>画布锁定时拒绝编辑；运行中的管道结构锁定，参数仍可修改；参数改动后所在管道下次执行先重新初始化</li>
+<li>图与参数只在 UI 线程读写（<code>VisionDispatcher</code>），执行在后台线程；附带图像在节点输出锁内编码，避免缓冲被下一次执行复用</li>
+<li>改动只在内存中，由用户保存工程</li>
+<li>布局按卡片实际尺寸计算（<code>FlowCanvas.MeasureNodeBounds</code>，新卡片先同步布局一次）：add 省略坐标时，整批完成后整组新建的流程按连线从左到右分列排布，接入已有流程的新节点放到上游右侧（或下游左侧）不压住别的卡片；<code>layout</code> 操作排布整个画布或某条流程。移动记入同一步撤销</li>
+</ul>
+<p>新增节点时 Agent 层不用改代码：给要开放的属性加 <code>[VisionParameter]</code>（嵌套配置在类上按路径声明），工具即可描述、校验和读写；端口由节点构造函数声明，工具自动读取。</p>
+<h2 id="后续规划">后续规划</h2>
+<p>与动态视图（DV）的集成在后续版本提供：将 <code>IVisionFlowRuntime</code> 注入 DV 全局脚本，由运行界面通过变量、脚本触发管道，并通过订阅 <code>RunCompleted</code>、<code>PipelineStateChanged</code> 的发布器把节点状态与结果发布到运行界面。</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS-Controls/MAS.VisionFlow.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class RigidTransform2D | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class RigidTransform2D | DataMaster ">
+      
+      <meta name="description" content="二维刚体变换：x&#39; = A&#183;x + B&#183;y + Tx，y&#39; = C&#183;x + D&#183;y + Ty（旋转 + 平移）">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_Numerics_RigidTransform2D.md&amp;value=---%0Auid%3A%20MAS.Numerics.RigidTransform2D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Numerics.RigidTransform2D">
+
+
+
+  <h1 id="MAS_Numerics_RigidTransform2D" data-uid="MAS.Numerics.RigidTransform2D" class="text-break">
+Class RigidTransform2D  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.Numerics.html">Numerics</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.Numerics.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>二维刚体变换：<code>x' = A·x + B·y + Tx</code>，<code>y' = C·x + D·y + Ty</code>（旋转 + 平移）</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed record RigidTransform2D : IEquatable&lt;RigidTransform2D&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">RigidTransform2D</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_Numerics_RigidTransform2D_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>角度为度，从 +X 转向 +Y 为正（右手坐标系即逆时针为正），与 <code>MAS.PathPlanning.RigidTransform</code> 一致：
+<a class="xref" href="MAS.Numerics.RigidTransform2D.html#MAS_Numerics_RigidTransform2D_ToMatrix">ToMatrix()</a> 得到的 3×3 矩阵可直接交给 <code>PointTransform</code> 变换轨迹点</p>
+<p>视觉（定位、ROI 随动、位置补正）与图纸导入共用这一类型，模块间传偏移不用再转换</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MAS_Numerics_RigidTransform2D__ctor_" data-uid="MAS.Numerics.RigidTransform2D.#ctor*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D__ctor_System_Double_System_Double_System_Double_System_Double_System_Double_System_Double_" data-uid="MAS.Numerics.RigidTransform2D.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+  RigidTransform2D(double, double, double, double, double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>二维刚体变换：<code>x' = A·x + B·y + Tx</code>，<code>y' = C·x + D·y + Ty</code>（旋转 + 平移）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RigidTransform2D(double A, double B, double C, double D, double Tx, double Ty)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>A</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>矩阵 a（cosθ）</p>
+</dd>
+    <dt><code>B</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>矩阵 b（−sinθ）</p>
+</dd>
+    <dt><code>C</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>矩阵 c（sinθ）</p>
+</dd>
+    <dt><code>D</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>矩阵 d（cosθ）</p>
+</dd>
+    <dt><code>Tx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>平移 X</p>
+</dd>
+    <dt><code>Ty</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>平移 Y</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Numerics_RigidTransform2D__ctor_System_Double_System_Double_System_Double_System_Double_System_Double_System_Double__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>角度为度，从 +X 转向 +Y 为正（右手坐标系即逆时针为正），与 <code>MAS.PathPlanning.RigidTransform</code> 一致：
+<a class="xref" href="MAS.Numerics.RigidTransform2D.html#MAS_Numerics_RigidTransform2D_ToMatrix">ToMatrix()</a> 得到的 3×3 矩阵可直接交给 <code>PointTransform</code> 变换轨迹点</p>
+<p>视觉（定位、ROI 随动、位置补正）与图纸导入共用这一类型，模块间传偏移不用再转换</p>
+</div>
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_Numerics_RigidTransform2D_A_" data-uid="MAS.Numerics.RigidTransform2D.A*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_A" data-uid="MAS.Numerics.RigidTransform2D.A">
+  A
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>矩阵 a（cosθ）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double A { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_Angle_" data-uid="MAS.Numerics.RigidTransform2D.Angle*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_Angle" data-uid="MAS.Numerics.RigidTransform2D.Angle">
+  Angle
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取旋转角（度）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Angle { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_B_" data-uid="MAS.Numerics.RigidTransform2D.B*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_B" data-uid="MAS.Numerics.RigidTransform2D.B">
+  B
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>矩阵 b（−sinθ）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double B { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_C_" data-uid="MAS.Numerics.RigidTransform2D.C*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_C" data-uid="MAS.Numerics.RigidTransform2D.C">
+  C
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>矩阵 c（sinθ）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double C { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_D_" data-uid="MAS.Numerics.RigidTransform2D.D*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_D" data-uid="MAS.Numerics.RigidTransform2D.D">
+  D
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>矩阵 d（cosθ）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double D { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_Identity_" data-uid="MAS.Numerics.RigidTransform2D.Identity*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_Identity" data-uid="MAS.Numerics.RigidTransform2D.Identity">
+  Identity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取恒等变换</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RigidTransform2D Identity { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_Tx_" data-uid="MAS.Numerics.RigidTransform2D.Tx*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_Tx" data-uid="MAS.Numerics.RigidTransform2D.Tx">
+  Tx
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>平移 X</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Tx { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_Ty_" data-uid="MAS.Numerics.RigidTransform2D.Ty*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_Ty" data-uid="MAS.Numerics.RigidTransform2D.Ty">
+  Ty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>平移 Y</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Ty { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Numerics_RigidTransform2D_Apply_" data-uid="MAS.Numerics.RigidTransform2D.Apply*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_Apply_System_Windows_Point_" data-uid="MAS.Numerics.RigidTransform2D.Apply(System.Windows.Point)">
+  Apply(Point)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>变换一个点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point Apply(Point point)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>point</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
+    <dd><p>点</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
+    <dd><p>变换后的点</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_ApplyAngle_" data-uid="MAS.Numerics.RigidTransform2D.ApplyAngle*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_ApplyAngle_System_Double_" data-uid="MAS.Numerics.RigidTransform2D.ApplyAngle(System.Double)">
+  ApplyAngle(double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>变换一个方向角</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double ApplyAngle(double angle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>angle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>方向（度）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>变换后的方向（度，-180~180）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_Compose_" data-uid="MAS.Numerics.RigidTransform2D.Compose*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_Compose_MAS_Numerics_RigidTransform2D_MAS_Numerics_RigidTransform2D_" data-uid="MAS.Numerics.RigidTransform2D.Compose(MAS.Numerics.RigidTransform2D,MAS.Numerics.RigidTransform2D)">
+  Compose(RigidTransform2D, RigidTransform2D)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>先做 <code class="paramref">first</code>，再做 <code class="paramref">second</code>：<code>second(first(p))</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RigidTransform2D Compose(RigidTransform2D first, RigidTransform2D second)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>first</code> <a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>先做的变换</p>
+</dd>
+    <dt><code>second</code> <a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>后做的变换</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>组合变换</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_FromAngle_" data-uid="MAS.Numerics.RigidTransform2D.FromAngle*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_FromAngle_System_Double_System_Double_System_Double_" data-uid="MAS.Numerics.RigidTransform2D.FromAngle(System.Double,System.Double,System.Double)">
+  FromAngle(double, double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>按旋转角与平移创建：先绕原点旋转，再平移</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RigidTransform2D FromAngle(double angle, double tx, double ty)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>angle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>旋转角（度）</p>
+</dd>
+    <dt><code>tx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>平移 X</p>
+</dd>
+    <dt><code>ty</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>平移 Y</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>变换</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_FromMatrix_" data-uid="MAS.Numerics.RigidTransform2D.FromMatrix*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_FromMatrix_MathNet_Numerics_LinearAlgebra_Matrix_System_Double__" data-uid="MAS.Numerics.RigidTransform2D.FromMatrix(MathNet.Numerics.LinearAlgebra.Matrix{System.Double})">
+  FromMatrix(Matrix&lt;double&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从 3×3 齐次矩阵创建（取前两行）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RigidTransform2D FromMatrix(Matrix&lt;double&gt; matrix)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix</code> <span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
+    <dd><p>3×3 矩阵，如 <code>RigidTransform.GetOffsetMatrix</code> 的结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>变换</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_FromOffset_" data-uid="MAS.Numerics.RigidTransform2D.FromOffset*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_FromOffset_System_Windows_Vector_System_Double_System_Windows_Point_" data-uid="MAS.Numerics.RigidTransform2D.FromOffset(System.Windows.Vector,System.Double,System.Windows.Point)">
+  FromOffset(Vector, double, Point)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>按“绕中心旋转 + 平移”创建：<code>p' = R(angle)·(p − center) + center + offset</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RigidTransform2D FromOffset(Vector offset, double angle, Point center)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.vector">Vector</a></dt>
+    <dd><p>中心点的平移量</p>
+</dd>
+    <dt><code>angle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>旋转角（度）</p>
+</dd>
+    <dt><code>center</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
+    <dd><p>旋转中心</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>变换（与 <code>RigidTransform.GetOffsetMatrix(offset, angle, center)</code> 相同）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_FromPoses_" data-uid="MAS.Numerics.RigidTransform2D.FromPoses*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_FromPoses_System_Windows_Point_System_Double_System_Windows_Point_System_Double_" data-uid="MAS.Numerics.RigidTransform2D.FromPoses(System.Windows.Point,System.Double,System.Windows.Point,System.Double)">
+  FromPoses(Point, double, Point, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把一个位姿（点 + 方向）映射到另一个位姿的变换</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RigidTransform2D FromPoses(Point from, double fromAngle, Point to, double toAngle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
+    <dd><p>原位置</p>
+</dd>
+    <dt><code>fromAngle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>原方向（度）</p>
+</dd>
+    <dt><code>to</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
+    <dd><p>目标位置</p>
+</dd>
+    <dt><code>toAngle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>目标方向（度）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p><code>p' = R(toAngle − fromAngle)·(p − from) + to</code></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_Inverse_" data-uid="MAS.Numerics.RigidTransform2D.Inverse*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_Inverse" data-uid="MAS.Numerics.RigidTransform2D.Inverse">
+  Inverse()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>逆变换</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RigidTransform2D Inverse()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>逆变换</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_OffsetAbout_" data-uid="MAS.Numerics.RigidTransform2D.OffsetAbout*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_OffsetAbout_System_Windows_Point_" data-uid="MAS.Numerics.RigidTransform2D.OffsetAbout(System.Windows.Point)">
+  OffsetAbout(Point)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>以指定点为旋转中心时的平移量：<code>p' = R·(p − center) + center + offset</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector OffsetAbout(Point center)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>center</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
+    <dd><p>旋转中心</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.vector">Vector</a></dt>
+    <dd><p>中心点的平移量</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_ToMatrix_" data-uid="MAS.Numerics.RigidTransform2D.ToMatrix*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_ToMatrix" data-uid="MAS.Numerics.RigidTransform2D.ToMatrix">
+  ToMatrix()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转成 3×3 齐次矩阵</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Matrix&lt;double&gt; ToMatrix()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Matrix</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
+    <dd><p><code>[[A, B, Tx], [C, D, Ty], [0, 0, 1]]</code></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RigidTransform2D_Translation_" data-uid="MAS.Numerics.RigidTransform2D.Translation*"></a>
+
+  <h3 id="MAS_Numerics_RigidTransform2D_Translation_System_Double_System_Double_" data-uid="MAS.Numerics.RigidTransform2D.Translation(System.Double,System.Double)">
+  Translation(double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>平移</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RigidTransform2D Translation(double tx, double ty)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>平移 X</p>
+</dd>
+    <dt><code>ty</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>平移 Y</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>变换</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Models/RigidTransform2D.cs/#L31" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

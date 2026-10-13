@@ -154,6 +154,37 @@ Class ArucoShared  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <h3 id="MAS_Vision_ArucoShared_DEFAULT_DICTIONARY" data-uid="MAS.Vision.ArucoShared.DEFAULT_DICTIONARY">
+  DEFAULT_DICTIONARY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/ArucoShared.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>默认 ArUco 字典</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const PredefinedDictionaryType DEFAULT_DICTIONARY = Dict6X6_100</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">PredefinedDictionaryType</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <h3 id="MAS_Vision_ArucoShared_DefaultDetectorParameters" data-uid="MAS.Vision.ArucoShared.DefaultDetectorParameters">
   DefaultDetectorParameters
   <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/ArucoShared.cs/#L44"><i class="bi bi-code-slash"></i></a>
@@ -237,6 +268,48 @@ Class ArucoShared  <a class="header-action link-secondary" title="View source" h
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <span class="xref">PredefinedDictionaryType</span>&gt;</dt>
     <dd></dd>
   </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Vision_ArucoShared_ParseDictionary_" data-uid="MAS.Vision.ArucoShared.ParseDictionary*"></a>
+
+  <h3 id="MAS_Vision_ArucoShared_ParseDictionary_System_String_" data-uid="MAS.Vision.ArucoShared.ParseDictionary(System.String)">
+  ParseDictionary(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/ArucoShared.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>解析字典名称：优先按 <a class="xref" href="MAS.Vision.ArucoShared.html#MAS_Vision_ArucoShared_DictionaryMap">DictionaryMap</a>（如 &quot;DICT_5X5_100&quot;），
+其次按 OpenCvSharp 枚举名（如 &quot;Dict5X5_100&quot;），都不匹配时回退 <a class="xref" href="MAS.Vision.ArucoShared.html#MAS_Vision_ArucoShared_DEFAULT_DICTIONARY">DEFAULT_DICTIONARY</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PredefinedDictionaryType ParseDictionary(string? dictionaryName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dictionaryName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">PredefinedDictionaryType</span></dt>
+    <dd></dd>
+  </dl>
+
+
 
 
 

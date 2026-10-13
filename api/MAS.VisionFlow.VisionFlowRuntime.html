@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class VisionFlowRuntime | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class VisionFlowRuntime | DataMaster ">
+      
+      <meta name="description" content="视觉流程运行时">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_VisionFlow_VisionFlowRuntime.md&amp;value=---%0Auid%3A%20MAS.VisionFlow.VisionFlowRuntime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.VisionFlow.VisionFlowRuntime">
+
+
+
+  <h1 id="MAS_VisionFlow_VisionFlowRuntime" data-uid="MAS.VisionFlow.VisionFlowRuntime" class="text-break">
+Class VisionFlowRuntime  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Pipelines.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.VisionFlow.html">VisionFlow</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.VisionFlow.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>视觉流程运行时</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class VisionFlowRuntime : IVisionFlowRuntime, IAsyncDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">VisionFlowRuntime</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="MAS.VisionFlow.IVisionFlowRuntime.html">IVisionFlowRuntime</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_VisionFlow_VisionFlowRuntime_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>持有当前工程的图、管道与资源，是视觉子系统的唯一状态源。
+工程加载由持久化服务驱动，与工作台页面是否打开无关；页面只是在这张图上挂一个设计器</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_Graph_" data-uid="MAS.VisionFlow.VisionFlowRuntime.Graph*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_Graph" data-uid="MAS.VisionFlow.VisionFlowRuntime.Graph">
+  Graph
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前工程的图</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlowGraph Graph { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Designer.FlowGraph.html">FlowGraph</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_HasRunningPipeline_" data-uid="MAS.VisionFlow.VisionFlowRuntime.HasRunningPipeline*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_HasRunningPipeline" data-uid="MAS.VisionFlow.VisionFlowRuntime.HasRunningPipeline">
+  HasRunningPipeline
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否有管道在运行</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasRunningPipeline { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_IsProjectLoaded_" data-uid="MAS.VisionFlow.VisionFlowRuntime.IsProjectLoaded*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_IsProjectLoaded" data-uid="MAS.VisionFlow.VisionFlowRuntime.IsProjectLoaded">
+  IsProjectLoaded
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否已加载视觉工程</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsProjectLoaded { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_Library_" data-uid="MAS.VisionFlow.VisionFlowRuntime.Library*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_Library" data-uid="MAS.VisionFlow.VisionFlowRuntime.Library">
+  Library
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取视觉节点库</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlowNodeLibrary Library { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Designer.FlowNodeLibrary.html">FlowNodeLibrary</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_LoadErrors_" data-uid="MAS.VisionFlow.VisionFlowRuntime.LoadErrors*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_LoadErrors" data-uid="MAS.VisionFlow.VisionFlowRuntime.LoadErrors">
+  LoadErrors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次加载工程时的错误（未知节点、失效连线……）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; LoadErrors { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_PipelineCollection_" data-uid="MAS.VisionFlow.VisionFlowRuntime.PipelineCollection*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_PipelineCollection" data-uid="MAS.VisionFlow.VisionFlowRuntime.PipelineCollection">
+  PipelineCollection
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取管道集合（UI 绑定用）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyObservableCollection&lt;VisionPipeline&gt; PipelineCollection { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlyobservablecollection-1">ReadOnlyObservableCollection</a>&lt;<a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_Pipelines_" data-uid="MAS.VisionFlow.VisionFlowRuntime.Pipelines*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_Pipelines" data-uid="MAS.VisionFlow.VisionFlowRuntime.Pipelines">
+  Pipelines
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前全部管道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;VisionPipeline&gt; Pipelines { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_Resources_" data-uid="MAS.VisionFlow.VisionFlowRuntime.Resources*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_Resources" data-uid="MAS.VisionFlow.VisionFlowRuntime.Resources">
+  Resources
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取资源仓库</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IVisionResourceStore Resources { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.IVisionResourceStore.html">IVisionResourceStore</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_Viewport_" data-uid="MAS.VisionFlow.VisionFlowRuntime.Viewport*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_Viewport" data-uid="MAS.VisionFlow.VisionFlowRuntime.Viewport">
+  Viewport
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置视口状态，随工程保存</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionViewportState? Viewport { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.VisionViewportState.html">VisionViewportState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_CreateDocument_" data-uid="MAS.VisionFlow.VisionFlowRuntime.CreateDocument*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_CreateDocument" data-uid="MAS.VisionFlow.VisionFlowRuntime.CreateDocument">
+  CreateDocument()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把当前状态导出为文档</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionFlowDocument CreateDocument()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.VisionFlowDocument.html">VisionFlowDocument</a></dt>
+    <dd><p>文档</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_DisposeAsync_" data-uid="MAS.VisionFlow.VisionFlowRuntime.DisposeAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_DisposeAsync" data-uid="MAS.VisionFlow.VisionFlowRuntime.DisposeAsync">
+  DisposeAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueTask DisposeAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd><p>A task that represents the asynchronous dispose operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_FindPipeline_" data-uid="MAS.VisionFlow.VisionFlowRuntime.FindPipeline*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_FindPipeline_System_String_" data-uid="MAS.VisionFlow.VisionFlowRuntime.FindPipeline(System.String)">
+  FindPipeline(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Pipelines.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>按名称查找管道（不区分大小写）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionPipeline? FindPipeline(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>管道名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a></dt>
+    <dd><p>管道，找不到返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_FindPipelineOf_" data-uid="MAS.VisionFlow.VisionFlowRuntime.FindPipelineOf*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_FindPipelineOf_System_Guid_" data-uid="MAS.VisionFlow.VisionFlowRuntime.FindPipelineOf(System.Guid)">
+  FindPipelineOf(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Pipelines.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>查找包含指定节点的管道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionPipeline? FindPipelineOf(Guid nodeId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nodeId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>节点标识</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a></dt>
+    <dd><p>管道，节点不在任何管道中时返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_GetNodeResult_" data-uid="MAS.VisionFlow.VisionFlowRuntime.GetNodeResult*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_GetNodeResult_System_String_" data-uid="MAS.VisionFlow.VisionFlowRuntime.GetNodeResult(System.String)">
+  GetNodeResult(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取节点最近一次的执行结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionNodeResult? GetNodeResult(string nodeTitle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nodeTitle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>节点标题（不区分大小写）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.VisionNodeResult.html">VisionNodeResult</a></dt>
+    <dd><p>结果，节点不存在或尚未执行时返回 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_InitializeAsync_" data-uid="MAS.VisionFlow.VisionFlowRuntime.InitializeAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_InitializeAsync_MAS_VisionFlow_VisionPipeline_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.InitializeAsync(MAS.VisionFlow.VisionPipeline,System.Threading.CancellationToken)">
+  InitializeAsync(VisionPipeline, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>初始化管道内全部节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;IReadOnlyList&lt;string&gt;&gt; InitializeAsync(VisionPipeline pipeline, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipeline</code> <a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a></dt>
+    <dd><p>管道</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</dt>
+    <dd><p>初始化失败的原因，成功时为空</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_LoadDocument_" data-uid="MAS.VisionFlow.VisionFlowRuntime.LoadDocument*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_LoadDocument_MAS_VisionFlow_VisionFlowDocument_" data-uid="MAS.VisionFlow.VisionFlowRuntime.LoadDocument(MAS.VisionFlow.VisionFlowDocument)">
+  LoadDocument(VisionFlowDocument)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用文档重建图、管道与资源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LoadDocument(VisionFlowDocument document)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>document</code> <a class="xref" href="MAS.VisionFlow.VisionFlowDocument.html">VisionFlowDocument</a></dt>
+    <dd><p>文档</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_ResetPipelineCode_" data-uid="MAS.VisionFlow.VisionFlowRuntime.ResetPipelineCode*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_ResetPipelineCode_MAS_VisionFlow_VisionPipeline_" data-uid="MAS.VisionFlow.VisionFlowRuntime.ResetPipelineCode(MAS.VisionFlow.VisionPipeline)">
+  ResetPipelineCode(VisionPipeline)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Pipelines.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把管道脚本恢复为模板</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetPipelineCode(VisionPipeline pipeline)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipeline</code> <a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a></dt>
+    <dd><p>管道</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_RunNodeAsync_" data-uid="MAS.VisionFlow.VisionFlowRuntime.RunNodeAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_RunNodeAsync_MAS_VisionFlow_Nodes_VisionNode_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.RunNodeAsync(MAS.VisionFlow.Nodes.VisionNode,System.Threading.CancellationToken)">
+  RunNodeAsync(VisionNode, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>运行到指定节点：执行该节点及其全部上游一次</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;VisionRunResult&gt; RunNodeAsync(VisionNode node, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>node</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html">VisionNode</a></dt>
+    <dd><p>节点</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.VisionFlow.VisionRunResult.html">VisionRunResult</a>&gt;</dt>
+    <dd><p>执行结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_StartAsync_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StartAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_StartAsync_MAS_VisionFlow_VisionPipeline_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StartAsync(MAS.VisionFlow.VisionPipeline,System.Threading.CancellationToken)">
+  StartAsync(VisionPipeline, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>启动管道循环</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; StartAsync(VisionPipeline pipeline, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipeline</code> <a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a></dt>
+    <dd><p>管道</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>启动成功返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.PipelineStartException.html">PipelineStartException</a></dt>
+    <dd><p>初始化或脚本编译失败</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_StartAsync_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StartAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_StartAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StartAsync(System.String,System.Threading.CancellationToken)">
+  StartAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>启动管道循环（按管道脚本的触发信号执行）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; StartAsync(string pipelineName, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipelineName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>管道名称</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>启动成功返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_StopAllAsync_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StopAllAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_StopAllAsync" data-uid="MAS.VisionFlow.VisionFlowRuntime.StopAllAsync">
+  StopAllAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>停止全部管道循环</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task StopAllAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_VisionFlowRuntime_StopAllAsync_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>某条管道停止超时不影响其余管道的停止，全部尝试后再抛出第一个异常</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.PipelineTimeoutException.html">PipelineTimeoutException</a></dt>
+    <dd><p>有管道未在超时内结束（其余管道照常停止）</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_StopAsync_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StopAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_StopAsync_MAS_VisionFlow_VisionPipeline_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StopAsync(MAS.VisionFlow.VisionPipeline)">
+  StopAsync(VisionPipeline)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>停止管道循环</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task StopAsync(VisionPipeline pipeline)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipeline</code> <a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a></dt>
+    <dd><p>管道</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_StopAsync_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StopAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_StopAsync_System_String_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StopAsync(System.String)">
+  StopAsync(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>停止管道循环</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task StopAsync(string pipelineName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipelineName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>管道名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.PipelineTimeoutException.html">PipelineTimeoutException</a></dt>
+    <dd><p>这一轮未在超时内结束；管道保持“停止中”（节点仍锁定），这一轮结束后自动变为已停止</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_TriggerAsync_" data-uid="MAS.VisionFlow.VisionFlowRuntime.TriggerAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_TriggerAsync_MAS_VisionFlow_VisionPipeline_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.TriggerAsync(MAS.VisionFlow.VisionPipeline,System.Threading.CancellationToken)">
+  TriggerAsync(VisionPipeline, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>执行一次管道（未初始化时先初始化）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;VisionRunResult&gt; TriggerAsync(VisionPipeline pipeline, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipeline</code> <a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a></dt>
+    <dd><p>管道</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.VisionFlow.VisionRunResult.html">VisionRunResult</a>&gt;</dt>
+    <dd><p>执行结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_TriggerAsync_" data-uid="MAS.VisionFlow.VisionFlowRuntime.TriggerAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_TriggerAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.TriggerAsync(System.String,System.Threading.CancellationToken)">
+  TriggerAsync(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>执行一次管道（未初始化时先初始化）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;VisionRunResult&gt; TriggerAsync(string pipelineName, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipelineName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>管道名称</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.VisionFlow.VisionRunResult.html">VisionRunResult</a>&gt;</dt>
+    <dd><p>执行结果，节点失败不抛异常</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.PipelineNotFoundException.html">PipelineNotFoundException</a></dt>
+    <dd><p>找不到管道</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_TryRenamePipeline_" data-uid="MAS.VisionFlow.VisionFlowRuntime.TryRenamePipeline*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_TryRenamePipeline_MAS_VisionFlow_VisionPipeline_System_String_System_String__" data-uid="MAS.VisionFlow.VisionFlowRuntime.TryRenamePipeline(MAS.VisionFlow.VisionPipeline,System.String,System.String@)">
+  TryRenamePipeline(VisionPipeline, string, out string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Pipelines.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>重命名管道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryRenamePipeline(VisionPipeline pipeline, string newName, out string? error)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipeline</code> <a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a></dt>
+    <dd><p>管道</p>
+</dd>
+    <dt><code>newName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>新名称</p>
+</dd>
+    <dt><code>error</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>失败原因的语言键</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>成功返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_UpdatePipelineCode_" data-uid="MAS.VisionFlow.VisionFlowRuntime.UpdatePipelineCode*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_UpdatePipelineCode_MAS_VisionFlow_VisionPipeline_System_String_" data-uid="MAS.VisionFlow.VisionFlowRuntime.UpdatePipelineCode(MAS.VisionFlow.VisionPipeline,System.String)">
+  UpdatePipelineCode(VisionPipeline, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Pipelines.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新管道脚本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdatePipelineCode(VisionPipeline pipeline, string code)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipeline</code> <a class="xref" href="MAS.VisionFlow.VisionPipeline.html">VisionPipeline</a></dt>
+    <dd><p>管道</p>
+</dd>
+    <dt><code>code</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>脚本代码</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>管道正在运行</p>
+</dd>
+  </dl>
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_DocumentChanged" data-uid="MAS.VisionFlow.VisionFlowRuntime.DocumentChanged">
+  DocumentChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>需要保存的内容变化时触发（节点设置、管道名称与脚本、资源）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler? DocumentChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_VisionFlowRuntime_DocumentChanged_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>结构与位置变化由设计器的 <a class="xref" href="MAS.VisionFlow.Designer.FlowDesigner.html#MAS_VisionFlow_Designer_FlowDesigner_DocumentChanged">DocumentChanged</a> 报告</p>
+</div>
+
+
+
+
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_PipelineStateChanged" data-uid="MAS.VisionFlow.VisionFlowRuntime.PipelineStateChanged">
+  PipelineStateChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>管道运行状态变化时触发（可能在任意线程）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;VisionPipelineStateChangedEventArgs&gt;? PipelineStateChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.VisionFlow.VisionPipelineStateChangedEventArgs.html">VisionPipelineStateChangedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_PipelinesChanged" data-uid="MAS.VisionFlow.VisionFlowRuntime.PipelinesChanged">
+  PipelinesChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>管道集合重建后触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler? PipelinesChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_ProjectReloaded" data-uid="MAS.VisionFlow.VisionFlowRuntime.ProjectReloaded">
+  ProjectReloaded
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>工程重新加载（新建、打开）后触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler? ProjectReloaded</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_RunCompleted" data-uid="MAS.VisionFlow.VisionFlowRuntime.RunCompleted">
+  RunCompleted
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>管道执行完一次时触发（可能在任意线程）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;VisionRunCompletedEventArgs&gt;? RunCompleted</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.VisionFlow.VisionRunCompletedEventArgs.html">VisionRunCompletedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Pipelines.cs/#L18" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

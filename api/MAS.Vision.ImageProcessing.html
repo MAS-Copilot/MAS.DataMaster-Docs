@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ImageProcessing | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ImageProcessing | DataMaster ">
+      
+      <meta name="description" content="常用预处理：滤波、二值化、形态学、边缘">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_Vision_ImageProcessing.md&amp;value=---%0Auid%3A%20MAS.Vision.ImageProcessing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Vision.ImageProcessing">
+
+
+
+  <h1 id="MAS_Vision_ImageProcessing" data-uid="MAS.Vision.ImageProcessing" class="text-break">
+Class ImageProcessing  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/ImageProcessing.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.Vision.html">Vision</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.Vision.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>常用预处理：滤波、二值化、形态学、边缘</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ImageProcessing</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ImageProcessing</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="MAS_Vision_ImageProcessing_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>结果都写进调用方给的 <code>dst</code>：尺寸与类型不变时 OpenCV 复用其内存，适合每次执行都整幅重写的输出缓冲。
+<code>src</code> 与 <code>dst</code> 不能是同一个 Mat</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Vision_ImageProcessing_Canny_" data-uid="MAS.Vision.ImageProcessing.Canny*"></a>
+
+  <h3 id="MAS_Vision_ImageProcessing_Canny_OpenCvSharp_Mat_OpenCvSharp_Mat_System_Double_System_Double_System_Boolean_" data-uid="MAS.Vision.ImageProcessing.Canny(OpenCvSharp.Mat,OpenCvSharp.Mat,System.Double,System.Double,System.Boolean)">
+  Canny(Mat, Mat, double, double, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/ImageProcessing.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Canny 边缘（彩色图先转灰度）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Canny(Mat src, Mat dst, double lowThreshold, double highThreshold, bool isL2Gradient = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>src</code> <span class="xref">Mat</span></dt>
+    <dd><p>输入图像</p>
+</dd>
+    <dt><code>dst</code> <span class="xref">Mat</span></dt>
+    <dd><p>输出边缘图（8 位单通道，边缘为 255）</p>
+</dd>
+    <dt><code>lowThreshold</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>低阈值</p>
+</dd>
+    <dt><code>highThreshold</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>高阈值（通常为低阈值的 2~3 倍）</p>
+</dd>
+    <dt><code>isL2Gradient</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>用 L2 范数计算梯度（更准、略慢）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_ImageProcessing_Filter_" data-uid="MAS.Vision.ImageProcessing.Filter*"></a>
+
+  <h3 id="MAS_Vision_ImageProcessing_Filter_OpenCvSharp_Mat_OpenCvSharp_Mat_MAS_Vision_FilterMode_System_Int32_System_Double_" data-uid="MAS.Vision.ImageProcessing.Filter(OpenCvSharp.Mat,OpenCvSharp.Mat,MAS.Vision.FilterMode,System.Int32,System.Double)">
+  Filter(Mat, Mat, FilterMode, int, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/ImageProcessing.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>滤波去噪</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Filter(Mat src, Mat dst, FilterMode mode, int kernelSize, double sigma = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>src</code> <span class="xref">Mat</span></dt>
+    <dd><p>输入图像（8 位，1 或 3 通道）</p>
+</dd>
+    <dt><code>dst</code> <span class="xref">Mat</span></dt>
+    <dd><p>输出图像</p>
+</dd>
+    <dt><code>mode</code> <a class="xref" href="MAS.Vision.FilterMode.html">FilterMode</a></dt>
+    <dd><p>滤波方式</p>
+</dd>
+    <dt><code>kernelSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>核大小（像素，自动修正为不小于 1 的奇数）</p>
+</dd>
+    <dt><code>sigma</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>高斯 σ；双边滤波的颜色与空间 σ。0 表示按核大小自动计算</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_ImageProcessing_Morphology_" data-uid="MAS.Vision.ImageProcessing.Morphology*"></a>
+
+  <h3 id="MAS_Vision_ImageProcessing_Morphology_OpenCvSharp_Mat_OpenCvSharp_Mat_MAS_Vision_MorphologyOperation_MAS_Vision_MorphologyKernelShape_System_Int32_System_Int32_" data-uid="MAS.Vision.ImageProcessing.Morphology(OpenCvSharp.Mat,OpenCvSharp.Mat,MAS.Vision.MorphologyOperation,MAS.Vision.MorphologyKernelShape,System.Int32,System.Int32)">
+  Morphology(Mat, Mat, MorphologyOperation, MorphologyKernelShape, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/ImageProcessing.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>形态学</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Morphology(Mat src, Mat dst, MorphologyOperation operation, MorphologyKernelShape shape, int kernelSize, int iterations = 1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>src</code> <span class="xref">Mat</span></dt>
+    <dd><p>输入图像（通常为二值图）</p>
+</dd>
+    <dt><code>dst</code> <span class="xref">Mat</span></dt>
+    <dd><p>输出图像</p>
+</dd>
+    <dt><code>operation</code> <a class="xref" href="MAS.Vision.MorphologyOperation.html">MorphologyOperation</a></dt>
+    <dd><p>操作</p>
+</dd>
+    <dt><code>shape</code> <a class="xref" href="MAS.Vision.MorphologyKernelShape.html">MorphologyKernelShape</a></dt>
+    <dd><p>结构元素形状</p>
+</dd>
+    <dt><code>kernelSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>结构元素大小（自动修正为不小于 1 的奇数）</p>
+</dd>
+    <dt><code>iterations</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>迭代次数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_ImageProcessing_Threshold_" data-uid="MAS.Vision.ImageProcessing.Threshold*"></a>
+
+  <h3 id="MAS_Vision_ImageProcessing_Threshold_OpenCvSharp_Mat_OpenCvSharp_Mat_MAS_Vision_ThresholdMode_System_Double_System_Boolean_System_Int32_System_Double_" data-uid="MAS.Vision.ImageProcessing.Threshold(OpenCvSharp.Mat,OpenCvSharp.Mat,MAS.Vision.ThresholdMode,System.Double,System.Boolean,System.Int32,System.Double)">
+  Threshold(Mat, Mat, ThresholdMode, double, bool, int, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/ImageProcessing.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>二值化（彩色图先转灰度）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double Threshold(Mat src, Mat dst, ThresholdMode mode, double threshold, bool isInverted, int blockSize = 31, double offset = 5)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>src</code> <span class="xref">Mat</span></dt>
+    <dd><p>输入图像（8 位，1 或 3 通道）</p>
+</dd>
+    <dt><code>dst</code> <span class="xref">Mat</span></dt>
+    <dd><p>输出二值图（8 位单通道，0/255）</p>
+</dd>
+    <dt><code>mode</code> <a class="xref" href="MAS.Vision.ThresholdMode.html">ThresholdMode</a></dt>
+    <dd><p>二值化方式</p>
+</dd>
+    <dt><code>threshold</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>固定阈值（0~255）；自动方式忽略</p>
+</dd>
+    <dt><code>isInverted</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>反相：暗目标变白</p>
+</dd>
+    <dt><code>blockSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>自适应邻域大小（自动修正为不小于 3 的奇数）</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>自适应常数 C：邻域均值减去它作为阈值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>实际使用的阈值；自适应方式返回 -1</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_ImageProcessing_ToOddKernel_" data-uid="MAS.Vision.ImageProcessing.ToOddKernel*"></a>
+
+  <h3 id="MAS_Vision_ImageProcessing_ToOddKernel_System_Int32_" data-uid="MAS.Vision.ImageProcessing.ToOddKernel(System.Int32)">
+  ToOddKernel(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/ImageProcessing.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把核大小修正为不小于 1 的奇数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ToOddKernel(int size)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>核大小</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>奇数核大小</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/ImageProcessing.cs/#L21" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

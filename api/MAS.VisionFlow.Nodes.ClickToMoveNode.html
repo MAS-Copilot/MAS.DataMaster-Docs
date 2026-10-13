@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ClickToMoveNode | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ClickToMoveNode | DataMaster ">
+      
+      <meta name="description" content="点图移动（点哪去哪）：在实时画面上点一下，机构就移到那里，用于快速示教与调试">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_VisionFlow_Nodes_ClickToMoveNode.md&amp;value=---%0Auid%3A%20MAS.VisionFlow.Nodes.ClickToMoveNode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode">
+
+
+
+  <h1 id="MAS_VisionFlow_Nodes_ClickToMoveNode" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode" class="text-break">
+Class ClickToMoveNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.Motion.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.VisionFlow.html">VisionFlow</a>.<a class="xref" href="MAS.VisionFlow.Nodes.html">Nodes</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.VisionFlow.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>点图移动（点哪去哪）：在实时画面上点一下，机构就移到那里，用于快速示教与调试</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptIn)]
+public sealed class ClickToMoveNode : VisionNode, INotifyPropertyChanged, INotifyPropertyChanging, IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html">FlowNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html">VisionNode</a></div>
+      <div><span class="xref">ClickToMoveNode</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_LatestElapsedMilliseconds">VisionNode.LatestElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetLastOutput_System_Int32_">VisionNode.GetLastOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ReadLastOutput__1_System_Int32_System_Func_System_Object___0__">VisionNode.ReadLastOutput&lt;T&gt;(int, Func&lt;object, T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Dispose">VisionNode.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_WatchOutput_System_Int32_">VisionNode.WatchOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDebugLogEnabled">VisionNode.IsDebugLogEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Id">FlowNode.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Descriptor">FlowNode.Descriptor</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Graph">FlowNode.Graph</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_X">FlowNode.X</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Y">FlowNode.Y</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Position">FlowNode.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Inputs">FlowNode.Inputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Outputs">FlowNode.Outputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_HasPorts">FlowNode.HasPorts</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CardWidth">FlowNode.CardWidth</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_PositionChanged">FlowNode.PositionChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SettingsChanged">FlowNode.SettingsChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_MoveTo_System_Double_System_Double_">FlowNode.MoveTo(double, double)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_FindPort_MAS_VisionFlow_Designer_FlowPortDirection_System_String_">FlowNode.FindPort(FlowPortDirection, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveSettings">FlowNode.SaveSettings()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_">FlowNode.LoadSettings(JObject)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CreateSnapshot">FlowNode.CreateSnapshot()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ToString">FlowNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Title">FlowNode.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsCollapsed">FlowNode.IsCollapsed</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsSelected">FlowNode.IsSelected</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsStructureLocked">FlowNode.IsStructureLocked</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Status">FlowNode.Status</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_StatusMessage">FlowNode.StatusMessage</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ElapsedMilliseconds">FlowNode.ElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_VisionFlow_Nodes_ClickToMoveNode_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>节点在执行线程中运行：<a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_">ExecuteAsync(VisionExecutionContext)</a> 从上下文取输入、写输出，不要直接访问其它节点。
+节点属性可以在执行线程中修改（WPF 绑定会自动封送），但 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imagesource">ImageSource</a> 必须先冻结</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode__ctor_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.#ctor*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_MAS_VisionFlow_VisionFlowRuntime_MAS_SharedLibrary_Communication_IProtocolManager_MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices,MAS.VisionFlow.VisionFlowRuntime,MAS.SharedLibrary.Communication.IProtocolManager,MAS.SharedLibrary.Communication.IDeviceProtocolRegistry)">
+  ClickToMoveNode(VisionNodeServices, VisionFlowRuntime, IProtocolManager, IDeviceProtocolRegistry)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.ClickToMoveNode.html">ClickToMoveNode</a> 新实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ClickToMoveNode(VisionNodeServices services, VisionFlowRuntime runtime, IProtocolManager protocolManager, IDeviceProtocolRegistry deviceRegistry)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionNodeServices.html">VisionNodeServices</a></dt>
+    <dd></dd>
+    <dt><code>runtime</code> <a class="xref" href="MAS.VisionFlow.VisionFlowRuntime.html">VisionFlowRuntime</a></dt>
+    <dd></dd>
+    <dt><code>protocolManager</code> <a class="xref" href="MAS.SharedLibrary.Communication.IProtocolManager.html">IProtocolManager</a></dt>
+    <dd></dd>
+    <dt><code>deviceRegistry</code> <a class="xref" href="MAS.SharedLibrary.Communication.IDeviceProtocolRegistry.html">IDeviceProtocolRegistry</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.TYPE_KEY">
+  TYPE_KEY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>节点类型键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string TYPE_KEY = &quot;vision.clickToMove&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_AxisX_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.AxisX*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_AxisX" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.AxisX">
+  AxisX
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置当前轴位置 X（引导开启时由下位机读取）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double? AxisX { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_AxisY_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.AxisY*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_AxisY" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.AxisY">
+  AxisY
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置当前轴位置 Y</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double? AxisY { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_AxisZ_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.AxisZ*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_AxisZ" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.AxisZ">
+  AxisZ
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置当前轴位置 Z</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double? AxisZ { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_CommandAddress_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.CommandAddress*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_CommandAddress" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.CommandAddress">
+  CommandAddress
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置命令起始地址（保持寄存器，8 个：序号、命令、X、Y、Z）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ClickMoveCommandAddress&quot;, DescriptionKey = &quot;ClickMoveCommandAddressDescription&quot;)]
+public ushort CommandAddress { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_CommunicationInstance_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.CommunicationInstance*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_CommunicationInstance" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.CommunicationInstance">
+  CommunicationInstance
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置数据采集中的设备名称；未填 IP 时使用，需数据采集项目运行中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;CommunicationInstance&quot;, DescriptionKey = &quot;MachinePoseDeviceNameHint&quot;)]
+public string? CommunicationInstance { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_CurrentState_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.CurrentState*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_CurrentState" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.CurrentState">
+  CurrentState
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置持续取图的状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public RunState CurrentState { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Models.RunState.html">RunState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_GuidanceMessage_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.GuidanceMessage*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_GuidanceMessage" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.GuidanceMessage">
+  GuidanceMessage
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置引导提示（最近一次结果或错误）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string? GuidanceMessage { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_GuidanceState_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.GuidanceState*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_GuidanceState" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.GuidanceState">
+  GuidanceState
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置引导状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public ClickMoveState GuidanceState { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.ClickMoveState.html">ClickMoveState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_GuidingSwitchCommand_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.GuidingSwitchCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_GuidingSwitchCommand" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.GuidingSwitchCommand">
+  GuidingSwitchCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L276"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取引导开关命令（工程师及以上）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionCommand GuidingSwitchCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_Ip_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.Ip*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_Ip" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.Ip">
+  Ip
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置设备 IP；填写后直接连接，不依赖数据采集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;IPAddress&quot;)]
+public string? Ip { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_IsConnectionEditable_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.IsConnectionEditable*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_IsConnectionEditable" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.IsConnectionEditable">
+  IsConnectionEditable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L230"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取通讯设置是否可改（引导开启时锁定）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsConnectionEditable { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_IsFrameSourceActive_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.IsFrameSourceActive*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_IsFrameSourceActive" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.IsFrameSourceActive">
+  IsFrameSourceActive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.Guidance.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取画面是否在持续刷新（本节点在持续取图，或所在管道在运行 / 生产触发中）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFrameSourceActive { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_IsGuiding_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.IsGuiding*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_IsGuiding" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.IsGuiding">
+  IsGuiding
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L225"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否已开启引导</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsGuiding { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_IsSoftLimitEnabled_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.IsSoftLimitEnabled*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_IsSoftLimitEnabled" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.IsSoftLimitEnabled">
+  IsSoftLimitEnabled
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否启用软限位</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ClickMoveSoftLimit&quot;, DescriptionKey = &quot;ClickMoveSoftLimitDescription&quot;)]
+public bool IsSoftLimitEnabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_IsYielding_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.IsYielding*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_IsYielding" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.IsYielding">
+  IsYielding
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置持续取图是否正在让位（所在管道在运行或生产触发中，帧由管道送来）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public bool IsYielding { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_JogCommand_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.JogCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_JogCommand" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.JogCommand">
+  JogCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L281"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取点动命令，参数为方向（&quot;X+&quot;、&quot;X-&quot;、&quot;Y+&quot;、&quot;Y-&quot;、&quot;Z+&quot;、&quot;Z-&quot;）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionCommand JogCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_JogStep_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.JogStep*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_JogStep" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.JogStep">
+  JogStep
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置点动位移量（mm）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ClickMoveJogStep&quot;, Minimum = 0.001, Maximum = 100, Unit = &quot;mm&quot;)]
+public double JogStep { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_JogSteps_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.JogSteps*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_JogSteps" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.JogSteps">
+  JogSteps
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.Motion.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>可选的点动位移量（mm）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;double&gt; JogSteps { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_MaxStep_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MaxStep*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_MaxStep" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MaxStep">
+  MaxStep
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置单次最大移动距离（mm），0 表示不限</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ClickMoveMaxStep&quot;, DescriptionKey = &quot;ClickMoveMaxStepDescription&quot;, Minimum = 0, Unit = &quot;mm&quot;)]
+public double MaxStep { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_MaxX_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MaxX*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_MaxX" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MaxX">
+  MaxX
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置软限位 X 上限</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public double MaxX { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_MaxY_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MaxY*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_MaxY" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MaxY">
+  MaxY
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置软限位 Y 上限</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public double MaxY { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_MaxZ_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MaxZ*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_MaxZ" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MaxZ">
+  MaxZ
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置软限位 Z 上限</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public double MaxZ { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_MinX_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MinX*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_MinX" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MinX">
+  MinX
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置软限位 X 下限</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public double MinX { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_MinY_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MinY*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_MinY" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MinY">
+  MinY
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置软限位 Y 下限</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public double MinY { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_MinZ_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MinZ*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_MinZ" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MinZ">
+  MinZ
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置软限位 Z 下限</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public double MinZ { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_Mode_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.Mode*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_Mode" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.Mode">
+  Mode
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置对准方式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ClickMoveMode&quot;, DescriptionKey = &quot;ClickMoveModeDescription&quot;)]
+public ClickMoveMode Mode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.ClickMoveMode.html">ClickMoveMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_Modes_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.Modes*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_Modes" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.Modes">
+  Modes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L286"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取可选的对准方式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;ClickMoveMode&gt; Modes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Vision.ClickMoveMode.html">ClickMoveMode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_Port_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.Port*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_Port" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.Port">
+  Port
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置设备端口</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;Port&quot;)]
+public ushort Port { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_Preview_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.Preview*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_Preview" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.Preview">
+  Preview
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L207"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取实时画面（原尺寸，点击坐标即标定用的像素坐标）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionPreview Preview { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionPreview.html">VisionPreview</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_ResourceKey_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.ResourceKey*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_ResourceKey" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.ResourceKey">
+  ResourceKey
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置 2D 标定资源键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;PlaneCalibrationResource&quot;, DescriptionKey = &quot;PlaneCalibrationResourceDescription&quot;, OptionsSource = &quot;GetPlaneCalibrationKeys&quot;)]
+public string ResourceKey { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_SettleMilliseconds_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.SettleMilliseconds*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_SettleMilliseconds" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.SettleMilliseconds">
+  SettleMilliseconds
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置到位后等待机构稳定的时间（毫秒），之后的画面才算新画面</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ClickMoveSettleTime&quot;, Minimum = 0, Maximum = 5000, Unit = &quot;ms&quot;)]
+public int SettleMilliseconds { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_StateSwitchCommand_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.StateSwitchCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_StateSwitchCommand" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.StateSwitchCommand">
+  StateSwitchCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L271"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取持续取图启停命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionCommand StateSwitchCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_StatusAddress_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.StatusAddress*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_StatusAddress" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.StatusAddress">
+  StatusAddress
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置状态起始地址（保持寄存器，10 个：应答序号、结果、允许、保留、X、Y、Z）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ClickMoveStatusAddress&quot;, DescriptionKey = &quot;ClickMoveStatusAddressDescription&quot;)]
+public ushort StatusAddress { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_TargetText_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.TargetText*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_TargetText" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.TargetText">
+  TargetText
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最近一次的目标位置（文本）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string? TargetText { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_TimeoutSeconds_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.TimeoutSeconds*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_TimeoutSeconds" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.TimeoutSeconds">
+  TimeoutSeconds
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置等待到位的超时（秒）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ClickMoveTimeout&quot;, Minimum = 1, Maximum = 120, Unit = &quot;s&quot;)]
+public double TimeoutSeconds { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_TypeKey_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.TypeKey*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.TypeKey">
+  TypeKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string TypeKey { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_UnitId_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.UnitId*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_UnitId" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.UnitId">
+  UnitId
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置从站地址</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;SlaveAddress&quot;)]
+public byte UnitId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_ExecuteAsync_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.ExecuteAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
+  ExecuteAsync(VisionExecutionContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L291"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task ExecuteAsync(VisionExecutionContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html">VisionExecutionContext</a></dt>
+    <dd><p>执行上下文，提供输入与输出</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
+    <dd><p>执行失败</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_GetPlaneCalibrationKeys_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.GetPlaneCalibrationKeys*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_GetPlaneCalibrationKeys" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.GetPlaneCalibrationKeys">
+  GetPlaneCalibrationKeys()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取可选的 2D 标定资源键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; GetPlaneCalibrationKeys()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>资源键</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_GetResultData_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.GetResultData*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.GetResultData">
+  GetResultData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L306"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IReadOnlyDictionary&lt;string, VisionResultValue&gt; GetResultData()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="MAS.VisionFlow.Nodes.VisionResultValue.html">VisionResultValue</a>&gt;</dt>
+    <dd><p>键不区分大小写的结果数据</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_JogAsync_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.JogAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_JogAsync_System_String_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.JogAsync(System.String)">
+  JogAsync(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.Motion.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>点动：沿一个轴移动 <a class="xref" href="MAS.VisionFlow.Nodes.ClickToMoveNode.html#MAS_VisionFlow_Nodes_ClickToMoveNode_JogStep">JogStep</a>（界面线程）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task JogAsync(string? direction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>direction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>方向：&quot;X+&quot;、&quot;X-&quot;、&quot;Y+&quot;、&quot;Y-&quot;、&quot;Z+&quot;、&quot;Z-&quot;</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_MoveToAsync_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MoveToAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_MoveToAsync_System_Windows_Point_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.MoveToAsync(System.Windows.Point)">
+  MoveToAsync(Point)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.Motion.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>移动到画面上的一点（界面线程）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task MoveToAsync(Point pixel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pixel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a></dt>
+    <dd><p>点击的像素坐标（OpenCV 约定）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_ReleaseResources_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.ReleaseResources*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.ReleaseResources">
+  ReleaseResources()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.cs/#L324"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseResources()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_StopFrameLoopAsync_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.StopFrameLoopAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_StopFrameLoopAsync" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.StopFrameLoopAsync">
+  StopFrameLoopAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.Guidance.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>停止持续取图</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task StopFrameLoopAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ClickToMoveNode_StopGuidingAsync_" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.StopGuidingAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ClickToMoveNode_StopGuidingAsync" data-uid="MAS.VisionFlow.Nodes.ClickToMoveNode.StopGuidingAsync">
+  StopGuidingAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.Guidance.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>关闭引导并断开下位机（关闭设置窗口时调用）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task StopGuidingAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/ClickToMoveNode.Motion.cs/#L20" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

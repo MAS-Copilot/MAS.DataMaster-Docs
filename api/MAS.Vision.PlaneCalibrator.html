@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PlaneCalibrator | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PlaneCalibrator | DataMaster ">
+      
+      <meta name="description" content="2D 平面标定（九点标定 / N 点标定）：求像素 → 机械平面的映射，并做坐标换算">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_Vision_PlaneCalibrator.md&amp;value=---%0Auid%3A%20MAS.Vision.PlaneCalibrator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Vision.PlaneCalibrator">
+
+
+
+  <h1 id="MAS_Vision_PlaneCalibrator" data-uid="MAS.Vision.PlaneCalibrator" class="text-break">
+Class PlaneCalibrator  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Core/PlaneCalibrator.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.Vision.html">Vision</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.Vision.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>2D 平面标定（九点标定 / N 点标定）：求像素 → 机械平面的映射，并做坐标换算</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class PlaneCalibrator</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">PlaneCalibrator</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="MAS_Vision_PlaneCalibrator_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>同一个 Mark 在 N（推荐 9，3×3 网格）个轴位置下拍照，记录 Mark 像素与轴位置，最小二乘拟合仿射或单应性矩阵</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Vision_PlaneCalibrator_Calibrate_" data-uid="MAS.Vision.PlaneCalibrator.Calibrate*"></a>
+
+  <h3 id="MAS_Vision_PlaneCalibrator_Calibrate_System_Collections_Generic_IReadOnlyList_MAS_Vision_PlaneCalibrationSample__MAS_Vision_CameraMounting_MAS_Vision_PlaneMappingModel_MAS_Vision_CameraIntrinsics_" data-uid="MAS.Vision.PlaneCalibrator.Calibrate(System.Collections.Generic.IReadOnlyList{MAS.Vision.PlaneCalibrationSample},MAS.Vision.CameraMounting,MAS.Vision.PlaneMappingModel,MAS.Vision.CameraIntrinsics)">
+  Calibrate(IReadOnlyList&lt;PlaneCalibrationSample&gt;, CameraMounting, PlaneMappingModel, CameraIntrinsics?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Core/PlaneCalibrator.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>执行标定</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PlaneCalibrationResult Calibrate(IReadOnlyList&lt;PlaneCalibrationSample&gt; samples, CameraMounting mounting, PlaneMappingModel model, CameraIntrinsics? intrinsics = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>samples</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Vision.PlaneCalibrationSample.html">PlaneCalibrationSample</a>&gt;</dt>
+    <dd><p>样本</p>
+</dd>
+    <dt><code>mounting</code> <a class="xref" href="MAS.Vision.CameraMounting.html">CameraMounting</a></dt>
+    <dd><p>相机安装方式</p>
+</dd>
+    <dt><code>model</code> <a class="xref" href="MAS.Vision.PlaneMappingModel.html">PlaneMappingModel</a></dt>
+    <dd><p>映射模型</p>
+</dd>
+    <dt><code>intrinsics</code> <a class="xref" href="MAS.Vision.CameraIntrinsics.html">CameraIntrinsics</a></dt>
+    <dd><p>相机内参，不为空时先对像素做畸变校正</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.PlaneCalibrationResult.html">PlaneCalibrationResult</a></dt>
+    <dd><p>标定结果；失败时 <a class="xref" href="MAS.Vision.CalibrationResultBase.html#MAS_Vision_CalibrationResultBase_IsSuccess">IsSuccess</a> 为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>，原因见摘要</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_PlaneCalibrator_TeachToolOffset_" data-uid="MAS.Vision.PlaneCalibrator.TeachToolOffset*"></a>
+
+  <h3 id="MAS_Vision_PlaneCalibrator_TeachToolOffset_MAS_Vision_PlaneCalibrationResult_OpenCvSharp_Point2d_System_Nullable_OpenCvSharp_Point2d__OpenCvSharp_Point2d_" data-uid="MAS.Vision.PlaneCalibrator.TeachToolOffset(MAS.Vision.PlaneCalibrationResult,OpenCvSharp.Point2d,System.Nullable{OpenCvSharp.Point2d},OpenCvSharp.Point2d)">
+  TeachToolOffset(PlaneCalibrationResult, Point2d, Point2d?, Point2d)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Core/PlaneCalibrator.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>示教工具偏置：先在拍照位拍到 Mark，再把针尖移到同一个 Mark 上</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PlaneCalibrationResult TeachToolOffset(PlaneCalibrationResult result, Point2d markPixel, Point2d? cameraPosition, Point2d toolPosition)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="MAS.Vision.PlaneCalibrationResult.html">PlaneCalibrationResult</a></dt>
+    <dd><p>标定结果</p>
+</dd>
+    <dt><code>markPixel</code> <span class="xref">Point2d</span></dt>
+    <dd><p>拍照时 Mark 的像素坐标</p>
+</dd>
+    <dt><code>cameraPosition</code> <span class="xref">Point2d</span>?</dt>
+    <dd><p>拍照时的轴位置（相机固定时忽略）</p>
+</dd>
+    <dt><code>toolPosition</code> <span class="xref">Point2d</span></dt>
+    <dd><p>针尖对准 Mark 时的轴位置</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.PlaneCalibrationResult.html">PlaneCalibrationResult</a></dt>
+    <dd><p>带新工具偏置的结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_PlaneCalibrator_ToMachine_" data-uid="MAS.Vision.PlaneCalibrator.ToMachine*"></a>
+
+  <h3 id="MAS_Vision_PlaneCalibrator_ToMachine_MAS_Vision_PlaneCalibrationResult_OpenCvSharp_Point2d_System_Nullable_OpenCvSharp_Point2d__" data-uid="MAS.Vision.PlaneCalibrator.ToMachine(MAS.Vision.PlaneCalibrationResult,OpenCvSharp.Point2d,System.Nullable{OpenCvSharp.Point2d})">
+  ToMachine(PlaneCalibrationResult, Point2d, Point2d?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Core/PlaneCalibrator.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>像素 → 工具（针尖）坐标</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point2d ToMachine(PlaneCalibrationResult result, Point2d pixel, Point2d? cameraPosition)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="MAS.Vision.PlaneCalibrationResult.html">PlaneCalibrationResult</a></dt>
+    <dd><p>标定结果</p>
+</dd>
+    <dt><code>pixel</code> <span class="xref">Point2d</span></dt>
+    <dd><p>像素坐标</p>
+</dd>
+    <dt><code>cameraPosition</code> <span class="xref">Point2d</span>?</dt>
+    <dd><p>拍照时的轴位置（相机随轴时必需，相机固定时忽略）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Point2d</span></dt>
+    <dd><p>让针尖对准该像素处目标所需的轴位置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_PlaneCalibrator_ToMachineAngle_" data-uid="MAS.Vision.PlaneCalibrator.ToMachineAngle*"></a>
+
+  <h3 id="MAS_Vision_PlaneCalibrator_ToMachineAngle_MAS_Vision_PlaneCalibrationResult_OpenCvSharp_Point2d_System_Double_" data-uid="MAS.Vision.PlaneCalibrator.ToMachineAngle(MAS.Vision.PlaneCalibrationResult,OpenCvSharp.Point2d,System.Double)">
+  ToMachineAngle(PlaneCalibrationResult, Point2d, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Core/PlaneCalibrator.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>图像里的方向角 → 机械坐标系里的方向角</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double ToMachineAngle(PlaneCalibrationResult result, Point2d pixel, double angle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="MAS.Vision.PlaneCalibrationResult.html">PlaneCalibrationResult</a></dt>
+    <dd><p>标定结果</p>
+</dd>
+    <dt><code>pixel</code> <span class="xref">Point2d</span></dt>
+    <dd><p>所在像素（单应性时不同位置略有差别）</p>
+</dd>
+    <dt><code>angle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>图像中的角度（度）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>机械坐标系中的角度（度）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_PlaneCalibrator_ToPlane_" data-uid="MAS.Vision.PlaneCalibrator.ToPlane*"></a>
+
+  <h3 id="MAS_Vision_PlaneCalibrator_ToPlane_MAS_Vision_PlaneCalibrationResult_OpenCvSharp_Point2d_" data-uid="MAS.Vision.PlaneCalibrator.ToPlane(MAS.Vision.PlaneCalibrationResult,OpenCvSharp.Point2d)">
+  ToPlane(PlaneCalibrationResult, Point2d)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Core/PlaneCalibrator.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>像素 → 机械平面偏移 h(像素)（含畸变校正，不含轴位置与工具偏置）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point2d ToPlane(PlaneCalibrationResult result, Point2d pixel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="MAS.Vision.PlaneCalibrationResult.html">PlaneCalibrationResult</a></dt>
+    <dd><p>标定结果</p>
+</dd>
+    <dt><code>pixel</code> <span class="xref">Point2d</span></dt>
+    <dd><p>像素坐标</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Point2d</span></dt>
+    <dd><p>平面坐标</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Vision_PlaneCalibrator_ToPlane_MAS_Vision_PlaneCalibrationResult_OpenCvSharp_Point2d__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>相机随轴时，两个像素点的 h 之差就是让画面从一点移到另一点所需的轴移动量（视觉引导“点哪去哪”用）</p>
+</div>
+
+
+
+
+  <a id="MAS_Vision_PlaneCalibrator_WithToolOffset_" data-uid="MAS.Vision.PlaneCalibrator.WithToolOffset*"></a>
+
+  <h3 id="MAS_Vision_PlaneCalibrator_WithToolOffset_MAS_Vision_PlaneCalibrationResult_System_Double_System_Double_System_Boolean_" data-uid="MAS.Vision.PlaneCalibrator.WithToolOffset(MAS.Vision.PlaneCalibrationResult,System.Double,System.Double,System.Boolean)">
+  WithToolOffset(PlaneCalibrationResult, double, double, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Core/PlaneCalibrator.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>复制结果并替换工具偏置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PlaneCalibrationResult WithToolOffset(PlaneCalibrationResult result, double x, double y, bool isTaught)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="MAS.Vision.PlaneCalibrationResult.html">PlaneCalibrationResult</a></dt>
+    <dd><p>标定结果</p>
+</dd>
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>偏置 X</p>
+</dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>偏置 Y</p>
+</dd>
+    <dt><code>isTaught</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否视为已示教</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.PlaneCalibrationResult.html">PlaneCalibrationResult</a></dt>
+    <dd><p>新结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Core/PlaneCalibrator.cs/#L22" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

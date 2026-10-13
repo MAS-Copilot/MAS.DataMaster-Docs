@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CaliperNodeBase | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CaliperNodeBase | DataMaster ">
+      
+      <meta name="description" content="卡尺类节点基类：搜索区、边缘参数、随动、设置窗口的预览与结果标记">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_VisionFlow_Nodes_CaliperNodeBase.md&amp;value=---%0Auid%3A%20MAS.VisionFlow.Nodes.CaliperNodeBase%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase">
+
+
+
+  <h1 id="MAS_VisionFlow_Nodes_CaliperNodeBase" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase" class="text-break">
+Class CaliperNodeBase  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.VisionFlow.html">VisionFlow</a>.<a class="xref" href="MAS.VisionFlow.Nodes.html">Nodes</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.VisionFlow.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>卡尺类节点基类：搜索区、边缘参数、随动、设置窗口的预览与结果标记</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptIn)]
+public abstract class CaliperNodeBase : VisionLocateNode, INotifyPropertyChanged, INotifyPropertyChanging, IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html">FlowNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html">VisionNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.VisionLocateNode.html">VisionLocateNode</a></div>
+      <div><span class="xref">CaliperNodeBase</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.CaliperArrayNodeBase.html">CaliperArrayNodeBase</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.CaliperNode.html">CaliperNode</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionLocateNode.html#MAS_VisionFlow_Nodes_VisionLocateNode_LastLocation">VisionLocateNode.LastLocation</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionLocateNode.html#MAS_VisionFlow_Nodes_VisionLocateNode_PublishImage_MAS_VisionFlow_Nodes_VisionExecutionContext_OpenCvSharp_Mat_System_Action_OpenCvSharp_Mat__">VisionLocateNode.PublishImage(VisionExecutionContext, Mat, Action&lt;Mat&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionLocateNode.html#MAS_VisionFlow_Nodes_VisionLocateNode_PublishLocation_MAS_VisionFlow_Nodes_VisionExecutionContext_MAS_Vision_Location2D_">VisionLocateNode.PublishLocation(VisionExecutionContext, Location2D)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionLocateNode.html#MAS_VisionFlow_Nodes_VisionLocateNode_PublishLocations_MAS_VisionFlow_Nodes_VisionExecutionContext_System_Collections_Generic_IReadOnlyList_MAS_Vision_Location2D__System_Int32_">VisionLocateNode.PublishLocations(VisionExecutionContext, IReadOnlyList&lt;Location2D&gt;, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Services">VisionNode.Services</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_LatestElapsedMilliseconds">VisionNode.LatestElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_AnnotatedOutputIndex">VisionNode.AnnotatedOutputIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDisposed">VisionNode.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetResultData">VisionNode.GetResultData()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Dispose_System_Boolean_">VisionNode.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetLastOutput_System_Int32_">VisionNode.GetLastOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ReadLastOutput__1_System_Int32_System_Func_System_Object___0__">VisionNode.ReadLastOutput&lt;T&gt;(int, Func&lt;object, T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Dispose">VisionNode.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_AddAnnotatedOutput">VisionNode.AddAnnotatedOutput()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_WatchOutput_System_Int32_">VisionNode.WatchOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_OnRemoved">VisionNode.OnRemoved()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_AddDebug_System_String_MAS_Loggers_Level_">VisionNode.AddDebug(string, Level)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_RunOnUi_System_Action_">VisionNode.RunOnUi(Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_SetBusyCursor">VisionNode.SetBusyCursor()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ResetCursor">VisionNode.ResetCursor()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDebugLogEnabled">VisionNode.IsDebugLogEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Id">FlowNode.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_TypeKey">FlowNode.TypeKey</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Descriptor">FlowNode.Descriptor</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Graph">FlowNode.Graph</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_X">FlowNode.X</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Y">FlowNode.Y</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Position">FlowNode.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Inputs">FlowNode.Inputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Outputs">FlowNode.Outputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_HasPorts">FlowNode.HasPorts</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CardWidth">FlowNode.CardWidth</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsRestoring">FlowNode.IsRestoring</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_PositionChanged">FlowNode.PositionChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SettingsChanged">FlowNode.SettingsChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_MoveTo_System_Double_System_Double_">FlowNode.MoveTo(double, double)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_FindPort_MAS_VisionFlow_Designer_FlowPortDirection_System_String_">FlowNode.FindPort(FlowPortDirection, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveSettings">FlowNode.SaveSettings()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_">FlowNode.LoadSettings(JObject)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CreateSnapshot">FlowNode.CreateSnapshot()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_AddInput_System_String_MAS_VisionFlow_Designer_FlowPortType_System_String_System_Boolean_">FlowNode.AddInput(string, FlowPortType, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_AddOutput_System_String_MAS_VisionFlow_Designer_FlowPortType_System_String_">FlowNode.AddOutput(string, FlowPortType, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnLoadSettings_Newtonsoft_Json_Linq_JObject_">FlowNode.OnLoadSettings(JObject)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnSettingsLoaded">FlowNode.OnSettingsLoaded()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnAdded">FlowNode.OnAdded()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_NotifySettingsChanged">FlowNode.NotifySettingsChanged()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnPropertyChanged_System_ComponentModel_PropertyChangedEventArgs_">FlowNode.OnPropertyChanged(PropertyChangedEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ToString">FlowNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Title">FlowNode.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsCollapsed">FlowNode.IsCollapsed</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsSelected">FlowNode.IsSelected</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsStructureLocked">FlowNode.IsStructureLocked</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Status">FlowNode.Status</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_StatusMessage">FlowNode.StatusMessage</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ElapsedMilliseconds">FlowNode.ElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanging#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanging(system-componentmodel-propertychangingeventargs)">ObservableObject.OnPropertyChanging(PropertyChangingEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanged#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanged(system-string)">ObservableObject.OnPropertyChanged(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanging#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanging(system-string)">ObservableObject.OnPropertyChanging(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0@-0-system-string)">ObservableObject.SetProperty&lt;T&gt;(ref T, T, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0@-0-system-collections-generic-iequalitycomparer((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(ref T, T, IEqualityComparer&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0-0-system-action((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(T, T, Action&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0-0-system-collections-generic-iequalitycomparer((-0))-system-action((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(T, T, IEqualityComparer&lt;T&gt;, Action&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-2(-1-1-0-system-action((-0-1))-system-string)">ObservableObject.SetProperty&lt;TModel, T&gt;(T, T, TModel, Action&lt;TModel, T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-2(-1-1-system-collections-generic-iequalitycomparer((-1))-0-system-action((-0-1))-system-string)">ObservableObject.SetProperty&lt;TModel, T&gt;(T, T, IEqualityComparer&lt;T&gt;, TModel, Action&lt;TModel, T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier@-system-threading-tasks-task-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion(ref ObservableObject.TaskNotifier, Task, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier@-system-threading-tasks-task-system-action((system-threading-tasks-task))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion(ref ObservableObject.TaskNotifier, Task, Action&lt;Task&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion-1(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier((-0))@-system-threading-tasks-task((-0))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion&lt;T&gt;(ref ObservableObject.TaskNotifier&lt;T&gt;, Task&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion-1(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier((-0))@-system-threading-tasks-task((-0))-system-action((system-threading-tasks-task((-0))))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion&lt;T&gt;(ref ObservableObject.TaskNotifier&lt;T&gt;, Task&lt;T&gt;, Action&lt;Task&lt;T&gt;&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_VisionFlow_Nodes_CaliperNodeBase_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>输入 0 为图像，输入 1 为“跟随定位”（可选）；输出 0 标注图、1 定位结果、2 定位列表，派生类可再加输出</p>
+<p>随动与 ROI 选择器一致：工件在示教位置运行一次后点「设为跟随基准」，之后搜索区随定位平移、旋转；
+跟随定位没有结果时管道失败，不在错误的位置测量。设置窗口里的画面与结果标记映射回示教姿态，与编辑的搜索区对齐</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase__ctor_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.#ctor*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_MAS_Vision_ShapeType_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices,MAS.Vision.ShapeType)">
+  CaliperNodeBase(VisionNodeServices, ShapeType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.CaliperNodeBase.html">CaliperNodeBase</a> 新实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected CaliperNodeBase(VisionNodeServices services, ShapeType regionShape)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionNodeServices.html">VisionNodeServices</a></dt>
+    <dd><p>节点服务</p>
+</dd>
+    <dt><code>regionShape</code> <a class="xref" href="MAS.Vision.ShapeType.html">ShapeType</a></dt>
+    <dd><p>搜索区形状（旋转矩形或圆环），固定不变</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_FOLLOW_INPUT" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.FOLLOW_INPUT">
+  FOLLOW_INPUT
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>“跟随定位”输入端口序号</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const int FOLLOW_INPUT = 1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_LIST_OUTPUT" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.LIST_OUTPUT">
+  LIST_OUTPUT
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>定位列表输出端口序号</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const int LIST_OUTPUT = 2</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_ClearFollowReferenceCommand_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.ClearFollowReferenceCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_ClearFollowReferenceCommand" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.ClearFollowReferenceCommand">
+  ClearFollowReferenceCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取清除跟随基准的命令（恢复固定搜索区）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;ClearFollowReference&quot;)]
+public VisionCommand ClearFollowReferenceCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_FollowReference_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.FollowReference*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_FollowReference" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.FollowReference">
+  FollowReference
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置跟随基准（示教时跟随定位的结果），为空表示不跟随</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public Location2D? FollowReference { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_FollowReferenceText_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.FollowReferenceText*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_FollowReferenceText" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.FollowReferenceText">
+  FollowReferenceText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取跟随基准说明</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string FollowReferenceText { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_IsFollowReferenceSet_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.IsFollowReferenceSet*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_IsFollowReferenceSet" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.IsFollowReferenceSet">
+  IsFollowReferenceSet
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否已设跟随基准</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFollowReferenceSet { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_IsPreviewRefresh_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.IsPreviewRefresh*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_IsPreviewRefresh" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.IsPreviewRefresh">
+  IsPreviewRefresh
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取本次执行是否刷新设置窗口（预览到点时才刷新，连续运行时不拖慢执行）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool IsPreviewRefresh { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_IsRotationFollowed_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.IsRotationFollowed*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_IsRotationFollowed" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.IsRotationFollowed">
+  IsRotationFollowed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否跟随旋转；关闭时只跟随平移（定位结果没有可靠角度时，如圆定位、Blob）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;FollowRotation&quot;, DescriptionKey = &quot;FollowRotationDescription&quot;)]
+public bool IsRotationFollowed { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_Marks_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Marks*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_Marks" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Marks">
+  Marks
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次的结果标记（设置窗口叠加显示；随动时已映射回示教姿态）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public ImageMarks? Marks { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageMarks.html">ImageMarks</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_MinContrast_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.MinContrast*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_MinContrast" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.MinContrast">
+  MinContrast
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最小边缘对比度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;MinContrast&quot;, DescriptionKey = &quot;MinContrastDescription&quot;, Minimum = 1, Maximum = 65535)]
+public double MinContrast { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_Polarity_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Polarity*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_Polarity" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Polarity">
+  Polarity
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置边缘极性（边缘对模式下为第一个边缘的极性）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;EdgePolarity&quot;, DescriptionKey = &quot;EdgePolarityDescription&quot;)]
+public EdgePolarity Polarity { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.EdgePolarity.html">EdgePolarity</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_Preview_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Preview*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_Preview" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Preview">
+  Preview
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次输入的图像预览（保持原尺寸，在设置窗口里按像素编辑搜索区）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionPreview Preview { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionPreview.html">VisionPreview</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_Profile_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Profile*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_Profile" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Profile">
+  Profile
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次的剖面（设置窗口的剖面图；找线、找圆为所选卡尺的剖面）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public CaliperProfileSnapshot? Profile { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.CaliperProfileSnapshot.html">CaliperProfileSnapshot</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_SearchRegion_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.SearchRegion*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_SearchRegion" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.SearchRegion">
+  SearchRegion
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置搜索区（示教姿态下）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public ROICoordinates SearchRegion { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.ROICoordinates.html">ROICoordinates</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_SetFollowReferenceCommand_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.SetFollowReferenceCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_SetFollowReferenceCommand" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.SetFollowReferenceCommand">
+  SetFollowReferenceCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取把最近一次跟随定位设为基准的命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;SetFollowReference&quot;, DescriptionKey = &quot;SetFollowReferenceDescription&quot;)]
+public VisionCommand SetFollowReferenceCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_Sigma_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Sigma*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_Sigma" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Sigma">
+  Sigma
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置高斯平滑 σ</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;CaliperSigma&quot;, DescriptionKey = &quot;CaliperSigmaDescription&quot;, Minimum = 0.5, Maximum = 20, Unit = &quot;px&quot;)]
+public double Sigma { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_EdgeAngle_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.EdgeAngle*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_EdgeAngle_MAS_Vision_CaliperRegion_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.EdgeAngle(MAS.Vision.CaliperRegion)">
+  EdgeAngle(CaliperRegion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>边缘的走向（与搜索方向垂直），按直线方向归一到 (-90°, 90°]，定位结果可直接当直线用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static double EdgeAngle(CaliperRegion region)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>region</code> <a class="xref" href="MAS.Vision.CaliperRegion.html">CaliperRegion</a></dt>
+    <dd><p>搜索区</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>角度（度）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_ExecuteAsync_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.ExecuteAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
+  ExecuteAsync(VisionExecutionContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L162"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override sealed Task ExecuteAsync(VisionExecutionContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html">VisionExecutionContext</a></dt>
+    <dd><p>执行上下文，提供输入与输出</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
+    <dd><p>执行失败</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_GetRegion_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.GetRegion*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_GetRegion_MAS_Numerics_RigidTransform2D_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.GetRegion(MAS.Numerics.RigidTransform2D)">
+  GetRegion(RigidTransform2D?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L198"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取旋转矩形搜索区（随动后）：宽度为搜索长度，高度为投影宽度（找线时为卡尺排布范围）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected CaliperRegion GetRegion(RigidTransform2D? follow)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>follow</code> <a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>跟随变换</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.CaliperRegion.html">CaliperRegion</a></dt>
+    <dd><p>搜索区</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_LineAngle_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.LineAngle*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_LineAngle_System_Double_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.LineAngle(System.Double)">
+  LineAngle(double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L216"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>直线方向归一到 (-90°, 90°]</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static double LineAngle(double angle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>angle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>方向（度）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>归一后的角度</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_Measure_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Measure*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_Measure_MAS_VisionFlow_Nodes_VisionExecutionContext_OpenCvSharp_Mat_MAS_Numerics_RigidTransform2D_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.Measure(MAS.VisionFlow.Nodes.VisionExecutionContext,OpenCvSharp.Mat,MAS.Numerics.RigidTransform2D)">
+  Measure(VisionExecutionContext, Mat, RigidTransform2D?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>测量并写输出</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract ImageMarks Measure(VisionExecutionContext context, Mat image, RigidTransform2D? follow)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html">VisionExecutionContext</a></dt>
+    <dd><p>执行上下文</p>
+</dd>
+    <dt><code>image</code> <span class="xref">Mat</span></dt>
+    <dd><p>输入图像</p>
+</dd>
+    <dt><code>follow</code> <a class="xref" href="MAS.Numerics.RigidTransform2D.html">RigidTransform2D</a></dt>
+    <dd><p>跟随变换（示教姿态 → 当前），不跟随时为 null</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageMarks.html">ImageMarks</a></dt>
+    <dd><p>结果标记（当前图像坐标）；只在 <a class="xref" href="MAS.VisionFlow.Nodes.CaliperNodeBase.html#MAS_VisionFlow_Nodes_CaliperNodeBase_IsPreviewRefresh">IsPreviewRefresh</a> 时使用，其余时候返回 <a class="xref" href="MAS.VisionFlow.Nodes.ImageMarks.html#MAS_VisionFlow_Nodes_ImageMarks_Empty">Empty</a> 省掉分配</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_ReleaseResources_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.ReleaseResources*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.ReleaseResources">
+  ReleaseResources()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseResources()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_CaliperNodeBase_ToLocation_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.ToLocation*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_CaliperNodeBase_ToLocation_MAS_Vision_CaliperEdge_System_Double_" data-uid="MAS.VisionFlow.Nodes.CaliperNodeBase.ToLocation(MAS.Vision.CaliperEdge,System.Double)">
+  ToLocation(CaliperEdge, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>边缘转成定位结果（得分为对比度强度）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static Location2D ToLocation(CaliperEdge edge, double angle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>edge</code> <a class="xref" href="MAS.Vision.CaliperEdge.html">CaliperEdge</a></dt>
+    <dd><p>边缘</p>
+</dd>
+    <dt><code>angle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>边缘走向</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.Location2D.html">Location2D</a></dt>
+    <dd><p>定位结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L30" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

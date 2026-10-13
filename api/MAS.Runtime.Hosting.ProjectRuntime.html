@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Runtime_Hosting_ProjectRuntime" data-uid="MAS.Runtime.Hosting.ProjectRuntime" class="text-break">
-Class ProjectRuntime  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L34"><i class="bi bi-code-slash"></i></a>
+Class ProjectRuntime  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -169,9 +169,9 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <a id="MAS_Runtime_Hosting_ProjectRuntime__ctor_" data-uid="MAS.Runtime.Hosting.ProjectRuntime.#ctor*"></a>
 
-  <h3 id="MAS_Runtime_Hosting_ProjectRuntime__ctor_MAS_Runtime_Projects_MasProject_MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_MAS_Runtime_ISecretProtector_" data-uid="MAS.Runtime.Hosting.ProjectRuntime.#ctor(MAS.Runtime.Projects.MasProject,MAS.SharedLibrary.Communication.IDeviceProtocolRegistry,MAS.Runtime.ISecretProtector)">
-  ProjectRuntime(MasProject, IDeviceProtocolRegistry?, ISecretProtector?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Runtime_Hosting_ProjectRuntime__ctor_MAS_Runtime_Projects_MasProject_MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_MAS_Runtime_ISecretProtector_MAS_SharedLibrary_Communication_IProtocolManager_" data-uid="MAS.Runtime.Hosting.ProjectRuntime.#ctor(MAS.Runtime.Projects.MasProject,MAS.SharedLibrary.Communication.IDeviceProtocolRegistry,MAS.Runtime.ISecretProtector,MAS.SharedLibrary.Communication.IProtocolManager)">
+  ProjectRuntime(MasProject, IDeviceProtocolRegistry?, ISecretProtector?, IProtocolManager?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>表示一个采集项目的运行时，负责编译、加载、启动宿主、停止和卸载</p>
@@ -179,7 +179,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ProjectRuntime(MasProject project, IDeviceProtocolRegistry? deviceRegistry = null, ISecretProtector? secretProtector = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public ProjectRuntime(MasProject project, IDeviceProtocolRegistry? deviceRegistry = null, ISecretProtector? secretProtector = null, IProtocolManager? protocolManager = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -193,6 +193,10 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
     <dt><code>secretProtector</code> <a class="xref" href="MAS.Runtime.ISecretProtector.html">ISecretProtector</a></dt>
     <dd><p>用于解密配置中加密值（如数据库密码）的服务，由平台提供。可为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
 </dd>
+    <dt><code>protocolManager</code> <a class="xref" href="MAS.SharedLibrary.Communication.IProtocolManager.html">IProtocolManager</a></dt>
+    <dd><p>平台协议管理器。给出时项目中的 PLC 按租约共用平台实例：与组态通讯等连同一地址时只有一条连接，项目停止只归还租约。
+为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> 时每台 PLC 自建独占连接，此时不能再给 <code class="paramref">deviceRegistry</code> 传平台目录（平台目录只登记管理器中的实例）</p>
+</dd>
   </dl>
 
 
@@ -202,7 +206,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
 
 
-  <h4 class="section" id="MAS_Runtime_Hosting_ProjectRuntime__ctor_MAS_Runtime_Projects_MasProject_MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_MAS_Runtime_ISecretProtector__remarks">Remarks</h4>
+  <h4 class="section" id="MAS_Runtime_Hosting_ProjectRuntime__ctor_MAS_Runtime_Projects_MasProject_MAS_SharedLibrary_Communication_IDeviceProtocolRegistry_MAS_Runtime_ISecretProtector_MAS_SharedLibrary_Communication_IProtocolManager__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>整个项目对应一个程序集、一个可回收的加载上下文和一个通用主机（Generic Host）。
 启动、停止和热重载按顺序执行。状态和日志事件可能在任意线程上引发，界面订阅时需自行切换线程</p>
 </div>
@@ -218,7 +222,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_Runtime_Hosting_ProjectRuntime_LastCompilation" data-uid="MAS.Runtime.Hosting.ProjectRuntime.LastCompilation">
   LastCompilation
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次编译结果</p>
@@ -250,7 +254,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_Runtime_Hosting_ProjectRuntime_Project" data-uid="MAS.Runtime.Hosting.ProjectRuntime.Project">
   Project
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L70"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取运行的项目</p>
@@ -282,7 +286,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_Runtime_Hosting_ProjectRuntime_State" data-uid="MAS.Runtime.Hosting.ProjectRuntime.State">
   State
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前状态</p>
@@ -318,7 +322,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_Runtime_Hosting_ProjectRuntime_DisposeAsync" data-uid="MAS.Runtime.Hosting.ProjectRuntime.DisposeAsync">
   DisposeAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L146"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources asynchronously.</p>
@@ -351,7 +355,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_Runtime_Hosting_ProjectRuntime_GetSnapshot" data-uid="MAS.Runtime.Hosting.ProjectRuntime.GetSnapshot">
   GetSnapshot()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L138"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前设备与后台服务的状态</p>
@@ -384,7 +388,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_Runtime_Hosting_ProjectRuntime_ReloadAsync_System_Threading_CancellationToken_" data-uid="MAS.Runtime.Hosting.ProjectRuntime.ReloadAsync(System.Threading.CancellationToken)">
   ReloadAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L124"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>热重载：停止当前运行（如有），重新编译并启动</p>
@@ -423,7 +427,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_Runtime_Hosting_ProjectRuntime_StartAsync_System_Threading_CancellationToken_" data-uid="MAS.Runtime.Hosting.ProjectRuntime.StartAsync(System.Threading.CancellationToken)">
   StartAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L93"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>编译并启动项目</p>
@@ -468,7 +472,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_Runtime_Hosting_ProjectRuntime_StopAsync_System_Threading_CancellationToken_" data-uid="MAS.Runtime.Hosting.ProjectRuntime.StopAsync(System.Threading.CancellationToken)">
   StopAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L110"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止项目并卸载程序集，未运行时直接返回</p>
@@ -509,7 +513,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_Runtime_Hosting_ProjectRuntime_LogReceived" data-uid="MAS.Runtime.Hosting.ProjectRuntime.LogReceived">
   LogReceived
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>收到日志时触发（项目代码的 ILogger 与运行时自身）</p>
@@ -540,7 +544,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_Runtime_Hosting_ProjectRuntime_StateChanged" data-uid="MAS.Runtime.Hosting.ProjectRuntime.StateChanged">
   StateChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>状态变化时触发</p>
@@ -572,7 +576,7 @@ Class ProjectRuntime  <a class="header-action link-secondary" title="View source
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L34" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Hosting/ProjectRuntime.cs/#L38" class="edit-link">Edit this page</a>
         </div>
 
 

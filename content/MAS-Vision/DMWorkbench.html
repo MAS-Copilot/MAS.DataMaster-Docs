@@ -87,8 +87,7 @@
         <article data-uid="">
 <h1 id="masvision---dm-workbench">MAS.Vision - DM Workbench</h1>
 
-<h2 id="拓扑或构建流程图">拓扑或构建流程图</h2>
-<p><img src="../../images/Vision/VisionFlow.drawio.png" alt="VisionFlow"></p>
+<p>视觉工作台：在画布上用节点搭视觉流程。一张画布可以并存多条相互独立的管道（例如颜色检测和手眼标定）。设计器与运行时的实现见 <a href="../MAS-Controls/MAS.VisionFlow.html">MAS.VisionFlow</a></p>
 <h2 id="分类">分类</h2>
 <table>
 <thead>
@@ -99,133 +98,138 @@
 </thead>
 <tbody>
 <tr>
-<td>工具（Tools）</td>
-<td>不参与流程</td>
-</tr>
-<tr>
 <td>准备（Prepare）</td>
-<td>流程前置节点</td>
+<td>流程起点：图像源、相机</td>
 </tr>
 <tr>
 <td>设备输入（DeviceInputs）</td>
-<td>数据源节点</td>
-</tr>
-<tr>
-<td>资源（Resources）</td>
-<td>被流程消费的资源</td>
+<td>从设备读取的数据，如机器位姿</td>
 </tr>
 <tr>
 <td>预处理（Preproc）</td>
-<td>数据变换节点</td>
+<td>数据变换：颜色空间转换、ROI（可随动）、滤波去噪、阈值二值化、形态学</td>
 </tr>
 <tr>
-<td>扩展（Expanding）</td>
-<td>插件型流程节点</td>
+<td>定位测量（Locate）</td>
+<td>边缘检测、直线定位（找边）、圆定位（找孔）、Blob 分析、特征匹配（可旋转缩放）、ChArUco 角点定位（按 ID 锁定标定板角点）、卡尺（找边 / 边缘对量宽度）、卡尺找线、卡尺找圆（亚像素精测，可随动）；输出原图（直通，供下游继续处理）、定位结果与标注图（只供查看，最后一个端口），多目标节点（圆定位、Blob 分析、卡尺类）另有定位列表输出</td>
+</tr>
+<tr>
+<td>几何测量（Geometry）</td>
+<td>两点距离（含两圆间隙）、点线距离、两线关系（夹角、交点、平行/垂直）、数值判定、坐标映射（按坐标变换换坐标系）；定位结果当点、当直线（过该点沿其角度）或当圆用，单位跟随输入</td>
+</tr>
+<tr>
+<td>集合（Collection）</td>
+<td>多目标定位列表：筛选、排序（按行/列、蛇形、按属性、按距离）、取元素、计数判定、合并</td>
 </tr>
 <tr>
 <td>执行（Execute）</td>
-<td>有副作用的流程节点</td>
+<td>识别与解算：颜色识别、模板匹配、姿态解算</td>
+</tr>
+<tr>
+<td>视觉引导（Guidance）</td>
+<td>示教对位（相对基准的 ΔX、ΔY、Δθ）、像素转机械坐标（2D 标定，龙门/XY 平台）、位置补正（拍基准 Mark 求工件的平移与旋转）、手眼坐标转换（相机下目标位姿换算到机器人基座）</td>
+</tr>
+<tr>
+<td>资源（Resources）</td>
+<td>产出被其他流程消费的资源：相机标定、2D 标定（九点）、手眼标定</td>
+</tr>
+<tr>
+<td>扩展（Expanding）</td>
+<td>插件型节点，如图像信息</td>
 </tr>
 <tr>
 <td>结束（Finish）</td>
-<td>流程收尾节点</td>
+<td>流程收尾，如图像浏览器</td>
+</tr>
+<tr>
+<td>工具（Tools）</td>
+<td>不参与管道执行：位姿生成、脚本执行</td>
 </tr>
 </tbody>
 </table>
-<h3 id="队列">队列</h3>
-<p><strong>1. 拓扑排序中的队列：</strong></p>
-<p>初始化阶段</p>
-<ul>
-<li>入度计数 (inDegrees): 记录每个模块的入度（即依赖于该模块的模块数量）</li>
-<li>邻接表 (adjacencyList): 记录模块之间的依赖关系，表示哪些模块依赖于当前模块</li>
-<li>模块连接信息 (modulesWithConnections): 存储每个模块及其连接信息，便于后续处理</li>
-</ul>
-<p>构建依赖关系</p>
-<ul>
-<li>遍历所有连接，更新目标模块的入度，并在邻接表中记录源模块到目标模块的依赖关系</li>
-</ul>
-<p>初始化队列</p>
-<ul>
-<li>找出所有入度为0的模块，这些模块没有任何依赖，可以作为执行的起点，将它们加入到<code>zeroInDegreeQueue</code>队列中</li>
-</ul>
-<p>拓扑排序过程</p>
-<ul>
-<li>从队列中取出一个模块 (Dequeue)</li>
-<li>将其加入排序后的模块列表 (sortedModules)</li>
-<li>遍历该模块的所有依赖模块，减少它们的入度</li>
-<li>如果某个依赖模块的入度减为0，表示其所有依赖都已被处理，将其加入队列等待处理</li>
-</ul>
-<p>循环依赖检测</p>
-<ul>
-<li>最后检查排序后的模块数量是否与原模块数量相同，若不同，则存在循环依赖，抛出异常</li>
-</ul>
-<p><strong>2. 执行过程中的队列：</strong></p>
-<p>初始化阶段</p>
-<ul>
-<li>确保已排序的模块列表不为空且模块已成功编译</li>
-<li>筛选出所有没有输入依赖的模块（入度为0），这些模块可以立即执行，将它们加入<code>_readyModules</code>队列</li>
-<li>清空之前可能存在的任务和输出数据，确保执行过程的独立性和正确性</li>
-</ul>
-<p>执行过程</p>
-<ul>
-<li>从队列中取出一个准备执行的模块<code>Dequeue</code></li>
-<li>检查模块是否有下游连接（即是否有依赖它的模块）。若无，则跳过执行</li>
-<li>异步执行当前模块的逻辑<code>ExecuteAsync</code>，并等待执行完成</li>
-<li>存储模块的输出结果，以便后续依赖模块使用</li>
-</ul>
-<p>更新依赖模块</p>
-<ul>
-<li>遍历当前模块的所有连接，找到目标模块并设置其输入数据</li>
-<li>检查目标模块的所有输入是否已准备好（即所有依赖模块都已执行并提供输出）</li>
-<li>若目标模块的所有输入均已就绪，将其加入<code>_readyModules</code>队列，等待执行</li>
-</ul>
-<h3 id="概述">概述</h3>
-<p><strong>通过拓扑排序算法，确定模块之间的任务执行顺序，作为本项目的视觉处理流程主要算法：</strong></p>
-<p>有向无环图（Directed Acyclic Graph，简称 DAG）是图论中的一个重要概念，由顶点（vertices）和有方向的边（edges）组成。这种结构的特点是图中不存在从任一顶点出发，最终又回到该顶点的环路（cycle）。这意味着，从图中的任意一个顶点出发，经过一系列的有向边，最终将到达一个或多个没有任何出边的顶点，也称为“终端顶点”或“叶节点”</p>
-<p>在有向无环图中，边表示顶点之间的单向关系或依赖关系。由于图中不存在环，从任何一个顶点进行深度优先搜索（DFS）或广度优先搜索（BFS）时，搜索过程总会在无法进一步扩展的顶点处停止，而不会陷入无限循环</p>
-<p>拓扑排序是一种在有向无环图中对所有顶点进行线性排序的方法，使得对于任何一对顶点<code>𝑢</code>和<code>𝑣</code>，如果存在从<code>𝑢</code>到<code>𝑣</code>的有向边，那么在排序结果中<code>𝑢</code>必须出现在<code>𝑣</code>之前。这种排序方式在以下领域中尤为重要：</p>
-<ul>
-<li>任务调度：安排任务执行的顺序，确保所有前置任务都在后续任务之前完成</li>
-<li>项目构建：在软件编译过程中正确地编译依赖库或模块</li>
-<li>编译优化：确定变量定义的顺序，以优化运行时性能</li>
-<li>数据流分析：分析程序中数据的流向和生命周期</li>
-</ul>
-<p>有向无环图示例1：</p>
-<pre><code class="lang-bash">  A 
- / \ 
-B   C 
- \ / 
-  D
+<h2 id="常见任务">常见任务</h2>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>搭法</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定位边缘</td>
+<td>图像源/相机 → 滤波去噪（高斯） → 直线定位</td>
+<td>期望角度填边的大致方向，角度容差收窄可避开其它边；结果为中点与角度</td>
+</tr>
+<tr>
+<td>定位孔位</td>
+<td>图像源 → 滤波去噪 → 阈值二值化（大津，暗孔打开反相） → 形态学（开运算） → Blob 分析（最小圆度 0.8）</td>
+<td>质心为亚像素精度；孔边缘清晰、背景干净时也可直接用 滤波 → 圆定位</td>
+</tr>
+<tr>
+<td>抓特征</td>
+<td>场景图像源 + 模板图像源（或 ROI 截取） → 特征匹配</td>
+<td>模板需要有纹理与角点；能应对旋转与缩放。纹理少、只有平移时用模板匹配更稳</td>
+</tr>
+<tr>
+<td>二维引导</td>
+<td>任一定位节点的“定位”输出 → 示教对位</td>
+<td>标准位置运行一次后点“设为基准”；填像素当量后按毫米输出 ΔX、ΔY、Δθ</td>
+</tr>
+<tr>
+<td>三维引导</td>
+<td>相机 → 姿态解算 → 手眼坐标转换（眼在手上时再接机器位姿）</td>
+<td>先用手眼标定节点生成资源，再在手眼坐标转换里选中该资源；输出为机器人基座下的目标位姿</td>
+</tr>
+<tr>
+<td>龙门打螺丝/点胶（2D）</td>
+<td>相机 → 滤波 → 阈值 → Blob 分析（定位列表）→ 列表筛选 → 像素转机械坐标（接机器位姿）→ 列表排序（行蛇形）→ 计数判定</td>
+<td>先用 2D 标定（九点，实心圆点 Mark，或复用相机标定的 ChArUco 板：图像源 → ChArUco 角点定位 → 2D 标定）生成资源并示教针尖偏置；换算成机械坐标后再排序，顺序就按机械坐标走</td>
+</tr>
+<tr>
+<td>点位整体补正（2D）</td>
+<td>Mark 定位（两个及以上 Mark 用 Blob/圆定位的列表；单个 Mark 要用能给角度的特征匹配或直线定位）→ 像素转机械坐标 → 位置补正</td>
+<td>工件放标准位置运行一次后点“设为基准”；之后每次输出 ΔX、ΔY、Δθ（绕 CenterX、CenterY）与矩阵 A~TY，约定同图纸导入的 <code>RigidTransform</code>，脚本里可直接 <code>RigidTransform.ApplyOffset(new Point(DX, DY), DAngle, new Point(CenterX, CenterY), points)</code>；设最大偏移、最大角度防止异常结果下发</td>
+</tr>
+<tr>
+<td>尺寸测量</td>
+<td>定位 → 两点距离 / 点线距离 / 两线关系 → 数值判定</td>
+<td>先换算成机械坐标即按 mm 判定；两条边的交点可当工件角点</td>
+</tr>
+<tr>
+<td>卡尺精测</td>
+<td>宽度/间隙：图像源 → 卡尺（边缘对）→ 数值判定（接测量值输出）；孔径：卡尺找圆 → 数值判定（接直径输出）；边距、夹角：两个卡尺找线 → 两线关系 / 点线距离</td>
+<td>在设置窗口里框搜索区，调完按标题栏的运行按钮（F5）直接运行到此节点看结果，不用关窗口；箭头为搜索方向，要找的边与箭头垂直，极性按箭头方向看（亮带宽度：暗到亮 + 亮到暗；暗缝反过来）。剖面图上看对比度峰是否越过阈值虚线来调“最小对比度”“平滑 σ”；找线/找圆时橙色点为拟合剔除的离群点（毛刺、缺口）。工件会偏移时把 Mark 定位接到第二个输入“跟随定位”，示教位置运行一次后点“设为跟随基准”，用法同 ROI 随动</td>
+</tr>
+<tr>
+<td>ROI 随动</td>
+<td>工件定位（Mark、边、特征匹配）→ ROI 选择器第二个输入“跟随定位”；ROI 输出 → 卡尺/差分/定位等精测 → 坐标映射（接 ROI 的变换输出）→ 原图坐标</td>
+<td>工件在示教位置运行一次后在 ROI 卡片上点“设为跟随基准”；之后 ROI 随工件平移、旋转，输出与示教时取景一致（当前图按定位反向映射回示教姿态再裁剪，亚像素）。定位没有可靠角度时（圆定位、Blob）取消“跟随旋转”。跟随定位没有结果时管道失败，不会裁到旧位置</td>
+</tr>
+</tbody>
+</table>
+<p>单个定位结果可以直接连到列表输入，当作只有一个元素的列表；列表不能直接连到只收单个结果的输入，要用“取元素”明确取第几个。</p>
+<p>管道脚本里按“节点标题 + 结果键”取值，例如：</p>
+<pre><code class="lang-csharp">if (result.TryGetValue&lt;double&gt;(&quot;示教对位&quot;, &quot;DX&quot;, out var dx) &amp;&amp; result.TryGetValue&lt;double&gt;(&quot;示教对位&quot;, &quot;DY&quot;, out var dy)) {
+    // 写回 PLC
+}
 </code></pre>
-<p>顶点<code>𝐴</code>指向顶点<code>𝐵</code>和<code>𝐶</code>，而<code>𝐵</code>和 <code>𝐶</code>都指向<code>𝐷</code>，拓扑排序的一种可能结果是<code>𝐴,𝐵,𝐶,𝐷</code>这表示首先处理<code>𝐴</code>然后是<code>𝐵</code>和<code>𝐶</code>（这两个可以互换顺序、亦或同时执行，因为它们之间没有依赖），最后处理<code>𝐷</code></p>
-<p>有向无环图示例2：</p>
-<pre><code class="lang-bash">    E
-   / \
-  F   G
-   \ /
-    H
-   / \
-  I   J
-</code></pre>
-<p>顶点<code>E</code>指向顶点<code>F</code>和<code>G</code>，而<code>F</code>和<code>G</code>都指向<code>H</code>，接着<code>H</code>指向<code>I</code>和<code>J</code>，一种可能的拓扑排序结果是<code>E, F, G, H, I, J</code>这个顺序表示首先处理<code>E</code>，接着可以同时或依次处理<code>F</code>和<code>G</code>（因为它们之间没有依赖关系），然后处理<code>H</code>，最后处理<code>I</code>和<code>J</code></p>
-<h3 id="示例">示例</h3>
-<p><img src="../../images/Vision/0LNxNDnNP5.png" alt="示例"></p>
-<p><strong>通过<code>TopologicalSort</code>方法进行拓扑排序后的结果：</strong></p>
-<pre><code class="lang-csharp">private List&lt;ModuleWithConnections&gt; _sortedModules;
-_sortedModules = TopologicalSort();    
-</code></pre>
+<p>各节点的结果键可在输出查看窗口的“结果数据”页看到。</p>
+<h2 id="编辑">编辑</h2>
 <ul>
-<li>A.1.MAS.Controls.ImageProceFlow.ImageSourceViewModel</li>
-<li>B.2.MAS.Controls.ImageProceFlow.CameraViewModel</li>
-<li>C.3.MAS.Controls.ImageProceFlow.ColorConvertViewModel</li>
-<li>D.4.MAS.Controls.ImageProceFlow.ColorConvertViewModel</li>
-<li>E.5.MAS.Controls.ImageProceFlow.TemplateMatchingViewModel</li>
-<li>F.6.MAS.Controls.ImageProceFlow.ImageViewerViewModel</li>
+<li>从输出端口拖向输入端口连线，拖动时可连接的端口会高亮，靠近自动吸附；类型不兼容、重复或会成环的连线不允许</li>
+<li>单输入端口再接一条线会替换原来的线</li>
+<li>框选、Ctrl / Shift 多选，Ctrl+C / Ctrl+X / Ctrl+V / Ctrl+D，Delete 删除，Ctrl+Z / Ctrl+Y 撤销重做，方向键微调</li>
+<li>双击标题重命名，双击卡片其他位置打开设置窗口；卡片可折叠</li>
+<li>常用参数直接在卡片上改，其余在设置窗口里改；没有属性面板</li>
 </ul>
-<p><code>A,B,C,D,E,F</code></p>
-<p>如果按照拓扑后的结果直接顺序执行的话<code>A -&gt; B -&gt; C -&gt; D -&gt; E -&gt; F</code></p>
-<p>很显然如果直接按照拓扑之后的顺序执行那么肯定是错误的，因为模块间都要进行数据传递</p>
-<pre><code class="lang-bash">B   A
+<h2 id="管道">管道</h2>
+<p>管道由画布自动划分：每个至少包含两个非工具节点的连通分量就是一条管道，图一变就在后台重建，不需要手动「拓扑」。增删节点后，管道按节点重叠度与原来的管道对应，名称和脚本跟着走。</p>
+<p>管道运行中时，它的节点不能删除、不能连线或断线，参数照常可改。</p>
+<h3 id="执行顺序">执行顺序</h3>
+<p>管道内按拓扑排序（Kahn 算法，同层按节点位置排序）确定顺序；执行时入度为 0 的节点先跑，同一批就绪的节点并行执行，某个节点失败则整条管道立即失败，下游不再执行。</p>
+<pre><code>B   A
 |   |
 D   C
  \ /
@@ -233,26 +237,24 @@ D   C
   |
   F
 </code></pre>
-<p><strong>模块之间的依赖关系如下：</strong></p>
-<ul>
-<li>模块<code>A</code>和 模块<code>B</code>是起始模块，它们没有输入依赖（入度为0）</li>
-<li>模块<code>C</code>依赖于 模块`A的输出</li>
-<li>模块<code>D</code>依赖于 模块<code>B</code>的输出</li>
-<li>模块<code>E</code>依赖于 模块<code>C</code>和 模块`D的输出</li>
-<li>模块<code>F</code>是最终模块，依赖于 模块<code>E</code>的输出</li>
-</ul>
-<p><strong>执行逻辑：</strong></p>
-<p><strong>1.</strong> 模块<code>A</code>和模块<code>B</code>作为起始点，它们可以并行执行，因为它们不需要任何输入数据<br>
-<strong>2.</strong> 一旦 模块<code>A</code>和 模块<code>B</code>执行完成，它们的输出数据将分别传递给模块<code>C和</code>模块<code>D</code><br>
-<strong>3.</strong> 模块<code>C</code>和 模块<code>D</code>在接收到所需的数据后开始执行。这两个模块可以并行执行，因为它们之间没有依赖关系<br>
-<strong>4.</strong> 模块<code>E</code>必须等待模块<code>C</code>和模块<code>D</code>都执行完成并获得它们的输出数据，因为它依赖于这两个模块的输出。一旦模块<code>C</code>和模块<code>D</code>的输出准备就绪，模块<code>E</code>将合并或处理这些数据，并执行<br>
-<strong>5.</strong> 最后，模块<code>F</code>将等待 模块<code>E</code>完成执行，将模块<code>E</code>的输出作为输入数据。完成后，整个流程结束</p>
-<p>入度为0的模块不需要设置输入数据，那么将省略这一步</p>
-<pre><code class="lang-csharp">void SetInputData(short index, object input);
+<p><code>A</code>、<code>B</code> 并行；<code>C</code>、<code>D</code> 各自在上游完成后执行；<code>E</code> 等 <code>C</code>、<code>D</code> 都完成；最后 <code>F</code>。</p>
+<p>节点在第一次触发或启动时按需初始化，结构变化后会重新初始化；也可以在顶部或管道面板里手动初始化。</p>
+<h3 id="运行到节点查看输出">运行到节点、查看输出</h3>
+<p>卡片上的运行按钮只执行该节点及其上游；点击输出端口旁的查看按钮可以看端口最近一次的值。节点右上角的状态点和底部的耗时显示最近一次执行结果。</p>
+<h3 id="管道脚本">管道脚本</h3>
+<p>每条管道有一个脚本处理器（<code>IVisionPipelineHandler</code>），启动后按 <code>FixedIntervalMs</code> 循环：</p>
+<ol>
+<li><code>TriggerSignalAsync</code> 返回 <code>true</code> 时执行一次管道（例如读 PLC 触发位）</li>
+<li><code>HandleResultAsync(VisionRunResult)</code> 处理结果（例如写回 PLC）；执行失败时也会先调用它，便于回写 NG，然后循环异常停止</li>
+<li><code>CompleteAsync</code> 结束本轮（例如复位触发位）</li>
+</ol>
+<pre><code class="lang-csharp">public async Task HandleResultAsync(VisionRunResult result, CancellationToken token = default) {
+    if (result.TryGetValue&lt;double&gt;(&quot;颜色识别&quot;, &quot;Score&quot;, out var score)) {
+        // 按节点标题 + 结果键取值，键名不区分大小写
+    }
+}
 </code></pre>
-<p>出度为 0 的模块也不需要设置输出数据，也会省略这一步</p>
-<pre><code class="lang-csharp">Task&lt;object&gt; ExecuteAsync();
-</code></pre>
+<p>脚本类名由运行时生成，不要修改；构造函数可以注入应用中注册的服务，如 <code>IProtocolManager</code>。</p>
 
 </article>
 
