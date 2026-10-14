@@ -128,11 +128,28 @@ public enum OptimizationStrategy</code></pre>
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
+    <dt id="MAS_PathPlanning_OptimizationStrategy_ColumnSnake"><code>[DisplayNameResource(&quot;ColumnSnakeSorting&quot;)]
+ColumnSnake = 3</code></dt>
+  <dd><p>列蛇形：按段中心归列，列内按 Y 排序，相邻列反向（适合规则阵列）</p>
+<p>归列容差见 <a class="xref" href="MAS.PathPlanning.TrajectoryParameters.html#MAS_PathPlanning_TrajectoryParameters_SnakeTolerance">SnakeTolerance</a></p>
+</dd>
+  
     <dt id="MAS_PathPlanning_OptimizationStrategy_NearestNeighbor"><code>[DisplayNameResource(&quot;NearestNeighborSorting&quot;)]
 NearestNeighbor = 0</code></dt>
   
   <dd><p>最邻近</p>
 </dd>
+    <dt id="MAS_PathPlanning_OptimizationStrategy_NearestNeighborTwoOpt"><code>[DisplayNameResource(&quot;NearestNeighborTwoOptSorting&quot;)]
+NearestNeighborTwoOpt = 1</code></dt>
+  
+  <dd><p>最邻近 + 2-opt：在最邻近结果上反复做整段倒序与小段搬移，直到空移不再缩短</p>
+</dd>
+    <dt id="MAS_PathPlanning_OptimizationStrategy_RowSnake"><code>[DisplayNameResource(&quot;RowSnakeSorting&quot;)]
+RowSnake = 2</code></dt>
+  <dd><p>行蛇形：按段中心归行，行内按 X 排序，相邻行反向（适合规则阵列）</p>
+<p>归行容差见 <a class="xref" href="MAS.PathPlanning.TrajectoryParameters.html#MAS_PathPlanning_TrajectoryParameters_SnakeTolerance">SnakeTolerance</a></p>
+</dd>
+  
   </dl>
 
 

@@ -208,6 +208,73 @@ Class PlaneCalibrationResult  <a class="header-action link-secondary" title="Vie
 </h2>
 
 
+  <a id="MAS_Vision_PlaneCalibrationResult_CameraOffsetX_" data-uid="MAS.Vision.PlaneCalibrationResult.CameraOffsetX*"></a>
+
+  <h3 id="MAS_Vision_PlaneCalibrationResult_CameraOffsetX" data-uid="MAS.Vision.PlaneCalibrationResult.CameraOffsetX">
+  CameraOffsetX
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取相机偏移 X：示教针尖偏置时 针尖对准 Mark 的轴位置 − 拍到 Mark 时的轴位置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double CameraOffsetX { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Vision_PlaneCalibrationResult_CameraOffsetX_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>相机随轴时，下位机用 拍照位 = 目标的针尖坐标 − 相机偏移 把目标带进视野</p>
+</div>
+
+
+
+
+  <a id="MAS_Vision_PlaneCalibrationResult_CameraOffsetY_" data-uid="MAS.Vision.PlaneCalibrationResult.CameraOffsetY*"></a>
+
+  <h3 id="MAS_Vision_PlaneCalibrationResult_CameraOffsetY" data-uid="MAS.Vision.PlaneCalibrationResult.CameraOffsetY">
+  CameraOffsetY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取相机偏移 Y</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double CameraOffsetY { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_Vision_PlaneCalibrationResult_Intrinsics_" data-uid="MAS.Vision.PlaneCalibrationResult.Intrinsics*"></a>
 
   <h3 id="MAS_Vision_PlaneCalibrationResult_Intrinsics" data-uid="MAS.Vision.PlaneCalibrationResult.Intrinsics">
@@ -240,11 +307,43 @@ Class PlaneCalibrationResult  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_Vision_PlaneCalibrationResult_IsCameraOffsetTaught_" data-uid="MAS.Vision.PlaneCalibrationResult.IsCameraOffsetTaught*"></a>
+
+  <h3 id="MAS_Vision_PlaneCalibrationResult_IsCameraOffsetTaught" data-uid="MAS.Vision.PlaneCalibrationResult.IsCameraOffsetTaught">
+  IsCameraOffsetTaught
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取相机偏移是否有效：只有相机随轴、按「记录拍照位 → 记录针尖位置」示教过才有效，重新标定后失效</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCameraOffsetTaught { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_Vision_PlaneCalibrationResult_IsMirrored_" data-uid="MAS.Vision.PlaneCalibrationResult.IsMirrored*"></a>
 
   <h3 id="MAS_Vision_PlaneCalibrationResult_IsMirrored" data-uid="MAS.Vision.PlaneCalibrationResult.IsMirrored">
   IsMirrored
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L155"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取图像与机械坐标是否左右手相反（镜像），俯拍相机常见，属正常</p>
@@ -340,7 +439,7 @@ Class PlaneCalibrationResult  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Vision_PlaneCalibrationResult_MaxError" data-uid="MAS.Vision.PlaneCalibrationResult.MaxError">
   MaxError
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最大残差（机械单位）</p>
@@ -372,7 +471,7 @@ Class PlaneCalibrationResult  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Vision_PlaneCalibrationResult_MeanError" data-uid="MAS.Vision.PlaneCalibrationResult.MeanError">
   MeanError
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L125"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取平均残差（机械单位，通常 mm）</p>
@@ -468,7 +567,7 @@ Class PlaneCalibrationResult  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Vision_PlaneCalibrationResult_PixelSize" data-uid="MAS.Vision.PlaneCalibrationResult.PixelSize">
   PixelSize
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L140"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取像素当量（机械单位/像素，在样本中心处）</p>
@@ -500,7 +599,7 @@ Class PlaneCalibrationResult  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Vision_PlaneCalibrationResult_Residuals" data-uid="MAS.Vision.PlaneCalibrationResult.Residuals">
   Residuals
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L135"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取每个样本的残差（与样本顺序一致）</p>
@@ -532,7 +631,7 @@ Class PlaneCalibrationResult  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Vision_PlaneCalibrationResult_Rotation" data-uid="MAS.Vision.PlaneCalibrationResult.Rotation">
   Rotation
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L145"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取图像 X 方向在机械坐标系里的角度（度）</p>
@@ -564,7 +663,7 @@ Class PlaneCalibrationResult  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Vision_PlaneCalibrationResult_SampleCount" data-uid="MAS.Vision.PlaneCalibrationResult.SampleCount">
   SampleCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L120"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取样本数</p>
@@ -596,7 +695,7 @@ Class PlaneCalibrationResult  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_Vision_PlaneCalibrationResult_Skew" data-uid="MAS.Vision.PlaneCalibrationResult.Skew">
   Skew
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/PlaneCalibration.cs/#L150"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取非正交角（度）：图像两轴映射后夹角偏离 90° 的量，过大说明轴不垂直或样本有误</p>
