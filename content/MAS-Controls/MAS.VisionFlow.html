@@ -259,7 +259,7 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 <li><code>FlowMinimap</code> 在 <code>OnRender</code> 中直接绘制节点方块、视口外遮罩与视口框，不创建可视元素；绘制合并到下一帧，拖动时冻结映射，避免小地图自身跳动</li>
 </ul>
 <h2 id="持久化">持久化</h2>
-<p>工程类型为 <code>VisionFlow</code>，文档存放于 <code>ProjectModel.ServiceData[&quot;VisionFlow&quot;]</code>，包含节点快照、连线、管道（标识、名称、脚本、归属节点；改过且仍有节点在画布上的脱离管道也保存）、资源与视口；自 <code>v3.27.0</code> 起旧版 <code>ImageProceFlow</code> 工程将不再兼容</p>
+<p>工程类型为 <code>VisionFlow</code>，文档存放于 <code>ProjectModel.ServiceData[&quot;VisionFlow&quot;]</code>，包含节点快照、连线、管道（标识、名称、脚本、归属节点；改过且仍有节点在画布上的脱离管道也保存）、资源；自 <code>v3.27.0</code> 起旧版 <code>ImageProceFlow</code> 工程将不再兼容</p>
 <p>加载时无法识别的节点类型或无法建立的连线不会导致工程加载失败，而是记入 <code>VisionFlowRuntime.LoadErrors</code> 并给出提示。</p>
 <h2 id="对外接口">对外接口</h2>
 <p><code>IVisionFlowRuntime</code> 以单例注册，不依赖工作台页面是否打开，工程加载后即可由动态视图脚本、Agent 等外部触发。</p>
