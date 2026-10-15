@@ -115,7 +115,7 @@
 </tr>
 <tr>
 <td>定位测量（Locate）</td>
-<td>边缘检测、直线定位、圆定位、Blob 分析、特征匹配、ChArUco 角点定位、卡尺、卡尺找线、卡尺找圆</td>
+<td>边缘检测、直线定位、圆定位、Blob 分析、特征匹配、ChArUco 角点定位、卡尺、卡尺找线、卡尺找圆、形状匹配</td>
 </tr>
 <tr>
 <td>几何测量（Geometry）</td>
@@ -183,6 +183,11 @@
 <td>模板要有纹理；只有平移时模板匹配更稳</td>
 </tr>
 <tr>
+<td>按轮廓定位</td>
+<td>相机 → 形状匹配</td>
+<td>设置窗口里框模板区、放参考点、点「学习模板」，再框搜索区；抗旋转、亚像素，模板随工程保存</td>
+</tr>
+<tr>
 <td>二维引导</td>
 <td>定位 → 示教对位</td>
 <td>标准位置运行一次后“设为基准”</td>
@@ -241,7 +246,7 @@
 </table>
 <p>补充说明：</p>
 <ul>
-<li>位置补正：输出的 ΔX、ΔY、Δθ（绕 CenterX、CenterY）与矩阵 A~TY 同图纸导入的 <code>RigidTransform</code> 约定，脚本里可直接 <code>RigidTransform.ApplyOffset(new Point(DX, DY), DAngle, new Point(CenterX, CenterY), points)</code>；设最大偏移、最大角度防止异常结果下发。单个 Mark 要用能给角度的定位（特征匹配、直线定位）</li>
+<li>位置补正：输出的 ΔX、ΔY、Δθ（绕 CenterX、CenterY）与矩阵 A~TY 同图纸导入的 <code>RigidTransform</code> 约定，脚本里可直接 <code>RigidTransform.ApplyOffset(new Point(DX, DY), DAngle, new Point(CenterX, CenterY), points)</code>；设最大偏移、最大角度防止异常结果下发。单个 Mark 要用能给角度的定位（形状匹配、特征匹配、直线定位）</li>
 <li>卡尺：箭头为搜索方向，要找的边与箭头垂直，极性沿箭头方向看（亮带宽度：暗到亮 + 亮到暗）。剖面图上看对比度峰是否越过阈值虚线来调“最小对比度”“平滑 σ”；橙色点为拟合剔除的离群点。工件会偏移时把 Mark 定位接到“跟随定位”，用法同 ROI 随动</li>
 <li>ROI 随动：当前图按定位反向映射回示教姿态再裁剪，输出与示教时取景一致；定位没有可靠角度时（圆、Blob）取消“跟随旋转”</li>
 <li>定位转正：整幅图模式加“固定位置”可把每次的工件对齐到同一处（金样差分前的对齐）；边界填充选“复制边缘”不给卡尺造假边</li>
