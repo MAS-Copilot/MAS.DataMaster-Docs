@@ -404,7 +404,30 @@ VariableWriteService
 <p>如果结构体没有关联任何可写通道，写入会被阻止。写入成功后，变量中心才会提交本地值并刷新界面</p>
 <h3 id="并发写入">并发写入</h3>
 <p>单字段写入最终是整结构体写入。写入服务按结构体串行执行“读取当前值 → 合并 → 写入设备 → 提交变量中心”，组态视图、多个 Web 客户端与脚本同时修改同一结构体的不同字段时，不会出现后写者覆盖先写者的情况；不同结构体之间并行写入</p>
-<p>变量中心的 <code>ValueChanged</code> 在结构体锁内同步触发，事件处理器中不要同步等待（<code>.Wait()</code>、<code>.Result</code>）对同一结构体的写入</p>
+<p>变量中心的 <code>ValueChanged</code> 在提交线程上同步触发，写入服务提交时仍持有该结构体的写锁，事件处理器中不要同步等待（<code>.Wait()</code>、<code>.Result</code>）对同一结构体的写入。订阅者的异常会被隔离并记录，不会让设备被标记为通讯错误。</p>
+<p>需要按结构体过滤、或回调可能耗时的订阅者，使用 <code>IDynamicViewVariableValueProvider.Subscribe(handler, options)</code>：</p>
+<table>
+<thead>
+<tr>
+<th>投递方式</th>
+<th>行为</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Queued</code>（默认）</td>
+<td>每个订阅者一条有界队列与专属后台任务，提交线程只入队；同一结构体按提交顺序到达，可用事件的 <code>Version</code> 校验；队列满丢弃最旧并记日志</td>
+<td>脚本、业务模块、耗时处理</td>
+</tr>
+<tr>
+<td><code>Synchronous</code></td>
+<td>提交线程上回调，必须快速返回</td>
+<td>系统内部轻量逻辑</td>
+</tr>
+</tbody>
+</table>
+<p>脚本服务集合里的 <code>VariableProvider</code> 已把 <code>ValueChanged</code> 改为排队投递，脚本处理器慢或抛异常都不影响轮询。</p>
 <h3 id="写入结果">写入结果</h3>
 <p><code>WriteFieldAsync</code> / <code>WriteStructureAsync</code> 返回 <code>bool</code>。需要向外部报告失败原因时使用 <code>TryWriteFieldAsync</code> / <code>TryWriteStructureAsync</code>，返回带稳定错误码的 <code>DynamicViewVariableWriteResult</code>：</p>
 <table>

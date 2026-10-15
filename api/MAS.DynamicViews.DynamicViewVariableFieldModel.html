@@ -232,6 +232,12 @@ Class DynamicViewVariableFieldModel  <a class="header-action link-secondary" tit
       <a class="xref" href="MAS.DynamicViews.DynamicViewFieldExtensions.html#MAS_DynamicViews_DynamicViewFieldExtensions_GetString_MAS_DynamicViews_DynamicViewVariableFieldModel_System_String_System_String_">DynamicViewFieldExtensions.GetString(DynamicViewVariableFieldModel, string, string)</a>
   </div>
   <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldExtensions.html#MAS_DynamicViews_DynamicViewVariableFieldExtensions_IsComposite_MAS_DynamicViews_DynamicViewVariableFieldModel_">DynamicViewVariableFieldExtensions.IsComposite(DynamicViewVariableFieldModel)</a>
+  </div>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldExtensions.html#MAS_DynamicViews_DynamicViewVariableFieldExtensions_IsScalar_MAS_DynamicViews_DynamicViewVariableFieldModel_">DynamicViewVariableFieldExtensions.IsScalar(DynamicViewVariableFieldModel)</a>
+  </div>
+  <div>
       <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
   </div>
   </dd></dl>
@@ -384,6 +390,42 @@ public string? DescriptionLanguageKey { get; set; }</code></pre>
   <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableFieldModel_DescriptionLanguageKey_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>仅当所属结构体的用法为 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableUsage.html#MAS_DynamicViews_DynamicViewVariableUsage_Alarm">Alarm</a> 时使用，形如 <code>分类/键名</code>；
 报警文本优先取该词条在当前语种下的译文，为空或词条不存在时回退为 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldModel.html#MAS_DynamicViews_DynamicViewVariableFieldModel_Description">Description</a></p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewVariableFieldModel_ElementCount_" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.ElementCount*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewVariableFieldModel_ElementCount" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.ElementCount">
+  ElementCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置定长数组的元素个数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public int ElementCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableFieldModel_ElementCount_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>仅当 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldModel.html#MAS_DynamicViews_DynamicViewVariableFieldModel_Shape">Shape</a> 为 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableShape.html#MAS_DynamicViews_DynamicViewVariableShape_Array">Array</a> 时使用</p>
 </div>
 
 
@@ -603,7 +645,7 @@ public string? OffsetText { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableFieldModel_Properties" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.Properties">
   Properties
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableFieldModel.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableFieldModel.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取扩展属性</p>
@@ -627,6 +669,78 @@ public string? OffsetText { get; set; }</code></pre>
 
 
 
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewVariableFieldModel_Shape_" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.Shape*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewVariableFieldModel_Shape" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.Shape">
+  Shape
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置字段形态：单个值、定长数组或变长列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public DynamicViewVariableShape Shape { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.DynamicViews.DynamicViewVariableShape.html">DynamicViewVariableShape</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableFieldModel_Shape_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>数组与列表只有内部结构体与模块结构体支持；元素类型由 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldModel.html#MAS_DynamicViews_DynamicViewVariableFieldModel_VariableType">VariableType</a> 决定</p>
+</div>
+
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewVariableFieldModel_StructureId_" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.StructureId*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewVariableFieldModel_StructureId" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.StructureId">
+  StructureId
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置嵌套引用的结构体标识</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string? StructureId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewVariableFieldModel_StructureId_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>仅当 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableFieldModel.html#MAS_DynamicViews_DynamicViewVariableFieldModel_VariableType">VariableType</a> 为 <a class="xref" href="MAS.DynamicViews.DynamicViewVariableType.html#MAS_DynamicViews_DynamicViewVariableType_Structure">Structure</a> 时使用，只能引用内部或模块结构体</p>
+</div>
 
 
 
@@ -672,7 +786,7 @@ public DynamicViewVariableType VariableType { get; set; }</code></pre>
 
   <h3 id="MAS_DynamicViews_DynamicViewVariableFieldModel_Clone" data-uid="MAS.DynamicViews.DynamicViewVariableFieldModel.Clone">
   Clone()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableFieldModel.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Models/DynamicViewVariableFieldModel.cs/#L136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new object that is a copy of the current instance.</p>

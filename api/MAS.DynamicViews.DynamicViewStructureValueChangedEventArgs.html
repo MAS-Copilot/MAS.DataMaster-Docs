@@ -178,8 +178,8 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs__ctor_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.#ctor*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs__ctor_System_String_System_String_System_String_System_String_System_Object_System_Object_MAS_DynamicViews_DynamicViewVariableValueSource_MAS_DynamicViews_DynamicViewVariableModel_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.#ctor(System.String,System.String,System.String,System.String,System.Object,System.Object,MAS.DynamicViews.DynamicViewVariableValueSource,MAS.DynamicViews.DynamicViewVariableModel)">
-  DynamicViewStructureValueChangedEventArgs(string, string, string?, string?, object?, object?, DynamicViewVariableValueSource, DynamicViewVariableModel?)
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs__ctor_System_String_System_String_System_String_System_String_System_Object_System_Object_MAS_DynamicViews_DynamicViewVariableValueSource_MAS_DynamicViews_DynamicViewVariableModel_System_Int64_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.#ctor(System.String,System.String,System.String,System.String,System.Object,System.Object,MAS.DynamicViews.DynamicViewVariableValueSource,MAS.DynamicViews.DynamicViewVariableModel,System.Int64)">
+  DynamicViewStructureValueChangedEventArgs(string, string, string?, string?, object?, object?, DynamicViewVariableValueSource, DynamicViewVariableModel?, long)
   <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -188,7 +188,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DynamicViewStructureValueChangedEventArgs(string structureId, string structureName, string? fieldId, string? fieldName, object? oldValue, object? newValue, DynamicViewVariableValueSource source, DynamicViewVariableModel? structure = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public DynamicViewStructureValueChangedEventArgs(string structureId, string structureName, string? fieldId, string? fieldName, object? oldValue, object? newValue, DynamicViewVariableValueSource source, DynamicViewVariableModel? structure = null, long version = 0)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -209,6 +209,8 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
     <dd></dd>
     <dt><code>structure</code> <a class="xref" href="MAS.DynamicViews.DynamicViewVariableModel.html">DynamicViewVariableModel</a></dt>
     <dd></dd>
+    <dt><code>version</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
   </dl>
 
 
@@ -218,7 +220,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
 
 
-  <h4 class="section" id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs__ctor_System_String_System_String_System_String_System_String_System_Object_System_Object_MAS_DynamicViews_DynamicViewVariableValueSource_MAS_DynamicViews_DynamicViewVariableModel__remarks">Remarks</h4>
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs__ctor_System_String_System_String_System_String_System_String_System_Object_System_Object_MAS_DynamicViews_DynamicViewVariableValueSource_MAS_DynamicViews_DynamicViewVariableModel_System_Int64__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>事件有两种载荷形态：</p>
 <ul><li>
     结构体级：由通讯轮询等批量提交产生，<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldId">FieldId</a> 与 <a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldName">FieldName</a> 为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>，
@@ -245,7 +247,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldId" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.FieldId">
   FieldId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取字段标识；为空表示本次为结构体级更新（<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_NewValue">NewValue</a> 为字段值字典）</p>
@@ -281,7 +283,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_FieldName" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.FieldName">
   FieldName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L83"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取字段名称；为空表示本次为结构体级更新（<a class="xref" href="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.html#MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_NewValue">NewValue</a> 为字段值字典）</p>
@@ -317,7 +319,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_NewValue" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.NewValue">
   NewValue
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L93"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取新值</p>
@@ -349,7 +351,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_OldValue" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.OldValue">
   OldValue
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L88"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取旧值</p>
@@ -381,7 +383,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_Source" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.Source">
   Source
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取变量更新源</p>
@@ -413,7 +415,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_StructureId" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.StructureId">
   StructureId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取结构体标识</p>
@@ -445,7 +447,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_StructureName" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.StructureName">
   StructureName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取结构体名称</p>
@@ -473,6 +475,38 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
 
 
+  <a id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_Version_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.Version*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_Version" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.Version">
+  Version
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取本次提交后的结构体版本号：同一结构体每次提交加一，订阅者可据此检测事件乱序或漏收；未知时为 0</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Version { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -481,7 +515,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_Contains_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.Contains(System.String)">
   Contains(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L115"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断本次事件是否携带指定字段</p>
@@ -520,7 +554,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetChangedFieldNames" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetChangedFieldNames">
   GetChangedFieldNames()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L210"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L216"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本次事件中实际发生变化的字段名称集合</p>
@@ -553,7 +587,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewText_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetNewText(System.String)">
   GetNewText(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L199"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定字段的新值文本</p>
@@ -592,7 +626,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewValue_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetNewValue(System.String)">
   GetNewValue(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L161"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定字段的新值原始对象</p>
@@ -631,7 +665,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetNewValue__1_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetNewValue``1(System.String)">
   GetNewValue&lt;T&gt;(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L180"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定字段的新值并转换为目标类型</p>
@@ -676,7 +710,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetOldText_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetOldText(System.String)">
   GetOldText(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L202"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L208"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定字段的旧值文本</p>
@@ -715,7 +749,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetOldValue_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetOldValue(System.String)">
   GetOldValue(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L170"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定字段的旧值原始对象</p>
@@ -754,7 +788,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_GetOldValue__1_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.GetOldValue``1(System.String)">
   GetOldValue&lt;T&gt;(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L190"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定字段的旧值并转换为目标类型</p>
@@ -799,7 +833,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_HasChanged_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.HasChanged(System.String)">
   HasChanged(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L125"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断指定字段本次是否发生变化</p>
@@ -838,7 +872,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsFallingEdge_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.IsFallingEdge(System.String)">
   IsFallingEdge(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L151"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断指定布尔字段本次是否出现下降沿（由非 false 变为 false）</p>
@@ -877,7 +911,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsRisingEdge_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.IsRisingEdge(System.String)">
   IsRisingEdge(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L141"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断指定布尔字段本次是否出现上升沿（由非 true 变为 true）</p>
@@ -916,7 +950,7 @@ Class DynamicViewStructureValueChangedEventArgs  <a class="header-action link-se
 
   <h3 id="MAS_DynamicViews_DynamicViewStructureValueChangedEventArgs_IsStructure_System_String_" data-uid="MAS.DynamicViews.DynamicViewStructureValueChangedEventArgs.IsStructure(System.String)">
   IsStructure(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/EventArgs/DynamicViewStructureValueChangedEventArgs.cs/#L105"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断事件是否来自指定结构体</p>

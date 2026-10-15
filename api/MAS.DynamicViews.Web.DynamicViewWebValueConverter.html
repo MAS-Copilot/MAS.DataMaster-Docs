@@ -192,7 +192,7 @@ Class DynamicViewWebValueConverter  <a class="header-action link-secondary" titl
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebValueConverter_Normalize_MAS_DynamicViews_DynamicViewVariableFieldModel_System_Object_" data-uid="MAS.DynamicViews.Web.DynamicViewWebValueConverter.Normalize(MAS.DynamicViews.DynamicViewVariableFieldModel,System.Object)">
   Normalize(DynamicViewVariableFieldModel, object?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebValueConverter.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebValueConverter.cs/#L55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>把变量中心的值规范为字段声明的类型</p>
@@ -280,7 +280,7 @@ Class DynamicViewWebValueConverter  <a class="header-action link-secondary" titl
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebValueConverter_TryFromWire_System_Text_Json_JsonElement_System_Object__System_String__" data-uid="MAS.DynamicViews.Web.DynamicViewWebValueConverter.TryFromWire(System.Text.Json.JsonElement,System.Object@,System.String@)">
   TryFromWire(JsonElement, out object?, out string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebValueConverter.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebValueConverter.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>把前端写入的 JSON 值转换为交给写入服务的原始值</p>
@@ -318,7 +318,7 @@ Class DynamicViewWebValueConverter  <a class="header-action link-secondary" titl
 
 
   <h4 class="section" id="MAS_DynamicViews_Web_DynamicViewWebValueConverter_TryFromWire_System_Text_Json_JsonElement_System_Object__System_String___remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>只接受布尔、数字、字符串；null、对象、数组一律拒绝。
+  <div class="markdown level1 remarks"><p>接受布尔、数字、字符串，以及由它们组成的数组和对象（对应列表/数组字段与嵌套结构体字段）；null 一律拒绝。
 字段类型转换与范围检查由写入服务完成，这里不做猜测</p>
 </div>
 

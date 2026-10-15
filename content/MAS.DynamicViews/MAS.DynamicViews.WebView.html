@@ -886,7 +886,7 @@ writeResult（成功或稳定错误码）+ 记入操作日志
 <p><strong>按结构体串行化</strong>：单字段写入最终是整结构体写入。“读取当前值 → 合并 → 写设备 → 提交”整段在同一把结构体锁内完成，避免多个写入方同时修改同一结构体的不同字段时后写者覆盖先写者；不同结构体之间互不阻塞。</p>
 <div class="WARNING">
 <h5>Warning</h5>
-<p>变量中心的 <code>ValueChanged</code> 在结构体锁内同步触发。事件处理器中不要同步等待（<code>.Wait()</code>、<code>.Result</code>）对同一结构体的写入，否则会死锁；需要连锁写入时请异步发起。</p>
+<p>变量中心的 <code>ValueChanged</code> 在提交线程上同步触发，写入服务提交时仍持有该结构体的写锁。事件处理器中不要同步等待（<code>.Wait()</code>、<code>.Result</code>）对同一结构体的写入，否则会死锁；需要连锁写入时请异步发起。回调可能耗时的场景请改用 <code>IDynamicViewVariableValueProvider.Subscribe</code> 的排队投递，脚本拿到的提供者已自动排队。</p>
 </div>
 <h2 id="权限与登录">权限与登录</h2>
 <p>Web 视图不维护独立账号，直接使用 DataMaster 用户与角色（<code>none &lt; visitor &lt; operator &lt; engineer &lt; admin</code>，<code>developer</code> 拥有全部权限），判定规则与组态视图相同（<code>HasRole</code>）。</p>

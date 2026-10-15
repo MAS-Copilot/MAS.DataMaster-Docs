@@ -1097,39 +1097,6 @@ public string LastTaskMessage { get; init; }</code></pre>
 
 
 
-  <a id="MAS_PathPlanning_DXFStatusSnapshot_RecipeListJson_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeListJson*"></a>
-
-  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_RecipeListJson" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeListJson">
-  RecipeListJson
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L221"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取全部配方的 JSON 数组，元素含 <code>code</code>、<code>name</code>、<code>calibration</code>、<code>layerCount</code>、<code>generatedLayerCount</code>，供前端做配方列表</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[MaxLength(8192)]
-public string RecipeListJson { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_PathPlanning_DXFStatusSnapshot_RecipeName_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeName*"></a>
 
   <h3 id="MAS_PathPlanning_DXFStatusSnapshot_RecipeName" data-uid="MAS.PathPlanning.DXFStatusSnapshot.RecipeName">
@@ -1158,6 +1125,41 @@ public string RecipeListJson { get; init; }</code></pre>
 
 
 
+
+
+
+
+  <a id="MAS_PathPlanning_DXFStatusSnapshot_Recipes_" data-uid="MAS.PathPlanning.DXFStatusSnapshot.Recipes*"></a>
+
+  <h3 id="MAS_PathPlanning_DXFStatusSnapshot_Recipes" data-uid="MAS.PathPlanning.DXFStatusSnapshot.Recipes">
+  Recipes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Script/DXFStatusSnapshot.cs/#L224"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取全部配方的列表，供界面与 Web 视图直接绑定</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;DXFRecipeStatusEntry&gt; Recipes { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.PathPlanning.DXFRecipeStatusEntry.html">DXFRecipeStatusEntry</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_DXFStatusSnapshot_Recipes_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>动态视图把它映射为嵌套记录列表：模块结构体 <code>DXF_Status</code> 下自动生成子结构体 <code>DXF_Status_DXFRecipeStatusEntry</code></p>
+</div>
 
 
 

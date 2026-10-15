@@ -188,6 +188,37 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
 
 
 
+
+  <h3 id="MAS_DynamicViews_DynamicViewModuleStructures_NESTED_KEY" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.NESTED_KEY">
+  NESTED_KEY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>结构体扩展属性中保存嵌套类型名称的键：只有模块的子结构体（嵌套类型）带此键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string NESTED_KEY = &quot;ModuleNested&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -196,7 +227,7 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
 
   <h3 id="MAS_DynamicViews_DynamicViewModuleStructures_Create_MAS_DynamicViews_DynamicViewModuleDefinition_System_String_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.Create(MAS.DynamicViews.DynamicViewModuleDefinition,System.String)">
   Create(DynamicViewModuleDefinition, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据模块定义创建模块结构体</p>
@@ -230,6 +261,57 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
 
 
 
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewModuleStructures_Create_MAS_DynamicViews_DynamicViewModuleDefinition_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>定义含嵌套类型时，嵌套字段引用的子结构体不在返回值里，请改用 <a class="xref" href="MAS.DynamicViews.DynamicViewModuleStructures.html#MAS_DynamicViews_DynamicViewModuleStructures_CreateAll_MAS_DynamicViews_DynamicViewModuleDefinition_System_String_">CreateAll(DynamicViewModuleDefinition, string)</a> 一并取得</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p><code class="paramref">definition</code> 为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_DynamicViews_DynamicViewModuleStructures_CreateAll_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.CreateAll*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewModuleStructures_CreateAll_MAS_DynamicViews_DynamicViewModuleDefinition_System_String_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.CreateAll(MAS.DynamicViews.DynamicViewModuleDefinition,System.String)">
+  CreateAll(DynamicViewModuleDefinition, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据模块定义创建模块结构体，以及嵌套类型对应的子结构体</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;DynamicViewVariableModel&gt; CreateAll(DynamicViewModuleDefinition definition, string groupName = &quot;Module&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>definition</code> <a class="xref" href="MAS.DynamicViews.DynamicViewModuleDefinition.html">DynamicViewModuleDefinition</a></dt>
+    <dd><p>模块结构体定义</p>
+</dd>
+    <dt><code>groupName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>结构体所属分组名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.DynamicViews.DynamicViewVariableModel.html">DynamicViewVariableModel</a>&gt;</dt>
+    <dd><p>创建的结构体，首个为模块结构体本身，其后为嵌套类型的子结构体</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
@@ -244,7 +326,7 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
 
   <h3 id="MAS_DynamicViews_DynamicViewModuleStructures_GetModuleId_MAS_DynamicViews_DynamicViewVariableModel_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.GetModuleId(MAS.DynamicViews.DynamicViewVariableModel)">
   GetModuleId(DynamicViewVariableModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取模块结构体所属的模块标识</p>
@@ -279,11 +361,49 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
 
 
 
+  <a id="MAS_DynamicViews_DynamicViewModuleStructures_GetNestedName_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.GetNestedName*"></a>
+
+  <h3 id="MAS_DynamicViews_DynamicViewModuleStructures_GetNestedName_MAS_DynamicViews_DynamicViewVariableModel_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.GetNestedName(MAS.DynamicViews.DynamicViewVariableModel)">
+  GetNestedName(DynamicViewVariableModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取模块子结构体对应的嵌套类型名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? GetNestedName(DynamicViewVariableModel structure)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>structure</code> <a class="xref" href="MAS.DynamicViews.DynamicViewVariableModel.html">DynamicViewVariableModel</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>嵌套类型名称；不是模块子结构体时返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_DynamicViews_DynamicViewModuleStructures_IsCreated_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.IsCreated*"></a>
 
   <h3 id="MAS_DynamicViews_DynamicViewModuleStructures_IsCreated_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewVariableModel__System_String_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.IsCreated(System.Collections.Generic.IEnumerable{MAS.DynamicViews.DynamicViewVariableModel},System.String)">
   IsCreated(IEnumerable&lt;DynamicViewVariableModel&gt;, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断指定模块的结构体是否已在工程中创建</p>
@@ -323,9 +443,9 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
 
   <a id="MAS_DynamicViews_DynamicViewModuleStructures_Reconcile_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.Reconcile*"></a>
 
-  <h3 id="MAS_DynamicViews_DynamicViewModuleStructures_Reconcile_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewVariableModel__" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.Reconcile(System.Collections.Generic.IEnumerable{MAS.DynamicViews.DynamicViewVariableModel})">
-  Reconcile(IEnumerable&lt;DynamicViewVariableModel&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_DynamicViews_DynamicViewModuleStructures_Reconcile_System_Collections_Generic_IList_MAS_DynamicViews_DynamicViewVariableModel__" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.Reconcile(System.Collections.Generic.IList{MAS.DynamicViews.DynamicViewVariableModel})">
+  Reconcile(IList&lt;DynamicViewVariableModel&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将已存在的模块结构体与当前注册的模块定义同步</p>
@@ -333,12 +453,12 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int Reconcile(IEnumerable&lt;DynamicViewVariableModel&gt; structures)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int Reconcile(IList&lt;DynamicViewVariableModel&gt; structures)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>structures</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MAS.DynamicViews.DynamicViewVariableModel.html">DynamicViewVariableModel</a>&gt;</dt>
+    <dt><code>structures</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="MAS.DynamicViews.DynamicViewVariableModel.html">DynamicViewVariableModel</a>&gt;</dt>
     <dd><p>工程中的结构体集合</p>
 </dd>
   </dl>
@@ -356,7 +476,7 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
 
 
 
-  <h4 class="section" id="MAS_DynamicViews_DynamicViewModuleStructures_Reconcile_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewVariableModel___remarks">Remarks</h4>
+  <h4 class="section" id="MAS_DynamicViews_DynamicViewModuleStructures_Reconcile_System_Collections_Generic_IList_MAS_DynamicViews_DynamicViewVariableModel___remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>应用升级后，模块定义可能包含新增字段。同步时仅追加定义中存在而结构体中缺少的字段
 不删除、重命名或修改已有字段，以保持现有界面绑定和工程配置不变
 未注册对应模块的结构体保持原有内容</p>
@@ -375,7 +495,7 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
 
   <h3 id="MAS_DynamicViews_DynamicViewModuleStructures_Validate_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewVariableModel__MAS_DynamicViews_DynamicViewVariableModel_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.Validate(System.Collections.Generic.IEnumerable{MAS.DynamicViews.DynamicViewVariableModel},MAS.DynamicViews.DynamicViewVariableModel)">
   Validate(IEnumerable&lt;DynamicViewVariableModel&gt;, DynamicViewVariableModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L157"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>校验模块结构体的标识、名称、访问模式及字段布局</p>
@@ -412,7 +532,7 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
   <h4 class="section" id="MAS_DynamicViews_DynamicViewModuleStructures_Validate_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewVariableModel__MAS_DynamicViews_DynamicViewVariableModel__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>每个工程中同一模块仅允许创建一个模块结构体。已注册模块时，结构体名称和访问模式必须与模块定义一致，
 字段必须属于模块定义且保持名称和类型不变。
-结构体允许暂时缺少模块定义中的字段，以兼容应用升级后的旧工程；缺少的字段可通过 <a class="xref" href="MAS.DynamicViews.DynamicViewModuleStructures.html#MAS_DynamicViews_DynamicViewModuleStructures_Reconcile_System_Collections_Generic_IEnumerable_MAS_DynamicViews_DynamicViewVariableModel__">Reconcile(IEnumerable&lt;DynamicViewVariableModel&gt;)</a> 补充</p>
+结构体允许暂时缺少模块定义中的字段，以兼容应用升级后的旧工程；缺少的字段可通过 <a class="xref" href="MAS.DynamicViews.DynamicViewModuleStructures.html#MAS_DynamicViews_DynamicViewModuleStructures_Reconcile_System_Collections_Generic_IList_MAS_DynamicViews_DynamicViewVariableModel__">Reconcile(IList&lt;DynamicViewVariableModel&gt;)</a> 补充</p>
 </div>
 
 
@@ -422,7 +542,7 @@ Class DynamicViewModuleStructures  <a class="header-action link-secondary" title
 
   <h3 id="MAS_DynamicViews_DynamicViewModuleStructures_ValidateField_MAS_DynamicViews_DynamicViewVariableModel_MAS_DynamicViews_DynamicViewVariableFieldModel_" data-uid="MAS.DynamicViews.DynamicViewModuleStructures.ValidateField(MAS.DynamicViews.DynamicViewVariableModel,MAS.DynamicViews.DynamicViewVariableFieldModel)">
   ValidateField(DynamicViewVariableModel, DynamicViewVariableFieldModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Modules/DynamicViewModuleStructures.cs/#L195"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>校验模块结构体的单个字段</p>

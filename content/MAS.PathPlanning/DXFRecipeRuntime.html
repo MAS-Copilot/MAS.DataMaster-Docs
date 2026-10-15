@@ -357,9 +357,9 @@ await _statusReporter.DisposeAsync();   // 只在脚本释放时（重新编译�
 </tr>
 <tr>
 <td>列表</td>
-<td><code>RecipeListJson</code></td>
-<td>String</td>
-<td>全部配方的 JSON 数组，包含 <code>code</code>、<code>name</code>、<code>calibration</code>、<code>layerCount</code> 和 <code>generatedLayerCount</code>。</td>
+<td><code>Recipes</code></td>
+<td>嵌套记录列表</td>
+<td>全部配方，每项含 <code>Code</code>、<code>Name</code>、<code>Calibration</code>、<code>LayerCount</code>、<code>GeneratedLayerCount</code>。元素类型自动生成子结构体 <code>DXF_Status_DXFRecipeStatusEntry</code>。</td>
 </tr>
 </tbody>
 </table>
@@ -369,18 +369,18 @@ await _statusReporter.DisposeAsync();   // 只在脚本释放时（重新编译�
 <p>图层是否已模拟或被手动修改分别通过 <code>IsLayerSimulated</code> 和 <code>IsLayerModified</code> 判断，是否作为最终放行条件由现场业务决定。</p>
 </div>
 <h3 id="配方列表">配方列表</h3>
-<p><code>RecipeListJson</code> 使用 JSON 数组保存配方列表，例如：</p>
+<p><code>Recipes</code> 是动态视图的嵌套记录列表：脚本里拿到 <code>DynamicViewVariableList</code>，元素为按子结构体字段标识取值的 <code>DynamicViewVariableRecord</code>；Web 视图读到的就是 JSON 数组，例如：</p>
 <pre><code class="lang-json">[
   {
-    &quot;code&quot;: &quot;R001&quot;,
-    &quot;name&quot;: &quot;产品 A&quot;,
-    &quot;calibration&quot;: &quot;CAL001&quot;,
-    &quot;layerCount&quot;: 3,
-    &quot;generatedLayerCount&quot;: 3
+    &quot;Code&quot;: &quot;R001&quot;,
+    &quot;Name&quot;: &quot;产品 A&quot;,
+    &quot;Calibration&quot;: &quot;CAL001&quot;,
+    &quot;LayerCount&quot;: 3,
+    &quot;GeneratedLayerCount&quot;: 3
   }
 ]
 </code></pre>
-<p>使用内部结构体承载该字段时，应为字符串字段预留足够长度，避免配方数量增加后 JSON 内容被截断</p>
+<p>子结构体 <code>DXF_Status_DXFRecipeStatusEntry</code> 由模块随 <code>DXF_Status</code> 一并创建和维护，被 <code>DXF_Status</code> 引用期间不能单独删除；删除 <code>DXF_Status</code> 时会一起删除。</p>
 <h2 id="数据存储布局">数据存储布局</h2>
 <pre><code class="lang-text">工程根目录/
 ├── 工程名.masproj              # 配方索引 + 标定索引 + 脚本（工程级）

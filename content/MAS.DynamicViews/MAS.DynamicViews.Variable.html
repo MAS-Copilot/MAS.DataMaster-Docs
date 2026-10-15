@@ -478,6 +478,10 @@
 <td>不能被配方引用</td>
 <td>配方只能引用普通结构体和内部结构体，不能引用模块结构体。</td>
 </tr>
+<tr>
+<td>嵌套类型生成子结构体</td>
+<td>模块发布对象里的数组、<code>IEnumerable&lt;T&gt;</code> 属性映射为列表字段；类或记录类型的属性映射为嵌套字段，并自动生成名为「结构体名_类型名」的子结构体（扩展属性 <code>ModuleNested</code> 记录类型名），由模块一并维护。</td>
+</tr>
 </tbody>
 </table>
 <h3 id="应用升级后的字段同步">应用升级后的字段同步</h3>
@@ -556,7 +560,7 @@
 </div>
 <h2 id="命令通道">命令通道</h2>
 <p>内部结构体也可以作为界面向其他模块发送命令的数据通道。</p>
-<p>例如，Web 视图中的按钮可以修改内部结构体变量，业务模块通过 <code>IDynamicViewVariableValueProvider.ValueChanged</code> 订阅变量变化并处理命令。</p>
+<p>例如，Web 视图中的按钮可以修改内部结构体变量，业务模块通过 <code>IDynamicViewVariableValueProvider.Subscribe(handler, new DynamicViewVariableSubscriptionOptions { Structures = [&quot;命令结构体&quot;] })</code> 订阅该结构体的变化并处理命令：回调在订阅者专属的后台任务上按提交顺序执行，不占用通讯轮询线程。</p>
 <p>命令字段建议包含递增序号，例如：</p>
 <pre><code class="lang-text">CommandId = 1
 </code></pre>
@@ -718,6 +722,7 @@ Bool   Fault      4.1
 <li>Float</li>
 <li>Double</li>
 <li>String</li>
+<li>Structure（嵌套结构体，见下）</li>
 </ul>
 <p>字段类型主要用于：</p>
 <ul>
@@ -727,6 +732,43 @@ Bool   Fault      4.1
 <li>通讯数据解析</li>
 <li>通讯数据写回</li>
 <li>运行时值转换</li>
+</ul>
+<h3 id="集合与嵌套">集合与嵌套</h3>
+<p>内部结构体与模块结构体的字段还可以是集合或嵌套结构体，用字段的 <code>Shape</code>、<code>ElementCount</code>、<code>StructureId</code> 描述：</p>
+<table>
+<thead>
+<tr>
+<th>形态</th>
+<th>描述</th>
+<th>运行值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Shape = List</code></td>
+<td>变长列表，元素类型为 <code>VariableType</code></td>
+<td><code>DynamicViewVariableList</code>，不可变，按元素比较</td>
+</tr>
+<tr>
+<td><code>Shape = Array</code></td>
+<td>定长数组，长度为 <code>ElementCount</code></td>
+<td>同上，提交时元素个数必须一致</td>
+</tr>
+<tr>
+<td><code>VariableType = Structure</code></td>
+<td>嵌套结构体，<code>StructureId</code> 指向引用的结构体</td>
+<td><code>DynamicViewVariableRecord</code>，键为引用结构体的字段标识，按内容比较</td>
+</tr>
+</tbody>
+</table>
+<p>三者可以组合：<code>Structure</code> 加 <code>List</code> 就是「记录列表」。约束与行为：</p>
+<ul>
+<li>只有内部结构体与模块结构体支持；通讯结构体仍然只能用八种标量，校验器会拒绝</li>
+<li>嵌套引用只能指向内部或模块结构体，且不能直接或间接引用回自身</li>
+<li>集合与嵌套按「整体替换」更新：提交一个新实例，内容相同不触发事件；没有逐元素的变化事件</li>
+<li>不参与配方、通讯布局（占用显示为 <code>-</code>）与控件绑定；脚本、模块状态发布、Web 视图可以读写</li>
+<li>写入时任何 <code>IEnumerable</code> 会被转换为列表，字典或对象会按引用结构体的字段名称或标识归位并转换类型，缺少的成员取默认值</li>
+<li>Web 视图里列表与记录就是 JSON 数组与对象，前端写入时也按同样的形式提交</li>
 </ul>
 <h2 id="变量筛选">变量筛选</h2>
 <p>变量选择场景中，通常需要支持筛选</p>
