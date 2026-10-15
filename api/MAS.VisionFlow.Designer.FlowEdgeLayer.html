@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Designer_FlowEdgeLayer" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer" class="text-break">
-Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L23"><i class="bi bi-code-slash"></i></a>
+Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.Flow.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -1404,7 +1404,8 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
   <h2 id="MAS_VisionFlow_Designer_FlowEdgeLayer_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>所有连线放在一个元素里，每条线一个 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.drawingvisual">DrawingVisual</a>；
-节点移动、端口锚点变化时只重画相连的线，不参与布局</p>
+节点移动、端口锚点变化时只重画相连的线，不参与布局。
+两端节点都结构锁定（所在管道运行中）的连线显示流光，且不参与悬停与点选</p>
 </div>
 
 
@@ -1416,7 +1417,7 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer__ctor" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.#ctor">
   FlowEdgeLayer()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Designer.FlowEdgeLayer.html">FlowEdgeLayer</a> 新实例</p>
@@ -1446,7 +1447,7 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_EdgeBrushProperty" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.EdgeBrushProperty">
   EdgeBrushProperty
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>标识 <a class="xref" href="MAS.VisionFlow.Designer.FlowEdgeLayer.html#MAS_VisionFlow_Designer_FlowEdgeLayer_EdgeBrush">EdgeBrush</a> 依赖属性</p>
@@ -1475,9 +1476,40 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
 
 
+  <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_IsFlowEnabledProperty" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.IsFlowEnabledProperty">
+  IsFlowEnabledProperty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.Flow.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>标识 <a class="xref" href="MAS.VisionFlow.Designer.FlowEdgeLayer.html#MAS_VisionFlow_Designer_FlowEdgeLayer_IsFlowEnabled">IsFlowEnabled</a> 依赖属性</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly DependencyProperty IsFlowEnabledProperty</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.dependencyproperty">DependencyProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_SelectionBrushProperty" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.SelectionBrushProperty">
   SelectionBrushProperty
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>标识 <a class="xref" href="MAS.VisionFlow.Designer.FlowEdgeLayer.html#MAS_VisionFlow_Designer_FlowEdgeLayer_SelectionBrush">SelectionBrush</a> 依赖属性</p>
@@ -1513,7 +1545,7 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_EdgeBrush" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.EdgeBrush">
   EdgeBrush
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置连线画刷（统一中性色，类型只体现在端口圆点上）</p>
@@ -1541,11 +1573,43 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
 
 
+  <a id="MAS_VisionFlow_Designer_FlowEdgeLayer_IsFlowEnabled_" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.IsFlowEnabled*"></a>
+
+  <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_IsFlowEnabled" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.IsFlowEnabled">
+  IsFlowEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.Flow.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置运行中的连线是否显示流光</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFlowEnabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Designer_FlowEdgeLayer_SelectionBrush_" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.SelectionBrush*"></a>
 
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_SelectionBrush" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.SelectionBrush">
   SelectionBrush
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置选中连线的画刷</p>
@@ -1577,7 +1641,7 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_VisualChildrenCount" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.VisualChildrenCount">
   VisualChildrenCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the number of visual child elements within this element.</p>
@@ -1614,7 +1678,7 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_Attach_MAS_VisionFlow_Designer_FlowGraph_" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.Attach(MAS.VisionFlow.Designer.FlowGraph)">
   Attach(FlowGraph?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>绑定到图，重建全部连线</p>
@@ -1647,7 +1711,7 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_ClearPreview" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.ClearPreview">
   ClearPreview()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L159"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>清除拉线预览</p>
@@ -1674,7 +1738,7 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_GetVisualChild_System_Int32_" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.GetVisualChild(System.Int32)">
   GetVisualChild(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Overrides <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.visual.getvisualchild">GetVisualChild(int)</a>, and returns a child at the specified index from a collection of child elements.</p>
@@ -1713,7 +1777,7 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_HitTestEdge_System_Windows_Point_" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.HitTestEdge(System.Windows.Point)">
   HitTestEdge(Point)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L110"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>命中测试连线</p>
@@ -1734,9 +1798,45 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.VisionFlow.Designer.FlowEdge.html">FlowEdge</a></dt>
-    <dd><p>命中的连线，未命中返回 null</p>
+    <dd><p>命中的连线，未命中返回 null；结构锁定（运行中）的连线不参与命中</p>
 </dd>
   </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Designer_FlowEdgeLayer_HitTestEdge_System_Windows_Point__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>先按外扩后的包围盒筛，只对少数候选做描边命中</p>
+</div>
+
+
+
+
+  <a id="MAS_VisionFlow_Designer_FlowEdgeLayer_SetHoveredEdge_" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.SetHoveredEdge*"></a>
+
+  <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_SetHoveredEdge_MAS_VisionFlow_Designer_FlowEdge_" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.SetHoveredEdge(MAS.VisionFlow.Designer.FlowEdge)">
+  SetHoveredEdge(FlowEdge?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置悬停的连线</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetHoveredEdge(FlowEdge? edge)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>edge</code> <a class="xref" href="MAS.VisionFlow.Designer.FlowEdge.html">FlowEdge</a></dt>
+    <dd><p>悬停的连线，为 null 时清除</p>
+</dd>
+  </dl>
+
 
 
 
@@ -1752,7 +1852,7 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="MAS_VisionFlow_Designer_FlowEdgeLayer_ShowPreview_System_Windows_Point_System_Windows_Point_System_Boolean_" data-uid="MAS.VisionFlow.Designer.FlowEdgeLayer.ShowPreview(System.Windows.Point,System.Windows.Point,System.Boolean)">
   ShowPreview(Point, Point, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L148"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>显示拉线预览</p>
@@ -1791,7 +1891,7 @@ Class FlowEdgeLayer  <a class="header-action link-secondary" title="View source"
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.cs/#L23" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Canvas/FlowEdgeLayer.Flow.cs/#L27" class="edit-link">Edit this page</a>
         </div>
 
 

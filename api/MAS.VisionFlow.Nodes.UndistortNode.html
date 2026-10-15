@@ -277,7 +277,7 @@ public sealed class UndistortNode : VisionNode, INotifyPropertyChanged, INotifyP
 
   <h3 id="MAS_VisionFlow_Nodes_UndistortNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.UndistortNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
   UndistortNode(VisionNodeServices)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.UndistortNode.html">UndistortNode</a> 新实例</p>
@@ -379,6 +379,41 @@ public double Alpha { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Nodes_UndistortNode_CorrectedIntrinsics_" data-uid="MAS.VisionFlow.Nodes.UndistortNode.CorrectedIntrinsics*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_UndistortNode_CorrectedIntrinsics" data-uid="MAS.VisionFlow.Nodes.UndistortNode.CorrectedIntrinsics">
+  CorrectedIntrinsics
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取校正后图像对应的相机内参（新相机矩阵，畸变系数全 0），尚未执行过为 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CameraIntrinsics? CorrectedIntrinsics { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.CameraIntrinsics.html">CameraIntrinsics</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Nodes_UndistortNode_CorrectedIntrinsics_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>下游姿态解算接在这条图像链路上时改用它，原标定内参对校正后的图像已不成立</p>
+</div>
+
+
+
+
   <a id="MAS_VisionFlow_Nodes_UndistortNode_IntrinsicsKey_" data-uid="MAS.VisionFlow.Nodes.UndistortNode.IntrinsicsKey*"></a>
 
   <h3 id="MAS_VisionFlow_Nodes_UndistortNode_IntrinsicsKey" data-uid="MAS.VisionFlow.Nodes.UndistortNode.IntrinsicsKey">
@@ -453,7 +488,7 @@ public UndistortMode Mode { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_UndistortNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.UndistortNode.TypeKey">
   TypeKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
@@ -489,7 +524,7 @@ public UndistortMode Mode { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_UndistortNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.UndistortNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -534,7 +569,7 @@ public UndistortMode Mode { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_UndistortNode_GetIntrinsicsKeys" data-uid="MAS.VisionFlow.Nodes.UndistortNode.GetIntrinsicsKeys">
   GetIntrinsicsKeys()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取可用的相机内参资源键</p>
@@ -567,7 +602,7 @@ public UndistortMode Mode { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_UndistortNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.UndistortNode.GetResultData">
   GetResultData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
@@ -600,7 +635,7 @@ public UndistortMode Mode { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_UndistortNode_InitializeAsync_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Nodes.UndistortNode.InitializeAsync(System.Threading.CancellationToken)">
   InitializeAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步初始化（打开相机、加载图片、构建求解器……），运行前由运行时调用</p>
@@ -645,7 +680,7 @@ public UndistortMode Mode { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_UndistortNode_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.UndistortNode.ReleaseResources">
   ReleaseResources()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Transform/UndistortNode.cs/#L123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>

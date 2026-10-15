@@ -153,6 +153,48 @@ Class CameraIntrinsicsExtensions  <a class="header-action link-secondary" title=
 </h2>
 
 
+  <a id="MAS_Vision_CameraIntrinsicsExtensions_HasDistortion_" data-uid="MAS.Vision.CameraIntrinsicsExtensions.HasDistortion*"></a>
+
+  <h3 id="MAS_Vision_CameraIntrinsicsExtensions_HasDistortion_MAS_Vision_CameraIntrinsics_" data-uid="MAS.Vision.CameraIntrinsicsExtensions.HasDistortion(MAS.Vision.CameraIntrinsics)">
+  HasDistortion(CameraIntrinsics)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Extensions/CameraIntrinsicsExtensions.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断是否带畸变（畸变系数不全为 0）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool HasDistortion(this CameraIntrinsics intrinsics)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>intrinsics</code> <a class="xref" href="MAS.Vision.CameraIntrinsics.html">CameraIntrinsics</a></dt>
+    <dd><p>相机内参实例</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>有非 0 畸变系数返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Vision_CameraIntrinsicsExtensions_HasDistortion_MAS_Vision_CameraIntrinsics__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>已整图校正过的图像（如畸变校正节点输出的内参）不带畸变</p>
+</div>
+
+
+
+
   <a id="MAS_Vision_CameraIntrinsicsExtensions_ToCameraMatrix_" data-uid="MAS.Vision.CameraIntrinsicsExtensions.ToCameraMatrix*"></a>
 
   <h3 id="MAS_Vision_CameraIntrinsicsExtensions_ToCameraMatrix_MAS_Vision_CameraIntrinsics_" data-uid="MAS.Vision.CameraIntrinsicsExtensions.ToCameraMatrix(MAS.Vision.CameraIntrinsics)">

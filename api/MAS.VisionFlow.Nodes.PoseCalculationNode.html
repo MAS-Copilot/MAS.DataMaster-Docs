@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Nodes_PoseCalculationNode" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode" class="text-break">
-Class PoseCalculationNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L25"><i class="bi bi-code-slash"></i></a>
+Class PoseCalculationNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -281,7 +281,7 @@ public sealed class PoseCalculationNode : VisionNode, INotifyPropertyChanged, IN
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_MAS_Vision_Aruco_IPoseCalculationSolverFactory_" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices,MAS.Vision.Aruco.IPoseCalculationSolverFactory)">
   PoseCalculationNode(VisionNodeServices, IPoseCalculationSolverFactory)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.PoseCalculationNode.html">PoseCalculationNode</a> 新实例</p>
@@ -318,7 +318,7 @@ public sealed class PoseCalculationNode : VisionNode, INotifyPropertyChanged, IN
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.TYPE_KEY">
   TYPE_KEY
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点类型键</p>
@@ -354,7 +354,7 @@ public sealed class PoseCalculationNode : VisionNode, INotifyPropertyChanged, IN
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_AxisRefValues" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.AxisRefValues">
   AxisRefValues
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L122"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取可选的坐标轴映射</p>
@@ -420,7 +420,7 @@ public PoseCalculationConfig CalibrationConfig { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_Dictionaries" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.Dictionaries">
   Dictionaries
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取可选的标记字典</p>
@@ -448,11 +448,43 @@ public PoseCalculationConfig CalibrationConfig { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Nodes_PoseCalculationNode_HasUpstreamUndistort_" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.HasUpstreamUndistort*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_HasUpstreamUndistort" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.HasUpstreamUndistort">
+  HasUpstreamUndistort
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取图像是否已由上游畸变校正</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasUpstreamUndistort { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Nodes_PoseCalculationNode_IntrinsicsSources_" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.IntrinsicsSources*"></a>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_IntrinsicsSources" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.IntrinsicsSources">
   IntrinsicsSources
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L117"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取可选的内参来源</p>
@@ -484,7 +516,7 @@ public PoseCalculationConfig CalibrationConfig { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_IsResourceSelected" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.IsResourceSelected">
   IsResourceSelected
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L94"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取内参是否来自资源</p>
@@ -516,7 +548,7 @@ public PoseCalculationConfig CalibrationConfig { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_PoseSolveModes" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.PoseSolveModes">
   PoseSolveModes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取可选的解算模式</p>
@@ -548,7 +580,7 @@ public PoseCalculationConfig CalibrationConfig { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_ResetCommand" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.ResetCommand">
   ResetCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L132"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取重置解算状态命令</p>
@@ -650,7 +682,7 @@ public string SelectedIntrinsicsSource { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.TypeKey">
   TypeKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
@@ -678,6 +710,42 @@ public string SelectedIntrinsicsSource { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Nodes_PoseCalculationNode_UpstreamUndistort_" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.UpstreamUndistort*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_UpstreamUndistort" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.UpstreamUndistort">
+  UpstreamUndistort
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取图像链路上游的畸变校正节点，没有为 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public UndistortNode? UpstreamUndistort { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.UndistortNode.html">UndistortNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Nodes_PoseCalculationNode_UpstreamUndistort_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>有则改用它校正后的内参（新相机矩阵、无畸变），内参来源与解算前去畸变都不再生效</p>
+</div>
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -686,7 +754,7 @@ public string SelectedIntrinsicsSource { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L145"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -731,7 +799,7 @@ public string SelectedIntrinsicsSource { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_GetIntrinsicsResourceKeys" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.GetIntrinsicsResourceKeys">
   GetIntrinsicsResourceKeys()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L233"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L275"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取资源里全部相机内参的键</p>
@@ -764,7 +832,7 @@ public string SelectedIntrinsicsSource { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_GetIntrinsicsSources" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.GetIntrinsicsSources">
   GetIntrinsicsSources()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L227"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L269"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取内参来源的候选值</p>
@@ -797,7 +865,7 @@ public string SelectedIntrinsicsSource { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.GetResultData">
   GetResultData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L169"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
@@ -830,7 +898,7 @@ public string SelectedIntrinsicsSource { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_InitializeAsync_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.InitializeAsync(System.Threading.CancellationToken)">
   InitializeAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L139"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步初始化（打开相机、加载图片、构建求解器……），运行前由运行时调用</p>
@@ -871,11 +939,68 @@ public string SelectedIntrinsicsSource { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Nodes_PoseCalculationNode_OnAdded_" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.OnAdded*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_OnAdded" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.OnAdded">
+  OnAdded()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L195"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>节点加入图后调用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnAdded()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_PoseCalculationNode_OnRemoved_" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.OnRemoved*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_PoseCalculationNode_OnRemoved" data-uid="MAS.VisionFlow.Nodes.PoseCalculationNode.OnRemoved">
+  OnRemoved()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>节点移出图后调用，应在此释放相机、后台任务等资源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnRemoved()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Nodes_PoseCalculationNode_OnRemoved_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>撤销删除会按快照重建新实例，因此移出后的实例不会再被使用</p>
+</div>
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Execute/PoseCalculationNode.cs/#L25" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/PoseCalculationNode.cs/#L25" class="edit-link">Edit this page</a>
         </div>
 
 
