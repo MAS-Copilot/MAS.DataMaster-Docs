@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TrajectoryTimeline | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TrajectoryTimeline | DataMaster ">
+      
+      <meta name="description" content="轨迹时间轴：把轨迹点按速度剖面展开成“时刻 → 位置/速度/姿态”，供 3D 仿真回放">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_PathPlanning_TrajectoryTimeline.md&amp;value=---%0Auid%3A%20MAS.PathPlanning.TrajectoryTimeline%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.PathPlanning.TrajectoryTimeline">
+
+
+
+  <h1 id="MAS_PathPlanning_TrajectoryTimeline" data-uid="MAS.PathPlanning.TrajectoryTimeline" class="text-break">
+Class TrajectoryTimeline  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.PathPlanning.html">PathPlanning</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.PathPlanning.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>轨迹时间轴：把轨迹点按速度剖面展开成“时刻 → 位置/速度/姿态”，供 3D 仿真回放</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class TrajectoryTimeline</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TrajectoryTimeline</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_PathPlanning_TrajectoryTimeline_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+段划分与 <a class="xref" href="MAS.PathPlanning.TrajectoryVelocityPlanner.html">TrajectoryVelocityPlanner</a> 一致：相邻两点一段，三点圆弧在中间点拆成两段。
+每段的耗时与分析页剖面耗时逐段一致——前瞻启用时用点上的 Velocity/EndVelocity 与加减速参数，
+未启用时按点上 Velocity 匀速。
+</p>
+<p>
+姿态取首末点的 Rx/Ry/Rz（ZYX 欧拉角，单位度）按路程比例球面插值。
+</p>
+</div>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_DEFAULT_SAMPLE_STEP" data-uid="MAS.PathPlanning.TrajectoryTimeline.DEFAULT_SAMPLE_STEP">
+  DEFAULT_SAMPLE_STEP
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>默认采样步长（mm），与 <a class="xref" href="MAS.PathPlanning.TrajectoryPathExtensions.html#MAS_PathPlanning_TrajectoryPathExtensions_ToSampledPath_MAS_PathPlanning_TrajectoryPath_System_Boolean_System_Double_">ToSampledPath(TrajectoryPath, bool, double)</a> 一致</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const double DEFAULT_SAMPLE_STEP = 1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_MaxSpeed_" data-uid="MAS.PathPlanning.TrajectoryTimeline.MaxSpeed*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_MaxSpeed" data-uid="MAS.PathPlanning.TrajectoryTimeline.MaxSpeed">
+  MaxSpeed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取全程最高速度（mm/s），按采样点统计</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double MaxSpeed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_PointCount_" data-uid="MAS.PathPlanning.TrajectoryTimeline.PointCount*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_PointCount" data-uid="MAS.PathPlanning.TrajectoryTimeline.PointCount">
+  PointCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取轨迹点数量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PointCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_Samples_" data-uid="MAS.PathPlanning.TrajectoryTimeline.Samples*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_Samples" data-uid="MAS.PathPlanning.TrajectoryTimeline.Samples">
+  Samples
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取按路程等间距的采样点，首个采样点即起点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TrajectoryTimelineSample&gt; Samples { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.PathPlanning.TrajectoryTimelineSample.html">TrajectoryTimelineSample</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_TotalLength_" data-uid="MAS.PathPlanning.TrajectoryTimeline.TotalLength*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_TotalLength" data-uid="MAS.PathPlanning.TrajectoryTimeline.TotalLength">
+  TotalLength
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取整条轨迹的路程（mm），圆弧按弧长</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double TotalLength { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_TotalTime_" data-uid="MAS.PathPlanning.TrajectoryTimeline.TotalTime*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_TotalTime" data-uid="MAS.PathPlanning.TrajectoryTimeline.TotalTime">
+  TotalTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取走完整条轨迹的耗时（秒）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double TotalTime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_Build_" data-uid="MAS.PathPlanning.TrajectoryTimeline.Build*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_Build_System_Collections_Generic_IReadOnlyList_MAS_PathPlanning_TrajectoryPoint__MAS_PathPlanning_TrajectoryLookaheadOptions_System_Double_" data-uid="MAS.PathPlanning.TrajectoryTimeline.Build(System.Collections.Generic.IReadOnlyList{MAS.PathPlanning.TrajectoryPoint},MAS.PathPlanning.TrajectoryLookaheadOptions,System.Double)">
+  Build(IReadOnlyList&lt;TrajectoryPoint&gt;, TrajectoryLookaheadOptions?, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>由轨迹点构建时间轴</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TrajectoryTimeline Build(IReadOnlyList&lt;TrajectoryPoint&gt; points, TrajectoryLookaheadOptions? lookahead = null, double sampleStep = 1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.PathPlanning.TrajectoryPoint.html">TrajectoryPoint</a>&gt;</dt>
+    <dd><p>按运动顺序排列的轨迹点</p>
+</dd>
+    <dt><code>lookahead</code> <a class="xref" href="MAS.PathPlanning.TrajectoryLookaheadOptions.html">TrajectoryLookaheadOptions</a></dt>
+    <dd><p>前瞻参数；为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> 或未启用时按点上速度匀速</p>
+</dd>
+    <dt><code>sampleStep</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>采样步长（mm）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.PathPlanning.TrajectoryTimeline.html">TrajectoryTimeline</a></dt>
+    <dd><p>时间轴</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_Evaluate_" data-uid="MAS.PathPlanning.TrajectoryTimeline.Evaluate*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_Evaluate_System_Double_" data-uid="MAS.PathPlanning.TrajectoryTimeline.Evaluate(System.Double)">
+  Evaluate(double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>计算指定时刻的运动状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TrajectoryKinematicState Evaluate(double time)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>time</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>时刻（秒），超出范围时取起点或终点</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.PathPlanning.TrajectoryKinematicState.html">TrajectoryKinematicState</a></dt>
+    <dd><p>运动状态；没有轨迹点时返回默认值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_FindSampleIndex_" data-uid="MAS.PathPlanning.TrajectoryTimeline.FindSampleIndex*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_FindSampleIndex_System_Double_" data-uid="MAS.PathPlanning.TrajectoryTimeline.FindSampleIndex(System.Double)">
+  FindSampleIndex(double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>查找指定时刻之前（含）最后一个采样点的下标</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int FindSampleIndex(double time)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>time</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>时刻（秒）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>采样点下标；没有采样点时返回 −1</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_TimeOfPoint_" data-uid="MAS.PathPlanning.TrajectoryTimeline.TimeOfPoint*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_TimeOfPoint_System_Int32_" data-uid="MAS.PathPlanning.TrajectoryTimeline.TimeOfPoint(System.Int32)">
+  TimeOfPoint(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L176"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取到达指定轨迹点的时刻</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double TimeOfPoint(int pointIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pointIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>轨迹点在列表中的下标</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>到达时刻（秒），下标越界时取起点或终点</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_ToEulerZyx_" data-uid="MAS.PathPlanning.TrajectoryTimeline.ToEulerZyx*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_ToEulerZyx_System_Windows_Media_Media3D_Quaternion_System_Double__System_Double__System_Double__" data-uid="MAS.PathPlanning.TrajectoryTimeline.ToEulerZyx(System.Windows.Media.Media3D.Quaternion,System.Double@,System.Double@,System.Double@)">
+  ToEulerZyx(Quaternion, out double, out double, out double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L205"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把四元数换算回 ZYX 欧拉角（单位度），是 <a class="xref" href="MAS.PathPlanning.TrajectoryTimeline.html#MAS_PathPlanning_TrajectoryTimeline_ToQuaternion_System_Double_System_Double_System_Double_">ToQuaternion(double, double, double)</a> 的逆运算</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ToEulerZyx(Quaternion orientation, out double rx, out double ry, out double rz)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>orientation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.quaternion">Quaternion</a></dt>
+    <dd><p>姿态</p>
+</dd>
+    <dt><code>rx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>绕 X 轴（度）</p>
+</dd>
+    <dt><code>ry</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>绕 Y 轴（度），范围 [−90, 90]</p>
+</dd>
+    <dt><code>rz</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>绕 Z 轴（度）</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryTimeline_ToQuaternion_" data-uid="MAS.PathPlanning.TrajectoryTimeline.ToQuaternion*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryTimeline_ToQuaternion_System_Double_System_Double_System_Double_" data-uid="MAS.PathPlanning.TrajectoryTimeline.ToQuaternion(System.Double,System.Double,System.Double)">
+  ToQuaternion(double, double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把 ZYX 欧拉角（单位度）换算为四元数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Quaternion ToQuaternion(double rx, double ry, double rz)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>绕 X 轴（度）</p>
+</dd>
+    <dt><code>ry</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>绕 Y 轴（度）</p>
+</dd>
+    <dt><code>rz</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>绕 Z 轴（度）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.media3d.quaternion">Quaternion</a></dt>
+    <dd><p>先绕 X、再绕 Y、最后绕 Z 的合成旋转</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Helpers/Playback/TrajectoryTimeline.cs/#L27" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

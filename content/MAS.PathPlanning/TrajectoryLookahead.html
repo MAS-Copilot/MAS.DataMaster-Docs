@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>轨迹前瞻 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="轨迹前瞻 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.PathPlanning/TrajectoryLookahead.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="轨迹前瞻">轨迹前瞻</h1>
+
+<p>轨迹前瞻负责规划每一段的速度。它根据加减速能力，为每一段算出指令速度，并算出段与段之间以多快的速度衔接。前瞻只改写轨迹点的速度字段，不改变几何。</p>
+<h2 id="在生成流程中的位置">在生成流程中的位置</h2>
+<p>轨迹生成共 7 个阶段，前瞻是第 6 个：</p>
+<ul>
+<li>组过滤</li>
+<li>几何提取</li>
+<li>几何清洗（参见 <a href="GeometryCleaning.html">GeometryCleaning</a>）</li>
+<li>路径排序与优化（参见 <a href="OptimizationPath.html">OptimizationPath</a>）</li>
+<li>姿态生成（参见 <a href="CalculatingPose.html">CalculatingPose</a>）</li>
+<li><strong>速度规划（轨迹前瞻，本文档）</strong></li>
+<li>结果组装</li>
+</ul>
+<p>放在姿态生成之后，原因有两个：</p>
+<ul>
+<li>排序完成后才知道哪些段相邻、拐角在哪；安全转移点和回原点点也是排序阶段才插入的，它们同样要规划速度</li>
+<li>前瞻不改几何，放在后面不会被其他阶段打乱</li>
+</ul>
+<h2 id="前瞻与插补的分工">前瞻与插补的分工</h2>
+<p>前瞻是段级的速度规划，插补是控制周期级的位置计算，两者分开：</p>
+<ul>
+<li>上位机负责前瞻：算出每段的指令速度、段末衔接速度和预计耗时</li>
+<li>下位机负责插补：按控制周期执行直线、圆弧等运动</li>
+</ul>
+<p>圆弧仍以“起点 → 中间点 → 终点”三点表达，不需要上位机拆点。前瞻会用三点求出半径与切向，据此确定圆弧限速和与前后段的衔接速度。</p>
+<h2 id="参数">参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启用轨迹前瞻</td>
+<td>关闭</td>
+<td>—</td>
+</tr>
+<tr>
+<td>前瞻段数</td>
+<td>0</td>
+<td>段</td>
+</tr>
+<tr>
+<td>加工目标速度</td>
+<td>100</td>
+<td>mm/s</td>
+</tr>
+<tr>
+<td>空移速度</td>
+<td>200</td>
+<td>mm/s</td>
+</tr>
+<tr>
+<td>下降速度</td>
+<td>50</td>
+<td>mm/s</td>
+</tr>
+<tr>
+<td>最大速度</td>
+<td>500</td>
+<td>mm/s</td>
+</tr>
+<tr>
+<td>轨迹终点速度</td>
+<td>0</td>
+<td>mm/s</td>
+</tr>
+<tr>
+<td>最大加速度</td>
+<td>1000</td>
+<td>mm/s²</td>
+</tr>
+<tr>
+<td>最大减速度</td>
+<td>1000</td>
+<td>mm/s²</td>
+</tr>
+<tr>
+<td>最大加加速度</td>
+<td>10000</td>
+<td>mm/s³</td>
+</tr>
+<tr>
+<td>拐角容差</td>
+<td>0.05</td>
+<td>mm</td>
+</tr>
+<tr>
+<td>最小拐角速度</td>
+<td>5</td>
+<td>mm/s</td>
+</tr>
+<tr>
+<td>拐角停止角度</td>
+<td>120</td>
+<td>°</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>启用轨迹前瞻</strong>：关闭时轨迹点保持固定速度，与旧版本一致。旧配方读入后默认关闭</li>
+<li><strong>前瞻段数</strong>：规划每个点时只向后看这么多段，并假定窗口末尾必须停住。0 表示看完整条轨迹，得到全局最优解；设成控制器实际的前瞻深度，可以让规划结果与设备行为一致</li>
+<li><strong>加工 / 空移 / 下降速度</strong>：按运动阶段选用。初始定位、抬升、空移、回原点使用空移速度</li>
+<li><strong>最大速度</strong>：所有速度的上限，校验时要求各阶段速度不超过它</li>
+<li><strong>轨迹终点速度</strong>：整条轨迹最后一个点的速度，必须在 0 到加工目标速度之间</li>
+<li><strong>最大加速度</strong>：同时作为圆弧与拐角的向心加速度上限</li>
+<li><strong>最大加加速度</strong>：0 表示按梯形加减速规划，大于 0 时按 S 型加减速规划</li>
+<li><strong>拐角容差</strong>：允许实际轨迹偏离理想拐角的距离，容差越大过弯越快。如果控制器每个点都精确到位，它只用于计算拐角速度</li>
+<li><strong>最小拐角速度</strong>：仅对转角小于停止角度的拐角生效。前后段太短、来不及减速时仍会低于该值</li>
+<li><strong>拐角停止角度</strong>：运动方向的转角达到该值时在拐角处停止。0° 为直行，180° 为原路折返</li>
+</ul>
+<h2 id="规划步骤">规划步骤</h2>
+<h3 id="1-指令速度">1. 指令速度</h3>
+<p>每一段的指令速度取以下各项的最小值：</p>
+<ul>
+<li>阶段速度：按段终点的描述选取加工、空移或下降速度</li>
+<li>最大速度</li>
+<li>圆弧向心限速 <span class="math">\(\sqrt{a \cdot R}\)</span>：仅对三点圆弧生效</li>
+</ul>
+<p>手动修改或新增的加工点沿用它自己的速度，便于对个别段单独限速。</p>
+<h3 id="2-拐角速度上限">2. 拐角速度上限</h3>
+<p>每个点的通过速度上限按以下规则确定：</p>
+<ul>
+<li>进出安全转移、点定位：必须停止</li>
+<li>转角达到停止角度：必须停止</li>
+<li>切向连续（直线接相切圆弧、圆弧中间点）：不限速</li>
+<li>其余拐角：取拐角容差模型与离散曲率限速中较小的一个，再用最小拐角速度兜底</li>
+</ul>
+<p>拐角容差模型设想拐角处有一段与两条边相切、离拐点不超过容差 <span class="math">\(\delta\)</span> 的过渡圆弧，以最大加速度作向心加速度时能保持的速度为：</p>
+<div class="math">
+\[
+v^2 = \frac{a \cdot \delta \cdot s}{1 - s}, \quad s = \cos\frac{\theta}{2}
+\]</div>
+<p>其中 <span class="math">\(\theta\)</span> 是运动方向的转角。</p>
+<p>样条、椭圆被离散成很短的直线，单看拐角容差会高估过弯速度。因此还会用相邻三点的外接圆半径 <span class="math">\(R\)</span> 补一道 <span class="math">\(\sqrt{a \cdot R}\)</span> 约束；真正的折角处外接圆很大，这道约束不起作用。</p>
+<h3 id="3-反向扫描与正向扫描">3. 反向扫描与正向扫描</h3>
+<ul>
+<li>反向扫描：从终点往回，保证按最大减速度来得及降到后面每个点的速度</li>
+<li>前瞻窗口：前瞻段数大于 0 时，每个点还要能在窗口长度内停住</li>
+<li>正向扫描：从起点往前，保证按最大加速度能从前一个点的速度加上来</li>
+</ul>
+<p>S 型剖面假定段与段衔接处加速度为 0，比控制器实际能做到的略保守，但保证规划出的速度一定跑得出来。</p>
+<h2 id="输出">输出</h2>
+<p>规划结果写入每个轨迹点：</p>
+<ul>
+<li><code>Velocity</code>：到达该点这一段的指令速度</li>
+<li><code>EndVelocity</code>：到达该点时的规划速度，即上一段的段末速度、下一段的起始速度</li>
+</ul>
+<p>生成记录中各轨迹段的耗时会改为按规划结果累加，已计入加减速与拐角降速。</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>速度目前只用于分析和耗时估算，尚未写入下发给设备的点位缓冲。</p>
+</div>
+<h2 id="改点后的重新规划">改点后的重新规划</h2>
+<p>在界面上或通过 Agent 修改、插入、删除点位后，会按当前前瞻参数重新规划整条轨迹的速度，使衔接速度与新的几何对齐。</p>
+<h2 id="分析与诊断">分析与诊断</h2>
+<p>启用前瞻后，分析页的耗时估算会按点上记录的指令速度与衔接速度重算加减速剖面。</p>
+<table>
+<thead>
+<tr>
+<th>诊断码</th>
+<th>级别</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TRJ017</td>
+<td>警告</td>
+<td>速度与参数不一致</td>
+</tr>
+<tr>
+<td>TRJ018</td>
+<td>提示</td>
+<td>加工拐角被规划为停止</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>TRJ017</strong>：轨迹可能是在启用前瞻或修改参数之前生成的，重新生成即可消除</li>
+<li><strong>TRJ018</strong>：转角达到停止角度，或前后段太短来不及减速。如需连续通过，可调大拐角停止角度或拐角容差</li>
+</ul>
+<h2 id="3d-仿真回放">3D 仿真回放</h2>
+<p>轨迹动画窗口按 <code>TrajectoryTimeline</code> 回放：段划分、段耗时与分析页的剖面耗时同一口径，因此仿真总时长就是预计加工时长。</p>
+<ul>
+<li>前瞻启用时，段内按“加速 → 匀速 → 减速”展开（梯形或 S 型），拐角处可以看到降速</li>
+<li>前瞻未启用时，每段按点上的 <code>Velocity</code> 匀速</li>
+<li>工具姿态取首末点 Rx / Ry / Rz（ZYX 欧拉角）按路程比例球面插值</li>
+<li>已走过的轨迹按速度着色（慢蓝 → 快红，色带上限取加工段最高速度），空移段固定紫色</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter / P / 空格</td>
+<td>播放、暂停</td>
+</tr>
+<tr>
+<td>← / →</td>
+<td>快退、快进</td>
+</tr>
+<tr>
+<td>Shift + ← / →</td>
+<td>跳到上一个、下一个点</td>
+</tr>
+<tr>
+<td>↑ / ↓</td>
+<td>倍速</td>
+</tr>
+<tr>
+<td>Home / End</td>
+<td>起点、终点</td>
+</tr>
+<tr>
+<td>1 – 4</td>
+<td>相机模式</td>
+</tr>
+<tr>
+<td>F</td>
+<td>全览</td>
+</tr>
+<tr>
+<td>T</td>
+<td>工具坐标轴</td>
+</tr>
+<tr>
+<td>L / K / M</td>
+<td>图层、轨迹、点位</td>
+</tr>
+<tr>
+<td>G / I</td>
+<td>网格、调试信息</td>
+</tr>
+<tr>
+<td>按住 TAB</td>
+<td>点位列表</td>
+</tr>
+</tbody>
+</table>
+<p>相机模式：</p>
+<ul>
+<li><strong>自由</strong>：完全手动</li>
+<li><strong>跟随</strong>：注视点锁定工具，仍可旋转、缩放</li>
+<li><strong>追随</strong>：位于工具运动方向后上方</li>
+<li><strong>俯视</strong>：工具正上方垂直向下</li>
+</ul>
+<p>正常播放到终点才算完成仿真；拖动进度条到终点不算。</p>
+<h2 id="已知限制">已知限制</h2>
+<ul>
+<li>只约束平移速度，不约束姿态角（Rx / Ry / Rz）的角速度</li>
+<li>圆弧按 XY 平面解算，与 3D 预览口径一致</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.PathPlanning/TrajectoryLookahead.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

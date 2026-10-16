@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TrajectoryLookaheadOptions | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TrajectoryLookaheadOptions | DataMaster ">
+      
+      <meta name="description" content="描述轨迹前瞻（速度规划）的配置选项">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_PathPlanning_TrajectoryLookaheadOptions.md&amp;value=---%0Auid%3A%20MAS.PathPlanning.TrajectoryLookaheadOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions">
+
+
+
+  <h1 id="MAS_PathPlanning_TrajectoryLookaheadOptions" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions" class="text-break">
+Class TrajectoryLookaheadOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Trajectory/TrajectoryLookaheadOptions.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.PathPlanning.html">PathPlanning</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.PathPlanning.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>描述轨迹前瞻（速度规划）的配置选项</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TrajectoryLookaheadOptions : ObservableObject, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><span class="xref">TrajectoryLookaheadOptions</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanged#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanged(system-componentmodel-propertychangedeventargs)">ObservableObject.OnPropertyChanged(PropertyChangedEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanging#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanging(system-componentmodel-propertychangingeventargs)">ObservableObject.OnPropertyChanging(PropertyChangingEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanged#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanged(system-string)">ObservableObject.OnPropertyChanged(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanging#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanging(system-string)">ObservableObject.OnPropertyChanging(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0@-0-system-string)">ObservableObject.SetProperty&lt;T&gt;(ref T, T, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0@-0-system-collections-generic-iequalitycomparer((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(ref T, T, IEqualityComparer&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0-0-system-action((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(T, T, Action&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0-0-system-collections-generic-iequalitycomparer((-0))-system-action((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(T, T, IEqualityComparer&lt;T&gt;, Action&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-2(-1-1-0-system-action((-0-1))-system-string)">ObservableObject.SetProperty&lt;TModel, T&gt;(T, T, TModel, Action&lt;TModel, T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-2(-1-1-system-collections-generic-iequalitycomparer((-1))-0-system-action((-0-1))-system-string)">ObservableObject.SetProperty&lt;TModel, T&gt;(T, T, IEqualityComparer&lt;T&gt;, TModel, Action&lt;TModel, T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier@-system-threading-tasks-task-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion(ref ObservableObject.TaskNotifier, Task, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier@-system-threading-tasks-task-system-action((system-threading-tasks-task))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion(ref ObservableObject.TaskNotifier, Task, Action&lt;Task&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion-1(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier((-0))@-system-threading-tasks-task((-0))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion&lt;T&gt;(ref ObservableObject.TaskNotifier&lt;T&gt;, Task&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion-1(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier((-0))@-system-threading-tasks-task((-0))-system-action((system-threading-tasks-task((-0))))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion&lt;T&gt;(ref ObservableObject.TaskNotifier&lt;T&gt;, Task&lt;T&gt;, Action&lt;Task&lt;T&gt;&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_PathPlanning_TrajectoryLookaheadOptions_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>前瞻只改写轨迹点的速度字段，不改变几何。速度单位为 mm/s，
+加速度为 mm/s²，加加速度为 mm/s³</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_CornerStopAngle_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.CornerStopAngle*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_CornerStopAngle" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.CornerStopAngle">
+  CornerStopAngle
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置拐角停止角度（单位：度）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double CornerStopAngle { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_TrajectoryLookaheadOptions_CornerStopAngle_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>运动方向的转角达到该值时在拐角处停止，0° 为直行，180° 为原路折返</p>
+</div>
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_CornerTolerance_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.CornerTolerance*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_CornerTolerance" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.CornerTolerance">
+  CornerTolerance
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置拐角容差（单位：mm）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double CornerTolerance { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_TrajectoryLookaheadOptions_CornerTolerance_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>允许实际轨迹偏离理想拐角的距离，容差越大过弯速度越高</p>
+</div>
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_DescendSpeed_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.DescendSpeed*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_DescendSpeed" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.DescendSpeed">
+  DescendSpeed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置下降到工作高度的速度（单位：mm/s）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double DescendSpeed { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_Enabled_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.Enabled*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_Enabled" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.Enabled">
+  Enabled
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否启用轨迹前瞻</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public bool Enabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_TrajectoryLookaheadOptions_Enabled_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>关闭时轨迹点保持固定速度，与旧版本行为一致</p>
+</div>
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_ExitVelocity_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.ExitVelocity*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_ExitVelocity" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.ExitVelocity">
+  ExitVelocity
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置轨迹终点速度（单位：mm/s）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double ExitVelocity { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_TrajectoryLookaheadOptions_ExitVelocity_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>整条轨迹最后一个点的速度，通常为 0</p>
+</div>
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_LookaheadCount_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.LookaheadCount*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_LookaheadCount" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.LookaheadCount">
+  LookaheadCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置前瞻段数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public int LookaheadCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_TrajectoryLookaheadOptions_LookaheadCount_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>规划某一点的速度时只向后看这么多段，并假定窗口末尾必须能停住；
+0 表示看完整条轨迹。设成控制器实际的前瞻深度可以让规划结果与设备行为一致</p>
+</div>
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxAcceleration_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.MaxAcceleration*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxAcceleration" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.MaxAcceleration">
+  MaxAcceleration
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最大加速度（单位：mm/s²）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double MaxAcceleration { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxAcceleration_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>同时作为圆弧与拐角的向心加速度上限</p>
+</div>
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxDeceleration_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.MaxDeceleration*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxDeceleration" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.MaxDeceleration">
+  MaxDeceleration
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最大减速度（单位：mm/s²）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double MaxDeceleration { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxJerk_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.MaxJerk*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxJerk" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.MaxJerk">
+  MaxJerk
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最大加加速度（单位：mm/s³）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double MaxJerk { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxJerk_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>0 表示不限制，按梯形加减速规划；大于 0 时按 S 型加减速规划</p>
+</div>
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxVelocity_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.MaxVelocity*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxVelocity" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.MaxVelocity">
+  MaxVelocity
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最大速度（单位：mm/s）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double MaxVelocity { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_TrajectoryLookaheadOptions_MaxVelocity_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>所有速度的上限</p>
+</div>
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_MinCornerSpeed_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.MinCornerSpeed*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_MinCornerSpeed" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.MinCornerSpeed">
+  MinCornerSpeed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最小拐角速度（单位：mm/s）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double MinCornerSpeed { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_TrajectoryLookaheadOptions_MinCornerSpeed_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>仅对转角小于 <a class="xref" href="MAS.PathPlanning.TrajectoryLookaheadOptions.html#MAS_PathPlanning_TrajectoryLookaheadOptions_CornerStopAngle">CornerStopAngle</a> 的拐角生效；
+前后段太短、来不及减速时仍会低于该值</p>
+</div>
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_TargetSpeed_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.TargetSpeed*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_TargetSpeed" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.TargetSpeed">
+  TargetSpeed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置加工目标速度（单位：mm/s）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double TargetSpeed { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PathPlanning_TrajectoryLookaheadOptions_TravelSpeed_" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.TravelSpeed*"></a>
+
+  <h3 id="MAS_PathPlanning_TrajectoryLookaheadOptions_TravelSpeed" data-uid="MAS.PathPlanning.TrajectoryLookaheadOptions.TravelSpeed">
+  TravelSpeed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置空移速度（单位：mm/s）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public double TravelSpeed { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PathPlanning_TrajectoryLookaheadOptions_TravelSpeed_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>用于初始定位、抬升、空移与回原点</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PathPlanning/Models/Trajectory/TrajectoryLookaheadOptions.cs/#L21" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

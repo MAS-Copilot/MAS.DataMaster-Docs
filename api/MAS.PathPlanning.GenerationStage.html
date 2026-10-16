@@ -128,6 +128,10 @@ public enum GenerationStage</code></pre>
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
+    <dt id="MAS_PathPlanning_GenerationStage_Clean"><code>Clean = 2</code></dt>
+  
+  <dd><p>几何清洗：端点吸附、退化与重复图元删除、共线直线合并</p>
+</dd>
     <dt id="MAS_PathPlanning_GenerationStage_Extract"><code>Extract = 1</code></dt>
   
   <dd><p>几何提取与采样</p>
@@ -136,17 +140,21 @@ public enum GenerationStage</code></pre>
   
   <dd><p>按组过滤实体</p>
 </dd>
-    <dt id="MAS_PathPlanning_GenerationStage_Finalize"><code>Finalize = 4</code></dt>
+    <dt id="MAS_PathPlanning_GenerationStage_Finalize"><code>Finalize = 6</code></dt>
   
   <dd><p>相对坐标换算与结果组装</p>
 </dd>
-    <dt id="MAS_PathPlanning_GenerationStage_Optimize"><code>Optimize = 2</code></dt>
+    <dt id="MAS_PathPlanning_GenerationStage_Optimize"><code>Optimize = 3</code></dt>
   
   <dd><p>路径排序与优化</p>
 </dd>
-    <dt id="MAS_PathPlanning_GenerationStage_Orientation"><code>Orientation = 3</code></dt>
+    <dt id="MAS_PathPlanning_GenerationStage_Orientation"><code>Orientation = 4</code></dt>
   
   <dd><p>姿态生成</p>
+</dd>
+    <dt id="MAS_PathPlanning_GenerationStage_VelocityPlanning"><code>VelocityPlanning = 5</code></dt>
+  
+  <dd><p>速度规划（轨迹前瞻）</p>
 </dd>
   </dl>
 
