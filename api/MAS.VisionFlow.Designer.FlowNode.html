@@ -850,7 +850,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_AddInput_System_String_MAS_VisionFlow_Designer_FlowPortType_System_String_System_Boolean_" data-uid="MAS.VisionFlow.Designer.FlowNode.AddInput(System.String,MAS.VisionFlow.Designer.FlowPortType,System.String,System.Boolean)">
   AddInput(string, FlowPortType, string, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L266"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>添加输入端口</p>
@@ -898,7 +898,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_AddOutput_System_String_MAS_VisionFlow_Designer_FlowPortType_System_String_" data-uid="MAS.VisionFlow.Designer.FlowNode.AddOutput(System.String,MAS.VisionFlow.Designer.FlowPortType,System.String)">
   AddOutput(string, FlowPortType, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L253"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L279"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>添加输出端口</p>
@@ -943,7 +943,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_CreateSnapshot" data-uid="MAS.VisionFlow.Designer.FlowNode.CreateSnapshot">
   CreateSnapshot()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L242"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>创建节点快照</p>
@@ -1016,9 +1016,9 @@ public string Title { get; set; }</code></pre>
 
   <a id="MAS_VisionFlow_Designer_FlowNode_LoadSettings_" data-uid="MAS.VisionFlow.Designer.FlowNode.LoadSettings*"></a>
 
-  <h3 id="MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_" data-uid="MAS.VisionFlow.Designer.FlowNode.LoadSettings(Newtonsoft.Json.Linq.JObject)">
-  LoadSettings(JObject)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Byte____System_String_" data-uid="MAS.VisionFlow.Designer.FlowNode.LoadSettings(Newtonsoft.Json.Linq.JObject,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Byte[]},System.String)">
+  LoadSettings(JObject, IReadOnlyDictionary&lt;string, byte[]&gt;?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L223"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>还原节点设置</p>
@@ -1026,13 +1026,19 @@ public string Title { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void LoadSettings(JObject settings)</code></pre>
+    <pre><code class="lang-csharp hljs">public void LoadSettings(JObject settings, IReadOnlyDictionary&lt;string, byte[]&gt;? assets = null, string? script = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>settings</code> <span class="xref">JObject</span></dt>
     <dd><p>节点设置</p>
+</dd>
+    <dt><code>assets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd><p>节点资产，见 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveAssets">SaveAssets()</a></p>
+</dd>
+    <dt><code>script</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>节点脚本，见 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveScript">SaveScript()</a></p>
 </dd>
   </dl>
 
@@ -1043,8 +1049,8 @@ public string Title { get; set; }</code></pre>
 
 
 
-  <h4 class="section" id="MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>还原期间不会触发 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SettingsChanged">SettingsChanged</a></p>
+  <h4 class="section" id="MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Byte____System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>还原期间不会触发 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SettingsChanged">SettingsChanged</a>；资产与脚本在设置之后、<a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnSettingsLoaded">OnSettingsLoaded()</a> 之前还原</p>
 </div>
 
 
@@ -1090,7 +1096,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_NotifySettingsChanged" data-uid="MAS.VisionFlow.Designer.FlowNode.NotifySettingsChanged">
   NotifySettingsChanged()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L287"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L325"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>通知节点设置已变化</p>
@@ -1120,7 +1126,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_OnAdded" data-uid="MAS.VisionFlow.Designer.FlowNode.OnAdded">
   OnAdded()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L313"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点加入图后调用</p>
@@ -1143,11 +1149,77 @@ public string Title { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Designer_FlowNode_OnLoadAssets_" data-uid="MAS.VisionFlow.Designer.FlowNode.OnLoadAssets*"></a>
+
+  <h3 id="MAS_VisionFlow_Designer_FlowNode_OnLoadAssets_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Byte____" data-uid="MAS.VisionFlow.Designer.FlowNode.OnLoadAssets(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Byte[]})">
+  OnLoadAssets(IReadOnlyDictionary&lt;string, byte[]&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L297"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>还原节点资产，见 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveAssets">SaveAssets()</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnLoadAssets(IReadOnlyDictionary&lt;string, byte[]&gt; assets)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd><p>资产，没有时为空字典</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Designer_FlowNode_OnLoadScript_" data-uid="MAS.VisionFlow.Designer.FlowNode.OnLoadScript*"></a>
+
+  <h3 id="MAS_VisionFlow_Designer_FlowNode_OnLoadScript_System_String_" data-uid="MAS.VisionFlow.Designer.FlowNode.OnLoadScript(System.String)">
+  OnLoadScript(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>还原节点脚本，见 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveScript">SaveScript()</a>；快照里没有脚本时不调用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnLoadScript(string script)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>script</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>脚本源码</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Designer_FlowNode_OnLoadSettings_" data-uid="MAS.VisionFlow.Designer.FlowNode.OnLoadSettings*"></a>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_OnLoadSettings_Newtonsoft_Json_Linq_JObject_" data-uid="MAS.VisionFlow.Designer.FlowNode.OnLoadSettings(Newtonsoft.Json.Linq.JObject)">
   OnLoadSettings(JObject)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L263"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L289"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从设置中还原属性，默认按 <span class="xref">Newtonsoft.Json.JsonPropertyAttribute</span> 填充</p>
@@ -1180,7 +1252,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_OnPropertyChanged_System_ComponentModel_PropertyChangedEventArgs_" data-uid="MAS.VisionFlow.Designer.FlowNode.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
   OnPropertyChanged(PropertyChangedEventArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L296"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L334"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Raises the <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">PropertyChanged</a> event.</p>
@@ -1219,7 +1291,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_OnRemoved" data-uid="MAS.VisionFlow.Designer.FlowNode.OnRemoved">
   OnRemoved()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L281"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L319"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点移出图后调用，应在此释放相机、后台任务等资源</p>
@@ -1249,7 +1321,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_OnSettingsLoaded" data-uid="MAS.VisionFlow.Designer.FlowNode.OnSettingsLoaded">
   OnSettingsLoaded()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L270"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L308"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置还原完成后调用</p>
@@ -1261,6 +1333,76 @@ public string Title { get; set; }</code></pre>
   </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Designer_FlowNode_SaveAssets_" data-uid="MAS.VisionFlow.Designer.FlowNode.SaveAssets*"></a>
+
+  <h3 id="MAS_VisionFlow_Designer_FlowNode_SaveAssets" data-uid="MAS.VisionFlow.Designer.FlowNode.SaveAssets">
+  SaveAssets()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L204"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存节点的大块二进制数据（模板图、金样……）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IReadOnlyDictionary&lt;string, byte[]&gt; SaveAssets()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd><p>资产，没有时返回空字典</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Designer_FlowNode_SaveAssets_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>键是文件名（含扩展名），工程里每项存成一个文件。
+数组按不可变约定使用：数据没变就返回同一个数组，工程保存据此跳过没变的文件</p>
+</div>
+
+
+
+
+  <a id="MAS_VisionFlow_Designer_FlowNode_SaveScript_" data-uid="MAS.VisionFlow.Designer.FlowNode.SaveScript*"></a>
+
+  <h3 id="MAS_VisionFlow_Designer_FlowNode_SaveScript" data-uid="MAS.VisionFlow.Designer.FlowNode.SaveScript">
+  SaveScript()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存节点的脚本源码（脚本执行节点等）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string? SaveScript()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>脚本源码，没有脚本的节点返回 null</p>
+</dd>
+  </dl>
 
 
 
@@ -1309,7 +1451,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_ToString" data-uid="MAS.VisionFlow.Designer.FlowNode.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L319"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L357"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>

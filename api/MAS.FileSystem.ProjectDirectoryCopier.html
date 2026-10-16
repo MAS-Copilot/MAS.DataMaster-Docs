@@ -227,6 +227,46 @@ Class ProjectDirectoryCopier  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_FileSystem_ProjectDirectoryCopier_CopyMissingProjectEntries_" data-uid="MAS.FileSystem.ProjectDirectoryCopier.CopyMissingProjectEntries*"></a>
+
+  <h3 id="MAS_FileSystem_ProjectDirectoryCopier_CopyMissingProjectEntries_System_String_System_String_" data-uid="MAS.FileSystem.ProjectDirectoryCopier.CopyMissingProjectEntries(System.String,System.String)">
+  CopyMissingProjectEntries(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.FileSystem/Helpers/ProjectDirectoryCopier.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把源工程目录中目标工程目录尚不存在的内容补齐过去，已存在的一律保留不覆盖</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CopyMissingProjectEntries(string sourceDirectory, string targetDirectory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceDirectory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>源工程目录</p>
+</dd>
+    <dt><code>targetDirectory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>目标工程目录</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_FileSystem_ProjectDirectoryCopier_CopyMissingProjectEntries_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>与 <a class="xref" href="MAS.FileSystem.ProjectDirectoryCopier.html#MAS_FileSystem_ProjectDirectoryCopier_CopyMissingEntries_System_String_System_String_">CopyMissingEntries(string, string)</a> 相同，但传入的是整个工程根目录：顶层的工程文件（<code>*.masproj</code>）不复制，
+否则另存为/搬移后目标目录会多出一个指向旧位置的工程文件</p>
+</div>
+
+
+
+
   <a id="MAS_FileSystem_ProjectDirectoryCopier_CopyProjectDirectory_" data-uid="MAS.FileSystem.ProjectDirectoryCopier.CopyProjectDirectory*"></a>
 
   <h3 id="MAS_FileSystem_ProjectDirectoryCopier_CopyProjectDirectory_System_String_System_String_" data-uid="MAS.FileSystem.ProjectDirectoryCopier.CopyProjectDirectory(System.String,System.String)">
@@ -271,7 +311,7 @@ Class ProjectDirectoryCopier  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_FileSystem_ProjectDirectoryCopier_IsSameDirectory_System_String_System_String_" data-uid="MAS.FileSystem.ProjectDirectoryCopier.IsSameDirectory(System.String,System.String)">
   IsSameDirectory(string?, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.FileSystem/Helpers/ProjectDirectoryCopier.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.FileSystem/Helpers/ProjectDirectoryCopier.cs/#L82"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断两个路径是否指向同一个目录</p>

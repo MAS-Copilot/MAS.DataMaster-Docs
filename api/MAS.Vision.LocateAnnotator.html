@@ -160,7 +160,7 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="MAS_Vision_LocateAnnotator_DrawArucoMarker_OpenCvSharp_Mat_System_Collections_Generic_IReadOnlyList_OpenCvSharp_Point2f__System_Int32_" data-uid="MAS.Vision.LocateAnnotator.DrawArucoMarker(OpenCvSharp.Mat,System.Collections.Generic.IReadOnlyList{OpenCvSharp.Point2f},System.Int32)">
   DrawArucoMarker(Mat, IReadOnlyList&lt;Point2f&gt;, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L151"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>画 ArUco 标记：四边、ID，第一个角点（标记左上角）画小圆表示方向</p>
@@ -230,7 +230,7 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="MAS_Vision_LocateAnnotator_DrawCaliperRegion_OpenCvSharp_Mat_MAS_Vision_CaliperRegion_System_Boolean_" data-uid="MAS.Vision.LocateAnnotator.DrawCaliperRegion(OpenCvSharp.Mat,MAS.Vision.CaliperRegion,System.Boolean)">
   DrawCaliperRegion(Mat, CaliperRegion, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L169"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>画卡尺搜索区与搜索方向箭头</p>
@@ -269,7 +269,7 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="MAS_Vision_LocateAnnotator_DrawCharucoCorners_OpenCvSharp_Mat_System_Collections_Generic_IReadOnlyList_MAS_Vision_CharucoCorner__System_Int32_" data-uid="MAS.Vision.LocateAnnotator.DrawCharucoCorners(OpenCvSharp.Mat,System.Collections.Generic.IReadOnlyList{MAS.Vision.CharucoCorner},System.Int32)">
   DrawCharucoCorners(Mat, IReadOnlyList&lt;CharucoCorner&gt;, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L135"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>画 ChArUco 角点与 ID，目标角点加中心十字</p>
@@ -335,11 +335,50 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <a id="MAS_Vision_LocateAnnotator_DrawContour_" data-uid="MAS.Vision.LocateAnnotator.DrawContour*"></a>
+
+  <h3 id="MAS_Vision_LocateAnnotator_DrawContour_OpenCvSharp_Mat_System_Collections_Generic_IReadOnlyList_OpenCvSharp_Point__System_Boolean_" data-uid="MAS.Vision.LocateAnnotator.DrawContour(OpenCvSharp.Mat,System.Collections.Generic.IReadOnlyList{OpenCvSharp.Point},System.Boolean)">
+  DrawContour(Mat, IReadOnlyList&lt;Point&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>画轮廓：通过的为结果色，未通过的为醒目色（细线）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DrawContour(Mat canvas, IReadOnlyList&lt;Point&gt; points, bool isRejected = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>canvas</code> <span class="xref">Mat</span></dt>
+    <dd><p>画布</p>
+</dd>
+    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<span class="xref">Point</span>&gt;</dt>
+    <dd><p>轮廓点</p>
+</dd>
+    <dt><code>isRejected</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否为未通过筛选的</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_Vision_LocateAnnotator_DrawCross_" data-uid="MAS.Vision.LocateAnnotator.DrawCross*"></a>
 
   <h3 id="MAS_Vision_LocateAnnotator_DrawCross_OpenCvSharp_Mat_System_Double_System_Double_" data-uid="MAS.Vision.LocateAnnotator.DrawCross(OpenCvSharp.Mat,System.Double,System.Double)">
   DrawCross(Mat, double, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L195"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>画中心十字</p>
@@ -375,7 +414,7 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="MAS_Vision_LocateAnnotator_DrawEdgePoint_OpenCvSharp_Mat_MAS_Vision_CaliperEdge_System_Boolean_" data-uid="MAS.Vision.LocateAnnotator.DrawEdgePoint(OpenCvSharp.Mat,MAS.Vision.CaliperEdge,System.Boolean)">
   DrawEdgePoint(Mat, CaliperEdge, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L187"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>画边缘点：采用的为十字，未采用（未选中、拟合剔除）的为斜十字</p>
@@ -410,11 +449,53 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <a id="MAS_Vision_LocateAnnotator_DrawEllipse_" data-uid="MAS.Vision.LocateAnnotator.DrawEllipse*"></a>
+
+  <h3 id="MAS_Vision_LocateAnnotator_DrawEllipse_OpenCvSharp_Mat_System_Double_System_Double_System_Double_System_Double_System_Double_" data-uid="MAS.Vision.LocateAnnotator.DrawEllipse(OpenCvSharp.Mat,System.Double,System.Double,System.Double,System.Double,System.Double)">
+  DrawEllipse(Mat, double, double, double, double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>画椭圆（中心、长短轴全长、长轴方向）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DrawEllipse(Mat canvas, double x, double y, double majorAxis, double minorAxis, double angle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>canvas</code> <span class="xref">Mat</span></dt>
+    <dd></dd>
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>majorAxis</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>minorAxis</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>angle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_Vision_LocateAnnotator_DrawFrameAxes_" data-uid="MAS.Vision.LocateAnnotator.DrawFrameAxes*"></a>
 
   <h3 id="MAS_Vision_LocateAnnotator_DrawFrameAxes_OpenCvSharp_Mat_OpenCvSharp_Mat_OpenCvSharp_Mat_OpenCvSharp_Mat_OpenCvSharp_Mat_System_Double_" data-uid="MAS.Vision.LocateAnnotator.DrawFrameAxes(OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Mat,OpenCvSharp.Mat,System.Double)">
   DrawFrameAxes(Mat, Mat, Mat, Mat, Mat, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L173"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L219"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>画三维坐标轴（X 红、Y 绿、Z 蓝）</p>
@@ -462,7 +543,7 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="MAS_Vision_LocateAnnotator_DrawLabel_OpenCvSharp_Mat_System_String_System_Boolean_" data-uid="MAS.Vision.LocateAnnotator.DrawLabel(OpenCvSharp.Mat,System.String,System.Boolean)">
   DrawLabel(Mat, string, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L229"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>在左上角写一行文字</p>
@@ -501,7 +582,7 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="MAS_Vision_LocateAnnotator_DrawLabels_OpenCvSharp_Mat_System_Collections_Generic_IReadOnlyList_System_String__System_Boolean_" data-uid="MAS.Vision.LocateAnnotator.DrawLabels(OpenCvSharp.Mat,System.Collections.Generic.IReadOnlyList{System.String},System.Boolean)">
   DrawLabels(Mat, IReadOnlyList&lt;string&gt;, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L239"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>在左上角逐行写文字</p>
@@ -574,7 +655,7 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="MAS_Vision_LocateAnnotator_DrawPolygon_OpenCvSharp_Mat_System_Collections_Generic_IReadOnlyList_OpenCvSharp_Point2f__" data-uid="MAS.Vision.LocateAnnotator.DrawPolygon(OpenCvSharp.Mat,System.Collections.Generic.IReadOnlyList{OpenCvSharp.Point2f})">
   DrawPolygon(Mat, IReadOnlyList&lt;Point2f&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>画闭合多边形（例如特征匹配的模板四角）</p>
@@ -608,7 +689,7 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="MAS_Vision_LocateAnnotator_DrawRectangle_OpenCvSharp_Mat_OpenCvSharp_Rect_" data-uid="MAS.Vision.LocateAnnotator.DrawRectangle(OpenCvSharp.Mat,OpenCvSharp.Rect)">
   DrawRectangle(Mat, Rect)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L204"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>画矩形（例如模板匹配的命中区域）</p>
@@ -625,6 +706,93 @@ Class LocateAnnotator  <a class="header-action link-secondary" title="View sourc
     <dd></dd>
     <dt><code>rect</code> <span class="xref">Rect</span></dt>
     <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_LocateAnnotator_DrawRotatedRect_" data-uid="MAS.Vision.LocateAnnotator.DrawRotatedRect*"></a>
+
+  <h3 id="MAS_Vision_LocateAnnotator_DrawRotatedRect_OpenCvSharp_Mat_System_Double_System_Double_System_Double_System_Double_System_Double_" data-uid="MAS.Vision.LocateAnnotator.DrawRotatedRect(OpenCvSharp.Mat,System.Double,System.Double,System.Double,System.Double,System.Double)">
+  DrawRotatedRect(Mat, double, double, double, double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>画旋转矩形（中心、宽高、宽边方向）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DrawRotatedRect(Mat canvas, double x, double y, double width, double height, double angle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>canvas</code> <span class="xref">Mat</span></dt>
+    <dd></dd>
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>height</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>angle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_LocateAnnotator_DrawText_" data-uid="MAS.Vision.LocateAnnotator.DrawText*"></a>
+
+  <h3 id="MAS_Vision_LocateAnnotator_DrawText_OpenCvSharp_Mat_System_Double_System_Double_System_String_System_Boolean_" data-uid="MAS.Vision.LocateAnnotator.DrawText(OpenCvSharp.Mat,System.Double,System.Double,System.String,System.Boolean)">
+  DrawText(Mat, double, double, string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Locating/LocateAnnotator.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在指定位置右上方写一段短文字（如序号）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DrawText(Mat canvas, double x, double y, string text, bool isRejected = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>canvas</code> <span class="xref">Mat</span></dt>
+    <dd><p>画布</p>
+</dd>
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>位置 X</p>
+</dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>位置 Y</p>
+</dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>文字</p>
+</dd>
+    <dt><code>isRejected</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否为未通过的（醒目色）</p>
+</dd>
   </dl>
 
 

@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class GoldenCompareNode | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class GoldenCompareNode | DataMaster ">
+      
+      <meta name="description" content="金样比对：待检图与金样（一张或多张好件建的均值 / 标准差模型）逐像素比较，超出容差的区域连通后按面积判缺陷">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_VisionFlow_Nodes_GoldenCompareNode.md&amp;value=---%0Auid%3A%20MAS.VisionFlow.Nodes.GoldenCompareNode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode">
+
+
+
+  <h1 id="MAS_VisionFlow_Nodes_GoldenCompareNode" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode" class="text-break">
+Class GoldenCompareNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.VisionFlow.html">VisionFlow</a>.<a class="xref" href="MAS.VisionFlow.Nodes.html">Nodes</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.VisionFlow.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>金样比对：待检图与金样（一张或多张好件建的均值 / 标准差模型）逐像素比较，超出容差的区域连通后按面积判缺陷</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptIn)]
+public sealed class GoldenCompareNode : VisionNode, INotifyPropertyChanged, INotifyPropertyChanging, IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html">FlowNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html">VisionNode</a></div>
+      <div><span class="xref">GoldenCompareNode</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_LatestElapsedMilliseconds">VisionNode.LatestElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetLastOutput_System_Int32_">VisionNode.GetLastOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ReadLastOutput__1_System_Int32_System_Func_System_Object___0__">VisionNode.ReadLastOutput&lt;T&gt;(int, Func&lt;object, T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Dispose">VisionNode.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_WatchOutput_System_Int32_">VisionNode.WatchOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDebugLogEnabled">VisionNode.IsDebugLogEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Id">FlowNode.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Descriptor">FlowNode.Descriptor</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Graph">FlowNode.Graph</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_X">FlowNode.X</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Y">FlowNode.Y</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Position">FlowNode.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Inputs">FlowNode.Inputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Outputs">FlowNode.Outputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_HasPorts">FlowNode.HasPorts</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CardWidth">FlowNode.CardWidth</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_PositionChanged">FlowNode.PositionChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SettingsChanged">FlowNode.SettingsChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_MoveTo_System_Double_System_Double_">FlowNode.MoveTo(double, double)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_FindPort_MAS_VisionFlow_Designer_FlowPortDirection_System_String_">FlowNode.FindPort(FlowPortDirection, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveSettings">FlowNode.SaveSettings()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveScript">FlowNode.SaveScript()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Byte____System_String_">FlowNode.LoadSettings(JObject, IReadOnlyDictionary&lt;string, byte[]&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CreateSnapshot">FlowNode.CreateSnapshot()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ToString">FlowNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Title">FlowNode.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsCollapsed">FlowNode.IsCollapsed</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsSelected">FlowNode.IsSelected</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsStructureLocked">FlowNode.IsStructureLocked</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Status">FlowNode.Status</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_StatusMessage">FlowNode.StatusMessage</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ElapsedMilliseconds">FlowNode.ElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_VisionFlow_Nodes_GoldenCompareNode_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>待检图须与金样对齐：前面接 定位 → 定位转正（裁剪），金样也在转正后的图上学；剩下一两个像素的对位误差由对位容差吸收</p>
+<p>金样是节点资产（PNG 文件，不进设置与参数表，Agent 看不到）；编码推迟到保存工程时</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode__ctor_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.#ctor*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
+  GoldenCompareNode(VisionNodeServices)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.GoldenCompareNode.html">GoldenCompareNode</a> 新实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GoldenCompareNode(VisionNodeServices services)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionNodeServices.html">VisionNodeServices</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.TYPE_KEY">
+  TYPE_KEY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>节点类型键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string TYPE_KEY = &quot;vision.goldenCompare&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_AddSampleCommand_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.AddSampleCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_AddSampleCommand" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.AddSampleCommand">
+  AddSampleCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取把最近一帧作为好件加入金样模型的命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;GoldenAddSample&quot;, DescriptionKey = &quot;GoldenAddSampleDescription&quot;)]
+public VisionCommand AddSampleCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_AlignTolerance_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.AlignTolerance*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_AlignTolerance" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.AlignTolerance">
+  AlignTolerance
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置对位容差（像素）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;GoldenAlignTolerance&quot;, DescriptionKey = &quot;GoldenAlignToleranceDescription&quot;, Minimum = 0, Maximum = 10, Unit = &quot;px&quot;)]
+public int AlignTolerance { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_AllowedDefects_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.AllowedDefects*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_AllowedDefects" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.AllowedDefects">
+  AllowedDefects
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置允许的缺陷数（超过判不合格）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;GoldenAllowedDefects&quot;, DescriptionKey = &quot;GoldenAllowedDefectsDescription&quot;, Minimum = 0)]
+public int AllowedDefects { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_ClearGoldenCommand_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ClearGoldenCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_ClearGoldenCommand" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ClearGoldenCommand">
+  ClearGoldenCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取清除金样的命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;GoldenClear&quot;)]
+public VisionCommand ClearGoldenCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_DenoiseSize_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.DenoiseSize*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_DenoiseSize" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.DenoiseSize">
+  DenoiseSize
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置去噪尺寸（像素，0 不去噪）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;GoldenDenoiseSize&quot;, DescriptionKey = &quot;GoldenDenoiseSizeDescription&quot;, Minimum = 0, Maximum = 15, Unit = &quot;px&quot;)]
+public int DenoiseSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_DeviationFactor_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.DeviationFactor*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_DeviationFactor" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.DeviationFactor">
+  DeviationFactor
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置标准差倍数（多张好件建模后生效）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;GoldenDeviationFactor&quot;, DescriptionKey = &quot;GoldenDeviationFactorDescription&quot;, Minimum = 0, Maximum = 20)]
+public double DeviationFactor { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_DifferencePreview_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.DifferencePreview*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_DifferencePreview" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.DifferencePreview">
+  DifferencePreview
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取差异图预览（与金样之差的绝对值，不扣容差）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionPreview DifferencePreview { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionPreview.html">VisionPreview</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_GoldenInfo_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.GoldenInfo*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_GoldenInfo" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.GoldenInfo">
+  GoldenInfo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取金样说明（尺寸、样本数，或未设金样、金样无效的原因）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GoldenInfo { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_GoldenPreview_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.GoldenPreview*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_GoldenPreview" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.GoldenPreview">
+  GoldenPreview
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取金样图预览</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionPreview GoldenPreview { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionPreview.html">VisionPreview</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_GoldenSampleCount_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.GoldenSampleCount*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_GoldenSampleCount" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.GoldenSampleCount">
+  GoldenSampleCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取金样模型的样本数（没有金样为 0）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GoldenSampleCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_HasGolden_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.HasGolden*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_HasGolden" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.HasGolden">
+  HasGolden
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否已有金样</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasGolden { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsAbortOnFailure_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.IsAbortOnFailure*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsAbortOnFailure" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.IsAbortOnFailure">
+  IsAbortOnFailure
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置不合格时是否中止管道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;GoldenAbortOnFailure&quot;, DescriptionKey = &quot;GoldenAbortOnFailureDescription&quot;)]
+public bool IsAbortOnFailure { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsCollecting_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.IsCollecting*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsCollecting" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.IsCollecting">
+  IsCollecting
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否在采集好件：每次运行都把输入加入金样模型（不保存，重开工程后关闭）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[VisionParameter(&quot;GoldenCollecting&quot;, DescriptionKey = &quot;GoldenCollectingDescription&quot;)]
+public bool IsCollecting { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsCollecting_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>用图像文件夹放一批好件、开启后逐张触发即可建模；采集期间不判定</p>
+</div>
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsCurrentShown_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.IsCurrentShown*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsCurrentShown" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.IsCurrentShown">
+  IsCurrentShown
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否显示当前图（分段按钮绑定）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCurrentShown { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsDifferenceShown_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.IsDifferenceShown*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsDifferenceShown" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.IsDifferenceShown">
+  IsDifferenceShown
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否显示差异图（分段按钮绑定）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDifferenceShown { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsGoldenShown_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.IsGoldenShown*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_IsGoldenShown" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.IsGoldenShown">
+  IsGoldenShown
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否显示金样（分段按钮绑定）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsGoldenShown { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_LastRows_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.LastRows*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_LastRows" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.LastRows">
+  LastRows
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最近一次的结果行（设置窗口的结果表）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public IReadOnlyList&lt;GoldenDefectRow&gt; LastRows { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.VisionFlow.Nodes.GoldenDefectRow.html">GoldenDefectRow</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_LearnGoldenCommand_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.LearnGoldenCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_LearnGoldenCommand" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.LearnGoldenCommand">
+  LearnGoldenCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取用最近一帧重建金样（只有这一张）的命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;GoldenLearn&quot;, DescriptionKey = &quot;GoldenLearnDescription&quot;)]
+public VisionCommand LearnGoldenCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_Marks_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.Marks*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_Marks" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.Marks">
+  Marks
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置结果标记（设置窗口叠加显示缺陷轮廓与序号）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public ImageMarks? Marks { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageMarks.html">ImageMarks</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_MinDefectArea_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.MinDefectArea*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_MinDefectArea" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.MinDefectArea">
+  MinDefectArea
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最小缺陷面积</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;GoldenMinDefectArea&quot;, DescriptionKey = &quot;GoldenMinDefectAreaDescription&quot;, Minimum = 1, Unit = &quot;px&#178;&quot;)]
+public double MinDefectArea { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_Polarity_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.Polarity*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_Polarity" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.Polarity">
+  Polarity
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置缺陷极性</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;GoldenPolarity&quot;, DescriptionKey = &quot;GoldenPolarityDescription&quot;)]
+public DefectPolarity Polarity { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.DefectPolarity.html">DefectPolarity</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_Preview_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.Preview*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_Preview" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.Preview">
+  Preview
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次输入的图像预览（保持原尺寸，设置窗口里按像素叠加缺陷）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionPreview Preview { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionPreview.html">VisionPreview</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_ShownPreview_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ShownPreview*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_ShownPreview" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ShownPreview">
+  ShownPreview
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取设置窗口当前显示的预览</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionPreview ShownPreview { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionPreview.html">VisionPreview</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_Summary_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.Summary*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_Summary" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.Summary">
+  Summary
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最近一次的摘要（判定、缺陷数、总面积）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string Summary { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_Tolerance_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.Tolerance*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_Tolerance" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.Tolerance">
+  Tolerance
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置灰度容差</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;GoldenTolerance&quot;, DescriptionKey = &quot;GoldenToleranceDescription&quot;, Minimum = 0, Maximum = 255)]
+public double Tolerance { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_TypeKey_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.TypeKey*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.TypeKey">
+  TypeKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string TypeKey { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_ViewMode_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ViewMode*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_ViewMode" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ViewMode">
+  ViewMode
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置设置窗口里看哪张图（不保存）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public GoldenViewMode ViewMode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.GoldenViewMode.html">GoldenViewMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_AddSample_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.AddSample*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_AddSample" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.AddSample">
+  AddSample()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把最近一帧作为好件加入金样模型（没有金样时等同学习）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AddSample()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>成功返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_ClearGolden_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ClearGolden*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_ClearGolden" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ClearGolden">
+  ClearGolden()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L189"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>清除金样</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearGolden()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_ExecuteAsync_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ExecuteAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
+  ExecuteAsync(VisionExecutionContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task ExecuteAsync(VisionExecutionContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html">VisionExecutionContext</a></dt>
+    <dd><p>执行上下文，提供输入与输出</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
+    <dd><p>执行失败</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_GetResultData_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.GetResultData*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.GetResultData">
+  GetResultData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IReadOnlyDictionary&lt;string, VisionResultValue&gt; GetResultData()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="MAS.VisionFlow.Nodes.VisionResultValue.html">VisionResultValue</a>&gt;</dt>
+    <dd><p>键不区分大小写的结果数据</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_LearnGolden_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.LearnGolden*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_LearnGolden" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.LearnGolden">
+  LearnGolden()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用最近一帧重建金样（只有这一张，按固定灰度容差比对）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool LearnGolden()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>成功返回 true</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_OnLoadAssets_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.OnLoadAssets*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_OnLoadAssets_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Byte____" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.OnLoadAssets(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Byte[]})">
+  OnLoadAssets(IReadOnlyDictionary&lt;string, byte[]&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L340"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>还原节点资产，见 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveAssets">SaveAssets()</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnLoadAssets(IReadOnlyDictionary&lt;string, byte[]&gt; assets)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd><p>资产，没有时为空字典</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_OnSettingsLoaded_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.OnSettingsLoaded*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_OnSettingsLoaded" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.OnSettingsLoaded">
+  OnSettingsLoaded()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L390"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置还原完成后调用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnSettingsLoaded()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_ReleaseResources_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ReleaseResources*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.ReleaseResources">
+  ReleaseResources()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.cs/#L220"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseResources()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_GoldenCompareNode_SaveAssets_" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.SaveAssets*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_GoldenCompareNode_SaveAssets" data-uid="MAS.VisionFlow.Nodes.GoldenCompareNode.SaveAssets">
+  SaveAssets()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L318"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存节点的大块二进制数据（模板图、金样……）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IReadOnlyDictionary&lt;string, byte[]&gt; SaveAssets()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd><p>资产，没有时返回空字典</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Nodes_GoldenCompareNode_SaveAssets_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>键是文件名（含扩展名），工程里每项存成一个文件。
+数组按不可变约定使用：数据没变就返回同一个数组，工程保存据此跳过没变的文件</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Inspect/GoldenCompareNode.Golden.cs/#L20" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

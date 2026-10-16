@@ -335,6 +335,27 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ContourAnalysisNode.html">ContourAnalysisNode</a></dt>
+      <dd><p>轮廓分析：二值化后找轮廓，按面积、周长、圆度、凸度、矩形度、长宽比、参考形状（Hu 矩）筛选，
+按质心、外接矩形、拟合椭圆或拟合圆给出定位结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ContourAnalysisNodeView.html">ContourAnalysisNodeView</a></dt>
+      <dd><p>轮廓分析卡片主体</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ContourAnalysisSettingView.html">ContourAnalysisSettingView</a></dt>
+      <dd><p>轮廓分析设置页：图上看通过 / 未通过的轮廓与序号，右侧参数与参考形状，下方结果表</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ContourResultRow.html">ContourResultRow</a></dt>
+      <dd><p>轮廓分析设置窗口结果表的一行</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.EdgeDetectNode.html">EdgeDetectNode</a></dt>
       <dd><p>边缘检测（Canny）</p>
 </dd>
@@ -390,6 +411,26 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.GoldenCompareNode.html">GoldenCompareNode</a></dt>
+      <dd><p>金样比对：待检图与金样（一张或多张好件建的均值 / 标准差模型）逐像素比较，超出容差的区域连通后按面积判缺陷</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.GoldenCompareNodeView.html">GoldenCompareNodeView</a></dt>
+      <dd><p>金样比对卡片主体</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.GoldenCompareSettingView.html">GoldenCompareSettingView</a></dt>
+      <dd><p>金样比对设置页：图上切换当前图 / 金样 / 差异图看缺陷，右侧金样管理与容差、判定参数，下方缺陷表</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.GoldenDefectRow.html">GoldenDefectRow</a></dt>
+      <dd><p>金样比对结果表的一行</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.HandEyeCalibrationNode.html">HandEyeCalibrationNode</a></dt>
       <dd><p>手眼标定：成对采集相机位姿与机器位姿，求相机与机器人坐标系的关系并写入资源</p>
 </dd>
@@ -437,6 +478,11 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageMarks.html">ImageMarks</a></dt>
       <dd><p>叠加在编辑器图像上的结果标记（如卡尺的边缘点、拟合的线和圆），调参时直接看到结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageMarksViewer.html">ImageMarksViewer</a></dt>
+      <dd><p>看图并叠加结果标记（不编辑区域），如轮廓分析设置页上通过 / 未通过的轮廓</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -642,6 +688,16 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.PointLineDistanceNode.html">PointLineDistanceNode</a></dt>
       <dd><p>点线距离：点到直线的垂直距离与垂足</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.PointSetFitNode.html">PointSetFitNode</a></dt>
+      <dd><p>点集拟合：把一组定位结果当点，拟合直线、圆、椭圆或求最小外接矩形；可选最小二乘、Huber、RANSAC</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.PointSetFitNodeView.html">PointSetFitNodeView</a></dt>
+      <dd><p>点集拟合卡片主体</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -898,8 +954,18 @@ Structs
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageMarkLabel.html">ImageMarkLabel</a></dt>
+      <dd><p>文字标签标记（画在位置右上方，字号不随缩放）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageMarkPoint.html">ImageMarkPoint</a></dt>
       <dd><p>点标记</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageMarkPolygon.html">ImageMarkPolygon</a></dt>
+      <dd><p>闭合多边形标记</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -931,6 +997,11 @@ Enums
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.ClickMoveState.html">ClickMoveState</a></dt>
       <dd><p>点图移动的引导状态</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.GoldenViewMode.html">GoldenViewMode</a></dt>
+      <dd><p>金样比对设置窗口里看哪张图</p>
 </dd>
     </dl>
     <dl class="jumplist">

@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Numerics_RobustFit2D" data-uid="MAS.Numerics.RobustFit2D" class="text-break">
-Class RobustFit2D  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.cs/#L22"><i class="bi bi-code-slash"></i></a>
+Class RobustFit2D  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.Weighted.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -205,6 +205,213 @@ Class RobustFit2D  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <a id="MAS_Numerics_RobustFit2D_FitCircleHuber_" data-uid="MAS.Numerics.RobustFit2D.FitCircleHuber*"></a>
+
+  <h3 id="MAS_Numerics_RobustFit2D_FitCircleHuber_System_Collections_Generic_IReadOnlyList_System_Windows_Point__System_Double_" data-uid="MAS.Numerics.RobustFit2D.FitCircleHuber(System.Collections.Generic.IReadOnlyList{System.Windows.Point},System.Double)">
+  FitCircleHuber(IReadOnlyList&lt;Point&gt;, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.Weighted.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Huber 拟合圆</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CircleFitResult? FitCircleHuber(IReadOnlyList&lt;Point&gt; points, double threshold)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a>&gt;</dt>
+    <dd><p>点</p>
+</dd>
+    <dt><code>threshold</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>Huber 阈值：到圆周的距离超过它的点开始降权（≤ 0 或无穷大时等同最小二乘）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.CircleFitResult.html">CircleFitResult</a></dt>
+    <dd><p>圆；点数不够或点共线时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RobustFit2D_FitCircleLeastSquares_" data-uid="MAS.Numerics.RobustFit2D.FitCircleLeastSquares*"></a>
+
+  <h3 id="MAS_Numerics_RobustFit2D_FitCircleLeastSquares_System_Collections_Generic_IReadOnlyList_System_Windows_Point__" data-uid="MAS.Numerics.RobustFit2D.FitCircleLeastSquares(System.Collections.Generic.IReadOnlyList{System.Windows.Point})">
+  FitCircleLeastSquares(IReadOnlyList&lt;Point&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.Weighted.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>最小二乘拟合圆（代数初值 + 几何距离迭代）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CircleFitResult? FitCircleLeastSquares(IReadOnlyList&lt;Point&gt; points)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a>&gt;</dt>
+    <dd><p>点</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.CircleFitResult.html">CircleFitResult</a></dt>
+    <dd><p>圆；点数不够或点共线时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RobustFit2D_FitEllipse_" data-uid="MAS.Numerics.RobustFit2D.FitEllipse*"></a>
+
+  <h3 id="MAS_Numerics_RobustFit2D_FitEllipse_System_Collections_Generic_IReadOnlyList_System_Windows_Point__System_Double_System_Int32_" data-uid="MAS.Numerics.RobustFit2D.FitEllipse(System.Collections.Generic.IReadOnlyList{System.Windows.Point},System.Double,System.Int32)">
+  FitEllipse(IReadOnlyList&lt;Point&gt;, double, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.Ellipse.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RANSAC 拟合椭圆</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EllipseFitResult? FitEllipse(IReadOnlyList&lt;Point&gt; points, double tolerance, int minInliers = 5)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a>&gt;</dt>
+    <dd><p>点</p>
+</dd>
+    <dt><code>tolerance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>内点到椭圆的最大距离</p>
+</dd>
+    <dt><code>minInliers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>最少内点数（至少 5）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.EllipseFitResult.html">EllipseFitResult</a></dt>
+    <dd><p>椭圆；点数或内点数不够、点退化（共线等）时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RobustFit2D_FitEllipseHuber_" data-uid="MAS.Numerics.RobustFit2D.FitEllipseHuber*"></a>
+
+  <h3 id="MAS_Numerics_RobustFit2D_FitEllipseHuber_System_Collections_Generic_IReadOnlyList_System_Windows_Point__System_Double_" data-uid="MAS.Numerics.RobustFit2D.FitEllipseHuber(System.Collections.Generic.IReadOnlyList{System.Windows.Point},System.Double)">
+  FitEllipseHuber(IReadOnlyList&lt;Point&gt;, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.Ellipse.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Huber 拟合椭圆</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EllipseFitResult? FitEllipseHuber(IReadOnlyList&lt;Point&gt; points, double threshold)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a>&gt;</dt>
+    <dd><p>点（至少 5 个）</p>
+</dd>
+    <dt><code>threshold</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>Huber 阈值：距离超过它的点开始降权（≤ 0 或无穷大时等同最小二乘）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.EllipseFitResult.html">EllipseFitResult</a></dt>
+    <dd><p>椭圆；点数不够或点退化时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RobustFit2D_FitEllipseLeastSquares_" data-uid="MAS.Numerics.RobustFit2D.FitEllipseLeastSquares*"></a>
+
+  <h3 id="MAS_Numerics_RobustFit2D_FitEllipseLeastSquares_System_Collections_Generic_IReadOnlyList_System_Windows_Point__" data-uid="MAS.Numerics.RobustFit2D.FitEllipseLeastSquares(System.Collections.Generic.IReadOnlyList{System.Windows.Point})">
+  FitEllipseLeastSquares(IReadOnlyList&lt;Point&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.Ellipse.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>最小二乘拟合椭圆</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EllipseFitResult? FitEllipseLeastSquares(IReadOnlyList&lt;Point&gt; points)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a>&gt;</dt>
+    <dd><p>点（至少 5 个）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.EllipseFitResult.html">EllipseFitResult</a></dt>
+    <dd><p>椭圆；点数不够或点退化时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_Numerics_RobustFit2D_FitLine_" data-uid="MAS.Numerics.RobustFit2D.FitLine*"></a>
 
   <h3 id="MAS_Numerics_RobustFit2D_FitLine_System_Collections_Generic_IReadOnlyList_System_Windows_Point__System_Double_System_Int32_" data-uid="MAS.Numerics.RobustFit2D.FitLine(System.Collections.Generic.IReadOnlyList{System.Windows.Point},System.Double,System.Int32)">
@@ -250,11 +457,92 @@ Class RobustFit2D  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <a id="MAS_Numerics_RobustFit2D_FitLineHuber_" data-uid="MAS.Numerics.RobustFit2D.FitLineHuber*"></a>
+
+  <h3 id="MAS_Numerics_RobustFit2D_FitLineHuber_System_Collections_Generic_IReadOnlyList_System_Windows_Point__System_Double_" data-uid="MAS.Numerics.RobustFit2D.FitLineHuber(System.Collections.Generic.IReadOnlyList{System.Windows.Point},System.Double)">
+  FitLineHuber(IReadOnlyList&lt;Point&gt;, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.Weighted.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Huber 拟合直线</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LineFitResult? FitLineHuber(IReadOnlyList&lt;Point&gt; points, double threshold)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a>&gt;</dt>
+    <dd><p>点</p>
+</dd>
+    <dt><code>threshold</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>Huber 阈值：距离超过它的点开始降权（≤ 0 或无穷大时等同最小二乘）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.LineFitResult.html">LineFitResult</a></dt>
+    <dd><p>直线；点数不够或点重合时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Numerics_RobustFit2D_FitLineLeastSquares_" data-uid="MAS.Numerics.RobustFit2D.FitLineLeastSquares*"></a>
+
+  <h3 id="MAS_Numerics_RobustFit2D_FitLineLeastSquares_System_Collections_Generic_IReadOnlyList_System_Windows_Point__" data-uid="MAS.Numerics.RobustFit2D.FitLineLeastSquares(System.Collections.Generic.IReadOnlyList{System.Windows.Point})">
+  FitLineLeastSquares(IReadOnlyList&lt;Point&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.Weighted.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>最小二乘拟合直线（总体最小二乘：点到直线的垂直距离平方和最小）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LineFitResult? FitLineLeastSquares(IReadOnlyList&lt;Point&gt; points)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>points</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.point">Point</a>&gt;</dt>
+    <dd><p>点</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.LineFitResult.html">LineFitResult</a></dt>
+    <dd><p>直线；点数不够或点重合时为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.cs/#L22" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Numerics/Helpers/RobustFit2D.Weighted.cs/#L22" class="edit-link">Edit this page</a>
         </div>
 
 

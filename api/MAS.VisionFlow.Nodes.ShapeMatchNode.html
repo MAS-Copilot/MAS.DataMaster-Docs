@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Nodes_ShapeMatchNode" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode" class="text-break">
-Class ShapeMatchNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L23"><i class="bi bi-code-slash"></i></a>
+Class ShapeMatchNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -215,7 +215,10 @@ public sealed class ShapeMatchNode : VisionLocateNode, INotifyPropertyChanged, I
       <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveSettings">FlowNode.SaveSettings()</a>
     </div>
     <div>
-      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_">FlowNode.LoadSettings(JObject)</a>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveScript">FlowNode.SaveScript()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Byte____System_String_">FlowNode.LoadSettings(JObject, IReadOnlyDictionary&lt;string, byte[]&gt;, string)</a>
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CreateSnapshot">FlowNode.CreateSnapshot()</a>
@@ -535,7 +538,7 @@ public ShapeMatchEditTarget EditTarget { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_EditingRegion" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.EditingRegion">
   EditingRegion
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L120"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取图上正在编辑的区域（参考点模式下显示模板区，只点选不编辑）</p>
@@ -602,7 +605,7 @@ public double Greediness { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_IsPointPicking" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.IsPointPicking">
   IsPointPicking
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L125"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否为点选参考点模式</p>
@@ -668,7 +671,7 @@ public bool IsReferenceCentered { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_IsReferenceEditing" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.IsReferenceEditing">
   IsReferenceEditing
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L146"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置是否在放置参考点（分段按钮绑定）</p>
@@ -700,7 +703,7 @@ public bool IsReferenceCentered { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_IsSearchEditing" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.IsSearchEditing">
   IsSearchEditing
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L138"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置是否在编辑搜索区（分段按钮绑定）</p>
@@ -732,7 +735,7 @@ public bool IsReferenceCentered { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_IsTemplateEditing" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.IsTemplateEditing">
   IsTemplateEditing
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置是否在编辑模板区（分段按钮绑定）</p>
@@ -764,7 +767,7 @@ public bool IsReferenceCentered { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_IsTemplateLearned" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.IsTemplateLearned">
   IsTemplateLearned
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L159"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否已学习模板</p>
@@ -796,7 +799,7 @@ public bool IsReferenceCentered { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_IsTemplateStale" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.IsTemplateStale">
   IsTemplateStale
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L164"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取模板区是否在学习后改过（需要重新学习才生效）</p>
@@ -1067,7 +1070,7 @@ public double MinScore { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_Model" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.Model">
   Model
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L154"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前模板（未学习或模板无效时为空）</p>
@@ -1305,17 +1308,15 @@ public ROICoordinates SearchRegion { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_TemplateImage" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.TemplateImage">
   TemplateImage
-  
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L88"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置学习到的模板图（8 位灰度 PNG 的 Base64），为空表示未学习</p>
+  <div class="markdown level1 summary"><p>获取学习到的模板图（8 位灰度 PNG），为空表示未学习</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-[JsonProperty]
-public string? TemplateImage { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public byte[]? TemplateImage { get; }</code></pre>
   </div>
 
 
@@ -1324,13 +1325,16 @@ public string? TemplateImage { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
     <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="MAS_VisionFlow_Nodes_ShapeMatchNode_TemplateImage_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>节点资产，工程里存成 PNG 文件</p>
+</div>
 
 
 
@@ -1339,7 +1343,7 @@ public string? TemplateImage { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_TemplateInfo" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.TemplateInfo">
   TemplateInfo
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L179"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取模板说明（尺寸、点数、层数，或未学习、模板无效的原因）</p>
@@ -1620,7 +1624,7 @@ public ImageSource? TemplateThumbnail { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_LearnTemplate" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.LearnTemplate">
   LearnTemplate()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L204"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>用最近一帧学习模板：裁出模板区，建模成功后保存模板图</p>
@@ -1649,11 +1653,44 @@ public ImageSource? TemplateThumbnail { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Nodes_ShapeMatchNode_OnLoadAssets_" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.OnLoadAssets*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_OnLoadAssets_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Byte____" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.OnLoadAssets(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Byte[]})">
+  OnLoadAssets(IReadOnlyDictionary&lt;string, byte[]&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L372"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>还原节点资产，见 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveAssets">SaveAssets()</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnLoadAssets(IReadOnlyDictionary&lt;string, byte[]&gt; assets)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd><p>资产，没有时为空字典</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Nodes_ShapeMatchNode_OnSettingsLoaded_" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.OnSettingsLoaded*"></a>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_OnSettingsLoaded" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.OnSettingsLoaded">
   OnSettingsLoaded()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L362"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L377"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置还原完成后调用</p>
@@ -1680,7 +1717,7 @@ public ImageSource? TemplateThumbnail { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_PickReference_System_Windows_Point_" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.PickReference(System.Windows.Point)">
   PickReference(Point)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L194"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L195"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>在点选模式下放置参考点（设置窗口单击图像时调用）</p>
@@ -1736,11 +1773,48 @@ public ImageSource? TemplateThumbnail { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Nodes_ShapeMatchNode_SaveAssets_" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.SaveAssets*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ShapeMatchNode_SaveAssets" data-uid="MAS.VisionFlow.Nodes.ShapeMatchNode.SaveAssets">
+  SaveAssets()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L365"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存节点的大块二进制数据（模板图、金样……）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IReadOnlyDictionary&lt;string, byte[]&gt; SaveAssets()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd><p>资产，没有时返回空字典</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Nodes_ShapeMatchNode_SaveAssets_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>键是文件名（含扩展名），工程里每项存成一个文件。
+数组按不可变约定使用：数据没变就返回同一个数组，工程保存据此跳过没变的文件</p>
+</div>
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L23" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ShapeMatchNode.Teach.cs/#L24" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Designer_FlowNodeSnapshot" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot" class="text-break">
-Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L18"><i class="bi bi-code-slash"></i></a>
+Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -156,15 +156,86 @@ Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View sour
 </div>
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_EmptyAssets" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.EmptyAssets">
+  EmptyAssets
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>没有资产时共用的空字典</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly IReadOnlyDictionary&lt;string, byte[]&gt; EmptyAssets</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
+
+
+  <a id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Assets_" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Assets*"></a>
+
+  <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Assets" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Assets">
+  Assets
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置节点资产（模板图、金样等二进制数据，键为文件名）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public IReadOnlyDictionary&lt;string, byte[]&gt; Assets { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Assets_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>不进 JSON：工程把每项存成独立文件，撤销与粘贴直接在内存里带着走</p>
+</div>
+
+
 
 
   <a id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Id_" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Id*"></a>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Id" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Id">
   Id
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置节点标识</p>
@@ -196,7 +267,7 @@ Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View sour
 
   <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_IsCollapsed" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.IsCollapsed">
   IsCollapsed
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置是否折叠</p>
@@ -224,11 +295,47 @@ Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View sour
 
 
 
+  <a id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Script_" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Script*"></a>
+
+  <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Script" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Script">
+  Script
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置节点脚本源码（脚本执行节点等），没有时为 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public string? Script { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Script_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>不进 JSON：工程里加密存在 Scripts 下</p>
+</div>
+
+
+
+
   <a id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Settings_" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Settings*"></a>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Settings" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Settings">
   Settings
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L58"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置节点设置</p>
@@ -260,7 +367,7 @@ Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View sour
 
   <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Title" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Title">
   Title
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置节点标题</p>
@@ -292,7 +399,7 @@ Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View sour
 
   <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_TypeKey" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.TypeKey">
   TypeKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置节点类型键</p>
@@ -324,7 +431,7 @@ Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View sour
 
   <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_X" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.X">
   X
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置左上角世界坐标 X</p>
@@ -356,7 +463,7 @@ Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View sour
 
   <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Y" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Y">
   Y
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置左上角世界坐标 Y</p>
@@ -392,7 +499,7 @@ Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View sour
 
   <h3 id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Clone" data-uid="MAS.VisionFlow.Designer.FlowNodeSnapshot.Clone">
   Clone()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>深拷贝快照</p>
@@ -417,6 +524,9 @@ Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View sour
 
 
 
+  <h4 class="section" id="MAS_VisionFlow_Designer_FlowNodeSnapshot_Clone_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>资产数组按不可变约定共用，不复制</p>
+</div>
 
 
 
@@ -425,7 +535,7 @@ Class FlowNodeSnapshot  <a class="header-action link-secondary" title="View sour
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L18" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowSnapshots.cs/#L19" class="edit-link">Edit this page</a>
         </div>
 
 

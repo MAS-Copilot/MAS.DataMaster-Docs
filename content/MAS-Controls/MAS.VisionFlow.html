@@ -99,7 +99,7 @@
 │  └─ Library/      FlowNodeDescriptor · 模块菜单
 ├─ Nodes/           视觉节点、卡片主体、设置视图
 ├─ Runtime/         管道划分、执行器、循环运行器、脚本处理器
-├─ Persistence/     VisionFlowDocument
+├─ Persistence/     VisionFlowDocument（内存模型）· 清单 + 内容目录读写
 └─ Views/           工作区（模块菜单 + 画布 + 管道面板）、设置窗口、输出查看窗口
 </code></pre>
 <p>架构约定：</p>
@@ -112,6 +112,7 @@
 <ul>
 <li><strong>端口</strong>：构造函数中通过 <code>AddInput</code> / <code>AddOutput</code> 声明，类型为强类型 <code>FlowPortType</code>；拉线时按类型、方向、重复、环路与锁定状态校验，失败原因见 <code>FlowConnectionError</code></li>
 <li><strong>设置</strong>：带 <code>[JsonProperty]</code> 的属性即节点设置，随工程文件保存，参与撤销重做与复制粘贴，属性变化会将工程标记为已修改</li>
+<li><strong>资产与脚本</strong>：模板图、金样、图像源副本这类大块二进制数据不放设置，重写 <code>SaveAssets</code> / <code>OnLoadAssets</code>（键是文件名，如 <code>golden-mean.png</code>），工程里每项一个文件；脚本源码重写 <code>SaveScript</code> / <code>OnLoadScript</code>，工程里加密存储。资产数组按不可变使用，数据没变就返回同一个数组，保存据此跳过。资产随快照参与撤销与复制粘贴，变化时须自己调 <code>NotifySettingsChanged()</code> 标脏</li>
 <li><strong>执行</strong>：逻辑实现于 <code>ExecuteAsync(VisionExecutionContext)</code>，<code>GetInput&lt;T&gt;</code> 取输入、<code>SetOutput</code> 写输出、<code>ReportStatus</code> 上报警告等状态；输入仅在本次执行内有效，需要跨执行保留时必须 <code>Clone</code></li>
 <li><strong>图像预览</strong>：<code>VisionPreview</code> 由执行线程调用 <code>Offer(mat)</code>，仅到点时复制（可见处约 15 帧/秒，不可见处约 1 帧/秒，默认缩小到最长边 1280 像素），界面线程写入复用的 <code>WriteableBitmap</code>；视图通过 <code>nodes:VisionPreviewBinding.Source</code> 绑定，控件不可见时自动降频</li>
 <li><strong>状态与刷新</strong>：节点状态为 <code>FlowNodeStatus</code>，颜色与文本由 <code>FlowNodeStatusToBrushConverter</code>、<code>FlowNodeStatusToTextConverter</code> 统一给出（文本走语言键 <code>FlowNodeStatus*</code>，支持中/繁/英）。连续运行时节点耗时与管道统计每 100 ms 最多推送一次界面，实时值保留在 <code>LatestElapsedMilliseconds</code> 与 <code>VisionRunResult</code>，单次触发与停止时立即刷新；“运行中”指示延迟 200 ms 显示，避免快速节点状态跳动</li>
@@ -259,7 +260,44 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 <li><code>FlowMinimap</code> 在 <code>OnRender</code> 中直接绘制节点方块、视口外遮罩与视口框，不创建可视元素；绘制合并到下一帧，拖动时冻结映射，避免小地图自身跳动</li>
 </ul>
 <h2 id="持久化">持久化</h2>
-<p>工程类型为 <code>VisionFlow</code>，文档存放于 <code>ProjectModel.ServiceData[&quot;VisionFlow&quot;]</code>，包含节点快照、连线、管道（标识、名称、脚本、归属节点；改过且仍有节点在画布上的脱离管道也保存）、资源；自 <code>v3.27.0</code> 起旧版 <code>ImageProceFlow</code> 工程将不再兼容</p>
+<p>工程类型为 <code>VisionFlow</code>，工程是一个文件夹：<code>.masproj</code> 里只有清单 <code>ServiceData[&quot;VisionFlowManifest&quot;]</code>（格式版本），内容按文件存在工程目录下（布局见 <code>VisionFlowProjectPaths</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Flow.json</code></td>
+<td>节点快照（不含资产与脚本）、连线、管道（标识、名称、归属节点；改过且仍有节点在画布上的脱离管道也保存），明文</td>
+</tr>
+<tr>
+<td><code>Resources.json</code></td>
+<td>资源，明文</td>
+</tr>
+<tr>
+<td><code>Scripts/Pipelines/管道标识.mscript</code></td>
+<td>管道脚本，<code>IEncryptionService.Encrypt</code> 加密（调试版也加密）</td>
+</tr>
+<tr>
+<td><code>Scripts/Nodes/节点标识.mscript</code></td>
+<td>节点脚本（<code>SaveScript</code> / <code>OnLoadScript</code>），加密</td>
+</tr>
+<tr>
+<td><code>Assets/节点标识/</code></td>
+<td>节点资产（<code>SaveAssets</code> / <code>OnLoadAssets</code>），原样存放</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>运行时与持久化之间按 <code>VisionFlowDocument</code> 交接（<code>IVisionFlowPersistenceService.GetDocument/SetDocument</code>）；保存时运行时先在 <code>ProjectSaving</code> 里交回文档，持久化服务再落盘</li>
+<li>保存是增量的：JSON 与脚本按明文内容指纹、资产按数组引用判断，没变的不重写；删掉的节点、管道对应的文件随之删除</li>
+<li>内容读取在 <code>OnBeforeProjectApplied</code> 完成，文件缺失、脚本无法解密时拒绝打开，当前工程不受影响</li>
+<li>另存为与动态视图一致：工作台整目录复制，持久化服务补齐缺失项并整份重写</li>
+<li>自 <code>v3.27.0</code> 起旧版 <code>ImageProceFlow</code> 工程不再兼容</li>
+</ul>
 <p>加载时无法识别的节点类型或无法建立的连线不会导致工程加载失败，而是记入 <code>VisionFlowRuntime.LoadErrors</code> 并给出提示。</p>
 <h2 id="对外接口">对外接口</h2>
 <p><code>IVisionFlowRuntime</code> 以单例注册，不依赖工作台页面是否打开，工程加载后即可由动态视图脚本、Agent 等外部触发。</p>

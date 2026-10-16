@@ -245,6 +245,31 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ContourAnalysisResult.html">ContourAnalysisResult</a></dt>
+      <dd><p>轮廓分析结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ContourAnalyzer.html">ContourAnalyzer</a></dt>
+      <dd><p>轮廓分析：二值化 → 找轮廓 → 测量（面积、周长、圆度、凸度、矩形度、长宽比、Hu 矩）→ 筛选 → 按定位方式求中心与尺寸</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ContourFilter.html">ContourFilter</a></dt>
+      <dd><p>轮廓筛选条件</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ContourMeasurement.html">ContourMeasurement</a></dt>
+      <dd><p>单个轮廓的测量结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ContourOptions.html">ContourOptions</a></dt>
+      <dd><p>轮廓分析参数</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.ErrorMetrics.html">ErrorMetrics</a></dt>
       <dd><p>误差指标</p>
 </dd>
@@ -272,6 +297,46 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.GeometryTransforms.html">GeometryTransforms</a></dt>
       <dd><p>几何变换：旋转平移、缩放、翻转、透视矫正</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.GoldenBand.html">GoldenBand</a></dt>
+      <dd><p>金样容差带：每个像素允许的灰度上下限（8 位），由模型与容差参数生成</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.GoldenCompareOptions.html">GoldenCompareOptions</a></dt>
+      <dd><p>金样比对参数</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.GoldenCompareResult.html">GoldenCompareResult</a></dt>
+      <dd><p>金样比对结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.GoldenComparer.html">GoldenComparer</a></dt>
+      <dd><p>金样比对：待检图与金样逐像素比较，超出容差带的像素连通成区域，面积够大的算缺陷</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.GoldenDefect.html">GoldenDefect</a></dt>
+      <dd><p>金样比对找到的一个缺陷（超出容差带的连通区域）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.GoldenModel.html">GoldenModel</a></dt>
+      <dd><p>金样模型：每个像素的灰度均值与标准差（变化模型）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.GoldenModelBuilder.html">GoldenModelBuilder</a></dt>
+      <dd><p>金样模型累加器：逐张加入好件，按和与平方和求均值、标准差</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.GoldenModelCodec.html">GoldenModelCodec</a></dt>
+      <dd><p>金样模型的保存格式：均值、标准差各存一张 8 位 PNG</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -367,6 +432,16 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.PlaneCalibrator.html">PlaneCalibrator</a></dt>
       <dd><p>2D 平面标定（九点标定 / N 点标定）：求像素 → 机械平面的映射，并做坐标换算</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.PointSetFitResult.html">PointSetFitResult</a></dt>
+      <dd><p>点集拟合结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.PointSetFitter.html">PointSetFitter</a></dt>
+      <dd><p>点集拟合：把一组定位结果（卡尺边缘点、孔中心、角点……）当点，拟合直线、圆、椭圆或求最小外接矩形</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -584,6 +659,31 @@ OpenCV 相机坐标系约定（右手系）：
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ContourLocateMode.html">ContourLocateMode</a></dt>
+      <dd><p>轮廓的定位结果取什么（中心、角度、尺寸的来源）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ContourRejectReason.html">ContourRejectReason</a></dt>
+      <dd><p>轮廓未通过筛选的原因（按检查顺序取第一个）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ContourScope.html">ContourScope</a></dt>
+      <dd><p>轮廓分析取哪些轮廓</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ContourSortMode.html">ContourSortMode</a></dt>
+      <dd><p>轮廓结果排序</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.DefectPolarity.html">DefectPolarity</a></dt>
+      <dd><p>缺陷极性：比金样亮还是暗</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.EdgePolarity.html">EdgePolarity</a></dt>
       <dd><p>边缘极性（沿搜索方向看灰度的变化）</p>
 </dd>
@@ -596,6 +696,16 @@ OpenCV 相机坐标系约定（右手系）：
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.FilterMode.html">FilterMode</a></dt>
       <dd><p>滤波方式</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.FitMethod.html">FitMethod</a></dt>
+      <dd><p>点集拟合方法</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.FitShape.html">FitShape</a></dt>
+      <dd><p>点集拟合的形状</p>
 </dd>
     </dl>
     <dl class="jumplist">

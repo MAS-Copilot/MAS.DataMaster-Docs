@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ContourAnalysisNode | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ContourAnalysisNode | DataMaster ">
+      
+      <meta name="description" content="轮廓分析：二值化后找轮廓，按面积、周长、圆度、凸度、矩形度、长宽比、参考形状（Hu 矩）筛选， 按质心、外接矩形、拟合椭圆或拟合圆给出定位结果">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_VisionFlow_Nodes_ContourAnalysisNode.md&amp;value=---%0Auid%3A%20MAS.VisionFlow.Nodes.ContourAnalysisNode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode">
+
+
+
+  <h1 id="MAS_VisionFlow_Nodes_ContourAnalysisNode" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode" class="text-break">
+Class ContourAnalysisNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.VisionFlow.html">VisionFlow</a>.<a class="xref" href="MAS.VisionFlow.Nodes.html">Nodes</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.VisionFlow.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>轮廓分析：二值化后找轮廓，按面积、周长、圆度、凸度、矩形度、长宽比、参考形状（Hu 矩）筛选，
+按质心、外接矩形、拟合椭圆或拟合圆给出定位结果</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptIn)]
+public sealed class ContourAnalysisNode : VisionLocateNode, INotifyPropertyChanged, INotifyPropertyChanging, IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html">FlowNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html">VisionNode</a></div>
+      <div><a class="xref" href="MAS.VisionFlow.Nodes.VisionLocateNode.html">VisionLocateNode</a></div>
+      <div><span class="xref">ContourAnalysisNode</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionLocateNode.html#MAS_VisionFlow_Nodes_VisionLocateNode_LastLocation">VisionLocateNode.LastLocation</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_LatestElapsedMilliseconds">VisionNode.LatestElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetLastOutput_System_Int32_">VisionNode.GetLastOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ReadLastOutput__1_System_Int32_System_Func_System_Object___0__">VisionNode.ReadLastOutput&lt;T&gt;(int, Func&lt;object, T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_Dispose">VisionNode.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_WatchOutput_System_Int32_">VisionNode.WatchOutput(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDebugLogEnabled">VisionNode.IsDebugLogEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Id">FlowNode.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Descriptor">FlowNode.Descriptor</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Graph">FlowNode.Graph</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_X">FlowNode.X</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Y">FlowNode.Y</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Position">FlowNode.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Inputs">FlowNode.Inputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Outputs">FlowNode.Outputs</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_HasPorts">FlowNode.HasPorts</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CardWidth">FlowNode.CardWidth</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_PositionChanged">FlowNode.PositionChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SettingsChanged">FlowNode.SettingsChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_MoveTo_System_Double_System_Double_">FlowNode.MoveTo(double, double)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_FindPort_MAS_VisionFlow_Designer_FlowPortDirection_System_String_">FlowNode.FindPort(FlowPortDirection, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveSettings">FlowNode.SaveSettings()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveAssets">FlowNode.SaveAssets()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveScript">FlowNode.SaveScript()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_LoadSettings_Newtonsoft_Json_Linq_JObject_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Byte____System_String_">FlowNode.LoadSettings(JObject, IReadOnlyDictionary&lt;string, byte[]&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_CreateSnapshot">FlowNode.CreateSnapshot()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ToString">FlowNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Title">FlowNode.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsCollapsed">FlowNode.IsCollapsed</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsSelected">FlowNode.IsSelected</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_IsStructureLocked">FlowNode.IsStructureLocked</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_Status">FlowNode.Status</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_StatusMessage">FlowNode.StatusMessage</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_ElapsedMilliseconds">FlowNode.ElapsedMilliseconds</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="MAS.DynamicViews.DynamicViewVariableWriteExtensions.html#MAS_DynamicViews_DynamicViewVariableWriteExtensions_ToVariableValues_System_Object_">DynamicViewVariableWriteExtensions.ToVariableValues(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>比 Blob 分析多：固定阈值、取孔、更多筛选条件、参考形状、拟合定位；简单找孔用 Blob 分析即可</p>
+<p>定位列表为通过筛选的全部轮廓（带面积、宽高、半径、圆度），定位结果为第一个；精度在像素量级，量尺寸要亚像素时用卡尺</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode__ctor_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.#ctor*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
+  ContourAnalysisNode(VisionNodeServices)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.ContourAnalysisNode.html">ContourAnalysisNode</a> 新实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContourAnalysisNode(VisionNodeServices services)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionNodeServices.html">VisionNodeServices</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.TYPE_KEY">
+  TYPE_KEY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>节点类型键</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string TYPE_KEY = &quot;vision.contourAnalysis&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ClearReferenceCommand_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ClearReferenceCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ClearReferenceCommand" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ClearReferenceCommand">
+  ClearReferenceCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L245"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取清除参考形状的命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;ContourClearReference&quot;)]
+public VisionCommand ClearReferenceCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_HasReference_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.HasReference*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_HasReference" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.HasReference">
+  HasReference
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否已设参考形状</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasReference { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_IsDarkTarget_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.IsDarkTarget*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_IsDarkTarget" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.IsDarkTarget">
+  IsDarkTarget
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否找暗目标</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;DarkBlob&quot;, DescriptionKey = &quot;DarkBlobDescription&quot;)]
+public bool IsDarkTarget { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_IsExcludeBorder_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.IsExcludeBorder*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_IsExcludeBorder" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.IsExcludeBorder">
+  IsExcludeBorder
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置是否排除贴边轮廓</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ExcludeBorderBlobs&quot;)]
+public bool IsExcludeBorder { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_LastRows_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.LastRows*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_LastRows" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.LastRows">
+  LastRows
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最近一次的结果行（设置窗口的结果表：通过的在前，未通过的带原因）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public IReadOnlyList&lt;ContourResultRow&gt; LastRows { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.VisionFlow.Nodes.ContourResultRow.html">ContourResultRow</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_LocateMode_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.LocateMode*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_LocateMode" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.LocateMode">
+  LocateMode
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置定位结果取什么</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourLocateMode&quot;, DescriptionKey = &quot;ContourLocateModeDescription&quot;)]
+public ContourLocateMode LocateMode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.ContourLocateMode.html">ContourLocateMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Marks_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Marks*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Marks" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Marks">
+  Marks
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置结果标记（设置窗口叠加显示：通过的轮廓绿色、未通过的橙色，序号与结果表对应）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public ImageMarks? Marks { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageMarks.html">ImageMarks</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxArea_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxArea*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxArea" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxArea">
+  MaxArea
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最大面积（0 不限）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;MaxArea&quot;, DescriptionKey = &quot;ZeroMeansUnlimited&quot;, Minimum = 0, Unit = &quot;px&#178;&quot;)]
+public double MaxArea { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxAspectRatio_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxAspectRatio*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxAspectRatio" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxAspectRatio">
+  MaxAspectRatio
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最大长宽比（0 不限）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourMaxAspectRatio&quot;, DescriptionKey = &quot;ContourAspectRatioDescription&quot;, Minimum = 0)]
+public double MaxAspectRatio { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxCircularity_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxCircularity*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxCircularity" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxCircularity">
+  MaxCircularity
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最大圆度（0 不限）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourMaxCircularity&quot;, DescriptionKey = &quot;ZeroMeansUnlimited&quot;, Minimum = 0, Maximum = 1)]
+public double MaxCircularity { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxCount_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxCount*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxCount" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxCount">
+  MaxCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最多数量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;MaxCount&quot;, Minimum = 1, Maximum = 500)]
+public int MaxCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxPerimeter_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxPerimeter*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxPerimeter" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxPerimeter">
+  MaxPerimeter
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最大周长（0 不限）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourMaxPerimeter&quot;, DescriptionKey = &quot;ZeroMeansUnlimited&quot;, Minimum = 0, Unit = &quot;px&quot;)]
+public double MaxPerimeter { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxShapeDistance_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxShapeDistance*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MaxShapeDistance" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MaxShapeDistance">
+  MaxShapeDistance
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置与参考形状的最大差异（0 不比较）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourMaxShapeDistance&quot;, DescriptionKey = &quot;ContourMaxShapeDistanceDescription&quot;, Minimum = 0)]
+public double MaxShapeDistance { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinArea_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinArea*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinArea" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinArea">
+  MinArea
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最小面积</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;MinArea&quot;, Minimum = 0, Unit = &quot;px&#178;&quot;)]
+public double MinArea { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinAspectRatio_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinAspectRatio*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinAspectRatio" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinAspectRatio">
+  MinAspectRatio
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最小长宽比</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourMinAspectRatio&quot;, DescriptionKey = &quot;ContourAspectRatioDescription&quot;, Minimum = 0)]
+public double MinAspectRatio { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinCircularity_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinCircularity*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinCircularity" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinCircularity">
+  MinCircularity
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最小圆度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;MinCircularity&quot;, DescriptionKey = &quot;MinCircularityDescription&quot;, Minimum = 0, Maximum = 1)]
+public double MinCircularity { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinConvexity_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinConvexity*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinConvexity" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinConvexity">
+  MinConvexity
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最小凸度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourMinConvexity&quot;, DescriptionKey = &quot;ContourConvexityDescription&quot;, Minimum = 0, Maximum = 1)]
+public double MinConvexity { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinPerimeter_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinPerimeter*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinPerimeter" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinPerimeter">
+  MinPerimeter
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最小周长</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourMinPerimeter&quot;, Minimum = 0, Unit = &quot;px&quot;)]
+public double MinPerimeter { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinRectangularity_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinRectangularity*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_MinRectangularity" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.MinRectangularity">
+  MinRectangularity
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最小矩形度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourMinRectangularity&quot;, DescriptionKey = &quot;ContourRectangularityDescription&quot;, Minimum = 0, Maximum = 1)]
+public double MinRectangularity { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Preview_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Preview*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Preview" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Preview">
+  Preview
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L234"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次输入的图像预览（保持原尺寸，设置窗口里按像素叠加轮廓）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionPreview Preview { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionPreview.html">VisionPreview</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ReferenceHu_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ReferenceHu*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ReferenceHu" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ReferenceHu">
+  ReferenceHu
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置参考形状的 Hu 矩（7 个），为空不比较形状</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+public double[]? ReferenceHu { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Scope_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Scope*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Scope" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Scope">
+  Scope
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置取哪些轮廓</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourScope&quot;, DescriptionKey = &quot;ContourScopeDescription&quot;)]
+public ContourScope Scope { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.ContourScope.html">ContourScope</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_SetReferenceCommand_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.SetReferenceCommand*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_SetReferenceCommand" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.SetReferenceCommand">
+  SetReferenceCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L239"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取把最近一次第一个通过的轮廓设为参考形状的命令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;ContourSetReference&quot;, DescriptionKey = &quot;ContourSetReferenceDescription&quot;)]
+public VisionCommand SetReferenceCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Nodes.VisionCommand.html">VisionCommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Sort_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Sort*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Sort" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Sort">
+  Sort
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置排序方式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;SortMode&quot;)]
+public ContourSortMode Sort { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.ContourSortMode.html">ContourSortMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Summary_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Summary*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Summary" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Summary">
+  Summary
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置最近一次的摘要（通过数 / 候选数、实际阈值）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public string Summary { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Threshold_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Threshold*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Threshold" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Threshold">
+  Threshold
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置二值化阈值（0 为大津法自动）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;ContourThreshold&quot;, DescriptionKey = &quot;ContourThresholdDescription&quot;, Minimum = 0, Maximum = 255)]
+public int Threshold { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_TypeKey_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.TypeKey*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.TypeKey">
+  TypeKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string TypeKey { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ExecuteAsync_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ExecuteAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
+  ExecuteAsync(VisionExecutionContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步执行节点</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task ExecuteAsync(VisionExecutionContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html">VisionExecutionContext</a></dt>
+    <dd><p>执行上下文，提供输入与输出</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步操作任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
+    <dd><p>执行失败</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_GetResultData_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.GetResultData*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.GetResultData">
+  GetResultData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L292"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IReadOnlyDictionary&lt;string, VisionResultValue&gt; GetResultData()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="MAS.VisionFlow.Nodes.VisionResultValue.html">VisionResultValue</a>&gt;</dt>
+    <dd><p>键不区分大小写的结果数据</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ReleaseResources_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ReleaseResources*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ReleaseResources">
+  ReleaseResources()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L317"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseResources()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L28" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
