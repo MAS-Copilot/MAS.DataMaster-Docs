@@ -410,7 +410,7 @@ public sealed class InspectTaskHandler(ILogger&lt;InspectTaskHandler&gt; logger)
 <ul>
 <li>应答任务<strong>应答先于完成值写入</strong>。下位机看到完成值变化后，即可读取应答</li>
 <li>启动时读取一次完成区。完成值等于触发值，表示该请求已处理，重启后不会重复执行</li>
-<li>触发值为 0 表示复位，之后再出现的 1 按新请求处理</li>
+<li>触发值为 0 表示复位。上位机看到后把完成值回写为 0 作为确认，下位机应等完成值变为 0 后再写新的 1</li>
 <li>同一个任务内，处理器不会被并发调用。处理器实现 <code>IDisposable</code> 或 <code>IAsyncDisposable</code> 时，在停止时释放</li>
 <li>可配置的选项：<code>PollInterval</code>（轮询间隔，默认 50 ms）、<code>HandlerTimeout</code>（处理超时，默认 5 s）和 <code>RetryInterval</code>（通讯失败后的重试间隔，默认 1 s）</li>
 </ul>

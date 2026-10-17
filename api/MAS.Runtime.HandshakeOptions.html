@@ -153,7 +153,7 @@ Class HandshakeOptions  <a class="header-action link-secondary" title="View sour
 
   <h2 id="MAS_Runtime_HandshakeOptions_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>触发值与完成值都是 16 位整数（PLC 的 INT）。下位机写好请求后把触发值加 1；
-上位机处理完成后把完成值写成与触发值相同。触发值为 0 视为复位，不处理。
+上位机处理完成后把完成值写成与触发值相同。触发值为 0 视为复位，不处理，完成值回写 0 作为确认。
 地址含义同 <a class="xref" href="MAS.Runtime.IPlc.html">IPlc</a>：S7 为 DB 号 + 字节偏移，MC/Modbus 为起始寄存器</p>
 </div>
 
