@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_PrismaAgent_Views_Windows_MainWindow" data-uid="MAS.PrismaAgent.Views.Windows.MainWindow" class="text-break">
-Class MainWindow  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Views/Windows/MainWindow.xaml.cs/#L33"><i class="bi bi-code-slash"></i></a>
+Class MainWindow  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Views/Windows/MainWindow.xaml.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -103,7 +103,7 @@ Class MainWindow  <a class="header-action link-secondary" title="View source" hr
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;Design&quot;, &quot;CA1001:具有可释放字段的类型应该是可释放的&quot;, Justification = &quot;可释放资源的生命周期与窗口一致，在最终关闭时统一释放&quot;)]
-public class MainWindow : FluentWindow, IAnimatable, ISupportInitialize, IFrameworkInputElement, IInputElement, IQueryAmbient, IAddChild</code></pre>
+public class MainWindow : FluentWindow, IAnimatable, ISupportInitialize, IFrameworkInputElement, IInputElement, IQueryAmbient, IAddChild, ITrayNotifier</code></pre>
   </div>
 
 
@@ -135,6 +135,7 @@ public class MainWindow : FluentWindow, IAnimatable, ISupportInitialize, IFramew
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.iinputelement">IInputElement</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.markup.iqueryambient">IQueryAmbient</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.markup.iaddchild">IAddChild</a></div>
+      <div><a class="xref" href="MAS.PrismaAgent.Notifications.ITrayNotifier.html">ITrayNotifier</a></div>
     </dd>
   </dl>
 
@@ -2229,9 +2230,9 @@ public class MainWindow : FluentWindow, IAnimatable, ISupportInitialize, IFramew
 
   <a id="MAS_PrismaAgent_Views_Windows_MainWindow__ctor_" data-uid="MAS.PrismaAgent.Views.Windows.MainWindow.#ctor*"></a>
 
-  <h3 id="MAS_PrismaAgent_Views_Windows_MainWindow__ctor_MAS_PrismaAgent_ViewModels_Windows_MainViewModel_MAS_SharedLibrary_Controls_LoadAnimation_ILoadingService_MAS_SharedLibrary_Interfaces_IWindowsProviderService_" data-uid="MAS.PrismaAgent.Views.Windows.MainWindow.#ctor(MAS.PrismaAgent.ViewModels.Windows.MainViewModel,MAS.SharedLibrary.Controls.LoadAnimation.ILoadingService,MAS.SharedLibrary.Interfaces.IWindowsProviderService)">
-  MainWindow(MainViewModel, ILoadingService, IWindowsProviderService)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Views/Windows/MainWindow.xaml.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_PrismaAgent_Views_Windows_MainWindow__ctor_MAS_PrismaAgent_ViewModels_Windows_MainViewModel_MAS_SharedLibrary_Controls_LoadAnimation_ILoadingService_MAS_SharedLibrary_Interfaces_IWindowsProviderService_MAS_PrismaAgent_Notifications_IAgentNotificationCenter_" data-uid="MAS.PrismaAgent.Views.Windows.MainWindow.#ctor(MAS.PrismaAgent.ViewModels.Windows.MainViewModel,MAS.SharedLibrary.Controls.LoadAnimation.ILoadingService,MAS.SharedLibrary.Interfaces.IWindowsProviderService,MAS.PrismaAgent.Notifications.IAgentNotificationCenter)">
+  MainWindow(MainViewModel, ILoadingService, IWindowsProviderService, IAgentNotificationCenter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Views/Windows/MainWindow.xaml.cs/#L69"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数， 初始化 <a class="xref" href="MAS.PrismaAgent.Views.Windows.MainWindow.html">MainWindow</a> 新实例</p>
@@ -2239,7 +2240,7 @@ public class MainWindow : FluentWindow, IAnimatable, ISupportInitialize, IFramew
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MainWindow(MainViewModel viewModel, ILoadingService loadingService, IWindowsProviderService windowProvider)</code></pre>
+    <pre><code class="lang-csharp hljs">public MainWindow(MainViewModel viewModel, ILoadingService loadingService, IWindowsProviderService windowProvider, IAgentNotificationCenter notificationCenter)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -2249,6 +2250,8 @@ public class MainWindow : FluentWindow, IAnimatable, ISupportInitialize, IFramew
     <dt><code>loadingService</code> <a class="xref" href="MAS.SharedLibrary.Controls.LoadAnimation.ILoadingService.html">ILoadingService</a></dt>
     <dd></dd>
     <dt><code>windowProvider</code> <a class="xref" href="MAS.SharedLibrary.Interfaces.IWindowsProviderService.html">IWindowsProviderService</a></dt>
+    <dd></dd>
+    <dt><code>notificationCenter</code> <a class="xref" href="MAS.PrismaAgent.Notifications.IAgentNotificationCenter.html">IAgentNotificationCenter</a></dt>
     <dd></dd>
   </dl>
 
@@ -2267,11 +2270,46 @@ public class MainWindow : FluentWindow, IAnimatable, ISupportInitialize, IFramew
 </h2>
 
 
+  <a id="MAS_PrismaAgent_Views_Windows_MainWindow_IsForeground_" data-uid="MAS.PrismaAgent.Views.Windows.MainWindow.IsForeground*"></a>
+
+  <h3 id="MAS_PrismaAgent_Views_Windows_MainWindow_IsForeground" data-uid="MAS.PrismaAgent.Views.Windows.MainWindow.IsForeground">
+  IsForeground
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Views/Windows/MainWindow.xaml.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取应用窗口当前是否处于前台激活状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsForeground { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PrismaAgent_Views_Windows_MainWindow_IsForeground_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>最小化、隐藏到托盘或切到其他程序时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</div>
+
+
+
+
   <a id="MAS_PrismaAgent_Views_Windows_MainWindow_ViewModel_" data-uid="MAS.PrismaAgent.Views.Windows.MainWindow.ViewModel*"></a>
 
   <h3 id="MAS_PrismaAgent_Views_Windows_MainWindow_ViewModel" data-uid="MAS.PrismaAgent.Views.Windows.MainWindow.ViewModel">
   ViewModel
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Views/Windows/MainWindow.xaml.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Views/Windows/MainWindow.xaml.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取视图模型实例</p>
@@ -2299,11 +2337,54 @@ public class MainWindow : FluentWindow, IAnimatable, ISupportInitialize, IFramew
 
 
 
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_PrismaAgent_Views_Windows_MainWindow_ShowNotice_" data-uid="MAS.PrismaAgent.Views.Windows.MainWindow.ShowNotice*"></a>
+
+  <h3 id="MAS_PrismaAgent_Views_Windows_MainWindow_ShowNotice_System_String_System_String_System_String_" data-uid="MAS.PrismaAgent.Views.Windows.MainWindow.ShowNotice(System.String,System.String,System.String)">
+  ShowNotice(string, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Views/Windows/MainWindow.xaml.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>弹出一条托盘气泡通知</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ShowNotice(string conversationId, string title, string message)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>点击气泡后要切换到的会话标识</p>
+</dd>
+    <dt><code>title</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>气泡标题</p>
+</dd>
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>气泡正文</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Views/Windows/MainWindow.xaml.cs/#L33" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Views/Windows/MainWindow.xaml.cs/#L34" class="edit-link">Edit this page</a>
         </div>
 
 

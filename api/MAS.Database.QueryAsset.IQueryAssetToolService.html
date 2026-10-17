@@ -312,6 +312,48 @@ Interface IQueryAssetToolService  <a class="header-action link-secondary" title=
 
 
 
+  <a id="MAS_Database_QueryAsset_IQueryAssetToolService_ReplaceAll_" data-uid="MAS.Database.QueryAsset.IQueryAssetToolService.ReplaceAll*"></a>
+
+  <h3 id="MAS_Database_QueryAsset_IQueryAssetToolService_ReplaceAll_System_Collections_Generic_IReadOnlyList_MAS_Database_QueryAsset_PresetFile__" data-uid="MAS.Database.QueryAsset.IQueryAssetToolService.ReplaceAll(System.Collections.Generic.IReadOnlyList{MAS.Database.QueryAsset.PresetFile})">
+  ReplaceAll(IReadOnlyList&lt;PresetFile&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Database/QueryAsset/Interfaces/IQueryAssetToolService.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用一份完整的分类集合整体替换当前预设查询，并按差异报告变化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">QueryAssetChangeResult ReplaceAll(IReadOnlyList&lt;PresetFile&gt; files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Database.QueryAsset.PresetFile.html">PresetFile</a>&gt;</dt>
+    <dd><p>分类集合</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.QueryAsset.QueryAssetChangeResult.html">QueryAssetChangeResult</a></dt>
+    <dd><p>替换结果；工程未打开时失败</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Database_QueryAsset_IQueryAssetToolService_ReplaceAll_System_Collections_Generic_IReadOnlyList_MAS_Database_QueryAsset_PresetFile___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>供撤销 Agent 改动时整份恢复使用；界面经 <a class="xref" href="MAS.Database.QueryAsset.IQueryAssetToolService.html#MAS_Database_QueryAsset_IQueryAssetToolService_AssetsChanged">AssetsChanged</a> 同步</p>
+</div>
+
+
+
+
   <a id="MAS_Database_QueryAsset_IQueryAssetToolService_UpsertCategoryAsync_" data-uid="MAS.Database.QueryAsset.IQueryAssetToolService.UpsertCategoryAsync*"></a>
 
   <h3 id="MAS_Database_QueryAsset_IQueryAssetToolService_UpsertCategoryAsync_System_String_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="MAS.Database.QueryAsset.IQueryAssetToolService.UpsertCategoryAsync(System.String,System.String,System.Boolean,System.Threading.CancellationToken)">

@@ -206,6 +206,39 @@ Interface IChartAssetService  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_Database_ChartAsset_IChartAssetService_GetAssetRootDirectory_" data-uid="MAS.Database.ChartAsset.IChartAssetService.GetAssetRootDirectory*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_GetAssetRootDirectory" data-uid="MAS.Database.ChartAsset.IChartAssetService.GetAssetRootDirectory">
+  GetAssetRootDirectory()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取资产根目录的绝对路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? GetAssetRootDirectory()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>资产根目录；工程未打开时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_Database_ChartAsset_IChartAssetService_HardDelete_" data-uid="MAS.Database.ChartAsset.IChartAssetService.HardDelete*"></a>
 
   <h3 id="MAS_Database_ChartAsset_IChartAssetService_HardDelete_System_String_" data-uid="MAS.Database.ChartAsset.IChartAssetService.HardDelete(System.String)">
@@ -280,6 +313,48 @@ Interface IChartAssetService  <a class="header-action link-secondary" title="Vie
 
 
 
+
+
+
+
+  <a id="MAS_Database_ChartAsset_IChartAssetService_ReplaceEntries_" data-uid="MAS.Database.ChartAsset.IChartAssetService.ReplaceEntries*"></a>
+
+  <h3 id="MAS_Database_ChartAsset_IChartAssetService_ReplaceEntries_System_Collections_Generic_IReadOnlyList_MAS_Database_ChartAsset_ChartAssetEntry__" data-uid="MAS.Database.ChartAsset.IChartAssetService.ReplaceEntries(System.Collections.Generic.IReadOnlyList{MAS.Database.ChartAsset.ChartAssetEntry})">
+  ReplaceEntries(IReadOnlyList&lt;ChartAssetEntry&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Database/ChartAsset/Interfaces/IChartAssetService.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用一份完整的资产条目集合整体替换当前条目，并按差异报告变化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ChartAssetChangeResult ReplaceEntries(IReadOnlyList&lt;ChartAssetEntry&gt; entries)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entries</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.Database.ChartAsset.ChartAssetEntry.html">ChartAssetEntry</a>&gt;</dt>
+    <dd><p>资产条目集合</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Database.ChartAsset.ChartAssetChangeResult.html">ChartAssetChangeResult</a></dt>
+    <dd><p>替换结果；工程未打开时失败</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Database_ChartAsset_IChartAssetService_ReplaceEntries_System_Collections_Generic_IReadOnlyList_MAS_Database_ChartAsset_ChartAssetEntry___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>供撤销 Agent 改动时整份恢复使用，资产目录里的文件由调用方另行恢复；界面经 <a class="xref" href="MAS.Database.ChartAsset.IChartAssetService.html#MAS_Database_ChartAsset_IChartAssetService_AssetsChanged">AssetsChanged</a> 同步</p>
+</div>
 
 
 

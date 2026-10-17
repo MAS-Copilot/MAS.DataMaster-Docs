@@ -126,6 +126,10 @@
 <td><code>ArtifactParameters</code></td>
 <td>允许用工件引用传值的参数名，见<a href="Artifacts.html">会话工件与参数引用</a></td>
 </tr>
+<tr>
+<td><code>MutatesModules</code></td>
+<td>会改动的工作区模块，见<a href="WorkspaceCheckpoints.html">本轮改动与撤销</a></td>
+</tr>
 </tbody>
 </table>
 <p>调用请求包含真实工具名、JSON 参数和可选 provider；执行结果统一为 <code>ToolResult</code>：</p>
@@ -331,6 +335,92 @@
 <li><code>High</code>：执行前必须获得用户审批。</li>
 </ul>
 <p>审批只代表用户允许尝试执行，不代表参数合法。路径范围、SQL 限制、资产状态、设备连接和业务权限仍由具体工具验证。</p>
+<h2 id="角色权限">角色权限</h2>
+<p>风险等级决定是否弹审批卡，角色权限决定当前登录用户能否执行。权限先判定，通过后照常走审批。</p>
+<p>权限出厂固定，登记在宿主的 <code>AgentToolPermissionTable</code>。每个工具归入一个档位：角色达到「放行」直接执行；介于「审查下限」与「放行」之间交给审查模型；低于审查下限拒绝。开发者全部放行，未登录全部拒绝。</p>
+<table>
+<thead>
+<tr>
+<th>档位</th>
+<th>放行</th>
+<th>审查下限</th>
+<th>典型工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Knowledge</td>
+<td>游客</td>
+<td>—</td>
+<td>技能、工件、记忆检索、各模块查询</td>
+</tr>
+<tr>
+<td>SensitiveRead</td>
+<td>操作员</td>
+<td>游客</td>
+<td><code>database.query</code> 等读库</td>
+</tr>
+<tr>
+<td>LightOperation</td>
+<td>操作员</td>
+<td>—</td>
+<td>切换画面、启停本机 Web 服务、写记忆</td>
+</tr>
+<tr>
+<td>ProjectEdit</td>
+<td>工程师</td>
+<td>操作员</td>
+<td>改组态、资产、轨迹、视觉流程、采集工程</td>
+</tr>
+<tr>
+<td>FileRead</td>
+<td>工程师</td>
+<td>操作员</td>
+<td><code>cli.read_file/grep/diff</code></td>
+</tr>
+<tr>
+<td>Privileged</td>
+<td>管理员</td>
+<td>工程师</td>
+<td><code>script.csharp</code>、改脚本、写数据库、<code>mcp.*</code></td>
+</tr>
+<tr>
+<td>GeneralScript</td>
+<td>管理员</td>
+<td>操作员</td>
+<td><code>cli.run</code>、文件写入、<code>script.python</code></td>
+</tr>
+<tr>
+<td>RedLine</td>
+<td>管理员</td>
+<td>—</td>
+<td>改库表结构、向局域网开放服务</td>
+</tr>
+</tbody>
+</table>
+<p>流程：</p>
+<ol>
+<li>执行管线在参数校验后经 IPC <code>tool.authorize</code> 询问宿主，按当下登录的用户判定。</li>
+<li>需审查时，单独请求一次审查模型：复用当前模型通道，不带工具和对话历史，守则 <code>ToolReviewPrompt</code> 编译在程序里。用户原话只作意图说明，不能作为放行依据；模型不可用、超时、格式不符一律拒绝；同一轮相同调用只审一次。</li>
+<li>宿主在 <code>tool.invoke</code>、<code>skill.execute</code> 入口再复核一次，审查区间视为已放行。</li>
+<li>拒绝时返回失败的工具结果并写明所需角色，卡片结论为「权限不足（需某角色）」或「审查未通过」。宿主无响应一律拒绝。</li>
+</ol>
+<p>只拦截、不改工具列表：工具目录和提示词不随登录状态变化，请求前缀保持稳定，用户切换账号后重试即可。</p>
+<p>审计写入操作日志（<code>ActionType</code> 为 <code>AgentTool</code>），描述开头标明来源：</p>
+<ul>
+<li><code>角色校验放行/拒绝</code>：按权限表判定，Knowledge 档的放行不记；</li>
+<li><code>执行前复核拒绝</code>：被宿主执行入口拦下；</li>
+<li><code>审查模型放行/拒绝</code>：附审查理由。</li>
+</ul>
+<p>这套机制防的是现场人员经 Agent 越权操作；同一 Windows 用户下的其他程序可直接调用 IPC，不在防护范围内。</p>
+<h3 id="新增工具时">新增工具时</h3>
+<ol>
+<li>在 <code>AgentToolPermissionTable</code> 对应档位的数组里登记工具名，漏登记 <code>AgentToolPermissionTableTest</code> 会失败。</li>
+<li>工具定义放在 provider 的静态字段 <code>_tools</code> 或无参静态工厂方法里，测试才读得到。</li>
+<li>新增档位或调整阈值：改 <code>GetRequiredRole</code>、<code>GetReviewFloor</code>，并同步上表。</li>
+<li>某角色经审查可做的新事情或新红线：改 <code>ToolReviewPrompt</code>。</li>
+<li>执行管线、IPC 与前端都不用改。</li>
+</ol>
 
 </article>
 

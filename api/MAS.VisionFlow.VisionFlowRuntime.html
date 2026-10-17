@@ -432,7 +432,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_CreateDocument" data-uid="MAS.VisionFlow.VisionFlowRuntime.CreateDocument">
   CreateDocument()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L170"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>把当前状态导出为文档</p>
@@ -465,7 +465,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_DisposeAsync" data-uid="MAS.VisionFlow.VisionFlowRuntime.DisposeAsync">
   DisposeAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L194"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L206"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources asynchronously.</p>
@@ -576,7 +576,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_GetNodeResult_System_String_" data-uid="MAS.VisionFlow.VisionFlowRuntime.GetNodeResult(System.String)">
   GetNodeResult(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L187"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点最近一次的执行结果</p>
@@ -721,6 +721,42 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
 
 
+
+
+
+
+  <a id="MAS_VisionFlow_VisionFlowRuntime_RestoreDocument_" data-uid="MAS.VisionFlow.VisionFlowRuntime.RestoreDocument*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionFlowRuntime_RestoreDocument_MAS_VisionFlow_VisionFlowDocument_" data-uid="MAS.VisionFlow.VisionFlowRuntime.RestoreDocument(MAS.VisionFlow.VisionFlowDocument)">
+  RestoreDocument(VisionFlowDocument)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.cs/#L161"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用文档整体替换当前图、管道与资源，并报告文档已变化，工程随之标记为未保存</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RestoreDocument(VisionFlowDocument document)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>document</code> <a class="xref" href="MAS.VisionFlow.VisionFlowDocument.html">VisionFlowDocument</a></dt>
+    <dd><p>文档</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_VisionFlowRuntime_RestoreDocument_MAS_VisionFlow_VisionFlowDocument__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>供工作区检查点撤销使用。图整体重建时画布的撤销历史一并清空，避免画布撤销与检查点撤销互相打架</p>
+</div>
 
 
 

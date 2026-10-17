@@ -264,6 +264,42 @@ Class ToolDefinition  <a class="header-action link-secondary" title="View source
 
 
 
+  <a id="MAS_PrismaAgent_Agent_ToolDefinition_MutatesModules_" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.MutatesModules*"></a>
+
+  <h3 id="MAS_PrismaAgent_Agent_ToolDefinition_MutatesModules" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.MutatesModules">
+  MutatesModules
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取该工具会改动的工作区模块标识；为空表示不改动工程状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; MutatesModules { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_PrismaAgent_Agent_ToolDefinition_MutatesModules_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>执行管线在调用前据此为模块拍快照，本轮改动卡片与撤销都依赖它：会改工程状态的工具必须声明，
+不声明的改动不会被记录。用列表是为了支持一个工具同时改动多个模块</p>
+</div>
+
+
+
+
   <a id="MAS_PrismaAgent_Agent_ToolDefinition_Name_" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.Name*"></a>
 
   <h3 id="MAS_PrismaAgent_Agent_ToolDefinition_Name" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.Name">
@@ -332,7 +368,7 @@ Class ToolDefinition  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_PrismaAgent_Agent_ToolDefinition_ProviderId" data-uid="MAS.PrismaAgent.Agent.ToolDefinition.ProviderId">
   ProviderId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Models/ToolDefinition.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取提供该工具的来源标识</p>

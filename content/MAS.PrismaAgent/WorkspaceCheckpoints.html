@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>本轮改动与撤销 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="本轮改动与撤销 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.PrismaAgent/WorkspaceCheckpoints.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="本轮改动与撤销">本轮改动与撤销</h1>
+
+<p>每轮结束后，助手回复下方显示一张&quot;本轮改动&quot;卡片，列出本轮对工程做了哪些改动（新增、删除、修改，各自的路径和前后值），并支持撤销本轮、撤销到某轮之前和重做。宿主重启后仍能查看明细，也仍能撤销。</p>
+<h2 id="核心原则">核心原则</h2>
+<ul>
+<li><strong>基于状态，不基于操作</strong>：只比较本轮开始前和结束后的两份状态，不关心中间调了哪些工具、怎么改的。</li>
+<li><strong>模块只提供两件事</strong>：导出状态（JSON）、从状态恢复。存储、比对、展示、撤销全部是通用代码。</li>
+<li><strong>工程明文不出加密边界</strong>：快照对象一律加密写盘；会话日志和发给模型的内容只包含路径，不包含值。</li>
+<li><strong>撤销靠恢复整份快照</strong>：变更列表只用于展示和日志，换展示格式或比对算法都不影响快照和恢复。</li>
+</ul>
+<h2 id="架构">架构</h2>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>组成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MAS.SharedLibrary/Workspace</code></td>
+<td>参与者接口、两个基类、结构比对、对象库</td>
+</tr>
+<tr>
+<td><code>MAS.DataMaster/NamedPipeIpc/Workspace</code></td>
+<td>检查点服务与 <code>checkpoint.*</code> IPC</td>
+</tr>
+<tr>
+<td><code>MAS.PrismaAgent/Workspace</code></td>
+<td>IPC 契约、客户端、快照范围解析、撤销通知</td>
+</tr>
+<tr>
+<td><code>HTML/js/workspace-changes.js</code></td>
+<td>改动卡片</td>
+</tr>
+</tbody>
+</table>
+<p>存储与比对放在宿主：明文只存在于宿主进程，加密服务也在宿主，Agent 只拿到结构和打码后的值。宿主不可用时 Agent 侧所有功能静默关闭，对话不受影响。</p>
+<h3 id="拍快照的时机">拍快照的时机</h3>
+<ul>
+<li>执行管线在审批通过之后、工具真正执行之前调用 <code>checkpoint.ensure</code>，每个模块每轮只拍一次。</li>
+<li>声明了 <code>MutatesModules</code> 的工具按模块拍；<code>cli.write_file</code>、<code>cli.edit_file</code>、<code>cli.copy_file</code> 按目标路径拍，路径到模块的映射在宿主里做。</li>
+<li><code>cli.run</code>、<code>script.csharp</code>、<code>script.python</code> 给所有目录类模块各拍一次，并在卡片上提示&quot;脚本对内存模型的改动可能没有被记录&quot;。</li>
+<li>被拒绝或校验失败的调用不触发；拍快照失败不阻断工具，卡片显示&quot;快照失败&quot;，该模块本轮不能撤销。</li>
+<li>声明了 <code>device</code> 的工具每次调用都计数，提示&quot;另有 N 次设备写入，不可撤销&quot;。</li>
+<li>脚本、设备写入、工程外文件这类快照覆盖不到的提醒收在卡片标题栏的提示图标里，悬停查看。</li>
+</ul>
+<h3 id="存储">存储</h3>
+<p>会话目录在宿主数据目录下：<code>&lt;BasePath&gt;/PrismaAgent/checkpoints/&lt;sessionId&gt;/</code>，路径由宿主按会话标识自行计算，不从 IPC 接收。</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>objects/&lt;sha256&gt;.bin</code></td>
+<td>gzip 后加密的快照对象</td>
+</tr>
+<tr>
+<td><code>turns/&lt;turnId&gt;.json</code></td>
+<td>每轮清单，只有哈希和元数据</td>
+</tr>
+<tr>
+<td><code>index.json</code></td>
+<td>轮次顺序、撤销与重做记录</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>引用是规范化 JSON（键排序、去空白）明文的 SHA-256；内容相同只存一份。</li>
+<li>目录参与者的文件内容、视觉流程的节点资产存成独立对象，状态 JSON 里只放 <code>sha256:…</code> 引用。</li>
+<li>保留上限默认 50 轮或 500 MB，超出时先清最早轮次的对象，被清的轮次只留结构，不能再撤销。删除会话时整个目录一并删除。</li>
+</ul>
+<h3 id="撤销与重做">撤销与重做</h3>
+<ul>
+<li>撤销从指定轮开始的全部未撤销轮次：每个模块恢复到最早一轮写入前的状态。</li>
+<li>当前状态与最近一轮结束时不一致（手动或其他会话改过）时提示冲突，列出不一致的路径，用户可以强制执行。</li>
+<li>当前打开的工程与快照所属工程不同时禁止执行。</li>
+<li>模块的写前守卫不通过时返回原因；多个模块中有一个恢复失败时，已恢复的模块回滚。</li>
+<li>撤销本身也是一条记录，只能重做最近一次尚未重做的撤销。</li>
+<li>内存模型恢复后标记为未保存，不自动存盘；目录类模块直接写盘。</li>
+<li>撤销、重做成功后往会话历史追加 <code>[WORKSPACE_REVERTED]</code> / <code>[WORKSPACE_REDONE]</code> 系统消息（只有模块、处数和路径），并随推理上下文检查点保存，重启后下一轮模型仍能看到。</li>
+</ul>
+<h2 id="ipc-协议">IPC 协议</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>checkpoint.begin</code></td>
+<td>开始一轮</td>
+</tr>
+<tr>
+<td><code>checkpoint.ensure</code></td>
+<td>写入前拍快照</td>
+</tr>
+<tr>
+<td><code>checkpoint.end</code></td>
+<td>结束一轮，返回只含结构的摘要</td>
+</tr>
+<tr>
+<td><code>checkpoint.changes</code></td>
+<td>取某轮带值的完整变更</td>
+</tr>
+<tr>
+<td><code>checkpoint.revert</code></td>
+<td>撤销到某轮之前</td>
+</tr>
+<tr>
+<td><code>checkpoint.redo</code></td>
+<td>重做一次撤销</td>
+</tr>
+<tr>
+<td><code>checkpoint.delete</code></td>
+<td>删除会话的全部检查点</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>checkpoint.ensure</code>：<code>{ sessionId, turnId, modules?, paths?, allDirectories }</code>。</li>
+<li><code>checkpoint.end</code>：摘要含各模块增删改计数、每模块最多 50 条可读路径、快照失败、截断、超限文件、脚本标记、工程外文件与设备写入次数。</li>
+<li><code>checkpoint.changes</code>：快照已清理时返回 <code>valuesUnavailable=true</code>，前端保留结构、值显示&quot;值不可用&quot;、不能再撤销。</li>
+<li>宿主没连上时回推 <code>isHostUnavailable=true</code>：只说明这次没取到，卡片仍可撤销，并提供重试。</li>
+<li><code>checkpoint.revert</code> / <code>checkpoint.redo</code> 返回 <code>ok</code>、<code>conflict</code>、<code>projectMismatch</code>、<code>guardFailed</code>、<code>unavailable</code> 之一；会话运行中由 Agent 侧直接返回 <code>running</code>。</li>
+</ul>
+<h2 id="前端">前端</h2>
+<p>会话事件见 <a href="FrontendEvents.html">WebView 事件与审批</a>：<code>workspace.changes</code> 在 <code>turn.ended</code> 之前写入，被取消或失败的轮次同样有卡片；<code>workspace.reverted</code> / <code>workspace.redone</code> 让卡片切换到已撤销或恢复正常。</p>
+<ul>
+<li>卡片渲染时只有结构；展开或首次进入可视区时发 <code>loadWorkspaceChanges</code>，宿主回推 <code>fillWorkspaceChanges</code>，值不写进日志。</li>
+<li>最新一轮显示&quot;撤销本轮&quot;，更早的轮次显示&quot;撤销到此轮之前&quot;，确认在卡片内完成并写明会一起回退的轮次数。</li>
+<li>撤销、重做发 <code>revertWorkspace</code> / <code>redoWorkspace</code>，结果经 <code>applyWorkspaceActionResult</code> 回推；冲突时卡片列出路径并提供&quot;仍然撤销&quot;。</li>
+<li>会话运行中所有撤销、重做按钮禁用。</li>
+</ul>
+<h2 id="已接入的模块">已接入的模块</h2>
+<table>
+<thead>
+<tr>
+<th>模块 Id</th>
+<th>参与者</th>
+<th>位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dynamicViews</code></td>
+<td>内存模型</td>
+<td>MAS.DynamicViews</td>
+</tr>
+<tr>
+<td><code>dynamicViewWeb</code></td>
+<td>目录</td>
+<td>MAS.DataMaster</td>
+</tr>
+<tr>
+<td><code>visionFlow</code></td>
+<td>自定义</td>
+<td>MAS.VisionFlow</td>
+</tr>
+<tr>
+<td><code>dxfTrajectory</code></td>
+<td>内存模型</td>
+<td>MAS.PathPlanning</td>
+</tr>
+<tr>
+<td><code>dataAcquisition</code></td>
+<td>目录</td>
+<td>MAS.DataMaster</td>
+</tr>
+<tr>
+<td><code>chartAsset</code></td>
+<td>内存模型</td>
+<td>MAS.Database</td>
+</tr>
+<tr>
+<td><code>chartAssetFiles</code></td>
+<td>目录</td>
+<td>MAS.Database</td>
+</tr>
+<tr>
+<td><code>queryAsset</code></td>
+<td>内存模型</td>
+<td>MAS.Database</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>视觉流程的节点资产是二进制，需要存成独立对象，所以直接实现参与者接口；节点脚本随节点进快照（<code>script.edit</code> 不进画布撤销历史）。恢复后画布撤销历史随图重建清空。</li>
+<li>DXF 轨迹只取当前配方：工程级脚本与标定、轨迹（逐点内联，卡片定位到点位）、生成记录的过期标记。</li>
+<li>图表资产的条目和资产目录分成两个模块，删除与封面同时声明两者。</li>
+<li>数据采集工程不属于 DataMaster 工程文件，工程标识取工程目录路径的稳定哈希。</li>
+</ul>
+<h2 id="扩展指南">扩展指南</h2>
+<p><strong>新增一个模块</strong></p>
+<ol>
+<li>继承 <code>JsonModelParticipant&lt;T&gt;</code>（内存模型）或 <code>DirectoryParticipant</code>（磁盘目录），实现取模型和提交模型（或提供根目录）；在 <code>CreateDiffOptions</code> 里配置键字段、显示字段和忽略路径。需要存二进制内容时直接实现 <code>IWorkspaceParticipant</code>。</li>
+<li>恢复必须复用模块现有的写前守卫，守卫不通过时返回失败原因，不能部分恢复；恢复后让界面刷新并把工程标记为未保存。</li>
+<li>在 DI 中注册为 <code>IWorkspaceParticipant</code>。</li>
+<li>给这个模块的写入类工具声明 <code>MutatesModules</code>。</li>
+</ol>
+<p><strong>新增一个工具</strong>：会改工程状态就声明 <code>MutatesModules</code>，不声明的改动不会被记录；会写设备就声明 <code>device</code>。</p>
+<p><strong>禁止事项</strong></p>
+<ul>
+<li>不要按属性手写比对代码，统一走 <code>JsonStructuralDiff</code>。</li>
+<li>不要为某个模块写专门的卡片界面。</li>
+<li>不要把变更的值写进会话日志或发给模型。</li>
+<li>工具里不要直接调用参与者，拍快照只能由管线钩子触发。</li>
+<li>快照只能通过参与者的 <code>CaptureAsync</code> 获取，不要另写一套拷贝逻辑。</li>
+</ul>
+<p><strong>比对选项</strong></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KeyFields</code></td>
+<td>数组元素对齐键，按序选第一个唯一且非空的</td>
+</tr>
+<tr>
+<td><code>LabelFields</code></td>
+<td>可读路径中显示的字段</td>
+</tr>
+<tr>
+<td><code>IgnoredPaths</code></td>
+<td>噪音路径</td>
+</tr>
+<tr>
+<td><code>SensitivePaths</code></td>
+<td>打码路径</td>
+</tr>
+<tr>
+<td><code>TextThreshold</code></td>
+<td>按行比对的长度阈值</td>
+</tr>
+<tr>
+<td><code>DisplaySkipSegments</code></td>
+<td>可读路径省略的外层段数</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>路径规则以 <code>/</code> 分隔、不区分大小写，<code>*</code> 匹配一段，<code>**</code> 匹配任意多段。</li>
+<li>标了 <code>[Sensitive]</code> 的属性与名称形如口令、密钥的字段自动打码，值显示为 <code>***</code>；快照本身仍保存完整值，否则无法恢复。</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.PrismaAgent/WorkspaceCheckpoints.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

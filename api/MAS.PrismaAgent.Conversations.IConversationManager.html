@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_PrismaAgent_Conversations_IConversationManager" data-uid="MAS.PrismaAgent.Conversations.IConversationManager" class="text-break">
-Interface IConversationManager  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L18"><i class="bi bi-code-slash"></i></a>
+Interface IConversationManager  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -135,7 +135,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_ActiveConversationId" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.ActiveConversationId">
   ActiveConversationId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前激活的会话标识</p>
@@ -171,7 +171,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_ActivateConversation_System_String_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.ActivateConversation(System.String)">
   ActivateConversation(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>激活一个已有会话</p>
@@ -207,7 +207,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_CancelTurn_System_String_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.CancelTurn(System.String)">
   CancelTurn(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L101"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>取消指定会话的当前轮次</p>
@@ -215,7 +215,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void CancelTurn(string conversationId)</code></pre>
+    <pre><code class="lang-csharp hljs">IReadOnlyList&lt;PendingUserInput&gt; CancelTurn(string conversationId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -225,6 +225,12 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 </dd>
   </dl>
 
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.PrismaAgent.Agent.PendingUserInput.html">PendingUserInput</a>&gt;</dt>
+    <dd><p>尚未被注入的插话，按入队顺序排列；调用方应把它们交还用户（回填输入框）</p>
+</dd>
+  </dl>
 
 
 
@@ -233,7 +239,8 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
 
   <h4 class="section" id="MAS_PrismaAgent_Conversations_IConversationManager_CancelTurn_System_String__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>只影响该会话；其他会话正在跑的轮次不受牵连</p>
+  <div class="markdown level1 remarks"><p>只影响该会话；其他会话正在跑的轮次不受牵连。
+停止表示用户要收回控制权，未消费的插话既不注入本轮，也不自动作为下一轮发出</p>
 </div>
 
 
@@ -243,7 +250,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_CreateConversationAsync_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.CreateConversationAsync(System.Threading.CancellationToken)">
   CreateConversationAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步新建一个会话并将其激活</p>
@@ -285,7 +292,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_DeleteConversationAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.DeleteConversationAsync(System.String,System.Threading.CancellationToken)">
   DeleteConversationAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L162"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步删除一个会话及其全部历史</p>
@@ -331,7 +338,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_EditLastTurnAsync_System_String_MAS_PrismaAgent_Conversations_UserTurnInput_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.EditLastTurnAsync(System.String,MAS.PrismaAgent.Conversations.UserTurnInput)">
   EditLastTurnAsync(string, UserTurnInput)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步回退指定会话的最后一轮并以新内容重发</p>
@@ -369,11 +376,98 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
 
 
+  <a id="MAS_PrismaAgent_Conversations_IConversationManager_GetQueuedInputs_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.GetQueuedInputs*"></a>
+
+  <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_GetQueuedInputs_System_String_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.GetQueuedInputs(System.String)">
+  GetQueuedInputs(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取会话当前的待处理插话</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IReadOnlyList&lt;PendingUserInput&gt; GetQueuedInputs(string conversationId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.PrismaAgent.Agent.PendingUserInput.html">PendingUserInput</a>&gt;</dt>
+    <dd><p>按入队顺序排列的插话快照</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaAgent_Conversations_IConversationManager_GetWorkspaceChangesAsync_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.GetWorkspaceChangesAsync*"></a>
+
+  <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_GetWorkspaceChangesAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.GetWorkspaceChangesAsync(System.String,System.String,System.Threading.CancellationToken)">
+  GetWorkspaceChangesAsync(string, string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步取某轮对工程改动的完整变更（含值，敏感值已打码）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;CheckpointChangesResponse?&gt; GetWorkspaceChangesAsync(string conversationId, string turnId, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>turnId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>轮次标识</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.PrismaAgent.Workspace.CheckpointChangesResponse.html">CheckpointChangesResponse</a>&gt;</dt>
+    <dd><p>完整变更；宿主不可用时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaAgent_Conversations_IConversationManager_GetWorkspaceChangesAsync_System_String_System_String_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>值只发给前端，不写进会话日志，也不发给模型</p>
+</div>
+
+
+
+
   <a id="MAS_PrismaAgent_Conversations_IConversationManager_IsRunning_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.IsRunning*"></a>
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_IsRunning_System_String_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.IsRunning(System.String)">
   IsRunning(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断某个会话是否正在执行轮次</p>
@@ -411,7 +505,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_ListConversationsAsync_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.ListConversationsAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
   ListConversationsAsync(int, int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步按最近活动时间倒序读取会话列表</p>
@@ -455,11 +549,59 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
 
 
+  <a id="MAS_PrismaAgent_Conversations_IConversationManager_RedoWorkspaceAsync_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.RedoWorkspaceAsync*"></a>
+
+  <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_RedoWorkspaceAsync_System_String_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.RedoWorkspaceAsync(System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+  RedoWorkspaceAsync(string, string, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步重做一次撤销</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;CheckpointActionResponse&gt; RedoWorkspaceAsync(string conversationId, string revertId, bool isForced, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>revertId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>撤销记录标识</p>
+</dd>
+    <dt><code>isForced</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否忽略冲突</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.PrismaAgent.Workspace.CheckpointActionResponse.html">CheckpointActionResponse</a>&gt;</dt>
+    <dd><p>重做结果；会话正在运行时拒绝执行</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_PrismaAgent_Conversations_IConversationManager_RenameConversationAsync_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.RenameConversationAsync*"></a>
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_RenameConversationAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.RenameConversationAsync(System.String,System.String,System.Threading.CancellationToken)">
   RenameConversationAsync(string, string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L172"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步把一个会话改名为用户指定的标题</p>
@@ -503,11 +645,62 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
 
 
+  <a id="MAS_PrismaAgent_Conversations_IConversationManager_RevertWorkspaceAsync_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.RevertWorkspaceAsync*"></a>
+
+  <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_RevertWorkspaceAsync_System_String_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.RevertWorkspaceAsync(System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+  RevertWorkspaceAsync(string, string, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步撤销从指定轮开始的全部未撤销轮次对工程的改动</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;CheckpointActionResponse&gt; RevertWorkspaceAsync(string conversationId, string turnId, bool isForced, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>turnId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>撤销起点轮次</p>
+</dd>
+    <dt><code>isForced</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否忽略冲突</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.PrismaAgent.Workspace.CheckpointActionResponse.html">CheckpointActionResponse</a>&gt;</dt>
+    <dd><p>撤销结果；会话正在运行时拒绝执行</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaAgent_Conversations_IConversationManager_RevertWorkspaceAsync_System_String_System_String_System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>成功后写入 <code>workspace.reverted</code> 事件，并往会话历史追加通知，下一轮模型可见</p>
+</div>
+
+
+
+
   <a id="MAS_PrismaAgent_Conversations_IConversationManager_ShutdownAsync_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.ShutdownAsync*"></a>
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_ShutdownAsync_System_TimeSpan_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.ShutdownAsync(System.TimeSpan)">
   ShutdownAsync(TimeSpan)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L150"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步取消全部正在执行的轮次并等待它们收尾</p>
@@ -546,7 +739,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_StartTurnAsync_System_String_MAS_PrismaAgent_Conversations_UserTurnInput_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.StartTurnAsync(System.String,MAS.PrismaAgent.Conversations.UserTurnInput)">
   StartTurnAsync(string, UserTurnInput)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L82"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步在指定会话上启动一轮对话</p>
@@ -587,6 +780,139 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
 
 
+  <a id="MAS_PrismaAgent_Conversations_IConversationManager_TryQueueInput_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.TryQueueInput*"></a>
+
+  <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_TryQueueInput_System_String_MAS_PrismaAgent_Conversations_UserTurnInput_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.TryQueueInput(System.String,MAS.PrismaAgent.Conversations.UserTurnInput)">
+  TryQueueInput(string, UserTurnInput)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试把一条输入作为插话加入正在运行的轮次</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryQueueInput(string conversationId, UserTurnInput input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>input</code> <a class="xref" href="MAS.PrismaAgent.Conversations.UserTurnInput.html">UserTurnInput</a></dt>
+    <dd><p>用户输入；插话只支持纯文本</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否已入队；会话没有在运行（或正在停止）、输入为空或带附件时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaAgent_Conversations_IConversationManager_TryQueueInput_System_String_MAS_PrismaAgent_Conversations_UserTurnInput__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>插话在当前步骤的工具结果全部追加之后、下一次模型请求之前注入；模型给出最终回答时若队列不空，本轮继续而不收尾。
+收尾时仍未被注入的插话合并为下一轮自动发送</p>
+</div>
+
+
+
+
+  <a id="MAS_PrismaAgent_Conversations_IConversationManager_TryUpdateQueuedInput_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.TryUpdateQueuedInput*"></a>
+
+  <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_TryUpdateQueuedInput_System_String_System_String_System_String_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.TryUpdateQueuedInput(System.String,System.String,System.String)">
+  TryUpdateQueuedInput(string, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试修改一条尚未被注入的插话</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryUpdateQueuedInput(string conversationId, string inputId, string text)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>inputId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>插话标识</p>
+</dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>新文本</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否已修改；插话已被注入、已撤回或新文本为空时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaAgent_Conversations_IConversationManager_WithdrawQueuedInput_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.WithdrawQueuedInput*"></a>
+
+  <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_WithdrawQueuedInput_System_String_System_String_" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.WithdrawQueuedInput(System.String,System.String)">
+  WithdrawQueuedInput(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>撤回一条尚未被注入的插话</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PendingUserInput? WithdrawQueuedInput(string conversationId, string inputId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversationId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>会话标识</p>
+</dd>
+    <dt><code>inputId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>插话标识</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.PrismaAgent.Agent.PendingUserInput.html">PendingUserInput</a></dt>
+    <dd><p>被撤回的插话；已被注入或不存在时为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="events">Events
 </h2>
 
@@ -594,7 +920,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_ConversationListChanged" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.ConversationListChanged">
   ConversationListChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当会话列表的内容发生变化时触发</p>
@@ -623,9 +949,43 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 
 
 
+  <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_PendingInputsChanged" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.PendingInputsChanged">
+  PendingInputsChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当某个会话的待处理插话发生变化时触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PendingInputsChangedEventArgs&gt;? PendingInputsChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.PrismaAgent.Agent.PendingInputsChangedEventArgs.html">PendingInputsChangedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h4 class="section" id="MAS_PrismaAgent_Conversations_IConversationManager_PendingInputsChanged_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>入队、修改、撤回、被 Agent 注入、随轮次关闭都会触发；可能在任意线程上触发</p>
+</div>
+
+
+
+
+
   <h3 id="MAS_PrismaAgent_Conversations_IConversationManager_TurnStateChanged" data-uid="MAS.PrismaAgent.Conversations.IConversationManager.TurnStateChanged">
   TurnStateChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>当某个会话的运行状态发生变化时触发</p>
@@ -657,7 +1017,7 @@ Interface IConversationManager  <a class="header-action link-secondary" title="V
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L18" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Interfaces/IConversationManager.cs/#L21" class="edit-link">Edit this page</a>
         </div>
 
 

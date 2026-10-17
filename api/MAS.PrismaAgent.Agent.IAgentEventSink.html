@@ -170,7 +170,7 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
 
   <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_CompleteAsync_System_String_System_Int32_System_Int64_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.CompleteAsync(System.String,System.Int32,System.Int64)">
   CompleteAsync(string, int, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L82"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发布本轮收尾事件</p>
@@ -444,6 +444,50 @@ Interface IAgentEventSink  <a class="header-action link-secondary" title="View s
 
 
 
+
+
+
+
+  <a id="MAS_PrismaAgent_Agent_IAgentEventSink_UserMessageInjectedAsync_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.UserMessageInjectedAsync*"></a>
+
+  <h3 id="MAS_PrismaAgent_Agent_IAgentEventSink_UserMessageInjectedAsync_System_String_MAS_PrismaAgent_Agent_PendingUserInput_" data-uid="MAS.PrismaAgent.Agent.IAgentEventSink.UserMessageInjectedAsync(System.String,MAS.PrismaAgent.Agent.PendingUserInput)">
+  UserMessageInjectedAsync(string, PendingUserInput)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Agent/Interfaces/IAgentEventSink.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发布一条在轮次中途注入的用户插话</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task UserMessageInjectedAsync(string streamId, PendingUserInput input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>streamId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前对话流标识</p>
+</dd>
+    <dt><code>input</code> <a class="xref" href="MAS.PrismaAgent.Agent.PendingUserInput.html">PendingUserInput</a></dt>
+    <dd><p>被注入的插话</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_PrismaAgent_Agent_IAgentEventSink_UserMessageInjectedAsync_System_String_MAS_PrismaAgent_Agent_PendingUserInput__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>与轮次开头的用户消息同为 <code>user.message</code> 事件，以 <code>isSteering</code> 区分，实时与回放走同一归约分支</p>
+</div>
 
 
 
