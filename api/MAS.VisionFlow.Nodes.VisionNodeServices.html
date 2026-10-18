@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Nodes_VisionNodeServices" data-uid="MAS.VisionFlow.Nodes.VisionNodeServices" class="text-break">
-Class VisionNodeServices  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L21"><i class="bi bi-code-slash"></i></a>
+Class VisionNodeServices  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -159,9 +159,9 @@ Class VisionNodeServices  <a class="header-action link-secondary" title="View so
 
   <a id="MAS_VisionFlow_Nodes_VisionNodeServices__ctor_" data-uid="MAS.VisionFlow.Nodes.VisionNodeServices.#ctor*"></a>
 
-  <h3 id="MAS_VisionFlow_Nodes_VisionNodeServices__ctor_MAS_SharedLibrary_Controls_Notifications_ITipsNotificationService_MAS_VisionFlow_Nodes_IVisionFlowHost_MAS_VisionFlow_Nodes_VisionCommandFactory_MAS_VisionFlow_IVisionResourceStore_" data-uid="MAS.VisionFlow.Nodes.VisionNodeServices.#ctor(MAS.SharedLibrary.Controls.Notifications.ITipsNotificationService,MAS.VisionFlow.Nodes.IVisionFlowHost,MAS.VisionFlow.Nodes.VisionCommandFactory,MAS.VisionFlow.IVisionResourceStore)">
-  VisionNodeServices(ITipsNotificationService, IVisionFlowHost, VisionCommandFactory, IVisionResourceStore)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_VisionFlow_Nodes_VisionNodeServices__ctor_MAS_SharedLibrary_Controls_Notifications_ITipsNotificationService_MAS_VisionFlow_Nodes_IVisionFlowHost_MAS_VisionFlow_Nodes_VisionCommandFactory_MAS_VisionFlow_IVisionResourceStore_MAS_VisionFlow_VisionVariableStore_" data-uid="MAS.VisionFlow.Nodes.VisionNodeServices.#ctor(MAS.SharedLibrary.Controls.Notifications.ITipsNotificationService,MAS.VisionFlow.Nodes.IVisionFlowHost,MAS.VisionFlow.Nodes.VisionCommandFactory,MAS.VisionFlow.IVisionResourceStore,MAS.VisionFlow.VisionVariableStore)">
+  VisionNodeServices(ITipsNotificationService, IVisionFlowHost, VisionCommandFactory, IVisionResourceStore, VisionVariableStore?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点共用的服务</p>
@@ -169,7 +169,7 @@ Class VisionNodeServices  <a class="header-action link-secondary" title="View so
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VisionNodeServices(ITipsNotificationService tips, IVisionFlowHost host, VisionCommandFactory commands, IVisionResourceStore resources)</code></pre>
+    <pre><code class="lang-csharp hljs">public VisionNodeServices(ITipsNotificationService tips, IVisionFlowHost host, VisionCommandFactory commands, IVisionResourceStore resources, VisionVariableStore? variables = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -185,6 +185,9 @@ Class VisionNodeServices  <a class="header-action link-secondary" title="View so
 </dd>
     <dt><code>resources</code> <a class="xref" href="MAS.VisionFlow.IVisionResourceStore.html">IVisionResourceStore</a></dt>
     <dd><p>资源仓库</p>
+</dd>
+    <dt><code>variables</code> <a class="xref" href="MAS.VisionFlow.VisionVariableStore.html">VisionVariableStore</a></dt>
+    <dd><p>工程变量表（条件执行等节点选择变量用；为 null 时使用空表）</p>
 </dd>
   </dl>
 
@@ -207,7 +210,7 @@ Class VisionNodeServices  <a class="header-action link-secondary" title="View so
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNodeServices_Commands" data-uid="MAS.VisionFlow.Nodes.VisionNodeServices.Commands">
   Commands
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取命令工厂</p>
@@ -239,7 +242,7 @@ Class VisionNodeServices  <a class="header-action link-secondary" title="View so
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNodeServices_Host" data-uid="MAS.VisionFlow.Nodes.VisionNodeServices.Host">
   Host
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取宿主能力</p>
@@ -271,7 +274,7 @@ Class VisionNodeServices  <a class="header-action link-secondary" title="View so
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNodeServices_Resources" data-uid="MAS.VisionFlow.Nodes.VisionNodeServices.Resources">
   Resources
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取资源仓库</p>
@@ -303,7 +306,7 @@ Class VisionNodeServices  <a class="header-action link-secondary" title="View so
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNodeServices_Tips" data-uid="MAS.VisionFlow.Nodes.VisionNodeServices.Tips">
   Tips
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取提示通知服务</p>
@@ -331,11 +334,46 @@ Class VisionNodeServices  <a class="header-action link-secondary" title="View so
 
 
 
+  <a id="MAS_VisionFlow_Nodes_VisionNodeServices_Variables_" data-uid="MAS.VisionFlow.Nodes.VisionNodeServices.Variables*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_VisionNodeServices_Variables" data-uid="MAS.VisionFlow.Nodes.VisionNodeServices.Variables">
+  Variables
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取工程变量表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionVariableStore Variables { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.VisionVariableStore.html">VisionVariableStore</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Nodes_VisionNodeServices_Variables_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>节点执行时请读 <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html#MAS_VisionFlow_Nodes_VisionExecutionContext_Variables">Variables</a>（本轮快照）</p>
+</div>
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L21" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNodeServices.cs/#L22" class="edit-link">Edit this page</a>
         </div>
 
 

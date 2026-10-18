@@ -248,6 +248,11 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 <td>后台循环运行中（脚本执行、位姿生成）</td>
 <td>绿，主题 <code>OnlineBrush</code>，与管道运行同色</td>
 </tr>
+<tr>
+<td>Skipped</td>
+<td>本次被跳过（条件执行未放行或上游被跳过），状态栏写明原因</td>
+<td>灰蓝 <code>#94A3B8</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="渲染与性能">渲染与性能</h2>
@@ -276,6 +281,10 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 <tr>
 <td><code>Resources.json</code></td>
 <td>资源，明文</td>
+</tr>
+<tr>
+<td><code>Variables.json</code></td>
+<td>变量定义（名称、类型、默认值、说明），明文；运行值不保存</td>
 </tr>
 <tr>
 <td><code>Scripts/Pipelines/管道标识.mscript</code></td>
@@ -340,6 +349,28 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 </tbody>
 </table>
 <p>管道循环间隔由管道脚本的 <code>FixedIntervalMs</code> 决定，默认 100 ms；取 0 时跑完立即进入下一轮（连续运行，占满一个线程）。受 Windows 计时精度（约 15.6 ms）限制，取值 1~15 的实际间隔约为 16 ms。</p>
+<h2 id="变量与条件执行">变量与条件执行</h2>
+<p>一台相机服务多个工位：同一条管道里每个工位一个「条件执行」节点，变量等于放行值才把图像交给下游。</p>
+<p><strong>变量</strong>（<code>MAS.VisionFlow/Variables</code>）</p>
+<ul>
+<li>工程级扁平变量表，类型与 DV 数据中心字段同名同序（不含结构体）；定义存 <code>Variables.json</code>，运行值不落盘，打开工程恢复默认值，检查点撤销保留运行值</li>
+<li>脚本构造函数声明 <code>VisionVariableStore variables</code> 即注入；<code>Get&lt;T&gt;(&quot;名称&quot;)</code> 取一次存字段，读写 <code>Value</code> 不查表、不分配</li>
+<li>快照：循环里触发信号返回 true 时、手动触发与运行到此节点时各拍一次，本轮节点只读快照（<code>VisionExecutionContext.Variables</code>），结果带 <code>VisionRunResult.Variables</code></li>
+<li>有管道运行时拒绝改定义（<code>VisionFlowRuntime.UpdateVariables</code>）；同标识同类型的变量对象与运行值保留，脚本处理器缓存按“脚本 + 变量布局”失效</li>
+<li>界面：更多 → 变量配置（编辑副本，确定时整表校验）、变量监控（200 ms 轮询，可改运行值、恢复默认）</li>
+</ul>
+<p><strong>跳过</strong>（<code>VisionPipelineExecutor</code>）</p>
+<ul>
+<li>节点调用 <code>context.Skip(原因)</code>：丢弃本次输出，记为 <code>Skipped</code>；任意一路输入来自被跳过节点的下游一并跳过，原因写“被条件执行「X」跳过：…”</li>
+<li>跳过不算失败，管道照常完成；已放行分支里的失败仍按失败全停</li>
+<li>跳过的节点不保留上一次输出与结果数据，按标题取值报“被跳过”；单次执行时原因写入调试输出，连续运行只在开了调试时写</li>
+</ul>
+<p><strong>条件执行</strong>（<code>Nodes/FlowControl/ConditionalExecutionNode</code>，类型键 <code>vision.conditionalExecution</code>）</p>
+<ul>
+<li>图像进、同一张图出（不复制、不接管所有权）；只支持整数、Bool、String 变量，按变量标识引用</li>
+<li>没选变量、变量已删除、类型不支持、放行值为空或无效一律按失败处理</li>
+<li>画布：选中时下游画虚线框；管道里有条件执行时，不受控制也不给分支提供输入的节点标“每次执行”（<code>VisionConditionScope</code>）</li>
+</ul>
 <h2 id="agent-工具">Agent 工具</h2>
 <p>视觉工作台向 Agent 提供 <code>visionFlow.*</code> 工具。逻辑在 <code>MAS.VisionFlow/Agent/VisionFlowAgentService</code>（可单元测试），宿主 <code>MAS.DataMaster/NamedPipeIpc/VisionFlow/VisionFlowToolProvider</code> 只做参数解析与结果序列化；工作流说明在 Skill <code>mas-vision-flow</code>。</p>
 <table>
@@ -389,7 +420,7 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 <tr>
 <td><code>visionFlow.run</code></td>
 <td>Medium</td>
-<td>执行管道或运行到节点，返回各节点结果，可附带端口输出图像（JPEG，按长边缩放）</td>
+<td>执行管道或运行到节点，返回各节点结果、本轮变量快照与跳过的节点；<code>variables</code> 先写运行值，不经通信即可测试各工位，可附带端口输出图像（JPEG，按长边缩放）</td>
 </tr>
 <tr>
 <td><code>visionFlow.pipeline.control</code></td>
@@ -410,6 +441,26 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 <td><code>visionFlow.script.test</code></td>
 <td>Medium</td>
 <td>不启动循环试跑脚本一轮：执行管道 → <code>HandleResultAsync</code> → <code>CompleteAsync</code>，返回本次调用的 <code>Debug.Enqueue</code> 输出与脚本异常</td>
+</tr>
+<tr>
+<td><code>visionFlow.variables.get</code></td>
+<td>Low</td>
+<td>变量定义、运行值、被哪些条件执行与脚本引用</td>
+</tr>
+<tr>
+<td><code>visionFlow.variables.upsert</code></td>
+<td>Medium</td>
+<td>按名称新增或修改变量定义；被引用的变量不能改类型；运行中拒绝</td>
+</tr>
+<tr>
+<td><code>visionFlow.variables.delete</code></td>
+<td>High</td>
+<td>删除变量；被引用或运行中拒绝</td>
+</tr>
+<tr>
+<td><code>visionFlow.variables.set</code></td>
+<td>Medium</td>
+<td>改运行值、恢复默认值，运行中也可以</td>
 </tr>
 </tbody>
 </table>

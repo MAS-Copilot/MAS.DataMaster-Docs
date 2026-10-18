@@ -135,6 +135,38 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 </h2>
 
 
+  <a id="MAS_Vision_ICamera_AcquisitionMode_" data-uid="MAS.Vision.ICamera.AcquisitionMode*"></a>
+
+  <h3 id="MAS_Vision_ICamera_AcquisitionMode" data-uid="MAS.Vision.ICamera.AcquisitionMode">
+  AcquisitionMode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前采集模式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">CameraAcquisitionMode AcquisitionMode { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.CameraAcquisitionMode.html">CameraAcquisitionMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_Vision_ICamera_Fps_" data-uid="MAS.Vision.ICamera.Fps*"></a>
 
   <h3 id="MAS_Vision_ICamera_Fps" data-uid="MAS.Vision.ICamera.Fps">
@@ -203,11 +235,38 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 </h2>
 
 
+  <a id="MAS_Vision_ICamera_DiscardPendingFrames_" data-uid="MAS.Vision.ICamera.DiscardPendingFrames*"></a>
+
+  <h3 id="MAS_Vision_ICamera_DiscardPendingFrames" data-uid="MAS.Vision.ICamera.DiscardPendingFrames">
+  DiscardPendingFrames()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>丢弃已到达但还没取走的帧，之后 <a class="xref" href="MAS.Vision.ICamera.html#MAS_Vision_ICamera_GrabNewFrameAsync_System_TimeSpan_System_Threading_CancellationToken_">GrabNewFrameAsync(TimeSpan, CancellationToken)</a> 只交出此后到达的帧</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void DiscardPendingFrames()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_Vision_ICamera_GetControls_" data-uid="MAS.Vision.ICamera.GetControls*"></a>
 
   <h3 id="MAS_Vision_ICamera_GetControls_System_Collections_Generic_IReadOnlyCollection_MAS_Vision_CameraControl__" data-uid="MAS.Vision.ICamera.GetControls(System.Collections.Generic.IReadOnlyCollection{MAS.Vision.CameraControl})">
   GetControls(IReadOnlyCollection&lt;CameraControl&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L149"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>批量获取指定的相机控制参数</p>
@@ -246,7 +305,7 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_ICamera_GetDeviceList" data-uid="MAS.Vision.ICamera.GetDeviceList">
   GetDeviceList()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取所有可用的相机设备列表</p>
@@ -279,7 +338,7 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_ICamera_GetFrame" data-uid="MAS.Vision.ICamera.GetFrame">
   GetFrame()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L77"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前视频帧</p>
@@ -312,7 +371,7 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_ICamera_GetFrameMat" data-uid="MAS.Vision.ICamera.GetFrameMat">
   GetFrameMat()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L83"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前视频帧</p>
@@ -341,11 +400,67 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <a id="MAS_Vision_ICamera_GrabNewFrameAsync_" data-uid="MAS.Vision.ICamera.GrabNewFrameAsync*"></a>
+
+  <h3 id="MAS_Vision_ICamera_GrabNewFrameAsync_System_TimeSpan_System_Threading_CancellationToken_" data-uid="MAS.Vision.ICamera.GrabNewFrameAsync(System.TimeSpan,System.Threading.CancellationToken)">
+  GrabNewFrameAsync(TimeSpan, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步取一帧新图像</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;CameraGrabResult&gt; GrabNewFrameAsync(TimeSpan timeout, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd><p>等待超时；相机会再加上自身曝光时间</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.Vision.CameraGrabResult.html">CameraGrabResult</a>&gt;</dt>
+    <dd><p>取图结果，超时 <a class="xref" href="MAS.Vision.CameraGrabResult.html#MAS_Vision_CameraGrabResult_Frame">Frame</a> 为 null</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Vision_ICamera_GrabNewFrameAsync_System_TimeSpan_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>连续采集：等调用之后才开始曝光的帧（丢弃在途帧）；
+软触发：下发软触发命令并等这一帧；
+外部触发：交出上次取走之后到达的帧，还没到就等</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>相机未取流，或下发触发命令失败</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd><p>已取消</p>
+</dd>
+  </dl>
+
+
+
   <a id="MAS_Vision_ICamera_OpenAsync_" data-uid="MAS.Vision.ICamera.OpenAsync*"></a>
 
   <h3 id="MAS_Vision_ICamera_OpenAsync_System_Int16_" data-uid="MAS.Vision.ICamera.OpenAsync(System.Int16)">
   OpenAsync(short)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步打开摄像头</p>
@@ -384,7 +499,7 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_ICamera_StartStream" data-uid="MAS.Vision.ICamera.StartStream">
   StartStream()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>启动视频流捕获</p>
@@ -416,7 +531,7 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_ICamera_StopStream" data-uid="MAS.Vision.ICamera.StopStream">
   StopStream()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止视频流捕获</p>
@@ -443,7 +558,7 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_ICamera_TryGetControl_MAS_Vision_CameraControl_System_Double__" data-uid="MAS.Vision.ICamera.TryGetControl(MAS.Vision.CameraControl,System.Double@)">
   TryGetControl(CameraControl, out double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L134"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>尝试获取指定相机控制参数</p>
@@ -481,11 +596,92 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <a id="MAS_Vision_ICamera_TryGetTriggerSource_" data-uid="MAS.Vision.ICamera.TryGetTriggerSource*"></a>
+
+  <h3 id="MAS_Vision_ICamera_TryGetTriggerSource_System_String__" data-uid="MAS.Vision.ICamera.TryGetTriggerSource(System.String@)">
+  TryGetTriggerSource(out string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试读取相机当前的触发源（如 Line0、Software）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryGetTriggerSource(out string source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>触发源名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>读取成功返回 true；相机未打开或不支持触发返回 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_ICamera_TrySetAcquisitionMode_" data-uid="MAS.Vision.ICamera.TrySetAcquisitionMode*"></a>
+
+  <h3 id="MAS_Vision_ICamera_TrySetAcquisitionMode_MAS_Vision_CameraAcquisitionMode_" data-uid="MAS.Vision.ICamera.TrySetAcquisitionMode(MAS.Vision.CameraAcquisitionMode)">
+  TrySetAcquisitionMode(CameraAcquisitionMode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>切换采集模式，取流中会先停流、改参数、清缓存再开流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TrySetAcquisitionMode(CameraAcquisitionMode mode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mode</code> <a class="xref" href="MAS.Vision.CameraAcquisitionMode.html">CameraAcquisitionMode</a></dt>
+    <dd><p>采集模式</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>切换成功返回 true；相机未打开、不支持该模式或相机配置不符时返回 false，模式保持不变</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Vision_ICamera_TrySetAcquisitionMode_MAS_Vision_CameraAcquisitionMode__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>不支持软触发的相机也接受 <a class="xref" href="MAS.Vision.CameraAcquisitionMode.html#MAS_Vision_CameraAcquisitionMode_SoftwareTrigger">SoftwareTrigger</a>，取图时丢弃在途帧来模拟</p>
+</div>
+
+
+
+
   <a id="MAS_Vision_ICamera_TrySetControl_" data-uid="MAS.Vision.ICamera.TrySetControl*"></a>
 
   <h3 id="MAS_Vision_ICamera_TrySetControl_MAS_Vision_CameraControl_System_Double_" data-uid="MAS.Vision.ICamera.TrySetControl(MAS.Vision.CameraControl,System.Double)">
   TrySetControl(CameraControl, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L126"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>尝试设置指定相机控制参数</p>
@@ -527,7 +723,7 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_ICamera_TrySetControls_System_Collections_Generic_IReadOnlyDictionary_MAS_Vision_CameraControl_System_Double__System_Collections_Generic_IReadOnlyList_MAS_Vision_CameraControl___" data-uid="MAS.Vision.ICamera.TrySetControls(System.Collections.Generic.IReadOnlyDictionary{MAS.Vision.CameraControl,System.Double},System.Collections.Generic.IReadOnlyList{MAS.Vision.CameraControl}@)">
   TrySetControls(IReadOnlyDictionary&lt;CameraControl, double&gt;, out IReadOnlyList&lt;CameraControl&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L142"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>批量设置相机控制参数</p>
@@ -572,7 +768,7 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_ICamera_CaptureStopped" data-uid="MAS.Vision.ICamera.CaptureStopped">
   CaptureStopped
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>捕获停止事件，当视频流停止时触发</p>
@@ -603,7 +799,7 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_ICamera_FrameCaptured" data-uid="MAS.Vision.ICamera.FrameCaptured">
   FrameCaptured
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>帧捕获事件，当有新视频帧可用时触发</p>
@@ -634,7 +830,7 @@ Interface ICamera  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_ICamera_FrameRateUpdated" data-uid="MAS.Vision.ICamera.FrameRateUpdated">
   FrameRateUpdated
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Interfaces/ICamera.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>帧率更新事件，每秒捕获的帧数</p>

@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Agent_VisionFlowAgentService" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService" class="text-break">
-Class VisionFlowAgentService  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.ScriptTest.cs/#L16"><i class="bi bi-code-slash"></i></a>
+Class VisionFlowAgentService  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Variables.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -391,7 +391,7 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_ControlPipelineAsync_System_String_System_String_System_String_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.ControlPipelineAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
   ControlPipelineAsync(string?, string, string?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Run.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Run.cs/#L88"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>管道控制：初始化、启动循环、停止循环、重命名</p>
@@ -474,6 +474,45 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_VisionFlow_Agent_VisionFlowAgentService_DeleteVariables_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.DeleteVariables*"></a>
+
+  <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_DeleteVariables_System_Collections_Generic_IReadOnlyList_System_String__" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.DeleteVariables(System.Collections.Generic.IReadOnlyList{System.String})">
+  DeleteVariables(IReadOnlyList&lt;string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Variables.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除变量（被条件执行或脚本引用时拒绝）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionAgentResult DeleteVariables(IReadOnlyList&lt;string&gt; names)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>names</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>变量名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Agent.VisionAgentResult.html">VisionAgentResult</a></dt>
+    <dd><p>结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Agent_VisionFlowAgentService_DescribeNodeTypes_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.DescribeNodeTypes*"></a>
 
   <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_DescribeNodeTypes_System_String_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.DescribeNodeTypes(System.String)">
@@ -517,7 +556,7 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_EditScriptAsync_System_String_System_Collections_Generic_IReadOnlyList_MAS_VisionFlow_Agent_VisionScriptEdit__System_String_System_Boolean_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.EditScriptAsync(System.String,System.Collections.Generic.IReadOnlyList{MAS.VisionFlow.Agent.VisionScriptEdit},System.String,System.Boolean,System.String,System.Boolean,System.Threading.CancellationToken)">
   EditScriptAsync(string?, IReadOnlyList&lt;VisionScriptEdit&gt;?, string?, bool, string?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Script.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Script.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>修改管道脚本：局部替换、整体重写或恢复模板，三选一</p>
@@ -681,11 +720,50 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_VisionFlow_Agent_VisionFlowAgentService_GetVariables_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.GetVariables*"></a>
+
+  <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_GetVariables_System_String_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.GetVariables(System.String)">
+  GetVariables(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Variables.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取工程变量：定义、当前运行值、被哪些条件执行与脚本引用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionAgentResult GetVariables(string? name = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>只看某个变量（名称，不区分大小写）；省略时列出全部</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Agent.VisionAgentResult.html">VisionAgentResult</a></dt>
+    <dd><p>结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Agent_VisionFlowAgentService_InvokeActionAsync_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.InvokeActionAsync*"></a>
 
   <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_InvokeActionAsync_System_String_System_String_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.InvokeActionAsync(System.String,System.String)">
   InvokeActionAsync(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Run.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Run.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>调用节点上的操作（如示教对位的「设为基准」）</p>
@@ -725,9 +803,9 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
 
   <a id="MAS_VisionFlow_Agent_VisionFlowAgentService_RunAsync_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.RunAsync*"></a>
 
-  <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_RunAsync_System_String_System_String_System_Collections_Generic_IReadOnlyList_System_String__System_Int32_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.RunAsync(System.String,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.Threading.CancellationToken)">
-  RunAsync(string?, string?, IReadOnlyList&lt;string&gt;?, int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Run.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_RunAsync_System_String_System_String_System_Collections_Generic_IReadOnlyList_System_String__System_Int32_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Object__System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.RunAsync(System.String,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object},System.Threading.CancellationToken)">
+  RunAsync(string?, string?, IReadOnlyList&lt;string&gt;?, int, IReadOnlyDictionary&lt;string, object?&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Run.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>执行一次：指定节点时运行到该节点（含全部上游），否则执行管道；可附带端口输出图像</p>
@@ -735,7 +813,7 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;VisionAgentResult&gt; RunAsync(string? pipeline, string? node, IReadOnlyList&lt;string&gt;? images = null, int maxImageSize = 1024, CancellationToken token = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;VisionAgentResult&gt; RunAsync(string? pipeline, string? node, IReadOnlyList&lt;string&gt;? images = null, int maxImageSize = 1024, IReadOnlyDictionary&lt;string, object?&gt;? variables = null, CancellationToken token = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -751,6 +829,9 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
 </dd>
     <dt><code>maxImageSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>图像长边上限（像素）</p>
+</dd>
+    <dt><code>variables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>执行前写入的变量运行值（名称 → 值），用来不经通信直接测试各个工位分支</p>
 </dd>
     <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd><p>取消令牌</p>
@@ -774,11 +855,56 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_VisionFlow_Agent_VisionFlowAgentService_SetVariableValues_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.SetVariableValues*"></a>
+
+  <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_SetVariableValues_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Object__System_Collections_Generic_IReadOnlyList_System_String__System_Boolean_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.SetVariableValues(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object},System.Collections.Generic.IReadOnlyList{System.String},System.Boolean)">
+  SetVariableValues(IReadOnlyDictionary&lt;string, object?&gt;?, IReadOnlyList&lt;string&gt;?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Variables.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置变量运行值或恢复默认值（管道运行中也可以，下一轮触发生效）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionAgentResult SetVariableValues(IReadOnlyDictionary&lt;string, object?&gt;? values, IReadOnlyList&lt;string&gt;? reset = null, bool isResetAll = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>变量名称到新值</p>
+</dd>
+    <dt><code>reset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>要恢复默认值的变量名称</p>
+</dd>
+    <dt><code>isResetAll</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>全部恢复默认值（先于 values 执行）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Agent.VisionAgentResult.html">VisionAgentResult</a></dt>
+    <dd><p>结果，附全部变量的当前值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Agent_VisionFlowAgentService_TestScriptAsync_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.TestScriptAsync*"></a>
 
-  <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_TestScriptAsync_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.TestScriptAsync(System.String,System.Boolean,System.Threading.CancellationToken)">
-  TestScriptAsync(string?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.ScriptTest.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_TestScriptAsync_System_String_System_Boolean_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Object__System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.TestScriptAsync(System.String,System.Boolean,System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object},System.Threading.CancellationToken)">
+  TestScriptAsync(string?, bool, IReadOnlyDictionary&lt;string, object?&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.ScriptTest.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>试跑管道脚本一轮：执行一次管道，把结果交给脚本的 HandleResultAsync，再调用 CompleteAsync；返回这一轮的调试输出</p>
@@ -786,7 +912,7 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;VisionAgentResult&gt; TestScriptAsync(string? pipeline, bool isTriggerChecked = false, CancellationToken token = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;VisionAgentResult&gt; TestScriptAsync(string? pipeline, bool isTriggerChecked = false, IReadOnlyDictionary&lt;string, object?&gt;? variables = null, CancellationToken token = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -796,6 +922,9 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
 </dd>
     <dt><code>isTriggerChecked</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>是否先询问 TriggerSignalAsync（读真实触发信号），返回 false 时不执行</p>
+</dd>
+    <dt><code>variables</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>试跑前写入的变量运行值（名称 → 值）；询问触发信号时脚本还可以再改</p>
 </dd>
     <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd><p>取消令牌</p>
@@ -819,11 +948,53 @@ Class VisionFlowAgentService  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_VisionFlow_Agent_VisionFlowAgentService_UpsertVariables_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.UpsertVariables*"></a>
+
+  <h3 id="MAS_VisionFlow_Agent_VisionFlowAgentService_UpsertVariables_System_Collections_Generic_IReadOnlyList_MAS_VisionFlow_Agent_VisionAgentVariable__System_Boolean_" data-uid="MAS.VisionFlow.Agent.VisionFlowAgentService.UpsertVariables(System.Collections.Generic.IReadOnlyList{MAS.VisionFlow.Agent.VisionAgentVariable},System.Boolean)">
+  UpsertVariables(IReadOnlyList&lt;VisionAgentVariable&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Variables.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>新增或修改变量定义（按名称匹配，存在则只改给出的字段）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionAgentResult UpsertVariables(IReadOnlyList&lt;VisionAgentVariable&gt; items, bool isValidateOnly = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="MAS.VisionFlow.Agent.VisionAgentVariable.html">VisionAgentVariable</a>&gt;</dt>
+    <dd><p>变量</p>
+</dd>
+    <dt><code>isValidateOnly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>只校验不写入</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.Agent.VisionAgentResult.html">VisionAgentResult</a></dt>
+    <dd><p>结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.ScriptTest.cs/#L16" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Agent/VisionFlowAgentService.Variables.cs/#L17" class="edit-link">Edit this page</a>
         </div>
 
 

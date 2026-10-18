@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Nodes_VisionExecutionContext" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext" class="text-break">
-Class VisionExecutionContext  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L25"><i class="bi bi-code-slash"></i></a>
+Class VisionExecutionContext  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -162,9 +162,9 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <a id="MAS_VisionFlow_Nodes_VisionExecutionContext__ctor_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.#ctor*"></a>
 
-  <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext__ctor_MAS_VisionFlow_Nodes_VisionNode_System_Collections_Generic_IReadOnlyDictionary_System_Int32_System_Object__MAS_VisionFlow_IVisionResourceStore_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.#ctor(MAS.VisionFlow.Nodes.VisionNode,System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Object},MAS.VisionFlow.IVisionResourceStore,System.Threading.CancellationToken)">
-  VisionExecutionContext(VisionNode, IReadOnlyDictionary&lt;int, object&gt;, IVisionResourceStore, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext__ctor_MAS_VisionFlow_Nodes_VisionNode_System_Collections_Generic_IReadOnlyDictionary_System_Int32_System_Object__MAS_VisionFlow_IVisionResourceStore_System_Threading_CancellationToken_MAS_VisionFlow_VisionVariableSnapshot_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.#ctor(MAS.VisionFlow.Nodes.VisionNode,System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Object},MAS.VisionFlow.IVisionResourceStore,System.Threading.CancellationToken,MAS.VisionFlow.VisionVariableSnapshot)">
+  VisionExecutionContext(VisionNode, IReadOnlyDictionary&lt;int, object&gt;, IVisionResourceStore, CancellationToken, VisionVariableSnapshot?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点执行上下文</p>
@@ -172,7 +172,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VisionExecutionContext(VisionNode node, IReadOnlyDictionary&lt;int, object&gt; inputs, IVisionResourceStore resources, CancellationToken token)</code></pre>
+    <pre><code class="lang-csharp hljs">public VisionExecutionContext(VisionNode node, IReadOnlyDictionary&lt;int, object&gt; inputs, IVisionResourceStore resources, CancellationToken token, VisionVariableSnapshot? variables = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -189,6 +189,9 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
     <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd><p>取消令牌</p>
 </dd>
+    <dt><code>variables</code> <a class="xref" href="MAS.VisionFlow.VisionVariableSnapshot.html">VisionVariableSnapshot</a></dt>
+    <dd><p>本轮开始时的变量快照，为 null 时为空快照</p>
+</dd>
   </dl>
 
 
@@ -198,7 +201,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
 
 
-  <h4 class="section" id="MAS_VisionFlow_Nodes_VisionExecutionContext__ctor_MAS_VisionFlow_Nodes_VisionNode_System_Collections_Generic_IReadOnlyDictionary_System_Int32_System_Object__MAS_VisionFlow_IVisionResourceStore_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <h4 class="section" id="MAS_VisionFlow_Nodes_VisionExecutionContext__ctor_MAS_VisionFlow_Nodes_VisionNode_System_Collections_Generic_IReadOnlyDictionary_System_Int32_System_Object__MAS_VisionFlow_IVisionResourceStore_System_Threading_CancellationToken_MAS_VisionFlow_VisionVariableSnapshot__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>输入按输入端口序号取，输出按输出端口序号写；运行时据此把值传给下游</p>
 </div>
 
@@ -213,7 +216,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_Outputs" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.Outputs">
   Outputs
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取已写入的输出</p>
@@ -245,7 +248,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_ReportedMessage" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.ReportedMessage">
   ReportedMessage
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点自行报告的状态说明</p>
@@ -277,7 +280,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_ReportedStatus" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.ReportedStatus">
   ReportedStatus
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点自行报告的状态（例如采集中、警告），为空时运行时按成功处理</p>
@@ -309,7 +312,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_Resources" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.Resources">
   Resources
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取资源仓库</p>
@@ -337,11 +340,46 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_VisionFlow_Nodes_VisionExecutionContext_SkipReason_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.SkipReason*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_SkipReason" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.SkipReason">
+  SkipReason
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取跳过原因，为空表示没有跳过</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? SkipReason { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Nodes_VisionExecutionContext_SkipReason_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>节点调用 <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html#MAS_VisionFlow_Nodes_VisionExecutionContext_Skip_System_String_">Skip(string)</a> 后，运行时丢弃本次输出，并让它的全部下游一并跳过</p>
+</div>
+
+
+
+
   <a id="MAS_VisionFlow_Nodes_VisionExecutionContext_Token_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.Token*"></a>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_Token" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.Token">
   Token
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取取消令牌</p>
@@ -369,6 +407,38 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_VisionFlow_Nodes_VisionExecutionContext_Variables_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.Variables*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_Variables" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.Variables">
+  Variables
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取本轮开始时的变量快照（执行途中变量再变也不影响本轮）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisionVariableSnapshot Variables { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.VisionVariableSnapshot.html">VisionVariableSnapshot</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -377,7 +447,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_GetInput__1_System_Int32_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.GetInput``1(System.Int32)">
   GetInput&lt;T&gt;(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>读取输入</p>
@@ -428,7 +498,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_GetOutputBuffer_System_Int32_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.GetOutputBuffer(System.Int32)">
   GetOutputBuffer(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L157"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>取该输出端口的复用缓冲，写入后用 <a class="xref" href="MAS.VisionFlow.Nodes.VisionExecutionContext.html#MAS_VisionFlow_Nodes_VisionExecutionContext_SetOutput_System_Int32_System_Object_">SetOutput(int, object)</a> 发布</p>
@@ -471,7 +541,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_HasInput_System_Int32_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.HasInput(System.Int32)">
   HasInput(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L83"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断输入端口是否有值</p>
@@ -510,7 +580,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_IsOutputWanted_System_Int32_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.IsOutputWanted(System.Int32)">
   IsOutputWanted(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L170"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断本次是否需要产出某个输出</p>
@@ -549,7 +619,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_PublishAnnotation_System_Int32_OpenCvSharp_Mat_System_Action_OpenCvSharp_Mat__" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.PublishAnnotation(System.Int32,OpenCvSharp.Mat,System.Action{OpenCvSharp.Mat})">
   PublishAnnotation(int, Mat, Action&lt;Mat&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L178"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发布标注图：需要时把输入写进该端口的复用缓冲（灰度转 BGR）再绘制，不需要时整段跳过</p>
@@ -588,7 +658,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_ReportStatus_MAS_VisionFlow_Designer_FlowNodeStatus_System_String_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.ReportStatus(MAS.VisionFlow.Designer.FlowNodeStatus,System.String)">
   ReportStatus(FlowNodeStatus, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L194"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>报告执行状态（采集中、警告等）</p>
@@ -624,7 +694,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_SetOutput_System_Int32_System_Object_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.SetOutput(System.Int32,System.Object)">
   SetOutput(int, object)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>写入输出（借出：节点自己持有或直通上游的值，框架不释放）</p>
@@ -660,7 +730,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_SetOwnedOutput_System_Int32_System_IDisposable_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.SetOwnedOutput(System.Int32,System.IDisposable)">
   SetOwnedOutput(int, IDisposable)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L143"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>写入本次新建的输出并移交生命周期</p>
@@ -695,11 +765,48 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="MAS_VisionFlow_Nodes_VisionExecutionContext_Skip_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.Skip*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_Skip_System_String_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.Skip(System.String)">
+  Skip(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L207"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>跳过本次执行：不产出输出，下游节点一并跳过</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Skip(string reason)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reason</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>跳过原因，显示在节点状态与调试输出里，例如“Station=1，放行值 3”</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Nodes_VisionExecutionContext_Skip_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>跳过不算失败，管道照常完成；不要用输出 null 表示跳过，下游会按输入无效失败。
+调用后节点返回即可，本次写入的输出会被丢弃</p>
+</div>
+
+
+
+
   <a id="MAS_VisionFlow_Nodes_VisionExecutionContext_TryGetInput_" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.TryGetInput*"></a>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionExecutionContext_TryGetInput__1_System_Int32___0__" data-uid="MAS.VisionFlow.Nodes.VisionExecutionContext.TryGetInput``1(System.Int32,``0@)">
   TryGetInput&lt;T&gt;(int, out T)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>尝试读取输入</p>
@@ -747,7 +854,7 @@ Class VisionExecutionContext  <a class="header-action link-secondary" title="Vie
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L25" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionExecutionContext.cs/#L26" class="edit-link">Edit this page</a>
         </div>
 
 
