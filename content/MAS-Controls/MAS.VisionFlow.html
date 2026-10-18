@@ -369,7 +369,7 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 <ul>
 <li>图像进、同一张图出（不复制、不接管所有权）；只支持整数、Bool、String 变量，按变量标识引用</li>
 <li>没选变量、变量已删除、类型不支持、放行值为空或无效一律按失败处理</li>
-<li>画布：选中时下游画虚线框；管道里有条件执行时，不受控制也不给分支提供输入的节点标“每次执行”（<code>VisionConditionScope</code>）</li>
+<li>画布：选中时下游画虚线框（<code>VisionConditionScope</code>）</li>
 </ul>
 <h2 id="agent-工具">Agent 工具</h2>
 <p>视觉工作台向 Agent 提供 <code>visionFlow.*</code> 工具。逻辑在 <code>MAS.VisionFlow/Agent/VisionFlowAgentService</code>（可单元测试），宿主 <code>MAS.DataMaster/NamedPipeIpc/VisionFlow/VisionFlowToolProvider</code> 只做参数解析与结果序列化；工作流说明在 Skill <code>mas-vision-flow</code>。</p>
