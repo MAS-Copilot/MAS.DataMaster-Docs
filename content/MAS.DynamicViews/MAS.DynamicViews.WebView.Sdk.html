@@ -280,6 +280,116 @@ if (result.truncated) note.textContent = &quot;结果已达上限，请缩小时
 </code></pre>
 <p>订阅后的第一次回调总是带上本订阅当前可读的全部值（即使部分别名已被声明式绑定等其他订阅取到），之后只带变化的部分。回调中的 <code>values</code> 是本订阅的只读视图（不是 Map），提供 <code>get(alias)</code>、<code>has(alias)</code>，以及只列出已收到值的别名的 <code>keys()</code>、<code>size</code>、<code>entries()</code>、<code>forEach((value, alias) =&gt; …)</code>、<code>toObject()</code>；<code>changes</code> 为 <code>[{ variable, value, previous, source }]</code>，<code>variable</code> 即别名，<code>previous</code> 为本客户端此前持有的值（首次为 <code>undefined</code>），<code>source</code> 取值 <code>snapshot</code>、<code>communication</code>、<code>local</code>、<code>binding</code>、<code>action</code>。</p>
 <p>写入值只接受布尔、数字与字符串，服务端按字段类型转换，无法转换时返回 <code>TYPE_MISMATCH</code>。</p>
+<h3 id="视觉结果">视觉结果</h3>
+<p>订阅视觉「Web 发布」节点的通道（需在清单 <code>vision</code> 中声明）。视觉只发布数据与缩小后的图像，OK / NG 由页面按数据判断。</p>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vision</code></td>
+<td>清单声明的视觉通道：<code>{ 通道名: { description, readRole, available, node, pipeline, hasImage, fields: [{ alias, label, unit, decimals, source }] } }</code>，<code>available</code> 表示视觉工程里有发布该通道的节点</td>
+</tr>
+<tr>
+<td><code>subscribeVision(channels, callback)</code></td>
+<td>订阅通道（通道名、数组或 <code>&quot;*&quot;</code>），返回 <code>Promise&lt;subscription&gt;</code>；回调 <code>(frame, channel)</code>，订阅后服务端立即补发最新一帧；未声明的通道 reject <code>NOT_DECLARED</code>，权限不足的通道在登录后自动补订</td>
+</tr>
+<tr>
+<td><code>unsubscribeVision(subscription)</code></td>
+<td>取消订阅</td>
+</tr>
+<tr>
+<td><code>getVisionFrame(channel)</code></td>
+<td>已订阅通道的最新一帧</td>
+</tr>
+<tr>
+<td><code>canReadVision(channel)</code></td>
+<td>前端提示用：当前用户能否订阅</td>
+</tr>
+</tbody>
+</table>
+<p><code>VisionFrame</code> 包含 <code>channel</code>、<code>sequence</code>、<code>time</code>（Date）、<code>pipeline</code>、<code>node</code>、<code>success</code>、<code>error</code>、<code>elapsedMs</code>、<code>values</code>（<code>{ 别名: 值 }</code>）、<code>items</code>（<code>[{ alias, label, value, text, unit, decimals, available, source }]</code>）、<code>image</code>（<code>{ url, width, height, sourceWidth, sourceHeight, sequence, capturedAt }</code> 或 <code>null</code>），以及：</p>
+<ul>
+<li><code>value(alias)</code>：原始值，本轮没取到时为 <code>undefined</code></li>
+<li><code>text(alias)</code>：按小数位并带单位的文本，没取到时为 <code>&quot;--&quot;</code></li>
+<li><code>item(alias)</code>：数据项</li>
+<li><code>imageUrl</code>、<code>imageFresh</code>：图像地址；图像是否本帧新拍（限流时沿用旧图为 <code>false</code>）</li>
+<li><code>scale</code>：发布图与原图的比例（发布宽 / 原图宽），没有图像时为 <code>null</code></li>
+<li><code>toImagePoint(x, y)</code> / <code>toImagePoint({ x, y })</code>：原图像素坐标换算到发布图像素坐标，定位结果可以直接传入；<code>toImageLength(length)</code> 换算长度（半径、宽度）</li>
+</ul>
+<p><code>success</code> 为 <code>false</code> 表示视觉这一轮执行失败（相机、上游错误），应显示为「异常」，与 NG 区分。结果帧只保证最新，视觉执行很快时中间帧会被合并，不能用来计数。</p>
+<pre><code class="lang-js">const dv = await DynamicViews.connect();
+await dv.subscribeVision(&quot;station1&quot;, frame =&gt; {
+    if (frame.imageUrl) img.src = frame.imageUrl;
+    widthText.textContent = frame.text(&quot;width&quot;);
+    badge.textContent = !frame.success ? &quot;异常&quot; : frame.value(&quot;width&quot;) &lt;= 12.1 ? &quot;OK&quot; : &quot;NG&quot;;
+});
+</code></pre>
+<p>现成组件 <code>&lt;dv-vision-view&gt;</code> 显示一个通道的图像、判定徽标与数据表：</p>
+<pre><code class="lang-html">&lt;dv-vision-view id=&quot;st1&quot; channel=&quot;station1&quot; fields=&quot;width,height&quot; style=&quot;height: 420px&quot;&gt;&lt;/dv-vision-view&gt;
+&lt;script&gt;
+  document.getElementById(&quot;st1&quot;).judge = frame =&gt; frame.value(&quot;width&quot;) &gt;= 11.9 &amp;&amp; frame.value(&quot;width&quot;) &lt;= 12.1;
+&lt;/script&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>属性 / 成员</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>channel</code></td>
+<td>通道名（必填）</td>
+</tr>
+<tr>
+<td><code>fields</code></td>
+<td>只列出这些别名（逗号分隔），默认全部</td>
+</tr>
+<tr>
+<td><code>hide-items</code> / <code>hide-meta</code></td>
+<td>隐藏数据表 / 帧信息行</td>
+</tr>
+<tr>
+<td><code>judge</code></td>
+<td>判定函数 <code>frame =&gt; true / false / null</code>：<code>true</code> 显示 OK、<code>false</code> 显示 NG，不设时只区分「完成」与「异常」</td>
+</tr>
+<tr>
+<td><code>overlay</code></td>
+<td>叠加绘制函数 <code>(ctx, frame, info) =&gt; …</code>：<code>ctx</code> 是与发布图同尺寸、与显示中的图像始终对齐的 2D 画布（发布图像素坐标），每次调用前已清空；<code>info.unit</code> 为 1 个屏幕像素对应的画布像素（线宽写 <code>2 * info.unit</code> 在任何缩放下都是 2px），<code>info.width</code> / <code>info.height</code> 为画布尺寸。新图加载完成后才绘制，尺寸变化时自动重画，帧不带图像（执行失败）时清空</td>
+</tr>
+<tr>
+<td><code>frame</code></td>
+<td>最新一帧</td>
+</tr>
+<tr>
+<td><code>dv-vision-frame</code> 事件</td>
+<td>每收到一帧派发，<code>detail</code> 为 <code>VisionFrame</code></td>
+</tr>
+<tr>
+<td><code>data-state</code></td>
+<td><code>waiting</code>、<code>done</code>、<code>ok</code>、<code>ng</code>、<code>error</code>，可用于样式</td>
+</tr>
+<tr>
+<td>CSS 变量</td>
+<td><code>--dv-vision-ok</code>、<code>--dv-vision-ng</code>、<code>--dv-vision-error</code>、<code>--dv-vision-stage-bg</code>、<code>--dv-vision-fit</code>、<code>--dv-vision-radius</code>、<code>--dv-vision-label</code>、<code>--dv-vision-gap</code>、<code>--dv-vision-min-height</code></td>
+</tr>
+</tbody>
+</table>
+<p>组件等待页面自己的 <code>DynamicViews.connect()</code>；新图加载完成后才替换，切换时不闪白。重新给 <code>judge</code> / <code>overlay</code> 赋值会立即按最新一帧重新判定、重画，公差变化时不必等下一轮。</p>
+<pre><code class="lang-js">view.overlay = (ctx, frame, info) =&gt; {
+    const p = frame.toImagePoint(frame.value(&quot;center&quot;));   // 视觉结果是原图坐标，先换算
+    ctx.lineWidth = 2 * info.unit;
+    ctx.strokeStyle = frame.value(&quot;width&quot;) &lt;= 12.1 ? &quot;#22c55e&quot; : &quot;#ef4444&quot;;
+    ctx.beginPath(); ctx.arc(p.x, p.y, frame.toImageLength(120), 0, Math.PI * 2); ctx.stroke();
+};
+</code></pre>
+<p>坐标只有和图像出自同一张图时才能画：经过裁剪、转正、缩放节点之后的结果是新图的像素坐标，换成机械坐标（mm）的结果不是图像坐标。发布的图像要与坐标对应，否则在视觉侧用坐标映射节点换回来。</p>
 <h3 id="账号">账号</h3>
 <p>账号与角色来自 DataMaster 宿主。在 DataMaster 内打开的窗口中，登录与登出直接作用于宿主。</p>
 <table>
@@ -596,6 +706,16 @@ if (result.truncated) note.textContent = &quot;结果已达上限，请缩小时
 <td>—</td>
 <td>心跳</td>
 </tr>
+<tr>
+<td><code>visionSubscribe</code></td>
+<td><code>requestId</code>、<code>channels</code>（通道名数组或 <code>&quot;*&quot;</code>）</td>
+<td>订阅视觉通道</td>
+</tr>
+<tr>
+<td><code>visionUnsubscribe</code></td>
+<td><code>requestId</code>、<code>channels</code></td>
+<td>取消订阅视觉通道</td>
+</tr>
 </tbody>
 </table>
 <h3 id="服务端--客户端">服务端 → 客户端</h3>
@@ -610,7 +730,7 @@ if (result.truncated) note.textContent = &quot;结果已达上限，请缩小时
 <tbody>
 <tr>
 <td><code>welcome</code></td>
-<td><code>sessionId</code>、<code>app</code>、<code>page</code>、<code>pages</code>、<code>auth</code>、<code>user</code>、<code>variables</code>、<code>queries</code>、<code>unavailable</code>、<code>runtime</code></td>
+<td><code>sessionId</code>、<code>app</code>、<code>page</code>、<code>pages</code>、<code>auth</code>、<code>user</code>、<code>variables</code>、<code>queries</code>、<code>vision</code>、<code>unavailable</code>、<code>runtime</code></td>
 <td>握手结果</td>
 </tr>
 <tr>
@@ -650,8 +770,8 @@ if (result.truncated) note.textContent = &quot;结果已达上限，请缩小时
 </tr>
 <tr>
 <td><code>auth</code></td>
-<td><code>reason</code>、<code>user</code>、<code>hostLinked</code>、<code>revoked</code></td>
-<td>身份变化；<code>revoked</code> 为因权限不足被撤销的订阅</td>
+<td><code>reason</code>、<code>user</code>、<code>hostLinked</code>、<code>revoked</code>、<code>revokedVision</code></td>
+<td>身份变化；<code>revoked</code> / <code>revokedVision</code> 为因权限不足被撤销的变量 / 视觉订阅</td>
 </tr>
 <tr>
 <td><code>runtime</code></td>
@@ -662,6 +782,21 @@ if (result.truncated) note.textContent = &quot;结果已达上限，请缩小时
 <td><code>pong</code> / <code>error</code></td>
 <td>— / <code>requestId?</code>、<code>code</code>、<code>message</code></td>
 <td>心跳 / 请求错误</td>
+</tr>
+<tr>
+<td><code>visionSubscribed</code></td>
+<td><code>requestId</code>、<code>channels</code>、<code>rejected</code>（通道名 → 错误码）</td>
+<td>视觉订阅结果，随后补发各通道最新一帧</td>
+</tr>
+<tr>
+<td><code>visionUnsubscribed</code></td>
+<td><code>requestId</code>、<code>channels</code></td>
+<td>取消视觉订阅回执</td>
+</tr>
+<tr>
+<td><code>visionFrame</code></td>
+<td><code>channel</code>、<code>frame</code></td>
+<td>视觉结果帧（只保证最新；发送队列满时丢弃，不断开）</td>
 </tr>
 </tbody>
 </table>

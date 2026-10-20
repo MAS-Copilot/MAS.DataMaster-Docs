@@ -212,6 +212,10 @@ Web 视图写入 ───┘                                                  �
 <td>查询表：别名 → 数据源上的一条只读 SQL，见<a href="#%E5%90%8E%E7%AB%AF%E6%9F%A5%E8%AF%A2">后端查询</a></td>
 </tr>
 <tr>
+<td><code>vision</code></td>
+<td>视觉通道表：通道名 → 声明，见<a href="#%E8%A7%86%E8%A7%89%E7%BB%93%E6%9E%9C">视觉结果</a></td>
+</tr>
+<tr>
 <td><code>pages</code></td>
 <td>登记页面：出现在 DataMaster 页面卡片、SDK 的 <code>dv.pages</code> 中，并用于页面级登录提示；未登记的 HTML 同样可以访问</td>
 </tr>
@@ -558,6 +562,94 @@ ORDER BY alarm_time DESC;
 </tr>
 </tbody>
 </table>
+<h2 id="视觉结果">视觉结果</h2>
+<p>视觉工作台的「Web 发布」节点（结束分类）把每轮的结果数据和一张缩小后的图像按<strong>通道</strong>发布出去，Web 页面订阅通道显示。视觉只发布、不判定：OK / NG 由页面按数据自己判断。</p>
+<pre><code class="lang-text">视觉管道 ─► Web 发布节点 ─► IVisionPublishHub（每通道只留最新一帧）─► IDynamicViewWebVisionSource ─► 变量网关 visionFrame ─► SDK / &lt;dv-vision-view&gt;
+                                         └─ 图像 JPEG ─────────────────────────────────────────────► GET /_vision/{id}.jpg
+</code></pre>
+<h3 id="视觉侧配置">视觉侧配置</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通道名</td>
+<td>Web 清单按它声明、页面按它订阅；规则与变量别名相同</td>
+</tr>
+<tr>
+<td>图像最长边</td>
+<td>默认 1280 px，原图更大时按比例缩小；只供展示，细看请回视觉用图像查看器</td>
+</tr>
+<tr>
+<td>JPEG 质量</td>
+<td>默认 75</td>
+</tr>
+<tr>
+<td>图像帧率上限</td>
+<td>连续运行时每秒最多发布的图像数，默认 5；结果数据每轮都发</td>
+</tr>
+<tr>
+<td>发布字段</td>
+<td>每行「别名 = 节点标题.结果键」，可设显示名、单位、小数位；<code>节点标题.*</code> 发布该节点全部结果数据</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>图像输入要连线，节点才属于这条管道；发布字段在整轮结束后按标题取值，可以引用同一管道里任何节点，不受执行先后影响。</li>
+<li>管道连续运行时没有页面订阅就不编码图像；调试运行、单次触发总是编码。编码在后台线程进行：执行线程只把大图快速缩到目标两倍以内并复制，精缩与 JPEG 编码不占管道耗时。</li>
+<li>数值按小数位四舍五入，并给出带单位的格式化文本；结构化结果（定位、列表）以 camelCase 成员的 JSON 发布。</li>
+<li>发布节点被条件执行跳过时不发帧；上游失败、发布节点没执行到时发一帧失败结果（<code>success: false</code>，不带图像），页面据此区分「检测异常」与 NG。</li>
+</ul>
+<h3 id="清单声明">清单声明</h3>
+<pre><code class="lang-json">&quot;vision&quot;: {
+  &quot;station1&quot;: { &quot;description&quot;: &quot;工位1尺寸检测&quot; },
+  &quot;station2&quot;: { &quot;readRole&quot;: &quot;operator&quot; }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通道名（键）</td>
+<td>必须与「Web 发布」节点的通道名一致；视觉工程里没有该通道时校验给出警告</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>说明，显示在 SDK 与 Agent 的通道清单里</td>
+</tr>
+<tr>
+<td><code>readRole</code></td>
+<td>可选，订阅门槛，与应用 <code>viewRole</code> 取较高者</td>
+</tr>
+</tbody>
+</table>
+<h3 id="结果帧">结果帧</h3>
+<pre><code class="lang-json">{
+  &quot;type&quot;: &quot;visionFrame&quot;, &quot;channel&quot;: &quot;station1&quot;,
+  &quot;frame&quot;: {
+    &quot;sequence&quot;: 1234, &quot;time&quot;: &quot;2026-10-20T10:00:00.123+08:00&quot;, &quot;pipeline&quot;: &quot;工位1&quot;, &quot;node&quot;: &quot;Web 发布&quot;,
+    &quot;success&quot;: true, &quot;error&quot;: null, &quot;elapsedMs&quot;: 38,
+    &quot;values&quot;: { &quot;width&quot;: 12.13, &quot;center&quot;: { &quot;x&quot;: 512.3, &quot;y&quot;: 300.1, &quot;angle&quot;: 0, &quot;score&quot;: 0.97 } },
+    &quot;items&quot;: [ { &quot;alias&quot;: &quot;width&quot;, &quot;label&quot;: &quot;宽度&quot;, &quot;value&quot;: 12.13, &quot;text&quot;: &quot;12.13 mm&quot;, &quot;unit&quot;: &quot;mm&quot;, &quot;decimals&quot;: 2, &quot;available&quot;: true, &quot;source&quot;: &quot;测量.Distance&quot; } ],
+    &quot;image&quot;: { &quot;url&quot;: &quot;/_vision/9f0c…e1.jpg&quot;, &quot;width&quot;: 1280, &quot;height&quot;: 960, &quot;sourceWidth&quot;: 5472, &quot;sourceHeight&quot;: 3648, &quot;sequence&quot;: 1232 }
+  }
+}
+</code></pre>
+<ul>
+<li><strong>只保证最新</strong>：同一通道在一个推送周期（50 ms）内的多帧只发最后一帧，客户端发送队列满时直接丢弃而不断开；不要用结果帧计数或统计良率（用变量或后端查询）。</li>
+<li>图像按帧率限流时沿用最近一张，<code>image.sequence</code> 小于 <code>sequence</code>；图像地址是随机标识，内容不变、可缓存，每个通道只保留最近 16 张（连续运行按 5 张/秒约 3 秒），更早的地址返回 404；程序重启后清空。</li>
+<li>订阅成功后立即补发最新一帧；登录身份变化后无权的通道自动退订（<code>auth.revokedVision</code>）。</li>
+<li>页面要在图上画标记时，用 <code>&lt;dv-vision-view&gt;</code> 的 <code>overlay</code> 与 <code>frame.toImagePoint</code>：视觉结果是原图像素坐标，画到发布图上要按 <code>width / sourceWidth</code> 换算，且坐标必须和发布的图像出自同一张图（见 <a href="MAS.DynamicViews.WebView.Sdk.html#%E8%A7%86%E8%A7%89%E7%BB%93%E6%9E%9C">SDK · 视觉结果</a>）。</li>
+</ul>
 <h2 id="服务宿主">服务宿主</h2>
 <p><code>IDynamicViewWebHostService</code> 使用独立的本地 Web Host 实例（<code>LocalWebHostFactory.Create</code>），与图表资产共享的 Host 互不影响启停。</p>
 <table>
@@ -643,13 +735,17 @@ ORDER BY alarm_time DESC;
 <td>工程里的 Lucide 图标</td>
 </tr>
 <tr>
+<td><code>/_vision/{id}.jpg</code></td>
+<td>视觉结果帧附带的图像；标识随帧下发，未知或已淘汰返回 404，<code>Cache-Control: private, max-age=3600, immutable</code></td>
+</tr>
+<tr>
 <td><code>/ws/dynamic-views</code></td>
 <td>变量网关 WebSocket</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>只接受 GET / HEAD，其余方法返回 405；不提供任何 HTTP 数据接口。</li>
+<li>只接受 GET / HEAD，其余方法返回 405；除视觉图像外不提供任何 HTTP 数据接口。</li>
 <li>路径中含 <code>..</code>、盘符、空字符或以 <code>.</code> 开头的段一律拒绝，解析结果必须位于 Web 目录内。</li>
 <li>逐段按磁盘上的真实名称核对：8.3 短名（如 <code>COVERS~1</code>）、末尾点等别名不会命中真实文件；真实名称以 <code>.</code> 开头的条目、符号链接 / 目录联接一律不提供。</li>
 <li>根目录的 <code>manifest.json</code>、<code>web.json</code>（及其临时文件）不对外提供，页面所需的清单信息由网关 <code>welcome</code> 下发。</li>
@@ -1043,6 +1139,11 @@ writeResult（成功或稳定错误码）+ 记入操作日志
 <td>搜索内置 Lucide 图标（多个关键词按“或”匹配，命中多的排前）</td>
 </tr>
 <tr>
+<td><code>dynamicViewWeb.visionChannels</code></td>
+<td>Low</td>
+<td>列出视觉「Web 发布」节点的通道：管道、发布字段、图像设置、是否已在清单声明、订阅数与最新一帧（值、缺失字段、图像地址）；并列出已声明但没有节点发布的通道</td>
+</tr>
+<tr>
 <td><code>dynamicViewWeb.verify</code></td>
 <td>Low</td>
 <td>在隐藏 WebView2 中加载页面，诊断脚本错误、请求失败及 SDK 问题；导航后等待 SDK 连接并收到首个快照，再留 1 秒渲染（受 <code>settleMilliseconds</code> 限制）后检查；支持 <code>actions</code> 真实输入（CDP 鼠标/键盘）、await/Promise、超时、探针后等待、视口与对话框处理；身份默认跟随宿主，也可匿名或使用不高于宿主权限的验证令牌（仅本机、5 分钟有效、不读写浏览器登录）</td>
@@ -1078,12 +1179,18 @@ writeResult（成功或稳定错误码）+ 记入操作日志
 │   ├── DynamicViewWebProjectService        工程扫描、清单读取、静态文件解析、设置
 │   ├── DynamicViewWebAuthService           复用宿主账号：独立会话令牌、宿主联动、失败锁定
 │   ├── DynamicViewWebHostService           独立 Host 实例、端口与访问模式、随工程重启
-│   └── DynamicViewWebReferenceContributor  清单变量纳入引用检查
+│   ├── DynamicViewWebReferenceContributor  清单变量纳入引用检查
+│   └── DynamicViewWebEmptyVisionSource     没有视觉模块时的空视觉来源
+├── Interfaces/IDynamicViewWebVisionSource  视觉结果来源（宿主接入，动态视图不引用视觉）
 ├── Gateway                                 变量网关：会话、订阅、合并推送、写入、登录与权限
 ├── Hosting                                 站点端点、WebSocket 适配、SDK 与图标资源
 └── Sdk                                     dynamic-views.js、lucide-icons.json（全量图标，嵌入资源）
 
+MAS.VisionFlow/Publishing                   视觉发布总线 IVisionPublishHub、结果帧、图像缩小编码
+MAS.VisionFlow/Nodes/Finish/WebPublishNode  「Web 发布」节点
+
 MAS.DataMaster
+├── Services/VisionWebSource                视觉发布总线 → IDynamicViewWebVisionSource 的桥接
 ├── NamedPipeIpc/DynamicViewWeb             dynamicViewWeb.* 工具
 ├── Views/Pages/DynamicViews                DynamicViewWebPanel、工作台视图切换
 └── ViewModels/Pages/DynamicViews           DynamicViewWebPanelViewModel
@@ -1099,6 +1206,7 @@ MAS.PrismaAgent/Models/Skills/DynamicViewWeb  Agent 技能文档与示例
 <li>页面级 <code>viewRole</code> 不限制静态文件访问，数据保护依赖变量级角色</li>
 <li>没有 Web 可视化设计器，页面由 Agent 或开发者直接编写</li>
 <li>后端查询目前只接入 MySQL 驱动；查询结果一次性返回，没有实时推送、分页游标和流式传输</li>
+<li>视觉结果帧只保证最新、不保证每帧送达；图像只有缩小后的 JPEG。算法自己的标注（轮廓、ROI、卡尺区域）只能通过发布标注图带出，页面只能按已发布的坐标数据自行叠加绘制</li>
 <li>数据源密码使用应用内置密钥加密（与现有数据库配置一致），能防止直接看到明文，但不等同于机密管理；对安全要求高的现场请使用权限受限的只读账号</li>
 </ul>
 <p>相关文档：<a href="MAS.DynamicViews.WebView.Sdk.html">前端 SDK 与协议</a>、<a href="MAS.DynamicViews.Variable.html">变量系统</a>、<a href="MAS.DynamicViews.Communication.html">通讯系统</a>、<a href="../MAS-Security/Authentication.html">认证服务</a></p>

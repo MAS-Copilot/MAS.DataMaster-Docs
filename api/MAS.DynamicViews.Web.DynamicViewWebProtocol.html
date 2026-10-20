@@ -149,7 +149,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h2 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>协议是 WebSocket 文本帧上的 JSON 消息，每条消息带 <code>type</code>。</p>
-<ul><li>客户端 → 服务端：hello / subscribe / unsubscribe / write / query / resync / ping / login / logout</li><li>服务端 → 客户端：welcome / subscribed / unsubscribed / snapshot / patch / writeResult / queryResult / loginResult / logoutResult / auth / runtime / pong / error</li></ul>
+<ul><li>客户端 → 服务端：hello / subscribe / unsubscribe / write / query / resync / ping / login / logout / visionSubscribe / visionUnsubscribe</li><li>服务端 → 客户端：welcome / subscribed / unsubscribed / snapshot / patch / writeResult / queryResult / loginResult / logoutResult / auth / runtime / pong / error / visionSubscribed / visionUnsubscribed / visionFrame</li></ul>
 <p>snapshot 与 patch 共用一个按连接递增的 sequence，客户端发现 patch 序号不连续时发送 resync 取回完整快照。
 登录成功先回 loginResult 再推 auth；写入前身份有变化时 auth 先于 writeResult。
 同一连接的 write / login / logout 按到达顺序串行处理；query 独立并发执行（每连接有并发上限），不阻塞写入</p>
@@ -163,7 +163,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_CLOSE_DISCONNECTED" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.CLOSE_DISCONNECTED">
   CLOSE_DISCONNECTED
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>关闭码：被宿主（DataMaster 管理员）断开，客户端不再自动重连</p>
@@ -194,7 +194,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_CLOSE_PAGE_NOT_FOUND" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.CLOSE_PAGE_NOT_FOUND">
   CLOSE_PAGE_NOT_FOUND
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>关闭码：页面不存在</p>
@@ -225,7 +225,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_CLOSE_PROTOCOL_ERROR" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.CLOSE_PROTOCOL_ERROR">
   CLOSE_PROTOCOL_ERROR
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>关闭码：协议错误（握手缺失、消息非法等）</p>
@@ -256,7 +256,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_CLOSE_RELOAD" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.CLOSE_RELOAD">
   CLOSE_RELOAD
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>关闭码：工程或结构体定义已变化，客户端应重新连接以取得新的变量清单</p>
@@ -287,7 +287,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_CLOSE_SERVER_STOPPING" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.CLOSE_SERVER_STOPPING">
   CLOSE_SERVER_STOPPING
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>关闭码：服务停止</p>
@@ -318,7 +318,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_CLOSE_SLOW_CONSUMER" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.CLOSE_SLOW_CONSUMER">
   CLOSE_SLOW_CONSUMER
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L69"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>关闭码：客户端消费过慢，发送队列溢出</p>
@@ -349,7 +349,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_CLOSE_TOO_MANY_CONNECTIONS" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.CLOSE_TOO_MANY_CONNECTIONS">
   CLOSE_TOO_MANY_CONNECTIONS
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>关闭码：连接数超过上限（全局或同一客户端地址），客户端按退避间隔重试</p>
@@ -380,7 +380,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_AUTH_UNAVAILABLE" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_AUTH_UNAVAILABLE">
   ERROR_AUTH_UNAVAILABLE
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L148"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>账号服务暂不可用（如宿主数据库无法访问），不计入登录失败次数</p>
@@ -411,7 +411,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_BAD_REQUEST" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_BAD_REQUEST">
   ERROR_BAD_REQUEST
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>请求格式错误</p>
@@ -442,7 +442,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_BUSY" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_BUSY">
   ERROR_BUSY
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L152"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L158"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>并发写入请求过多</p>
@@ -473,7 +473,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_FORBIDDEN" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_FORBIDDEN">
   ERROR_FORBIDDEN
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>已登录但角色不足</p>
@@ -504,7 +504,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_INTERNAL" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_INTERNAL">
   ERROR_INTERNAL
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L183"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>服务端内部错误</p>
@@ -535,7 +535,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_LOGIN_FAILED" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_LOGIN_FAILED">
   ERROR_LOGIN_FAILED
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L138"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>用户名或密码错误</p>
@@ -566,7 +566,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_LOGIN_LOCKED" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_LOGIN_LOCKED">
   ERROR_LOGIN_LOCKED
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L143"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>登录失败次数过多，暂时锁定</p>
@@ -597,7 +597,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_LOGIN_REQUIRED" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_LOGIN_REQUIRED">
   ERROR_LOGIN_REQUIRED
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L128"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>需要登录</p>
@@ -628,7 +628,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_NOT_DECLARED" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_NOT_DECLARED">
   ERROR_NOT_DECLARED
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L108"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>变量未在页面清单中声明</p>
@@ -659,7 +659,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_NOT_READABLE" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_NOT_READABLE">
   ERROR_NOT_READABLE
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>变量未声明读取权限</p>
@@ -690,7 +690,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_NOT_WRITABLE" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_NOT_WRITABLE">
   ERROR_NOT_WRITABLE
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>变量未声明写入权限</p>
@@ -721,7 +721,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_PAGE_NOT_FOUND" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_PAGE_NOT_FOUND">
   ERROR_PAGE_NOT_FOUND
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L103"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>页面不存在</p>
@@ -752,7 +752,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_QUERY_FAILED" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_QUERY_FAILED">
   ERROR_QUERY_FAILED
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L162"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L168"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>查询在数据库执行阶段失败（连接失败、SQL 报错等）</p>
@@ -783,7 +783,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_QUERY_TIMEOUT" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_QUERY_TIMEOUT">
   ERROR_QUERY_TIMEOUT
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L173"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>查询超过数据源的查询超时时间</p>
@@ -814,7 +814,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_QUERY_UNAVAILABLE" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_QUERY_UNAVAILABLE">
   ERROR_QUERY_UNAVAILABLE
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L163"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>查询已声明但当前不可用（数据源不存在或未配置、SQL 文件缺失等）</p>
@@ -845,7 +845,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_RESULT_TOO_LARGE" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_RESULT_TOO_LARGE">
   ERROR_RESULT_TOO_LARGE
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L178"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>查询结果超过单条消息的大小上限</p>
@@ -876,7 +876,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_TOO_MANY_CONNECTIONS" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_TOO_MANY_CONNECTIONS">
   ERROR_TOO_MANY_CONNECTIONS
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L153"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>连接数超过上限</p>
@@ -907,7 +907,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_VARIABLE_UNAVAILABLE" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ERROR_VARIABLE_UNAVAILABLE">
   ERROR_VARIABLE_UNAVAILABLE
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L113"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>变量已声明但当前不可用（结构体/字段不存在、停用、类型不符等）</p>
@@ -938,7 +938,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_MAX_INBOUND_MESSAGE_BYTES" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.MAX_INBOUND_MESSAGE_BYTES">
   MAX_INBOUND_MESSAGE_BYTES
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>入站消息大小上限（字节）</p>
@@ -969,7 +969,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_MAX_QUERY_RESULT_CHARS" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.MAX_QUERY_RESULT_CHARS">
   MAX_QUERY_RESULT_CHARS
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>查询结果消息大小上限（字符数，约等于字节数）；超出时返回 <a class="xref" href="MAS.DynamicViews.Web.DynamicViewWebProtocol.html#MAS_DynamicViews_Web_DynamicViewWebProtocol_ERROR_RESULT_TOO_LARGE">ERROR_RESULT_TOO_LARGE</a></p>
@@ -1029,6 +1029,40 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
 
 
+  <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_VISION_IMAGE_PATH" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.VISION_IMAGE_PATH">
+  VISION_IMAGE_PATH
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>视觉图像路径前缀：<code>/_vision/{图像标识}.jpg</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string VISION_IMAGE_PATH = &quot;/_vision/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="MAS_DynamicViews_Web_DynamicViewWebProtocol_VISION_IMAGE_PATH_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>图像标识是随结果帧下发的随机串，只有收到帧的会话知道；视觉侧每个通道只保留最近 16 张</p>
+</div>
+
+
+
+
+
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_WEBSOCKET_PATH" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.WEBSOCKET_PATH">
   WEBSOCKET_PATH
   <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L36"><i class="bi bi-code-slash"></i></a>
@@ -1067,7 +1101,7 @@ Class DynamicViewWebProtocol  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_DynamicViews_Web_DynamicViewWebProtocol_ToProtocolCode_MAS_DynamicViews_DynamicViewVariableWriteErrorCode_" data-uid="MAS.DynamicViews.Web.DynamicViewWebProtocol.ToProtocolCode(MAS.DynamicViews.DynamicViewVariableWriteErrorCode)">
   ToProtocolCode(DynamicViewVariableWriteErrorCode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.DynamicViews/Web/Gateway/DynamicViewWebProtocol.cs/#L192"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>把写入服务错误码转换为协议错误码（全大写下划线形式，如 <code>DEVICE_WRITE_FAILED</code>）</p>
