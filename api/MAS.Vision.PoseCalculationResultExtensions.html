@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_Vision_PoseCalculationResultExtensions" data-uid="MAS.Vision.PoseCalculationResultExtensions" class="text-break">
-Class PoseCalculationResultExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L21"><i class="bi bi-code-slash"></i></a>
+Class PoseCalculationResultExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -147,6 +147,10 @@ Class PoseCalculationResultExtensions  <a class="header-action link-secondary" t
 
 
 
+  <h2 id="MAS_Vision_PoseCalculationResultExtensions_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>这里的位姿都在 OpenCV 相机坐标系下（solvePnP 原始的 rvec/tvec：X 向右、Y 向下、Z 朝前），不经过“实际坐标系”轴映射。
+轴映射可以是左手系（默认 X=CvZ、Y=CvX、Z=−CvY 的行列式为 −1），映射后的位姿不能参与手眼标定与换算</p>
+</div>
 
 
   <h2 class="section" id="methods">Methods
@@ -157,10 +161,10 @@ Class PoseCalculationResultExtensions  <a class="header-action link-secondary" t
 
   <h3 id="MAS_Vision_PoseCalculationResultExtensions_ToPose6D_MAS_Vision_Aruco_PoseCalculationResult_MAS_Numerics_RotationOrder_" data-uid="MAS.Vision.PoseCalculationResultExtensions.ToPose6D(MAS.Vision.Aruco.PoseCalculationResult,MAS.Numerics.RotationOrder)">
   ToPose6D(PoseCalculationResult, RotationOrder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将视觉姿态解算结果转换为 Pose6D</p>
+  <div class="markdown level1 summary"><p>将视觉姿态解算结果转换为相机在目标（标定板）坐标系下的位姿（Camera→Target）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -181,7 +185,59 @@ Class PoseCalculationResultExtensions  <a class="header-action link-secondary" t
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a></dt>
-    <dd><p>相机坐标系下 Camera→Target 的6D位姿</p>
+    <dd><p>Camera→Target 的 6D 位姿</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_Vision_PoseCalculationResultExtensions_ToPose6D_MAS_Vision_Aruco_PoseCalculationResult_MAS_Numerics_RotationOrder__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Camera→Target 指把相机坐标系下的点变到目标坐标系，是 solvePnP 结果（Target→Camera）的逆；
+手眼标定样本按这个约定采集。要相机下的目标位姿（换算到基座）用 <a class="xref" href="MAS.Vision.PoseCalculationResultExtensions.html#MAS_Vision_PoseCalculationResultExtensions_ToTargetInCamera_MAS_Vision_Aruco_PoseCalculationResult_MAS_Numerics_RotationOrder_">ToTargetInCamera(PoseCalculationResult, RotationOrder)</a></p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>CvRvec/CvTvec 为空时抛出</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_Vision_PoseCalculationResultExtensions_ToTargetInCamera_" data-uid="MAS.Vision.PoseCalculationResultExtensions.ToTargetInCamera*"></a>
+
+  <h3 id="MAS_Vision_PoseCalculationResultExtensions_ToTargetInCamera_MAS_Vision_Aruco_PoseCalculationResult_MAS_Numerics_RotationOrder_" data-uid="MAS.Vision.PoseCalculationResultExtensions.ToTargetInCamera(MAS.Vision.Aruco.PoseCalculationResult,MAS.Numerics.RotationOrder)">
+  ToTargetInCamera(PoseCalculationResult, RotationOrder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将视觉姿态解算结果转换为相机坐标系下的目标位姿（Target→Camera，即 solvePnP 的 rvec/tvec）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Pose6D ToTargetInCamera(this PoseCalculationResult src, RotationOrder order = RotationOrder.Zyx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>src</code> <a class="xref" href="MAS.Vision.Aruco.PoseCalculationResult.html">PoseCalculationResult</a></dt>
+    <dd><p>视觉姿态解算结果</p>
+</dd>
+    <dt><code>order</code> <a class="xref" href="MAS.Numerics.RotationOrder.html">RotationOrder</a></dt>
+    <dd><p>欧拉角顺序（用于将旋转矩阵转 PoseEuler）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a></dt>
+    <dd><p>Target→Camera 的 6D 位姿</p>
 </dd>
   </dl>
 
@@ -195,7 +251,7 @@ Class PoseCalculationResultExtensions  <a class="header-action link-secondary" t
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
-    <dd><p>CvRvec/CvTvec为空时抛出</p>
+    <dd><p>CvRvec/CvTvec 为空时抛出</p>
 </dd>
   </dl>
 
@@ -205,7 +261,7 @@ Class PoseCalculationResultExtensions  <a class="header-action link-secondary" t
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L21" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Extensions/PoseCalculationResultExtensions.cs/#L25" class="edit-link">Edit this page</a>
         </div>
 
 

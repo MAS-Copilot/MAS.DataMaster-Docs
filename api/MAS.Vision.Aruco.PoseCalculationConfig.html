@@ -273,6 +273,10 @@ public AxisRef RealXAxisFromCv { get; set; }</code></pre>
 
 
 
+  <h4 class="section" id="MAS_Vision_Aruco_PoseCalculationConfig_RealXAxisFromCv_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>三个轴映射只影响“实际坐标系”下的输出（欧拉角、Rvec/Tvec 结果数据）。映射允许左手系
+（默认 X=CvZ、Y=CvX、Z=−CvY 的行列式为 −1），所以手眼标定与手眼换算不用映射后的位姿，固定取 OpenCV 相机坐标系下的 CvRvec/CvTvec</p>
+</div>
 
 
 

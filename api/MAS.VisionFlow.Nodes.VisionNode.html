@@ -268,6 +268,9 @@ public abstract class VisionNode : FlowNode, INotifyPropertyChanged, INotifyProp
       <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_NotifySettingsChanged">FlowNode.NotifySettingsChanged()</a>
     </div>
     <div>
+      <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_NotifySavedContentChanged">FlowNode.NotifySavedContentChanged()</a>
+    </div>
+    <div>
       <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnPropertyChanged_System_ComponentModel_PropertyChangedEventArgs_">FlowNode.OnPropertyChanged(PropertyChangedEventArgs)</a>
     </div>
     <div>
@@ -427,7 +430,7 @@ public abstract class VisionNode : FlowNode, INotifyPropertyChanged, INotifyProp
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_AnnotatedOutputIndex" data-uid="MAS.VisionFlow.Nodes.VisionNode.AnnotatedOutputIndex">
   AnnotatedOutputIndex
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取标注图输出端口的序号，没有标注图端口时为 -1</p>
@@ -493,7 +496,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_IsDisposed" data-uid="MAS.VisionFlow.Nodes.VisionNode.IsDisposed">
   IsDisposed
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L117"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点是否已释放</p>
@@ -525,7 +528,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_IsInitialized" data-uid="MAS.VisionFlow.Nodes.VisionNode.IsInitialized">
   IsInitialized
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点是否已初始化（由运行时维护）</p>
@@ -549,6 +552,9 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
 
 
+  <h4 class="section" id="MAS_VisionFlow_Nodes_VisionNode_IsInitialized_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>参数一改就失效：运行到节点只重新初始化失效的节点，不必每次都重开相机、重读图像</p>
+</div>
 
 
 
@@ -628,7 +634,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_AddAnnotatedOutput" data-uid="MAS.VisionFlow.Nodes.VisionNode.AddAnnotatedOutput">
   AddAnnotatedOutput()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L224"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>添加标注图输出端口，放在最后一个输出（在派生类构造函数末尾调用）</p>
@@ -648,7 +654,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
 
   <h4 class="section" id="MAS_VisionFlow_Nodes_VisionNode_AddAnnotatedOutput_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>放最后：不改动已有端口的序号，旧工程连线、脚本里按序号取输出都不受影响</p>
+  <div class="markdown level1 remarks"><p>放最后：标注图是附加输出，前面各端口的序号不因有没有标注图而变，连线与脚本里按序号取输出保持稳定</p>
 </div>
 
 
@@ -658,7 +664,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_AddDebug_System_String_MAS_Loggers_Level_" data-uid="MAS.VisionFlow.Nodes.VisionNode.AddDebug(System.String,MAS.Loggers.Level)">
   AddDebug(string, Level)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L293"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L357"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>输出调试信息（启用调试时）</p>
@@ -694,7 +700,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_Dispose" data-uid="MAS.VisionFlow.Nodes.VisionNode.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L211"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
@@ -721,7 +727,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_Dispose_System_Boolean_" data-uid="MAS.VisionFlow.Nodes.VisionNode.Dispose(System.Boolean)">
   Dispose(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L172"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>释放资源</p>
@@ -754,7 +760,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.VisionNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L148"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -799,7 +805,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_GetLastOutput_System_Int32_" data-uid="MAS.VisionFlow.Nodes.VisionNode.GetLastOutput(System.Int32)">
   GetLastOutput(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L194"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行时某个输出端口的值</p>
@@ -838,7 +844,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.VisionNode.GetResultData">
   GetResultData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L154"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
@@ -871,7 +877,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Nodes.VisionNode.InitializeAsync(System.Threading.CancellationToken)">
   InitializeAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L129"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步初始化（打开相机、加载图片、构建求解器……），运行前由运行时调用</p>
@@ -916,7 +922,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_OnPipelineStarting" data-uid="MAS.VisionFlow.Nodes.VisionNode.OnPipelineStarting">
   OnPipelineStarting()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L140"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>管道开始连续运行时调用（在初始化之后、第一轮触发之前）</p>
@@ -947,7 +953,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_OnRemoved" data-uid="MAS.VisionFlow.Nodes.VisionNode.OnRemoved">
   OnRemoved()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L270"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L329"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点移出图后调用，应在此释放相机、后台任务等资源</p>
@@ -973,11 +979,38 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Nodes_VisionNode_OnSettingsChanged_" data-uid="MAS.VisionFlow.Nodes.VisionNode.OnSettingsChanged*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_VisionNode_OnSettingsChanged" data-uid="MAS.VisionFlow.Nodes.VisionNode.OnSettingsChanged">
+  OnSettingsChanged()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>节点参数（会持久化的属性）变化时调用，标题、折叠这类外观变化不调用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnSettingsChanged()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Nodes_VisionNode_ReadLastOutput_" data-uid="MAS.VisionFlow.Nodes.VisionNode.ReadLastOutput*"></a>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_ReadLastOutput__1_System_Int32_System_Func_System_Object___0__" data-uid="MAS.VisionFlow.Nodes.VisionNode.ReadLastOutput``1(System.Int32,System.Func{System.Object,``0})">
   ReadLastOutput&lt;T&gt;(int, Func&lt;object?, T&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L206"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>在输出锁内读取最近一次执行时某个输出端口的值</p>
@@ -1028,7 +1061,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.VisionNode.ReleaseResources">
   ReleaseResources()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L166"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>
@@ -1055,7 +1088,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_ResetCursor" data-uid="MAS.VisionFlow.Nodes.VisionNode.ResetCursor">
   ResetCursor()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L322"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L386"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>恢复光标</p>
@@ -1082,7 +1115,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_RunOnUi_System_Action_" data-uid="MAS.VisionFlow.Nodes.VisionNode.RunOnUi(System.Action)">
   RunOnUi(Action)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L367"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>在 UI 线程执行</p>
@@ -1115,7 +1148,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_SetBusyCursor" data-uid="MAS.VisionFlow.Nodes.VisionNode.SetBusyCursor">
   SetBusyCursor()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L315"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L379"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>显示忙碌光标</p>
@@ -1142,7 +1175,7 @@ public bool IsDebugLogEnabled { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_VisionNode_WatchOutput_System_Int32_" data-uid="MAS.VisionFlow.Nodes.VisionNode.WatchOutput(System.Int32)">
   WatchOutput(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/VisionNode.cs/#L243"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>登记有人在看某个输出端口，释放返回值即取消</p>

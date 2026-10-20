@@ -149,6 +149,41 @@ Class BitmapImageLoader  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_Vision_BitmapImageLoader_DefaultNetworkTimeout" data-uid="MAS.Vision.BitmapImageLoader.DefaultNetworkTimeout">
+  DefaultNetworkTimeout
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>网络下载的默认超时</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly TimeSpan DefaultNetworkTimeout</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -157,7 +192,7 @@ Class BitmapImageLoader  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Vision_BitmapImageLoader_LoadFromBytes_System_Byte___" data-uid="MAS.Vision.BitmapImageLoader.LoadFromBytes(System.Byte[])">
   LoadFromBytes(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从字节数组加载 BitmapImage</p>
@@ -196,7 +231,7 @@ Class BitmapImageLoader  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Vision_BitmapImageLoader_LoadFromFile_System_String_" data-uid="MAS.Vision.BitmapImageLoader.LoadFromFile(System.String)">
   LoadFromFile(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从本地文件加载 BitmapImage</p>
@@ -235,10 +270,10 @@ Class BitmapImageLoader  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_Vision_BitmapImageLoader_LoadFromNetworkAsync_System_String_" data-uid="MAS.Vision.BitmapImageLoader.LoadFromNetworkAsync(System.String)">
   LoadFromNetworkAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>从网络 URL 加载 BitmapImage</p>
+  <div class="markdown level1 summary"><p>从网络 URL 加载 BitmapImage（默认超时 <a class="xref" href="MAS.Vision.BitmapImageLoader.html#MAS_Vision_BitmapImageLoader_DefaultNetworkTimeout">DefaultNetworkTimeout</a>）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -270,28 +305,79 @@ Class BitmapImageLoader  <a class="header-action link-secondary" title="View sou
 
 
 
-  <a id="MAS_Vision_BitmapImageLoader_LoadLatestFromFolder_" data-uid="MAS.Vision.BitmapImageLoader.LoadLatestFromFolder*"></a>
+  <a id="MAS_Vision_BitmapImageLoader_LoadFromNetworkAsync_" data-uid="MAS.Vision.BitmapImageLoader.LoadFromNetworkAsync*"></a>
 
-  <h3 id="MAS_Vision_BitmapImageLoader_LoadLatestFromFolder_System_String_System_Boolean_" data-uid="MAS.Vision.BitmapImageLoader.LoadLatestFromFolder(System.String,System.Boolean)">
-  LoadLatestFromFolder(string, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  <h3 id="MAS_Vision_BitmapImageLoader_LoadFromNetworkAsync_System_String_System_TimeSpan_System_Threading_CancellationToken_" data-uid="MAS.Vision.BitmapImageLoader.LoadFromNetworkAsync(System.String,System.TimeSpan,System.Threading.CancellationToken)">
+  LoadFromNetworkAsync(string, TimeSpan, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>从文件夹加载最新的 BitmapImage 及其文件路径</p>
+  <div class="markdown level1 summary"><p>从网络 URL 加载 BitmapImage</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (BitmapImage Image, string FilePath) LoadLatestFromFolder(string folderPath, bool isDeleteAfterLoad)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;BitmapImage&gt; LoadFromNetworkAsync(string url, TimeSpan timeout, CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>URL 地址</p>
+</dd>
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd><p>超时</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌（停止、切换工程时取消下载）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imaging.bitmapimage">BitmapImage</a>&gt;</dt>
+    <dd><p>异步操作任务结果，<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imaging.bitmapimage">BitmapImage</a> 对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></dt>
+    <dd><p>超时</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd><p>已取消</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_Vision_BitmapImageLoader_LoadLatestFromFolder_" data-uid="MAS.Vision.BitmapImageLoader.LoadLatestFromFolder*"></a>
+
+  <h3 id="MAS_Vision_BitmapImageLoader_LoadLatestFromFolder_System_String_" data-uid="MAS.Vision.BitmapImageLoader.LoadLatestFromFolder(System.String)">
+  LoadLatestFromFolder(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从文件夹加载最新的 BitmapImage 及其文件路径（不改动任何文件）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static (BitmapImage Image, string FilePath) LoadLatestFromFolder(string folderPath)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>folderPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>目标文件夹路径</p>
-</dd>
-    <dt><code>isDeleteAfterLoad</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>指示加载后是否删除</p>
 </dd>
   </dl>
 
@@ -308,8 +394,8 @@ Class BitmapImageLoader  <a class="header-action link-secondary" title="View sou
 
 
 
-  <h4 class="section" id="MAS_Vision_BitmapImageLoader_LoadLatestFromFolder_System_String_System_Boolean__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>仅支持：[&quot;<em>.bmp&quot;, &quot;</em>.png&quot;, &quot;<em>.jpg&quot;, &quot;</em>.jpeg&quot;]</p>
+  <h4 class="section" id="MAS_Vision_BitmapImageLoader_LoadLatestFromFolder_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>仅支持：[&quot;<em>.bmp&quot;, &quot;</em>.png&quot;, &quot;<em>.jpg&quot;, &quot;</em>.jpeg&quot;]，只看文件夹本身（不含子目录），按写入时间取最新的一张</p>
 </div>
 
   <h4 class="section">Exceptions</h4>
@@ -319,7 +405,63 @@ Class BitmapImageLoader  <a class="header-action link-secondary" title="View sou
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.directorynotfoundexception">DirectoryNotFoundException</a></dt>
     <dd></dd>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filenotfoundexception">FileNotFoundException</a></dt>
+    <dd><p>文件夹里没有图像</p>
+</dd>
+  </dl>
+
+
+
+  <a id="MAS_Vision_BitmapImageLoader_LoadNextFromFolder_" data-uid="MAS.Vision.BitmapImageLoader.LoadNextFromFolder*"></a>
+
+  <h3 id="MAS_Vision_BitmapImageLoader_LoadNextFromFolder_System_String_System_String_" data-uid="MAS.Vision.BitmapImageLoader.LoadNextFromFolder(System.String,System.String)">
+  LoadNextFromFolder(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Helpers/BitmapImageLoader.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>像收件箱一样逐张处理：取文件夹里最早的一张，移到 <code class="paramref">processedDirectory</code> 后读取</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static (BitmapImage Image, string FilePath) LoadNextFromFolder(string folderPath, string processedDirectory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>folderPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>目标文件夹路径</p>
+</dd>
+    <dt><code>processedDirectory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>读过的图像移到的目录（不能是 <code class="paramref">folderPath</code> 本身）</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imaging.bitmapimage">BitmapImage</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.windows.media.imaging.bitmapimage,system.string-.image">Image</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.windows.media.imaging.bitmapimage,system.string-.filepath">FilePath</a>)</dt>
+    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.media.imaging.bitmapimage">BitmapImage</a> 对象及移走后的文件路径</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
     <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.directorynotfoundexception">DirectoryNotFoundException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filenotfoundexception">FileNotFoundException</a></dt>
+    <dd><p>文件夹里没有图像</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></dt>
+    <dd><p>图像都取不到（正在写入、被占用或已被别处取走）</p>
+</dd>
   </dl>
 
 

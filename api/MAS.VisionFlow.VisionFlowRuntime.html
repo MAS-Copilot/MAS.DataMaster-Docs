@@ -647,7 +647,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_InitializeAsync_MAS_VisionFlow_VisionPipeline_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.InitializeAsync(MAS.VisionFlow.VisionPipeline,System.Threading.CancellationToken)">
   InitializeAsync(VisionPipeline, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>初始化管道内全部节点</p>
@@ -681,6 +681,9 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section" id="MAS_VisionFlow_VisionFlowRuntime_InitializeAsync_MAS_VisionFlow_VisionPipeline_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>管道正在连续运行时不初始化（会与循环同时操作相机），返回失败原因</p>
+</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
@@ -801,7 +804,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_RunNodeAsync_MAS_VisionFlow_Nodes_VisionNode_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.RunNodeAsync(MAS.VisionFlow.Nodes.VisionNode,System.Threading.CancellationToken)">
   RunNodeAsync(VisionNode, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>运行到指定节点：执行该节点及其全部上游一次</p>
@@ -825,7 +828,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="MAS.VisionFlow.VisionRunResult.html">VisionRunResult</a>&gt;</dt>
-    <dd><p>执行结果；节点已删除时返回失败结果</p>
+    <dd><p>执行结果；节点已删除、所在管道正在连续运行时返回失败结果</p>
 </dd>
   </dl>
 
@@ -843,7 +846,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_StartAsync_MAS_VisionFlow_VisionPipeline_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StartAsync(MAS.VisionFlow.VisionPipeline,System.Threading.CancellationToken)">
   StartAsync(VisionPipeline, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>启动管道循环</p>
@@ -894,7 +897,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_StartAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StartAsync(System.String,System.Threading.CancellationToken)">
   StartAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>启动管道循环（按管道脚本的触发信号执行）</p>
@@ -936,7 +939,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_StopAllAsync" data-uid="MAS.VisionFlow.VisionFlowRuntime.StopAllAsync">
   StopAllAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L234"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止全部管道循环</p>
@@ -978,7 +981,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_StopAsync_MAS_VisionFlow_VisionPipeline_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StopAsync(MAS.VisionFlow.VisionPipeline)">
   StopAsync(VisionPipeline)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L213"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止管道循环</p>
@@ -1017,7 +1020,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_StopAsync_System_String_" data-uid="MAS.VisionFlow.VisionFlowRuntime.StopAsync(System.String)">
   StopAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L201"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止管道循环</p>
@@ -1062,7 +1065,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_TriggerAsync_MAS_VisionFlow_VisionPipeline_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.TriggerAsync(MAS.VisionFlow.VisionPipeline,System.Threading.CancellationToken)">
   TriggerAsync(VisionPipeline, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>执行一次管道（未初始化时先初始化）</p>
@@ -1096,6 +1099,9 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section" id="MAS_VisionFlow_VisionFlowRuntime_TriggerAsync_MAS_VisionFlow_VisionPipeline_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>管道正在连续运行（含启动中、停止中）时不执行，返回失败结果：额外的一次执行会抢走循环要用的触发帧</p>
+</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
@@ -1110,7 +1116,7 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_VisionFlow_VisionFlowRuntime_TriggerAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.VisionFlowRuntime.TriggerAsync(System.String,System.Threading.CancellationToken)">
   TriggerAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionFlowRuntime.Execution.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>执行一次管道（未初始化时先初始化）</p>
@@ -1144,6 +1150,10 @@ Class VisionFlowRuntime  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section" id="MAS_VisionFlow_VisionFlowRuntime_TriggerAsync_System_String_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>管道正在连续运行（含启动中、停止中）时不执行，返回失败结果（<a class="xref" href="MAS.VisionFlow.VisionRunResult.html#MAS_VisionFlow_VisionRunResult_IsRejectedWhileRunning">IsRejectedWhileRunning</a> 为 true）：
+额外的一次执行会抢走循环要用的触发帧。要在运行中拿结果，读循环每一轮的结果（<a class="xref" href="MAS.VisionFlow.IVisionFlowRuntime.html#MAS_VisionFlow_IVisionFlowRuntime_GetNodeResult_System_String_">GetNodeResult(string)</a>）</p>
+</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">

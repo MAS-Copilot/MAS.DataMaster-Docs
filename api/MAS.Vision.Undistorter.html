@@ -158,7 +158,7 @@ Class Undistorter  <a class="header-action link-secondary" title="View source" h
 
 
   <h2 id="MAS_Vision_Undistorter_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>首次使用（或图像尺寸变化）时按图像尺寸准备：内参按标定时的图像尺寸等比换算到当前尺寸，
+  <div class="markdown level0 remarks"><p>首次使用（或图像尺寸变化）时按图像尺寸准备：内参按原样使用（相机固定，换相机或分辨率须重新标定），
 用 <code>GetOptimalNewCameraMatrix</code> 求新相机矩阵，再预计算 <code>InitUndistortRectifyMap</code> 的映射表（CV_16SC2，定点、最快）</p>
 <p>校正后的像素坐标对应 <a class="xref" href="MAS.Vision.Undistorter.html#MAS_Vision_Undistorter_NewCameraMatrix">NewCameraMatrix</a>，不再是原内参；下游要用像素坐标换算物理量时按新矩阵算</p>
 <p>只在一个线程上使用；内参或 alpha 变了请新建实例</p>
@@ -202,7 +202,7 @@ Class Undistorter  <a class="header-action link-secondary" title="View source" h
 
 
   <h4 class="section" id="MAS_Vision_Undistorter__ctor_MAS_Vision_CameraIntrinsics_System_Double__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>首次使用（或图像尺寸变化）时按图像尺寸准备：内参按标定时的图像尺寸等比换算到当前尺寸，
+  <div class="markdown level1 remarks"><p>首次使用（或图像尺寸变化）时按图像尺寸准备：内参按原样使用（相机固定，换相机或分辨率须重新标定），
 用 <code>GetOptimalNewCameraMatrix</code> 求新相机矩阵，再预计算 <code>InitUndistortRectifyMap</code> 的映射表（CV_16SC2，定点、最快）</p>
 <p>校正后的像素坐标对应 <a class="xref" href="MAS.Vision.Undistorter.html#MAS_Vision_Undistorter_NewCameraMatrix">NewCameraMatrix</a>，不再是原内参；下游要用像素坐标换算物理量时按新矩阵算</p>
 <p>只在一个线程上使用；内参或 alpha 变了请新建实例</p>
@@ -219,7 +219,7 @@ Class Undistorter  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_Undistorter_NewCameraMatrix" data-uid="MAS.Vision.Undistorter.NewCameraMatrix">
   NewCameraMatrix
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/Undistorter.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/Undistorter.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取校正后图像对应的相机矩阵（3×3），准备前为 null</p>
@@ -251,7 +251,7 @@ Class Undistorter  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_Undistorter_ValidRoi" data-uid="MAS.Vision.Undistorter.ValidRoi">
   ValidRoi
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/Undistorter.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/Undistorter.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取校正后图像中全部有效（不含黑边）的像素范围，准备前为空矩形</p>
@@ -287,7 +287,7 @@ Class Undistorter  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_Undistorter_Apply_OpenCvSharp_Mat_OpenCvSharp_Mat_MAS_Vision_UndistortMode_" data-uid="MAS.Vision.Undistorter.Apply(OpenCvSharp.Mat,OpenCvSharp.Mat,MAS.Vision.UndistortMode)">
   Apply(Mat, Mat, UndistortMode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/Undistorter.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/Undistorter.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>校正一帧</p>
@@ -326,7 +326,7 @@ Class Undistorter  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="MAS_Vision_Undistorter_Dispose" data-uid="MAS.Vision.Undistorter.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/Undistorter.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Processing/Undistorter.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>

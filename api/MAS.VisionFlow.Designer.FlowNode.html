@@ -1125,6 +1125,36 @@ public string Title { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Designer_FlowNode_NotifySavedContentChanged_" data-uid="MAS.VisionFlow.Designer.FlowNode.NotifySavedContentChanged*"></a>
+
+  <h3 id="MAS_VisionFlow_Designer_FlowNode_NotifySavedContentChanged" data-uid="MAS.VisionFlow.Designer.FlowNode.NotifySavedContentChanged">
+  NotifySavedContentChanged()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L344"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通知要随工程保存的内容变了，但不是参数（例如节点刷新了资产副本）：只标脏，不调用 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_OnSettingsChanged">OnSettingsChanged()</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void NotifySavedContentChanged()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_Designer_FlowNode_NotifySavedContentChanged_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>节点在初始化、执行中自己更新保存内容时用它：参数没变，节点不应因此失效、下次重新初始化</p>
+</div>
+
+
+
+
   <a id="MAS_VisionFlow_Designer_FlowNode_NotifySettingsChanged_" data-uid="MAS.VisionFlow.Designer.FlowNode.NotifySettingsChanged*"></a>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_NotifySettingsChanged" data-uid="MAS.VisionFlow.Designer.FlowNode.NotifySettingsChanged">
@@ -1285,7 +1315,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_OnPropertyChanged_System_ComponentModel_PropertyChangedEventArgs_" data-uid="MAS.VisionFlow.Designer.FlowNode.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
   OnPropertyChanged(PropertyChangedEventArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L340"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L354"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Raises the <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">PropertyChanged</a> event.</p>
@@ -1346,6 +1376,33 @@ public string Title { get; set; }</code></pre>
   <h4 class="section" id="MAS_VisionFlow_Designer_FlowNode_OnRemoved_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>撤销删除会按快照重建新实例，因此移出后的实例不会再被使用</p>
 </div>
+
+
+
+
+  <a id="MAS_VisionFlow_Designer_FlowNode_OnSettingsChanged_" data-uid="MAS.VisionFlow.Designer.FlowNode.OnSettingsChanged*"></a>
+
+  <h3 id="MAS_VisionFlow_Designer_FlowNode_OnSettingsChanged" data-uid="MAS.VisionFlow.Designer.FlowNode.OnSettingsChanged">
+  OnSettingsChanged()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L351"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>节点参数（会持久化的属性）变化时调用，标题、折叠这类外观变化不调用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnSettingsChanged()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1484,7 +1541,7 @@ public string Title { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Designer_FlowNode_ToString" data-uid="MAS.VisionFlow.Designer.FlowNode.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L363"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Designer/Graph/FlowNode.cs/#L383"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>

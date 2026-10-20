@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Nodes_HandEyeTransformNode" data-uid="MAS.VisionFlow.Nodes.HandEyeTransformNode" class="text-break">
-Class HandEyeTransformNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L27"><i class="bi bi-code-slash"></i></a>
+Class HandEyeTransformNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -277,7 +277,8 @@ public sealed class HandEyeTransformNode : VisionNode, INotifyPropertyChanged, I
   <h2 id="MAS_VisionFlow_Nodes_HandEyeTransformNode_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>眼在手上：基座←法兰（机器人当前位姿）· 法兰←相机（手眼结果）· 相机←目标；
 眼在手外：基座←相机（手眼结果）· 相机←目标，不需要机器人位姿输入。
-手眼结果来自“手眼标定”节点写入的资源</p>
+手眼结果来自“手眼标定”节点写入的资源。
+目标位姿取 OpenCV 相机坐标系下的 solvePnP 原值，与姿态解算的“实际坐标系”轴映射无关</p>
 </div>
 
 
@@ -289,7 +290,7 @@ public sealed class HandEyeTransformNode : VisionNode, INotifyPropertyChanged, I
 
   <h3 id="MAS_VisionFlow_Nodes_HandEyeTransformNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.HandEyeTransformNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
   HandEyeTransformNode(VisionNodeServices)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.HandEyeTransformNode.html">HandEyeTransformNode</a> 新实例</p>
@@ -324,7 +325,7 @@ public sealed class HandEyeTransformNode : VisionNode, INotifyPropertyChanged, I
 
   <h3 id="MAS_VisionFlow_Nodes_HandEyeTransformNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.HandEyeTransformNode.TYPE_KEY">
   TYPE_KEY
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点类型键</p>
@@ -430,7 +431,7 @@ public string ResourceKey { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_HandEyeTransformNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.HandEyeTransformNode.TypeKey">
   TypeKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
@@ -466,7 +467,7 @@ public string ResourceKey { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_HandEyeTransformNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.HandEyeTransformNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -511,7 +512,7 @@ public string ResourceKey { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_HandEyeTransformNode_GetHandEyeResourceKeys" data-uid="MAS.VisionFlow.Nodes.HandEyeTransformNode.GetHandEyeResourceKeys">
   GetHandEyeResourceKeys()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L119"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取资源里全部手眼标定结果的键</p>
@@ -544,7 +545,7 @@ public string ResourceKey { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_HandEyeTransformNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.HandEyeTransformNode.GetResultData">
   GetResultData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
@@ -577,7 +578,7 @@ public string ResourceKey { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_HandEyeTransformNode_Transform_MAS_Vision_HandEyeMode_MAS_Numerics_RigidTransform3D_MAS_Numerics_Pose6D_MAS_Numerics_Pose6D_" data-uid="MAS.VisionFlow.Nodes.HandEyeTransformNode.Transform(MAS.Vision.HandEyeMode,MAS.Numerics.RigidTransform3D,MAS.Numerics.Pose6D,MAS.Numerics.Pose6D)">
   Transform(HandEyeMode, RigidTransform3D, Pose6D, Pose6D?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L91"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>换算目标在基座坐标系下的位姿</p>
@@ -597,7 +598,7 @@ public string ResourceKey { get; set; }</code></pre>
     <dd><p>手眼标定资源里的变换：眼在手上为 法兰→相机，眼在手外为 基座→相机</p>
 </dd>
     <dt><code>targetInCamera</code> <a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a></dt>
-    <dd><p>相机坐标系下的目标位姿</p>
+    <dd><p>OpenCV 相机坐标系下的目标位姿（Target→Camera，即 solvePnP 的 rvec/tvec）</p>
 </dd>
     <dt><code>robotPose</code> <a class="xref" href="MAS.Numerics.Pose6D.html">Pose6D</a></dt>
     <dd><p>机器人法兰在基座下的位姿（眼在手上必填）</p>
@@ -618,6 +619,11 @@ public string ResourceKey { get; set; }</code></pre>
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd></dd>
+  </dl>
 
 
 
@@ -625,7 +631,7 @@ public string ResourceKey { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L27" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Guidance/HandEyeTransformNode.cs/#L28" class="edit-link">Edit this page</a>
         </div>
 
 

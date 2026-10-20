@@ -286,6 +286,41 @@ public Exception? Exception { get; init; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_VisionRunResult_IsRejectedWhileRunning_" data-uid="MAS.VisionFlow.VisionRunResult.IsRejectedWhileRunning*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionRunResult_IsRejectedWhileRunning" data-uid="MAS.VisionFlow.VisionRunResult.IsRejectedWhileRunning">
+  IsRejectedWhileRunning
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否因管道正在连续运行而没有执行（单次触发、运行到节点被拒绝）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRejectedWhileRunning { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_VisionFlow_VisionRunResult_IsRejectedWhileRunning_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>预览一类按帧反复运行到节点的调用方据此让位给循环，而不是当成故障</p>
+</div>
+
+
+
+
   <a id="MAS_VisionFlow_VisionRunResult_IsSuccess_" data-uid="MAS.VisionFlow.VisionRunResult.IsSuccess*"></a>
 
   <h3 id="MAS_VisionFlow_VisionRunResult_IsSuccess" data-uid="MAS.VisionFlow.VisionRunResult.IsSuccess">
@@ -322,7 +357,7 @@ public Exception? Exception { get; init; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionRunResult_Nodes" data-uid="MAS.VisionFlow.VisionRunResult.Nodes">
   Nodes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取各节点的结果，按执行顺序排列</p>
@@ -421,7 +456,7 @@ public Exception? Exception { get; init; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionRunResult_SkippedNodes" data-uid="MAS.VisionFlow.VisionRunResult.SkippedNodes">
   SkippedNodes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本次被跳过的节点（条件执行未放行及其下游）</p>
@@ -453,7 +488,7 @@ public Exception? Exception { get; init; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionRunResult_Variables" data-uid="MAS.VisionFlow.VisionRunResult.Variables">
   Variables
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L77"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本轮开始执行时的变量快照</p>
@@ -492,7 +527,7 @@ public Exception? Exception { get; init; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionRunResult_FindNode_System_String_" data-uid="MAS.VisionFlow.VisionRunResult.FindNode(System.String)">
   FindNode(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>按节点标题查找结果（不区分大小写）</p>
@@ -531,7 +566,7 @@ public Exception? Exception { get; init; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionRunResult_GetNode_System_String_" data-uid="MAS.VisionFlow.VisionRunResult.GetNode(System.String)">
   GetNode(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L94"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>按节点标题获取结果（不区分大小写）</p>
@@ -576,7 +611,7 @@ public Exception? Exception { get; init; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionRunResult_GetValueOrDefault__1_System_String_System_String___0_" data-uid="MAS.VisionFlow.VisionRunResult.GetValueOrDefault``1(System.String,System.String,``0)">
   GetValueOrDefault&lt;T&gt;(string, string, T)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L138"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>读取某个节点的结果数据，取不到时返回默认值</p>
@@ -627,7 +662,7 @@ public Exception? Exception { get; init; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionRunResult_GetValue__1_System_String_System_String_" data-uid="MAS.VisionFlow.VisionRunResult.GetValue``1(System.String,System.String)">
   GetValue&lt;T&gt;(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L126"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>读取某个节点的结果数据，取不到时抛出异常</p>
@@ -687,7 +722,7 @@ public Exception? Exception { get; init; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionRunResult_TryGetValue__1_System_String_System_String___0__" data-uid="MAS.VisionFlow.VisionRunResult.TryGetValue``1(System.String,System.String,``0@)">
   TryGetValue&lt;T&gt;(string, string, out T)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/VisionRunResult.cs/#L107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>读取某个节点的结果数据</p>

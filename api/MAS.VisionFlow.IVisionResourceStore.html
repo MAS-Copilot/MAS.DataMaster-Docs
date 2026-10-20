@@ -136,7 +136,7 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_VisionFlow_IVisionResourceStore_Keys" data-uid="MAS.VisionFlow.IVisionResourceStore.Keys">
   Keys
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L62"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取全部资源的键</p>
@@ -172,7 +172,7 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_VisionFlow_IVisionResourceStore_Contains_System_String_" data-uid="MAS.VisionFlow.IVisionResourceStore.Contains(System.String)">
   Contains(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断资源是否存在</p>
@@ -211,7 +211,7 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_VisionFlow_IVisionResourceStore_ExportJson" data-uid="MAS.VisionFlow.IVisionResourceStore.ExportJson">
   ExportJson()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>导出为可编辑的 JSON，没有资源时返回 null</p>
@@ -244,7 +244,7 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_VisionFlow_IVisionResourceStore_Remove_System_String_" data-uid="MAS.VisionFlow.IVisionResourceStore.Remove(System.String)">
   Remove(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>移除资源</p>
@@ -283,7 +283,7 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_VisionFlow_IVisionResourceStore_Set__1_System_String___0_" data-uid="MAS.VisionFlow.IVisionResourceStore.Set``1(System.String,``0)">
   Set&lt;T&gt;(string, T)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>写入资源</p>
@@ -318,6 +318,15 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>资源键为空或空白</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>资源为 null</p>
+</dd>
+  </dl>
 
 
 
@@ -325,7 +334,7 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_VisionFlow_IVisionResourceStore_TryGet__1_System_String___0__" data-uid="MAS.VisionFlow.IVisionResourceStore.TryGet``1(System.String,``0@)">
   TryGet&lt;T&gt;(string, out T?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>尝试读取资源</p>
@@ -373,7 +382,7 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_VisionFlow_IVisionResourceStore_TryImportJson_System_String_System_String__" data-uid="MAS.VisionFlow.IVisionResourceStore.TryImportJson(System.String,System.String@)">
   TryImportJson(string, out string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从 JSON 整体导入（替换现有资源）</p>
@@ -418,7 +427,7 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
 
   <h3 id="MAS_VisionFlow_IVisionResourceStore_Changed" data-uid="MAS.VisionFlow.IVisionResourceStore.Changed">
   Changed
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Resources/IVisionResourceStore.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>资源变化时触发</p>
@@ -426,7 +435,7 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">event EventHandler? Changed</code></pre>
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;VisionResourceChangedEventArgs&gt;? Changed</code></pre>
   </div>
 
 
@@ -436,12 +445,15 @@ Interface IVisionResourceStore  <a class="header-action link-secondary" title="V
 
   <h4 class="section">Event Type</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.VisionFlow.VisionResourceChangedEventArgs.html">VisionResourceChangedEventArgs</a>&gt;</dt>
     <dd></dd>
   </dl>
 
 
 
+  <h4 class="section" id="MAS_VisionFlow_IVisionResourceStore_Changed_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>参数里带变化的键：只关心某个资源的节点据此跳过无关资源的变化</p>
+</div>
 
 
 

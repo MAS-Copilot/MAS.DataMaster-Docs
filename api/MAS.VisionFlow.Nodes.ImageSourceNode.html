@@ -105,6 +105,7 @@ Class ImageSourceNode  <a class="header-action link-secondary" title="View sourc
     <pre><code class="lang-csharp hljs">[VisionParameter(&quot;ImageSourceKind&quot;, DescriptionKey = &quot;SelectImageSource&quot;, Path = &quot;ImageSourceModel.SourceType&quot;)]
 [VisionParameter(&quot;FilePath&quot;, Path = &quot;ImageSourceModel.FilePath&quot;)]
 [VisionParameter(&quot;FolderPath&quot;, DescriptionKey = &quot;FolderPathDescription&quot;, Path = &quot;ImageSourceModel.FolderPath&quot;)]
+[VisionParameter(&quot;ImageFolderMoveAfterRead&quot;, DescriptionKey = &quot;ImageFolderMoveAfterReadDescription&quot;, Path = &quot;ImageSourceModel.IsMovedAfterRead&quot;)]
 [VisionParameter(&quot;NetworkUrl&quot;, Path = &quot;ImageSourceModel.NetworkUrl&quot;)]
 [JsonObject(MemberSerialization.OptIn)]
 public sealed class ImageSourceNode : VisionNode, INotifyPropertyChanged, INotifyPropertyChanging, IDisposable</code></pre>
@@ -289,7 +290,7 @@ public sealed class ImageSourceNode : VisionNode, INotifyPropertyChanged, INotif
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
   ImageSourceNode(VisionNodeServices)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L114"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.ImageSourceNode.html">ImageSourceNode</a> 新实例</p>
@@ -322,9 +323,40 @@ public sealed class ImageSourceNode : VisionNode, INotifyPropertyChanged, INotif
 
 
 
+  <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_PROCESSED_FOLDER" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.PROCESSED_FOLDER">
+  PROCESSED_FOLDER
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>文件夹方式“读取后移走”时，读过的图像移到的子目录名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string PROCESSED_FOLDER = &quot;Processed&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.TYPE_KEY">
   TYPE_KEY
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点类型键</p>
@@ -394,7 +426,7 @@ public ImageSourceModel ImageSourceModel { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_LoadImageCommand" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.LoadImageCommand">
   LoadImageCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取立即加载图像命令</p>
@@ -426,7 +458,7 @@ public ImageSourceModel ImageSourceModel { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_OpenFileLocationCommand" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.OpenFileLocationCommand">
   OpenFileLocationCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取打开文件所在位置命令</p>
@@ -458,7 +490,7 @@ public ImageSourceModel ImageSourceModel { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_OpenFolderCommand" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.OpenFolderCommand">
   OpenFolderCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取打开文件夹命令</p>
@@ -523,7 +555,7 @@ public ImageSource? PreviewImage { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_SelectImageFileCommand" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.SelectImageFileCommand">
   SelectImageFileCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L82"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取选择图像文件命令</p>
@@ -555,7 +587,7 @@ public ImageSource? PreviewImage { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_SelectImageFolderCommand" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.SelectImageFolderCommand">
   SelectImageFolderCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取选择图像文件夹命令</p>
@@ -587,7 +619,7 @@ public ImageSource? PreviewImage { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_SetSourceTypeCommand" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.SetSourceTypeCommand">
   SetSourceTypeCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取设置来源类型命令（参数：<a class="xref" href="MAS.Vision.ImageSourceType.html">ImageSourceType</a>）</p>
@@ -619,7 +651,7 @@ public ImageSource? PreviewImage { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.TypeKey">
   TypeKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
@@ -655,7 +687,7 @@ public ImageSource? PreviewImage { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L146"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -700,7 +732,7 @@ public ImageSource? PreviewImage { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_InitializeAsync_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.InitializeAsync(System.Threading.CancellationToken)">
   InitializeAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L135"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步初始化（打开相机、加载图片、构建求解器……），运行前由运行时调用</p>
@@ -745,7 +777,7 @@ public ImageSource? PreviewImage { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_OnLoadAssets_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Byte____" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.OnLoadAssets(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Byte[]})">
   OnLoadAssets(IReadOnlyDictionary&lt;string, byte[]&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L194"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>还原节点资产，见 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveAssets">SaveAssets()</a></p>
@@ -774,11 +806,38 @@ public ImageSource? PreviewImage { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Nodes_ImageSourceNode_ReleaseResources_" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.ReleaseResources*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.ReleaseResources">
+  ReleaseResources()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseResources()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Nodes_ImageSourceNode_SaveAssets_" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.SaveAssets*"></a>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageSourceNode_SaveAssets" data-uid="MAS.VisionFlow.Nodes.ImageSourceNode.SaveAssets">
   SaveAssets()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Prepare/ImageSourceNode.cs/#L185"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存节点的大块二进制数据（模板图、金样……）</p>

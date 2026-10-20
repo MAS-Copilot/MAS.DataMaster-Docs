@@ -283,6 +283,42 @@ public string? FolderPath { get; set; }</code></pre>
 
 
 
+  <a id="MAS_Vision_ImageSourceModel_IsMovedAfterRead_" data-uid="MAS.Vision.ImageSourceModel.IsMovedAfterRead*"></a>
+
+  <h3 id="MAS_Vision_ImageSourceModel_IsMovedAfterRead" data-uid="MAS.Vision.ImageSourceModel.IsMovedAfterRead">
+  IsMovedAfterRead
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置文件夹方式读取后是否把图像移走（移到该文件夹下的 Processed 子目录，不删除）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public bool IsMovedAfterRead { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Vision_ImageSourceModel_IsMovedAfterRead_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>默认关闭：每次只读最新一张，不改动任何文件；打开后像收件箱一样按写入时间从早到晚逐张处理，先移走再读，同一张不会处理两次</p>
+</div>
+
+
+
+
   <a id="MAS_Vision_ImageSourceModel_NetworkUrl_" data-uid="MAS.Vision.ImageSourceModel.NetworkUrl*"></a>
 
   <h3 id="MAS_Vision_ImageSourceModel_NetworkUrl" data-uid="MAS.Vision.ImageSourceModel.NetworkUrl">
@@ -355,7 +391,7 @@ public ImageSourceType SourceType { get; set; }</code></pre>
 
   <h3 id="MAS_Vision_ImageSourceModel_FromFile_System_String_" data-uid="MAS.Vision.ImageSourceModel.FromFile(System.String)">
   FromFile(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/ImageSourceModel.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/ImageSourceModel.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从文件创建图像源</p>
@@ -392,7 +428,7 @@ public ImageSourceType SourceType { get; set; }</code></pre>
 
   <h3 id="MAS_Vision_ImageSourceModel_FromFolder_System_String_" data-uid="MAS.Vision.ImageSourceModel.FromFolder(System.String)">
   FromFolder(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/ImageSourceModel.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/ImageSourceModel.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从文件夹创建图像源</p>
@@ -429,7 +465,7 @@ public ImageSourceType SourceType { get; set; }</code></pre>
 
   <h3 id="MAS_Vision_ImageSourceModel_FromNetwork_System_String_" data-uid="MAS.Vision.ImageSourceModel.FromNetwork(System.String)">
   FromNetwork(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/ImageSourceModel.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Models/ImageSourceModel.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从网络URL创建图像源</p>
