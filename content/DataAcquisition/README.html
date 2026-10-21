@@ -251,7 +251,7 @@
 <tr>
 <td><code>ErrorCount</code></td>
 <td>DINT</td>
-<td>自启动以来的错误次数，每次失败都计一次（包括写库失败后的重试）</td>
+<td>自启动以来的错误次数，每次失败都计一次（包括写库失败后的重试；数据不合法被丢弃的计一次）</td>
 </tr>
 <tr>
 <td><code>SuccessCount</code></td>
@@ -267,7 +267,7 @@
 </ul>
 <h2 id="采集任务">采集任务</h2>
 <p>采集任务在一个任务内完成整个采集链路，保存成功后才回写完成值，PLC 看到完成值即可确认数据已保存。采集任务只用触发区、完成区和数据区，没有应答区：</p>
-<pre><code class="lang-text">PLC 写数据 → 触发值 +1 → 读 XxxStruct → XxxMapper.Map → XxxRepository.AddAsync → 插入一行 → 回写完成值
+<pre><code class="lang-text">PLC 写数据 → 触发值 +1 → 读 XxxStruct → XxxMapper.Map → 按操作位入库（默认插入一行，见下文「操作位」） → 回写完成值
 </code></pre>
 <pre><code class="lang-csharp">// CollectTask/TaskExecution/CollectTaskExecution.cs（添加任务时自动追加）
 public struct CollectTaskExecution { public short ReadPart; }
@@ -304,8 +304,52 @@ public sealed class PartMapper : IDataMapper&lt;PartStruct, PartEntity&gt; {
 }
 </code></pre>
 <ul>
-<li>写库失败、影响行数为 0 或超时：不回写完成值，按 <code>RetryInterval</code> 重试同一触发值，直到保存成功</li>
+<li>断线、锁等待超时等可恢复的写库失败，插入影响行数为 0，或处理超时：不回写完成值，按 <code>RetryInterval</code> 重试同一触发值，直到保存成功</li>
+<li>数据本身不合法的写库失败（唯一键重复、外键引用不存在、超长、非空列为空、类型或范围不符、违反 CHECK 约束）：重试也不会成功，记录警告、<code>ErrorCount</code> 计一次，照常回写完成值，本条数据丢弃</li>
 <li>映射器抛出 <code>ReplyRejectedException</code>：数据不入库，记录警告，照常回写完成值（表示有意丢弃这条数据）</li>
+</ul>
+<h3 id="操作位">操作位</h3>
+<p>数据结构体带 CRUD 操作位时按位入库。字段名是与 PLC 数据块的约定，必须是 <code>bool</code>（类型不符时项目启动失败）；结构体一个操作位都没有时固定插入：</p>
+<table>
+<thead>
+<tr>
+<th>操作位</th>
+<th>入库方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsCreate</code></td>
+<td>插入</td>
+<td>唯一键重复时丢弃本条，同一记录可能被多个工位上报时不要用</td>
+</tr>
+<tr>
+<td><code>IsRead</code></td>
+<td>—</td>
+<td>未实现，拒收</td>
+</tr>
+<tr>
+<td><code>IsUpdate</code></td>
+<td>按唯一键更新已有记录</td>
+<td>记录不存在时拒收</td>
+</tr>
+<tr>
+<td><code>IsDelete</code></td>
+<td>按唯一键删除</td>
+<td>记录已不存在也算成功</td>
+</tr>
+<tr>
+<td><code>IsAddOrUpdate</code></td>
+<td>按唯一键插入或更新</td>
+<td>不更新 <code>IsUpdatable = false</code> 的列（如创建时间）；内容没变也算成功</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>多个位同时置位时按上表顺序取第一个；<code>IsNewFile</code> 不参与入库</li>
+<li>一个位都没置、<code>IsRead</code>、实体缺唯一键（<code>Column.IsUnique</code>）、要更新的记录不存在等重试也不会成功的情况按拒收处理：记录警告，照常回写完成值，避免握手卡死</li>
+<li>典型用法：产品信息由多个工位上报，各工位不知道别的工位是否已建档，PLC 置 <code>IsAddOrUpdate</code>，实体的产品 Id 设 <code>IsUnique = true</code></li>
 <li>全部采集任务共用一个触发 DB 和一个完成 DB，布局由 <code>CollectTaskExecution</code> 的字段顺序决定，偏移用 <code>Marshal.OffsetOf</code> 算出，例如三个任务的触发值都在 DB10000、完成值都在 DB10001，偏移分别为 0、2、4：</li>
 </ul>
 <pre><code class="lang-csharp">[StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -325,7 +369,7 @@ public static class CollectTaskArea {
 <ul>
 <li>MC/Modbus 的偏移按寄存器计，要把 <code>Configure</code> 里的偏移改为 offset / 2</li>
 <li>启动时自动为实体建表并补充缺失的列，因此采集任务的实体不必再在 <code>AddDatabase</code> 里登记一次</li>
-<li>入库默认使用基类仓储；需要去重、修改已有记录或写多张表时，在 <code>DataAccess/Repositories/XxxRepository.cs</code> 中重写 <code>AddAsync</code>（注册的就是该仓储），业务代码用 <code>db.Repository&lt;XxxEntity, XxxRepository&gt;()</code> 取得同一个仓储</li>
+<li>入库默认使用基类仓储；需要去重、修改已有记录或写多张表时，在 <code>DataAccess/Repositories/XxxRepository.cs</code> 中重写 <code>AddAsync</code> / <code>AddOrUpdateAsync</code> 等方法（注册的就是该仓储，按操作位调用对应方法），业务代码用 <code>db.Repository&lt;XxxEntity, XxxRepository&gt;()</code> 取得同一个仓储</li>
 <li>采集任务流程固定；需要把处理结果告诉 PLC，或超出「一行一表」的需求（跨表事务、查重后更新）建议改用业务应答任务，在处理器里注入 <code>IDatabase</code> 自行处理</li>
 </ul>
 <h2 id="设备">设备</h2>
@@ -482,7 +526,7 @@ public sealed class InspectTaskHandler(ILogger&lt;InspectTaskHandler&gt; logger)
 <td>处理器异常 / 超时</td>
 <td>写失败应答，照常回写完成值</td>
 <td>记录错误，照常回写完成值</td>
-<td>不回写完成值，按重试间隔重试</td>
+<td>不回写完成值，按重试间隔重试；数据不合法的写库错误丢弃本条，照常回写完成值</td>
 </tr>
 <tr>
 <td><code>ReplyRejectedException</code></td>

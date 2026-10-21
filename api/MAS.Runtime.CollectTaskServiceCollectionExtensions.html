@@ -157,7 +157,7 @@ Class CollectTaskServiceCollectionExtensions  <a class="header-action link-secon
 
   <h3 id="MAS_Runtime_CollectTaskServiceCollectionExtensions_AddCollectTask__3_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_String_System_Action_MAS_Runtime_HandshakeOptions__" data-uid="MAS.Runtime.CollectTaskServiceCollectionExtensions.AddCollectTask``3(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Action{MAS.Runtime.HandshakeOptions})">
   AddCollectTask&lt;TData, TEntity, TMapper&gt;(IServiceCollection, string, string, Action&lt;HandshakeOptions&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Extensions/CollectTaskServiceCollectionExtensions.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Extensions/CollectTaskServiceCollectionExtensions.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>注册采集任务：下位机触发后读取数据结构体，映射为实体并写入数据库，保存成功后回写完成值</p>
@@ -210,8 +210,9 @@ Class CollectTaskServiceCollectionExtensions  <a class="header-action link-secon
 
 
   <h4 class="section" id="MAS_Runtime_CollectTaskServiceCollectionExtensions_AddCollectTask__3_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_String_System_Action_MAS_Runtime_HandshakeOptions___remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>只用触发区、完成区和数据区，没有应答区。写库失败或超时不回写完成值，按重试间隔重做同一触发值；
+  <div class="markdown level1 remarks"><p>只用触发区、完成区和数据区，没有应答区。可恢复的写库失败或超时不回写完成值，按重试间隔重做同一触发值；唯一键重复等数据不合法的写库错误丢弃本条并照常回写；
 映射器抛出 <a class="xref" href="MAS.Runtime.ReplyRejectedException.html">ReplyRejectedException</a> 时数据不入库，记录警告并照常回写完成值。
+数据结构体带 CRUD 操作位（IsCreate/IsUpdate/IsDelete/IsAddOrUpdate）时按位入库，更新、删除、插入或更新按实体唯一键定位；没有操作位时固定插入。
 启动时会自动为 <code class="typeparamref">TEntity</code> 建表</p>
 </div>
 
@@ -222,7 +223,7 @@ Class CollectTaskServiceCollectionExtensions  <a class="header-action link-secon
 
   <h3 id="MAS_Runtime_CollectTaskServiceCollectionExtensions_AddCollectTask__4_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_String_System_Action_MAS_Runtime_HandshakeOptions__" data-uid="MAS.Runtime.CollectTaskServiceCollectionExtensions.AddCollectTask``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Action{MAS.Runtime.HandshakeOptions})">
   AddCollectTask&lt;TData, TEntity, TMapper, TRepository&gt;(IServiceCollection, string, string, Action&lt;HandshakeOptions&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Extensions/CollectTaskServiceCollectionExtensions.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Runtime/Extensions/CollectTaskServiceCollectionExtensions.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>注册采集任务，入库使用自定义仓储（DataAccess/Repositories 下继承 <code>RepositoryBase&lt;TEntity&gt;</code> 的类）</p>
