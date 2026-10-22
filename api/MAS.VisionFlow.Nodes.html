@@ -371,6 +371,11 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.DetectionResultRow.html">DetectionResultRow</a></dt>
+      <dd><p>目标检测设置窗口结果表的一行</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.EdgeDetectNode.html">EdgeDetectNode</a></dt>
       <dd><p>边缘检测（Canny）</p>
 </dd>
@@ -471,6 +476,21 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageClassificationNode.html">ImageClassificationNode</a></dt>
+      <dd><p>图像分类：用 ONNX 模型（Ultralytics YOLO26 / YOLO11 导出的分类模型）判断整张图属于哪一类，可直接判 OK/NG</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageClassificationNodeView.html">ImageClassificationNodeView</a></dt>
+      <dd><p>图像分类卡片主体</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageClassificationSettingView.html">ImageClassificationSettingView</a></dt>
+      <dd><p>图像分类设置页：左侧当前图与前几名，右侧模型、合格类别与判定参数</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageInfoNode.html">ImageInfoNode</a></dt>
       <dd><p>图像信息：统计输入图像的尺寸、通道、HSV 范围等</p>
 </dd>
@@ -538,6 +558,16 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.ImageZoomLevels.html">ImageZoomLevels</a></dt>
       <dd><p>图像检视器的缩放档位（按设备像素计：1 = 一个图像像素对应一个屏幕物理像素）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.InstanceSegmentationNode.html">InstanceSegmentationNode</a></dt>
+      <dd><p>实例分割：用 ONNX 模型（Ultralytics YOLO26 / YOLO11 导出的分割模型）找出全部目标并给出每个目标的掩码</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.InstanceSegmentationSettingView.html">InstanceSegmentationSettingView</a></dt>
+      <dd><p>实例分割设置页：图上看掩码轮廓与序号，右侧模型、参数与类别，下方结果表</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -641,6 +671,16 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ModelClassItem.html">ModelClassItem</a></dt>
+      <dd><p>深度学习节点设置窗口里的一个类别：勾选的含义由节点决定（检测、分割为是否输出，分类为算不算合格）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ModelClassList.html">ModelClassList</a></dt>
+      <dd><p>深度学习节点设置窗口的类别勾选列表：限高虚拟化，类别超出一屏时显示搜索框与勾选计数</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.MorphologyNode.html">MorphologyNode</a></dt>
       <dd><p>形态学</p>
 </dd>
@@ -648,6 +688,36 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.MorphologyNodeView.html">MorphologyNodeView</a></dt>
       <dd><p>形态学卡片主体</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ObjectDetectionNode.html">ObjectDetectionNode</a></dt>
+      <dd><p>目标检测：用 ONNX 模型（Ultralytics YOLO26 / YOLO11 导出的检测、旋转框模型）找出图中全部目标</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.ObjectDetectionSettingView.html">ObjectDetectionSettingView</a></dt>
+      <dd><p>目标检测设置页：图上看检测框与序号，右侧模型、参数与类别，下方结果表</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.OnnxLocateNodeView.html">OnnxLocateNodeView</a></dt>
+      <dd><p>目标检测、实例分割卡片主体</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.OnnxLocateNode-1.html">OnnxLocateNode&lt;TModel&gt;</a></dt>
+      <dd><p>深度学习定位类节点基类（目标检测、实例分割）：导入 ONNX 模型、阈值、类别勾选、多目标定位列表</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.OnnxLocateSettingPanel.html">OnnxLocateSettingPanel</a></dt>
+      <dd><p>目标检测、实例分割设置窗口右侧面板：模型、检测参数、类别</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.OnnxModelSection.html">OnnxModelSection</a></dt>
+      <dd><p>深度学习节点设置窗口的模型区：导入按钮、模型名与摘要、加载错误</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -828,6 +898,11 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.VisionFlow.Nodes.ScriptExecutionNodeView.html">ScriptExecutionNodeView</a></dt>
       <dd><p>脚本执行卡片主体</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.VisionFlow.Nodes.SegmentationResultRow.html">SegmentationResultRow</a></dt>
+      <dd><p>实例分割设置窗口结果表的一行</p>
 </dd>
     </dl>
     <dl class="jumplist">

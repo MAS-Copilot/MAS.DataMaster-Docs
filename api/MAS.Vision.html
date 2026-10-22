@@ -230,6 +230,26 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ClassScore.html">ClassScore</a></dt>
+      <dd><p>一个类别的分类得分</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ClassificationModelInfo.html">ClassificationModelInfo</a></dt>
+      <dd><p>分类模型信息：从 ONNX 的输入输出形状与 Ultralytics 元数据读出</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ClassificationPreprocessor.html">ClassificationPreprocessor</a></dt>
+      <dd><p>分类预处理：短边缩放到输入尺寸 → 居中裁剪 → RGB → 0~1 → NCHW（不做 letterbox）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ClassificationResult.html">ClassificationResult</a></dt>
+      <dd><p>分类结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.ClickMoveLimits.html">ClickMoveLimits</a></dt>
       <dd><p>点图移动的安全限制</p>
 </dd>
@@ -272,6 +292,26 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.ContourOptions.html">ContourOptions</a></dt>
       <dd><p>轮廓分析参数</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.Detection.html">Detection</a></dt>
+      <dd><p>一个检测目标（原图像素坐标）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.DetectionAnnotator.html">DetectionAnnotator</a></dt>
+      <dd><p>检测结果标注：框按类别着色，左上角写类别与置信度</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.DetectionModelInfo.html">DetectionModelInfo</a></dt>
+      <dd><p>检测模型信息：从 ONNX 的输入输出形状与 Ultralytics 元数据读出</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.DetectionOptions.html">DetectionOptions</a></dt>
+      <dd><p>检测参数（默认值与 Ultralytics predict 一致）</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -425,6 +465,36 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.NvidiaDriver.html">NvidiaDriver</a></dt>
+      <dd><p>NVIDIA 显卡驱动信息</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.OnnxClassifier.html">OnnxClassifier</a></dt>
+      <dd><p>ONNX 图像分类器（Ultralytics YOLO 导出的分类模型，输出 [1, 类别数]）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.OnnxDetector.html">OnnxDetector</a></dt>
+      <dd><p>ONNX 目标检测器（Ultralytics YOLO 导出的检测 / 旋转框模型）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.OnnxGpuRuntimeInfo.html">OnnxGpuRuntimeInfo</a></dt>
+      <dd><p>ONNX Runtime GPU 运行时目录的检查结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.OnnxRuntimeNative.html">OnnxRuntimeNative</a></dt>
+      <dd><p>选择 ONNX Runtime 原生库：装了 GPU 运行时就从它的目录加载（带 CUDA 提供程序），否则用程序目录里随程序发布的 CPU 版</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.OnnxSegmenter.html">OnnxSegmenter</a></dt>
+      <dd><p>ONNX 实例分割器（Ultralytics YOLO 导出的分割模型：检测结果 + 原型掩码两个输出）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.PlaneCalibrationResult.html">PlaneCalibrationResult</a></dt>
       <dd><p>2D 平面标定结果（九点标定 / N 点标定）</p>
 </dd>
@@ -467,6 +537,16 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.ROICoordinates.html">ROICoordinates</a></dt>
       <dd><p>表示图像中感兴趣区域（ROI）的数据模型</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.SegmentationResult.html">SegmentationResult</a></dt>
+      <dd><p>分割结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.SegmentedObject.html">SegmentedObject</a></dt>
+      <dd><p>一个分割实例（原图像素坐标）</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -524,6 +604,16 @@ Classes
       <dd><p>整图畸变校正：按相机内参把图像拉直</p>
 </dd>
     </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.YoloMetadata.html">YoloMetadata</a></dt>
+      <dd><p>解析 Ultralytics 导出 ONNX 时写入的元数据（Python 字面量文本）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.YoloPreprocessor.html">YoloPreprocessor</a></dt>
+      <dd><p>YOLO 预处理：letterbox（双线性缩放、灰 114 补边）→ RGB → 0~1 → NCHW</p>
+</dd>
+    </dl>
     <h3 id="structs">
 Structs
 </h3>
@@ -535,6 +625,11 @@ Structs
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.ImageCleanupResult.html">ImageCleanupResult</a></dt>
       <dd><p>图像存储清理结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.LetterboxTransform.html">LetterboxTransform</a></dt>
+      <dd><p>letterbox 缩放：等比缩放后居中补边到模型输入尺寸，以及把模型坐标换回原图</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -583,6 +678,11 @@ Interfaces
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.IImageSaverService.html">IImageSaverService</a></dt>
       <dd><p>图像保存服务接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.IOnnxModel-1.html">IOnnxModel&lt;TInfo&gt;</a></dt>
+      <dd><p>已加载的 ONNX 模型（检测器、分割器、分类器）</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -694,6 +794,16 @@ OpenCV 相机坐标系约定（右手系）：
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.DetectionOutputFormat.html">DetectionOutputFormat</a></dt>
+      <dd><p>检测模型的输出格式</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.DetectionTask.html">DetectionTask</a></dt>
+      <dd><p>检测模型的任务类型</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.EdgePolarity.html">EdgePolarity</a></dt>
       <dd><p>边缘极性（沿搜索方向看灰度的变化）</p>
 </dd>
@@ -754,6 +864,11 @@ OpenCV 相机坐标系约定（右手系）：
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.InferenceDevice.html">InferenceDevice</a></dt>
+      <dd><p>推理设备</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.LocationAttribute.html">LocationAttribute</a></dt>
       <dd><p>定位结果的属性（筛选、排序依据）</p>
 </dd>
@@ -771,6 +886,11 @@ OpenCV 相机坐标系约定（右手系）：
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.MorphologyOperation.html">MorphologyOperation</a></dt>
       <dd><p>形态学操作</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.OnnxGpuRuntimeStatus.html">OnnxGpuRuntimeStatus</a></dt>
+      <dd><p>ONNX Runtime GPU 运行时目录的状态</p>
 </dd>
     </dl>
     <dl class="jumplist">

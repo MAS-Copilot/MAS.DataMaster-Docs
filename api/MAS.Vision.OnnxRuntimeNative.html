@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class OnnxRuntimeNative | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class OnnxRuntimeNative | DataMaster ">
+      
+      <meta name="description" content="选择 ONNX Runtime 原生库：装了 GPU 运行时就从它的目录加载（带 CUDA 提供程序），否则用程序目录里随程序发布的 CPU 版">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/new/main/apiSpec/new?filename=MAS_Vision_OnnxRuntimeNative.md&amp;value=---%0Auid%3A%20MAS.Vision.OnnxRuntimeNative%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MAS.Vision.OnnxRuntimeNative">
+
+
+
+  <h1 id="MAS_Vision_OnnxRuntimeNative" data-uid="MAS.Vision.OnnxRuntimeNative" class="text-break">
+Class OnnxRuntimeNative  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">MAS</span>.<a class="xref" href="MAS.Vision.html">Vision</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MAS.Vision.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>选择 ONNX Runtime 原生库：装了 GPU 运行时就从它的目录加载（带 CUDA 提供程序），否则用程序目录里随程序发布的 CPU 版</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class OnnxRuntimeNative</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">OnnxRuntimeNative</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="MAS_Vision_OnnxRuntimeNative_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>GPU 运行时（ORT GPU 原生库 + CUDA / cuDNN 运行库）在 runtimes/onnxruntime-gpu/win-x64，由依赖组件页一键安装。
+GPU 版 onnxruntime.dll 同样能跑 CPU 推理，选 CPU 的节点不受影响</p>
+<p>原生库一进程只加载一次：<a class="xref" href="MAS.Vision.OnnxRuntimeNative.html#MAS_Vision_OnnxRuntimeNative_Configure">Configure()</a> 必须在任何 ONNX Runtime 调用之前执行，装好或换版本后要重启程序才生效。
+运行中重新安装解压到 win-x64.pending，下次启动时再换上</p>
+</div>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="MAS_Vision_OnnxRuntimeNative_REQUIRED_CUDA_DRIVER_VERSION" data-uid="MAS.Vision.OnnxRuntimeNative.REQUIRED_CUDA_DRIVER_VERSION">
+  REQUIRED_CUDA_DRIVER_VERSION
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>GPU 运行时需要的 CUDA 驱动版本（cuDriverGetVersion 格式，13000 即 13.0）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int REQUIRED_CUDA_DRIVER_VERSION = 13000</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MAS_Vision_OnnxRuntimeNative_GpuDirectory_" data-uid="MAS.Vision.OnnxRuntimeNative.GpuDirectory*"></a>
+
+  <h3 id="MAS_Vision_OnnxRuntimeNative_GpuDirectory" data-uid="MAS.Vision.OnnxRuntimeNative.GpuDirectory">
+  GpuDirectory
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 GPU 运行时目录</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GpuDirectory { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_OnnxRuntimeNative_IsGpuRuntimeActive_" data-uid="MAS.Vision.OnnxRuntimeNative.IsGpuRuntimeActive*"></a>
+
+  <h3 id="MAS_Vision_OnnxRuntimeNative_IsGpuRuntimeActive" data-uid="MAS.Vision.OnnxRuntimeNative.IsGpuRuntimeActive">
+  IsGpuRuntimeActive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取本进程是否使用 GPU 运行时（GPU 版 onnxruntime.dll 已在启动时加载成功）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsGpuRuntimeActive { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="MAS_Vision_OnnxRuntimeNative_IsGpuRuntimeActive_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>只说明 CUDA 可选；节点实际用不用 CUDA 看各推理器的 Device（驱动、显存、cuDNN 不行时会回退 CPU）</p>
+</div>
+
+
+
+
+  <a id="MAS_Vision_OnnxRuntimeNative_LoadError_" data-uid="MAS.Vision.OnnxRuntimeNative.LoadError*"></a>
+
+  <h3 id="MAS_Vision_OnnxRuntimeNative_LoadError" data-uid="MAS.Vision.OnnxRuntimeNative.LoadError">
+  LoadError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取启动时 GPU 版 onnxruntime.dll 加载失败的原因（此时用 CPU 版），没失败时为空</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? LoadError { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_OnnxRuntimeNative_ManagedVersion_" data-uid="MAS.Vision.OnnxRuntimeNative.ManagedVersion*"></a>
+
+  <h3 id="MAS_Vision_OnnxRuntimeNative_ManagedVersion" data-uid="MAS.Vision.OnnxRuntimeNative.ManagedVersion">
+  ManagedVersion
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取程序引用的 ONNX Runtime 版本（主.次.修订）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ManagedVersion { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_OnnxRuntimeNative_PendingGpuDirectory_" data-uid="MAS.Vision.OnnxRuntimeNative.PendingGpuDirectory*"></a>
+
+  <h3 id="MAS_Vision_OnnxRuntimeNative_PendingGpuDirectory" data-uid="MAS.Vision.OnnxRuntimeNative.PendingGpuDirectory">
+  PendingGpuDirectory
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取待换上的 GPU 运行时目录（运行中重新安装时解压到这里）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string PendingGpuDirectory { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MAS_Vision_OnnxRuntimeNative_Configure_" data-uid="MAS.Vision.OnnxRuntimeNative.Configure*"></a>
+
+  <h3 id="MAS_Vision_OnnxRuntimeNative_Configure" data-uid="MAS.Vision.OnnxRuntimeNative.Configure">
+  Configure()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>启动时选择原生库：先换上待换的 GPU 运行时，检查可用就改从它的目录加载</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static OnnxGpuRuntimeInfo Configure()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.OnnxGpuRuntimeInfo.html">OnnxGpuRuntimeInfo</a></dt>
+    <dd><p>GPU 运行时目录的检查结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_OnnxRuntimeNative_Inspect_" data-uid="MAS.Vision.OnnxRuntimeNative.Inspect*"></a>
+
+  <h3 id="MAS_Vision_OnnxRuntimeNative_Inspect_System_String_" data-uid="MAS.Vision.OnnxRuntimeNative.Inspect(System.String)">
+  Inspect(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查 GPU 运行时目录</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static OnnxGpuRuntimeInfo Inspect(string directory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>目录</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.Vision.OnnxGpuRuntimeInfo.html">OnnxGpuRuntimeInfo</a></dt>
+    <dd><p>检查结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_Vision_OnnxRuntimeNative_TryPromotePending_" data-uid="MAS.Vision.OnnxRuntimeNative.TryPromotePending*"></a>
+
+  <h3 id="MAS_Vision_OnnxRuntimeNative_TryPromotePending_System_String_" data-uid="MAS.Vision.OnnxRuntimeNative.TryPromotePending(System.String)">
+  TryPromotePending(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>把待换的目录换上（原生库未加载时才能换：启动时，或本进程没用 GPU 运行时）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryPromotePending(string directory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>GPU 运行时目录</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>换上了返回 true；没有待换的目录或换失败返回 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Detecting/OnnxRuntimeNative.cs/#L28" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
