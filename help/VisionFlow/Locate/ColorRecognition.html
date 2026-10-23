@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>颜色识别 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="颜色识别 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/ColorRecognition.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="颜色识别">颜色识别</h1>
+
+<p>统计 HSV 范围内的像素，按数量或占比判定有无指定颜色</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>HSV 图像，上游接颜色空间转换（BGR to HSV）</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>输入原图直通，供下游算法使用</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>标注图</td>
+<td>标注图</td>
+<td>叠加像素数与占比，仅供查看</td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>输入必须是 HSV 图像。直接接相机的彩色图不会报错，但统计结果没有意义</p>
+</div>
+<h2 id="使用">使用</h2>
+<ol>
+<li>上游接颜色空间转换（BGR to HSV），需要只统计局部时再接 ROI 选择器裁出目标区域</li>
+<li>运行一次，让节点拿到一帧输入</li>
+<li>在卡片上选<strong>颜色预设</strong>；或点颜色预设旁的提取按钮（提示「从当前缓存输入图像自动提取 HSV 颜色范围」），按当前输入自动生成范围并切到自定义</li>
+<li>选自定义时可拖动 H / S / V 的上下限微调</li>
+<li>打开设置窗口，在<strong>先决条件</strong>里选 <strong>像素量</strong> 或 <strong>像素百分比</strong>，填写对应阈值</li>
+</ol>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>新建节点的自定义范围全为 <code>0</code>，只会统计纯黑像素。使用前先选预设或从输入提取</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>提取在管道运行中点击时，改为在下一帧上执行；调试时未运行过上游会提示「请先运行上游节点获取输入图像」</p>
+</div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>自动提取按整幅输入图统计，图中混有背景时范围会被拉宽。先用 ROI 选择器裁到只含目标颜色</p>
+</div>
+<h2 id="参数">参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>颜色预设</td>
+<td>自定义HSV颜色空间</td>
+<td>内置黑、灰、白、红、橙、棕、黄、绿、青、蓝、紫、粉与红色 (High) 预设。选预设时 H / S / V 不可编辑</td>
+</tr>
+<tr>
+<td>H min / H max</td>
+<td>0 / 0</td>
+<td>色调范围，0 ~ 180</td>
+</tr>
+<tr>
+<td>S min / S max</td>
+<td>0 / 0</td>
+<td>饱和度范围，0 ~ 255</td>
+</tr>
+<tr>
+<td>V min / V max</td>
+<td>0 / 0</td>
+<td>亮度范围，0 ~ 255</td>
+</tr>
+<tr>
+<td>先决条件</td>
+<td>像素量</td>
+<td><strong>像素量</strong> 按范围内像素数判定，<strong>像素百分比</strong> 按其占整幅图的比例判定</td>
+</tr>
+<tr>
+<td>像素量阈值</td>
+<td>5201314</td>
+<td>范围内像素数超过该值即检测到，单位 px</td>
+</tr>
+<tr>
+<td>像素百分比阈值</td>
+<td>20</td>
+<td>范围内像素占比超过该值即检测到，范围 0.1 ~ 100，单位 %</td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>红色的色调跨 0 与 180 两端，一个范围只覆盖一端，按实际颜色选 <strong>红色 - 预设 | 色调范围 (0-10)</strong> 或 <strong>红色 (High) - 预设 | 色调范围 (160-180)</strong></p>
+</div>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsDetected</code></td>
+<td>是否检测到指定颜色。未检测到时节点不报警告，管道照常继续</td>
+</tr>
+<tr>
+<td><code>DetectedPixels</code></td>
+<td>范围内的像素数</td>
+</tr>
+<tr>
+<td><code>TotalPixels</code></td>
+<td>总像素数</td>
+</tr>
+<tr>
+<td><code>DetectedPercentage</code></td>
+<td>范围内像素占比（%）</td>
+</tr>
+<tr>
+<td><code>ThresholdMode</code></td>
+<td>判定方式，<code>Pixels</code> 或 <code>Percentage</code></td>
+</tr>
+<tr>
+<td><code>PixelThreshold</code></td>
+<td>像素量阈值（按像素量判定时）</td>
+</tr>
+<tr>
+<td><code>PercentageThreshold</code></td>
+<td>像素百分比阈值（按像素百分比判定时）</td>
+</tr>
+<tr>
+<td><code>LowerHsv</code> / <code>UpperHsv</code></td>
+<td>HSV 下限 / 上限</td>
+</tr>
+<tr>
+<td><code>ImageWidth</code> / <code>ImageHeight</code></td>
+<td>输入图像尺寸（像素）</td>
+</tr>
+<tr>
+<td><code>ElapsedMs</code></td>
+<td>耗时（毫秒）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>颜色有无 / 错料</td>
+<td>相机 → 颜色空间转换 → ROI 选择器 → 颜色识别，脚本读 <code>IsDetected</code></td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/ColorRecognition.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

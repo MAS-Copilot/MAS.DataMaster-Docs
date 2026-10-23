@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Blob 分析 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Blob 分析 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/BlobAnalysis.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="blob-分析">Blob 分析</h1>
+
+<p>查找连通区域，按面积、圆度过滤，输出质心与角度</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>二值图或灰度图</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>输入原图直通，供下游算法使用</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位</td>
+<td>定位</td>
+<td>排序后的第一个区域（质心与最小外接矩形角度）</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位列表</td>
+<td>定位列表</td>
+<td>全部区域，每个元素带面积、宽高与圆度</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>标注图</td>
+<td>标注图</td>
+<td>叠加各区域与数量，仅供查看</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>没有区域通过时不输出定位，节点显示警告，下游节点因缺少输入而报错；定位列表输出空列表</p>
+</div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>节点内部固定用大津法自动二值化，输入已是二值图时结果不变。光照不均或需要固定阈值时，上游先接阈值二值化</p>
+</div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>角度取自最小外接矩形，不能当可靠的方向使用；接 ROI 选择器随动时取消「跟随旋转」</p>
+</div>
+<h2 id="参数">参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>找暗目标</td>
+<td>不勾选</td>
+<td>目标比背景暗时打开，例如亮色工件上的孔</td>
+</tr>
+<tr>
+<td>最小面积</td>
+<td>100</td>
+<td>小于该面积的区域被过滤，单位为像素²</td>
+</tr>
+<tr>
+<td>最大面积</td>
+<td>0</td>
+<td><code>0</code> 表示不限，单位为像素²</td>
+</tr>
+<tr>
+<td>最小圆度</td>
+<td>0</td>
+<td>范围 0 ~ 1，正圆为 1，调高后只保留接近圆形的区域</td>
+</tr>
+<tr>
+<td>排序</td>
+<td>面积从大到小</td>
+<td>另有<strong>从左到右</strong>、<strong>从上到下</strong></td>
+</tr>
+<tr>
+<td>最多数量</td>
+<td>50</td>
+<td>按排序最多保留的区域数，范围 1 ~ 500，在设置窗口中修改</td>
+</tr>
+<tr>
+<td>排除贴边区域</td>
+<td>启用</td>
+<td>外接框碰到图像边缘的区域被过滤，在设置窗口中修改</td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>只统计每个连通区域的外轮廓，区域内部的孔不单独计数；需要取孔或更多筛选条件时用轮廓分析</p>
+</div>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Count</code></td>
+<td>区域数量</td>
+</tr>
+<tr>
+<td><code>X</code> / <code>Y</code></td>
+<td>第一个区域的质心坐标（像素）</td>
+</tr>
+<tr>
+<td><code>Area</code></td>
+<td>第一个区域的面积（像素²）</td>
+</tr>
+<tr>
+<td><code>Angle</code></td>
+<td>第一个区域最小外接矩形的角度（度）</td>
+</tr>
+<tr>
+<td><code>Circularity</code></td>
+<td>第一个区域的圆度（正圆为 1）</td>
+</tr>
+<tr>
+<td><code>Items</code></td>
+<td>全部区域</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定位孔位</td>
+<td>滤波去噪 → 阈值二值化 → 形态学 → Blob 分析（最小圆度 0.8）</td>
+</tr>
+<tr>
+<td>龙门打螺丝 / 点胶</td>
+<td>阈值二值化 → Blob 分析 → 列表筛选 → 像素转机械坐标 → 列表排序 → 计数判定</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/BlobAnalysis.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

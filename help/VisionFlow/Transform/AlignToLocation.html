@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>定位转正 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="定位转正 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Transform/AlignToLocation.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="定位转正">定位转正</h1>
+
+<p>按定位结果把目标转到固定姿态，可只裁出目标周围的局部图，是“定位 → 转正 → 精测”的中间一步</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>待转正的图像</td>
+</tr>
+<tr>
+<td>输入</td>
+<td>定位</td>
+<td>定位</td>
+<td>目标的定位结果，角度直接使用</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>转正后的整幅图或局部图</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>坐标变换（输出→原图）</td>
+<td>坐标变换</td>
+<td>接坐标映射，把输出图上的测量结果换回原图坐标</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>定位没有结果（上游未找到目标）时管道失败</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>定位结果的角度直接使用。圆定位的角度为 <code>0</code>，接入后只跟随平移</p>
+</div>
+<h2 id="参数">参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出范围</td>
+<td>整幅图</td>
+<td><strong>整幅图</strong>与输入同尺寸，绕定位点旋转。<strong>裁剪</strong>只输出定位点周围 宽 × 高 的局部图</td>
+</tr>
+<tr>
+<td>目标角度</td>
+<td>0°</td>
+<td>转正后目标的方向，<code>0</code> 为水平，范围 -180° ~ 180°</td>
+</tr>
+<tr>
+<td>固定位置</td>
+<td>禁用</td>
+<td>仅整幅图显示。再把定位点平移到 目标 X / 目标 Y，每次输出里目标都在同一处</td>
+</tr>
+<tr>
+<td>目标 X / 目标 Y</td>
+<td>0 / 0</td>
+<td>定位点在输出图中的位置（px）</td>
+</tr>
+<tr>
+<td>宽 / 高</td>
+<td>200 / 200</td>
+<td>仅裁剪显示。裁剪窗口的大小，范围 1 ~ 20000（px）</td>
+</tr>
+<tr>
+<td>沿向偏移 / 横向偏移</td>
+<td>0 / 0</td>
+<td>仅裁剪显示。窗口中心相对定位点的偏移，在目标坐标系里量：沿目标方向、垂直目标方向（px）</td>
+</tr>
+<tr>
+<td>插值</td>
+<td>双线性</td>
+<td>一般用<strong>双线性</strong>；二值图、标签图用<strong>最近邻</strong>；放大时用<strong>双三次</strong>或 <strong>Lanczos</strong></td>
+</tr>
+<tr>
+<td>边界填充</td>
+<td>填黑</td>
+<td>落在输入图外的像素：<strong>填黑</strong>，或<strong>复制边缘</strong>像素（不给卡尺、差分造假边）</td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>后面接卡尺或金样比对时，边界填充选<strong>复制边缘</strong>，避免填黑的边界被当成边缘或缺陷</p>
+</div>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DAngle</code></td>
+<td>本次旋转量（度）</td>
+</tr>
+<tr>
+<td><code>TargetX</code> / <code>TargetY</code></td>
+<td>定位点在输出图中的坐标（像素）</td>
+</tr>
+<tr>
+<td><code>Width</code> / <code>Height</code></td>
+<td>输出尺寸（像素）</td>
+</tr>
+<tr>
+<td><code>Transform</code></td>
+<td>输出图 → 输入图的变换</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定位后精测</td>
+<td>形状匹配 → 定位转正（裁剪）→ 卡尺 → 坐标映射</td>
+</tr>
+<tr>
+<td>缺陷检测</td>
+<td>形状匹配 → 定位转正（裁剪）→ 金样比对</td>
+</tr>
+<tr>
+<td>金样差分前对齐</td>
+<td>形状匹配 → 定位转正（整幅图，固定位置）→ 金样比对</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Transform/AlignToLocation.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

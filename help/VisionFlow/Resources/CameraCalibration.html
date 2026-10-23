@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>相机标定 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="相机标定 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Resources/CameraCalibration.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="相机标定">相机标定</h1>
+
+<p>采集标定板图像，估计相机内参</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>拍到 ChArUco 标定板的图像</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用">使用</h2>
+<ol>
+<li>在卡片上选择与标定板一致的<strong>字典类型</strong>，打开设置窗口按实物填写方格数量与边长</li>
+<li>多相机时填写<strong>相机名称</strong>加以区分</li>
+<li>上游接相机，变换标定板的位置与倾角，逐帧触发执行。每帧检测到足够的角点才计为有效帧，卡片显示采样进度</li>
+<li>有效帧达到<strong>最小采样帧数</strong>后开始计算内参并写入资源，之后的有效帧继续参与计算，达到<strong>最大缓存帧数</strong>后结果固定</li>
+<li>需要重新标定时点卡片上的 <strong>重置</strong></li>
+</ol>
+<p>内参写入资源 <code>键前缀-相机名称</code>，默认 <code>CameraIntrinsics-Main</code>，供畸变校正、姿态解算、2D 标定引用；资源随工程保存</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>已采集的帧不随工程保存：重新打开工程后再运行本节点会从头采集，达到最小采样帧数后覆盖原有内参资源。不需要重新标定时不要触发本节点</p>
+</div>
+<h2 id="参数">参数</h2>
+<p><strong>卡片</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字典类型</td>
+<td>DICT_6X6_100</td>
+<td>ArUco 字典，须与标定板一致</td>
+</tr>
+</tbody>
+</table>
+<p><strong>相机与采样</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>相机名称</td>
+<td>Main</td>
+<td>用于区分多相机，并参与生成资源键</td>
+</tr>
+<tr>
+<td>最小采样帧数</td>
+<td>15</td>
+<td>完成相机内参标定所需要收集的有效标定帧的最低数量，范围 5 ~ 999</td>
+</tr>
+<tr>
+<td>最大缓存帧数</td>
+<td>30</td>
+<td>超过则丢弃最旧帧，范围 5 ~ 999</td>
+</tr>
+</tbody>
+</table>
+<p><strong>检测与过滤阈值</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>棋盘沿 X 方向的方格数量</td>
+<td>5</td>
+<td>标定板 X 方向方格数</td>
+</tr>
+<tr>
+<td>棋盘沿 Y 方向的方格数量</td>
+<td>7</td>
+<td>标定板 Y 方向方格数</td>
+</tr>
+<tr>
+<td>棋盘单个方格边长(mm)</td>
+<td>25</td>
+<td>方格实际边长</td>
+</tr>
+<tr>
+<td>单帧至少需要的角点数量</td>
+<td>12</td>
+<td>检测到的 ChArUco 角点少于该值时该帧不计入</td>
+</tr>
+<tr>
+<td>ArUco Marker 边长(mm)</td>
+<td>20</td>
+<td>方格内 Marker 的实际边长</td>
+</tr>
+</tbody>
+</table>
+<p><strong>资源设置</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>键前缀</td>
+<td>CameraIntrinsics</td>
+<td>资源键为「键前缀-相机名称」</td>
+</tr>
+<tr>
+<td>最后一次生成的键</td>
+<td>—</td>
+<td>只读，显示最近写入的资源键</td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>修改相机名称或键前缀后资源键随之改变，引用内参的畸变校正、姿态解算、2D 标定须同步修改资源键</p>
+</div>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>修改任一标定参数都会清空已采集的帧，需要重新采集</p>
+</div>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsCalibrated</code></td>
+<td>是否已完成标定</td>
+</tr>
+<tr>
+<td><code>ResourceKey</code></td>
+<td>内参资源键</td>
+</tr>
+<tr>
+<td><code>ValidFrameCount</code></td>
+<td>有效帧数</td>
+</tr>
+<tr>
+<td><code>Summary</code></td>
+<td>标定摘要，完成后含重投影误差</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标定内参</td>
+<td>相机 → 相机标定</td>
+</tr>
+<tr>
+<td>使用内参</td>
+<td>相机 → 畸变校正 / 姿态解算（引用内参资源）</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Resources/CameraCalibration.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

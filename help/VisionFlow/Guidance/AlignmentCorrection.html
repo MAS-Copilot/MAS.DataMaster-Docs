@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>位置补正 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="位置补正 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Guidance/AlignmentCorrection.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="位置补正">位置补正</h1>
+
+<p>拍基准 Mark 求工件相对示教位置的平移与旋转（ΔX、ΔY、Δθ 与变换矩阵），用于修正整组点位</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>Mark</td>
+<td>定位列表</td>
+<td>当前拍到的 Mark，顺序与基准一一对应。单个定位也可直接接入</td>
+</tr>
+<tr>
+<td>输入</td>
+<td>待修正点位</td>
+<td>定位列表</td>
+<td>可选。示教时的整组点位</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>修正后点位</td>
+<td>定位列表</td>
+<td>待修正点位经补正变换后的结果，未接待修正点位时无输出</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>补正变换</td>
+<td>坐标变换</td>
+<td>基准 → 当前的刚体变换</td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>单个 Mark 时旋转角取两次定位的角度之差，必须用能给出角度的定位（形状匹配、特征匹配、直线定位）；两个及以上 Mark 只按位置拟合。圆形 Mark 没有角度，补正用两个 Mark</p>
+</div>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>当前 Mark 的数量与顺序必须与基准一致，数量不符时节点报错</p>
+</div>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>尚未示教基准时只报警告，不输出结果</p>
+</div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>多个 Mark 时先用列表排序固定顺序</p>
+</div>
+<h2 id="使用">使用</h2>
+<ol>
+<li>上游接 Mark 定位，通常先经像素转机械坐标换成轴坐标</li>
+<li>工件放在标准位置（与下位机点位对应），运行一次</li>
+<li>点卡片上的 <strong>设为基准</strong>，记下当前 Mark 作为基准；卡片列出各基准 Mark 的坐标与角度。旁边的按钮为 <strong>清除基准</strong></li>
+<li>设置<strong>最大偏移</strong>与<strong>最大角度（°）</strong>，防止异常结果下发</li>
+<li>换工件运行，按结果数据下发补正量，或直接使用修正后点位</li>
+</ol>
+<h2 id="参数">参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最大偏移</td>
+<td>0</td>
+<td>基准中心的平移量超过该值时中止，单位跟随输入。<code>0</code> 表示不限</td>
+</tr>
+<tr>
+<td>最大角度（°）</td>
+<td>0</td>
+<td>旋转角超过该值时中止。<code>0</code> 表示不限</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>偏移或角度超出上限时节点失败、管道中止，不会下发异常的补正量</p>
+</div>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsValid</code></td>
+<td>本次补正是否有效（已示教且计算成功）</td>
+</tr>
+<tr>
+<td><code>DX</code> / <code>DY</code></td>
+<td>基准中心的平移量（以基准中心为旋转中心）</td>
+</tr>
+<tr>
+<td><code>DAngle</code></td>
+<td>旋转角（度，-180 ~ 180）</td>
+</tr>
+<tr>
+<td><code>CenterX</code> / <code>CenterY</code></td>
+<td>旋转中心，即基准 Mark 中心</td>
+</tr>
+<tr>
+<td><code>A</code> / <code>B</code> / <code>C</code> / <code>D</code></td>
+<td>变换矩阵：x' = A·x + B·y + TX，y' = C·x + D·y + TY</td>
+</tr>
+<tr>
+<td><code>TX</code> / <code>TY</code></td>
+<td>变换矩阵的平移项</td>
+</tr>
+<tr>
+<td><code>MaxResidual</code></td>
+<td>多 Mark 拟合的最大残差。过大说明识别错或工件变形</td>
+</tr>
+<tr>
+<td><code>MarkCount</code></td>
+<td>基准 Mark 数量</td>
+</tr>
+</tbody>
+</table>
+<p>脚本里可直接 <code>RigidTransform.ApplyOffset(new Point(DX, DY), DAngle, new Point(CenterX, CenterY), points)</code> 修正点位</p>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>点位整体补正</td>
+<td>相机 → 形状匹配 → 像素转机械坐标 → 位置补正</td>
+</tr>
+<tr>
+<td>双 Mark 补正</td>
+<td>相机 → 圆定位 → 像素转机械坐标 → 列表排序 → 位置补正</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Guidance/AlignmentCorrection.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

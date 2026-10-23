@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>手眼标定 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="手眼标定 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Resources/HandEyeCalibration.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="手眼标定">手眼标定</h1>
+
+<p>成对采集相机与机器位姿，求手眼关系</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>相机位姿</td>
+<td>姿态结果</td>
+<td>姿态解算输出的标定板位姿</td>
+</tr>
+<tr>
+<td>输入</td>
+<td>机器位姿</td>
+<td>位姿</td>
+<td>拍照时的机器人位姿</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>姿态解算失败或缺少机器位姿时，本次不采样</p>
+</div>
+<h2 id="使用">使用</h2>
+<ol>
+<li>连线：相机 → 姿态解算 → 相机位姿输入；机器位姿 → 机器位姿输入。姿态解算须使用相机标定的内参</li>
+<li>在卡片或设置窗口选择<strong>标定模式</strong></li>
+<li>机器人带着相机（眼在手上）或标定板（眼在手外）移动到不同位置与姿态，每到一处触发执行一次，记一组样本，卡片显示采样进度。位姿可用位姿生成节点按下位机请求给出</li>
+<li>样本数达到<strong>最少样本数</strong>后开始计算并写入资源，之后每个新样本都会重新计算</li>
+<li>需要重新标定时点卡片上的 <strong>重置</strong></li>
+</ol>
+<p>标定结果写入资源 <code>键前缀-标定模式</code>，默认 <code>RigidTransform3D-EyeInHand</code>，供手眼坐标转换引用；资源随工程保存</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>样本不随工程保存，也不会自动停止：重新打开工程后再运行会从头采集，并在达到最少样本数后覆盖原有资源。标定完成后不要再触发本节点</p>
+</div>
+<h2 id="参数">参数</h2>
+<p><strong>基本设置</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>稳定窗口数量</td>
+<td>1</td>
+<td>上游模块连续输出 N 次后，仅使用第 N 次结果参与标定采样，用于等待滤波或姿态收敛完成，范围 1 ~ 99</td>
+</tr>
+</tbody>
+</table>
+<p><strong>手眼标定配置</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标定模式</td>
+<td>EyeInHand</td>
+<td><code>EyeInHand</code> 为眼在手上（相机装在机器人末端），<code>EyeToHand</code> 为眼在手外（相机固定）</td>
+</tr>
+<tr>
+<td>最少样本数</td>
+<td>15</td>
+<td>达到该数量后开始计算，范围 5 ~ 999</td>
+</tr>
+<tr>
+<td>最大样本数</td>
+<td>50</td>
+<td>只用最近的这么多个样本计算，范围 5 ~ 999</td>
+</tr>
+<tr>
+<td>标定算法</td>
+<td>两步法手眼标定算法</td>
+<td>可选<strong>自动选择最优算法</strong>、<strong>对偶四元数手眼标定算法</strong>、<strong>正交矩阵分解手眼标定算法</strong>、<strong>改进型解耦手眼标定算法</strong>、<strong>单位四元数手眼标定算法</strong>。只在眼在手上时可选，眼在手外时不使用</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>修改任一手眼标定配置都会清空已采集的样本</p>
+</div>
+<p><strong>检测与质量</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto模式下平移误差评分权重</td>
+<td>1</td>
+<td>自动选择算法时平移误差的评分权重，范围 0 ~ 100</td>
+</tr>
+<tr>
+<td>Auto模式下旋转误差评分权重</td>
+<td>10</td>
+<td>自动选择算法时旋转误差的评分权重，范围 0 ~ 100</td>
+</tr>
+<tr>
+<td>最小旋转激励跨度（deg）</td>
+<td>10</td>
+<td>样本间的旋转跨度低于该值时标定失败，提示增加多方向转动样本，范围 1 ~ 180</td>
+</tr>
+<tr>
+<td>最小平移激励跨度（mm）</td>
+<td>20</td>
+<td>样本间的平移跨度低于该值时标定失败，提示增加跨范围移动样本，范围 1 ~ 2000</td>
+</tr>
+<tr>
+<td>启用异常样本剔除</td>
+<td>勾选</td>
+<td>按残差剔除异常样本</td>
+</tr>
+<tr>
+<td>异常样本剔除的最大平移残差阈值（mm）</td>
+<td>2</td>
+<td>范围 0.1 ~ 50</td>
+</tr>
+<tr>
+<td>样本剔除的最大旋转残差阈值（deg）</td>
+<td>0.5</td>
+<td>范围 0.1 ~ 10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>资源设置</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>键前缀</td>
+<td>RigidTransform3D</td>
+<td>资源键为「键前缀-标定模式」</td>
+</tr>
+<tr>
+<td>最后一次生成的键</td>
+<td>—</td>
+<td>只读，显示最近写入的资源键</td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>手眼坐标转换的手眼模式须与这里的标定模式一致，其资源键填写本节点「最后一次生成的键」</p>
+</div>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsCalibrated</code></td>
+<td>是否已完成标定</td>
+</tr>
+<tr>
+<td><code>ResourceKey</code></td>
+<td>标定结果资源键</td>
+</tr>
+<tr>
+<td><code>SampleCount</code></td>
+<td>已采样本数</td>
+</tr>
+<tr>
+<td><code>Summary</code></td>
+<td>标定摘要，含使用的样本数与平移、旋转残差</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>手眼标定</td>
+<td>相机 → 姿态解算 → 手眼标定（接机器位姿）</td>
+</tr>
+<tr>
+<td>标定后引导</td>
+<td>相机 → 姿态解算 → 手眼坐标转换</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Resources/HandEyeCalibration.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

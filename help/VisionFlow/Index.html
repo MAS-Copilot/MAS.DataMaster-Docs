@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>视觉工作流 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="视觉工作流 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Index.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="视觉工作流">视觉工作流</h1>
+
+<p>在画布上用节点搭建视觉流程。相连的节点自动构成管道，一张画布可以并存多条相互独立的管道</p>
+<ul>
+<li><a href="#%E8%A7%86%E8%A7%89%E5%B7%A5%E4%BD%9C%E6%B5%81">视觉工作流</a>
+<ul>
+<li><a href="#%E8%8A%82%E7%82%B9%E5%88%86%E7%B1%BB">节点分类</a></li>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E8%8A%82%E7%82%B9">添加节点</a></li>
+<li><a href="#%E9%80%89%E6%8B%A9%E4%B8%8E%E7%A7%BB%E5%8A%A8">选择与移动</a></li>
+<li><a href="#%E7%BC%96%E8%BE%91">编辑</a></li>
+<li><a href="#%E8%BF%9E%E7%BA%BF">连线</a></li>
+<li><a href="#%E8%A7%86%E5%9B%BE">视图</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8C%E4%B8%8E%E8%B0%83%E8%AF%95">运行与调试</a></li>
+<li><a href="#%E7%AE%A1%E9%81%93">管道</a></li>
+<li><a href="#%E7%AE%A1%E9%81%93%E8%84%9A%E6%9C%AC%E4%B8%8E%E7%BB%93%E6%9E%9C%E8%AF%BB%E5%8F%96">管道脚本与结果读取</a></li>
+<li><a href="#%E7%AB%AF%E5%8F%A3%E8%BF%9E%E6%8E%A5%E8%A7%84%E5%88%99">端口连接规则</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="节点分类">节点分类</h2>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>节点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>准备</td>
+<td><a href="Prepare/Camera.html">相机</a>、<a href="Prepare/ImageSource.html">图像源</a></td>
+</tr>
+<tr>
+<td>设备输入</td>
+<td><a href="DeviceInputs/MachinePose.html">机器位姿</a></td>
+</tr>
+<tr>
+<td>预处理</td>
+<td><a href="Preproc/ColorConvert.html">颜色空间转换</a>、<a href="Preproc/RoiSelector.html">ROI 选择器</a>、<a href="Preproc/Filter.html">滤波去噪</a>、<a href="Preproc/Threshold.html">阈值二值化</a>、<a href="Preproc/Morphology.html">形态学</a></td>
+</tr>
+<tr>
+<td>几何变换</td>
+<td><a href="Transform/RotateTranslate.html">旋转平移</a>、<a href="Transform/AlignToLocation.html">定位转正</a>、<a href="Transform/PerspectiveCorrect.html">透视矫正</a>、<a href="Transform/Resize.html">缩放</a>、<a href="Transform/Flip.html">翻转</a>、<a href="Transform/Undistort.html">畸变校正</a></td>
+</tr>
+<tr>
+<td>定位测量</td>
+<td><a href="Locate/EdgeDetect.html">边缘检测</a>、<a href="Locate/LineLocate.html">直线定位</a>、<a href="Locate/CircleLocate.html">圆定位</a>、<a href="Locate/BlobAnalysis.html">Blob 分析</a>、<a href="Locate/ContourAnalysis.html">轮廓分析</a>、<a href="Locate/FeatureMatch.html">特征匹配</a>、<a href="Locate/CharucoCornerLocate.html">ChArUco 角点定位</a>、<a href="Locate/Caliper.html">卡尺</a>、<a href="Locate/CaliperLine.html">卡尺找线</a>、<a href="Locate/CaliperCircle.html">卡尺找圆</a>、<a href="Locate/ShapeMatch.html">形状匹配</a>、<a href="Locate/TemplateMatching.html">模板匹配</a>、<a href="Locate/ColorRecognition.html">颜色识别</a></td>
+</tr>
+<tr>
+<td>几何测量</td>
+<td><a href="Geometry/PointDistance.html">两点距离</a>、<a href="Geometry/PointLineDistance.html">点线距离</a>、<a href="Geometry/LineRelation.html">两线关系</a>、<a href="Geometry/RangeCheck.html">数值判定</a>、<a href="Geometry/MapLocations.html">坐标映射</a>、<a href="Geometry/PointSetFit.html">点集拟合</a></td>
+</tr>
+<tr>
+<td>缺陷检测</td>
+<td><a href="Inspect/GoldenCompare.html">金样比对</a></td>
+</tr>
+<tr>
+<td>深度学习</td>
+<td><a href="DeepLearning/ObjectDetection.html">目标检测</a>、<a href="DeepLearning/InstanceSegmentation.html">实例分割</a>、<a href="DeepLearning/ImageClassification.html">图像分类</a></td>
+</tr>
+<tr>
+<td>集合</td>
+<td><a href="Collection/ListFilter.html">列表筛选</a>、<a href="Collection/ListSort.html">列表排序</a>、<a href="Collection/ListPick.html">取元素</a>、<a href="Collection/ListCount.html">计数判定</a>、<a href="Collection/ListMerge.html">列表合并</a></td>
+</tr>
+<tr>
+<td>流程控制</td>
+<td><a href="FlowControl/ConditionalExecution.html">条件执行</a></td>
+</tr>
+<tr>
+<td>视觉引导</td>
+<td><a href="Guidance/PositionOffset.html">示教对位</a>、<a href="Guidance/PixelToMachine.html">像素转机械坐标</a>、<a href="Guidance/AlignmentCorrection.html">位置补正</a>、<a href="Guidance/HandEyeTransform.html">手眼坐标转换</a>、<a href="Guidance/ClickToMove.html">点图移动</a>、<a href="Guidance/PoseCalculation.html">姿态解算</a></td>
+</tr>
+<tr>
+<td>资源</td>
+<td><a href="Resources/CameraCalibration.html">相机标定</a>、<a href="Resources/PlaneCalibration.html">2D 标定（九点）</a>、<a href="Resources/HandEyeCalibration.html">手眼标定</a></td>
+</tr>
+<tr>
+<td>扩展</td>
+<td><a href="Expanding/ImageInfo.html">图像信息</a></td>
+</tr>
+<tr>
+<td>结束</td>
+<td><a href="Finish/ImageViewer.html">图像浏览器</a>、<a href="Finish/WebPublish.html">Web 发布</a></td>
+</tr>
+<tr>
+<td>工具</td>
+<td><a href="Tools/PoseGeneration.html">位姿生成</a>、<a href="Tools/ScriptExecution.html">脚本执行</a></td>
+</tr>
+</tbody>
+</table>
+<p>在节点卡片上点<strong>更多</strong>或右键 → <strong>帮助</strong>，打开该节点的帮助</p>
+<h2 id="添加节点">添加节点</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>从左侧组件库拖到画布</td>
+<td>在松开处添加节点</td>
+</tr>
+<tr>
+<td>双击组件库中的节点</td>
+<td>添加到视图中央</td>
+</tr>
+<tr>
+<td>组件库搜索框，或按 <code>/</code></td>
+<td>按名称或说明筛选组件</td>
+</tr>
+<tr>
+<td>工具栏<strong>组件</strong>按钮</td>
+<td>显示或隐藏组件库</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>F</code></td>
+<td>查找画布上已有的模块：<code>↑</code> <code>↓</code> 选择，<code>Enter</code> 定位，<code>Esc</code> 关闭</td>
+</tr>
+</tbody>
+</table>
+<h2 id="选择与移动">选择与移动</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左键单击卡片</td>
+<td>选中该节点</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> / <code>Shift</code> + 单击</td>
+<td>加选或减选</td>
+</tr>
+<tr>
+<td>空白处从<strong>左往右</strong>拖拽</td>
+<td>框选（完全包含）：整个卡片在框内才选中</td>
+</tr>
+<tr>
+<td>空白处从<strong>右往左</strong>拖拽</td>
+<td>框选（相交）：与选框有重叠即选中</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> / <code>Shift</code> + 框选</td>
+<td>追加到现有选区</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>A</code></td>
+<td>全选</td>
+</tr>
+<tr>
+<td>空白处单击 / <code>Esc</code></td>
+<td>清空选区</td>
+</tr>
+<tr>
+<td>左键拖动卡片</td>
+<td>移动；拖动已选中的节点时整个选区一起移动</td>
+</tr>
+<tr>
+<td><code>↑</code> <code>↓</code> <code>←</code> <code>→</code></td>
+<td>微调 1 px，按住 <code>Shift</code> 每次 10 px</td>
+</tr>
+</tbody>
+</table>
+<h2 id="编辑">编辑</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ctrl</code> + <code>C</code> / <code>X</code> / <code>V</code></td>
+<td>复制、剪切、粘贴选中节点及其之间的连线；鼠标在画布上时粘贴到光标处</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>D</code></td>
+<td>创建副本，不影响剪贴板</td>
+</tr>
+<tr>
+<td><code>Delete</code> / <code>Backspace</code></td>
+<td>删除选中的节点与连线</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Z</code></td>
+<td>撤销</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + <code>Y</code> / <code>Ctrl</code> + <code>Shift</code> + <code>Z</code></td>
+<td>重做</td>
+</tr>
+<tr>
+<td>双击标题，或右键 → <strong>重命名</strong></td>
+<td><code>Enter</code> 确认，<code>Esc</code> 取消；标题在画布内不能重复</td>
+</tr>
+<tr>
+<td>卡片上的折叠按钮，或右键 → <strong>折叠</strong> / <strong>展开</strong></td>
+<td>收起或展开卡片内容，多选时作用于全部选中节点</td>
+</tr>
+</tbody>
+</table>
+<p>右键空白处还有<strong>粘贴</strong>、<strong>全选</strong>、<strong>撤销</strong>、<strong>重做</strong>、<strong>自适应视图</strong>、<strong>还原视图</strong></p>
+<h2 id="连线">连线</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>从一个端口拖到另一个端口</td>
+<td>连线；拖动时可连接的端口高亮，靠近自动吸附</td>
+</tr>
+<tr>
+<td>拖动中按 <code>Esc</code></td>
+<td>取消连线</td>
+</tr>
+<tr>
+<td>单击连线</td>
+<td>选中，按 <code>Delete</code> 删除</td>
+</tr>
+<tr>
+<td>右键连线 → <strong>删除连线</strong></td>
+<td>断开</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>只能从输出连到输入；类型不兼容、重复、连到自身或会成环的连线不允许</li>
+<li>每个输入只接一条线，再接一条会替换原来的线</li>
+</ul>
+<h2 id="视图">视图</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>鼠标滚轮</td>
+<td>以光标为中心缩放，范围 15% ~ 300%</td>
+</tr>
+<tr>
+<td>中键拖动 / 右键拖动 / 按住 <code>Space</code> 左键拖动</td>
+<td>平移画布；右键不拖动则打开右键菜单</td>
+</tr>
+<tr>
+<td>工具栏<strong>放大视图</strong> / <strong>缩小视图</strong></td>
+<td>以视图中心缩放</td>
+</tr>
+<tr>
+<td>工具栏或右键 → <strong>自适应视图</strong></td>
+<td>把全部节点放进视图</td>
+</tr>
+<tr>
+<td>工具栏或右键 → <strong>还原视图</strong></td>
+<td>恢复 100% 并居中</td>
+</tr>
+<tr>
+<td>工具栏<strong>小地图</strong></td>
+<td>显示或隐藏小地图；在小地图上单击或拖动跳转，滚轮缩放</td>
+</tr>
+<tr>
+<td>工具栏<strong>锁定控件</strong></td>
+<td>画布只读，不能增删、移动、连线、撤销；解锁需要工程师权限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="运行与调试">运行与调试</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>卡片上的运行按钮，或右键 → <strong>运行到此节点</strong></td>
+<td>只执行该节点及其上游一次</td>
+</tr>
+<tr>
+<td>双击卡片标题以外的位置，或右键 → <strong>设置</strong></td>
+<td>打开设置窗口；<code>F5</code> 运行到此节点，<code>Esc</code> 关闭，点节点 Id 复制到剪贴板</td>
+</tr>
+<tr>
+<td>输出端口旁的<strong>查看输出</strong></td>
+<td>打开查看窗口：「输出」页看端口最近一次的值，「结果数据」页看结果键与值；可同时打开多个，<code>F5</code> 运行到此节点</td>
+</tr>
+<tr>
+<td>卡片右上角状态点、底部耗时</td>
+<td>最近一次执行的状态与耗时；悬停状态点查看说明</td>
+</tr>
+</tbody>
+</table>
+<p>工具节点（位姿生成、脚本执行）不参与管道，没有运行按钮，用卡片上的<strong>切换运行状态</strong>启停</p>
+<h2 id="管道">管道</h2>
+<p>每组至少两个相连的节点就是一条管道，图一变自动重新划分。点画布右上角<strong>管道</strong>打开管道面板，每条管道一行：</p>
+<table>
+<thead>
+<tr>
+<th>按钮</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名称</td>
+<td>直接修改，<code>Enter</code> 确认，<code>Esc</code> 取消</td>
+</tr>
+<tr>
+<td><strong>执行一次</strong></td>
+<td>整条管道执行一次</td>
+</tr>
+<tr>
+<td><strong>切换运行状态</strong></td>
+<td>启动或停止，按管道脚本循环运行</td>
+</tr>
+<tr>
+<td><strong>初始化</strong></td>
+<td>手动初始化管道内的节点（打开相机、加载图像等）</td>
+</tr>
+<tr>
+<td><strong>脚本代码</strong></td>
+<td>编辑管道脚本</td>
+</tr>
+<tr>
+<td><strong>定位</strong></td>
+<td>在画布上定位到该管道</td>
+</tr>
+<tr>
+<td><strong>复制管道 Id</strong></td>
+<td>复制管道标识</td>
+</tr>
+</tbody>
+</table>
+<p>行下方显示节点数、最近耗时、每秒次数与累计次数；状态点绿色为运行中，红色为上次执行失败。工作台顶部也可选择管道并执行相同操作</p>
+<ul>
+<li>管道内按连线顺序执行，同时就绪的节点并行；任一节点失败则整条管道失败，下游不再执行</li>
+<li>节点在第一次执行或启动时按需初始化，参数改动后自动重新初始化</li>
+<li>运行中的管道结构锁定：其节点不能删除、连线或断线，参数照常可改，也不能运行到此节点</li>
+</ul>
+<h2 id="管道脚本与结果读取">管道脚本与结果读取</h2>
+<p>管道启动后按 <code>FixedIntervalMs</code> 循环：<code>TriggerSignalAsync</code> 返回 <code>true</code> 时执行一次管道（例如读 PLC 触发位），<code>HandleResultAsync</code> 处理结果（例如写回 PLC），<code>CompleteAsync</code> 结束本轮。执行失败时也会先调用 <code>HandleResultAsync</code>，便于回写 NG</p>
+<p>结果按「节点标题 + 结果键」读取，标题与键都不区分大小写：</p>
+<pre><code class="lang-csharp">var score = result.GetValue&lt;double&gt;(&quot;颜色识别&quot;, &quot;Score&quot;);
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>取不到时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>result.GetValue&lt;T&gt;(节点, 键)</code></td>
+<td>抛异常，消息中列出可用的节点或键</td>
+</tr>
+<tr>
+<td><code>result.TryGetValue&lt;T&gt;(节点, 键, out value)</code></td>
+<td>返回 <code>false</code></td>
+</tr>
+<tr>
+<td><code>result.GetValueOrDefault(节点, 键, 默认值)</code></td>
+<td>返回默认值</td>
+</tr>
+<tr>
+<td><code>result.GetNode(节点)</code></td>
+<td>抛异常；同一节点取多个值时使用</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>节点本次执行失败时取不到它的值，不会拿到上一次的结果</li>
+<li>各节点的结果键见节点帮助，或查看窗口的「结果数据」页</li>
+<li>节点改名后，脚本里的标题要同步修改</li>
+</ul>
+<h2 id="端口连接规则">端口连接规则</h2>
+<ul>
+<li>单个定位可以直接连到定位列表输入，当作只有一个元素的列表</li>
+<li>定位列表不能直接连到只收单个定位的输入，要经过<strong>取元素</strong>指定取第几个</li>
+<li>标注图只供查看，只能连到图像浏览器、Web 发布的图像输入</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Index.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

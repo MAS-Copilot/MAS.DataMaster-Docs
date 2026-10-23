@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>图像浏览器 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="图像浏览器 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Finish/ImageViewer.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="图像浏览器">图像浏览器</h1>
+
+<p>显示结果图像，可选保存到磁盘，按天数与容量自动清理</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>要显示的图像，可接原图或标注图</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用">使用</h2>
+<ol>
+<li>把要查看的图像连到输入，运行后卡片上显示最近一帧</li>
+<li>需要留图时勾选卡片上的<strong>保存图像</strong>，或在设置窗口打开<strong>图像保存</strong></li>
+<li>在设置窗口选择保存路径、保存格式，按需填写文件夹名称与文件前缀</li>
+<li>长期运行时打开<strong>存储策略</strong>，设置保留天数与最大占用空间</li>
+</ol>
+<p>图像按 <code>保存路径\文件夹名称\年月\日\前缀_时分秒毫秒.扩展名</code> 存放；卡片上的文件夹按钮打开当前保存目录</p>
+<h2 id="参数">参数</h2>
+<p><strong>图像保存</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>图像保存</td>
+<td>关闭</td>
+<td>与卡片上的<strong>保存图像</strong>是同一个开关</td>
+</tr>
+<tr>
+<td>保存路径</td>
+<td>数据目录下的 <code>Images</code></td>
+<td>点 … 选择文件夹</td>
+</tr>
+<tr>
+<td>文件夹名称</td>
+<td>空</td>
+<td>留空则使用模块名称，改模块名后会存到新文件夹</td>
+</tr>
+<tr>
+<td>保存格式</td>
+<td>PNG</td>
+<td><strong>PNG</strong> 无损、文件较大；<strong>JPEG</strong> 有损、文件较小；<strong>BMP</strong> 无压缩、文件最大</td>
+</tr>
+<tr>
+<td>文件前缀</td>
+<td><code>Image</code></td>
+<td>文件名开头</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>保存在后台排队进行。写盘跟不上时节点显示警告「图像保存队列已满，本帧未保存」，该帧不保存</p>
+</div>
+<p><strong>存储策略</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自动清理</td>
+<td>开启</td>
+<td>存储策略标题右侧的开关</td>
+</tr>
+<tr>
+<td>保留天数（天）</td>
+<td>7</td>
+<td>保留最近 N 个自然日（含当天），范围 0 ~ 3650。<code>0</code> 表示不按天数清理</td>
+</tr>
+<tr>
+<td>最大占用空间（MB）</td>
+<td>1024</td>
+<td>总大小超过后由旧到新删除，直到低于它。<code>0</code> 表示不按容量清理</td>
+</tr>
+<tr>
+<td>定时清理周期（分钟）</td>
+<td>60</td>
+<td>两次清理检查的间隔，范围 1 ~ 10080</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>自动清理只处理本模块文件夹里的图像，且只在保存图像期间按周期检查；关闭保存后不再清理</p>
+</div>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查看检测结果</td>
+<td>定位 / 测量节点 → 标注图 → 图像浏览器</td>
+</tr>
+<tr>
+<td>留存原图</td>
+<td>相机 → 图像浏览器（打开图像保存）</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Finish/ImageViewer.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>形状匹配 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="形状匹配 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/ShapeMatch.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="形状匹配">形状匹配</h1>
+
+<p>用产品自身的轮廓定位。基于边缘梯度方向建模，抗旋转、亚像素，可同时找多个目标</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>待搜索的图像</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>输入原图直通，供下游算法使用</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位</td>
+<td>定位</td>
+<td>得分最高的目标</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位列表</td>
+<td>定位列表</td>
+<td>全部目标，按得分从高到低</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>标注图</td>
+<td>标注图</td>
+<td>叠加目标轮廓与参考点，仅供查看</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>未找到目标时不输出定位，节点显示警告，下游节点因缺少输入而报错</p>
+</div>
+<h2 id="使用">使用</h2>
+<ol>
+<li>上游接好相机或图像源，运行一次，让设置窗口拿到一帧标准产品图</li>
+<li>打开设置窗口，切到<strong>模板区</strong>，在图上框出产品上轮廓清晰、不会变化的部分</li>
+<li>点 <strong>学习模板</strong>。模板图随工程保存，不依赖外部文件</li>
+<li>需要输出特定位置时，切到<strong>参考点</strong>在图上点选；参考点可以在模板区外，点 <strong>居中</strong> 恢复为模板中心</li>
+<li>切到<strong>搜索区</strong>，框出目标可能出现的范围</li>
+<li>运行，在结果表里查看坐标、角度与得分，按需调整搜索参数</li>
+</ol>
+<div class="TIP">
+<h5>Tip</h5>
+<p>模板应选轮廓稳定、特征不对称的区域；圆形等旋转对称的模板无法给出可靠角度</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>学习后再改模板区，界面会提示「模板区已改，点「学习模板」生效」，在重新学习之前仍使用旧模板。搜索区限定的是<strong>模板中心</strong>的位置，不是整个目标的范围</p>
+</div>
+<h2 id="参数">参数</h2>
+<p><strong>模板</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>边缘对比度</td>
+<td>30</td>
+<td>学习模板时取边缘点的灰度差下限，范围 1 ~ 255。修改后按已保存的模板图重建，无需重新取图</td>
+</tr>
+<tr>
+<td>金字塔层数</td>
+<td>0</td>
+<td><code>0</code> 为自动，范围 0 ~ 6。层数多搜索更快，但小特征可能丢失</td>
+</tr>
+<tr>
+<td>参考点 X / Y</td>
+<td>模板中心</td>
+<td>定位结果输出的点，单位为示教图像素</td>
+</tr>
+</tbody>
+</table>
+<p><strong>搜索</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最低得分</td>
+<td>0.7</td>
+<td>低于该值不算找到，范围 0.3 ~ 1。常有遮挡时适当调低</td>
+</tr>
+<tr>
+<td>角度下限 / 角度上限</td>
+<td>-30° / 30°</td>
+<td>相对模板的旋转范围，顺时针为正；上下限相等即不旋转。范围越大越慢</td>
+</tr>
+<tr>
+<td>最多数量</td>
+<td>1</td>
+<td>最多输出的目标数，范围 1 ~ 100</td>
+</tr>
+<tr>
+<td>最大重叠</td>
+<td>0.5</td>
+<td>两个目标重叠超过该比例时只保留得分高的</td>
+</tr>
+<tr>
+<td>极性</td>
+<td>同极性</td>
+<td>背景时亮时暗、边缘明暗可能反转时选<strong>忽略极性</strong></td>
+</tr>
+<tr>
+<td>最小对比度</td>
+<td>10</td>
+<td>搜索时边缘两侧灰度差的下限，低于它的边缘被忽略</td>
+</tr>
+<tr>
+<td>贪婪度</td>
+<td>0.8</td>
+<td>越大越快，但部分遮挡的目标更容易漏检</td>
+</tr>
+</tbody>
+</table>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Found</code></td>
+<td>是否找到</td>
+</tr>
+<tr>
+<td><code>Count</code></td>
+<td>找到的目标数</td>
+</tr>
+<tr>
+<td><code>X</code> / <code>Y</code></td>
+<td>第一个目标参考点坐标（像素）</td>
+</tr>
+<tr>
+<td><code>Angle</code></td>
+<td>第一个目标相对模板的旋转角（度，顺时针为正）</td>
+</tr>
+<tr>
+<td><code>Score</code></td>
+<td>第一个目标的得分（0 ~ 1）</td>
+</tr>
+<tr>
+<td><code>ModelPoints</code></td>
+<td>模板第 0 层的边缘点数</td>
+</tr>
+<tr>
+<td><code>Levels</code></td>
+<td>金字塔层数</td>
+</tr>
+<tr>
+<td><code>TopCandidates</code></td>
+<td>金字塔顶层候选数</td>
+</tr>
+<tr>
+<td><code>TimeMs</code></td>
+<td>匹配耗时（毫秒）</td>
+</tr>
+<tr>
+<td><code>Items</code></td>
+<td>全部目标</td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p><code>TopCandidates</code> 为 <code>0</code> 说明粗搜阶段就没有候选，可降低最低得分或最小对比度</p>
+</div>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二维引导</td>
+<td>相机 → 形状匹配 → 像素转机械坐标 → 位置补正</td>
+</tr>
+<tr>
+<td>定位后精测</td>
+<td>相机 → 形状匹配 → 定位转正 → 卡尺 / 金样比对</td>
+</tr>
+<tr>
+<td>ROI 随动</td>
+<td>相机 → 形状匹配 → ROI 选择器（跟随定位）→ 后续检测</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/ShapeMatch.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

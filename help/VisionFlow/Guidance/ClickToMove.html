@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>点图移动 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="点图移动 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Guidance/ClickToMove.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="点图移动">点图移动</h1>
+
+<p>在实时画面上点一下，机构就移到那里，用于快速示教与调试</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>相机或图像源的实时画面</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用">使用</h2>
+<ol>
+<li>先完成「2D 标定（九点）」，相机或图像源接到本节点的图像输入</li>
+<li>打开设置窗口，在<strong>通信</strong>中填写下位机的 IP 地址、端口、从站地址与命令 / 状态地址；不填 IP 时按<strong>通讯设备</strong>名称使用数据采集里的设备</li>
+<li>选择<strong>对准方式</strong>与<strong>2D 标定资源</strong>，在<strong>安全</strong>中设置单次最大移动与软限位</li>
+<li>点 <strong>切换运行状态</strong> 开始持续取图</li>
+<li>点 <strong>开启引导</strong>，确认安全提示。状态显示「就绪，点击画面移动」后，点击画面即移动；<strong>点动微调</strong>按所选位移量移动 X / Y / Z</li>
+<li>用完点 <strong>关闭引导</strong>；关闭设置窗口时引导也会自动关闭</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>持续取图只运行本节点及其上游；所在管道连续运行或正在生产触发时自动让位，画面改由管道送来</p>
+</div>
+<h2 id="参数">参数</h2>
+<p><strong>对准方式</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对准方式</td>
+<td>相机对准</td>
+<td><strong>相机对准</strong>：点到的目标移到画面中心，仅适用于相机随轴运动；<strong>针尖对准</strong>：针尖移到点到的目标上，需已示教针尖偏置</td>
+</tr>
+<tr>
+<td>2D 标定资源</td>
+<td>PlaneCalibration</td>
+<td>「2D 标定（九点）」节点写入的资源键</td>
+</tr>
+</tbody>
+</table>
+<p><strong>通信</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP 地址</td>
+<td>空</td>
+<td>下位机 Modbus TCP 地址</td>
+</tr>
+<tr>
+<td>端口</td>
+<td>502</td>
+<td>Modbus TCP 端口</td>
+</tr>
+<tr>
+<td>从站地址</td>
+<td>1</td>
+<td>Modbus 从站地址</td>
+</tr>
+<tr>
+<td>通讯设备</td>
+<td>空</td>
+<td>数据采集设备名，未填 IP 时使用</td>
+</tr>
+<tr>
+<td>命令地址</td>
+<td>7600</td>
+<td>保持寄存器，共 8 个：序号(int16)、命令(int16，1=绝对移动)、X、Y、Z(float32)</td>
+</tr>
+<tr>
+<td>状态地址</td>
+<td>7610</td>
+<td>保持寄存器，共 10 个：应答序号、结果(0=到位)、允许、保留(int16)，当前 X、Y、Z(float32)</td>
+</tr>
+</tbody>
+</table>
+<p>通信参数只能在引导关闭时修改</p>
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>下位机协议：每次点击序号 +1（1 ~ 32767 循环，不用 0）；下位机发现序号变化即执行，完成后把同一序号写回应答并给出结果</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>点击画面只移动 X、Y，Z 保持当前值；状态中的「允许」为 <code>0</code> 时不发送</p>
+</div>
+<p><strong>安全</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单次最大移动(mm)</td>
+<td>50</td>
+<td>超过该距离的点击直接拒绝；<code>0</code> 表示不限</td>
+</tr>
+<tr>
+<td>到位超时(s)</td>
+<td>10</td>
+<td>下位机应答与到位后等待新画面的超时，范围 1 ~ 120</td>
+</tr>
+<tr>
+<td>到位稳定(ms)</td>
+<td>100</td>
+<td>到位后再等待的时间，范围 0 ~ 5000</td>
+</tr>
+<tr>
+<td>软限位</td>
+<td>不勾选</td>
+<td>勾选后目标超出 X / Y / Z 范围时不发送。默认范围 X、Y 为 0 ~ 500，Z 为 -100 ~ 100</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>每次移动后，界面锁住到下位机应答、到位稳定时间结束，并收到到位之后拍的新画面才解锁，防止连点</p>
+</div>
+<p><strong>点动微调</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>位移量(mm)</td>
+<td>1</td>
+<td>每次点动的移动量，可选 0.01 ~ 10</td>
+</tr>
+</tbody>
+</table>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AxisX</code> / <code>AxisY</code> / <code>AxisZ</code></td>
+<td>当前轴位置（引导开启时）</td>
+</tr>
+<tr>
+<td><code>Target</code></td>
+<td>最近一次的目标位置</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>示教 / 调试</td>
+<td>相机 → 点图移动</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Guidance/ClickToMove.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

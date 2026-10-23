@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>轮廓分析 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="轮廓分析 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/ContourAnalysis.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="轮廓分析">轮廓分析</h1>
+
+<p>二值化后找轮廓，按面积、周长、圆度、凸度、矩形度、长宽比与参考形状筛选，按质心、外接矩形、椭圆或圆定位</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>灰度或彩色图像，彩色先转灰度</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>输入原图直通，供下游算法使用</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位</td>
+<td>定位</td>
+<td>排序后的第一个轮廓</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位列表</td>
+<td>定位列表</td>
+<td>通过筛选的全部轮廓，每个元素带面积、宽高、半径与圆度</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>标注图</td>
+<td>标注图</td>
+<td>叠加轮廓（未通过的另色显示）、定位几何与序号，仅供查看</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>没有通过的轮廓时不输出定位，节点显示警告，下游节点因缺少输入而报错；定位列表输出空列表</p>
+</div>
+<h2 id="使用">使用</h2>
+<ol>
+<li>上游接好相机或预处理节点，运行一次，设置窗口左侧显示图像与轮廓，下方为结果表</li>
+<li>在<strong>二值化</strong>里调阈值、轮廓与找暗目标，直到目标轮廓完整</li>
+<li>对照结果表的数值，在<strong>筛选</strong>里填各项下限 ~ 上限。图上通过的轮廓为绿色，未通过的为橙色，序号与结果表一致，结果列给出未通过的原因</li>
+<li>只挑同一种形状时，在标准件上运行，让目标排在第一个，点 <strong>设为参考</strong>，再按需调整最大形状差异。参考形状随工程保存，点 <strong>清除</strong> 取消形状比较</li>
+<li>在<strong>输出</strong>里选定位方式、排序与最多数量</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>面积不到最小面积四分之一的轮廓按噪点直接跳过，不出现在结果表里。结果表的原因只列第一个不满足的条件；定位方式为拟合椭圆或拟合圆而拟合不成时，原因为「拟合失败」</p>
+</div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>结果表顶部显示「通过 N / 共 M 个轮廓 · 阈值 T」，阈值为本次实际使用的值，大津法自动时可据此改为固定阈值</p>
+</div>
+<h2 id="参数">参数</h2>
+<p><strong>二值化</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>阈值</td>
+<td>0</td>
+<td>二值化阈值，范围 0 ~ 255，<code>0</code> 为大津法自动</td>
+</tr>
+<tr>
+<td>轮廓</td>
+<td>外轮廓</td>
+<td><strong>外轮廓</strong> 取每个目标区域的外边界，<strong>孔</strong> 取区域内部的孔边界（如板上的孔、垫圈内圈），<strong>全部</strong> 两者都取</td>
+</tr>
+<tr>
+<td>找暗目标</td>
+<td>不勾选</td>
+<td>目标比背景暗时打开，例如亮色工件上的孔</td>
+</tr>
+<tr>
+<td>排除贴边区域</td>
+<td>勾选</td>
+<td>外接框碰到图像边缘的轮廓不通过</td>
+</tr>
+</tbody>
+</table>
+<p><strong>筛选</strong></p>
+<p>每行为 下限 ~ 上限，<code>0</code> 为不限</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>面积</td>
+<td>100 ~ 0</td>
+<td>单位为像素²</td>
+</tr>
+<tr>
+<td>周长</td>
+<td>0 ~ 0</td>
+<td>单位为像素</td>
+</tr>
+<tr>
+<td>圆度</td>
+<td>0 ~ 0</td>
+<td>正圆为 1，调高下限只保留接近圆形的轮廓</td>
+</tr>
+<tr>
+<td>长宽比</td>
+<td>0 ~ 0</td>
+<td>最小外接矩形 长边 ÷ 短边（≥ 1）</td>
+</tr>
+<tr>
+<td>最小凸度</td>
+<td>0</td>
+<td>面积 ÷ 凸包面积，没有凹陷为 1</td>
+</tr>
+<tr>
+<td>最小矩形度</td>
+<td>0</td>
+<td>面积 ÷ 最小外接矩形面积，矩形为 1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参考形状</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最大形状差异</td>
+<td>0.1</td>
+<td>与参考形状的 Hu 矩差异上限，与位置、旋转、缩放无关。<code>0</code> 为完全相同，同一形状通常小于 0.05；设 <code>0</code> 不比较。未设参考形状时不生效</td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>参考形状对圆、正方形这类高度对称的形状区分弱，挑这类形状改用圆度、矩形度</p>
+</div>
+<p><strong>输出</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定位方式</td>
+<td>质心</td>
+<td>每个轮廓的中心、角度与尺寸取自哪里：<strong>质心</strong>、<strong>最小外接矩形</strong>、<strong>拟合椭圆</strong>、<strong>拟合圆</strong></td>
+</tr>
+<tr>
+<td>排序</td>
+<td>面积从大到小</td>
+<td>另有<strong>从左到右</strong>、<strong>从上到下</strong>、<strong>最像的在前</strong>；最像的在前未设参考形状时按面积排序</td>
+</tr>
+<tr>
+<td>最多数量</td>
+<td>50</td>
+<td>通过的轮廓按排序最多保留的个数，范围 1 ~ 500</td>
+</tr>
+</tbody>
+</table>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Count</code></td>
+<td>通过筛选的轮廓数</td>
+</tr>
+<tr>
+<td><code>Candidates</code></td>
+<td>候选轮廓数（按轮廓设置过滤后，含噪点）</td>
+</tr>
+<tr>
+<td><code>Threshold</code></td>
+<td>实际使用的二值化阈值</td>
+</tr>
+<tr>
+<td><code>X</code> / <code>Y</code></td>
+<td>第一个轮廓的中心坐标（像素，按定位方式）</td>
+</tr>
+<tr>
+<td><code>Angle</code></td>
+<td>第一个轮廓的角度（度，-90 ~ 90）</td>
+</tr>
+<tr>
+<td><code>Width</code> / <code>Height</code></td>
+<td>第一个轮廓的宽 / 高（外接矩形长边 / 短边、椭圆长轴 / 短轴或圆直径）</td>
+</tr>
+<tr>
+<td><code>Radius</code></td>
+<td>第一个轮廓的拟合圆半径（定位方式为拟合圆时）</td>
+</tr>
+<tr>
+<td><code>Area</code></td>
+<td>第一个轮廓的面积（像素²）</td>
+</tr>
+<tr>
+<td><code>Perimeter</code></td>
+<td>第一个轮廓的周长（像素）</td>
+</tr>
+<tr>
+<td><code>Circularity</code></td>
+<td>第一个轮廓的圆度（正圆为 1）</td>
+</tr>
+<tr>
+<td><code>Convexity</code></td>
+<td>第一个轮廓的凸度</td>
+</tr>
+<tr>
+<td><code>Rectangularity</code></td>
+<td>第一个轮廓的矩形度</td>
+</tr>
+<tr>
+<td><code>AspectRatio</code></td>
+<td>第一个轮廓的长宽比</td>
+</tr>
+<tr>
+<td><code>ShapeDistance</code></td>
+<td>第一个轮廓与参考形状的差异（未设参考为 <code>0</code>）</td>
+</tr>
+<tr>
+<td><code>Items</code></td>
+<td>全部通过的轮廓</td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>精度在像素量级，尺寸已补回半个像素（外轮廓 +1、孔 −1）；要亚像素尺寸用卡尺</p>
+</div>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>按形状挑目标</td>
+<td>相机 → 轮廓分析 → 列表筛选 / 计数判定</td>
+</tr>
+<tr>
+<td>法兰分布圆</td>
+<td>相机 → 轮廓分析（拟合圆）→ 点集拟合（圆，RANSAC）→ 数值判定</td>
+</tr>
+<tr>
+<td>缺陷再筛</td>
+<td>金样比对（缺陷区域输出）→ 轮廓分析</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/ContourAnalysis.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

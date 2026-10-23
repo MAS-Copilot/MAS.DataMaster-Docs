@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>ChArUco 角点定位 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="ChArUco 角点定位 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/CharucoCornerLocate.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="charuco-角点定位">ChArUco 角点定位</h1>
+
+<p>按 ID 定位 ChArUco 标定板的内角点（亚像素），可作九点标定的 Mark</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>拍到标定板的图像</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>输入原图直通，供下游算法使用</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位</td>
+<td>定位</td>
+<td>目标角点的亚像素位置，角度为棋盘 X 方向</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>标注图</td>
+<td>标注图</td>
+<td>叠加检出的角点并突出目标角点，仅供查看</td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>目标角点在相机移动过程中要始终在视野内，且旁边至少能看到 2 个码，否则该角点没有 ID，视为未找到</p>
+</div>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>未找到时不输出定位，节点显示警告，下游节点因缺少输入而报错</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>定位角度取目标角点与同一行相邻角点的连线方向（ID 增大方向）；同一行相邻角点都没检出时角度为 <code>0</code></p>
+</div>
+<h2 id="参数">参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字典类型</td>
+<td>DICT_6X6_100</td>
+<td>标定板所用的 ArUco 字典，须与实物一致</td>
+</tr>
+<tr>
+<td>角点 ID</td>
+<td>9</td>
+<td>要输出的内角点。内角点从左上角起按行编号，每行（X 方向方格数 - 1）个，共（X - 1）×（Y - 1）个</td>
+</tr>
+<tr>
+<td>棋盘沿 X 方向的方格数量</td>
+<td>5</td>
+<td>范围 2 ~ 99，在设置窗口中修改</td>
+</tr>
+<tr>
+<td>棋盘沿 Y 方向的方格数量</td>
+<td>7</td>
+<td>范围 2 ~ 99，在设置窗口中修改</td>
+</tr>
+<tr>
+<td>棋盘单个方格边长</td>
+<td>20</td>
+<td>范围 0.1 ~ 1000。只用方格与码的比例，单位不限，打印误差不影响定位</td>
+</tr>
+<tr>
+<td>ArUco Marker 边长</td>
+<td>14</td>
+<td>范围 0.1 ~ 1000，必须小于方格边长</td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>字典类型与方格数必须与实物标定板一致</p>
+</div>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>码边长不小于方格边长时节点报错</p>
+</div>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsFound</code></td>
+<td>是否找到目标角点</td>
+</tr>
+<tr>
+<td><code>CornerId</code></td>
+<td>目标角点 ID</td>
+</tr>
+<tr>
+<td><code>X</code> / <code>Y</code></td>
+<td>目标角点坐标（像素，亚像素）</td>
+</tr>
+<tr>
+<td><code>MarkerCount</code></td>
+<td>检测到的 ArUco 码数量</td>
+</tr>
+<tr>
+<td><code>CornerCount</code></td>
+<td>检测到的内角点数量</td>
+</tr>
+<tr>
+<td><code>Items</code></td>
+<td>全部检出的角点</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>九点标定取 Mark</td>
+<td>相机 → ChArUco 角点定位 → 2D 标定（九点），机器位姿接第二个输入</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/CharucoCornerLocate.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>姿态解算 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="姿态解算 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Guidance/PoseCalculation.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="姿态解算">姿态解算</h1>
+
+<p>根据 ArUco / ChArUco 标记求平面相对相机的位姿</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>拍到标记的图像</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>输入原图直通，供下游算法使用</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>位姿结果</td>
+<td>姿态结果</td>
+<td>平面相对相机的位姿与解算质量；失败时也输出，<code>IsSuccess</code> 为 <code>false</code></td>
+</tr>
+<tr>
+<td>输出</td>
+<td>标注图</td>
+<td>标注图</td>
+<td>叠加平面坐标轴与姿态角，仅供查看</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>解算失败不中止管道，节点只显示警告；下游手眼坐标转换会因位姿无效而报错，手眼标定则跳过该次采样</p>
+</div>
+<h2 id="使用">使用</h2>
+<ol>
+<li>在卡片上选择与实物一致的<strong>字典类型</strong></li>
+<li>选择<strong>内参来源</strong>：<strong>Resource</strong> 时在<strong>资源键</strong>中填写相机标定生成的内参资源键；上游接有畸变校正时，内参自动取自该节点，卡片不再显示这两项</li>
+<li>打开设置窗口，选择<strong>姿态解算模式</strong>，按实物填写标记尺寸</li>
+<li>运行，在结果数据中查看 <code>IsSuccess</code> 与重投影误差</li>
+<li>修改参数或更换场景后，点卡片上的 <strong>重置求解</strong> 清空姿态滤波的历史帧</li>
+</ol>
+<h2 id="参数">参数</h2>
+<p><strong>卡片</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字典类型</td>
+<td>DICT_6X6_100</td>
+<td>ArUco 字典，须与打印的标记一致</td>
+</tr>
+<tr>
+<td>内参来源</td>
+<td>Resource</td>
+<td><strong>Resource</strong>：使用相机标定生成的内参资源；<strong>Default</strong>：按图像尺寸生成近似内参。Camera、Manual 暂未实现</td>
+</tr>
+<tr>
+<td>资源键</td>
+<td>空</td>
+<td>内参来源为 Resource 时使用的相机内参资源，如 <code>CameraIntrinsics-Main</code></td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>内参来源为 Resource 而资源键为空或资源不存在时节点报错，先运行相机标定</p>
+</div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Default 内参只是近似值，精度要求高时不要使用</p>
+</div>
+<p><strong>标定设置</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姿态解算模式</td>
+<td>基于单个 ArUco Marker 解算姿态</td>
+<td>单个 Marker 模式取画面中面积最大的 Marker；另一选项为<strong>基于 ChArUco Board 解算姿态</strong></td>
+</tr>
+<tr>
+<td>姿态稳定滤波所使用的窗口帧数</td>
+<td>1</td>
+<td>对连续帧的旋转姿态做窗口均值滤波，抑制抖动与瞬时跳变。<code>1</code> 为不滤波</td>
+</tr>
+<tr>
+<td>在解算前对图像去畸变处理</td>
+<td>启用</td>
+<td>上游已做畸变校正时按校正后的相机矩阵解算，此项不生效</td>
+</tr>
+</tbody>
+</table>
+<p><strong>轴方向对齐</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实际 X 轴</td>
+<td>相机 Z 轴正方向（相机朝前）</td>
+<td>实际坐标系的 X 轴对应相机坐标系的哪个方向</td>
+</tr>
+<tr>
+<td>实际 Y 轴</td>
+<td>相机 X 轴正方向（图像向右）</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>实际 Z 轴</td>
+<td>相机 Y 轴负方向（图像向上）</td>
+<td>同上。三个轴须来自不同的轴方向，构成右手坐标系</td>
+</tr>
+</tbody>
+</table>
+<p>相机坐标系：X 沿图像水平向右，Y 沿图像垂直向下，Z 沿光轴指向场景前方</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>轴方向对齐只影响欧拉角输出；手眼标定与手眼坐标转换使用相机坐标系下的原始位姿</p>
+</div>
+<p><strong>检测与过滤阈值</strong>（单个 ArUco Marker）</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Marker 物理边长 (mm)</td>
+<td>20</td>
+<td>标记的实际边长</td>
+</tr>
+<tr>
+<td>最小 Marker 数</td>
+<td>1</td>
+<td>检测到的 Marker 少于该值时本次解算失败</td>
+</tr>
+<tr>
+<td>最大重投影误差 (px)</td>
+<td>2</td>
+<td>重投影误差超过该值时本次解算失败</td>
+</tr>
+</tbody>
+</table>
+<p><strong>检测与过滤阈值</strong>（ChArUco Board）</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>棋盘沿 X 方向的方格数量</td>
+<td>5</td>
+<td>标定板 X 方向方格数</td>
+</tr>
+<tr>
+<td>棋盘沿 Y 方向的方格数量</td>
+<td>7</td>
+<td>标定板 Y 方向方格数</td>
+</tr>
+<tr>
+<td>棋盘单个方格边长(mm)</td>
+<td>25</td>
+<td>方格实际边长</td>
+</tr>
+<tr>
+<td>单帧至少需要的角点数量</td>
+<td>12</td>
+<td>检测到的 ChArUco 角点少于该值时本次解算失败</td>
+</tr>
+<tr>
+<td>ArUco Marker 边长(mm)</td>
+<td>20</td>
+<td>方格内 Marker 的实际边长</td>
+</tr>
+</tbody>
+</table>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsSuccess</code></td>
+<td>姿态解算是否成功</td>
+</tr>
+<tr>
+<td><code>PlaneToCameraEulerDeg</code></td>
+<td>平面相对于相机的欧拉角（Yaw / Pitch / Roll，度）</td>
+</tr>
+<tr>
+<td><code>CameraToPlaneEulerDeg</code></td>
+<td>相机相对于平面的欧拉角（Yaw / Pitch / Roll，度）</td>
+</tr>
+<tr>
+<td><code>ElapsedMs</code></td>
+<td>解算耗时（毫秒）</td>
+</tr>
+<tr>
+<td><code>DetectedMarkerCount</code></td>
+<td>检测到的 ArUco Marker 数量</td>
+</tr>
+<tr>
+<td><code>ReprojectionErrorPx</code></td>
+<td>重投影误差（像素，越小越好）</td>
+</tr>
+<tr>
+<td><code>ImageWidth</code> / <code>ImageHeight</code></td>
+<td>参与解算的图像尺寸（像素）</td>
+</tr>
+<tr>
+<td><code>UsedMarkerIndex</code></td>
+<td>用于姿态解算的 Marker 索引</td>
+</tr>
+<tr>
+<td><code>UsedMarkerAreaPx2</code></td>
+<td>用于姿态解算的 Marker 面积（像素²）</td>
+</tr>
+<tr>
+<td><code>Rvec</code></td>
+<td>旋转向量 [rx, ry, rz]（弧度）</td>
+</tr>
+<tr>
+<td><code>Tvec</code></td>
+<td>平移向量 [tx, ty, tz]（mm）</td>
+</tr>
+<tr>
+<td><code>ErrorMessage</code></td>
+<td>失败原因</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三维引导</td>
+<td>相机 → 姿态解算 → 手眼坐标转换</td>
+</tr>
+<tr>
+<td>手眼标定采样</td>
+<td>相机 → 姿态解算 → 手眼标定（接机器位姿）</td>
+</tr>
+<tr>
+<td>先校正再解算</td>
+<td>相机 → 畸变校正 → 姿态解算</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Guidance/PoseCalculation.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

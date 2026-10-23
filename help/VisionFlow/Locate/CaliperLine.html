@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>卡尺找线 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="卡尺找线 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/CaliperLine.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="卡尺找线">卡尺找线</h1>
+
+<p>一列卡尺各取一个边缘点，剔除离群点后拟合直线，用于精测</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>待测量的图像</td>
+</tr>
+<tr>
+<td>输入</td>
+<td>跟随定位</td>
+<td>定位</td>
+<td>可选。接上并设跟随基准后，搜索区随工件平移、旋转</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>输入原图直通，供下游算法使用</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位</td>
+<td>定位</td>
+<td>拟合的直线：内点范围的中点与方向，可直接当直线用；得分为内点占卡尺数的比例</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位列表</td>
+<td>定位列表</td>
+<td>参与拟合的边缘点（内点）</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>标注图</td>
+<td>标注图</td>
+<td>叠加各卡尺、边缘点与直线，仅供查看</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>未找到时（内点少于最少内点数）不输出定位，节点显示警告，下游节点因缺少输入而报错</p>
+</div>
+<h2 id="使用">使用</h2>
+<ol>
+<li>上游接好相机或图像源，运行一次，让设置窗口拿到一帧图像</li>
+<li>打开设置窗口，在图上拖动、旋转搜索区。箭头为搜索方向，要找的边与箭头垂直，沿排布范围方向延伸；也可在<strong>搜索区</strong>分组里直接输入数值</li>
+<li>在<strong>边缘</strong>分组选择边缘极性与取哪个，在<strong>卡尺与拟合</strong>分组设置卡尺数量与拟合容差</li>
+<li>按 F5 或标题栏的运行按钮运行到此节点。图上每个小框为一个卡尺，绿色十字为参与拟合的边缘点，橙色斜十字为拟合剔除的离群点（毛刺、缺口、划痕）</li>
+<li>在<strong>剖面卡尺</strong>里选择要查看的卡尺（从 1 开始，仅供查看，不随工程保存），对照剖面图调整最小对比度与平滑 σ：上半为沿搜索方向的平均灰度，下半为对比度曲线，灰色虚线为 ± 最小对比度，左端为搜索起点；橙色虚竖线为找到的边缘，绿色竖线为该卡尺选中的边缘。要找的边的峰越过虚线才会被找到</li>
+<li>工件位置会变时，把上游定位接到<strong>跟随定位</strong>；工件在示教位置运行一次后，在节点卡片上点 <strong>设为跟随基准</strong>，之后搜索区随定位平移、旋转。点旁边的删除按钮（清除跟随基准）恢复固定搜索区</li>
+</ol>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>接了跟随定位但未设基准时，节点显示警告「尚未设跟随基准，ROI 固定不动」；设了基准后上游本次没有结果，管道失败，不在错误的位置测量</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>跟随时设置窗口里的画面映射回示教姿态，与搜索区对齐</p>
+</div>
+<h2 id="参数">参数</h2>
+<p><strong>搜索区</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中心 X / 中心 Y</td>
+<td>200 / 200</td>
+<td>搜索区中心（像素）</td>
+</tr>
+<tr>
+<td>搜索长度</td>
+<td>120 px</td>
+<td>沿箭头方向的长度，即每个卡尺的长度，最小 3 px</td>
+</tr>
+<tr>
+<td>排布范围</td>
+<td>300 px</td>
+<td>卡尺沿边缘方向排布的范围，即要找的边的长度，最小 1 px</td>
+</tr>
+<tr>
+<td>搜索角度</td>
+<td>0°</td>
+<td>箭头方向，0° 为 +X，顺时针为正</td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>箭头要与要找的边垂直，搜索长度方向横跨边，排布范围方向顺着边。方向弄反时每个卡尺都找不到这条边</p>
+</div>
+<p><strong>边缘</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>边缘极性</td>
+<td>任意</td>
+<td>沿搜索方向（箭头）看：<strong>暗到亮</strong>、<strong>亮到暗</strong> 或 <strong>任意</strong></td>
+</tr>
+<tr>
+<td>取哪个</td>
+<td>最强</td>
+<td>每个卡尺有多个候选时取沿搜索方向的<strong>第一个</strong>、<strong>最后一个</strong>，或对比度<strong>最强</strong>的</td>
+</tr>
+<tr>
+<td>最小对比度</td>
+<td>20</td>
+<td>边缘两侧灰度差的下限，低于它的边缘忽略，范围 1 ~ 65535。在剖面图上看对比度曲线的峰是否越过虚线</td>
+</tr>
+<tr>
+<td>平滑 σ</td>
+<td>1 px</td>
+<td>剖面的高斯平滑，范围 0.5 ~ 20 px。越大越抗噪，但相邻的边缘也越难分开</td>
+</tr>
+</tbody>
+</table>
+<p><strong>卡尺与拟合</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>卡尺数量</td>
+<td>10</td>
+<td>在排布范围内均匀排布的卡尺个数，范围 3 ~ 360。越多越稳，耗时也越多</td>
+</tr>
+<tr>
+<td>卡尺宽度</td>
+<td>5 px</td>
+<td>每个卡尺沿边缘方向取平均的宽度，范围 1 ~ 500 px。越宽越抗噪，但弯曲的边会变模糊</td>
+</tr>
+<tr>
+<td>拟合容差</td>
+<td>2 px</td>
+<td>边缘点偏离拟合直线超过它就当离群点剔除，范围 0.1 ~ 100 px</td>
+</tr>
+<tr>
+<td>最少内点数</td>
+<td>3</td>
+<td>参与拟合的边缘点少于它时视为没找到，范围 2 ~ 360</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ROI 随动</strong>（节点卡片上，接了跟随定位才显示）</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>跟随旋转</td>
+<td>勾选</td>
+<td>取消则只跟随平移，用于定位结果没有可靠角度时（如圆定位）</td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>跟随定位没有可靠角度时（如圆定位、Blob 分析）取消<strong>跟随旋转</strong></p>
+</div>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Found</code></td>
+<td>是否找到直线</td>
+</tr>
+<tr>
+<td><code>X1</code> / <code>Y1</code></td>
+<td>起点坐标（像素，内点范围）</td>
+</tr>
+<tr>
+<td><code>X2</code> / <code>Y2</code></td>
+<td>终点坐标（像素）</td>
+</tr>
+<tr>
+<td><code>CenterX</code> / <code>CenterY</code></td>
+<td>中点坐标（像素）</td>
+</tr>
+<tr>
+<td><code>Angle</code></td>
+<td>角度（度，-90 ~ 90，顺时针为正）</td>
+</tr>
+<tr>
+<td><code>Length</code></td>
+<td>内点范围的长度（像素）</td>
+</tr>
+<tr>
+<td><code>Rms</code></td>
+<td>内点到直线距离的均方根（像素），可作直线度参考</td>
+</tr>
+<tr>
+<td><code>Inliers</code></td>
+<td>参与拟合的边缘点数</td>
+</tr>
+<tr>
+<td><code>Points</code></td>
+<td>找到边缘的卡尺数</td>
+</tr>
+<tr>
+<td><code>Calipers</code></td>
+<td>卡尺数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>边到边</td>
+<td>卡尺找线 ×2 → 两线关系</td>
+</tr>
+<tr>
+<td>多段边拟合</td>
+<td>卡尺找线 ×N → 列表合并 → 点集拟合</td>
+</tr>
+<tr>
+<td>定位后精测</td>
+<td>相机 → 形状匹配 → 卡尺找线（跟随定位）→ 点线距离 / 两线关系</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/CaliperLine.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

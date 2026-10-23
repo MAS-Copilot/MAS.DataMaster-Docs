@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>条件执行 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="条件执行 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/FlowControl/ConditionalExecution.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="条件执行">条件执行</h1>
+
+<p>变量等于放行值时透传，否则本节点与下游全部跳过</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>要按条件放行的图像，通常接相机等共享节点</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>放行时输入原图原样输出；未放行时不输出</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用">使用</h2>
+<ol>
+<li>在「更多 → 变量配置」中添加条件变量，例如整数变量 <code>Station</code></li>
+<li>每个分支在共享节点之后接一个条件执行，分支内的节点都接在它的下游</li>
+<li>打开设置窗口，在<strong>执行条件</strong>中选择<strong>条件变量</strong>，填写<strong>放行值</strong>。卡片显示条件摘要，如 <code>Station = 3</code></li>
+<li>管道脚本在触发时写变量，例如工位 1 到位时写 <code>Station = 1</code></li>
+<li>选中条件执行节点时，画布用外框标出受它控制的下游节点，据此检查分支是否接全</li>
+</ol>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>条件未配置完整时，设置窗口提示「条件未配置完整，运行时会失败」，卡片上的摘要显示为红色</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>下游节点只要有一路输入来自被跳过的节点就一并跳过；只接共享节点的节点每次都执行</p>
+</div>
+<h2 id="参数">参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>条件变量</td>
+<td>未选择</td>
+<td>只列出整数、Bool、String 变量。按变量标识引用，变量改名不影响</td>
+</tr>
+<tr>
+<td>放行值</td>
+<td>空</td>
+<td>变量等于该值时执行下游。整数按数值比较，Bool 填 <code>true</code> / <code>false</code>（也可填 <code>1</code> / <code>0</code>），字符串区分大小写</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>未选择变量、变量已删除、变量类型不支持或放行值无效时运行失败，不会按跳过处理。除 String 外放行值不能为空</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>String 的放行值前后空格也参与比较</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>变量取管道开始执行那一刻的快照，执行途中脚本再改变量不影响本轮。处理结果时从运行结果的 <code>Variables</code> 读本轮的值，不要读变量的当前值</p>
+</div>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Passed</code></td>
+<td>本轮是否放行。未放行时节点被跳过，取不到任何结果</td>
+</tr>
+<tr>
+<td><code>Variable</code></td>
+<td>条件变量名称</td>
+</tr>
+<tr>
+<td><code>Value</code></td>
+<td>本轮快照里的变量值</td>
+</tr>
+<tr>
+<td><code>ReleaseValue</code></td>
+<td>放行值</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>跳过不算失败，管道照常完成。被跳过的节点显示跳过原因，不保留上一次的输出，脚本取不到它们的结果；运行结果的 <code>SkippedNodes</code> 列出本轮跳过的节点</p>
+</div>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一台相机多个工位</td>
+<td>相机 → 条件执行（<code>Station = 1</code>）→ 工位 1 的节点；相机 → 条件执行（<code>Station = 2</code>）→ 工位 2 的节点</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/FlowControl/ConditionalExecution.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

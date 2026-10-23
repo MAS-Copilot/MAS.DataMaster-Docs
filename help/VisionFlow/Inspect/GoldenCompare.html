@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>金样比对 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="金样比对 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Inspect/GoldenCompare.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="金样比对">金样比对</h1>
+
+<p>与金样逐像素比较，超出容差的区域按面积判缺陷；可用多张好件建模</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>待检图，须与金样同尺寸、同取景。8 位灰度或彩色，彩色先转灰度</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>输入原图直通，供下游算法使用</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>缺陷</td>
+<td>定位列表</td>
+<td>全部缺陷，按面积从大到小。位置为质心，宽高为外接矩形，带面积，得分为超出量 / 255</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>缺陷区域</td>
+<td>图像</td>
+<td>缺陷区域二值图，可接轮廓分析按形状再筛</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>标注图</td>
+<td>标注图</td>
+<td>叠加缺陷轮廓、序号与 OK/NG，仅供查看</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>待检图与金样尺寸不同时节点报错，管道失败。前面没有对齐、相机分辨率或裁剪尺寸改过时，先对齐或重设金样</p>
+</div>
+<h2 id="使用">使用</h2>
+<ol>
+<li>上游先定位再用定位转正裁剪，保证每次送进来的图与金样同尺寸、同取景</li>
+<li>在好件上运行一次，打开设置窗口，在<strong>金样</strong>分组点 <strong>设为金样</strong>。只用这一张，每个像素的容差就是灰度容差</li>
+<li>需要更抗正常波动时，每换一个好件运行一次后点 <strong>加入好件</strong>，按每个像素的均值与标准差建模。没有金样时点它等同于设为金样</li>
+<li>好件较多时打开 <strong>连续采集好件</strong>，用图像源（文件夹，开启<strong>读取后移走</strong>）逐张触发，每次运行都把输入加入金样，期间不判定；采完关闭</li>
+<li>切到 <strong>差异图</strong> 查看与金样之差（不扣容差），对照像素读数定灰度容差；切到 <strong>金样</strong> 查看金样（多张好件时为均值）</li>
+<li>运行，在结果表里查看每个缺陷的位置、面积、外接尺寸、超出量与极性，按需调整容差与判定参数</li>
+</ol>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>点 <strong>清除金样</strong> 后需重新设金样，否则运行时报「未设金样：先在好件上运行，再点「设为金样」」</p>
+</div>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>采完忘记关闭连续采集好件时，后续每张图都会被当作好件加入金样且不判定</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>金样随工程保存在工程文件夹内，不依赖外部文件</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>连续采集好件不随工程保存，重开工程后为关闭</p>
+</div>
+<h2 id="参数">参数</h2>
+<p><strong>容差</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>极性</td>
+<td>都检</td>
+<td><strong>偏亮</strong>只检比金样亮的（多料、反光、异物），<strong>偏暗</strong>只检比金样暗的（缺料、脏污、划痕）</td>
+</tr>
+<tr>
+<td>灰度容差</td>
+<td>30</td>
+<td>与金样相差超过该灰度才算异常，范围 0 ~ 255；多张好件建模后为容差下限</td>
+</tr>
+<tr>
+<td>标准差倍数</td>
+<td>3</td>
+<td>范围 0 ~ 20。多张好件建模后，每个像素的容差取 max(灰度容差, 倍数 × 该像素标准差)，边缘、纹理、反光这类本来就会变的地方自动放宽</td>
+</tr>
+<tr>
+<td>对位容差</td>
+<td>1 px</td>
+<td>范围 0 ~ 10 px。吸收该像素数以内的对位误差，边缘不报假缺陷；越大越不敏感</td>
+</tr>
+</tbody>
+</table>
+<p><strong>缺陷判定</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>去噪尺寸</td>
+<td>0 px</td>
+<td>范围 0 ~ 15 px。异常区域先做开运算去掉零散噪点，<code>0</code> 不做；比它细的划痕也会被抹掉</td>
+</tr>
+<tr>
+<td>最小缺陷面积</td>
+<td>20 px²</td>
+<td>连通后面积不到它的不算缺陷</td>
+</tr>
+<tr>
+<td>允许缺陷数</td>
+<td>0</td>
+<td>缺陷数超过它判不合格，<code>0</code> 表示不允许有缺陷</td>
+</tr>
+<tr>
+<td>不合格时中止管道</td>
+<td>关闭</td>
+<td>开启时不合格管道失败；关闭时只警告，结果里 <code>IsOk</code> 为 <code>false</code></td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>要检细划痕时去噪尺寸保持 <code>0</code>，靠最小缺陷面积滤掉噪点</p>
+</div>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsOk</code></td>
+<td>是否合格（缺陷数不超过允许缺陷数）</td>
+</tr>
+<tr>
+<td><code>Count</code></td>
+<td>缺陷数</td>
+</tr>
+<tr>
+<td><code>TotalArea</code></td>
+<td>缺陷总面积（像素²）</td>
+</tr>
+<tr>
+<td><code>MaxArea</code></td>
+<td>最大缺陷面积（像素²）</td>
+</tr>
+<tr>
+<td><code>MaxDeviation</code></td>
+<td>缺陷超出容差的最大灰度</td>
+</tr>
+<tr>
+<td><code>SampleCount</code></td>
+<td>金样模型的好件数</td>
+</tr>
+<tr>
+<td><code>Items</code></td>
+<td>全部缺陷，按面积从大到小</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>缺陷检测</td>
+<td>形状匹配 → 定位转正（裁剪）→ 金样比对，管道脚本按 <code>IsOk</code> 回写 OK/NG</td>
+</tr>
+<tr>
+<td>按形状筛缺陷</td>
+<td>金样比对（缺陷区域）→ 轮廓分析 → 列表筛选 / 计数判定</td>
+</tr>
+<tr>
+<td>按大小筛缺陷</td>
+<td>金样比对（缺陷）→ 列表筛选（面积）→ 计数判定</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Inspect/GoldenCompare.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>目标检测 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="目标检测 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/DeepLearning/ObjectDetection.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="目标检测">目标检测</h1>
+
+<p>检测图像中的全部目标，输出包含类别、置信度及位置的目标列表；类别名称从模型读取</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>待检测的图像</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>输入原图直通，供下游算法使用</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位</td>
+<td>定位</td>
+<td>置信度最高的目标；没有目标时无输出</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位列表</td>
+<td>定位列表</td>
+<td>全部目标，按置信度从高到低。每项带类别序号、类别名、置信度、宽高与角度</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>标注图</td>
+<td>标注图</td>
+<td>叠加检测框、类别与置信度，仅供查看。类别名含中文等非 ASCII 字符时显示为 <code>#序号</code>，设置窗口里仍显示原名</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>没有目标不算失败，只是<strong>定位</strong>端口没有值，接在它后面的节点会因缺少输入而报错</p>
+</div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>需要按数量判定时接<strong>定位列表</strong>，配合列表筛选、计数判定</p>
+</div>
+<h2 id="使用">使用</h2>
+<ol>
+<li>双击卡片打开设置窗口，在<strong>模型</strong>中点 <strong>导入模型</strong>，选择 Ultralytics 导出的 ONNX 模型（<code>format=onnx</code>），支持检测与旋转框模型。导入后显示任务类型、输入尺寸与类别数；模型随工程保存，原文件删除不影响运行</li>
+<li>导入后在<strong>类别</strong>中取消勾选不需要输出的类别</li>
+<li>上游接好相机或图像源，点标题栏的「运行到此节点（F5）」，在图上查看检测框，在结果表里查看类别、置信度、坐标与尺寸</li>
+<li>按误检、漏检情况调整<strong>置信度阈值</strong></li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>分割模型、分类模型会被拒绝导入，并提示改用「实例分割」或「图像分类」节点</p>
+</div>
+<h2 id="参数">参数</h2>
+<p><strong>检测参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>置信度阈值</td>
+<td>0.25</td>
+<td>置信度高于此值的目标才输出，范围 0.01 ~ 1。误检多就调高，漏检多就调低</td>
+</tr>
+<tr>
+<td>IoU 阈值</td>
+<td>0.7</td>
+<td>同类框重叠超过此值时只留置信度最高的，范围 0.01 ~ 1。只对需要 NMS 的模型（默认导出）有效，端到端模型忽略</td>
+</tr>
+<tr>
+<td>最多数量</td>
+<td>100</td>
+<td>最多输出的目标数，范围 1 ~ 300</td>
+</tr>
+<tr>
+<td>推理设备</td>
+<td>CPU</td>
+<td><strong>CUDA（NVIDIA）</strong> 需要 NVIDIA 显卡和 GPU 版 ONNX Runtime，不可用时自动用 CPU</td>
+</tr>
+</tbody>
+</table>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>推理设备选 CUDA 时需先安装 GPU 运行时：主程序「设置 → 依赖的组件」中的 <strong>ONNX Runtime GPU (CUDA)</strong>，点 <strong>安装</strong> 从更新源下载（约 1 GB），重启软件后生效；NVIDIA 驱动需支持 CUDA 13.0 及以上</p>
+</div>
+<p><strong>类别</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类别勾选</td>
+<td>全部勾选</td>
+<td>取消勾选的类别不输出；颜色与标注图一致。类别较多时可按类别名或序号搜索。重新导入模型后恢复为全部勾选</td>
+</tr>
+</tbody>
+</table>
+<h2 id="输出结果">输出结果</h2>
+<p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Count</code></td>
+<td>目标数</td>
+</tr>
+<tr>
+<td><code>Label</code></td>
+<td>第一个目标（置信度最高）的类别名</td>
+</tr>
+<tr>
+<td><code>ClassId</code></td>
+<td>第一个目标的类别序号，没有目标时为 <code>-1</code></td>
+</tr>
+<tr>
+<td><code>Score</code></td>
+<td>第一个目标的置信度</td>
+</tr>
+<tr>
+<td><code>X</code> / <code>Y</code></td>
+<td>第一个目标的中心坐标（像素）</td>
+</tr>
+<tr>
+<td><code>Angle</code></td>
+<td>第一个目标的角度（度，X 轴正向为 0，顺时针为正），旋转框模型才有</td>
+</tr>
+<tr>
+<td><code>Items</code></td>
+<td>全部目标</td>
+</tr>
+<tr>
+<td><code>Count.&lt;类别名&gt;</code></td>
+<td>该类别的目标数，每个类别一项</td>
+</tr>
+</tbody>
+</table>
+<h2 id="典型搭配">典型搭配</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有无 / 数量判定</td>
+<td>相机 → 目标检测 → 列表筛选（类别序号）→ 计数判定</td>
+</tr>
+<tr>
+<td>检测后引导</td>
+<td>相机 → 目标检测 → 像素转机械坐标 → 列表排序</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/DeepLearning/ObjectDetection.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
