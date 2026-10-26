@@ -274,6 +274,112 @@
 <h5>Tip</h5>
 <p>跟随定位没有可靠角度时（如圆定位、Blob 分析）取消<strong>跟随旋转</strong></p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SearchRegion.CenterX</code></td>
+<td>中心 X</td>
+<td>int</td>
+<td>-2147483648～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SearchRegion.CenterY</code></td>
+<td>中心 Y</td>
+<td>int</td>
+<td>-2147483648～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SearchRegion.Width</code></td>
+<td>搜索长度</td>
+<td>int</td>
+<td>3～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SearchRegion.Height</code></td>
+<td>投影宽度</td>
+<td>int</td>
+<td>1～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SearchRegion.Angle</code></td>
+<td>搜索角度</td>
+<td>double</td>
+<td>-360～360 °（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Sigma</code></td>
+<td>平滑 σ</td>
+<td>double</td>
+<td>0.5～20 px（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MinContrast</code></td>
+<td>最小对比度</td>
+<td>double</td>
+<td>1～65535（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Polarity</code></td>
+<td>边缘极性</td>
+<td>枚举</td>
+<td><code>Any</code>、<code>DarkToLight</code>、<code>LightToDark</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Mode</code></td>
+<td>模式</td>
+<td>枚举</td>
+<td><code>Edge</code>、<code>EdgePair</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SecondPolarity</code></td>
+<td>第二边缘极性</td>
+<td>枚举</td>
+<td><code>Any</code>、<code>DarkToLight</code>、<code>LightToDark</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ExpectedWidth</code></td>
+<td>期望宽度</td>
+<td>double</td>
+<td>≥ 0 px（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>WidthTolerance</code></td>
+<td>宽度容差</td>
+<td>double</td>
+<td>≥ 0 px（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Selection</code></td>
+<td>取哪个</td>
+<td>枚举</td>
+<td><code>First</code>、<code>Last</code>、<code>Strongest</code></td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

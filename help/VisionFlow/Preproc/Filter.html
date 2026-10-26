@@ -140,6 +140,42 @@
 </tr>
 </tbody>
 </table>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mode</code></td>
+<td>滤波方式</td>
+<td>枚举</td>
+<td><code>Gaussian</code>、<code>Median</code>、<code>Bilateral</code>、<code>Box</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>KernelSize</code></td>
+<td>核大小</td>
+<td>int</td>
+<td>1～31 px，仅奇数</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Sigma</code></td>
+<td>西格玛</td>
+<td>double</td>
+<td>0～50（有限数值）；<code>0</code> 表示自动计算</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="典型搭配">典型搭配</h2>
 <table>
 <thead>

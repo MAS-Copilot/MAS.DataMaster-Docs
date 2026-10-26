@@ -175,6 +175,9 @@ public abstract class OnnxLocateNode&lt;TModel&gt; : VisionLocateNode, INotifyPr
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDisposed">VisionNode.IsDisposed</a>
     </div>
     <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetParameterWriteError_MAS_VisionFlow_Nodes_VisionParameterDescriptor_">VisionNode.GetParameterWriteError(VisionParameterDescriptor)</a>
+    </div>
+    <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_OnPipelineStarting">VisionNode.OnPipelineStarting()</a>
     </div>
     <div>
@@ -634,7 +637,7 @@ public double ConfidenceThreshold { get; set; }</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
 [JsonProperty]
-[VisionParameter(&quot;InferenceDevice&quot;, DescriptionKey = &quot;InferenceDeviceDescription&quot;)]
+[VisionParameter(&quot;InferenceDevice&quot;, DescriptionKey = &quot;InferenceDeviceDescription&quot;, RequiresStopped = true)]
 public InferenceDevice Device { get; set; }</code></pre>
   </div>
 
@@ -940,7 +943,7 @@ public string? ModelError { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;DetectionModelFile&quot;, DescriptionKey = &quot;DetectionModelFileDescription&quot;, StoredIn = &quot;ModelSource&quot;)]
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;DetectionModelFile&quot;, DescriptionKey = &quot;DetectionModelFileDescription&quot;, StoredIn = &quot;ModelSource&quot;, RequiresStopped = true)]
 public string ModelFile { get; set; }</code></pre>
   </div>
 

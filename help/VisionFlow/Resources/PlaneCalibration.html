@@ -177,6 +177,70 @@
 <h5>Warning</h5>
 <p>上游已有畸变校正节点时须清空<strong>畸变校正内参</strong>，否则 Mark 坐标会被重复校正，计算直接失败</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mounting</code></td>
+<td>相机安装方式</td>
+<td>枚举</td>
+<td><code>OnMovingAxis</code>、<code>Fixed</code></td>
+<td>Get</td>
+</tr>
+<tr>
+<td><code>Model</code></td>
+<td>映射模型</td>
+<td>枚举</td>
+<td><code>Affine</code>、<code>Homography</code></td>
+<td>Get</td>
+</tr>
+<tr>
+<td><code>TargetSampleCount</code></td>
+<td>目标样本数</td>
+<td>int</td>
+<td>3～100</td>
+<td>Get</td>
+</tr>
+<tr>
+<td><code>IntrinsicsKey</code></td>
+<td>畸变校正内参</td>
+<td>string</td>
+<td>相机内参资源键，候选来自当前工程资源</td>
+<td>Get</td>
+</tr>
+<tr>
+<td><code>ResourceKey</code></td>
+<td>资源键</td>
+<td>string</td>
+<td>文本，无额外长度限制</td>
+<td>Get</td>
+</tr>
+<tr>
+<td><code>ToolOffsetX</code></td>
+<td>针尖偏置 X</td>
+<td>double</td>
+<td>有限数值，无额外上下限</td>
+<td>Get</td>
+</tr>
+<tr>
+<td><code>ToolOffsetY</code></td>
+<td>针尖偏置 Y</td>
+<td>double</td>
+<td>有限数值，无额外上下限</td>
+<td>Get</td>
+</tr>
+</tbody>
+</table>
+<p>Set 不开放，请用专用设置界面修改。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

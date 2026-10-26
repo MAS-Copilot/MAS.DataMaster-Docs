@@ -296,6 +296,112 @@
 <h5>Tip</h5>
 <p>跟随定位没有可靠角度时（如圆定位、Blob 分析）取消<strong>跟随旋转</strong></p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SearchRegion.CenterX</code></td>
+<td>中心 X</td>
+<td>int</td>
+<td>-2147483648～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SearchRegion.CenterY</code></td>
+<td>中心 Y</td>
+<td>int</td>
+<td>-2147483648～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SearchRegion.Radius</code></td>
+<td>半径</td>
+<td>int</td>
+<td>2～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SearchRegion.InnerRadius</code></td>
+<td>内半径</td>
+<td>int</td>
+<td>0～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Sigma</code></td>
+<td>平滑 σ</td>
+<td>double</td>
+<td>0.5～20 px（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MinContrast</code></td>
+<td>最小对比度</td>
+<td>double</td>
+<td>1～65535（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Polarity</code></td>
+<td>边缘极性</td>
+<td>枚举</td>
+<td><code>Any</code>、<code>DarkToLight</code>、<code>LightToDark</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>CaliperCount</code></td>
+<td>卡尺数量</td>
+<td>int</td>
+<td>3～360</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>CaliperWidth</code></td>
+<td>卡尺宽度</td>
+<td>double</td>
+<td>1～500 px（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Direction</code></td>
+<td>搜索方向</td>
+<td>枚举</td>
+<td><code>Outward</code>、<code>Inward</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>StartAngle</code></td>
+<td>起始角</td>
+<td>double</td>
+<td>-360～360 °（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SweepAngle</code></td>
+<td>扫过角度</td>
+<td>double</td>
+<td>1～360 °（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>FitTolerance</code></td>
+<td>拟合容差</td>
+<td>double</td>
+<td>0.1～100 px（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

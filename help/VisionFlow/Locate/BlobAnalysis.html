@@ -194,6 +194,70 @@
 <h5>Tip</h5>
 <p>只统计每个连通区域的外轮廓，区域内部的孔不单独计数；需要取孔或更多筛选条件时用轮廓分析</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsDarkBlob</code></td>
+<td>找暗目标</td>
+<td>bool</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MinArea</code></td>
+<td>最小面积</td>
+<td>double</td>
+<td>≥ 0 px²（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxArea</code></td>
+<td>最大面积</td>
+<td>double</td>
+<td>≥ 0 px²（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MinCircularity</code></td>
+<td>最小圆度</td>
+<td>double</td>
+<td>0～1（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Sort</code></td>
+<td>排序</td>
+<td>枚举</td>
+<td><code>AreaDescending</code>、<code>LeftToRight</code>、<code>TopToBottom</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxCount</code></td>
+<td>最多数量</td>
+<td>int</td>
+<td>1～500</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>IsExcludeBorder</code></td>
+<td>排除贴边区域</td>
+<td>bool</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

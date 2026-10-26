@@ -210,6 +210,105 @@
 </tr>
 </tbody>
 </table>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ROICoordinates.ShapeType</code></td>
+<td>ROI 形状</td>
+<td>枚举</td>
+<td><code>Rectangle</code>、<code>Circle</code>、<code>RotatedRectangle</code>、<code>Ellipse</code>、<code>Annulus</code>、<code>Polygon</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ROICoordinates.X</code></td>
+<td>ROI X</td>
+<td>int</td>
+<td>-2147483648～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ROICoordinates.Y</code></td>
+<td>ROI Y</td>
+<td>int</td>
+<td>-2147483648～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ROICoordinates.Width</code></td>
+<td>宽</td>
+<td>int</td>
+<td>1～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ROICoordinates.Height</code></td>
+<td>高</td>
+<td>int</td>
+<td>1～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ROICoordinates.CenterX</code></td>
+<td>中心 X</td>
+<td>int</td>
+<td>-2147483648～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ROICoordinates.CenterY</code></td>
+<td>中心 Y</td>
+<td>int</td>
+<td>-2147483648～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ROICoordinates.Angle</code></td>
+<td>旋转角度</td>
+<td>double</td>
+<td>-360～360 °（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ROICoordinates.Radius</code></td>
+<td>半径</td>
+<td>int</td>
+<td>1～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ROICoordinates.InnerRadius</code></td>
+<td>内半径</td>
+<td>int</td>
+<td>0～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ROICoordinates.PointsText</code></td>
+<td>多边形顶点</td>
+<td>string</td>
+<td>顶点坐标 <code>x,y; x,y; …</code>，或每行一对坐标</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>IsRotationFollowed</code></td>
+<td>跟随旋转</td>
+<td>bool</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

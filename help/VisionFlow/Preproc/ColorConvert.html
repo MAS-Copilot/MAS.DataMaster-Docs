@@ -134,6 +134,28 @@
 <h5>Warning</h5>
 <p>输入通道数要与转换方式相符：<code>Gray to …</code> 需要单通道图，其余需要彩色图，不相符时节点执行失败</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SelectedConversionCode</code></td>
+<td>转换方式</td>
+<td>枚举</td>
+<td><code>BGR2GRAY</code>、<code>RGB2GRAY</code>、<code>GRAY2BGR</code>、<code>BGR2RGB</code>、<code>BGR2HSV</code>、<code>RGB2HSV</code>、<code>HSV2BGR</code>、<code>HSV2RGB</code>、<code>BGR2YCrCb</code>、<code>RGB2YCrCb</code>、<code>YCrCb2BGR</code>、<code>YCrCb2RGB</code></td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 
 </article>
 

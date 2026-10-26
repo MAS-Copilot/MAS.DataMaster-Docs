@@ -281,6 +281,7 @@ if (result.truncated) note.textContent = &quot;结果已达上限，请缩小时
 <p>订阅后的第一次回调总是带上本订阅当前可读的全部值（即使部分别名已被声明式绑定等其他订阅取到），之后只带变化的部分。回调中的 <code>values</code> 是本订阅的只读视图（不是 Map），提供 <code>get(alias)</code>、<code>has(alias)</code>，以及只列出已收到值的别名的 <code>keys()</code>、<code>size</code>、<code>entries()</code>、<code>forEach((value, alias) =&gt; …)</code>、<code>toObject()</code>；<code>changes</code> 为 <code>[{ variable, value, previous, source }]</code>，<code>variable</code> 即别名，<code>previous</code> 为本客户端此前持有的值（首次为 <code>undefined</code>），<code>source</code> 取值 <code>snapshot</code>、<code>communication</code>、<code>local</code>、<code>binding</code>、<code>action</code>。</p>
 <p>写入值只接受布尔、数字与字符串，服务端按字段类型转换，无法转换时返回 <code>TYPE_MISMATCH</code>。</p>
 <h3 id="视觉结果">视觉结果</h3>
+<p>节点设置使用 <code>getVisionParameter(alias)</code> / <code>setVisionParameter(alias, value)</code>，返回 <code>{ success, value, message }</code>；先在清单 <code>visionParameters</code> 中声明，详见<a href="../../help/VisionFlow/Parameters.html">脚本与 Web 修改节点设置</a>。设置读写与结果订阅相互独立</p>
 <p>订阅视觉「Web 发布」节点的通道（需在清单 <code>vision</code> 中声明）。视觉只发布数据与缩小后的图像，OK / NG 由页面按数据判断。</p>
 <table>
 <thead>

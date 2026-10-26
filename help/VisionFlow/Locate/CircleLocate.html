@@ -194,6 +194,63 @@
 <h5>Tip</h5>
 <p>噪声大时先接滤波去噪。精度要求高时改用卡尺找圆，或二值化后用 Blob 分析</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MinRadius</code></td>
+<td>最小半径</td>
+<td>int</td>
+<td>1～2000 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxRadius</code></td>
+<td>最大半径</td>
+<td>int</td>
+<td>1～4000 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>VoteThreshold</code></td>
+<td>投票阈值</td>
+<td>int</td>
+<td>5～300</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxCount</code></td>
+<td>最多数量</td>
+<td>int</td>
+<td>1～100</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MinDistance</code></td>
+<td>圆心最小间距</td>
+<td>int</td>
+<td>1～4000 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>EdgeThreshold</code></td>
+<td>高阈值</td>
+<td>int</td>
+<td>1～500</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

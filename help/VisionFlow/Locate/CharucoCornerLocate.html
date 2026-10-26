@@ -187,6 +187,63 @@
 <h5>Warning</h5>
 <p>码边长不小于方格边长时节点报错</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Dictionary</code></td>
+<td>字典类型</td>
+<td>string</td>
+<td>ArUco 字典名，候选来自当前字典列表</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SquaresX</code></td>
+<td>棋盘沿 X 方向的方格数量</td>
+<td>int</td>
+<td>2～99</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SquaresY</code></td>
+<td>棋盘沿 Y 方向的方格数量</td>
+<td>int</td>
+<td>2～99</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SquareLength</code></td>
+<td>棋盘单个方格边长</td>
+<td>double</td>
+<td>0.1～1000 mm（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MarkerLength</code></td>
+<td>ArUco Marker 边长</td>
+<td>double</td>
+<td>0.1～1000 mm（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>CornerId</code></td>
+<td>角点 ID</td>
+<td>int</td>
+<td>0～9999</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

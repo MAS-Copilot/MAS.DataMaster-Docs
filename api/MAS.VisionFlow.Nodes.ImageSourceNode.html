@@ -102,11 +102,11 @@ Class ImageSourceNode  <a class="header-action link-secondary" title="View sourc
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;ImageSourceKind&quot;, DescriptionKey = &quot;SelectImageSource&quot;, Path = &quot;ImageSourceModel.SourceType&quot;)]
-[VisionParameter(&quot;FilePath&quot;, Path = &quot;ImageSourceModel.FilePath&quot;)]
-[VisionParameter(&quot;FolderPath&quot;, DescriptionKey = &quot;FolderPathDescription&quot;, Path = &quot;ImageSourceModel.FolderPath&quot;)]
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;ImageSourceKind&quot;, DescriptionKey = &quot;SelectImageSource&quot;, Path = &quot;ImageSourceModel.SourceType&quot;, RequiresStopped = true)]
+[VisionParameter(&quot;FilePath&quot;, Path = &quot;ImageSourceModel.FilePath&quot;, RequiresStopped = true)]
+[VisionParameter(&quot;FolderPath&quot;, DescriptionKey = &quot;FolderPathDescription&quot;, Path = &quot;ImageSourceModel.FolderPath&quot;, RequiresStopped = true)]
 [VisionParameter(&quot;ImageFolderMoveAfterRead&quot;, DescriptionKey = &quot;ImageFolderMoveAfterReadDescription&quot;, Path = &quot;ImageSourceModel.IsMovedAfterRead&quot;)]
-[VisionParameter(&quot;NetworkUrl&quot;, Path = &quot;ImageSourceModel.NetworkUrl&quot;)]
+[VisionParameter(&quot;NetworkUrl&quot;, Path = &quot;ImageSourceModel.NetworkUrl&quot;, RequiresStopped = true)]
 [JsonObject(MemberSerialization.OptIn)]
 public sealed class ImageSourceNode : VisionNode, INotifyPropertyChanged, INotifyPropertyChanging, IDisposable</code></pre>
   </div>

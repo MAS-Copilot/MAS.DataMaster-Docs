@@ -144,6 +144,42 @@
 <h5>Warning</h5>
 <p>默认开启中止，与数值判定的默认相反。只想记录数量、不想因此停止管道时关闭它，在管道脚本里按 <code>IsOk</code> 处理</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MinCount</code></td>
+<td>最少数量</td>
+<td>int</td>
+<td>0～2147483647</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxCount</code></td>
+<td>最多数量</td>
+<td>int</td>
+<td>0～2147483647；<code>0</code> 表示不限</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>IsAbortOnFailure</code></td>
+<td>不合格时中止</td>
+<td>bool</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

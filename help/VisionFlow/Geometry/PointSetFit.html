@@ -166,6 +166,42 @@
 <h5>Note</h5>
 <p>单位跟随输入：接像素坐标得到像素，接像素转机械坐标之后的结果得到 mm，拟合容差按同一单位填写</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Shape</code></td>
+<td>形状</td>
+<td>枚举</td>
+<td><code>Line</code>、<code>Circle</code>、<code>Ellipse</code>、<code>MinAreaRect</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Method</code></td>
+<td>方法</td>
+<td>枚举</td>
+<td><code>LeastSquares</code>、<code>Huber</code>、<code>Ransac</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Tolerance</code></td>
+<td>拟合容差</td>
+<td>double</td>
+<td>≥ 0.001（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

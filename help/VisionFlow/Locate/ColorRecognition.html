@@ -194,6 +194,42 @@
 <h5>Tip</h5>
 <p>红色的色调跨 0 与 180 两端，一个范围只覆盖一端，按实际颜色选 <strong>红色 - 预设 | 色调范围 (0-10)</strong> 或 <strong>红色 (High) - 预设 | 色调范围 (160-180)</strong></p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Condition</code></td>
+<td>判定条件</td>
+<td>int</td>
+<td>0～1</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Pixels</code></td>
+<td>像素量阈值</td>
+<td>int</td>
+<td>0～2147483647 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Percentage</code></td>
+<td>像素百分比阈值</td>
+<td>double</td>
+<td>0.1～100 %（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

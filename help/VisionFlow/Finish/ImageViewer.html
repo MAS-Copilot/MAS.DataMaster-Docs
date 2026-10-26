@@ -193,6 +193,84 @@
 <h5>Note</h5>
 <p>自动清理只处理本模块文件夹里的图像，且只在保存图像期间按周期检查；关闭保存后不再清理</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsSaveImage</code></td>
+<td>图像保存</td>
+<td>bool</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SaveFormat</code></td>
+<td>保存格式</td>
+<td>枚举</td>
+<td><code>Png</code>、<code>Jpeg</code>、<code>Bmp</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>FilePrefix</code></td>
+<td>文件前缀</td>
+<td>string</td>
+<td>文本，无额外长度限制</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SavePath</code></td>
+<td>保存路径</td>
+<td>string</td>
+<td>本机保存目录路径</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>FolderName</code></td>
+<td>文件夹名称</td>
+<td>string</td>
+<td>文本，无额外长度限制</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>IsAutoCleanEnabled</code></td>
+<td>自动清理</td>
+<td>bool</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>RetentionDays</code></td>
+<td>保留天数（天）</td>
+<td>int</td>
+<td>0～3650 d；<code>0</code> 表示不按天数清理</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxSizeMegabytes</code></td>
+<td>最大占用空间（MB）</td>
+<td>int</td>
+<td>0～1048576 MB；<code>0</code> 表示不按空间清理</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>CleanupIntervalMinutes</code></td>
+<td>定时清理周期（分钟）</td>
+<td>int</td>
+<td>1～10080 min</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="典型搭配">典型搭配</h2>
 <table>
 <thead>

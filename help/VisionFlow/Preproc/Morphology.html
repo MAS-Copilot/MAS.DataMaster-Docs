@@ -145,6 +145,49 @@
 </tr>
 </tbody>
 </table>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Operation</code></td>
+<td>操作</td>
+<td>枚举</td>
+<td><code>Erode</code>、<code>Dilate</code>、<code>Open</code>、<code>Close</code>、<code>Gradient</code>、<code>TopHat</code>、<code>BlackHat</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Shape</code></td>
+<td>结构元素</td>
+<td>枚举</td>
+<td><code>Rectangle</code>、<code>Ellipse</code>、<code>Cross</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>KernelSize</code></td>
+<td>核大小</td>
+<td>int</td>
+<td>1～51 px，仅奇数</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Iterations</code></td>
+<td>迭代次数</td>
+<td>int</td>
+<td>1～10</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="典型搭配">典型搭配</h2>
 <table>
 <thead>

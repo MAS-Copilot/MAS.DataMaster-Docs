@@ -353,7 +353,7 @@ public sealed class ImageClassificationNode : VisionNode, INotifyPropertyChanged
 
   <h3 id="MAS_VisionFlow_Nodes_ImageClassificationNode_Classes" data-uid="MAS.VisionFlow.Nodes.ImageClassificationNode.Classes">
   Classes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L106"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取模型的类别（勾选的算合格）</p>
@@ -395,7 +395,7 @@ public sealed class ImageClassificationNode : VisionNode, INotifyPropertyChanged
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
 [JsonProperty]
-[VisionParameter(&quot;InferenceDevice&quot;, DescriptionKey = &quot;InferenceDeviceDescription&quot;)]
+[VisionParameter(&quot;InferenceDevice&quot;, DescriptionKey = &quot;InferenceDeviceDescription&quot;, RequiresStopped = true)]
 public InferenceDevice Device { get; set; }</code></pre>
   </div>
 
@@ -420,7 +420,7 @@ public InferenceDevice Device { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageClassificationNode_HasModel" data-uid="MAS.VisionFlow.Nodes.ImageClassificationNode.HasModel">
   HasModel
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L101"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否已加载模型</p>
@@ -652,7 +652,7 @@ public string? ModelError { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageClassificationNode_ModelFile" data-uid="MAS.VisionFlow.Nodes.ImageClassificationNode.ModelFile">
   ModelFile
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置模型文件（Agent 用）：赋完整路径即导入（同界面的「导入模型」），空字符串清除模型</p>
@@ -660,7 +660,7 @@ public string? ModelError { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;DetectionModelFile&quot;, DescriptionKey = &quot;DetectionModelFileDescription&quot;, StoredIn = &quot;ModelSource&quot;)]
+    <pre><code class="lang-csharp hljs">[VisionParameter(&quot;DetectionModelFile&quot;, DescriptionKey = &quot;DetectionModelFileDescription&quot;, StoredIn = &quot;ModelSource&quot;, RequiresStopped = true)]
 public string ModelFile { get; set; }</code></pre>
   </div>
 
@@ -859,7 +859,7 @@ public int[] OkClassIds { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageClassificationNode_OkClasses" data-uid="MAS.VisionFlow.Nodes.ImageClassificationNode.OkClasses">
   OkClasses
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置合格类别的文本写法（Agent 用）：类别名或序号，逗号分隔，空为不判定</p>
@@ -1077,7 +1077,7 @@ public string Summary { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageClassificationNode_InitializeAsync_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Nodes.ImageClassificationNode.InitializeAsync(System.Threading.CancellationToken)">
   InitializeAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步初始化（打开相机、加载图片、构建求解器……），运行前由运行时调用</p>
@@ -1122,7 +1122,7 @@ public string Summary { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageClassificationNode_OnLoadAssets_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Byte____" data-uid="MAS.VisionFlow.Nodes.ImageClassificationNode.OnLoadAssets(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Byte[]})">
   OnLoadAssets(IReadOnlyDictionary&lt;string, byte[]&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L128"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>还原节点资产，见 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveAssets">SaveAssets()</a></p>
@@ -1155,7 +1155,7 @@ public string Summary { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageClassificationNode_OnSettingsLoaded" data-uid="MAS.VisionFlow.Nodes.ImageClassificationNode.OnSettingsLoaded">
   OnSettingsLoaded()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置还原完成后调用</p>
@@ -1209,7 +1209,7 @@ public string Summary { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ImageClassificationNode_SaveAssets" data-uid="MAS.VisionFlow.Nodes.ImageClassificationNode.SaveAssets">
   SaveAssets()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ImageClassificationNode.Model.cs/#L123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存节点的大块二进制数据（模板图、金样……）</p>

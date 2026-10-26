@@ -148,6 +148,56 @@
 <h5>Note</h5>
 <p>上下限都含端点，等于上限或下限算合格</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsMinimumEnabled</code></td>
+<td>启用下限</td>
+<td>bool</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Minimum</code></td>
+<td>下限（含）</td>
+<td>double</td>
+<td>有限数值，无额外上下限</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>IsMaximumEnabled</code></td>
+<td>启用上限</td>
+<td>bool</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Maximum</code></td>
+<td>上限（含）</td>
+<td>double</td>
+<td>有限数值，无额外上下限</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>IsAbortOnFailure</code></td>
+<td>不合格时中止</td>
+<td>bool</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

@@ -275,6 +275,84 @@
 </tr>
 </tbody>
 </table>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Threshold</code></td>
+<td>阈值</td>
+<td>int</td>
+<td>0～255</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>IsDarkTarget</code></td>
+<td>找暗目标</td>
+<td>bool</td>
+<td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Scope</code></td>
+<td>轮廓</td>
+<td>枚举</td>
+<td><code>Outer</code>、<code>Holes</code>、<code>All</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>LocateMode</code></td>
+<td>定位方式</td>
+<td>枚举</td>
+<td><code>Centroid</code>、<code>MinAreaRect</code>、<code>Ellipse</code>、<code>Circle</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Sort</code></td>
+<td>排序</td>
+<td>枚举</td>
+<td><code>AreaDescending</code>、<code>LeftToRight</code>、<code>TopToBottom</code>、<code>Similarity</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxCount</code></td>
+<td>最多数量</td>
+<td>int</td>
+<td>1～500</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MinArea</code></td>
+<td>最小面积</td>
+<td>double</td>
+<td>≥ 0 px²（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxArea</code></td>
+<td>最大面积</td>
+<td>double</td>
+<td>≥ 0 px²（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MinCircularity</code></td>
+<td>最小圆度</td>
+<td>double</td>
+<td>0～1（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

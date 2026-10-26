@@ -214,6 +214,56 @@
 </tr>
 </tbody>
 </table>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ConfidenceThreshold</code></td>
+<td>置信度阈值</td>
+<td>double</td>
+<td>0.01～1（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>IouThreshold</code></td>
+<td>IoU 阈值</td>
+<td>double</td>
+<td>0.01～1（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxCount</code></td>
+<td>最多数量</td>
+<td>int</td>
+<td>1～300</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Device</code></td>
+<td>推理设备</td>
+<td>枚举</td>
+<td><code>Cpu</code>、<code>Cuda</code></td>
+<td>Get/Set（需停管道）</td>
+</tr>
+<tr>
+<td><code>DisabledClasses</code></td>
+<td>不输出的类别</td>
+<td>string</td>
+<td>模型类别名或序号，逗号分隔；空字符串表示不排除类别</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>普通参数可在两轮之间修改；标为「需停管道」的参数先停止管道。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

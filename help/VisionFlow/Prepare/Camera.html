@@ -187,6 +187,63 @@
 <h5>Note</h5>
 <p><code>VideoCapture</code> 驱动不支持真正的软触发，选<strong>软触发</strong>时每次执行丢弃在途帧后取新帧，属于尽力而为；也不支持外部触发</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Brightness</code></td>
+<td>亮度</td>
+<td>short</td>
+<td>-32768～32767</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Contrast</code></td>
+<td>对比度</td>
+<td>short</td>
+<td>-32768～32767</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Sharpness</code></td>
+<td>清晰度</td>
+<td>short</td>
+<td>-32768～32767</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Saturation</code></td>
+<td>饱和度</td>
+<td>short</td>
+<td>-32768～32767</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>AcquisitionMode</code></td>
+<td>采集模式</td>
+<td>枚举</td>
+<td><code>Continuous</code>、<code>SoftwareTrigger</code>、<code>ExternalTrigger</code></td>
+<td>Get/Set（需停管道）</td>
+</tr>
+<tr>
+<td><code>TriggerTimeoutMs</code></td>
+<td>触发超时(ms)</td>
+<td>int</td>
+<td>10～60000 ms</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>普通参数可在两轮之间修改；标为「需停管道」的参数先停止管道，驱动和采集模式还需先关闭相机。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="典型搭配">典型搭配</h2>
 <table>
 <thead>

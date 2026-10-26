@@ -206,6 +206,49 @@
 <h5>Note</h5>
 <p>字段在整轮结束后取值，可以引用同一管道里的任何节点，包括本节点下游的</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Channel</code></td>
+<td>通道名</td>
+<td>string</td>
+<td>发布通道名，应与 Web 清单中的视觉通道一致</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxImageEdge</code></td>
+<td>图像最长边</td>
+<td>int</td>
+<td>160～4096 px</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>JpegQuality</code></td>
+<td>JPEG 质量</td>
+<td>int</td>
+<td>30～95</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxImageRate</code></td>
+<td>图像帧率上限</td>
+<td>double</td>
+<td>0.2～30 fps（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

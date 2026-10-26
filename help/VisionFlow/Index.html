@@ -100,6 +100,7 @@
 <li><a href="#%E8%BF%90%E8%A1%8C%E4%B8%8E%E8%B0%83%E8%AF%95">运行与调试</a></li>
 <li><a href="#%E7%AE%A1%E9%81%93">管道</a></li>
 <li><a href="#%E7%AE%A1%E9%81%93%E8%84%9A%E6%9C%AC%E4%B8%8E%E7%BB%93%E6%9E%9C%E8%AF%BB%E5%8F%96">管道脚本与结果读取</a></li>
+<li><a href="#%E8%84%9A%E6%9C%AC%E4%B8%8E-web-%E4%BF%AE%E6%94%B9%E8%AE%BE%E7%BD%AE">脚本与 Web 修改设置</a></li>
 <li><a href="#%E7%AB%AF%E5%8F%A3%E8%BF%9E%E6%8E%A5%E8%A7%84%E5%88%99">端口连接规则</a></li>
 </ul>
 </li>
@@ -436,7 +437,7 @@
 <ul>
 <li>管道内按连线顺序执行，同时就绪的节点并行；任一节点失败则整条管道失败，下游不再执行</li>
 <li>节点在第一次执行或启动时按需初始化，参数改动后自动重新初始化</li>
-<li>运行中的管道结构锁定：其节点不能删除、连线或断线，参数照常可改，也不能运行到此节点</li>
+<li>运行中的管道结构锁定：其节点不能删除、连线或断线，也不能运行到此节点；界面参数按节点状态编辑，脚本与 Web 的修改限制见<a href="Parameters.html">节点设置</a></li>
 </ul>
 <h2 id="管道脚本与结果读取">管道脚本与结果读取</h2>
 <p>管道启动后按 <code>FixedIntervalMs</code> 循环：<code>TriggerSignalAsync</code> 返回 <code>true</code> 时执行一次管道（例如读 PLC 触发位），<code>HandleResultAsync</code> 处理结果（例如写回 PLC），<code>CompleteAsync</code> 结束本轮。执行失败时也会先调用 <code>HandleResultAsync</code>，便于回写 NG</p>
@@ -474,6 +475,9 @@
 <li>各节点的结果键见节点帮助，或查看窗口的「结果数据」页</li>
 <li>节点改名后，脚本里的标题要同步修改</li>
 </ul>
+<h2 id="脚本与-web-修改设置">脚本与 Web 修改设置</h2>
+<p>脚本通过 <code>IVisionFlowRuntime.GetNodeParameter</code> / <code>SetNodeParameter</code> 访问设置；Web 在清单 <code>visionParameters</code> 中声明别名后，通过 <code>dv.getVisionParameter</code> / <code>dv.setVisionParameter</code> 调用</p>
+<p>常用调用名见各节点帮助的「参数访问」，<a href="Parameters.html">调用示例、权限与运行限制</a> 统一说明。执行中写入会失败并提示重试，修改后仍需保存工程</p>
 <h2 id="端口连接规则">端口连接规则</h2>
 <ul>
 <li>单个定位可以直接连到定位列表输入，当作只有一个元素的列表</li>

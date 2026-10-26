@@ -227,6 +227,77 @@
 </tr>
 </tbody>
 </table>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MinScore</code></td>
+<td>最低得分</td>
+<td>double</td>
+<td>0.3～1（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>AngleMin</code></td>
+<td>角度下限</td>
+<td>double</td>
+<td>-180～180 °（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>AngleMax</code></td>
+<td>角度上限</td>
+<td>double</td>
+<td>-180～180 °（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxCount</code></td>
+<td>最多数量</td>
+<td>int</td>
+<td>1～100</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxOverlap</code></td>
+<td>最大重叠</td>
+<td>double</td>
+<td>0～1（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Polarity</code></td>
+<td>极性</td>
+<td>枚举</td>
+<td><code>Same</code>、<code>Ignore</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MinContrast</code></td>
+<td>最小对比度</td>
+<td>double</td>
+<td>1～255（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Greediness</code></td>
+<td>贪婪度</td>
+<td>double</td>
+<td>0～1（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

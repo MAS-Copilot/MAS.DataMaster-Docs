@@ -170,6 +170,42 @@
 </tr>
 </tbody>
 </table>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ratio</code></td>
+<td>匹配比值</td>
+<td>double</td>
+<td>0.5～0.95（有限数值）</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MinInliers</code></td>
+<td>最少内点数</td>
+<td>int</td>
+<td>4～500</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>MaxFeatures</code></td>
+<td>特征点数量</td>
+<td>int</td>
+<td>100～5000</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>连续运行时可在两轮之间修改，执行中返回失败需重试。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

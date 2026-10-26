@@ -153,6 +153,56 @@
 <h5>Note</h5>
 <p>填了 IP 时与组态、数据采集共用同一地址的连接，不会另开一条</p>
 </div>
+<h2 id="参数访问">参数访问</h2>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PoseConfig.Ip</code></td>
+<td>IP 地址</td>
+<td>string</td>
+<td>Modbus TCP 地址；空时使用通讯设备名称</td>
+<td>Get/Set（需停管道）</td>
+</tr>
+<tr>
+<td><code>PoseConfig.Port</code></td>
+<td>端口</td>
+<td>ushort</td>
+<td>0～65535</td>
+<td>Get/Set（需停管道）</td>
+</tr>
+<tr>
+<td><code>PoseConfig.CommunicationInstance</code></td>
+<td>通讯设备</td>
+<td>string</td>
+<td>数据采集中的通讯设备名称</td>
+<td>Get/Set（需停管道）</td>
+</tr>
+<tr>
+<td><code>PoseConfig.StartAddress</code></td>
+<td>读取起始地址</td>
+<td>ushort</td>
+<td>0～65535</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>PoseConfig.UnitId</code></td>
+<td>从站地址</td>
+<td>byte</td>
+<td>0～255</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<p>普通参数可在两轮之间修改；标为「需停管道」的参数先停止管道。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>
