@@ -117,7 +117,7 @@
 <li>点 <strong>刷新</strong>（卡片上为搜索设备按钮）查找相机，在下拉框中选中设备</li>
 <li>点卡片上的 <strong>打开</strong>，预览区开始出图。管道运行时相机未打开会自动打开</li>
 <li>按触发方式选择<strong>采集模式</strong>；触发模式下按节拍设置<strong>触发超时(ms)</strong></li>
-<li>相机打开后，按需在<strong>基本设置</strong>中调整亮度等参数，在<strong>相机旋转</strong>中旋转画面</li>
+<li>相机打开后，直接在模块卡片上调整<strong>曝光</strong>、<strong>增益</strong>；设置窗口的<strong>基本设置</strong>用于调整亮度等参数，<strong>相机旋转</strong>用于旋转画面</li>
 </ol>
 <h2 id="参数">参数</h2>
 <table>
@@ -153,6 +153,16 @@
 <td>亮度 / 对比度 / 清晰度 / 饱和度</td>
 <td>相机当前值</td>
 <td>范围 0 ~ 100，相机打开后才可调。打开相机时读回相机当前值，驱动不支持时提示「不受支持的操作」</td>
+</tr>
+<tr>
+<td>曝光</td>
+<td>相机当前值</td>
+<td>在模块卡片上直接调整，相机打开后可用。支持小数；MVS 单位为微秒（μs），VideoCapture 单位由驱动决定，可能为负值。手动调整前先在相机配置中关闭自动曝光。编辑完成离开输入框后下发，失败时恢复实际值；随工程保存，重新打开时在开流前恢复</td>
+</tr>
+<tr>
+<td>增益</td>
+<td>相机当前值</td>
+<td>在模块卡片上直接调整，相机打开后可用。支持小数，单位和范围由相机决定。手动调整前先在相机配置中关闭自动增益。编辑完成离开输入框后下发，失败时恢复实际值；随工程保存，重新打开时在开流前恢复</td>
 </tr>
 <tr>
 <td>相机旋转</td>
@@ -225,6 +235,20 @@
 <td>饱和度</td>
 <td>short</td>
 <td>-32768～32767</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Exposure</code></td>
+<td>曝光</td>
+<td>double?</td>
+<td>驱动规定；null 保留相机配置</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Gain</code></td>
+<td>增益</td>
+<td>double?</td>
+<td>驱动规定；null 保留相机配置</td>
 <td>Get/Set</td>
 </tr>
 <tr>
