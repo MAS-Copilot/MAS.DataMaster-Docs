@@ -175,7 +175,19 @@ public abstract class OnnxLocateNode&lt;TModel&gt; : VisionLocateNode, INotifyPr
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDisposed">VisionNode.IsDisposed</a>
     </div>
     <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ResultCode">VisionNode.ResultCode</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_RequiresInputValue_System_Int32_">VisionNode.RequiresInputValue(int)</a>
+    </div>
+    <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetParameterWriteError_MAS_VisionFlow_Nodes_VisionParameterDescriptor_">VisionNode.GetParameterWriteError(VisionParameterDescriptor)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_DescribeParameter_MAS_VisionFlow_Nodes_VisionParameterDescriptor_">VisionNode.DescribeParameter(VisionParameterDescriptor)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_TryWriteParameter_MAS_VisionFlow_Nodes_VisionParameterDescriptor_System_Object_System_String__">VisionNode.TryWriteParameter(VisionParameterDescriptor, object, out string)</a>
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_OnPipelineStarting">VisionNode.OnPipelineStarting()</a>
@@ -1177,7 +1189,7 @@ public string Summary { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_OnnxLocateNode_1_AddClassCounts_System_Collections_Generic_Dictionary_System_String_MAS_VisionFlow_Nodes_VisionResultValue__System_Collections_Generic_IReadOnlyList_System_String__" data-uid="MAS.VisionFlow.Nodes.OnnxLocateNode`1.AddClassCounts(System.Collections.Generic.Dictionary{System.String,MAS.VisionFlow.Nodes.VisionResultValue},System.Collections.Generic.IReadOnlyList{System.String})">
   AddClassCounts(Dictionary&lt;string, VisionResultValue&gt;, IReadOnlyList&lt;string&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/OnnxLocateNode.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/OnnxLocateNode.cs/#L181"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>每个类别加一项计数（类别来自模型，没运行过也有键，供发布与脚本选择）</p>
@@ -1252,7 +1264,7 @@ public string Summary { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_OnnxLocateNode_1_EnumLabel__1___0_" data-uid="MAS.VisionFlow.Nodes.OnnxLocateNode`1.EnumLabel``1(``0)">
   EnumLabel&lt;T&gt;(T)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/OnnxLocateNode.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/OnnxLocateNode.cs/#L190"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>取枚举的界面文字（找不到语言键时用枚举名）</p>
@@ -1329,8 +1341,9 @@ public string Summary { get; set; }</code></pre>
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.SharedLibrary.VisionInitializationFailureException.html">VisionInitializationFailureException</a></dt>
-    <dd><p>初始化失败</p>
-</dd>
+    <dd></dd>
+    <dt><span class="xref">VisionNodeFaultException</span></dt>
+    <dd></dd>
   </dl>
 
 
@@ -1483,7 +1496,7 @@ public string Summary { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_OnnxLocateNode_1_RefreshSummary_System_Int32_System_Double_MAS_Vision_InferenceDevice_" data-uid="MAS.VisionFlow.Nodes.OnnxLocateNode`1.RefreshSummary(System.Int32,System.Double,MAS.Vision.InferenceDevice)">
   RefreshSummary(int, double, InferenceDevice)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/OnnxLocateNode.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/OnnxLocateNode.cs/#L171"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>刷新摘要</p>

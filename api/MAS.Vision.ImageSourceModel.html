@@ -313,7 +313,7 @@ public bool IsMovedAfterRead { get; set; }</code></pre>
 
 
   <h4 class="section" id="MAS_Vision_ImageSourceModel_IsMovedAfterRead_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>默认关闭：每次只读最新一张，不改动任何文件；打开后像收件箱一样按写入时间从早到晚逐张处理，先移走再读，同一张不会处理两次</p>
+  <div class="markdown level1 remarks"><p>默认关闭：图像源节点按写入时间从早到晚循环读取当前目录，不递归；打开后先移走再读，同一张不会处理两次</p>
 </div>
 
 

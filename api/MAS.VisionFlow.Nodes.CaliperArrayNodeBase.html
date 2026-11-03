@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Nodes_CaliperArrayNodeBase" data-uid="MAS.VisionFlow.Nodes.CaliperArrayNodeBase" class="text-break">
-Class CaliperArrayNodeBase  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L277"><i class="bi bi-code-slash"></i></a>
+Class CaliperArrayNodeBase  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Abstractions/CaliperArrayNodeBase.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -147,6 +147,9 @@ public abstract class CaliperArrayNodeBase : CaliperNodeBase, INotifyPropertyCha
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.CaliperNodeBase.html#MAS_VisionFlow_Nodes_CaliperNodeBase_LIST_OUTPUT">CaliperNodeBase.LIST_OUTPUT</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.CaliperNodeBase.html#MAS_VisionFlow_Nodes_CaliperNodeBase_RequiresInputValue_System_Int32_">CaliperNodeBase.RequiresInputValue(int)</a>
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.CaliperNodeBase.html#MAS_VisionFlow_Nodes_CaliperNodeBase_IsFollowReferenceSet">CaliperNodeBase.IsFollowReferenceSet</a>
@@ -239,7 +242,16 @@ public abstract class CaliperArrayNodeBase : CaliperNodeBase, INotifyPropertyCha
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDisposed">VisionNode.IsDisposed</a>
     </div>
     <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ResultCode">VisionNode.ResultCode</a>
+    </div>
+    <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetParameterWriteError_MAS_VisionFlow_Nodes_VisionParameterDescriptor_">VisionNode.GetParameterWriteError(VisionParameterDescriptor)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_DescribeParameter_MAS_VisionFlow_Nodes_VisionParameterDescriptor_">VisionNode.DescribeParameter(VisionParameterDescriptor)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_TryWriteParameter_MAS_VisionFlow_Nodes_VisionParameterDescriptor_System_Object_System_String__">VisionNode.TryWriteParameter(VisionParameterDescriptor, object, out string)</a>
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
@@ -497,7 +509,7 @@ public abstract class CaliperArrayNodeBase : CaliperNodeBase, INotifyPropertyCha
 
   <h3 id="MAS_VisionFlow_Nodes_CaliperArrayNodeBase__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_MAS_Vision_ShapeType_" data-uid="MAS.VisionFlow.Nodes.CaliperArrayNodeBase.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices,MAS.Vision.ShapeType)">
   CaliperArrayNodeBase(VisionNodeServices, ShapeType)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L277"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Abstractions/CaliperArrayNodeBase.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>卡尺阵列节点基类（找线、找圆）：卡尺数量、宽度、取边方式与拟合参数</p>
@@ -540,7 +552,7 @@ public abstract class CaliperArrayNodeBase : CaliperNodeBase, INotifyPropertyCha
 
   <h3 id="MAS_VisionFlow_Nodes_CaliperArrayNodeBase_ArrayOptions" data-uid="MAS.VisionFlow.Nodes.CaliperArrayNodeBase.ArrayOptions">
   ArrayOptions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L332"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Abstractions/CaliperArrayNodeBase.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取阵列参数</p>
@@ -787,7 +799,7 @@ public EdgeSelection Selection { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_CaliperArrayNodeBase_AnnotateArray_OpenCvSharp_Mat_MAS_Vision_CaliperArrayResult_" data-uid="MAS.VisionFlow.Nodes.CaliperArrayNodeBase.AnnotateArray(OpenCvSharp.Mat,MAS.Vision.CaliperArrayResult)">
   AnnotateArray(Mat, CaliperArrayResult)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L341"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Abstractions/CaliperArrayNodeBase.cs/#L88"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>标注全部卡尺与边缘点（内点、离群点颜色不同）</p>
@@ -826,7 +838,7 @@ public EdgeSelection Selection { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_CaliperArrayNodeBase_ArrayMarks_MAS_Vision_CaliperArrayResult_" data-uid="MAS.VisionFlow.Nodes.CaliperArrayNodeBase.ArrayMarks(MAS.Vision.CaliperArrayResult)">
   ArrayMarks(CaliperArrayResult)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L356"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Abstractions/CaliperArrayNodeBase.cs/#L103"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>阵列的结果标记：每个卡尺的搜索框与边缘点</p>
@@ -865,7 +877,7 @@ public EdgeSelection Selection { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_CaliperArrayNodeBase_InlierRatio_MAS_Vision_CaliperArrayResult_" data-uid="MAS.VisionFlow.Nodes.CaliperArrayNodeBase.InlierRatio(MAS.Vision.CaliperArrayResult)">
   InlierRatio(CaliperArrayResult)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L379"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Abstractions/CaliperArrayNodeBase.cs/#L126"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>内点占卡尺数的比例（定位结果的得分）</p>
@@ -904,7 +916,7 @@ public EdgeSelection Selection { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_CaliperArrayNodeBase_UpdateProfile_MAS_Vision_CaliperArrayResult_" data-uid="MAS.VisionFlow.Nodes.CaliperArrayNodeBase.UpdateProfile(MAS.Vision.CaliperArrayResult)">
   UpdateProfile(CaliperArrayResult)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L367"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Abstractions/CaliperArrayNodeBase.cs/#L114"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>刷新剖面图（只在预览到点时刷新）</p>
@@ -937,7 +949,7 @@ public EdgeSelection Selection { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/CaliperNodeBase.cs/#L277" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Abstractions/CaliperArrayNodeBase.cs/#L24" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -427,11 +427,11 @@ D   C
 <p>每条管道有一个脚本处理器（<code>IVisionPipelineHandler</code>），启动后按 <code>FixedIntervalMs</code> 循环：</p>
 <ol>
 <li><code>TriggerSignalAsync</code> 返回 <code>true</code> 时执行一次管道（例如读 PLC 触发位）</li>
-<li><code>HandleResultAsync(VisionRunResult)</code> 处理结果（例如写回 PLC）；执行失败时也会先调用它，便于回写 NG，然后循环异常停止</li>
+<li><code>HandleResultAsync(VisionRunResult)</code> 处理结果（例如写回下位机）；业务无结果和 NG 时也正常回写、完成握手并继续下一轮；运行故障交付后停止</li>
 <li><code>CompleteAsync</code> 结束本轮（例如复位触发位）</li>
 </ol>
 <pre><code class="lang-csharp">public async Task HandleResultAsync(VisionRunResult result, CancellationToken token = default) {
-    if (!result.IsSuccess) {
+    if (result.ResultCode != VisionRunResultCode.Success) {
         // 回写 NG
         return;
     }

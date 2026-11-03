@@ -87,7 +87,7 @@
         <article data-uid="">
 <h1 id="图像源">图像源</h1>
 
-<p>从文件、文件夹（最新一张）或网络地址读取图像</p>
+<p>从文件、文件夹（循环读取或读取后移走）或网络地址读取图像</p>
 <h2 id="端口">端口</h2>
 <table>
 <thead>
@@ -127,17 +127,17 @@
 <tr>
 <td>从文件加载</td>
 <td>选中</td>
-<td>读取一个图片文件。加载成功后原图存一份到工程：原路径在就读原路径，文件内容变了会更新副本；工程拷到别的电脑找不到原路径时读这份副本</td>
+<td>读取一个图片文件。成功加载后才更新对应来源的工程副本；原路径缺失时可使用同一来源的副本并显示警告</td>
 </tr>
 <tr>
 <td>从文件夹加载</td>
 <td>—</td>
-<td>只看文件夹本身，不含子目录，支持 bmp、png、jpg、jpeg。默认每次读写入时间最新的一张，不改动任何文件</td>
+<td>只看文件夹本身，不含子目录，支持 bmp、png、jpg、jpeg。默认按写入时间从早到晚、同时间按文件名排序，每次读取一张，读完从首张继续</td>
 </tr>
 <tr>
 <td>读取后移走</td>
 <td>关</td>
-<td>文件夹来源可用。打开后按写入时间从早到晚逐张处理：每张先移到该文件夹下的 <code>Processed</code> 子目录再读取，重名时追加序号，不会删除</td>
+<td>文件夹来源可用。打开后按写入时间从早到晚逐张处理：每张先移到该文件夹下的 <code>Processed</code> 子目录再读取，重名时追加序号</td>
 </tr>
 <tr>
 <td>从网络加载</td>
@@ -146,6 +146,7 @@
 </tr>
 </tbody>
 </table>
+<p>默认循环读取模式。每个图像源独立记录进度，切换目录、模式或重新初始化后从首张开始；目录内容变化时按当前文件列表继续；如果上次读取的文件已被移除，则从当前首张开始。</p>
 <div class="WARNING">
 <h5>Warning</h5>
 <p>文件夹里没有图像时节点执行失败，连续运行前确认有图可读</p>
@@ -216,6 +217,34 @@
 </tbody>
 </table>
 <p>普通参数可在两轮之间修改；标为「需停管道」的参数先停止管道。<a href="../Parameters.html">调用方式与限制</a></p>
+<h2 id="本轮来源信息">本轮来源信息</h2>
+<table>
+<thead>
+<tr>
+<th>结果键</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SourceType</code></td>
+<td>string</td>
+<td>实际来源类型：<code>File</code>、<code>Folder</code> 或 <code>Network</code></td>
+</tr>
+<tr>
+<td><code>SourcePath</code></td>
+<td>string</td>
+<td>本轮读取的文件路径或网络地址；使用工程副本时为副本对应的原始来源路径</td>
+</tr>
+<tr>
+<td><code>IsProjectCopy</code></td>
+<td>bool</td>
+<td>是否使用工程内副本，不能仅根据 <code>Success</code> 推断使用了原文件</td>
+</tr>
+</tbody>
+</table>
+<p>文件夹逐张处理时，<code>SourcePath</code> 指向实际读取的 <code>Processed</code> 文件。使用本轮回调的 <code>result.GetValue&lt;bool&gt;(&quot;图像源&quot;, &quot;IsProjectCopy&quot;)</code> 可以识别副本来源</p>
 <h2 id="典型搭配">典型搭配</h2>
 <table>
 <thead>

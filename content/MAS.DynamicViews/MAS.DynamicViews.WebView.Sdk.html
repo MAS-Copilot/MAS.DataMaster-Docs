@@ -313,7 +313,7 @@ if (result.truncated) note.textContent = &quot;结果已达上限，请缩小时
 </tr>
 </tbody>
 </table>
-<p><code>VisionFrame</code> 包含 <code>channel</code>、<code>sequence</code>、<code>time</code>（Date）、<code>pipeline</code>、<code>node</code>、<code>success</code>、<code>error</code>、<code>elapsedMs</code>、<code>values</code>（<code>{ 别名: 值 }</code>）、<code>items</code>（<code>[{ alias, label, value, text, unit, decimals, available, source }]</code>）、<code>image</code>（<code>{ url, width, height, sourceWidth, sourceHeight, sequence, capturedAt }</code> 或 <code>null</code>），以及：</p>
+<p><code>VisionFrame</code> 包含 <code>channel</code>、<code>sequence</code>、<code>time</code>（Date）、<code>pipeline</code>、<code>node</code>、<code>resultCode</code>、<code>error</code>、<code>elapsedMs</code>、<code>values</code>（<code>{ 别名: 值 }</code>）、<code>items</code>（<code>[{ alias, label, value, text, unit, decimals, available, source }]</code>）、<code>image</code>（<code>{ url, width, height, sourceWidth, sourceHeight, sequence, capturedAt }</code> 或 <code>null</code>），以及：</p>
 <ul>
 <li><code>value(alias)</code>：原始值，本轮没取到时为 <code>undefined</code></li>
 <li><code>text(alias)</code>：按小数位并带单位的文本，没取到时为 <code>&quot;--&quot;</code></li>
@@ -322,12 +322,20 @@ if (result.truncated) note.textContent = &quot;结果已达上限，请缩小时
 <li><code>scale</code>：发布图与原图的比例（发布宽 / 原图宽），没有图像时为 <code>null</code></li>
 <li><code>toImagePoint(x, y)</code> / <code>toImagePoint({ x, y })</code>：原图像素坐标换算到发布图像素坐标，定位结果可以直接传入；<code>toImageLength(length)</code> 换算长度（半径、宽度）</li>
 </ul>
-<p><code>success</code> 为 <code>false</code> 表示视觉这一轮执行失败（相机、上游错误），应显示为「异常」，与 NG 区分。结果帧只保证最新，视觉执行很快时中间帧会被合并，不能用来计数。</p>
+<p><code>resultCode</code> 为数值：1000 正常完成；2000 业务无结果；2001 判定 NG；3000 运行故障；4000 主动取消；0 未知。2000、2001 显示为 NG，故障、取消或未知显示为异常，不能把所有非成功都当成掉线。结果帧只保证最新，视觉执行很快时中间帧会被合并，不能用来计数。</p>
 <pre><code class="lang-js">const dv = await DynamicViews.connect();
 await dv.subscribeVision(&quot;station1&quot;, frame =&gt; {
     if (frame.imageUrl) img.src = frame.imageUrl;
     widthText.textContent = frame.text(&quot;width&quot;);
-    badge.textContent = !frame.success ? &quot;异常&quot; : frame.value(&quot;width&quot;) &lt;= 12.1 ? &quot;OK&quot; : &quot;NG&quot;;
+    if (frame.resultCode === 2000 || frame.resultCode === 2001) {
+        badge.textContent = &quot;NG&quot;;
+        return;
+    }
+    if (frame.resultCode !== 1000) {
+        badge.textContent = &quot;异常&quot;;
+        return;
+    }
+    badge.textContent = frame.value(&quot;width&quot;) &lt;= 12.1 ? &quot;OK&quot; : &quot;NG&quot;;
 });
 </code></pre>
 <p>现成组件 <code>&lt;dv-vision-view&gt;</code> 显示一个通道的图像、判定徽标与数据表：</p>

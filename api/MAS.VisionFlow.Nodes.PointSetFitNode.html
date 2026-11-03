@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Nodes_PointSetFitNode" data-uid="MAS.VisionFlow.Nodes.PointSetFitNode" class="text-break">
-Class PointSetFitNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L27"><i class="bi bi-code-slash"></i></a>
+Class PointSetFitNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -138,6 +138,9 @@ public sealed class PointSetFitNode : VisionNode, INotifyPropertyChanged, INotif
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ResultCode">VisionNode.ResultCode</a>
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
@@ -289,7 +292,7 @@ public sealed class PointSetFitNode : VisionNode, INotifyPropertyChanged, INotif
 
   <h3 id="MAS_VisionFlow_Nodes_PointSetFitNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.PointSetFitNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
   PointSetFitNode(VisionNodeServices)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.PointSetFitNode.html">PointSetFitNode</a> 新实例</p>
@@ -324,7 +327,7 @@ public sealed class PointSetFitNode : VisionNode, INotifyPropertyChanged, INotif
 
   <h3 id="MAS_VisionFlow_Nodes_PointSetFitNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.PointSetFitNode.TYPE_KEY">
   TYPE_KEY
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点类型键</p>
@@ -498,7 +501,7 @@ public double Tolerance { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PointSetFitNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.PointSetFitNode.TypeKey">
   TypeKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
@@ -534,7 +537,7 @@ public double Tolerance { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PointSetFitNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.PointSetFitNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -569,8 +572,9 @@ public double Tolerance { get; set; }</code></pre>
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
-    <dd><p>执行失败</p>
-</dd>
+    <dd></dd>
+    <dt><span class="xref">VisionNodeFaultException</span></dt>
+    <dd></dd>
   </dl>
 
 
@@ -579,7 +583,7 @@ public double Tolerance { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_PointSetFitNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.PointSetFitNode.GetResultData">
   GetResultData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L106"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
@@ -612,7 +616,7 @@ public double Tolerance { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L27" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/PointSetFitNode.cs/#L26" class="edit-link">Edit this page</a>
         </div>
 
 

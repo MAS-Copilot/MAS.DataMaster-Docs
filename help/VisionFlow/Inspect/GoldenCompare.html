@@ -133,7 +133,7 @@
 </table>
 <div class="WARNING">
 <h5>Warning</h5>
-<p>待检图与金样尺寸不同时节点报错，管道失败。前面没有对齐、相机分辨率或裁剪尺寸改过时，先对齐或重设金样</p>
+<p>待检图与金样尺寸不同时节点报错，依赖下游跳过，管道本轮结果为 NG。前面没有对齐、相机分辨率或裁剪尺寸改过时，先对齐或重设金样</p>
 </div>
 <h2 id="使用">使用</h2>
 <ol>
@@ -219,9 +219,9 @@
 <td>缺陷数超过它判不合格，<code>0</code> 表示不允许有缺陷</td>
 </tr>
 <tr>
-<td>不合格时中止管道</td>
+<td>不合格时跳过下游节点</td>
 <td>关闭</td>
-<td>开启时不合格管道失败；关闭时只警告，结果里 <code>IsOk</code> 为 <code>false</code></td>
+<td>开启时，不合格则跳过依赖本节点的下游节点，其他分支继续执行</td>
 </tr>
 </tbody>
 </table>
@@ -291,8 +291,8 @@
 <td>Get/Set</td>
 </tr>
 <tr>
-<td><code>IsAbortOnFailure</code></td>
-<td>不合格时中止管道</td>
+<td><code>IsSkipDownstreamOnFailure</code></td>
+<td>不合格时跳过下游节点</td>
 <td>bool</td>
 <td><code>true</code> / <code>false</code></td>
 <td>Get/Set</td>

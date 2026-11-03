@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Nodes_ListCountNode" data-uid="MAS.VisionFlow.Nodes.ListCountNode" class="text-break">
-Class ListCountNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L25"><i class="bi bi-code-slash"></i></a>
+Class ListCountNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -138,6 +138,9 @@ public sealed class ListCountNode : VisionNode, INotifyPropertyChanged, INotifyP
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ResultCode">VisionNode.ResultCode</a>
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
@@ -275,7 +278,7 @@ public sealed class ListCountNode : VisionNode, INotifyPropertyChanged, INotifyP
 
 
   <h2 id="MAS_VisionFlow_Nodes_ListCountNode_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>示例：一块板应有 24 个孔，少一个就不能打——开启「不合格时中止」，管道直接失败，后面的换算与下发都不会执行</p>
+  <div class="markdown level0 remarks"><p>示例：一块板应有 24 个孔，数量不符时报告 NG；开启跳过下游节点则不执行依赖下游，结果处理与完成回调仍正常执行</p>
 </div>
 
 
@@ -287,7 +290,7 @@ public sealed class ListCountNode : VisionNode, INotifyPropertyChanged, INotifyP
 
   <h3 id="MAS_VisionFlow_Nodes_ListCountNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.ListCountNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
   ListCountNode(VisionNodeServices)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.ListCountNode.html">ListCountNode</a> 新实例</p>
@@ -322,7 +325,7 @@ public sealed class ListCountNode : VisionNode, INotifyPropertyChanged, INotifyP
 
   <h3 id="MAS_VisionFlow_Nodes_ListCountNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.ListCountNode.TYPE_KEY">
   TYPE_KEY
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点类型键</p>
@@ -354,22 +357,22 @@ public sealed class ListCountNode : VisionNode, INotifyPropertyChanged, INotifyP
 </h2>
 
 
-  <a id="MAS_VisionFlow_Nodes_ListCountNode_IsAbortOnFailure_" data-uid="MAS.VisionFlow.Nodes.ListCountNode.IsAbortOnFailure*"></a>
+  <a id="MAS_VisionFlow_Nodes_ListCountNode_IsSkipDownstreamOnFailure_" data-uid="MAS.VisionFlow.Nodes.ListCountNode.IsSkipDownstreamOnFailure*"></a>
 
-  <h3 id="MAS_VisionFlow_Nodes_ListCountNode_IsAbortOnFailure" data-uid="MAS.VisionFlow.Nodes.ListCountNode.IsAbortOnFailure">
-  IsAbortOnFailure
+  <h3 id="MAS_VisionFlow_Nodes_ListCountNode_IsSkipDownstreamOnFailure" data-uid="MAS.VisionFlow.Nodes.ListCountNode.IsSkipDownstreamOnFailure">
+  IsSkipDownstreamOnFailure
   
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置不合格时是否中止管道</p>
+  <div class="markdown level1 summary"><p>获取或设置不合格时是否跳过依赖下游</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
 [JsonProperty]
-[VisionParameter(&quot;AbortWhenCountInvalid&quot;, DescriptionKey = &quot;AbortWhenCountInvalidDescription&quot;)]
-public bool IsAbortOnFailure { get; set; }</code></pre>
+[VisionParameter(&quot;SkipDownstreamOnCountNg&quot;, DescriptionKey = &quot;SkipDownstreamOnCountNgDescription&quot;)]
+public bool IsSkipDownstreamOnFailure { get; set; }</code></pre>
   </div>
 
 
@@ -463,7 +466,7 @@ public int MinCount { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ListCountNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.ListCountNode.TypeKey">
   TypeKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
@@ -499,7 +502,7 @@ public int MinCount { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ListCountNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.ListCountNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L70"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -534,8 +537,9 @@ public int MinCount { get; set; }</code></pre>
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
-    <dd><p>执行失败</p>
-</dd>
+    <dd></dd>
+    <dt><span class="xref">VisionNodeFaultException</span></dt>
+    <dd></dd>
   </dl>
 
 
@@ -544,7 +548,7 @@ public int MinCount { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ListCountNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.ListCountNode.GetResultData">
   GetResultData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L85"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
@@ -577,7 +581,7 @@ public int MinCount { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L25" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Collection/ListCountNode.cs/#L24" class="edit-link">Edit this page</a>
         </div>
 
 

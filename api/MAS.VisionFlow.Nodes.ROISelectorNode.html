@@ -151,6 +151,9 @@ public sealed class ROISelectorNode : VisionNode, INotifyPropertyChanged, INotif
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
     </div>
     <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ResultCode">VisionNode.ResultCode</a>
+    </div>
+    <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
     </div>
     <div>
@@ -288,7 +291,7 @@ public sealed class ROISelectorNode : VisionNode, INotifyPropertyChanged, INotif
   <h2 id="MAS_VisionFlow_Nodes_ROISelectorNode_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>矩形直接裁剪；旋转矩形摆正后输出宽 × 高；圆、椭圆、圆环、多边形裁剪到外接矩形，形状外置黑</p>
 <p>随动：接入“跟随定位”（如工件 Mark、边的定位结果），工件在示教位置时运行一次并点「设为跟随基准」；之后按定位的平移、旋转把当前图像映射回示教姿态再裁剪，
-输出与示教时取景一致，下游卡尺、差分、精测不用再管工件放偏。跟随定位没有结果时管道失败，不会裁到错的地方</p>
+输出与示教时取景一致，下游卡尺、差分、精测不用再管工件放偏。跟随定位报告业务无结果时，跳过本节点及依赖下游，管道本轮为无结果，连续运行仍继续</p>
 <p>第二个输出是“输出图 → 输入图”的坐标变换：下游在裁剪图上的定位结果经「坐标映射」还原到原图（不跟随时同样适用，替代手工加 OffsetX/OffsetY）</p>
 </div>
 
@@ -374,7 +377,7 @@ public sealed class ROISelectorNode : VisionNode, INotifyPropertyChanged, INotif
 
   <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_ClearFollowReferenceCommand" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.ClearFollowReferenceCommand">
   ClearFollowReferenceCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L142"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取清除跟随基准的命令（恢复固定 ROI）</p>
@@ -441,7 +444,7 @@ public Location2D? FollowReference { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_FollowReferenceText" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.FollowReferenceText">
   FollowReferenceText
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取跟随基准说明</p>
@@ -473,7 +476,7 @@ public Location2D? FollowReference { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_IsFollowReferenceSet" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.IsFollowReferenceSet">
   IsFollowReferenceSet
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L113"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否已设跟随基准</p>
@@ -540,7 +543,7 @@ public bool IsRotationFollowed { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_Preview" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.Preview">
   Preview
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L126"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次输入的图像预览（用于在设置窗口里框选，保持原尺寸以便按像素坐标操作）</p>
@@ -609,7 +612,7 @@ public ROICoordinates ROICoordinates { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_SetFollowReferenceCommand" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.SetFollowReferenceCommand">
   SetFollowReferenceCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取把最近一次跟随定位设为基准的命令</p>
@@ -642,7 +645,7 @@ public VisionCommand SetFollowReferenceCommand { get; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_SetShapeTypeCommand" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.SetShapeTypeCommand">
   SetShapeTypeCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L131"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取换形状命令（参数：<a class="xref" href="MAS.Vision.ShapeType.html">ShapeType</a>），新形状尽量保持原区域的位置与大小</p>
@@ -674,7 +677,7 @@ public VisionCommand SetFollowReferenceCommand { get; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.TypeKey">
   TypeKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
@@ -710,7 +713,7 @@ public VisionCommand SetFollowReferenceCommand { get; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L148"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -745,8 +748,9 @@ public VisionCommand SetFollowReferenceCommand { get; }</code></pre>
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
-    <dd><p>执行失败</p>
-</dd>
+    <dd></dd>
+    <dt><span class="xref">VisionNodeFaultException</span></dt>
+    <dd></dd>
   </dl>
 
 
@@ -755,7 +759,7 @@ public VisionCommand SetFollowReferenceCommand { get; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.GetResultData">
   GetResultData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L191"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
@@ -788,7 +792,7 @@ public VisionCommand SetFollowReferenceCommand { get; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.ReleaseResources">
   ReleaseResources()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L209"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>
@@ -800,6 +804,45 @@ public VisionCommand SetFollowReferenceCommand { get; }</code></pre>
   </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ROISelectorNode_RequiresInputValue_" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.RequiresInputValue*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ROISelectorNode_RequiresInputValue_System_Int32_" data-uid="MAS.VisionFlow.Nodes.ROISelectorNode.RequiresInputValue(System.Int32)">
+  RequiresInputValue(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Preproc/ROISelectorNode.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断已连接输入是否需要本轮有效值；上游明确无结果时据此决定是否跳过</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool RequiresInputValue(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>输入端口序号</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>默认需要；可选跟随输入等由派生节点按配置决定</p>
+</dd>
+  </dl>
 
 
 

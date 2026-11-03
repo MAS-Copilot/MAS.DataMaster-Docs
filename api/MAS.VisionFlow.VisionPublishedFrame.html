@@ -158,7 +158,7 @@ Class VisionPublishedFrame  <a class="header-action link-secondary" title="View 
 
 
   <h2 id="MAS_VisionFlow_VisionPublishedFrame_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>视觉只发布数据与图像，是否合格由消费方（网页）按数据自行判断</p>
+  <div class="markdown level0 remarks"><p>结果码表达本轮状态；消费方可基于有效数据补充业务判定</p>
 </div>
 
 
@@ -294,38 +294,6 @@ Class VisionPublishedFrame  <a class="header-action link-secondary" title="View 
 
 
 
-  <a id="MAS_VisionFlow_VisionPublishedFrame_IsSuccess_" data-uid="MAS.VisionFlow.VisionPublishedFrame.IsSuccess*"></a>
-
-  <h3 id="MAS_VisionFlow_VisionPublishedFrame_IsSuccess" data-uid="MAS.VisionFlow.VisionPublishedFrame.IsSuccess">
-  IsSuccess
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Publishing/VisionPublishedFrame.cs/#L45"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取这一轮是否全部节点执行成功</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required bool IsSuccess { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_VisionFlow_VisionPublishedFrame_Items_" data-uid="MAS.VisionFlow.VisionPublishedFrame.Items*"></a>
 
   <h3 id="MAS_VisionFlow_VisionPublishedFrame_Items" data-uid="MAS.VisionFlow.VisionPublishedFrame.Items">
@@ -412,6 +380,38 @@ Class VisionPublishedFrame  <a class="header-action link-secondary" title="View 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_VisionPublishedFrame_ResultCode_" data-uid="MAS.VisionFlow.VisionPublishedFrame.ResultCode*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionPublishedFrame_ResultCode" data-uid="MAS.VisionFlow.VisionPublishedFrame.ResultCode">
+  ResultCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Publishing/VisionPublishedFrame.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取这一轮管道的汇总结果码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public required VisionRunResultCode ResultCode { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.VisionRunResultCode.html">VisionRunResultCode</a></dt>
     <dd></dd>
   </dl>
 

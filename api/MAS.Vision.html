@@ -190,6 +190,11 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraCapabilities.html">CameraCapabilities</a></dt>
+      <dd><p>采集能力；具体设备的前置条件仍在操作时检查</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.CameraGrabResult.html">CameraGrabResult</a></dt>
       <dd><p>一次取新帧的结果</p>
 </dd>
@@ -202,6 +207,66 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.CameraIntrinsicsExtensions.html">CameraIntrinsicsExtensions</a></dt>
       <dd><p>CameraIntrinsics 的相关扩展</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterError.html">CameraParameterError</a></dt>
+      <dd><p>包含驱动原始错误的诊断信息</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterExtensions.html">CameraParameterExtensions</a></dt>
+      <dd><p>常用数值参数的类型校验与便捷写入</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterInfo.html">CameraParameterInfo</a></dt>
+      <dd><p>当前设备、当前配置下的参数描述；null 范围或权限表示未知</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterResult-1.html">CameraParameterResult&lt;T&gt;</a></dt>
+      <dd><p>描述或读取操作的结果</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterValue.html">CameraParameterValue</a></dt>
+      <dd><p>类型化参数值，整数不经 double 中转</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterValue.Boolean.html">CameraParameterValue.Boolean</a></dt>
+      <dd><p>布尔参数值</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterValue.Enumeration.html">CameraParameterValue.Enumeration</a></dt>
+      <dd><p>枚举参数值</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterValue.Float.html">CameraParameterValue.Float</a></dt>
+      <dd><p>浮点参数值</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterValue.Integer.html">CameraParameterValue.Integer</a></dt>
+      <dd><p>64 位整数参数值</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterValue.Text.html">CameraParameterValue.Text</a></dt>
+      <dd><p>字符串参数值</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterWriteResult.html">CameraParameterWriteResult</a></dt>
+      <dd><p>写入或命令执行结果；写入后的 ActualValue 为空表示实际值尚未确认</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParametersBase.html">CameraParametersBase</a></dt>
+      <dd><p>统一执行类型、范围、步长校验和设置后回读，驱动负责实际 SDK 调用</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -618,6 +683,11 @@ Classes
 Structs
 </h3>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterId.html">CameraParameterId</a></dt>
+      <dd><p>跨驱动参数标识；厂商扩展使用带前缀的名称，如 Basler.BslExposureStartDelay</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.GrayView.html">GrayView</a></dt>
       <dd><p>灰度视图：输入已是单通道时直接使用，否则转一份灰度图并在释放时回收</p>
 </dd>
@@ -653,6 +723,11 @@ Interfaces
     <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.ICameraFactory.html">ICameraFactory</a></dt>
       <dd><p>相机工厂接口，用于创建不同类型的相机实例</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.ICameraParameters.html">ICameraParameters</a></dt>
+      <dd><p>类型化、可诊断的参数服务；参数描述反映设备当前状态</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -749,13 +824,33 @@ OpenCV 相机坐标系约定（右手系）：
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraAutoMode.html">CameraAutoMode</a></dt>
+      <dd><p>常用自动曝光/增益模式，驱动描述决定当前设备实际可选项</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.CameraControl.html">CameraControl</a></dt>
       <dd><p>相机控制参数枚举</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraFeatureSupport.html">CameraFeatureSupport</a></dt>
+      <dd><p>功能支持程度</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="MAS.Vision.CameraMounting.html">CameraMounting</a></dt>
       <dd><p>相机安装方式（2D 平面标定）</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterErrorCode.html">CameraParameterErrorCode</a></dt>
+      <dd><p>UI、脚本和 Agent 共用的参数失败分类</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="MAS.Vision.CameraParameterKind.html">CameraParameterKind</a></dt>
+      <dd><p>参数的真实数据类型</p>
 </dd>
     </dl>
     <dl class="jumplist">

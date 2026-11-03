@@ -134,7 +134,7 @@
 <li>双击卡片打开设置窗口，在<strong>模型</strong>中点 <strong>导入模型</strong>，选择 Ultralytics 导出的 ONNX 分类模型（<code>format=onnx</code>）。模型随工程保存，原文件删除不影响运行</li>
 <li>上游接好相机或图像源，点标题栏的「运行到此节点（F5）」，在结果表里查看概率最高的几个类别</li>
 <li>需要判定时，在<strong>合格判定</strong>中勾选算合格的类别，并设置<strong>最低置信度</strong></li>
-<li>按需勾选<strong>不合格时中止流程</strong></li>
+<li>按需勾选<strong>不合格时跳过下游节点</strong></li>
 </ol>
 <h2 id="参数">参数</h2>
 <table>
@@ -173,9 +173,9 @@
 <td>第一名的置信度低于此值视为模型拿不准，判为不合格，范围 0 ~ 1</td>
 </tr>
 <tr>
-<td>不合格时中止流程</td>
+<td>不合格时跳过下游节点</td>
 <td>不勾选</td>
-<td>勾选：不合格时中止管道；不勾选：只报警告并继续</td>
+<td>勾选：不合格时跳过依赖本节点的下游节点，其他分支继续执行</td>
 </tr>
 <tr>
 <td>合格类别</td>
@@ -208,8 +208,8 @@
 <td>Get/Set</td>
 </tr>
 <tr>
-<td><code>IsAbortOnFailure</code></td>
-<td>不合格时中止流程</td>
+<td><code>IsSkipDownstreamOnFailure</code></td>
+<td>不合格时跳过下游节点</td>
 <td>bool</td>
 <td><code>true</code> / <code>false</code></td>
 <td>Get/Set</td>
@@ -230,7 +230,7 @@
 </tr>
 </tbody>
 </table>
-<p>普通参数可在两轮之间修改；标为「需停管道」的参数先停止管道。<a href="../Parameters.html">调用方式与限制</a></p>
+<p>普通参数可在两轮之间修改；标为「需停管道」的参数先跳过依赖下游。<a href="../Parameters.html">调用方式与限制</a></p>
 <h2 id="输出结果">输出结果</h2>
 <p>管道脚本按「节点标题 + 结果键」取值，标题与键都不区分大小写；运行后也可在输出查看窗口的「结果数据」页查看</p>
 <table>

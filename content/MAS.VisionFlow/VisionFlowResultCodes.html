@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>VisionFlow 管道结果码约定 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="VisionFlow 管道结果码约定 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.VisionFlow/VisionFlowResultCodes.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="visionflow-管道结果码约定">VisionFlow 管道结果码约定</h1>
+
+<h2 id="结果结构">结果结构</h2>
+<p>节点具体结果见<a href="VisionNodeResultCodes.html">节点结果码约定</a></p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>枚举项</th>
+<th>含义与运行处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>Unknown</code></td>
+<td>未分类或未知；不按成功或可以继续处理</td>
+</tr>
+<tr>
+<td>1000</td>
+<td><code>Success</code></td>
+<td>选中路径正常完成，允许条件分支跳过；处理结果、执行完成回调后继续</td>
+</tr>
+<tr>
+<td>2000</td>
+<td><code>NoResult</code></td>
+<td>必要业务结果缺失；依赖分支跳过，处理结果、执行完成回调后继续</td>
+</tr>
+<tr>
+<td>2001</td>
+<td><code>JudgementFailed</code></td>
+<td>有效数据判定 NG；保留测量，处理结果、执行完成回调后继续</td>
+</tr>
+<tr>
+<td>3000</td>
+<td><code>Faulted</code></td>
+<td>运行故障；交付故障结果后停止，不调用完成回调</td>
+</tr>
+<tr>
+<td>4000</td>
+<td><code>Cancelled</code></td>
+<td>主动取消，未形成完整业务结果；不伪造 NG 或确认完成</td>
+</tr>
+</tbody>
+</table>
+<p><code>Success</code> 不代表工件已经经过合格判定，采样或示教流程也可以正常完成</p>
+<h2 id="汇总与来源">汇总与来源</h2>
+<ul>
+<li>节点码通过显式映射汇总，不能强制转换或按数值大小排序。</li>
+<li>优先级为：已知运行故障、取消、未知结果、必要业务无结果、判定 NG、正常成功。</li>
+<li>同类多个根因按本轮执行计划的拓扑顺序选取，避免结果受并行完成顺序影响。</li>
+<li><code>SourceNodeId</code> 指向主原因节点。<code>Nodes</code> 保留各节点的具体结果码、说明和本轮数据；依赖跳过的节点保留原始来源。</li>
+<li>条件未选中及其依赖跳过汇总为 <code>Success</code>，不因此产生业务无结果；其他实际执行分支报告的无结果或 NG 仍然保留。</li>
+<li>多端口节点的原图、空列表等可以继续有效。只有连接到缺失业务输出的消费者跳过，不把整个定位节点的全部下游都跳过。</li>
+</ul>
+<p>同一轮同时出现 <code>NoResult</code> 与 <code>JudgementFailed</code> 时，汇总为 <code>NoResult</code>，表示必要检测数据不完整；不是把该轮视为合格。NG 节点的结果码及有效测量仍保存在 <code>Nodes</code> 中，需要统计全部不合格原因时应遍历节点结果，不能只比较管道码是否等于 <code>JudgementFailed</code>。<code>IsCompleted()</code> 仅表示允许进入正常结果处理和完成回调</p>
+<h2 id="连续运行和脚本">连续运行和脚本</h2>
+<p>成功、业务无结果、判定 NG 均走 <code>HandleResultAsync → CompleteAsync → 下一轮</code>。运行器使用 <code>ResultCode.IsCompleted()</code> 统一分类，不能把“不是 Success”当作停机条件。</p>
+<pre><code class="lang-csharp">public async Task HandleResultAsync(VisionRunResult result, CancellationToken token = default) {
+    switch (result.ResultCode) {
+        case VisionRunResultCode.Success:
+            // 按本轮有效业务数据回写正常结果
+            break;
+        case VisionRunResultCode.NoResult:
+        case VisionRunResultCode.JudgementFailed:
+            // 回写未找到或 NG，不发送无效坐标
+            break;
+        case VisionRunResultCode.Faulted:
+            // 回写故障，运行器随后停止
+            break;
+        default:
+            // 未识别结果不得默认放行
+            break;
+    }
+}
+</code></pre>
+<p><code>CompleteAsync</code> 只在业务结果处理正常返回后调用。结果处理或完成回调失败仍停止循环，不能在 <code>finally</code> 中无条件确认完成。故障结果保留原有带期限的独立交付令牌，避免相机故障直接取消故障回写。</p>
+<p>脚本试跑与连续运行采用相同分类。回调应读取传入的本轮结果：<code>result.GetNodeResultCode(&quot;定位&quot;)</code>、<code>result.GetNode(&quot;定位&quot;)</code> 或已有的安全取值方法。</p>
+<h2 id="拒绝与取消">拒绝与取消</h2>
+<ul>
+<li>管道已连续运行时，额外触发或运行到节点抛出 <code>VisionPipelineBusyException</code>，不产生假的工件检测结果，也不影响原循环。</li>
+<li>无效管道或已删除节点沿用入口异常契约，不放入执行结果码。</li>
+<li>主动取消保留 <code>OperationCanceledException</code> 契约，不保证向脚本交付一份 <code>Cancelled</code> 结果；实际被取消的节点标记取消，未到达节点清除旧结果状态，不确认本轮正常完成。</li>
+<li>相机明确断线时，故障结果包含已知来源节点及 <code>DeviceError</code>，不被随后发生的取消覆盖。</li>
+</ul>
+<h2 id="界面与发布">界面与发布</h2>
+<p>管道统计使用 <code>LastResultCode</code>。Web 发布帧和 Web SDK 使用数值 <code>resultCode</code>；SDK 将 <code>NoResult</code> 和 <code>JudgementFailed</code> 显示为 NG，将故障等显示为异常。</p>
+<p>条件未选中的发布分支不发帧；业务无结果导致发布节点被跳过时仍发布本轮状态，不把上一轮图像冒充为本轮图像。有效分支的测量和图像仍按现有生命周期管理。</p>
+<h2 id="验证">验证</h2>
+<p>核心回归包括：正常 → 未找到 → 正常的不中断交付、条件跳过仍成功、有效分支继续、NG 测量可读、旧坐标失效、并行故障来源稳定、真实设备故障仍停止，以及 Web 状态和图像更新。</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.VisionFlow/VisionFlowResultCodes.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

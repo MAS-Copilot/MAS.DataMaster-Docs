@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Nodes_ObjectDetectionNode" data-uid="MAS.VisionFlow.Nodes.ObjectDetectionNode" class="text-break">
-Class ObjectDetectionNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L28"><i class="bi bi-code-slash"></i></a>
+Class ObjectDetectionNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -203,6 +203,9 @@ public sealed class ObjectDetectionNode : OnnxLocateNode&lt;OnnxDetector&gt;, IN
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ResultCode">VisionNode.ResultCode</a>
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetLastOutput_System_Int32_">VisionNode.GetLastOutput(int)</a>
@@ -347,7 +350,7 @@ public sealed class ObjectDetectionNode : OnnxLocateNode&lt;OnnxDetector&gt;, IN
 
   <h3 id="MAS_VisionFlow_Nodes_ObjectDetectionNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.ObjectDetectionNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
   ObjectDetectionNode(VisionNodeServices)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.ObjectDetectionNode.html">ObjectDetectionNode</a> 新实例</p>
@@ -382,7 +385,7 @@ public sealed class ObjectDetectionNode : OnnxLocateNode&lt;OnnxDetector&gt;, IN
 
   <h3 id="MAS_VisionFlow_Nodes_ObjectDetectionNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.ObjectDetectionNode.TYPE_KEY">
   TYPE_KEY
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点类型键</p>
@@ -451,7 +454,7 @@ public IReadOnlyList&lt;DetectionResultRow&gt; LastRows { get; set; }</code></pr
 
   <h3 id="MAS_VisionFlow_Nodes_ObjectDetectionNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.ObjectDetectionNode.TypeKey">
   TypeKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
@@ -487,7 +490,7 @@ public IReadOnlyList&lt;DetectionResultRow&gt; LastRows { get; set; }</code></pr
 
   <h3 id="MAS_VisionFlow_Nodes_ObjectDetectionNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.ObjectDetectionNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -522,8 +525,9 @@ public IReadOnlyList&lt;DetectionResultRow&gt; LastRows { get; set; }</code></pr
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
-    <dd><p>执行失败</p>
-</dd>
+    <dd></dd>
+    <dt><span class="xref">VisionNodeFaultException</span></dt>
+    <dd></dd>
   </dl>
 
 
@@ -532,7 +536,7 @@ public IReadOnlyList&lt;DetectionResultRow&gt; LastRows { get; set; }</code></pr
 
   <h3 id="MAS_VisionFlow_Nodes_ObjectDetectionNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.ObjectDetectionNode.GetResultData">
   GetResultData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
@@ -565,7 +569,7 @@ public IReadOnlyList&lt;DetectionResultRow&gt; LastRows { get; set; }</code></pr
 
   <h3 id="MAS_VisionFlow_Nodes_ObjectDetectionNode_LoadModel_System_Byte___MAS_Vision_InferenceDevice_" data-uid="MAS.VisionFlow.Nodes.ObjectDetectionNode.LoadModel(System.Byte[],MAS.Vision.InferenceDevice)">
   LoadModel(byte[], InferenceDevice)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L114"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>加载推理器</p>
@@ -613,7 +617,7 @@ public IReadOnlyList&lt;DetectionResultRow&gt; LastRows { get; set; }</code></pr
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L28" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/DeepLearning/ObjectDetectionNode.cs/#L27" class="edit-link">Edit this page</a>
         </div>
 
 

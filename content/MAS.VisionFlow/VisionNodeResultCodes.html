@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>VisionFlow 节点结果码约定 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="VisionFlow 节点结果码约定 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.VisionFlow/VisionNodeResultCodes.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="visionflow-节点结果码约定">VisionFlow 节点结果码约定</h1>
+
+<h2 id="结果结构与缓存">结果结构与缓存</h2>
+<p>节点通过上下文报告结果，执行器统一更新执行状态、发布有效输出，并组装现有节点结果对象。管道汇总见<a href="VisionFlowResultCodes.html">管道结果码约定</a>。</p>
+<h2 id="结果码及管道映射">结果码及管道映射</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>节点结果码</th>
+<th>管道结果码</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>Unknown</code></td>
+<td><code>Unknown</code></td>
+<td>尚未执行、执行中或无法识别，不作为有效成功依据</td>
+</tr>
+<tr>
+<td>1000</td>
+<td><code>Success</code></td>
+<td><code>Success</code></td>
+<td>正常完成；不影响业务有效性的警告和正常采样也属于此类</td>
+</tr>
+<tr>
+<td>1001</td>
+<td><code>ConditionNotSelected</code></td>
+<td><code>Success</code></td>
+<td>条件未选中及其依赖跳过</td>
+</tr>
+<tr>
+<td>2000</td>
+<td><code>NoResult</code></td>
+<td><code>NoResult</code></td>
+<td>无法进一步分类的必要业务结果缺失</td>
+</tr>
+<tr>
+<td>2001</td>
+<td><code>JudgementFailed</code></td>
+<td><code>JudgementFailed</code></td>
+<td>有效数据未通过已配置的业务规则</td>
+</tr>
+<tr>
+<td>2002</td>
+<td><code>TargetNotFound</code></td>
+<td><code>NoResult</code></td>
+<td>必要目标或匹配未找到</td>
+</tr>
+<tr>
+<td>2003</td>
+<td><code>InsufficientFeatures</code></td>
+<td><code>NoResult</code></td>
+<td>有效点、角点等数量不足</td>
+</tr>
+<tr>
+<td>2004</td>
+<td><code>FitFailed</code></td>
+<td><code>NoResult</code></td>
+<td>合法配置及输入下没有求得有效解</td>
+</tr>
+<tr>
+<td>2005</td>
+<td><code>GeometryUnavailable</code></td>
+<td><code>NoResult</code></td>
+<td>本轮必要几何区域或交点不存在</td>
+</tr>
+<tr>
+<td>3000</td>
+<td><code>ConfigurationError</code></td>
+<td><code>Faulted</code></td>
+<td>连线、参数、模型或标定等配置无效</td>
+</tr>
+<tr>
+<td>3001</td>
+<td><code>InputError</code></td>
+<td><code>Faulted</code></td>
+<td>输入类型或上游输出违反契约</td>
+</tr>
+<tr>
+<td>3002</td>
+<td><code>DeviceError</code></td>
+<td><code>Faulted</code></td>
+<td>设备不可用、停流或通信失败</td>
+</tr>
+<tr>
+<td>3003</td>
+<td><code>AcquisitionTimeout</code></td>
+<td><code>Faulted</code></td>
+<td>未取得本轮图像，尚无明确断线证据</td>
+</tr>
+<tr>
+<td>3004</td>
+<td><code>ExecutionError</code></td>
+<td><code>Faulted</code></td>
+<td>未分类的执行异常</td>
+</tr>
+<tr>
+<td>4000</td>
+<td><code>Cancelled</code></td>
+<td><code>Cancelled</code></td>
+<td>主动中断，未形成完整业务结果</td>
+</tr>
+</tbody>
+</table>
+<p>映射在 <code>VisionResultCodeExtensions</code> 中显式定义，不能强制转换。初始化不是单独的原因码：阶段由既有执行状态记录，例如初始化相机断线仍为 <code>DeviceError</code>，未知初始化异常为 <code>ExecutionError</code>。</p>
+<h2 id="报告方式">报告方式</h2>
+<ul>
+<li>正常算法结束且没有报告其他结果时，由执行器记录 <code>Success</code>。</li>
+<li><code>context.ReportResult(code, message)</code> 报告业务无结果或已知故障，并保留本轮有效输出。</li>
+<li><code>context.ReportJudgementFailed(message, isDownstreamSkipped)</code> 报告 NG，可阻止依赖下游；本节点测量数据仍保留。</li>
+<li><code>context.Skip(message, code)</code> 跳过本节点，默认表示条件未选中；业务跳过必须提供明确原因码。故障和取消不得伪装成跳过。</li>
+<li>未找到、特征不足、拟合无结果和业务 NG 不通过异常控制执行。SDK、配置边界和未预期异常仍有故障兜底，由执行器转换为结果码，不能吞掉后当作成功。</li>
+</ul>
+<h2 id="执行状态依赖与有效数据">执行状态、依赖与有效数据</h2>
+<p><code>Status</code> 表示是否执行、警告、跳过等，<code>ResultCode</code> 表示本轮业务原因。保留依据状态计算的 <code>IsSkipped</code></p>
+<ul>
+<li>上游明确业务无结果且某个连接的输出没有产出时，需要该输入的下游跳过。原图和合法空列表等仍有效，不会被一并丢弃。</li>
+<li>已连接的可选跟随输入由节点按当前配置判断是否必要，例如尚未设置跟随基准时不能误当成正在跟随。</li>
+<li>因上游跳过的节点继承原始结果码及 <code>SourceNodeId</code>，不额外定义笼统的 Skipped 结果码。</li>
+<li><code>Status=Skipped</code> 表示没有完成本节点处理，可以是条件未选中、本节点自身几何不可用，或被上游原因阻断。业务含义读取 <code>ResultCode</code>；在本轮执行结果中，<code>SourceNodeId</code> 等于自身 <code>NodeId</code> 表示本节点产生原因，指向其他节点表示原因来自上游。追溯来源应使用本轮执行结果。</li>
+<li>未连接的必要输入或成功节点漏写必要输出属于故障，不自动当作正常未找到。</li>
+<li>NG 的测量值仍可读取；无结果时数量、Found 等诊断项可以读取，不存在的坐标不可读取。</li>
+<li><code>VisionResultValue.IsAvailable</code> 标记单个数据项是否有效，<code>TryGetValue</code>、<code>GetValue</code> 和 Web 发布均遵守它。故障、跳过和取消不提供旧测量值，失败或未到达节点撤下旧输出。</li>
+</ul>
+<h2 id="脚本读取">脚本读取</h2>
+<p>本轮回调使用传入的管道结果：</p>
+<pre><code class="lang-csharp">var code = result.GetNodeResultCode(&quot;定位&quot;);
+if (code == VisionNodeResultCode.Success
+    &amp;&amp; result.TryGetValue&lt;double&gt;(&quot;定位&quot;, &quot;X&quot;, out var x)) {
+    // 使用本轮有效坐标。
+}
+</code></pre>
+<p>外部查询最近的结果码可以使用 <code>_vision.GetNodeResultCode(&quot;定位&quot;)</code>，该方法只读基类枚举字段，不生成数据字典或读取图像。它表示最近状态，不能替代脚本回调中所属轮次的结果。</p>
+<h2 id="分类边界与扩展">分类边界与扩展</h2>
+<ul>
+<li>定位、模板匹配未找到必要目标：<code>TargetNotFound</code>；缺陷检测得到空列表可以正常成功。</li>
+<li>几何拟合所需特征不足：<code>InsufficientFeatures</code>；合法列表数量不符合产品规则：<code>JudgementFailed</code>。</li>
+<li>随动 ROI 移出图像、确实需要交点但两线平行：<code>GeometryUnavailable</code>；静态 ROI 配置无效：<code>ConfigurationError</code>。只需要夹角的分支不因没有交点而失败。</li>
+<li>示教基准尚未取得时可以报告 <code>NoResult</code>，保留必要的示教输入；缺少运行必需模型或标定资源属于配置故障。</li>
+<li><code>NoResult</code>、<code>ExecutionError</code> 仅作为各自类别的兜底。新增码时必须同步定义输出有效性、管道映射和运行处置，不能仅增加枚举成员。</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/content/MAS.VisionFlow/VisionNodeResultCodes.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

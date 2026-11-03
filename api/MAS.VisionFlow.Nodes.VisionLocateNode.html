@@ -163,7 +163,19 @@ public abstract class VisionLocateNode : VisionNode, INotifyPropertyChanged, INo
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsDisposed">VisionNode.IsDisposed</a>
     </div>
     <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ResultCode">VisionNode.ResultCode</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_RequiresInputValue_System_Int32_">VisionNode.RequiresInputValue(int)</a>
+    </div>
+    <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_GetParameterWriteError_MAS_VisionFlow_Nodes_VisionParameterDescriptor_">VisionNode.GetParameterWriteError(VisionParameterDescriptor)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_DescribeParameter_MAS_VisionFlow_Nodes_VisionParameterDescriptor_">VisionNode.DescribeParameter(VisionParameterDescriptor)</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_TryWriteParameter_MAS_VisionFlow_Nodes_VisionParameterDescriptor_System_Object_System_String__">VisionNode.TryWriteParameter(VisionParameterDescriptor, object, out string)</a>
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
@@ -417,7 +429,7 @@ public abstract class VisionLocateNode : VisionNode, INotifyPropertyChanged, INo
   <h2 id="MAS_VisionFlow_Nodes_VisionLocateNode_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>原图直通不复制，下游算法接它永远拿到干净的图；标注图只供查看。
 派生类须在构造函数末尾调用 <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_AddAnnotatedOutput">AddAnnotatedOutput()</a>。
-没找到目标时不写定位结果（下游取不到输入会报输入无效），本节点报告警告</p>
+没找到目标时不写定位结果（依赖定位的下游跳过），本节点报告警告</p>
 </div>
 
 

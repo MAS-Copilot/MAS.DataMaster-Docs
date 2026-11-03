@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_VisionPipeline" data-uid="MAS.VisionFlow.VisionPipeline" class="text-break">
-Class VisionPipeline  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L48"><i class="bi bi-code-slash"></i></a>
+Class VisionPipeline  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -176,7 +176,7 @@ Class VisionPipeline  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_VisionFlow_VisionPipeline_Code" data-uid="MAS.VisionFlow.VisionPipeline.Code">
   Code
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取管道脚本代码（触发信号、结果处理）；修改走 <a class="xref" href="MAS.VisionFlow.VisionFlowRuntime.html#MAS_VisionFlow_VisionFlowRuntime_UpdatePipelineCode_MAS_VisionFlow_VisionPipeline_System_String_">UpdatePipelineCode(VisionPipeline, string)</a></p>
@@ -208,7 +208,7 @@ Class VisionPipeline  <a class="header-action link-secondary" title="View source
 
   <h3 id="MAS_VisionFlow_VisionPipeline_Id" data-uid="MAS.VisionFlow.VisionPipeline.Id">
   Id
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取管道标识，脚本类名由它生成</p>
@@ -273,7 +273,7 @@ public bool IsInitialized { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionPipeline_IsRunning" data-uid="MAS.VisionFlow.VisionPipeline.IsRunning">
   IsRunning
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L126"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否处于运行或启动、停止过程中</p>
@@ -367,6 +367,39 @@ public string? LastError { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_VisionPipeline_LastResultCode_" data-uid="MAS.VisionFlow.VisionPipeline.LastResultCode*"></a>
+
+  <h3 id="MAS_VisionFlow_VisionPipeline_LastResultCode" data-uid="MAS.VisionFlow.VisionPipeline.LastResultCode">
+  LastResultCode
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最近一次完整执行的汇总结果码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public VisionRunResultCode? LastResultCode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.VisionRunResultCode.html">VisionRunResultCode</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_VisionPipeline_LastRunTime_" data-uid="MAS.VisionFlow.VisionPipeline.LastRunTime*"></a>
 
   <h3 id="MAS_VisionFlow_VisionPipeline_LastRunTime" data-uid="MAS.VisionFlow.VisionPipeline.LastRunTime">
@@ -400,44 +433,11 @@ public DateTime? LastRunTime { get; set; }</code></pre>
 
 
 
-  <a id="MAS_VisionFlow_VisionPipeline_LastSucceeded_" data-uid="MAS.VisionFlow.VisionPipeline.LastSucceeded*"></a>
-
-  <h3 id="MAS_VisionFlow_VisionPipeline_LastSucceeded" data-uid="MAS.VisionFlow.VisionPipeline.LastSucceeded">
-  LastSucceeded
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取最近一次执行是否成功</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-public bool? LastSucceeded { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_VisionFlow_VisionPipeline_Name_" data-uid="MAS.VisionFlow.VisionPipeline.Name*"></a>
 
   <h3 id="MAS_VisionFlow_VisionPipeline_Name" data-uid="MAS.VisionFlow.VisionPipeline.Name">
   Name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取管道名称，外部按名称触发；改名走 <a class="xref" href="MAS.VisionFlow.VisionFlowRuntime.html#MAS_VisionFlow_VisionFlowRuntime_TryRenamePipeline_MAS_VisionFlow_VisionPipeline_System_String_System_String__">TryRenamePipeline(VisionPipeline, string, out string?)</a></p>
@@ -469,7 +469,7 @@ public bool? LastSucceeded { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionPipeline_NodeCount" data-uid="MAS.VisionFlow.VisionPipeline.NodeCount">
   NodeCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L141"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点数量</p>
@@ -501,7 +501,7 @@ public bool? LastSucceeded { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionPipeline_Nodes" data-uid="MAS.VisionFlow.VisionPipeline.Nodes">
   Nodes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L131"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取管道内的节点，按拓扑顺序排列</p>
@@ -602,7 +602,7 @@ public double? RunsPerSecond { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionPipeline_StartNode" data-uid="MAS.VisionFlow.VisionPipeline.StartNode">
   StartNode
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L161"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取起始节点（第一个无上游的节点）</p>
@@ -671,7 +671,7 @@ public VisionPipelineState State { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionPipeline_HasRunWithin_System_TimeSpan_" data-uid="MAS.VisionFlow.VisionPipeline.HasRunWithin(System.TimeSpan)">
   HasRunWithin(TimeSpan)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L168"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断最近一次完整运行（单次触发或连续运行，不含“运行到此节点”）是否在指定时间内</p>
@@ -713,7 +713,7 @@ public VisionPipelineState State { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_VisionPipeline_ToString" data-uid="MAS.VisionFlow.VisionPipeline.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L249"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
@@ -746,7 +746,7 @@ public VisionPipelineState State { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L48" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Runtime/VisionPipeline.cs/#L23" class="edit-link">Edit this page</a>
         </div>
 
 

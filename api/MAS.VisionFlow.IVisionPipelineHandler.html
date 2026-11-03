@@ -185,7 +185,7 @@ Interface IVisionPipelineHandler  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_VisionFlow_IVisionPipelineHandler_CompleteAsync_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.IVisionPipelineHandler.CompleteAsync(System.Threading.CancellationToken)">
   CompleteAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>本轮结束（例如复位触发位）</p>
@@ -224,10 +224,10 @@ Interface IVisionPipelineHandler  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_VisionFlow_IVisionPipelineHandler_HandleResultAsync_MAS_VisionFlow_VisionRunResult_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.IVisionPipelineHandler.HandleResultAsync(MAS.VisionFlow.VisionRunResult,System.Threading.CancellationToken)">
   HandleResultAsync(VisionRunResult, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>处理本次执行结果（例如写回 PLC）</p>
+  <div class="markdown level1 summary"><p>处理本次执行结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -258,6 +258,10 @@ Interface IVisionPipelineHandler  <a class="header-action link-secondary" title=
 
 
 
+  <h4 class="section" id="MAS_VisionFlow_IVisionPipelineHandler_HandleResultAsync_MAS_VisionFlow_VisionRunResult_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>失败结果使用独立且带期限的取消令牌：设备故障不会直接取消已开始的失败回写，主动停止会取消它。
+实现应将令牌传给异步 I/O，并在取消后退出；回调正常返回才视为交付完成</p>
+</div>
 
 
 
@@ -269,7 +273,7 @@ Interface IVisionPipelineHandler  <a class="header-action link-secondary" title=
   <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断本轮是否执行管道（例如读取 PLC 触发位）</p>
+  <div class="markdown level1 summary"><p>判断本轮是否执行管道</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

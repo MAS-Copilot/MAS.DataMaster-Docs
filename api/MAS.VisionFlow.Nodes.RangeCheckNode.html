@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_Nodes_RangeCheckNode" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode" class="text-break">
-Class RangeCheckNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L22"><i class="bi bi-code-slash"></i></a>
+Class RangeCheckNode  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -138,6 +138,9 @@ public sealed class RangeCheckNode : VisionNode, INotifyPropertyChanged, INotify
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_IsInitialized">VisionNode.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_ResultCode">VisionNode.ResultCode</a>
     </div>
     <div>
       <a class="xref" href="MAS.VisionFlow.Nodes.VisionNode.html#MAS_VisionFlow_Nodes_VisionNode_InitializeAsync_System_Threading_CancellationToken_">VisionNode.InitializeAsync(CancellationToken)</a>
@@ -275,7 +278,7 @@ public sealed class RangeCheckNode : VisionNode, INotifyPropertyChanged, INotify
 
 
   <h2 id="MAS_VisionFlow_Nodes_RangeCheckNode_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>默认不合格只报警告（管道继续，结果数据里 IsOk 为 false）；开启中止则管道失败</p>
+  <div class="markdown level0 remarks"><p>不合格报告业务 NG，保留测量值；可配置跳过依赖下游，连续运行仍执行完成回调并继续</p>
 </div>
 
 
@@ -287,7 +290,7 @@ public sealed class RangeCheckNode : VisionNode, INotifyPropertyChanged, INotify
 
   <h3 id="MAS_VisionFlow_Nodes_RangeCheckNode__ctor_MAS_VisionFlow_Nodes_VisionNodeServices_" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode.#ctor(MAS.VisionFlow.Nodes.VisionNodeServices)">
   RangeCheckNode(VisionNodeServices)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造函数，初始化 <a class="xref" href="MAS.VisionFlow.Nodes.RangeCheckNode.html">RangeCheckNode</a> 新实例</p>
@@ -322,7 +325,7 @@ public sealed class RangeCheckNode : VisionNode, INotifyPropertyChanged, INotify
 
   <h3 id="MAS_VisionFlow_Nodes_RangeCheckNode_TYPE_KEY" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode.TYPE_KEY">
   TYPE_KEY
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>节点类型键</p>
@@ -352,41 +355,6 @@ public sealed class RangeCheckNode : VisionNode, INotifyPropertyChanged, INotify
 
   <h2 class="section" id="properties">Properties
 </h2>
-
-
-  <a id="MAS_VisionFlow_Nodes_RangeCheckNode_IsAbortOnFailure_" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode.IsAbortOnFailure*"></a>
-
-  <h3 id="MAS_VisionFlow_Nodes_RangeCheckNode_IsAbortOnFailure" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode.IsAbortOnFailure">
-  IsAbortOnFailure
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置不合格时是否中止管道</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-[JsonProperty]
-[VisionParameter(&quot;AbortWhenOutOfRange&quot;, DescriptionKey = &quot;AbortWhenOutOfRangeDescription&quot;)]
-public bool IsAbortOnFailure { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
 
 
   <a id="MAS_VisionFlow_Nodes_RangeCheckNode_IsMaximumEnabled_" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode.IsMaximumEnabled*"></a>
@@ -440,6 +408,41 @@ public bool IsMaximumEnabled { get; set; }</code></pre>
 [JsonProperty]
 [VisionParameter(&quot;UseLowerLimit&quot;)]
 public bool IsMinimumEnabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_RangeCheckNode_IsSkipDownstreamOnFailure_" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode.IsSkipDownstreamOnFailure*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_RangeCheckNode_IsSkipDownstreamOnFailure" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode.IsSkipDownstreamOnFailure">
+  IsSkipDownstreamOnFailure
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置不合格时是否跳过依赖下游</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+[JsonProperty]
+[VisionParameter(&quot;SkipDownstreamOnRangeNg&quot;, DescriptionKey = &quot;SkipDownstreamOnRangeNgDescription&quot;)]
+public bool IsSkipDownstreamOnFailure { get; set; }</code></pre>
   </div>
 
 
@@ -533,7 +536,7 @@ public double Minimum { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_RangeCheckNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode.TypeKey">
   TypeKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点类型键，持久化时据此重建节点</p>
@@ -569,7 +572,7 @@ public double Minimum { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_RangeCheckNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L83"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -604,8 +607,9 @@ public double Minimum { get; set; }</code></pre>
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="MAS.SharedLibrary.VisionExecutionFailureException.html">VisionExecutionFailureException</a></dt>
-    <dd><p>执行失败</p>
-</dd>
+    <dd></dd>
+    <dt><span class="xref">VisionNodeFaultException</span></dt>
+    <dd></dd>
   </dl>
 
 
@@ -614,7 +618,7 @@ public double Minimum { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_RangeCheckNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.RangeCheckNode.GetResultData">
   GetResultData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
@@ -647,7 +651,7 @@ public double Minimum { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L22" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Geometry/RangeCheckNode.cs/#L21" class="edit-link">Edit this page</a>
         </div>
 
 

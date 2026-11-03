@@ -150,21 +150,6 @@
 <td>等待触发出图的时间，范围 10 ~ 60000，相机会再加上曝光时间。仅触发模式显示</td>
 </tr>
 <tr>
-<td>亮度 / 对比度 / 清晰度 / 饱和度</td>
-<td>相机当前值</td>
-<td>范围 0 ~ 100，相机打开后才可调。打开相机时读回相机当前值，驱动不支持时提示「不受支持的操作」</td>
-</tr>
-<tr>
-<td>曝光</td>
-<td>相机当前值</td>
-<td>在模块卡片上直接调整，相机打开后可用。支持小数；MVS 单位为微秒（μs），VideoCapture 单位由驱动决定，可能为负值。手动调整前先在相机配置中关闭自动曝光。编辑完成离开输入框后下发，失败时恢复实际值；随工程保存，重新打开时在开流前恢复</td>
-</tr>
-<tr>
-<td>增益</td>
-<td>相机当前值</td>
-<td>在模块卡片上直接调整，相机打开后可用。支持小数，单位和范围由相机决定。手动调整前先在相机配置中关闭自动增益。编辑完成离开输入框后下发，失败时恢复实际值；随工程保存，重新打开时在开流前恢复</td>
-</tr>
-<tr>
 <td>相机旋转</td>
 <td>无旋转</td>
 <td>可选 <strong>右 90°</strong>、<strong>左 90°</strong>、<code>180°</code>、<strong>无旋转</strong>，相机打开后才可调。驱动不支持时提示并恢复原值</td>
@@ -197,7 +182,73 @@
 <h5>Note</h5>
 <p><code>VideoCapture</code> 驱动不支持真正的软触发，选<strong>软触发</strong>时每次执行丢弃在途帧后取新帧，属于尽力而为；也不支持外部触发</p>
 </div>
+<h3 id="videocapture通用视频捕获">VideoCapture（通用视频捕获）</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>亮度 / 对比度 / 清晰度 / 饱和度</td>
+<td>相机当前值</td>
+<td>范围与步长由驱动报告（如亮度 -64 ~ 64、对比度 0 ~ 100），打开相机时读回。驱动不支持时提示「设备不支持 …」</td>
+</tr>
+<tr>
+<td>曝光</td>
+<td>相机当前值</td>
+<td>单位 log2(s)，可为负，范围由驱动报告。手动调整前先在相机配置中关闭自动曝光</td>
+</tr>
+<tr>
+<td>增益</td>
+<td>相机当前值</td>
+<td>驱动原始值，范围由驱动报告。手动调整前先在相机配置中关闭自动增益</td>
+</tr>
+<tr>
+<td>自动曝光 / 自动增益</td>
+<td>相机当前值</td>
+<td>驱动支持时才显示，可选 <code>Off</code>、<code>Continuous</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="hikmvs海康-mvs-工业相机">HikMvs（海康 MVS 工业相机）</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>曝光</td>
+<td>相机当前值</td>
+<td>节点 <code>ExposureTime</code>，单位 μs，范围由相机报告。自动曝光不为 <code>Off</code> 时只读</td>
+</tr>
+<tr>
+<td>增益</td>
+<td>相机当前值</td>
+<td>节点 <code>Gain</code>，单位与范围由相机报告。自动增益不为 <code>Off</code> 时只读</td>
+</tr>
+<tr>
+<td>亮度 / 对比度 / 清晰度 / 饱和度</td>
+<td>相机当前值</td>
+<td>同名节点，范围由相机报告。型号未实现时不支持</td>
+</tr>
+<tr>
+<td>自动曝光 / 自动增益</td>
+<td>相机当前值</td>
+<td>节点 <code>ExposureAuto</code>、<code>GainAuto</code>，可选值为相机报告的枚举项</td>
+</tr>
+</tbody>
+</table>
 <h2 id="参数访问">参数访问</h2>
+<p>普通参数可在两轮之间修改；标为「需停管道」的参数先停止管道，驱动和采集模式还需先关闭相机。<a href="../Parameters.html">调用方式与限制</a></p>
+<h3 id="通用参数">通用参数</h3>
 <table>
 <thead>
 <tr>
@@ -209,48 +260,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>Brightness</code></td>
-<td>亮度</td>
-<td>short</td>
-<td>-32768～32767</td>
-<td>Get/Set</td>
-</tr>
-<tr>
-<td><code>Contrast</code></td>
-<td>对比度</td>
-<td>short</td>
-<td>-32768～32767</td>
-<td>Get/Set</td>
-</tr>
-<tr>
-<td><code>Sharpness</code></td>
-<td>清晰度</td>
-<td>short</td>
-<td>-32768～32767</td>
-<td>Get/Set</td>
-</tr>
-<tr>
-<td><code>Saturation</code></td>
-<td>饱和度</td>
-<td>short</td>
-<td>-32768～32767</td>
-<td>Get/Set</td>
-</tr>
-<tr>
-<td><code>Exposure</code></td>
-<td>曝光</td>
-<td>double?</td>
-<td>驱动规定；null 保留相机配置</td>
-<td>Get/Set</td>
-</tr>
-<tr>
-<td><code>Gain</code></td>
-<td>增益</td>
-<td>double?</td>
-<td>驱动规定；null 保留相机配置</td>
-<td>Get/Set</td>
-</tr>
 <tr>
 <td><code>AcquisitionMode</code></td>
 <td>采集模式</td>
@@ -267,7 +276,90 @@
 </tr>
 </tbody>
 </table>
-<p>普通参数可在两轮之间修改；标为「需停管道」的参数先停止管道，驱动和采集模式还需先关闭相机。<a href="../Parameters.html">调用方式与限制</a></p>
+<h3 id="videocapture通用视频捕获-1">VideoCapture（通用视频捕获）</h3>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Brightness</code> / <code>Contrast</code> / <code>Sharpness</code> / <code>Saturation</code></td>
+<td>亮度 / 对比度 / 清晰度 / 饱和度</td>
+<td>double?</td>
+<td>驱动报告的最小～最大值与步长</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>Exposure</code></td>
+<td>曝光</td>
+<td>double?</td>
+<td>驱动范围，单位 log2(s)，可为负</td>
+<td>Get/Set；自动曝光开启时只读</td>
+</tr>
+<tr>
+<td><code>Gain</code></td>
+<td>增益</td>
+<td>double?</td>
+<td>驱动范围</td>
+<td>Get/Set；自动增益开启时只读</td>
+</tr>
+<tr>
+<td><code>ExposureAuto</code> / <code>GainAuto</code></td>
+<td>自动曝光 / 自动增益</td>
+<td>枚举</td>
+<td><code>Off</code>、<code>Continuous</code>；设备不支持时不可读写</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hikmvs海康-mvs-工业相机-1">HikMvs（海康 MVS 工业相机）</h3>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Exposure</code></td>
+<td>曝光</td>
+<td>double?</td>
+<td><code>ExposureTime</code>，单位 μs，范围由相机决定</td>
+<td>Get/Set；自动曝光不为 <code>Off</code> 时只读</td>
+</tr>
+<tr>
+<td><code>Gain</code></td>
+<td>增益</td>
+<td>double?</td>
+<td><code>Gain</code>，范围由相机决定</td>
+<td>Get/Set；自动增益不为 <code>Off</code> 时只读</td>
+</tr>
+<tr>
+<td><code>Brightness</code> / <code>Contrast</code> / <code>Sharpness</code> / <code>Saturation</code></td>
+<td>亮度 / 对比度 / 清晰度 / 饱和度</td>
+<td>double?</td>
+<td>同名节点，范围由相机决定；型号未实现时不可读写</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ExposureAuto</code> / <code>GainAuto</code></td>
+<td>自动曝光 / 自动增益</td>
+<td>枚举</td>
+<td><code>ExposureAuto</code>、<code>GainAuto</code>，取相机报告的枚举项</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
 <h2 id="典型搭配">典型搭配</h2>
 <table>
 <thead>
