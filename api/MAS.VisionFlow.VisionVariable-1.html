@@ -147,6 +147,12 @@ Class VisionVariable&lt;T&gt;  <a class="header-action link-secondary" title="Vi
       <a class="xref" href="MAS.VisionFlow.VisionVariable.html#MAS_VisionFlow_VisionVariable_CurrentValueText">VisionVariable.CurrentValueText</a>
     </div>
     <div>
+      <a class="xref" href="MAS.VisionFlow.VisionVariable.html#MAS_VisionFlow_VisionVariable_ValueChanged">VisionVariable.ValueChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="MAS.VisionFlow.VisionVariable.html#MAS_VisionFlow_VisionVariable_Subscribe_System_Action_MAS_VisionFlow_VisionVariableValueChangedEventArgs__">VisionVariable.Subscribe(Action&lt;VisionVariableValueChangedEventArgs&gt;)</a>
+    </div>
+    <div>
       <a class="xref" href="MAS.VisionFlow.VisionVariable.html#MAS_VisionFlow_VisionVariable_TrySetValue_System_String_System_String__">VisionVariable.TrySetValue(string, out string)</a>
     </div>
     <div>
@@ -186,7 +192,7 @@ Class VisionVariable&lt;T&gt;  <a class="header-action link-secondary" title="Vi
 
 
   <h2 id="MAS_VisionFlow_VisionVariable_1_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>在处理器构造函数里取一次并存为字段，之后每轮直接读写 <a class="xref" href="MAS.VisionFlow.VisionVariable-1.html#MAS_VisionFlow_VisionVariable_1_Value">Value</a>：不查表、不装箱、不分配内存。
+  <div class="markdown level0 remarks"><p>在处理器构造函数里取一次并存为字段，之后每轮直接读写 <a class="xref" href="MAS.VisionFlow.VisionVariable-1.html#MAS_VisionFlow_VisionVariable_1_Value">Value</a>：不查表；没有值变化订阅时不装箱、不分配内存。
 管道执行时读取的是触发那一刻的快照（<a class="xref" href="MAS.VisionFlow.VisionRunResult.html#MAS_VisionFlow_VisionRunResult_Variables">Variables</a>），之后再改 <a class="xref" href="MAS.VisionFlow.VisionVariable-1.html#MAS_VisionFlow_VisionVariable_1_Value">Value</a> 不影响本轮</p>
 </div>
 
@@ -199,7 +205,7 @@ Class VisionVariable&lt;T&gt;  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_VisionFlow_VisionVariable_1_CurrentValue" data-uid="MAS.VisionFlow.VisionVariable`1.CurrentValue">
   CurrentValue
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Variables/VisionVariableOfT.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Variables/VisionVariableOfT.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前值（装箱，供界面、快照使用；脚本请用 <a class="xref" href="MAS.VisionFlow.VisionVariable-1.html#MAS_VisionFlow_VisionVariable_1_Value">Value</a>）</p>
@@ -231,7 +237,7 @@ Class VisionVariable&lt;T&gt;  <a class="header-action link-secondary" title="Vi
 
   <h3 id="MAS_VisionFlow_VisionVariable_1_Value" data-uid="MAS.VisionFlow.VisionVariable`1.Value">
   Value
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Variables/VisionVariableOfT.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Variables/VisionVariableOfT.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置当前值</p>
@@ -255,6 +261,9 @@ Class VisionVariable&lt;T&gt;  <a class="header-action link-secondary" title="Vi
 
 
 
+  <h4 class="section" id="MAS_VisionFlow_VisionVariable_1_Value_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>单次读写同步；相等赋值不通知。多变量读写以及先读后写的组合操作不具备原子性</p>
+</div>
 
 
 

@@ -89,7 +89,7 @@
 
 
   <h1 id="MAS_VisionFlow_IVisionPipelineHandler" data-uid="MAS.VisionFlow.IVisionPipelineHandler" class="text-break">
-Interface IVisionPipelineHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L21"><i class="bi bi-code-slash"></i></a>
+Interface IVisionPipelineHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -133,7 +133,8 @@ Interface IVisionPipelineHandler  <a class="header-action link-secondary" title=
   <div class="markdown level0 remarks"><p>管道启动后按 <a class="xref" href="MAS.VisionFlow.IVisionPipelineHandler.html#MAS_VisionFlow_IVisionPipelineHandler_FixedIntervalMs">FixedIntervalMs</a> 循环：
 <a class="xref" href="MAS.VisionFlow.IVisionPipelineHandler.html#MAS_VisionFlow_IVisionPipelineHandler_TriggerSignalAsync_System_Threading_CancellationToken_">TriggerSignalAsync(CancellationToken)</a> 返回 true 时执行一次管道，
 然后依次调用 <a class="xref" href="MAS.VisionFlow.IVisionPipelineHandler.html#MAS_VisionFlow_IVisionPipelineHandler_HandleResultAsync_MAS_VisionFlow_VisionRunResult_System_Threading_CancellationToken_">HandleResultAsync(VisionRunResult, CancellationToken)</a> 与 <a class="xref" href="MAS.VisionFlow.IVisionPipelineHandler.html#MAS_VisionFlow_IVisionPipelineHandler_CompleteAsync_System_Threading_CancellationToken_">CompleteAsync(CancellationToken)</a>。
-构造函数可注入应用中注册的任意服务（例如 IProtocolManager）</p>
+推荐通过 <a class="xref" href="MAS.VisionFlow.VisionVariableStore.html">VisionVariableStore</a> 判断触发并更新结果，设备通讯集中在工具脚本；
+构造函数仍可按需注入应用中注册的服务</p>
 </div>
 
 
@@ -145,7 +146,7 @@ Interface IVisionPipelineHandler  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_VisionFlow_IVisionPipelineHandler_FixedIntervalMs" data-uid="MAS.VisionFlow.IVisionPipelineHandler.FixedIntervalMs">
   FixedIntervalMs
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取或设置循环间隔（毫秒）</p>
@@ -185,7 +186,7 @@ Interface IVisionPipelineHandler  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_VisionFlow_IVisionPipelineHandler_CompleteAsync_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.IVisionPipelineHandler.CompleteAsync(System.Threading.CancellationToken)">
   CompleteAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>本轮结束（例如复位触发位）</p>
@@ -224,7 +225,7 @@ Interface IVisionPipelineHandler  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_VisionFlow_IVisionPipelineHandler_HandleResultAsync_MAS_VisionFlow_VisionRunResult_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.IVisionPipelineHandler.HandleResultAsync(MAS.VisionFlow.VisionRunResult,System.Threading.CancellationToken)">
   HandleResultAsync(VisionRunResult, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>处理本次执行结果</p>
@@ -270,7 +271,7 @@ Interface IVisionPipelineHandler  <a class="header-action link-secondary" title=
 
   <h3 id="MAS_VisionFlow_IVisionPipelineHandler_TriggerSignalAsync_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.IVisionPipelineHandler.TriggerSignalAsync(System.Threading.CancellationToken)">
   TriggerSignalAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断本轮是否执行管道</p>
@@ -309,7 +310,7 @@ Interface IVisionPipelineHandler  <a class="header-action link-secondary" title=
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L21" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Scripts/IVisionPipelineHandler.cs/#L22" class="edit-link">Edit this page</a>
         </div>
 
 

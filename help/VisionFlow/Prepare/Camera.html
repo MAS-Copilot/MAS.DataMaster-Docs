@@ -112,6 +112,10 @@
 <p>相机断线后执行失败，下次运行自动重新打开相机</p>
 </div>
 <h2 id="使用">使用</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<p>使用 <code>HikMvs</code> 前需安装匹配的 MVS 运行库及对应的相机驱动；<code>BaslerPylon</code> 则需安装匹配的 pylon 运行库及对应的相机驱动</p>
+</div>
 <ol>
 <li>打开设置窗口，在<strong>相机提供者配置</strong>中选择驱动</li>
 <li>点 <strong>刷新</strong>（卡片上为搜索设备按钮）查找相机，在下拉框中选中设备</li>
@@ -132,7 +136,7 @@
 <tr>
 <td>相机提供者配置</td>
 <td>VideoCapture</td>
-<td>相机驱动。<code>VideoCapture</code> 为通用视频捕获（本地摄像头等），<code>HikMvs</code> 为海康 MVS 工业相机。切换后相机关闭</td>
+<td>相机驱动。<code>VideoCapture</code> 为通用视频捕获（本地摄像头等），<code>HikMvs</code> 为海康 MVS 工业相机，<code>BaslerPylon</code> 为 Basler pylon 工业相机。切换后相机关闭</td>
 </tr>
 <tr>
 <td>相机</td>
@@ -168,7 +172,7 @@
 </table>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>外部触发要求相机触发源为 IO 线（如 Line0），触发源、延时、去抖以 MVS 中保存的相机配置为准。触发源为 Software 时无法切换到外部触发，需在 MVS 中修改并保存到用户参数集</p>
+<p>外部触发要求相机触发源为 IO 线（如 Line0），触发源、延时、去抖以厂商工具（MVS 或 pylon Viewer）中保存的相机配置为准。触发源为 Software 时无法切换到外部触发，需在厂商工具中修改并保存到用户参数集</p>
 </div>
 <div class="WARNING">
 <h5>Warning</h5>
@@ -246,6 +250,38 @@
 </tr>
 </tbody>
 </table>
+<h3 id="baslerpylonbasler-pylon-工业相机">BaslerPylon（Basler pylon 工业相机）</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>曝光</td>
+<td>相机当前值</td>
+<td>节点 <code>ExposureTime</code>，旧型号为 <code>ExposureTimeAbs</code>，单位 μs，范围由相机报告。自动曝光不为 <code>Off</code> 时只读</td>
+</tr>
+<tr>
+<td>增益</td>
+<td>相机当前值</td>
+<td>节点 <code>Gain</code>，旧型号为 <code>GainRaw</code>，范围与步长由相机报告。自动增益不为 <code>Off</code> 时只读</td>
+</tr>
+<tr>
+<td>亮度 / 对比度 / 清晰度 / 饱和度</td>
+<td>相机当前值</td>
+<td>同名节点，范围由相机报告。型号未实现时不支持</td>
+</tr>
+<tr>
+<td>自动曝光 / 自动增益</td>
+<td>相机当前值</td>
+<td>节点 <code>ExposureAuto</code>、<code>GainAuto</code>，可选值为相机报告的枚举项</td>
+</tr>
+</tbody>
+</table>
 <h2 id="参数访问">参数访问</h2>
 <p>普通参数可在两轮之间修改；标为「需停管道」的参数先停止管道，驱动和采集模式还需先关闭相机。<a href="../Parameters.html">调用方式与限制</a></p>
 <h3 id="通用参数">通用参数</h3>
@@ -260,6 +296,13 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>SelectedProvider</code></td>
+<td>相机提供者配置</td>
+<td>枚举</td>
+<td><code>VideoCapture</code>、<code>HikMvs</code>、<code>BaslerPylon</code></td>
+<td>Get/Set（需停管道）</td>
+</tr>
 <tr>
 <td><code>AcquisitionMode</code></td>
 <td>采集模式</td>
@@ -342,6 +385,48 @@
 <td>增益</td>
 <td>double?</td>
 <td><code>Gain</code>，范围由相机决定</td>
+<td>Get/Set；自动增益不为 <code>Off</code> 时只读</td>
+</tr>
+<tr>
+<td><code>Brightness</code> / <code>Contrast</code> / <code>Sharpness</code> / <code>Saturation</code></td>
+<td>亮度 / 对比度 / 清晰度 / 饱和度</td>
+<td>double?</td>
+<td>同名节点，范围由相机决定；型号未实现时不可读写</td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>ExposureAuto</code> / <code>GainAuto</code></td>
+<td>自动曝光 / 自动增益</td>
+<td>枚举</td>
+<td><code>ExposureAuto</code>、<code>GainAuto</code>，取相机报告的枚举项</td>
+<td>Get/Set</td>
+</tr>
+</tbody>
+</table>
+<h3 id="baslerpylonbasler-pylon-工业相机-1">BaslerPylon（Basler pylon 工业相机）</h3>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>类型</th>
+<th>范围 / 可选值</th>
+<th>访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Exposure</code></td>
+<td>曝光</td>
+<td>double?</td>
+<td><code>ExposureTime</code> 或 <code>ExposureTimeAbs</code>，单位 μs，范围由相机决定</td>
+<td>Get/Set；自动曝光不为 <code>Off</code> 时只读</td>
+</tr>
+<tr>
+<td><code>Gain</code></td>
+<td>增益</td>
+<td>double?</td>
+<td><code>Gain</code> 或 <code>GainRaw</code>，范围与步长由相机决定</td>
 <td>Get/Set；自动增益不为 <code>Off</code> 时只读</td>
 </tr>
 <tr>

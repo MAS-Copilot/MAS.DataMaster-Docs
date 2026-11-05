@@ -500,6 +500,7 @@
 </code></pre>
 <p>字段说明从 <code>[Description]</code> 特性获取，字符串长度从 <code>[MaxLength]</code> 特性获取。模块状态类型新增属性后，模块结构体模板会自动包含对应字段，无需维护独立的字段清单。</p>
 <p>模块与动态视图之间保持单向依赖：业务模块依赖动态视图提供的模块注册和状态接口，动态视图不依赖具体业务模块</p>
+<p>VisionFlow 由宿主桥接接入：视觉库提供状态快照与上报器，宿主注册 <code>VisionFlowModuleProvider</code> 并将状态提交到变量中心，视觉库与动态视图库互不引用。使用方式见 <a href="../MAS.VisionFlow/VisionFlowModuleStatus.html">VisionFlow 模块状态</a>。</p>
 <h2 id="状态发布">状态发布</h2>
 <p>其他模块可以将运行状态发布为内部结构体，组态视图或 Web 视图绑定后即可显示。</p>
 <p>状态发布采用单向依赖：发布方依赖 <code>IDynamicViewStatusPublisher</code>，动态视图不依赖具体的发布模块。未加载动态视图工程或找不到对应结构体时，发布返回失败结果，不影响发布方继续运行。</p>
@@ -548,8 +549,8 @@
 <td>返回 <code>StructureNotFound</code> 失败结果，不抛出异常。</td>
 </tr>
 <tr>
-<td>不支持数组</td>
-<td>内部结构体支持布尔、整数、浮点和字符串类型。列表数据可使用字符串字段保存 JSON，由前端解析显示。</td>
+<td>复合值</td>
+<td>内部结构体与模块结构体支持列表和嵌套结构体，状态类型中的集合可直接发布为结构化值，无需转成 JSON 字符串。普通组态控件只绑定标量字段。</td>
 </tr>
 </tbody>
 </table>

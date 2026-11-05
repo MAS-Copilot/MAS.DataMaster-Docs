@@ -138,7 +138,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_IsProjectLoaded" data-uid="MAS.VisionFlow.IVisionFlowRuntime.IsProjectLoaded">
   IsProjectLoaded
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否已加载视觉工程</p>
@@ -170,7 +170,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_Pipelines" data-uid="MAS.VisionFlow.IVisionFlowRuntime.Pipelines">
   Pipelines
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前全部管道</p>
@@ -206,7 +206,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_FindPipeline_System_String_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.FindPipeline(System.String)">
   FindPipeline(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>按名称查找管道（不区分大小写）</p>
@@ -245,7 +245,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_GetNodeParameter_System_String_System_String_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.GetNodeParameter(System.String,System.String)">
   GetNodeParameter(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点已声明的设置</p>
@@ -287,7 +287,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_GetNodeResult_System_String_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.GetNodeResult(System.String)">
   GetNodeResult(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L111"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取节点最近一次的执行结果</p>
@@ -326,7 +326,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_GetNodeResultCode_System_String_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.GetNodeResultCode(System.String)">
   GetNodeResultCode(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L119"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定节点最近一次的结果码</p>
@@ -367,11 +367,50 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
 
 
+  <a id="MAS_VisionFlow_IVisionFlowRuntime_GetStatusSnapshot_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.GetStatusSnapshot*"></a>
+
+  <h3 id="MAS_VisionFlow_IVisionFlowRuntime_GetStatusSnapshot_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.GetStatusSnapshot(System.Threading.CancellationToken)">
+  GetStatusSnapshot(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取模块与管道的当前状态副本，统计不受界面刷新节流影响</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">VisionFlowStatusSnapshot GetStatusSnapshot(CancellationToken token = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌，允许取消尚未进入 UI 线程的读取</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.VisionFlow.VisionFlowStatusSnapshot.html">VisionFlowStatusSnapshot</a></dt>
+    <dd><p>当前状态；尚未加载工程时 IsProjectLoaded 为 false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_IVisionFlowRuntime_SetNodeParameter_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.SetNodeParameter*"></a>
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_SetNodeParameter_System_String_System_String_System_Object_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.SetNodeParameter(System.String,System.String,System.Object)">
   SetNodeParameter(string, string, object?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置节点已声明的参数</p>
@@ -416,7 +455,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_StartAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.StartAsync(System.String,System.Threading.CancellationToken)">
   StartAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>启动管道循环（按管道脚本的触发信号执行）</p>
@@ -458,7 +497,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_StopAllAsync" data-uid="MAS.VisionFlow.IVisionFlowRuntime.StopAllAsync">
   StopAllAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L104"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止全部管道循环</p>
@@ -497,7 +536,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_StopAsync_System_String_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.StopAsync(System.String)">
   StopAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止管道循环</p>
@@ -542,7 +581,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_TriggerAsync_System_String_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.IVisionFlowRuntime.TriggerAsync(System.String,System.Threading.CancellationToken)">
   TriggerAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>执行一次管道（未初始化时先初始化）</p>
@@ -597,7 +636,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_PipelineStateChanged" data-uid="MAS.VisionFlow.IVisionFlowRuntime.PipelineStateChanged">
   PipelineStateChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L129"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>管道运行状态变化时触发（可能在任意线程）</p>
@@ -628,7 +667,7 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
 
   <h3 id="MAS_VisionFlow_IVisionFlowRuntime_RunCompleted" data-uid="MAS.VisionFlow.IVisionFlowRuntime.RunCompleted">
   RunCompleted
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L124"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>管道执行完一次时触发（可能在任意线程）</p>
@@ -647,6 +686,37 @@ if (result.TryGetValue("颜色识别", "IsDetected", out bool isDetected)) { ...
   <h4 class="section">Event Type</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="MAS.VisionFlow.VisionRunCompletedEventArgs.html">VisionRunCompletedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="MAS_VisionFlow_IVisionFlowRuntime_StatusChanged" data-uid="MAS.VisionFlow.IVisionFlowRuntime.StatusChanged">
+  StatusChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/IVisionFlowRuntime.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>状态变化时触发，可能在任意线程；处理程序应快速返回，不执行发布或其他耗时操作</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler? StatusChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></dt>
     <dd></dd>
   </dl>
 

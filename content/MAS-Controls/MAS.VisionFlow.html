@@ -350,15 +350,29 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 </table>
 <p>管道循环间隔由管道脚本的 <code>FixedIntervalMs</code> 决定，默认 100 ms；取 0 时跑完立即进入下一轮（连续运行，占满一个线程）。受 Windows 计时精度（约 15.6 ms）限制，取值 1~15 的实际间隔约为 16 ms。</p>
 <h2 id="变量与条件执行">变量与条件执行</h2>
-<p>一台相机服务多个工位：同一条管道里每个工位一个「条件执行」节点，变量等于放行值才把图像交给下游。</p>
+<p>示例：一台相机服务多个工位：同一条管道里每个工位一个「条件执行」节点，变量等于放行值才把图像交给下游</p>
 <p><strong>变量</strong>（<code>MAS.VisionFlow/Variables</code>）</p>
 <ul>
 <li>工程级扁平变量表，类型与 DV 数据中心字段同名同序（不含结构体）；定义存 <code>Variables.json</code>，运行值不落盘，打开工程恢复默认值，检查点撤销保留运行值</li>
-<li>脚本构造函数声明 <code>VisionVariableStore variables</code> 即注入；<code>Get&lt;T&gt;(&quot;名称&quot;)</code> 取一次存字段，读写 <code>Value</code> 不查表、不分配</li>
+<li>脚本构造函数声明 <code>VisionVariableStore variables</code> 即注入，保存为 <code>_variables</code> 后直接按名称读写，无需逐个声明字段：<code>int action = _variables.GetValue&lt;int&gt;(&quot;Usb1Action&quot;);</code>、<code>_variables.SetValue(&quot;Cam1Status&quot;, 1);</code></li>
+<li><code>GetValue&lt;T&gt;</code> 读取当前值，<code>SetValue</code> 按配置类型写入；数值之间只允许无损转换（Int16 可以按 int 读，整数 1 可以写入 Int16），不做文本与数值之间的转换。名称错误、类型不兼容、越界或精度损失在调用时抛出异常；写入不接受 null、NaN、Infinity，失败保留原值</li>
+<li>频繁访问时仍可用 <code>Get&lt;T&gt;(&quot;名称&quot;)</code> 在构造函数中取一次存字段（类型必须与配置一致），之后读写 <code>Value</code> 不查表，无值变化订阅时不分配；按名称直接读写则每次查找，数值可能装箱</li>
+<li>运行值通知：<code>VisionVariableStore.ValueChanged</code> 接收整表变化；<code>variables.Subscribe(&quot;名称或标识&quot;, handler)</code> 只订阅指定变量，返回的 <code>IDisposable</code> 释放即退订。也可直接订阅变量对象的 <code>ValueChanged</code> 或调用它的 <code>Subscribe(handler)</code>。通知携带 <code>VariableId</code>、<code>VariableName</code>、<code>VariableType</code>、<code>OldValue</code>、<code>NewValue</code>；相同值不通知，<code>SetValue</code>、直接赋值 <code>.Value</code>、文本修改与恢复默认值都走同一通知入口</li>
+<li>通知在赋值线程同步执行、在变量值写锁外回调；每个订阅者的异常独立记录，不打断赋值与其他回调。回调应快速返回，不做阻塞通讯；新旧值属于本次变化，不是其他变量的快照。单值读写同步，不保证并发通知顺序、多变量一致性或 <code>Value++</code> 的原子性</li>
+<li>指定变量订阅绑定当前对象；同标识同类型的改名、默认值修改保留订阅，删除、改变类型或重新打开工程后需要重新订阅。加载初始默认值不发通知，整表事件订阅在变量表重载后仍保留。已开始的回调可能在退订后完成</li>
 <li>快照：循环里触发信号返回 true 时、手动触发与运行到此节点时各拍一次，本轮节点只读快照（<code>VisionExecutionContext.Variables</code>），结果带 <code>VisionRunResult.Variables</code></li>
 <li>有管道运行时拒绝改定义（<code>VisionFlowRuntime.UpdateVariables</code>）；同标识同类型的变量对象与运行值保留，脚本处理器缓存按“脚本 + 变量布局”失效</li>
 <li>界面：更多 → 变量配置（编辑副本，确定时整表校验）、变量监控（200 ms 轮询，可改运行值、恢复默认）</li>
 </ul>
+<p>订阅普通变量的示例：</p>
+<pre><code class="lang-csharp">IDisposable subscription = variables.Subscribe(&quot;ResultIndex&quot;, e =&gt; {
+    Debug.Enqueue($&quot;{e.VariableName}: {e.OldValue} → {e.NewValue}&quot;);
+});
+
+variables.SetValue(&quot;ResultIndex&quot;, 1);
+subscription.Dispose();
+</code></pre>
+<p>推荐分工：管道脚本只注入 <code>VisionVariableStore</code>，通过变量判断触发并写入检测结果；工具脚本注入 <code>IProtocolManager</code> 和变量表，统一处理设备通讯、更新输入变量并回写结果</p>
 <p><strong>跳过</strong>（<code>VisionPipelineExecutor</code>）</p>
 <ul>
 <li>节点调用 <code>context.Skip(原因)</code>：丢弃本次输出，记为 <code>Skipped</code>；任意一路输入来自被跳过节点的下游一并跳过，原因写“被条件执行「X」跳过：…”</li>
@@ -475,8 +489,9 @@ public sealed partial class ImageSourceNode : VisionNode { ... }
 <li>布局按卡片实际尺寸计算（<code>FlowCanvas.MeasureNodeBounds</code>，新卡片先同步布局一次）：add 省略坐标时，整批完成后整组新建的流程按连线从左到右分列排布，接入已有流程的新节点放到上游右侧（或下游左侧）不压住别的卡片；<code>layout</code> 操作排布整个画布或某条流程。移动记入同一步撤销</li>
 </ul>
 <p>新增节点时 Agent 层不用改代码：给要开放的属性加 <code>[VisionParameter]</code>（嵌套配置在类上按路径声明），工具即可描述、校验和读写；端口由节点构造函数声明，工具自动读取。</p>
-<h2 id="后续规划">后续规划</h2>
-<p>与动态视图（DV）的集成在后续版本提供：将 <code>IVisionFlowRuntime</code> 注入 DV 全局脚本，由运行界面通过变量、脚本触发管道，并通过订阅 <code>RunCompleted</code>、<code>PipelineStateChanged</code> 的发布器把节点状态与结果发布到运行界面。</p>
+<h2 id="动态视图模块状态">动态视图模块状态</h2>
+<p>在组态数据中心「新建 → 从模块创建 → VisionFlow 视觉流程」创建 <code>VisionFlow_Status</code> 后，宿主会自动发布工程、管道生命周期、执行统计与故障状态，不依赖工作台页面或组态通讯启动。组态控件绑定汇总标量，Web 通过现有变量 SDK 订阅管道明细列表；视觉图像与业务结果继续使用 Web 发布通道。</p>
+<p>字段、状态语义及配置示例见 <a href="../MAS.VisionFlow/VisionFlowModuleStatus.html">VisionFlow 模块状态</a>。</p>
 
 </article>
 
