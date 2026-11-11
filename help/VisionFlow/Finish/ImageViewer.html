@@ -111,10 +111,11 @@
 <ol>
 <li>把要查看的图像连到输入，运行后卡片上显示最近一帧</li>
 <li>需要留图时勾选卡片上的<strong>保存图像</strong>，或在设置窗口打开<strong>图像保存</strong></li>
-<li>在设置窗口选择保存路径、保存格式，按需填写文件夹名称与文件前缀</li>
+<li>在设置窗口选择保存条件、保存路径与格式，按需填写文件夹名称与文件前缀</li>
 <li>长期运行时打开<strong>存储策略</strong>，设置保留天数与最大占用空间</li>
 </ol>
 <p>图像按 <code>保存路径\文件夹名称\年月\日\前缀_时分秒毫秒.扩展名</code> 存放；卡片上的文件夹按钮打开当前保存目录</p>
+<p>选择<strong>仅无结果或 NG</strong>时，整轮运行结束后保存连线上本轮产出的图像。文件名为 <code>前缀_原因节点_节点结果码_时分秒毫秒.扩展名</code>。例如 Blob 分析未找到目标、依赖的测量被跳过时，仍可保存直接连接到浏览器的相机原图。</p>
 <h2 id="参数">参数</h2>
 <p><strong>图像保存</strong></p>
 <table>
@@ -130,6 +131,11 @@
 <td>图像保存</td>
 <td>关闭</td>
 <td>与卡片上的<strong>保存图像</strong>是同一个开关</td>
+</tr>
+<tr>
+<td>保存条件</td>
+<td>每轮保存</td>
+<td><strong>每轮保存</strong>沿用节点执行时的存图行为；<strong>仅无结果或 NG</strong>在整轮结果为 <code>NoResult</code> 或 <code>JudgementFailed</code> 且所接端口本轮有图时保存</td>
 </tr>
 <tr>
 <td>保存路径</td>
@@ -155,7 +161,12 @@
 </table>
 <div class="WARNING">
 <h5>Warning</h5>
-<p>保存在后台排队进行。写盘跟不上时节点显示警告「图像保存队列已满，本帧未保存」，该帧不保存</p>
+<p>保存在后台排队进行。写盘跟不上时会提示「图像保存队列已满，本帧未保存」。每轮保存时提示显示在节点上，仅无结果或 NG 时记录在视觉日志中</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>仅无结果或 NG 模式适用于整条管道的单次执行和连续运行。运行到节点、条件未放行但整轮成功、运行故障以及本轮所接端口无图时不触发存图</p>
+<p>用于复现检测时，建议接检测节点的上游原图并选择 PNG。存图沿用图像浏览器的 8 位转换，高位深图像的原始像素值不会保留</p>
 </div>
 <p><strong>存储策略</strong></p>
 <table>
@@ -210,6 +221,13 @@
 <td>图像保存</td>
 <td>bool</td>
 <td><code>true</code> / <code>false</code></td>
+<td>Get/Set</td>
+</tr>
+<tr>
+<td><code>SaveCondition</code></td>
+<td>保存条件</td>
+<td>枚举</td>
+<td><code>EveryRun</code>、<code>NoResultOrNg</code></td>
 <td>Get/Set</td>
 </tr>
 <tr>
@@ -287,6 +305,10 @@
 <tr>
 <td>留存原图</td>
 <td>相机 → 图像浏览器（打开图像保存）</td>
+</tr>
+<tr>
+<td>留存未检出或超差的原图</td>
+<td>相机原图同时连接检测节点和图像浏览器，保存条件设为<strong>仅无结果或 NG</strong></td>
 </tr>
 </tbody>
 </table>
