@@ -167,7 +167,7 @@ Class CheckpointSummary  <a class="header-action link-secondary" title="View sou
 
   <h3 id="MAS_PrismaAgent_Workspace_CheckpointSummary_DeviceWrites" data-uid="MAS.PrismaAgent.Workspace.CheckpointSummary.DeviceWrites">
   DeviceWrites
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Workspace/CheckpointSummary.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Workspace/CheckpointSummary.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取设备写入次数，不可撤销</p>
@@ -195,6 +195,70 @@ Class CheckpointSummary  <a class="header-action link-secondary" title="View sou
 
 
 
+  <a id="MAS_PrismaAgent_Workspace_CheckpointSummary_ExternalFiles_" data-uid="MAS.PrismaAgent.Workspace.CheckpointSummary.ExternalFiles*"></a>
+
+  <h3 id="MAS_PrismaAgent_Workspace_CheckpointSummary_ExternalFiles" data-uid="MAS.PrismaAgent.Workspace.CheckpointSummary.ExternalFiles">
+  ExternalFiles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Workspace/CheckpointSummary.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取工程外文件改动摘要，只含路径和操作，不含正文</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;CheckpointPathSummary&gt; ExternalFiles { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MAS.PrismaAgent.Workspace.CheckpointPathSummary.html">CheckpointPathSummary</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_PrismaAgent_Workspace_CheckpointSummary_ExternalPathErrors_" data-uid="MAS.PrismaAgent.Workspace.CheckpointSummary.ExternalPathErrors*"></a>
+
+  <h3 id="MAS_PrismaAgent_Workspace_CheckpointSummary_ExternalPathErrors" data-uid="MAS.PrismaAgent.Workspace.CheckpointSummary.ExternalPathErrors">
+  ExternalPathErrors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Workspace/CheckpointSummary.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取工程外写入目标未能纳入快照的原因</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, string&gt; ExternalPathErrors { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_PrismaAgent_Workspace_CheckpointSummary_ExternalPaths_" data-uid="MAS.PrismaAgent.Workspace.CheckpointSummary.ExternalPaths*"></a>
 
   <h3 id="MAS_PrismaAgent_Workspace_CheckpointSummary_ExternalPaths" data-uid="MAS.PrismaAgent.Workspace.CheckpointSummary.ExternalPaths">
@@ -202,7 +266,7 @@ Class CheckpointSummary  <a class="header-action link-secondary" title="View sou
   <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Workspace/CheckpointSummary.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取写到已注册模块之外的文件路径</p>
+  <div class="markdown level1 summary"><p>获取未能纳入快照的工程外写入目标路径</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

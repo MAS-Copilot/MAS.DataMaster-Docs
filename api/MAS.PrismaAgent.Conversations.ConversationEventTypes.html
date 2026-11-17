@@ -621,7 +621,7 @@ Class ConversationEventTypes  <a class="header-action link-secondary" title="Vie
 
 
   <h4 class="section" id="MAS_PrismaAgent_Conversations_ConversationEventTypes_TURN_ENDED_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>负载：<code>{ canceled }</code>。
+  <div class="markdown level1 remarks"><p>负载：<code>{ isCanceled, elapsedMs }</code>。
 正常完成、取消和异常结束均会产生本事件</p>
 </div>
 
@@ -733,7 +733,7 @@ Class ConversationEventTypes  <a class="header-action link-secondary" title="Vie
 
   <h3 id="MAS_PrismaAgent_Conversations_ConversationEventTypes_WORKSPACE_CHANGES" data-uid="MAS.PrismaAgent.Conversations.ConversationEventTypes.WORKSPACE_CHANGES">
   WORKSPACE_CHANGES
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Models/ConversationEventTypes.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Models/ConversationEventTypes.cs/#L160"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>表示本轮对工程的改动摘要，在 <a class="xref" href="MAS.PrismaAgent.Conversations.ConversationEventTypes.html#MAS_PrismaAgent_Conversations_ConversationEventTypes_TURN_ENDED">TURN_ENDED</a> 之前写入，前端据此在该轮末尾渲染改动卡片</p>
@@ -759,7 +759,8 @@ Class ConversationEventTypes  <a class="header-action link-secondary" title="Vie
 
   <h4 class="section" id="MAS_PrismaAgent_Conversations_ConversationEventTypes_WORKSPACE_CHANGES_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>负载<b>只含结构不含值</b>：<code>{ turnId, modules[{ module, displayName, added, removed, replaced, paths[{ op, kind, displayPath }],
-captureFailed, captureError, isTruncated, skippedFiles }], scriptsExecuted, externalPaths, deviceWrites }</code>。
+captureFailed, captureError, isTruncated, skippedFiles }], scriptsExecuted, externalPaths, externalPathErrors, externalFiles, deviceWrites }</code>。
+externalFiles 同样只含 op、kind、displayPath，不含文件正文。
 值由前端展开卡片时向宿主按需获取，不入日志</p>
 </div>
 
@@ -769,7 +770,7 @@ captureFailed, captureError, isTruncated, skippedFiles }], scriptsExecuted, exte
 
   <h3 id="MAS_PrismaAgent_Conversations_ConversationEventTypes_WORKSPACE_REDONE" data-uid="MAS.PrismaAgent.Conversations.ConversationEventTypes.WORKSPACE_REDONE">
   WORKSPACE_REDONE
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Models/ConversationEventTypes.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Models/ConversationEventTypes.cs/#L176"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>表示用户重做了一次撤销</p>
@@ -803,7 +804,7 @@ captureFailed, captureError, isTruncated, skippedFiles }], scriptsExecuted, exte
 
   <h3 id="MAS_PrismaAgent_Conversations_ConversationEventTypes_WORKSPACE_REVERTED" data-uid="MAS.PrismaAgent.Conversations.ConversationEventTypes.WORKSPACE_REVERTED">
   WORKSPACE_REVERTED
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Models/ConversationEventTypes.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.PrismaAgent/Conversations/Models/ConversationEventTypes.cs/#L168"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>表示用户撤销了若干轮的工程改动</p>
