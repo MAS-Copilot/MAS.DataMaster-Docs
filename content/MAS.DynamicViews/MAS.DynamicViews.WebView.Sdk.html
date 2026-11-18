@@ -89,8 +89,9 @@
 
 <p><code>dynamic-views.js</code> 是 Web 视图页面访问变量中心的唯一方式，由 DataMaster 在 <code>/_sdk/dynamic-views.js</code> 提供。SDK 封装了 WebSocket、握手、断线重连、快照与增量、序号断档恢复、登录令牌和请求回执关联，页面代码只需要使用别名读写变量。</p>
 <blockquote>
-<p>SDK 文件位于工程的 <code>Web/_sdk/dynamic-views.js</code>（Web 目录创建后由 DataMaster 放入，已有则不覆盖），和图标 <code>Web/_shared/icons/</code> 一样是工程里的普通文件，页面按相对路径引用</p>
+<p>SDK 文件位于工程的 <code>Web/_sdk/dynamic-views.js</code>。DataMaster 会自动更新未手工修改的旧副本，保留定制副本。页面按相对路径引用。</p>
 </blockquote>
+<p>页面只需引用 <code>dynamic-views.js</code>。使用 <code>&lt;dv-vision-view&gt;</code> 时按需加载视觉结果组件，自行绘制视觉结果的页面可以直接使用 <code>subscribeVision</code>。从 SDK 2.5.1 起，登录框随主脚本提供，打开时才创建界面和注入样式。自定义登录界面的页面可以设置 <code>loginUi: false</code>，通过 <code>login</code> 和 <code>logout</code> 管理账号。</p>
 <pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/theme.css&quot;&gt;
 …
 &lt;script src=&quot;/_sdk/dynamic-views.js&quot;&gt;&lt;/script&gt;
@@ -243,6 +244,60 @@
 </tr>
 </tbody>
 </table>
+<h3 id="模块启停">模块启停</h3>
+<p>工程的 <code>Web/manifest.json</code> 通过 <code>modules</code> 声明可操作的目标。Agent 可从 <code>visionFlow.graph.get</code> 同时读取视觉工程的 <code>projectId</code>、管道的 <code>pipelines[].id</code> 和独立脚本执行节点的 <code>nodes[].id</code>，从 <code>dxfTrajectory.status</code> 读取图纸导入工程的 <code>projectId</code>。以下 UUID 是示例，配置时使用当前工程的实际值。</p>
+<pre><code class="lang-json">{
+    &quot;modules&quot;: {
+        &quot;station1&quot;: {
+            &quot;kind&quot;: &quot;visionPipeline&quot;,
+            &quot;projectId&quot;: &quot;ed844fc1-3185-4b59-8105-a969dc4495e2&quot;,
+            &quot;targetId&quot;: &quot;834f2587-8b76-4d2e-95a1-4ea2a89fc20a&quot;
+        },
+        &quot;stationScript&quot;: {
+            &quot;kind&quot;: &quot;visionScript&quot;,
+            &quot;projectId&quot;: &quot;ed844fc1-3185-4b59-8105-a969dc4495e2&quot;,
+            &quot;targetId&quot;: &quot;10e8bf2d-d04d-4c59-85c4-5d4cddfb0a8d&quot;
+        },
+        &quot;drawing&quot;: {
+            &quot;kind&quot;: &quot;dxfScript&quot;,
+            &quot;projectId&quot;: &quot;efd137a5-396a-4697-94f3-b62aa9c0ee1a&quot;,
+            &quot;controlRole&quot;: &quot;engineer&quot;
+        }
+    }
+}
+</code></pre>
+<p>VisionFlow 管道和独立脚本分别使用各自的目标 ID，图纸导入使用工程 ID。状态遵循清单的 <code>auth.viewRole</code>。启停至少需要操作员角色，并满足清单的 <code>auth.viewRole</code>、<code>auth.writeRole</code> 和目标的 <code>controlRole</code>。目标工程需已经加载，可由应用启动方案预先打开。动态视图通讯可保持停止。</p>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>modules</code></td>
+<td>当前可见的状态表，按别名索引</td>
+</tr>
+<tr>
+<td><code>getModuleState(alias)</code></td>
+<td>返回 <code>{ state, revision, message, canStart, canStop }</code>。断线或目标不可见时返回 <code>null</code></td>
+</tr>
+<tr>
+<td><code>onModuleStateChanged(callback)</code></td>
+<td>状态表变化时调用 <code>(modules, client)</code>，返回取消订阅函数。初次渲染可直接读取 <code>modules</code></td>
+</tr>
+<tr>
+<td><code>startModule(alias)</code></td>
+<td>请求启动已加载工程中的目标</td>
+</tr>
+<tr>
+<td><code>stopModule(alias)</code></td>
+<td>请求停止当前快照对应的实例</td>
+</tr>
+</tbody>
+</table>
+<p>状态值为 <code>unavailable</code>、<code>stopped</code>、<code>starting</code>、<code>running</code>、<code>stopping</code>、<code>stopFailed</code> 或 <code>busy</code>。命令回执确认服务端已执行该操作，按钮和运行状态以随后收到的快照为准。目标不可用时返回 <code>MODULE_UNAVAILABLE</code>，快照过期时返回 <code>MODULE_CHANGED</code>。断线重连后恢复状态表，启停命令由用户重新发起。</p>
 <h3 id="后端查询">后端查询</h3>
 <table>
 <thead>

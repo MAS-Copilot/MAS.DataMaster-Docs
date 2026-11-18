@@ -493,6 +493,70 @@ public string? Remark { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Nodes_ScriptExecutionNode_RuntimeInstanceId_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.RuntimeInstanceId*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_RuntimeInstanceId" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.RuntimeInstanceId">
+  RuntimeInstanceId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前脚本循环的实例标识</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Guid? RuntimeInstanceId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ScriptExecutionNode_RuntimeState_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.RuntimeState*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_RuntimeState" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.RuntimeState">
+  RuntimeState
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取脚本的实时运行状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RunState RuntimeState { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.Models.RunState.html">RunState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Nodes_ScriptExecutionNode_ScriptCode_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.ScriptCode*"></a>
 
   <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_ScriptCode" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.ScriptCode">
@@ -601,7 +665,7 @@ public string ScriptCode { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_OnLoadScript_System_String_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.OnLoadScript(System.String)">
   OnLoadScript(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>还原节点脚本，见 <a class="xref" href="MAS.VisionFlow.Designer.FlowNode.html#MAS_VisionFlow_Designer_FlowNode_SaveScript">SaveScript()</a>；快照里没有脚本时不调用</p>
@@ -630,11 +694,48 @@ public string ScriptCode { get; set; }</code></pre>
 
 
 
+  <a id="MAS_VisionFlow_Nodes_ScriptExecutionNode_OwnsPlanInstance_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.OwnsPlanInstance*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_OwnsPlanInstance_System_Guid_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.OwnsPlanInstance(System.Guid)">
+  OwnsPlanInstance(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>查询此节点是否持有指定方案启动的实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool OwnsPlanInstance(Guid instanceId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>instanceId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="MAS_VisionFlow_Nodes_ScriptExecutionNode_ReleaseResources_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.ReleaseResources*"></a>
 
   <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.ReleaseResources">
   ReleaseResources()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>
@@ -661,7 +762,7 @@ public string ScriptCode { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_SaveScript" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.SaveScript">
   SaveScript()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存节点的脚本源码（脚本执行节点等）</p>
@@ -678,6 +779,188 @@ public string ScriptCode { get; set; }</code></pre>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>脚本源码，没有脚本的节点返回 null</p>
 </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ScriptExecutionNode_StartAsync_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.StartAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_StartAsync_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.StartAsync(System.Threading.CancellationToken)">
+  StartAsync(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步启动当前节点的脚本循环</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task StartAsync(CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ScriptExecutionNode_StartForPlanAsync_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.StartForPlanAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_StartForPlanAsync_System_Guid_System_Threading_CancellationToken_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.StartForPlanAsync(System.Guid,System.Threading.CancellationToken)">
+  StartForPlanAsync(Guid, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>启动脚本循环并记录本次方案实例。已在运行时返回 false</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; StartForPlanAsync(Guid instanceId, CancellationToken cancellationToken)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>instanceId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ScriptExecutionNode_StopAsync_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.StopAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_StopAsync" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.StopAsync">
+  StopAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步停止当前节点的脚本循环</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task StopAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ScriptExecutionNode_StopForPlanAsync_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.StopForPlanAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_StopForPlanAsync_System_Guid_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.StopForPlanAsync(System.Guid)">
+  StopForPlanAsync(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>停止此节点上由指定方案实例启动的脚本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task StopForPlanAsync(Guid instanceId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>instanceId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MAS_VisionFlow_Nodes_ScriptExecutionNode_TryStopRuntimeInstanceAsync_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.TryStopRuntimeInstanceAsync*"></a>
+
+  <h3 id="MAS_VisionFlow_Nodes_ScriptExecutionNode_TryStopRuntimeInstanceAsync_System_Guid_" data-uid="MAS.VisionFlow.Nodes.ScriptExecutionNode.TryStopRuntimeInstanceAsync(System.Guid)">
+  TryStopRuntimeInstanceAsync(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Tools/ScriptExecutionNode.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步尝试停止指定实例标识对应的脚本，仅在实例匹配时执行停止操作</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; TryStopRuntimeInstanceAsync(Guid instanceId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>instanceId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
   </dl>
 
 
