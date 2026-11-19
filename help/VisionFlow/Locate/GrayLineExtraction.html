@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>亮线／暗线提取 | DataMaster </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="亮线／暗线提取 | DataMaster ">
+      
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/GrayLineExtraction.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="DataMaster">
+            DataMaster
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="亮线暗线提取">亮线／暗线提取</h1>
+
+<p>从灰度剖面查找擦痕、刻线、细槽或接缝的中心。线与两侧背景都达到对比度要求时，沿期望方向连接相邻截面，可跨过线内的小段断点</p>
+<h2 id="端口">端口</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>图像</td>
+<td>图像</td>
+<td>8 位单通道灰度图</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>图像</td>
+<td>图像</td>
+<td>输入图像直通</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位</td>
+<td>定位</td>
+<td>平均灰度差最大的一条线，位置为中心线中点</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>定位列表</td>
+<td>定位列表</td>
+<td>全部线段，按平均灰度差从高到低，<code>Width</code> 为线宽，<code>Height</code> 为线长，<code>Score</code> 为灰度差除以 255</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>标注图</td>
+<td>标注图</td>
+<td>叠加中心线、序号和数量，可接图像浏览器</td>
+</tr>
+</tbody>
+</table>
+<p>找不到线时输出空定位列表，并报告「未找到」。单个定位端口无输出</p>
+<h2 id="调整步骤">调整步骤</h2>
+<ol>
+<li>将相机原图或 ROI 裁剪后的原始灰度图送入。亮底暗刻线勾选「找暗线」。横向线用 0°，竖向线用 90°</li>
+<li>在原始分辨率下估算单条线的短边宽度，填入「预期线宽」。按真刻痕的长度范围设置最短和最长线段，便于排除零散噪声和较长的划痕</li>
+<li>用浅刻痕样本调整最小对比度，再按同一条线内实际出现的断点调整「最大断点」。断点过大时，沿同一方向靠得很近的独立线段可能被接起来</li>
+</ol>
+<h2 id="参数">参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数键</th>
+<th>含义</th>
+<th>默认值</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsDarkLine</code></td>
+<td>找暗线，关掉时找亮线</td>
+<td>开</td>
+<td>开 / 关</td>
+</tr>
+<tr>
+<td><code>ExpectedAngle</code></td>
+<td>期望角度，水平为 0°，顺时针为正</td>
+<td>90°</td>
+<td>-90～90°</td>
+</tr>
+<tr>
+<td><code>AngleTolerance</code></td>
+<td>允许偏离期望角度的范围</td>
+<td>15°</td>
+<td>0～45°</td>
+</tr>
+<tr>
+<td><code>ExpectedWidth</code></td>
+<td>预期线宽，用于确定两侧背景采样距离</td>
+<td>5 px</td>
+<td>1～200 px</td>
+</tr>
+<tr>
+<td><code>MinContrast</code></td>
+<td>线与两侧背景都需达到的最小灰度差</td>
+<td>12</td>
+<td>1～255</td>
+</tr>
+<tr>
+<td><code>MinLength</code></td>
+<td>最短线段</td>
+<td>8 px</td>
+<td>2～5000 px</td>
+</tr>
+<tr>
+<td><code>MaxLength</code></td>
+<td>最长线段，0 表示不限</td>
+<td>60 px</td>
+<td>0～5000 px</td>
+</tr>
+<tr>
+<td><code>MaxGap</code></td>
+<td>同一条线内允许连续缺失的最大像素数，按期望方向计算。有效截面须占首末检出截面之间全部采样位置的至少 50%，首末截面也计入</td>
+<td>2 px</td>
+<td>0～50 px</td>
+</tr>
+<tr>
+<td><code>MaxCount</code></td>
+<td>最多输出数量</td>
+<td>100</td>
+<td>1～500</td>
+</tr>
+</tbody>
+</table>
+<h2 id="结果数据">结果数据</h2>
+<p><code>Count</code> 为线段数量。<code>X</code>、<code>Y</code>、<code>Angle</code>、<code>Length</code>、<code>Width</code>、<code>Contrast</code> 为第一条线的中心、方向、长度、平均宽度和灰度差。<code>Items</code> 包含全部线段的端点及测量值，类型为 <code>IReadOnlyList&lt;GrayLine&gt;</code>。</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/docs/help/VisionFlow/Locate/GrayLineExtraction.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx" rel="noreferrer">docfx</a>,  | Copyright (c) MAS(厦门威光) Corporation. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
