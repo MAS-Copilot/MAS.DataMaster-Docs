@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ContourAnalyzer | DataMaster ">
       
-      <meta name="description" content="轮廓分析：二值化 → 找轮廓 → 测量（面积、周长、圆度、凸度、矩形度、长宽比、Hu 矩）→ 筛选 → 按定位方式求中心与尺寸">
+      <meta name="description" content="从二值图提取轮廓，测量面积、周长、圆度、凸度、矩形度、长宽比与 Hu 矩，筛选后求中心与尺寸">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,7 @@ Class ContourAnalyzer  <a class="header-action link-secondary" title="View sourc
   <dl><dt>Assembly</dt><dd>MAS.Vision.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>轮廓分析：二值化 → 找轮廓 → 测量（面积、周长、圆度、凸度、矩形度、长宽比、Hu 矩）→ 筛选 → 按定位方式求中心与尺寸</p>
+  <div class="markdown summary"><p>从二值图提取轮廓，测量面积、周长、圆度、凸度、矩形度、长宽比与 Hu 矩，筛选后求中心与尺寸</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -148,8 +148,7 @@ Class ContourAnalyzer  <a class="header-action link-secondary" title="View sourc
 
 
   <h2 id="MAS_Vision_ContourAnalyzer_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>与 Blob 分析同一套二值化与轮廓层次（两级：外轮廓与孔），多了可设阈值、取孔、更多筛选条件、按参考形状（Hu 矩）筛选，
-以及按外接矩形、椭圆、圆给出定位结果</p>
+  <div class="markdown level0 remarks"><p>支持外轮廓与孔、按参考形状（Hu 矩）筛选，以及用外接矩形、椭圆或圆定位</p>
 <p>面积不到最小面积四分之一的轮廓（多为噪点）直接跳过，不测量也不列为未通过</p>
 </div>
 
@@ -197,7 +196,7 @@ Class ContourAnalyzer  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="MAS_Vision_ContourAnalyzer_Analyze_OpenCvSharp_Mat_MAS_Vision_ContourOptions_" data-uid="MAS.Vision.ContourAnalyzer.Analyze(OpenCvSharp.Mat,MAS.Vision.ContourOptions)">
   Analyze(Mat, ContourOptions)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Measuring/Contours/ContourAnalyzer.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Measuring/Contours/ContourAnalyzer.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>分析轮廓</p>
@@ -205,13 +204,13 @@ Class ContourAnalyzer  <a class="header-action link-secondary" title="View sourc
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ContourAnalysisResult Analyze(Mat src, ContourOptions options)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ContourAnalysisResult Analyze(Mat binary, ContourOptions options)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>src</code> <span class="xref">Mat</span></dt>
-    <dd><p>输入图像（灰度或彩色，彩色先转灰度）</p>
+    <dt><code>binary</code> <span class="xref">Mat</span></dt>
+    <dd><p>8 位单通道二值图，0 为背景，255 为前景</p>
 </dd>
     <dt><code>options</code> <a class="xref" href="MAS.Vision.ContourOptions.html">ContourOptions</a></dt>
     <dd><p>参数</p>
@@ -232,6 +231,12 @@ Class ContourAnalyzer  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MAS.SharedLibrary.VisionInvalidInputDataException.html">VisionInvalidInputDataException</a></dt>
+    <dd><p>输入不是 8 位单通道 0/255 二值图</p>
+</dd>
+  </dl>
 
 
 
@@ -239,7 +244,7 @@ Class ContourAnalyzer  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="MAS_Vision_ContourAnalyzer_ShapeDistance_System_Collections_Generic_IReadOnlyList_System_Double__System_Collections_Generic_IReadOnlyList_System_Double__" data-uid="MAS.Vision.ContourAnalyzer.ShapeDistance(System.Collections.Generic.IReadOnlyList{System.Double},System.Collections.Generic.IReadOnlyList{System.Double})">
   ShapeDistance(IReadOnlyList&lt;double&gt;, IReadOnlyList&lt;double&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Measuring/Contours/ContourAnalyzer.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.Vision/Measuring/Contours/ContourAnalyzer.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>两组 Hu 矩的形状差异（与 OpenCV matchShapes 的 CONTOURS_MATCH_I1 相同）</p>

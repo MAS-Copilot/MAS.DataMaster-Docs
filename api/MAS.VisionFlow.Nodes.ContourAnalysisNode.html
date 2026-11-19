@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ContourAnalysisNode | DataMaster ">
       
-      <meta name="description" content="轮廓分析：二值化后找轮廓，按面积、周长、圆度、凸度、矩形度、长宽比、参考形状（Hu 矩）筛选， 按质心、外接矩形、拟合椭圆或拟合圆给出定位结果">
+      <meta name="description" content="轮廓分析：从上游二值图提取轮廓，按面积、周长、圆度、凸度、矩形度、长宽比、参考形状（Hu 矩）筛选， 按质心、外接矩形、拟合椭圆或拟合圆给出定位结果">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,7 @@ Class ContourAnalysisNode  <a class="header-action link-secondary" title="View s
   <dl><dt>Assembly</dt><dd>MAS.VisionFlow.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>轮廓分析：二值化后找轮廓，按面积、周长、圆度、凸度、矩形度、长宽比、参考形状（Hu 矩）筛选，
+  <div class="markdown summary"><p>轮廓分析：从上游二值图提取轮廓，按面积、周长、圆度、凸度、矩形度、长宽比、参考形状（Hu 矩）筛选，
 按质心、外接矩形、拟合椭圆或拟合圆给出定位结果</p>
 </div>
   <div class="markdown conceptual"></div>
@@ -283,7 +283,7 @@ public sealed class ContourAnalysisNode : VisionLocateNode, INotifyPropertyChang
 
 
   <h2 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>比 Blob 分析多：固定阈值、取孔、更多筛选条件、参考形状、拟合定位；简单找孔用 Blob 分析即可</p>
+  <div class="markdown level0 remarks"><p>支持取孔、按参考形状筛选及拟合定位</p>
 <p>定位列表为通过筛选的全部轮廓（带面积、宽高、半径、圆度），定位结果为第一个；精度在像素量级，量尺寸要亚像素时用卡尺</p>
 </div>
 
@@ -367,7 +367,7 @@ public sealed class ContourAnalysisNode : VisionLocateNode, INotifyPropertyChang
 
   <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ClearReferenceCommand" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ClearReferenceCommand">
   ClearReferenceCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L245"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L229"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取清除参考形状的命令</p>
@@ -400,7 +400,7 @@ public VisionCommand ClearReferenceCommand { get; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_HasReference" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.HasReference">
   HasReference
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L195"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取是否已设参考形状</p>
@@ -409,41 +409,6 @@ public VisionCommand ClearReferenceCommand { get; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool HasReference { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_IsDarkTarget_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.IsDarkTarget*"></a>
-
-  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_IsDarkTarget" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.IsDarkTarget">
-  IsDarkTarget
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置是否找暗目标</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-[JsonProperty]
-[VisionParameter(&quot;DarkBlob&quot;, DescriptionKey = &quot;DarkBlobDescription&quot;)]
-public bool IsDarkTarget { get; set; }</code></pre>
   </div>
 
 
@@ -1023,7 +988,7 @@ public double MinRectangularity { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Preview" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Preview">
   Preview
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L234"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L218"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次输入的图像预览（保持原尺寸，设置窗口里按像素叠加轮廓）</p>
@@ -1124,7 +1089,7 @@ public ContourScope Scope { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_SetReferenceCommand" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.SetReferenceCommand">
   SetReferenceCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L239"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L223"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取把最近一次第一个通过的轮廓设为参考形状的命令</p>
@@ -1221,41 +1186,6 @@ public string Summary { get; set; }</code></pre>
 
 
 
-  <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Threshold_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Threshold*"></a>
-
-  <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_Threshold" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.Threshold">
-  Threshold
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>获取或设置二值化阈值（0 为大津法自动）</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
-[JsonProperty]
-[VisionParameter(&quot;ContourThreshold&quot;, DescriptionKey = &quot;ContourThresholdDescription&quot;, Minimum = 0, Maximum = 255)]
-public int Threshold { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="MAS_VisionFlow_Nodes_ContourAnalysisNode_TypeKey_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.TypeKey*"></a>
 
   <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_TypeKey" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.TypeKey">
@@ -1296,7 +1226,7 @@ public int Threshold { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ExecuteAsync_MAS_VisionFlow_Nodes_VisionExecutionContext_" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ExecuteAsync(MAS.VisionFlow.Nodes.VisionExecutionContext)">
   ExecuteAsync(VisionExecutionContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L257"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步执行节点</p>
@@ -1342,7 +1272,7 @@ public int Threshold { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_GetResultData" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.GetResultData">
   GetResultData()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L292"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L275"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取最近一次执行的结果数据，供管道脚本读取、发布到动态视图</p>
@@ -1375,7 +1305,7 @@ public int Threshold { get; set; }</code></pre>
 
   <h3 id="MAS_VisionFlow_Nodes_ContourAnalysisNode_ReleaseResources" data-uid="MAS.VisionFlow.Nodes.ContourAnalysisNode.ReleaseResources">
   ReleaseResources()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L317"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Weiguang-Automation/mas-data-master/blob/main/src/MAS.VisionFlow/Nodes/Locate/ContourAnalysisNode.cs/#L299"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>释放节点持有的资源（相机、脚本、后台任务……），只会调用一次</p>
